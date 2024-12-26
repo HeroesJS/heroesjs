@@ -1,8 +1,7 @@
 import background from './assets/background.jpg';
-import styled from 'styled-components';
-import { ScreenHeight, ScreenWidth } from '../core';
 import { MainMenu } from '../MainMenu';
 import { useNavigate } from 'react-router-dom';
+import { Screen } from '../Screen';
 
 export const MainScreen = () => {
   const navigate = useNavigate();
@@ -10,15 +9,8 @@ export const MainScreen = () => {
   const handleViewCreditsClick = () => navigate('credits');
 
   return (
-    <Root>
+    <Screen background={background}>
       <MainMenu onViewCreditsClick={handleViewCreditsClick} x={400} y={35} />
-    </Root>
+    </Screen>
   );
 };
-
-const Root = styled.div({
-  backgroundImage: `url(${background})`,
-  height: ScreenHeight,
-  position: 'relative',
-  width: ScreenWidth,
-});

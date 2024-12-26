@@ -1,14 +1,12 @@
-import styled from 'styled-components';
-
 import background from './assets/background.jpg';
-import { ScreenHeight, ScreenWidth } from '../core';
+import { Screen } from '../Screen';
 
 interface Props {
   readonly onClick?: () => void;
 }
 
 export const CreditsScreen = ({ onClick }: Props) => (
-  <Root onClick={onClick}>
+  <Screen background={background} onClick={onClick}>
     <h1>Credits</h1>
     <h2>Designed and Directed</h2>
     <ul>
@@ -81,12 +79,5 @@ export const CreditsScreen = ({ onClick }: Props) => (
       <li>Mark Palczynski</li>
       <li>Christian Vanover</li>
     </ul>
-  </Root>
+  </Screen>
 );
-
-const Root = styled.div({
-  backgroundImage: `url(${background})`,
-  fontSize: 0,
-  height: ScreenHeight,
-  width: ScreenWidth,
-});
