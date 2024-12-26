@@ -1,7 +1,9 @@
-import background from './assets/background.jpg';
-import { MainMenu } from '../MainMenu';
 import { useNavigate } from 'react-router-dom';
+
+import { MainMenu } from '../MainMenu';
 import { Screen } from '../Screen';
+
+import background from './assets/background.jpg';
 
 export const MainScreen = () => {
   const navigate = useNavigate();

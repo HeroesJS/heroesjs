@@ -1,7 +1,9 @@
-import styled from 'styled-components';
-import background from './assets/background.jpg';
 import type { PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
 import { PositionProps } from '../core';
+
+import background from './assets/background.jpg';
 
 interface Props extends PositionProps {
   readonly label: string;

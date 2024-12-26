@@ -1,8 +1,9 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { MainScreen } from './MainScreen';
-import { ScreenHeight, ScreenWidth } from './core';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import styled, { createGlobalStyle } from 'styled-components';
+
+import { ScreenHeight, ScreenWidth } from './core';
 import { CreditsScreen } from './CreditsScreen';
+import { MainScreen } from './MainScreen';
 
 export function App() {
   const navigate = useNavigate();

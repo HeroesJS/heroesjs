@@ -1,5 +1,6 @@
-import background from './assets/background.jpg';
 import { Screen } from '../Screen';
+
+import background from './assets/background.jpg';
 
 interface Props {
   readonly onClick?: () => void;
