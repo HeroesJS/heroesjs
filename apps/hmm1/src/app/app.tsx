@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { ScreenHeight, ScreenWidth } from './core';
 
@@ -8,9 +7,7 @@ export function App() {
     <>
       <AppStyle />
       <Root id="app">
-        <MainScreen>
-          <MainMenu x={400} y={35} />
-        </MainScreen>
+        <MainScreen />
       </Root>
     </>
   );
