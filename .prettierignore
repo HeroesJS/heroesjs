@@ -1,0 +1,6 @@
+/coverage
+/dist
+
+# Nx
+/.nx/cache
+/.nx/workspace-data
