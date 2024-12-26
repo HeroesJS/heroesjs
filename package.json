@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "name": "@heroesjs/root",
+    "description": "",
+    "license": "MIT",
+    "version": "0.0.0",
+    "engines": {
+    },
+    "scripts": {},
+    "dependencies": {},
+    "peerDependencies": {},
+    "devDependencies": {}
+}
