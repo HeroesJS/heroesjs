@@ -1,14 +1,17 @@
 {
-    "private": true,
-    "name": "@heroesjs/root",
-    "description": "",
-    "license": "MIT",
-    "version": "0.0.0",
-    "engines": {
-        "node": ">=22.12.0"
-    },
-    "scripts": {},
-    "dependencies": {},
-    "peerDependencies": {},
-    "devDependencies": {}
+  "private": true,
+  "name": "@heroesjs/root",
+  "description": "",
+  "license": "MIT",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "nx": "20.3.0"
+  },
+  "nx": {}
 }
