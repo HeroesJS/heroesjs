@@ -1,6 +1,5 @@
-import { Button } from '../Button';
-import type { PositionProps } from '../core';
-import { Menu } from '../Menu';
+import { Button, Menu } from '../../base';
+import type { PositionProps } from '../../core';
 
 import loadGameDisabled from './assets/load-game-disabled.png';
 import loadGame from './assets/load-game.png';

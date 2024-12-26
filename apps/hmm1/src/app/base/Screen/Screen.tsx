@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { ScreenHeight, ScreenWidth } from '../core';
+import { ScreenHeight, ScreenWidth } from '../../core';
 
 interface Props {
   readonly background: string;

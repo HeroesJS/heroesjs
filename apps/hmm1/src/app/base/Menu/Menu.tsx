@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { PositionProps } from '../core';
+import { PositionProps } from '../../core';
 
 import background from './assets/background.jpg';
 
