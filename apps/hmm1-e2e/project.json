@@ -1,9 +1,9 @@
 {
-  "name": "hmm1-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "// targets": "to see all targets run: nx show project hmm1-e2e --web",
+  "implicitDependencies": ["hmm1"],
+  "name": "hmm1-e2e",
   "projectType": "application",
   "sourceRoot": "apps/hmm1-e2e/src",
-  "implicitDependencies": ["hmm1"],
-  "// targets": "to see all targets run: nx show project hmm1-e2e --web",
   "targets": {}
 }
