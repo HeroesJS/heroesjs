@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+# System
+.DS_Store
+
 # Nx
 /.nx/cache
 /.nx/workspace-data
