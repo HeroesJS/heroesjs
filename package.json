@@ -5,6 +5,7 @@
     "license": "MIT",
     "version": "0.0.0",
     "engines": {
+        "node": ">=22.12.0"
     },
     "scripts": {},
     "dependencies": {},
