@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import type { PositionProps } from '../../core';
 
 export interface ButtonAssets {
-  readonly enabled: string;
   readonly disabled: string;
+  readonly enabled: string;
 }
 
 interface Props extends PositionProps {

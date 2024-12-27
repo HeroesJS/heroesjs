@@ -1,6 +1,7 @@
 import nx from '@nx/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
+import typescriptSortKeys from 'eslint-plugin-typescript-sort-keys';
 import merge from 'lodash.merge';
 
 export default [
@@ -34,6 +35,7 @@ export default [
     // Override or add rules here
     plugins: {
       import: importPlugin,
+      'typescript-sort-keys': typescriptSortKeys,
     },
     rules: {
       'import/order': [
@@ -48,6 +50,8 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'typescript-sort-keys/interface': 'error',
+      'typescript-sort-keys/string-enum': 'error',
     },
     settings: {
       import: {

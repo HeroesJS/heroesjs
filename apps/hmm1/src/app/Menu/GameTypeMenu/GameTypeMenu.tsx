@@ -11,10 +11,10 @@ import standardGameDisabled from './assets/standard-game/disabled.png';
 import standardGameEnabled from './assets/standard-game/enabled.png';
 
 interface Props extends PositionProps {
-  readonly onStandardGameClick?: () => void;
   readonly onCampaignGameClick?: () => void;
-  readonly onMultiPlayerGameClick?: () => void;
   readonly onCancelClick?: () => void;
+  readonly onMultiPlayerGameClick?: () => void;
+  readonly onStandardGameClick?: () => void;
 }
 
 export const GameTypeMenu = ({

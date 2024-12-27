@@ -13,8 +13,8 @@ import playQueenLamandaDisabled from './assets/play-queen-lamanda/disabled.png';
 import playQueenLamandaEnabled from './assets/play-queen-lamanda/enabled.png';
 
 export enum Campaign {
-  LordIronfist = 'lord-ironfist',
   LordAlamar = 'lord-alamar',
+  LordIronfist = 'lord-ironfist',
   LordSlayer = 'lord-slayer',
   QueenLamanda = 'queen-lamanda',
 }
@@ -73,8 +73,8 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
 );
 
 interface ItemProps {
-  readonly value: Campaign;
   readonly onClick?: (value: Campaign) => void;
+  readonly value: Campaign;
 }
 
 const Item = ({ onClick, value }: ItemProps) => {
