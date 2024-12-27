@@ -8,13 +8,13 @@ describe(CampaignMenu, () => {
   it('renders', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('menu', { name: /campaign menu/i })).toBeDefined();
+    expect(screen.getByRole('menu', { name: /campaign menu/i })).toBeInTheDocument();
   });
 
   it('renders play lord ironfist button', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord ironfist/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /play lord ironfist/i })).toBeInTheDocument();
   });
 
   it('calls handler when play lord ironfist button is clicked', async () => {
@@ -30,7 +30,7 @@ describe(CampaignMenu, () => {
   it('renders play lord slayer button', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord slayer/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /play lord slayer/i })).toBeInTheDocument();
   });
 
   it('calls handler when play lord slayer button is clicked', async () => {
@@ -46,7 +46,7 @@ describe(CampaignMenu, () => {
   it('renders play queen lamanda button', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play queen lamanda/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /play queen lamanda/i })).toBeInTheDocument();
   });
 
   it('calls handler when play queen lamanda button is clicked', async () => {
@@ -62,7 +62,7 @@ describe(CampaignMenu, () => {
   it('renders play lord alamar button', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord alamar/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /play lord alamar/i })).toBeInTheDocument();
   });
 
   it('calls handler when play lord alamar button is clicked', async () => {
@@ -78,7 +78,7 @@ describe(CampaignMenu, () => {
   it('renders cancel button', async () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
   });
 
   it('calls handler when cancel button is clicked', async () => {

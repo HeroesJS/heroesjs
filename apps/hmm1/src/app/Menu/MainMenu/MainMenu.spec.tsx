@@ -8,13 +8,13 @@ describe(MainMenu, () => {
   it('renders', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('menu', { name: /main menu/i })).toBeDefined();
+    expect(screen.getByRole('menu', { name: /main menu/i })).toBeInTheDocument();
   });
 
   it('renders new game button', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /new game/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /new game/i })).toBeInTheDocument();
   });
 
   it('calls handler when new game button is clicked', async () => {
@@ -30,7 +30,7 @@ describe(MainMenu, () => {
   it('renders load game button', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /load game/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /load game/i })).toBeInTheDocument();
   });
 
   it('calls handler when load game button is clicked', async () => {
@@ -46,7 +46,7 @@ describe(MainMenu, () => {
   it('renders view high scores button', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /view high scores/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /view high scores/i })).toBeInTheDocument();
   });
 
   it('calls handler when view high scores button is clicked', async () => {
@@ -62,7 +62,7 @@ describe(MainMenu, () => {
   it('renders view credits button', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /view credits/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /view credits/i })).toBeInTheDocument();
   });
 
   it('calls handler when view credits button is clicked', async () => {
@@ -78,7 +78,7 @@ describe(MainMenu, () => {
   it('renders quit button', async () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /quit/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /quit/i })).toBeInTheDocument();
   });
 
   it('calls handler when quit button is clicked', async () => {

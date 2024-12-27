@@ -78,7 +78,7 @@ export default [
       'testing-library/prefer-explicit-assert': [
         'error',
         {
-          assertion: 'toBeDefined',
+          assertion: 'toBeInTheDocument',
         },
       ],
       'testing-library/prefer-implicit-assert': 'off',

@@ -8,13 +8,13 @@ describe(GameTypeMenu, () => {
   it('renders', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('menu', { name: /game type menu/i })).toBeDefined();
+    expect(screen.getByRole('menu', { name: /game type menu/i })).toBeInTheDocument();
   });
 
   it('renders standard game button', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /standard game/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /standard game/i })).toBeInTheDocument();
   });
 
   it('calls handler when standard game button is clicked', async () => {
@@ -30,7 +30,7 @@ describe(GameTypeMenu, () => {
   it('renders campaign game button', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /campaign game/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /campaign game/i })).toBeInTheDocument();
   });
 
   it('calls handler when campaign game button is clicked', async () => {
@@ -46,7 +46,7 @@ describe(GameTypeMenu, () => {
   it('renders multi-player game button', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /multi-player game/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /multi-player game/i })).toBeInTheDocument();
   });
 
   it('calls handler when multi-player game button is clicked', async () => {
@@ -62,7 +62,7 @@ describe(GameTypeMenu, () => {
   it('renders cancel button', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeDefined();
+    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
   });
 
   it('calls handler when cancel button is clicked', async () => {

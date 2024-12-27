@@ -8,6 +8,6 @@ describe(MainScreen, () => {
   it('should render main menu', async () => {
     renderWithProviders(<MainScreen />);
 
-    expect(screen.getByRole('menu', { name: /main menu/i })).toBeDefined();
+    expect(screen.getByRole('menu', { name: /main menu/i })).toBeInTheDocument();
   });
 });

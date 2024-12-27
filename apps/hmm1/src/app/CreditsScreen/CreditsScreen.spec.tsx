@@ -8,7 +8,7 @@ describe(CreditsScreen, () => {
   it('renders heading', async () => {
     renderWithProviders(<CreditsScreen />);
 
-    expect(screen.getByRole('heading', { name: /credits/i })).toBeDefined();
+    expect(screen.getByRole('heading', { name: /credits/i })).toBeInTheDocument();
   });
 
   it('calls handler when clicked', async () => {
