@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 const ProvidersWrapper = (props: PropsWithChildren) => <MemoryRouter {...props} />;

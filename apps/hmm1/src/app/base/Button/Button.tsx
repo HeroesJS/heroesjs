@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { PositionProps } from '../../core';
+import type { PositionProps } from '../../core';
 
 export interface ButtonAssets {
   readonly enabled: string;
