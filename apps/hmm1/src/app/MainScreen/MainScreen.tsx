@@ -1,9 +1,12 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Screen } from '../base';
-import { GameTypeMenu, MainMenu } from '../menu';
+import { Campaign, CampaignMenu, GameTypeMenu, MainMenu } from '../menu';
 
 import background from './assets/background.jpg';
+
+const MenuX = 400;
+const MenuY = 35;
 
 export const MainScreen = () => {
   const navigate = useNavigate();
@@ -23,13 +26,14 @@ export const MainScreen = () => {
               onLoadGameClick={handleLoadGameClick}
               onNewGameClick={handleNewGameClick}
               onViewCreditsClick={handleViewCreditsClick}
-              x={400}
-              y={35}
+              x={MenuX}
+              y={MenuY}
             />
           }
           index
         />
         <Route Component={GameTypeSelection} path="new" />
+        <Route Component={CampaignSelection} path="new/campaign" />
         <Route Component={GameTypeSelection} path="load" />
       </Routes>
     </Screen>
@@ -53,8 +57,18 @@ const GameTypeSelection = () => {
       onCancelClick={handleCancelClick}
       onMultiPlayerGameClick={handleMultiPlayerGameClick}
       onStandardGameClick={handleStandardGameClick}
-      x={400}
-      y={35}
+      x={MenuX}
+      y={MenuY}
     />
   );
+};
+
+const CampaignSelection = () => {
+  const navigate = useNavigate();
+
+  const handleCampaignClick = (campaign: Campaign) => navigate(campaign);
+
+  const handleCancelClick = () => navigate('/');
+
+  return <CampaignMenu onCampaignClick={handleCampaignClick} onCancelClick={handleCancelClick} x={MenuX} y={MenuY} />;
 };
