@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+import { renderWithProviders } from '../../testUtils';
 
 import { CreditsScreen } from './CreditsScreen';
 
 describe(CreditsScreen, () => {
   it('renders heading', async () => {
-    render(<CreditsScreen />);
+    renderWithProviders(<CreditsScreen />);
 
     expect(screen.getByRole('heading', { name: /credits/i })).toBeDefined();
   });
@@ -12,9 +14,9 @@ describe(CreditsScreen, () => {
   it('calls handler when clicked', async () => {
     const handleClick = vitest.fn();
 
-    const { container } = render(<CreditsScreen onClick={handleClick} />);
+    const { container, user } = renderWithProviders(<CreditsScreen onClick={handleClick} />);
 
-    fireEvent.click(container.children[0]);
+    await user.click(container.children[0]);
 
     expect(handleClick).toHaveBeenCalled();
   });
