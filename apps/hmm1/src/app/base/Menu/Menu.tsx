@@ -26,7 +26,12 @@ const Root = styled.div<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
   position: 'relative',
   top: y,
   width: 193,
-  '& > *': {
-    marginBottom: 3,
-  },
 }));
+
+export const MenuItem = (props: PropsWithChildren) => <ItemRoot {...props} />;
+
+const ItemRoot = styled.div({
+  height: 63,
+  marginBottom: 3,
+  width: 127,
+});

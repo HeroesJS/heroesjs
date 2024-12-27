@@ -58,6 +58,12 @@ export default [
       },
     },
   },
+  {
+    files: ['**/*.{jsx,tsx}'],
+    rules: {
+      'react/jsx-sort-props': 'error',
+    },
+  },
   merge(testingLibraryPlugin.configs['flat/react'], {
     files: ['**/*.{spec,test}.{js,jsx,ts,tsx}'],
     rules: {

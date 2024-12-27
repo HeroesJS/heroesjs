@@ -34,6 +34,7 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
+    setupFiles: ['setupTests'],
     coverage: {
       reportsDirectory: '../../coverage/apps/hmm1',
       provider: 'v8',

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { PositionProps } from '../../core';
 
-interface ButtonAssets {
+export interface ButtonAssets {
   readonly enabled: string;
   readonly disabled: string;
 }
@@ -27,11 +27,12 @@ export const Button = ({ assets, disabled, label, onClick, onMouseLeave, onMouse
   return (
     <Root
       aria-label={label}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseOver={onMouseOver}
-      onMouseLeave={onMouseLeave}
+      disabled={disabled}
       onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
+      onMouseUp={handleMouseUp}
       x={x}
       y={y}
     >

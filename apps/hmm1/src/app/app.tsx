@@ -15,9 +15,9 @@ export function App() {
       <AppStyle />
       <Root id="app">
         <Routes>
-          <Route index element={<MainScreen />} />
+          <Route element={<MainScreen />} path="game/*" />
           <Route element={<CreditsScreen onClick={handleCreditsClick} />} path="credits" />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route element={<Navigate to="game" />} path="*" />
         </Routes>
       </Root>
     </>
