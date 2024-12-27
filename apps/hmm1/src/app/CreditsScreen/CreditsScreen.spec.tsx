@@ -16,7 +16,7 @@ describe(CreditsScreen, () => {
 
     const { container, user } = renderWithProviders(<CreditsScreen onClick={handleClick} />);
 
-    await user.click(container.children[0]);
+    await user.click(container.firstChild as Element);
 
     expect(handleClick).toHaveBeenCalled();
   });
