@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Screen } from '../base';
-import { Campaign, CampaignMenu, GameTypeMenu, MainMenu } from '../menu';
+import { Campaign, CampaignMenu, GameTypeMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../menu';
 
 import background from './assets/background.jpg';
 
@@ -34,6 +34,8 @@ export const MainScreen = () => {
         />
         <Route Component={GameTypeSelection} path="new" />
         <Route Component={CampaignSelection} path="new/campaign" />
+        <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
+        <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
         <Route Component={GameTypeSelection} path="load" />
       </Routes>
     </Screen>
@@ -71,4 +73,40 @@ const CampaignSelection = () => {
   const handleCancelClick = () => navigate('/');
 
   return <CampaignMenu onCampaignClick={handleCampaignClick} onCancelClick={handleCancelClick} x={MenuX} y={MenuY} />;
+};
+
+const MultiPlayerGameTypeSelection = () => {
+  const navigate = useNavigate();
+
+  const handleHotSeatClick = () => navigate('hot-seat');
+
+  const handleNetworkClick = () => navigate('network');
+
+  const handleModemClick = () => navigate('modem');
+
+  const handleDirectConnectClick = () => navigate('direct-connect');
+
+  const handleCancelClick = () => navigate('/');
+
+  return (
+    <MultiPlayerGameTypeMenu
+      onCancelClick={handleCancelClick}
+      onDirectConnectClick={handleDirectConnectClick}
+      onHotSeatClick={handleHotSeatClick}
+      onModemClick={handleModemClick}
+      onNetworkClick={handleNetworkClick}
+      x={MenuX}
+      y={MenuY}
+    />
+  );
+};
+
+const PlayerCountSelection = () => {
+  const navigate = useNavigate();
+
+  const handleCountClick = (value: number) => navigate(`${value}`);
+
+  const handleCancelClick = () => navigate('/');
+
+  return <PlayerCountMenu onCancelClick={handleCancelClick} onCountClick={handleCountClick} x={MenuX} y={MenuY} />;
 };
