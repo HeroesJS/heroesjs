@@ -18,11 +18,30 @@ interface Props extends PositionProps {
 }
 
 export const Button = ({ assets, disabled, label, onClick, onMouseLeave, onMouseOver, x, y }: Props) => {
+  const [over, setOver] = useState(false);
   const [pressed, setPressed] = useState(false);
 
-  const handleMouseDown = () => setPressed(true);
+  const handleMouseEnter = () => setOver(true);
 
-  const handleMouseUp = () => setPressed(false);
+  const handleMouseOut = () => setOver(false);
+
+  const handleDocumentMouseUp = () => {
+    document.removeEventListener('mouseup', handleDocumentMouseUp);
+
+    setPressed(false);
+  };
+
+  const handleMouseDown = () => {
+    document.addEventListener('mouseup', handleDocumentMouseUp);
+
+    setPressed(true);
+  };
+
+  const handleMouseUp = () => {
+    document.removeEventListener('mouseup', handleDocumentMouseUp);
+
+    setPressed(false);
+  };
 
   return (
     <Root
@@ -30,13 +49,15 @@ export const Button = ({ assets, disabled, label, onClick, onMouseLeave, onMouse
       disabled={disabled}
       onClick={onClick}
       onMouseDown={handleMouseDown}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
+      onMouseOut={handleMouseOut}
       onMouseOver={onMouseOver}
       onMouseUp={handleMouseUp}
       x={x}
       y={y}
     >
-      <Image src={pressed || disabled ? assets.disabled : assets.enabled} />
+      <Image src={(over && pressed) || disabled ? assets.disabled : assets.enabled} />
     </Root>
   );
 };
