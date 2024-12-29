@@ -38,6 +38,15 @@
     },
     {
       "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "serveStorybookTargetName": "storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "testStorybookTargetName": "test-storybook"
+      },
+      "plugin": "@nx/storybook/plugin"
+    },
+    {
+      "options": {
         "targetName": "e2e"
       },
       "plugin": "@nx/playwright/plugin"

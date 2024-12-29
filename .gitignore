@@ -1,6 +1,6 @@
 /coverage
 /dist
-/node_modules
+node_modules
 
 # System
 .DS_Store
@@ -12,3 +12,6 @@
 # Vite
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+
+# Storybook
+storybook-static
