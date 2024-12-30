@@ -27,10 +27,14 @@ describe(Button, () => {
   it('renders disabled image when mouse pressed', async () => {
     const { user } = renderWithProviders(<Button assets={assets} label="Label" />);
 
-    await user.pointer({
-      keys: '[MouseLeft>]',
-      target: screen.getByRole('button', { name: /label/i }),
-    });
+    await user.pointer([
+      {
+        target: screen.getByRole('button', { name: /label/i }),
+      },
+      {
+        keys: '[MouseLeft>]',
+      },
+    ]);
 
     expect(screen.getByRole('img')).toHaveAttribute('src', disabledImage);
   });

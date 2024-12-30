@@ -1,16 +1,16 @@
 import { Button, Menu, MenuItem } from '../../base';
 import type { PositionProps } from '../../core';
 
-import loadGameDisabled from './assets/load-game-disabled.png';
-import loadGameEnabled from './assets/load-game.png';
-import newGameDisabled from './assets/new-game-disabled.png';
-import newGameEnabled from './assets/new-game.png';
-import quitDisabled from './assets/quit-disabled.png';
-import quitEnabled from './assets/quit.png';
-import viewCreditsDisabled from './assets/view-credits-disabled.png';
-import viewCreditsEnabled from './assets/view-credits.png';
-import viewHighScoresDisabled from './assets/view-high-scores-disabled.png';
-import viewHighScoresEnabled from './assets/view-high-scores.png';
+import loadGameDisabled from './assets/load-game/disabled.png';
+import loadGameEnabled from './assets/load-game/enabled.png';
+import newGameDisabled from './assets/new-game/disabled.png';
+import newGameEnabled from './assets/new-game/enabled.png';
+import quitDisabled from './assets/quit/disabled.png';
+import quitEnabled from './assets/quit/enabled.png';
+import viewCreditsDisabled from './assets/view-credits/disabled.png';
+import viewCreditsEnabled from './assets/view-credits/enabled.png';
+import viewHighScoresDisabled from './assets/view-high-scores/disabled.png';
+import viewHighScoresEnabled from './assets/view-high-scores/enabled.png';
 
 interface Props extends PositionProps {
   readonly onLoadGameClick?: () => void;

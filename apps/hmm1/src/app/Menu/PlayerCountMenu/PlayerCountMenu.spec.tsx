@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import { range } from 'lodash';
 
 import { renderWithProviders } from '../../../testUtils';
 
@@ -11,52 +12,24 @@ describe(PlayerCountMenu, () => {
     expect(screen.getByRole('menu', { name: /player count menu/i })).toBeInTheDocument();
   });
 
-  it('renders 2 players button', async () => {
-    renderWithProviders(<PlayerCountMenu />);
+  describe.each(range(2, 5))('%i players', (count) => {
+    const countName = new RegExp(`${count} players`, 'i');
 
-    expect(screen.getByRole('button', { name: /2 players/i })).toBeInTheDocument();
-  });
+    it('renders count button', async () => {
+      renderWithProviders(<PlayerCountMenu />);
 
-  it('calls handler when 2 players button is clicked', async () => {
-    const handler = vitest.fn();
+      expect(screen.getByRole('button', { name: countName })).toBeInTheDocument();
+    });
 
-    const { user } = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
+    it('calls handler when count button is clicked', async () => {
+      const handler = vitest.fn();
 
-    await user.click(screen.getByRole('button', { name: /2 players/i }));
+      const { user } = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
 
-    expect(handler).toHaveBeenCalledWith(2);
-  });
+      await user.click(screen.getByRole('button', { name: countName }));
 
-  it('renders 3 players button', async () => {
-    renderWithProviders(<PlayerCountMenu />);
-
-    expect(screen.getByRole('button', { name: /3 players/i })).toBeInTheDocument();
-  });
-
-  it('calls handler when 3 players button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /3 players/i }));
-
-    expect(handler).toHaveBeenCalledWith(3);
-  });
-
-  it('renders 4 players button', async () => {
-    renderWithProviders(<PlayerCountMenu />);
-
-    expect(screen.getByRole('button', { name: /4 players/i })).toBeInTheDocument();
-  });
-
-  it('calls handler when 4 players button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /4 players/i }));
-
-    expect(handler).toHaveBeenCalledWith(4);
+      expect(handler).toHaveBeenCalledWith(count);
+    });
   });
 
   it('renders cancel button', async () => {

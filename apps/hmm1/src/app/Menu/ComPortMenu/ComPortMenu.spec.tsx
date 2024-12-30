@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import { range } from 'lodash';
 
 import { renderWithProviders } from '../../../testUtils';
 
@@ -11,7 +12,7 @@ describe(ComPortMenu, () => {
     expect(screen.getByRole('menu', { name: /com port menu/i })).toBeInTheDocument();
   });
 
-  describe.each([1, 2, 3, 4])('com-%i', (port) => {
+  describe.each(range(1, 5))('com-%i', (port) => {
     const portName = new RegExp(`com-${port}`, 'i');
 
     it('renders port button', async () => {
