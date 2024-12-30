@@ -4,9 +4,6 @@ import { expect, within } from '@storybook/test';
 import { CreditsScreen } from './CreditsScreen';
 
 const meta: Meta<typeof CreditsScreen> = {
-  argTypes: {
-    onClick: { action: 'Click' },
-  },
   component: CreditsScreen,
 };
 

@@ -11,11 +11,6 @@ const meta: Meta<typeof Button> = {
       enabled: enabledImage,
     },
   },
-  argTypes: {
-    onClick: { action: 'Click' },
-    onMouseLeave: { action: 'Mouse Leave' },
-    onMouseOver: { action: 'Mouse Over' },
-  },
   component: Button,
 };
 
