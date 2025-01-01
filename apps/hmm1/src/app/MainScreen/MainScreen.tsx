@@ -1,7 +1,15 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Screen } from '../base';
-import { Campaign, CampaignMenu, GameTypeMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../menu';
+import {
+  Campaign,
+  CampaignMenu,
+  GameTypeMenu,
+  HostGuestMenu,
+  MainMenu,
+  MultiPlayerGameTypeMenu,
+  PlayerCountMenu,
+} from '../menu';
 
 import background from './assets/background.jpg';
 
@@ -33,10 +41,24 @@ export const MainScreen = () => {
           index
         />
         <Route Component={GameTypeSelection} path="new" />
+        <Route element="New Game" path="new/standard" />
         <Route Component={CampaignSelection} path="new/campaign" />
+        <Route element="Scenario Info" path="new/campaign/*" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
+        <Route element="New Game" path="new/multi-player/hot-seat/:count" />
+        <Route Component={HostGuestSelection} path="new/multi-player/network" />
+        <Route element={<HostGuestSelection detailed />} path="new/multi-player/modem" />
+        <Route element={<HostGuestSelection detailed />} path="new/multi-player/direct-connect" />
         <Route Component={GameTypeSelection} path="load" />
+        <Route element="File Selector" path="load/standard" />
+        <Route element="File Selector" path="load/campaign" />
+        <Route Component={MultiPlayerGameTypeSelection} path="load/multi-player" />
+        <Route Component={PlayerCountSelection} path="load/multi-player/hot-seat" />
+        <Route element="File Selector" path="load/multi-player/hot-seat/:count" />
+        <Route Component={HostGuestSelection} path="load/multi-player/network" />
+        <Route element={<HostGuestSelection detailed />} path="load/multi-player/modem" />
+        <Route element={<HostGuestSelection detailed />} path="load/multi-player/direct-connect" />
       </Routes>
     </Screen>
   );
@@ -109,4 +131,29 @@ const PlayerCountSelection = () => {
   const handleCancelClick = () => navigate('/');
 
   return <PlayerCountMenu onCancelClick={handleCancelClick} onCountClick={handleCountClick} x={MenuX} y={MenuY} />;
+};
+
+interface HostGuestSelectionProps {
+  readonly detailed?: boolean;
+}
+
+const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
+  const navigate = useNavigate();
+
+  const handleHostClick = () => navigate('host');
+
+  const handleGuestClick = () => navigate('guest');
+
+  const handleCancelClick = () => navigate('/');
+
+  return (
+    <HostGuestMenu
+      detailed={detailed}
+      onCancelClick={handleCancelClick}
+      onGuestClick={handleGuestClick}
+      onHostClick={handleHostClick}
+      x={MenuX}
+      y={MenuY}
+    />
+  );
 };
