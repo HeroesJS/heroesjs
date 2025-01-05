@@ -68,6 +68,7 @@ const Root = styled.button<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
   fontSize: 0,
   left: x,
   padding: 0,
+  position: 'absolute',
   top: y,
 }));
 

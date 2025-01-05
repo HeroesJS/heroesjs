@@ -6,8 +6,14 @@ test('has title', async ({ page }) => {
   expect(await page.title()).toBe('Hmm1');
 });
 
-test('matches screenshot', async ({ page }) => {
+test('renders main menu', async ({ page }) => {
   await page.goto('/');
 
-  await expect(await page.locator('#app')).toHaveScreenshot('screenshot.png');
+  await expect(await page.locator('#app')).toHaveScreenshot('main-menu.png');
+});
+
+test('renders new game window', async ({ page }) => {
+  await page.goto('/game/new/standard/');
+
+  await expect(await page.locator('#app')).toHaveScreenshot('new-game-window.png');
 });

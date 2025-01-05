@@ -10,6 +10,7 @@ import {
   MultiPlayerGameTypeMenu,
   PlayerCountMenu,
 } from '../menu';
+import { NewGameWindow } from '../NewGameWindow';
 
 import background from './assets/background.jpg';
 
@@ -41,12 +42,12 @@ export const MainScreen = () => {
           index
         />
         <Route Component={GameTypeSelection} path="new" />
-        <Route element="New Game" path="new/standard" />
+        <Route Component={NewGameSelection} path="new/standard" />
         <Route Component={CampaignSelection} path="new/campaign" />
         <Route element="Scenario Info" path="new/campaign/*" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
-        <Route element="New Game" path="new/multi-player/hot-seat/:count" />
+        <Route Component={NewGameSelection} path="new/multi-player/hot-seat/:count" />
         <Route Component={HostGuestSelection} path="new/multi-player/network" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/modem" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/direct-connect" />
@@ -156,4 +157,12 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
       y={MenuY}
     />
   );
+};
+
+const NewGameSelection = () => {
+  const navigate = useNavigate();
+
+  const handleCancelClick = () => navigate('/');
+
+  return <NewGameWindow onCancelClick={handleCancelClick} x={310} y={14} />;
 };
