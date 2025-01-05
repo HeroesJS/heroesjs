@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button, Checkbox, Text, useToggle } from '../base';
@@ -11,6 +12,7 @@ import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import selectDisabled from './assets/select/disabled.png';
 import selectEnabled from './assets/select/enabled.png';
+import { DifficultyOption, difficultyOptions, GameDifficulty } from './DifficultyOption';
 
 interface Props {
   readonly onCancelClick?: () => void;
@@ -21,6 +23,7 @@ interface Props {
 }
 
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, x, y }: Props) => {
+  const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const { toggle: toggleKingOfTheHill, value: kingOfTheHill } = useToggle();
 
   return (
@@ -28,6 +31,15 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={60} y={23}>
         Choose Game Difficulty:
       </Text>
+      {difficultyOptions.map((difficulty, i) => (
+        <DifficultyOption
+          onClick={setSelectedDifficulty}
+          selected={difficulty === selectedDifficulty}
+          value={difficulty}
+          x={19 + i * 71}
+          y={36}
+        />
+      ))}
       <Text size="large" x={70} y={133}>
         Customize Opponents:
       </Text>
