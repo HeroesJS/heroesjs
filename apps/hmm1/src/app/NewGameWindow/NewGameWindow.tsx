@@ -10,11 +10,10 @@ import checkboxChecked from './assets/checkbox/checked.jpg';
 import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
-import selectDisabled from './assets/select/disabled.png';
-import selectEnabled from './assets/select/enabled.png';
 import { BannerColor, PlayerColor, playerColors } from './BannerColor';
 import { DifficultyOption, difficultyOptions, GameDifficulty } from './DifficultyOption';
 import { opponentDifficulties, OpponentDifficulty, OpponentSetting } from './OpponentSetting';
+import { ScenarioSelection } from './ScenarioSelection';
 
 function nextOption<T>(values: readonly T[], currentValue: T): T {
   return values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
@@ -87,19 +86,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={91} y={339}>
         Choose Scenario:
       </Text>
-      <Text size="large" x={95} y={356}>
-        Claw ( Easy )
-      </Text>
-      <Button
-        assets={{
-          disabled: selectDisabled,
-          enabled: selectEnabled,
-        }}
-        label="Select Scenario"
-        onClick={onSelectScenarioClick}
-        x={273}
-        y={354}
-      />
+      <ScenarioSelection onClick={onSelectScenarioClick} value="Claw ( Easy )" x={25} y={354} />
       <Text size="large" x={78} y={389}>
         Difficulty Rating: 60%
       </Text>
