@@ -13,6 +13,11 @@ import okayEnabled from './assets/okay/enabled.png';
 import selectDisabled from './assets/select/disabled.png';
 import selectEnabled from './assets/select/enabled.png';
 import { DifficultyOption, difficultyOptions, GameDifficulty } from './DifficultyOption';
+import { opponentDifficulties, OpponentDifficulty, OpponentSetting } from './OpponentSetting';
+
+function nextOption<T>(values: readonly T[], currentValue: T): T {
+  return values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
+}
 
 interface Props {
   readonly onCancelClick?: () => void;
@@ -24,7 +29,11 @@ interface Props {
 
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, x, y }: Props) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
+  const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
   const { toggle: toggleKingOfTheHill, value: kingOfTheHill } = useToggle();
+
+  const handleOpponentSettingClick = (index: number, value: OpponentDifficulty) =>
+    setOpponentSettings(opponentSettings.map((v, i) => (i === index ? nextOption(opponentDifficulties, value) : v)));
 
   return (
     <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
@@ -33,6 +42,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       </Text>
       {difficultyOptions.map((difficulty, i) => (
         <DifficultyOption
+          key={difficulty}
           onClick={setSelectedDifficulty}
           selected={difficulty === selectedDifficulty}
           value={difficulty}
@@ -43,6 +53,16 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={70} y={133}>
         Customize Opponents:
       </Text>
+      {opponentSettings.map((setting, i) => (
+        <OpponentSetting
+          index={i}
+          key={i}
+          onClick={handleOpponentSettingClick}
+          value={setting}
+          x={55 + i * 72}
+          y={149}
+        />
+      ))}
       <Text size="large" x={26} y={255}>
         Choose Color:
       </Text>
