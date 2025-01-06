@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { Text } from '../base';
-import type { PositionProps } from '../core';
+import { Text, withPosition } from '../base';
 
 import easyDifficulty from './assets/gameDifficulty/easy.jpg';
 import expertDifficulty from './assets/gameDifficulty/expert.jpg';
@@ -39,17 +38,18 @@ const difficultyLabels: Record<GameDifficulty, string> = {
 
 const difficultiesWithShiftedLabel = [GameDifficulty.Hard, GameDifficulty.Expert];
 
-interface DifficultyOptionProps extends PositionProps {
+interface DifficultyOptionProps {
+  readonly className?: string;
   readonly onClick?: (value: GameDifficulty) => void;
   readonly selected?: boolean;
   readonly value: GameDifficulty;
 }
 
-export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyOptionProps) => {
+export const DifficultyOption = withPosition(({ className, onClick, selected, value }: DifficultyOptionProps) => {
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root onClick={handleClick} x={x} y={y}>
+    <Root className={className} onClick={handleClick}>
       <Image src={difficultyAssets[value]} />
       <Text align="center" size="small" width={difficultiesWithShiftedLabel.includes(value) ? 70 : 71} x={0} y={69}>
         {difficultyLabels[value]}
@@ -57,14 +57,11 @@ export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyO
       {selected && <Selection src={selection} />}
     </Root>
   );
-};
+});
 
-const Root = styled.div<Pick<DifficultyOptionProps, 'x' | 'y'>>(({ x, y }) => ({
-  left: x,
-  position: 'absolute',
-  top: y,
+const Root = styled.div({
   width: 71,
-}));
+});
 
 const Image = styled.img({
   top: 3,

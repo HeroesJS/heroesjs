@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-
-import type { PositionProps } from '../core';
+import { withPosition } from '../base';
 
 import blue from './assets/bannerColor/blue.png';
 import green from './assets/bannerColor/green.png';
@@ -28,17 +26,12 @@ const assets: Record<PlayerColor, string> = {
   [PlayerColor.Yellow]: yellow,
 };
 
-interface Props extends PositionProps {
+interface Props {
+  readonly className?: string;
   readonly onClick?: () => void;
   readonly value: PlayerColor;
 }
 
-export const BannerColor = ({ onClick, value, x, y }: Props) => (
-  <Root onClick={onClick} src={assets[value]} x={x} y={y} />
-);
-
-const Root = styled.img<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
-  position: 'absolute',
-  top: y,
-  left: x,
-}));
+export const BannerColor = withPosition(({ className, onClick, value }: Props) => (
+  <img className={className} onClick={onClick} src={assets[value]} />
+));

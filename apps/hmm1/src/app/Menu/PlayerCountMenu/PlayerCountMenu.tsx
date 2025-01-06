@@ -1,5 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
 
 import twoPlayersDisabled from './assets/2-players/disabled.png';
 import twoPlayersEnabled from './assets/2-players/enabled.png';

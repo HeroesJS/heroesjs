@@ -1,5 +1,4 @@
-import { Button, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { Button, Menu, MenuItem, type PositionProps } from '../../base';
 
 import campaignGameDisabled from './assets/campaign-game/disabled.png';
 import campaignGameEnabled from './assets/campaign-game/enabled.png';

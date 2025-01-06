@@ -5,3 +5,4 @@ export * from './Placeholder';
 export * from './Screen';
 export * from './Text';
 export { useToggle } from './useToggle';
+export { type PositionProps, withPosition } from './withPosition';

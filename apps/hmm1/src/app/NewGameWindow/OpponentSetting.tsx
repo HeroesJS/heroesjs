@@ -1,7 +1,4 @@
-import styled from 'styled-components';
-
-import { Text } from '../base';
-import type { PositionProps } from '../core';
+import { Text, withPosition } from '../base';
 
 import average from './assets/opponentSetting/average.jpg';
 import dumb from './assets/opponentSetting/dumb.jpg';
@@ -41,27 +38,22 @@ const labels: Record<OpponentDifficulty, string> = {
   [OpponentDifficulty.Smart]: 'Smart',
 };
 
-interface Props extends PositionProps {
+interface Props {
+  readonly className?: string;
   readonly index: number;
   readonly onClick?: (index: number, value: OpponentDifficulty) => void;
   readonly value: OpponentDifficulty;
 }
 
-export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
+export const OpponentSetting = withPosition(({ className, index, onClick, value }: Props) => {
   const handleClick = () => onClick?.(index, value);
 
   return (
-    <Root onClick={handleClick} x={x} y={y}>
+    <div className={className} onClick={handleClick}>
       <img src={assets[value]} />
       <Text align="center" size="small" width={66} x={0} y={66}>
         {labels[value]}
       </Text>
-    </Root>
+    </div>
   );
-};
-
-const Root = styled.div<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
-  left: x,
-  position: 'absolute',
-  top: y,
-}));
+});

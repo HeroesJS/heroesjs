@@ -1,33 +1,31 @@
 import styled from 'styled-components';
 
-import type { PositionProps } from '../../core';
+import { withPosition } from '../withPosition';
 
 interface CheckboxAssets {
   readonly checked: string;
   readonly unchecked: string;
 }
 
-interface Props extends PositionProps {
+interface Props {
   readonly assets: CheckboxAssets;
   readonly checked?: boolean;
+  readonly className?: string;
   readonly onChange?: (checked: boolean) => void;
 }
 
-export const Checkbox = ({ assets, checked, onChange, x, y }: Props) => {
+export const Checkbox = withPosition(({ assets, checked, className, onChange }: Props) => {
   const handleClick = () => onChange?.(!checked);
 
   return (
-    <Root onClick={handleClick} x={x} y={y}>
+    <Root className={className} onClick={handleClick}>
       <img src={checked ? assets.checked : assets.unchecked} />
     </Root>
   );
-};
+});
 
-const Root = styled.button<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
+const Root = styled.button({
   border: 'none',
   fontSize: 0,
-  left: x,
   padding: 0,
-  position: 'absolute',
-  top: y,
-}));
+});
