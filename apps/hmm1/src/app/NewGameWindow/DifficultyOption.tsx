@@ -37,6 +37,8 @@ const difficultyLabels: Record<GameDifficulty, string> = {
   [GameDifficulty.Normal]: 'Normal',
 };
 
+const difficultiesWithShiftedLabel = [GameDifficulty.Hard, GameDifficulty.Expert];
+
 interface DifficultyOptionProps extends PositionProps {
   readonly onClick?: (value: GameDifficulty) => void;
   readonly selected?: boolean;
@@ -49,7 +51,7 @@ export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyO
   return (
     <Root onClick={handleClick} x={x} y={y}>
       <Image src={difficultyAssets[value]} />
-      <Text align="center" size="small" width={71} x={0} y={69}>
+      <Text align="center" size="small" width={difficultiesWithShiftedLabel.includes(value) ? 70 : 71} x={0} y={69}>
         {difficultyLabels[value]}
       </Text>
       {selected && <Selection src={selection} />}

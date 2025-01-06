@@ -12,6 +12,7 @@ import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import selectDisabled from './assets/select/disabled.png';
 import selectEnabled from './assets/select/enabled.png';
+import { BannerColor, PlayerColor, playerColors } from './BannerColor';
 import { DifficultyOption, difficultyOptions, GameDifficulty } from './DifficultyOption';
 import { opponentDifficulties, OpponentDifficulty, OpponentSetting } from './OpponentSetting';
 
@@ -30,10 +31,13 @@ interface Props {
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, x, y }: Props) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
+  const [color, setColor] = useState(PlayerColor.Blue);
   const { toggle: toggleKingOfTheHill, value: kingOfTheHill } = useToggle();
 
   const handleOpponentSettingClick = (index: number, value: OpponentDifficulty) =>
     setOpponentSettings(opponentSettings.map((v, i) => (i === index ? nextOption(opponentDifficulties, value) : v)));
+
+  const handleColorClick = () => setColor(nextOption(playerColors, color));
 
   return (
     <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
@@ -66,6 +70,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={26} y={255}>
         Choose Color:
       </Text>
+      <BannerColor onClick={handleColorClick} value={color} x={51} y={270} />
       <Text size="large" x={169} y={255}>
         King of the Hill:
       </Text>
