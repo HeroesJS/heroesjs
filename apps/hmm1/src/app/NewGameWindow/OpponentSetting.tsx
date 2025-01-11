@@ -1,26 +1,11 @@
 import { Text, withPosition } from '../base';
+import { OpponentDifficulty } from '../core';
 
 import average from './assets/opponentSetting/average.jpg';
 import dumb from './assets/opponentSetting/dumb.jpg';
 import genius from './assets/opponentSetting/genius.jpg';
 import none from './assets/opponentSetting/none.jpg';
 import smart from './assets/opponentSetting/smart.jpg';
-
-export enum OpponentDifficulty {
-  Average = 'average',
-  Dumb = 'dumb',
-  Genius = 'genius',
-  None = 'none',
-  Smart = 'smart',
-}
-
-export const opponentDifficulties: readonly OpponentDifficulty[] = [
-  OpponentDifficulty.None,
-  OpponentDifficulty.Dumb,
-  OpponentDifficulty.Average,
-  OpponentDifficulty.Smart,
-  OpponentDifficulty.Genius,
-];
 
 const assets: Record<OpponentDifficulty, string> = {
   [OpponentDifficulty.Average]: average,

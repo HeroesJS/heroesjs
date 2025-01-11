@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Text, withPosition } from '../base';
+import { GameDifficulty } from '../core';
 
 import easyDifficulty from './assets/gameDifficulty/easy.jpg';
 import expertDifficulty from './assets/gameDifficulty/expert.jpg';
@@ -8,35 +9,21 @@ import hardDifficulty from './assets/gameDifficulty/hard.jpg';
 import normalDifficulty from './assets/gameDifficulty/normal.jpg';
 import selection from './assets/gameDifficulty/selection.png';
 
-export enum GameDifficulty {
-  Easy = 'easy',
-  Expert = 'expert',
-  Hard = 'hard',
-  Normal = 'normal',
-}
-
-export const difficultyOptions: readonly GameDifficulty[] = [
-  GameDifficulty.Easy,
-  GameDifficulty.Normal,
-  GameDifficulty.Hard,
-  GameDifficulty.Expert,
-];
-
-const difficultyAssets: Record<GameDifficulty, string> = {
+const assets: Record<GameDifficulty, string> = {
   [GameDifficulty.Easy]: easyDifficulty,
   [GameDifficulty.Expert]: expertDifficulty,
   [GameDifficulty.Hard]: hardDifficulty,
   [GameDifficulty.Normal]: normalDifficulty,
 };
 
-const difficultyLabels: Record<GameDifficulty, string> = {
+const labels: Record<GameDifficulty, string> = {
   [GameDifficulty.Easy]: 'Easy',
   [GameDifficulty.Expert]: 'Expert',
   [GameDifficulty.Hard]: 'Hard',
   [GameDifficulty.Normal]: 'Normal',
 };
 
-const difficultiesWithShiftedLabel = [GameDifficulty.Hard, GameDifficulty.Expert];
+const shiftedLabels = [GameDifficulty.Hard, GameDifficulty.Expert];
 
 interface DifficultyOptionProps {
   readonly className?: string;
@@ -50,9 +37,9 @@ export const DifficultyOption = withPosition(({ className, onClick, selected, va
 
   return (
     <Root className={className} onClick={handleClick}>
-      <Image src={difficultyAssets[value]} />
-      <Text align="center" size="small" width={difficultiesWithShiftedLabel.includes(value) ? 70 : 71} x={0} y={69}>
-        {difficultyLabels[value]}
+      <Image src={assets[value]} />
+      <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={69}>
+        {labels[value]}
       </Text>
       {selected && <Selection src={selection} />}
     </Root>

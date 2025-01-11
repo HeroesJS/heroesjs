@@ -2,6 +2,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button, Checkbox, Text, useToggle } from '../base';
+import {
+  gameDifficulties,
+  GameDifficulty,
+  opponentDifficulties,
+  OpponentDifficulty,
+  ScenarioDifficulty,
+  ScenarioSize,
+} from '../core';
+import { calculateRating } from '../rating';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -11,8 +20,8 @@ import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import { BannerColor, PlayerColor, playerColors } from './BannerColor';
-import { DifficultyOption, difficultyOptions, GameDifficulty } from './DifficultyOption';
-import { opponentDifficulties, OpponentDifficulty, OpponentSetting } from './OpponentSetting';
+import { DifficultyOption } from './DifficultyOption';
+import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
 
 function nextOption<T>(values: readonly T[], currentValue: T): T {
@@ -38,12 +47,22 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
 
   const handleColorClick = () => setColor(nextOption(playerColors, color));
 
+  const scenarioSize = ScenarioSize.Medium;
+  const scenarioDifficulty = ScenarioDifficulty.Easy;
+
+  const rating = calculateRating({
+    kingOfTheHill,
+    opponentSettings,
+    scenarioDifficulty,
+    scenarioSize,
+  });
+
   return (
     <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
       <Text size="large" x={60} y={23}>
         Choose Game Difficulty:
       </Text>
-      {difficultyOptions.map((difficulty, i) => (
+      {gameDifficulties.map((difficulty, i) => (
         <DifficultyOption
           key={difficulty}
           onClick={setSelectedDifficulty}
@@ -88,7 +107,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       </Text>
       <ScenarioSelection onClick={onSelectScenarioClick} value="Claw ( Easy )" x={25} y={354} />
       <Text size="large" x={78} y={389}>
-        Difficulty Rating: 60%
+        Difficulty Rating: {rating}%
       </Text>
       <Button
         assets={{
