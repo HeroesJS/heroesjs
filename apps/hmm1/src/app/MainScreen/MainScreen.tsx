@@ -1,6 +1,8 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { Screen } from '../base';
+import { ScenarioDifficulty, scenarios, ScenarioSize } from '../core';
+import { FileSelectorWindow } from '../FileSelectorWindow';
 import {
   Campaign,
   CampaignMenu,
@@ -43,6 +45,7 @@ export const MainScreen = () => {
         />
         <Route Component={GameTypeSelection} path="new" />
         <Route Component={NewGameSelection} path="new/standard" />
+        <Route Component={ScenarioSelection} path="new/standard/scenario" />
         <Route Component={CampaignSelection} path="new/campaign" />
         <Route element="Scenario Info" path="new/campaign/*" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
@@ -162,7 +165,32 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 const NewGameSelection = () => {
   const navigate = useNavigate();
 
+  const handleSelectScenario = () => navigate('scenario');
+
   const handleCancelClick = () => navigate('/');
 
-  return <NewGameWindow onCancelClick={handleCancelClick} x={310} y={14} />;
+  return (
+    <NewGameWindow onCancelClick={handleCancelClick} onSelectScenarioClick={handleSelectScenario} x={310} y={14} />
+  );
+};
+
+const ScenarioSelection = () => {
+  const navigate = useNavigate();
+
+  const handleCancelClick = () => navigate('..');
+
+  return (
+    <FileSelectorWindow
+      items={scenarios}
+      onCancelClick={handleCancelClick}
+      scenarioInfo={{
+        description: 'The Griffons will protect you  until you are ready to make your move.',
+        difficulty: ScenarioDifficulty.Easy,
+        size: ScenarioSize.Small,
+      }}
+      selectedItem={scenarios[0]}
+      x={310}
+      y={14}
+    />
+  );
 };

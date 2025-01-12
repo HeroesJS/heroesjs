@@ -37,6 +37,19 @@ export const scenarioDifficulties: readonly ScenarioDifficulty[] = [
   ScenarioDifficulty.Tough,
 ];
 
+export const scenarios = [
+  'Claw ( Easy )',
+  'Around the Bay',
+  'Badlands',
+  'Close Quarters',
+  'Crossroads',
+  'Desert Isle',
+  'Dragon Pass',
+  'Four Nations',
+  "Hermit's Isle",
+  'Jolly Roger',
+];
+
 export enum OpponentDifficulty {
   Average = 'average',
   Dumb = 'dumb',

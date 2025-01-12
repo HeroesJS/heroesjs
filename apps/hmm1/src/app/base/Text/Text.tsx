@@ -8,16 +8,17 @@ export type TextSize = 'small' | 'normal' | 'large';
 
 interface Props {
   readonly align?: 'left' | 'center' | 'right';
+  readonly selected?: boolean;
   readonly size?: TextSize;
   readonly width?: number;
   readonly x?: number;
   readonly y?: number;
 }
 
-export const Text = ({ align, children, size, width, x, y }: PropsWithChildren<Props>) => (
+export const Text = ({ align, children, selected, size, width, x, y }: PropsWithChildren<Props>) => (
   <>
     <FontStyles />
-    <Root align={align} size={size} width={width} x={x} y={y}>
+    <Root align={align} selected={selected} size={size} width={width} x={x} y={y}>
       {children}
     </Root>
   </>
@@ -41,12 +42,13 @@ const fontSizes: Record<TextSize, number> = {
   small: 9,
 };
 
-const Root = styled.span<Pick<Props, 'align' | 'size' | 'width' | 'x' | 'y'>>(
-  ({ align, size = 'normal', width, x, y }) => ({
-    color: '#fff',
+const Root = styled.span<Pick<Props, 'align' | 'selected' | 'size' | 'width' | 'x' | 'y'>>(
+  ({ align, selected, size = 'normal', width, x, y }) => ({
+    color: selected ? '#beeb00' : '#fff',
     fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
     fontSize: fontSizes[size],
     left: x,
+    lineHeight: 1.2,
     position: 'absolute',
     textAlign: align,
     top: y,

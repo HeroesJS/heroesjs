@@ -5,11 +5,11 @@ import { Placeholder } from '../Placeholder';
 
 import { Menu, MenuItem } from './Menu';
 
-const menu: Meta<typeof Menu> = {
+const meta: Meta<typeof Menu> = {
   component: Menu,
 };
 
-export default menu;
+export default meta;
 
 type Story = StoryObj<typeof Menu>;
 

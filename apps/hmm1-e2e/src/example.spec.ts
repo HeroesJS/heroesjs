@@ -17,3 +17,9 @@ test('renders new game window', async ({ page }) => {
 
   await expect(await page.locator('#app')).toHaveScreenshot('new-game-window.png');
 });
+
+test('renders scenario selection', async ({ page }) => {
+  await page.goto('/game/new/standard/scenario/');
+
+  await expect(await page.locator('#app')).toHaveScreenshot('scenario-selection.png');
+});
