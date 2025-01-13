@@ -1,7 +1,8 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Screen } from '../base';
-import { ScenarioDifficulty, scenarios, ScenarioSize } from '../core';
+import { scenarios } from '../core';
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import {
   Campaign,
@@ -163,32 +164,117 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 };
 
 const NewGameSelection = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedScenario = searchParams.get('scenario') ?? undefined;
+
+  const scenario = scenarios.find((s) => s.name === selectedScenario);
+
+  useEffect(() => {
+    if (scenario || !scenarios.length) {
+      return;
+    }
+
+    setSearchParams({
+      scenario: scenarios[0]?.name ?? '',
+    });
+  }, [scenario, setSearchParams]);
+
   const navigate = useNavigate();
 
-  const handleSelectScenario = () => navigate('scenario');
+  const handleSelectScenario = useCallback(
+    () =>
+      navigate({
+        pathname: 'scenario',
+        search: createSearchParams({
+          selected: selectedScenario ?? '',
+        }).toString(),
+      }),
+    [navigate, selectedScenario],
+  );
 
-  const handleCancelClick = () => navigate('/');
+  const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
 
   return (
-    <NewGameWindow onCancelClick={handleCancelClick} onSelectScenarioClick={handleSelectScenario} x={310} y={14} />
+    <NewGameWindow
+      onCancelClick={handleCancelClick}
+      onSelectScenarioClick={handleSelectScenario}
+      scenario={scenario}
+      x={310}
+      y={14}
+    />
   );
 };
 
 const ScenarioSelection = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedScenario = searchParams.get('selected') ?? undefined;
+
+  const scenario = scenarios.find((s) => s.name === selectedScenario);
+
+  const [initialScenario] = useState(scenario?.name);
+
+  useEffect(() => {
+    if (scenario || !scenarios.length) {
+      return;
+    }
+
+    setSearchParams({
+      selected: scenarios[0]?.name ?? '',
+    });
+  }, [scenario, setSearchParams]);
+
   const navigate = useNavigate();
 
-  const handleCancelClick = () => navigate('..');
+  const handleScenarioClick = useCallback(
+    (name: string) =>
+      setSearchParams({
+        selected: name,
+      }),
+    [setSearchParams],
+  );
+
+  const handleConfirmClick = useCallback(
+    () =>
+      navigate(
+        {
+          pathname: '..',
+          search: createSearchParams({
+            scenario: selectedScenario ?? '',
+          }).toString(),
+        },
+        {
+          relative: 'path',
+        },
+      ),
+    [navigate, selectedScenario],
+  );
+
+  const handleCancelClick = useCallback(
+    () =>
+      navigate(
+        {
+          pathname: '..',
+          search: createSearchParams({
+            scenario: initialScenario ?? '',
+          }).toString(),
+        },
+        {
+          relative: 'path',
+        },
+      ),
+    [initialScenario, navigate],
+  );
 
   return (
     <FileSelectorWindow
-      items={scenarios}
+      items={scenarios.slice(0, 10).map((s) => s.name)}
       onCancelClick={handleCancelClick}
-      scenarioInfo={{
-        description: 'The Griffons will protect you  until you are ready to make your move.',
-        difficulty: ScenarioDifficulty.Easy,
-        size: ScenarioSize.Small,
-      }}
-      selectedItem={scenarios[0]}
+      onConfirmClick={handleConfirmClick}
+      onItemClick={handleScenarioClick}
+      scenarioInfo={scenario}
+      selectedItem={selectedScenario}
       x={310}
       y={14}
     />

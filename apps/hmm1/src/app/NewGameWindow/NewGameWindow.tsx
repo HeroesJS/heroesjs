@@ -28,15 +28,22 @@ function nextOption<T>(values: readonly T[], currentValue: T): T {
   return values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
 }
 
+interface ScenarioInfo {
+  readonly difficulty: ScenarioDifficulty;
+  readonly name: string;
+  readonly size: ScenarioSize;
+}
+
 interface Props {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
   readonly onSelectScenarioClick?: () => void;
+  readonly scenario?: ScenarioInfo;
   readonly x?: number;
   readonly y?: number;
 }
 
-export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, x, y }: Props) => {
+export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, scenario, x, y }: Props) => {
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
   const [color, setColor] = useState(PlayerColor.Blue);
@@ -47,14 +54,11 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
 
   const handleColorClick = () => setColor(nextOption(playerColors, color));
 
-  const scenarioSize = ScenarioSize.Medium;
-  const scenarioDifficulty = ScenarioDifficulty.Easy;
-
   const rating = calculateRating({
     kingOfTheHill,
     opponentSettings,
-    scenarioDifficulty,
-    scenarioSize,
+    scenarioDifficulty: scenario?.difficulty ?? ScenarioDifficulty.Easy,
+    scenarioSize: scenario?.size ?? ScenarioSize.Small,
   });
 
   return (
@@ -105,7 +109,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={91} y={339}>
         Choose Scenario:
       </Text>
-      <ScenarioSelection onClick={onSelectScenarioClick} value="Claw ( Easy )" x={25} y={354} />
+      <ScenarioSelection onClick={onSelectScenarioClick} value={scenario?.name ?? ''} x={25} y={354} />
       <Text size="large" x={78} y={389}>
         Difficulty Rating: {rating}%
       </Text>
@@ -114,6 +118,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           disabled: okayDisabled,
           enabled: okayEnabled,
         }}
+        disabled={!scenario}
         label="Okay"
         onClick={onConfirmClick}
         x={24}

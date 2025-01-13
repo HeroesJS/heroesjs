@@ -10,9 +10,9 @@ const scenarioSizeRating: Record<ScenarioSize, number> = {
 
 const scenarioDifficultyRating: Record<ScenarioDifficulty, number> = {
   [ScenarioDifficulty.Easy]: 0,
-  [ScenarioDifficulty.Hard]: 20,
   [ScenarioDifficulty.Normal]: 10,
-  [ScenarioDifficulty.Tough]: 30,
+  [ScenarioDifficulty.Tough]: 20,
+  [ScenarioDifficulty.Impossible]: 30,
 };
 
 const opponentDifficultyRating: Record<OpponentDifficulty, number> = {

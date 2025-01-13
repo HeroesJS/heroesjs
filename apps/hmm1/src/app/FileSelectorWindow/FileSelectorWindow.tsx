@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Button, Text, withPosition } from '../base';
+import { Button, type PositionProps, Text, withPosition } from '../base';
 import { ScenarioDifficulty, ScenarioSize } from '../core';
 
 import background from './assets/background.jpg';
@@ -19,7 +20,7 @@ const scenarioSizeLabels: Readonly<Record<ScenarioSize, string>> = {
 
 const scenarioDifficultyLabels: Readonly<Record<ScenarioDifficulty, string>> = {
   [ScenarioDifficulty.Easy]: 'Easy',
-  [ScenarioDifficulty.Hard]: 'Hard',
+  [ScenarioDifficulty.Impossible]: 'Impossible',
   [ScenarioDifficulty.Normal]: 'Normal',
   [ScenarioDifficulty.Tough]: 'Tough',
 };
@@ -35,24 +36,23 @@ interface Props {
   readonly items?: readonly string[];
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
+  readonly onItemClick?: (item: string) => void;
   readonly scenarioInfo?: ScenarioInfo;
   readonly selectedItem?: string;
 }
 
 export const FileSelectorWindow = withPosition(
-  ({ className, items = [], onCancelClick, onConfirmClick, scenarioInfo, selectedItem }: Props) => (
+  ({ className, items = [], onCancelClick, onConfirmClick, onItemClick, scenarioInfo, selectedItem }: Props) => (
     <Root className={className}>
       <Text size="large" x={111} y={19}>
         File to Load:
       </Text>
       {items.map((item, i) => (
-        <Text align="center" selected={item === selectedItem} size="large" width={200} x={59} y={42 + i * 20}>
-          {item}
-        </Text>
+        <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} x={59} y={42 + i * 20} />
       ))}
       <Input x={48} y={253}>
         <Text size="large" x={59} y={1}>
-          Claw ( Easy )
+          {selectedItem}
         </Text>
       </Input>
       <Button
@@ -60,6 +60,7 @@ export const FileSelectorWindow = withPosition(
           disabled: okayDisabled,
           enabled: okayEnabled,
         }}
+        disabled={!selectedItem}
         label="Okay"
         onClick={onConfirmClick}
         x={36}
@@ -97,6 +98,22 @@ const Root = styled.div<Pick<Props, 'scenarioInfo'>>(({ scenarioInfo }) => ({
   height: scenarioInfo ? 380 : 331,
   width: 320,
 }));
+
+interface ItemProps extends PositionProps {
+  readonly onClick?: (value: string) => void;
+  readonly selected?: boolean;
+  readonly value: string;
+}
+
+const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
+  const handleClick = useCallback(() => onClick?.(value), [onClick, value]);
+
+  return (
+    <Text align="center" onClick={handleClick} selected={selected} size="large" width={200} x={x} y={y}>
+      {value}
+    </Text>
+  );
+};
 
 const Input = withPosition(
   styled.div({

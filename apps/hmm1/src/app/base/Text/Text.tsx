@@ -8,6 +8,7 @@ export type TextSize = 'small' | 'normal' | 'large';
 
 interface Props {
   readonly align?: 'left' | 'center' | 'right';
+  readonly onClick?: () => void;
   readonly selected?: boolean;
   readonly size?: TextSize;
   readonly width?: number;
@@ -15,10 +16,10 @@ interface Props {
   readonly y?: number;
 }
 
-export const Text = ({ align, children, selected, size, width, x, y }: PropsWithChildren<Props>) => (
+export const Text = ({ align, children, onClick, selected, size, width, x, y }: PropsWithChildren<Props>) => (
   <>
     <FontStyles />
-    <Root align={align} selected={selected} size={size} width={width} x={x} y={y}>
+    <Root align={align} onClick={onClick} selected={selected} size={size} width={width} x={x} y={y}>
       {children}
     </Root>
   </>
