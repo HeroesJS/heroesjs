@@ -39,10 +39,20 @@ interface Props {
   readonly onItemClick?: (item: string) => void;
   readonly scenarioInfo?: ScenarioInfo;
   readonly selectedItem?: string;
+  readonly showScenarioInfo?: boolean;
 }
 
 export const FileSelectorWindow = withPosition(
-  ({ className, items = [], onCancelClick, onConfirmClick, onItemClick, scenarioInfo, selectedItem }: Props) => (
+  ({
+    className,
+    items = [],
+    onCancelClick,
+    onConfirmClick,
+    onItemClick,
+    scenarioInfo,
+    selectedItem,
+    showScenarioInfo,
+  }: Props) => (
     <Root className={className}>
       <Text size="large" x={111} y={19}>
         File to Load:
@@ -76,16 +86,16 @@ export const FileSelectorWindow = withPosition(
         x={189}
         y={280}
       />
-      {scenarioInfo && (
+      {showScenarioInfo && (
         <ScenarioInfoRoot y={318}>
           <Text size="large" x={47} y={36}>
-            {scenarioSizeLabels[scenarioInfo.size]}
+            {scenarioInfo && scenarioSizeLabels[scenarioInfo.size]}
           </Text>
           <Text size="large" x={207} y={36}>
-            {scenarioDifficultyLabels[scenarioInfo.difficulty]}
+            {scenarioInfo && scenarioDifficultyLabels[scenarioInfo.difficulty]}
           </Text>
           <Text align="center" size="large" width={269} x={24} y={66}>
-            {scenarioInfo.description}
+            {scenarioInfo && scenarioInfo.description}
           </Text>
         </ScenarioInfoRoot>
       )}

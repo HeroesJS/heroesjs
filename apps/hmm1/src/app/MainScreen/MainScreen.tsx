@@ -275,6 +275,7 @@ const ScenarioSelection = () => {
       onItemClick={handleScenarioClick}
       scenarioInfo={scenario}
       selectedItem={selectedScenario}
+      showScenarioInfo
       x={310}
       y={14}
     />
