@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Button, type PositionProps, Text, withPosition } from '../base';
-import { ScenarioDifficulty, ScenarioSize } from '../core';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -10,26 +9,7 @@ import cancelEnabled from './assets/cancel/enabled.png';
 import inputBackground from './assets/input-background.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
-import scenarioInfoBackground from './assets/scenario-info-background.jpg';
-
-const scenarioSizeLabels: Readonly<Record<ScenarioSize, string>> = {
-  [ScenarioSize.Large]: 'Large',
-  [ScenarioSize.Medium]: 'Medium',
-  [ScenarioSize.Small]: 'Small',
-};
-
-const scenarioDifficultyLabels: Readonly<Record<ScenarioDifficulty, string>> = {
-  [ScenarioDifficulty.Easy]: 'Easy',
-  [ScenarioDifficulty.Impossible]: 'Impossible',
-  [ScenarioDifficulty.Normal]: 'Normal',
-  [ScenarioDifficulty.Tough]: 'Tough',
-};
-
-interface ScenarioInfo {
-  readonly description: string;
-  readonly difficulty: ScenarioDifficulty;
-  readonly size: ScenarioSize;
-}
+import { ScenarioDetail, type ScenarioInfo } from './ScenarioDetail';
 
 interface Props {
   readonly className?: string;
@@ -60,11 +40,7 @@ export const FileSelectorWindow = withPosition(
       {items.map((item, i) => (
         <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} x={59} y={42 + i * 20} />
       ))}
-      <Input x={48} y={253}>
-        <Text align="center" size="large" width={224} x={0} y={1}>
-          {selectedItem}
-        </Text>
-      </Input>
+      <Input value={selectedItem} x={48} y={253} />
       <Button
         assets={{
           disabled: okayDisabled,
@@ -86,19 +62,7 @@ export const FileSelectorWindow = withPosition(
         x={189}
         y={280}
       />
-      {showScenarioInfo && (
-        <ScenarioInfoRoot y={318}>
-          <Text align="center" size="large" width={90} x={25} y={35}>
-            {scenarioInfo && scenarioSizeLabels[scenarioInfo.size]}
-          </Text>
-          <Text align="center" size="large" width={90} x={182} y={35}>
-            {scenarioInfo && scenarioDifficultyLabels[scenarioInfo.difficulty]}
-          </Text>
-          <Text align="center" size="large" width={245} x={36} y={65}>
-            {scenarioInfo && scenarioInfo.description}
-          </Text>
-        </ScenarioInfoRoot>
-      )}
+      {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
     </Root>
   ),
 );
@@ -125,18 +89,21 @@ const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
   );
 };
 
-const Input = withPosition(
-  styled.div({
-    background: `url(${inputBackground})`,
-    height: 19,
-    width: 225,
-  }),
-);
+interface InputProps {
+  readonly className?: string;
+  readonly value?: string;
+}
 
-const ScenarioInfoRoot = withPosition(
-  styled.div({
-    background: `url(${scenarioInfoBackground})`,
-    height: 141,
-    width: 320,
-  }),
-);
+const Input = withPosition(({ className, value }: InputProps) => (
+  <InputRoot className={className}>
+    <Text align="center" size="large" width={224} x={0} y={1}>
+      {value}
+    </Text>
+  </InputRoot>
+));
+
+const InputRoot = styled.div({
+  background: `url(${inputBackground})`,
+  height: 19,
+  width: 225,
+});
