@@ -49,7 +49,7 @@ const Root = styled.span<Pick<Props, 'align' | 'selected' | 'size' | 'width' | '
     fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
     fontSize: fontSizes[size],
     left: x,
-    lineHeight: 1.2,
+    lineHeight: '16px',
     position: 'absolute',
     textAlign: align,
     top: y,

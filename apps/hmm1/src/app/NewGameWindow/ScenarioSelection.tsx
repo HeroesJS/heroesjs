@@ -14,7 +14,7 @@ interface Props {
 
 export const ScenarioSelection = withPosition(({ className, onClick, value }: Props) => (
   <Root className={className} onClick={onClick}>
-    <Text align="center" size="large" width={246} x={0} y={2}>
+    <Text align="center" size="large" width={246} x={0} y={1}>
       {value}
     </Text>
     <Button

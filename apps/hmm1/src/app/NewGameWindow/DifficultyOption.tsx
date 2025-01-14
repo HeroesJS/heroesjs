@@ -38,7 +38,7 @@ export const DifficultyOption = withPosition(({ className, onClick, selected, va
   return (
     <Root className={className} onClick={handleClick}>
       <Image src={assets[value]} />
-      <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={69}>
+      <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {labels[value]}
       </Text>
       {selected && <Selection src={selection} />}

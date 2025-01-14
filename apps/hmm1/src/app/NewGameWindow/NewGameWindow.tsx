@@ -63,7 +63,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
 
   return (
     <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
-      <Text size="large" x={60} y={23}>
+      <Text size="large" x={60} y={22}>
         Choose Game Difficulty:
       </Text>
       {gameDifficulties.map((difficulty, i) => (
@@ -76,7 +76,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           y={36}
         />
       ))}
-      <Text size="large" x={70} y={133}>
+      <Text size="large" x={70} y={132}>
         Customize Opponents:
       </Text>
       {opponentSettings.map((setting, i) => (
@@ -89,11 +89,11 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           y={149}
         />
       ))}
-      <Text size="large" x={26} y={255}>
+      <Text size="large" x={26} y={254}>
         Choose Color:
       </Text>
       <BannerColor onClick={handleColorClick} value={color} x={51} y={270} />
-      <Text size="large" x={169} y={255}>
+      <Text size="large" x={169} y={254}>
         King of the Hill:
       </Text>
       <Checkbox
@@ -106,11 +106,11 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         x={210}
         y={272}
       />
-      <Text size="large" x={91} y={339}>
+      <Text size="large" x={91} y={338}>
         Choose Scenario:
       </Text>
       <ScenarioSelection onClick={onSelectScenarioClick} value={scenario?.name ?? ''} x={25} y={354} />
-      <Text size="large" x={78} y={389}>
+      <Text size="large" x={78} y={388}>
         Difficulty Rating: {rating}%
       </Text>
       <Button

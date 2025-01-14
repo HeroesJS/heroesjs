@@ -61,7 +61,7 @@ export const FileSelectorWindow = withPosition(
         <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} x={59} y={42 + i * 20} />
       ))}
       <Input x={48} y={253}>
-        <Text size="large" x={59} y={1}>
+        <Text align="center" size="large" width={224} x={0} y={1}>
           {selectedItem}
         </Text>
       </Input>
@@ -88,13 +88,13 @@ export const FileSelectorWindow = withPosition(
       />
       {showScenarioInfo && (
         <ScenarioInfoRoot y={318}>
-          <Text size="large" x={47} y={36}>
+          <Text align="center" size="large" width={90} x={25} y={35}>
             {scenarioInfo && scenarioSizeLabels[scenarioInfo.size]}
           </Text>
-          <Text size="large" x={207} y={36}>
+          <Text align="center" size="large" width={90} x={182} y={35}>
             {scenarioInfo && scenarioDifficultyLabels[scenarioInfo.difficulty]}
           </Text>
-          <Text align="center" size="large" width={269} x={24} y={66}>
+          <Text align="center" size="large" width={245} x={36} y={65}>
             {scenarioInfo && scenarioInfo.description}
           </Text>
         </ScenarioInfoRoot>

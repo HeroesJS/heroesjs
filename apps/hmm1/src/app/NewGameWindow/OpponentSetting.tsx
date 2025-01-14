@@ -36,7 +36,7 @@ export const OpponentSetting = withPosition(({ className, index, onClick, value 
   return (
     <div className={className} onClick={handleClick}>
       <img src={assets[value]} />
-      <Text align="center" size="small" width={66} x={0} y={66}>
+      <Text align="center" size="small" width={66} x={0} y={64}>
         {labels[value]}
       </Text>
     </div>
