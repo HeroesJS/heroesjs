@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Button, type PositionProps, Text, withPosition } from '../base';
+import { Button, Text, withPosition } from '../base';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -33,13 +33,11 @@ export const FileSelectorWindow = withPosition(
     selectedItem,
     showScenarioInfo,
   }: Props) => (
-    <Root className={className}>
-      <Text size="large" x={111} y={19}>
+    <Root aria-label="File Selector Window" className={className} role="dialog" showScenarioInfo={showScenarioInfo}>
+      <Text heading size="large" x={111} y={19}>
         File to Load:
       </Text>
-      {items.map((item, i) => (
-        <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} x={59} y={42 + i * 20} />
-      ))}
+      <List items={items} onItemClick={onItemClick} selectedItem={selectedItem} x={59} y={42} />
       <Input value={selectedItem} x={48} y={253} />
       <Button
         assets={{
@@ -67,27 +65,55 @@ export const FileSelectorWindow = withPosition(
   ),
 );
 
-const Root = styled.div<Pick<Props, 'scenarioInfo'>>(({ scenarioInfo }) => ({
+const Root = styled.div<Pick<Props, 'showScenarioInfo'>>(({ showScenarioInfo }) => ({
   background: `url(${background})`,
-  height: scenarioInfo ? 380 : 331,
+  height: showScenarioInfo ? 380 : 331,
   width: 320,
 }));
 
-interface ItemProps extends PositionProps {
+interface ListProps {
+  readonly className?: string;
+  readonly items?: readonly string[];
+  readonly onItemClick?: (value: string) => void;
+  readonly selectedItem?: string;
+}
+
+const List = withPosition(({ className, items = [], onItemClick, selectedItem }: ListProps) => {
+  return (
+    <div aria-label="Items" className={className} role="listbox">
+      {items.map((item, i) => (
+        <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} y={i * 20} />
+      ))}
+    </div>
+  );
+});
+
+interface ItemProps {
+  readonly className?: string;
   readonly onClick?: (value: string) => void;
   readonly selected?: boolean;
   readonly value: string;
 }
 
-const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
+const Item = withPosition(({ className, onClick, selected, value }: ItemProps) => {
   const handleClick = useCallback(() => onClick?.(value), [onClick, value]);
 
   return (
-    <Text align="center" onClick={handleClick} selected={selected} size="large" width={200} x={x} y={y}>
-      {value}
-    </Text>
+    <ItemRoot aria-selected={selected} className={className} onClick={handleClick} role="option">
+      <Text selected={selected} size="large">
+        {value}
+      </Text>
+    </ItemRoot>
   );
-};
+});
+
+const ItemRoot = styled.button({
+  background: 'transparent',
+  border: 0,
+  padding: 0,
+  textAlign: 'center',
+  width: 200,
+});
 
 interface InputProps {
   readonly className?: string;
@@ -95,7 +121,7 @@ interface InputProps {
 }
 
 const Input = withPosition(({ className, value }: InputProps) => (
-  <InputRoot className={className}>
+  <InputRoot aria-label="File Name" className={className} role="textbox">
     <Text align="center" size="large" width={224} x={0} y={1}>
       {value}
     </Text>

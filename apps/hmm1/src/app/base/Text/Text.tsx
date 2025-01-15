@@ -8,6 +8,8 @@ export type TextSize = 'small' | 'normal' | 'large';
 
 interface Props {
   readonly align?: 'left' | 'center' | 'right';
+  readonly heading?: boolean;
+  readonly label?: string;
   readonly onClick?: () => void;
   readonly selected?: boolean;
   readonly size?: TextSize;
@@ -16,10 +18,31 @@ interface Props {
   readonly y?: number;
 }
 
-export const Text = ({ align, children, onClick, selected, size, width, x, y }: PropsWithChildren<Props>) => (
+export const Text = ({
+  align,
+  children,
+  heading,
+  label,
+  onClick,
+  selected,
+  size,
+  width,
+  x,
+  y,
+}: PropsWithChildren<Props>) => (
   <>
     <FontStyles />
-    <Root align={align} onClick={onClick} selected={selected} size={size} width={width} x={x} y={y}>
+    <Root
+      align={align}
+      aria-label={label}
+      onClick={onClick}
+      role={heading ? 'heading' : undefined}
+      selected={selected}
+      size={size}
+      width={width}
+      x={x}
+      y={y}
+    >
       {children}
     </Root>
   </>
@@ -50,7 +73,7 @@ const Root = styled.span<Pick<Props, 'align' | 'selected' | 'size' | 'width' | '
     fontSize: fontSizes[size],
     left: x,
     lineHeight: '16px',
-    position: 'absolute',
+    position: x !== undefined || y !== undefined ? 'absolute' : undefined,
     textAlign: align,
     top: y,
     width,

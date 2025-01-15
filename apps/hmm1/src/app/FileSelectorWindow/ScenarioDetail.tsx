@@ -29,14 +29,14 @@ interface Props extends Partial<ScenarioInfo> {
 }
 
 export const ScenarioDetail = withPosition(({ className, description, difficulty, size }: Props) => (
-  <ScenarioDetailRoot className={className}>
-    <Text align="center" size="large" width={90} x={25} y={35}>
+  <ScenarioDetailRoot aria-label="Scenario Info" className={className} role="note">
+    <Text align="center" label="Size" size="large" width={90} x={25} y={35}>
       {size && scenarioSizeLabels[size]}
     </Text>
-    <Text align="center" size="large" width={90} x={182} y={35}>
+    <Text align="center" label="Difficulty" size="large" width={90} x={182} y={35}>
       {difficulty && scenarioDifficultyLabels[difficulty]}
     </Text>
-    <Text align="center" size="large" width={245} x={36} y={65}>
+    <Text align="center" label="Description" size="large" width={245} x={36} y={65}>
       {description}
     </Text>
   </ScenarioDetailRoot>
