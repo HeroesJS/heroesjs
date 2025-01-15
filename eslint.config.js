@@ -51,6 +51,17 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'sort-keys': [
+        'error',
+        'asc',
+        {
+          allowLineSeparatedGroups: false,
+          caseSensitive: true,
+          ignoreComputedKeys: false,
+          minKeys: 2,
+          natural: true,
+        },
+      ],
       'typescript-sort-keys/interface': 'error',
       'typescript-sort-keys/string-enum': 'error',
     },

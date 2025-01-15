@@ -51,9 +51,9 @@ const Root = styled.div({
 });
 
 const Image = styled.img({
-  top: 3,
   left: 3,
   position: 'absolute',
+  top: 3,
 });
 
 const Selection = styled.img({
