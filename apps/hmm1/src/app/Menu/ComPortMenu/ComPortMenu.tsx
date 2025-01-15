@@ -67,5 +67,5 @@ interface ItemProps {
 const Item = ({ value, onClick }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]!} label={`Com-${value}`} onClick={handleClick} />;
+  return <Button assets={assets[value]} label={`Com-${value}`} onClick={handleClick} />;
 };

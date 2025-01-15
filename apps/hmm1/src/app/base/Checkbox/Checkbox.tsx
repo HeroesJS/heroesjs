@@ -19,7 +19,7 @@ export const Checkbox = withPosition(({ assets, checked, className, onChange }: 
 
   return (
     <Root className={className} onClick={handleClick}>
-      <img src={checked ? assets.checked : assets.unchecked} />
+      <img alt="" src={checked ? assets.checked : assets.unchecked} />
     </Root>
   );
 });

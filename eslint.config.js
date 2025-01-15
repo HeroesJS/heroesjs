@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import typescriptSortKeys from 'eslint-plugin-typescript-sort-keys';
@@ -10,7 +11,7 @@ export default [
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    ignores: ['**/dist'],
+    ignores: ['**/dist', '**/storybook-static'],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -60,6 +61,31 @@ export default [
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        projectService: true,
+      },
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-exports': [
+        'error',
+        {
+          fixMixedExportsWithInlineTypeSpecifier: true,
+        },
+      ],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          disallowTypeAnnotations: true,
+          fixStyle: 'inline-type-imports',
+          prefer: 'type-imports',
+        },
+      ],
     },
   },
   {

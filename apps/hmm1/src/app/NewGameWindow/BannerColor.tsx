@@ -33,5 +33,5 @@ interface Props {
 }
 
 export const BannerColor = withPosition(({ className, onClick, value }: Props) => (
-  <img className={className} onClick={onClick} src={assets[value]} />
+  <img alt="" className={className} onClick={onClick} src={assets[value]} />
 ));

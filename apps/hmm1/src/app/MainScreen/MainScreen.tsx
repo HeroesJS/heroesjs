@@ -5,7 +5,7 @@ import { Screen } from '../base';
 import { scenarios } from '../core';
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import {
-  Campaign,
+  type Campaign,
   CampaignMenu,
   GameTypeMenu,
   HostGuestMenu,
