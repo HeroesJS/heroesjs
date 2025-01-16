@@ -1,4 +1,4 @@
-import { Text, withPosition } from '../base';
+import { PositionedComponent, type PositionProps, Text } from '../base';
 import { OpponentDifficulty } from '../core';
 
 import average from './assets/opponentSetting/average.jpg';
@@ -23,22 +23,21 @@ const labels: Record<OpponentDifficulty, string> = {
   [OpponentDifficulty.Smart]: 'Smart',
 };
 
-interface Props {
-  readonly className?: string;
+interface Props extends PositionProps {
   readonly index: number;
   readonly onClick?: (index: number, value: OpponentDifficulty) => void;
   readonly value: OpponentDifficulty;
 }
 
-export const OpponentSetting = withPosition(({ className, index, onClick, value }: Props) => {
+export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
   const handleClick = () => onClick?.(index, value);
 
   return (
-    <div className={className} onClick={handleClick}>
+    <PositionedComponent as="div" onClick={handleClick} x={x} y={y}>
       <img alt="" src={assets[value]} />
       <Text align="center" size="small" width={66} x={0} y={64}>
         {labels[value]}
       </Text>
-    </div>
+    </PositionedComponent>
   );
-});
+};

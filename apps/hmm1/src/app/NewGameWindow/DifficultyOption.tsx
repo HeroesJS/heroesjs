@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Text, withPosition } from '../base';
+import { PositionedComponent, type PositionProps, Text } from '../base';
 import { GameDifficulty } from '../core';
 
 import easyDifficulty from './assets/gameDifficulty/easy.jpg';
@@ -25,18 +25,17 @@ const labels: Record<GameDifficulty, string> = {
 
 const shiftedLabels = [GameDifficulty.Hard, GameDifficulty.Expert];
 
-interface DifficultyOptionProps {
-  readonly className?: string;
+interface DifficultyOptionProps extends PositionProps {
   readonly onClick?: (value: GameDifficulty) => void;
   readonly selected?: boolean;
   readonly value: GameDifficulty;
 }
 
-export const DifficultyOption = withPosition(({ className, onClick, selected, value }: DifficultyOptionProps) => {
+export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyOptionProps) => {
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root className={className} onClick={handleClick}>
+    <Root onClick={handleClick} x={x} y={y}>
       <Image src={assets[value]} />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {labels[value]}
@@ -44,9 +43,9 @@ export const DifficultyOption = withPosition(({ className, onClick, selected, va
       {selected && <Selection src={selection} />}
     </Root>
   );
-});
+};
 
-const Root = styled.div({
+const Root = styled(PositionedComponent)({
   width: 71,
 });
 

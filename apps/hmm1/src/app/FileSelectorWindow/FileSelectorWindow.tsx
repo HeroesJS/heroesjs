@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Button, Text, withPosition } from '../base';
+import { Button, PositionedComponent, type PositionProps, Text } from '../base';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -11,8 +11,7 @@ import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import { ScenarioDetail, type ScenarioInfo } from './ScenarioDetail';
 
-interface Props {
-  readonly className?: string;
+interface Props extends PositionProps {
   readonly items?: readonly string[];
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
@@ -22,92 +21,89 @@ interface Props {
   readonly showScenarioInfo?: boolean;
 }
 
-export const FileSelectorWindow = withPosition(
-  ({
-    className,
-    items = [],
-    onCancelClick,
-    onConfirmClick,
-    onItemClick,
-    scenarioInfo,
-    selectedItem,
-    showScenarioInfo,
-  }: Props) => (
-    <Root aria-label="File Selector Window" className={className} role="dialog" showScenarioInfo={showScenarioInfo}>
-      <Text heading size="large" x={111} y={19}>
-        File to Load:
-      </Text>
-      <List items={items} onItemClick={onItemClick} selectedItem={selectedItem} x={59} y={42} />
-      <Input value={selectedItem} x={48} y={253} />
-      <Button
-        assets={{
-          disabled: okayDisabled,
-          enabled: okayEnabled,
-        }}
-        disabled={!selectedItem}
-        label="Okay"
-        onClick={onConfirmClick}
-        x={36}
-        y={280}
-      />
-      <Button
-        assets={{
-          disabled: cancelDisabled,
-          enabled: cancelEnabled,
-        }}
-        label="Cancel"
-        onClick={onCancelClick}
-        x={189}
-        y={280}
-      />
-      {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
-    </Root>
-  ),
+export const FileSelectorWindow = ({
+  items = [],
+  onCancelClick,
+  onConfirmClick,
+  onItemClick,
+  scenarioInfo,
+  selectedItem,
+  showScenarioInfo,
+  x,
+  y,
+}: Props) => (
+  <Root aria-label="File Selector Window" role="dialog" showScenarioInfo={showScenarioInfo} x={x} y={y}>
+    <Text heading size="large" x={111} y={19}>
+      File to Load:
+    </Text>
+    <List items={items} onItemClick={onItemClick} selectedItem={selectedItem} x={59} y={42} />
+    <Input value={selectedItem} x={48} y={253} />
+    <Button
+      assets={{
+        disabled: okayDisabled,
+        enabled: okayEnabled,
+      }}
+      disabled={!selectedItem}
+      label="Okay"
+      onClick={onConfirmClick}
+      x={36}
+      y={280}
+    />
+    <Button
+      assets={{
+        disabled: cancelDisabled,
+        enabled: cancelEnabled,
+      }}
+      label="Cancel"
+      onClick={onCancelClick}
+      x={189}
+      y={280}
+    />
+    {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
+  </Root>
 );
 
-const Root = styled.div<Pick<Props, 'showScenarioInfo'>>(({ showScenarioInfo }) => ({
+const Root = styled(PositionedComponent)<Pick<Props, 'showScenarioInfo'>>(({ showScenarioInfo }) => ({
   background: `url(${background})`,
   height: showScenarioInfo ? 380 : 331,
   width: 320,
 }));
 
-interface ListProps {
-  readonly className?: string;
+interface ListProps extends PositionProps {
   readonly items?: readonly string[];
   readonly onItemClick?: (value: string) => void;
   readonly selectedItem?: string;
 }
 
-const List = withPosition(({ className, items = [], onItemClick, selectedItem }: ListProps) => {
+const List = ({ items = [], onItemClick, selectedItem, x, y }: ListProps) => {
   return (
-    <div aria-label="Items" className={className} role="listbox">
+    <PositionedComponent aria-label="Items" as="div" role="listbox" x={x} y={y}>
       {items.map((item, i) => (
         <Item key={i} onClick={onItemClick} selected={item === selectedItem} value={item} y={i * 20} />
       ))}
-    </div>
+    </PositionedComponent>
   );
-});
+};
 
-interface ItemProps {
-  readonly className?: string;
+interface ItemProps extends PositionProps {
   readonly onClick?: (value: string) => void;
   readonly selected?: boolean;
   readonly value: string;
 }
 
-const Item = withPosition(({ className, onClick, selected, value }: ItemProps) => {
+const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
   const handleClick = useCallback(() => onClick?.(value), [onClick, value]);
 
   return (
-    <ItemRoot aria-selected={selected} className={className} onClick={handleClick} role="option">
+    <ItemRoot aria-selected={selected} as="button" onClick={handleClick} role="option" x={x} y={y}>
       <Text selected={selected} size="large">
         {value}
       </Text>
     </ItemRoot>
   );
-});
+};
 
-const ItemRoot = styled.button({
+const ItemRoot = styled(PositionedComponent)({
   background: 'transparent',
   border: 0,
   padding: 0,
@@ -115,20 +111,19 @@ const ItemRoot = styled.button({
   width: 200,
 });
 
-interface InputProps {
-  readonly className?: string;
+interface InputProps extends PositionProps {
   readonly value?: string;
 }
 
-const Input = withPosition(({ className, value }: InputProps) => (
-  <InputRoot aria-label="File Name" className={className} role="textbox">
+const Input = ({ value, x, y }: InputProps) => (
+  <InputRoot aria-label="File Name" role="textbox" x={x} y={y}>
     <Text align="center" size="large" width={224} x={0} y={1}>
       {value}
     </Text>
   </InputRoot>
-));
+);
 
-const InputRoot = styled.div({
+const InputRoot = styled(PositionedComponent)({
   background: `url(${inputBackground})`,
   height: 19,
   width: 225,

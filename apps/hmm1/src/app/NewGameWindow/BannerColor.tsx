@@ -1,4 +1,6 @@
-import { withPosition } from '../base';
+import styled from 'styled-components';
+
+import { PositionedComponent, type PositionProps } from '../base';
 
 import blue from './assets/bannerColor/blue.png';
 import green from './assets/bannerColor/green.png';
@@ -26,12 +28,13 @@ const assets: Record<PlayerColor, string> = {
   [PlayerColor.Yellow]: yellow,
 };
 
-interface Props {
-  readonly className?: string;
+interface Props extends PositionProps {
   readonly onClick?: () => void;
   readonly value: PlayerColor;
 }
 
-export const BannerColor = withPosition(({ className, onClick, value }: Props) => (
-  <img alt="" className={className} onClick={onClick} src={assets[value]} />
-));
+export const BannerColor = ({ onClick, value, x, y }: Props) => (
+  <BannerColorRoot alt="" as="img" onClick={onClick} src={assets[value]} x={x} y={y} />
+);
+
+const BannerColorRoot = styled(PositionedComponent)({});

@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
-import { Button, Text, withPosition } from '../base';
+import { Button, PositionedComponent, type PositionProps, Text } from '../base';
 
 import background from './assets/scenario-selection-background.jpg';
 import selectDisabled from './assets/select/disabled.png';
 import selectEnabled from './assets/select/enabled.png';
 
-interface Props {
-  readonly className?: string;
+interface Props extends PositionProps {
   readonly onClick?: () => void;
   readonly value: string;
 }
 
-export const ScenarioSelection = withPosition(({ className, onClick, value }: Props) => (
-  <Root className={className} onClick={onClick}>
+export const ScenarioSelection = ({ onClick, value, x, y }: Props) => (
+  <Root onClick={onClick} x={x} y={y}>
     <Text align="center" size="large" width={246} x={0} y={1}>
       {value}
     </Text>
@@ -28,8 +27,8 @@ export const ScenarioSelection = withPosition(({ className, onClick, value }: Pr
       y={0}
     />
   </Root>
-));
+);
 
-const Root = styled.div({
+const Root = styled(PositionedComponent)({
   background: `url(${background})`,
 });

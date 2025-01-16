@@ -1,22 +1,21 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { withPosition } from '../withPosition';
+import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
 import background from './assets/background.jpg';
 
-interface Props {
-  readonly className?: string;
+interface Props extends PositionProps {
   readonly label: string;
 }
 
-export const Menu = withPosition(({ children, className, label }: PropsWithChildren<Props>) => (
-  <Root aria-label={label} className={className} role="menu">
+export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
+  <Root aria-label={label} role="menu" x={x} y={y}>
     {children}
   </Root>
-));
+);
 
-const Root = styled.div({
+const Root = styled(PositionedComponent)({
   backgroundImage: `url(${background})`,
   boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 black',
   boxSizing: 'border-box',

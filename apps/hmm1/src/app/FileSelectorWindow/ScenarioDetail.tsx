@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Text, withPosition } from '../base';
+import { PositionedComponent, type PositionProps, Text } from '../base';
 import { ScenarioDifficulty, ScenarioSize } from '../core';
 
 import scenarioInfoBackground from './assets/scenario-info-background.jpg';
@@ -24,12 +24,10 @@ export interface ScenarioInfo {
   readonly size: ScenarioSize;
 }
 
-interface Props extends Partial<ScenarioInfo> {
-  readonly className?: string;
-}
+interface Props extends PositionProps, Partial<ScenarioInfo> {}
 
-export const ScenarioDetail = withPosition(({ className, description, difficulty, size }: Props) => (
-  <ScenarioDetailRoot aria-label="Scenario Info" className={className} role="note">
+export const ScenarioDetail = ({ description, difficulty, size, x, y }: Props) => (
+  <ScenarioDetailRoot aria-label="Scenario Info" role="note" x={x} y={y}>
     <Text align="center" label="Size" size="large" width={90} x={25} y={35}>
       {size && scenarioSizeLabels[size]}
     </Text>
@@ -40,9 +38,9 @@ export const ScenarioDetail = withPosition(({ className, description, difficulty
       {description}
     </Text>
   </ScenarioDetailRoot>
-));
+);
 
-const ScenarioDetailRoot = styled.div({
+const ScenarioDetailRoot = styled(PositionedComponent)({
   background: `url(${scenarioInfoBackground})`,
   height: 141,
   width: 320,
