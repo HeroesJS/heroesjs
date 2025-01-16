@@ -39,6 +39,11 @@ const assets: Record<Campaign, ButtonAssets> = {
   },
 };
 
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 const labels: Record<Campaign, string> = {
   [Campaign.LordAlamar]: 'Play Lord Alamar',
   [Campaign.LordIronfist]: 'Play Lord Ironfist',
@@ -59,14 +64,7 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
       </MenuItem>
     ))}
     <MenuItem>
-      <Button
-        assets={{
-          disabled: cancelDisabled,
-          enabled: cancelEnabled,
-        }}
-        label="Cancel"
-        onClick={onCancelClick}
-      />
+      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </MenuItem>
   </Menu>
 );

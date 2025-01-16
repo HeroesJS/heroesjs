@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Button, Checkbox, Text, useToggle } from '../base';
+import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '../base';
 import {
   gameDifficulties,
   GameDifficulty,
@@ -27,6 +27,21 @@ import { ScenarioSelection } from './ScenarioSelection';
 function nextOption<T>(values: readonly T[], currentValue: T): T {
   return values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
 }
+
+const kingOfTheHillCheckboxAssets: CheckboxAssets = {
+  checked: checkboxChecked,
+  unchecked: checkboxUnchecked,
+};
+
+const okayButtonAssets: ButtonAssets = {
+  disabled: okayDisabled,
+  enabled: okayEnabled,
+};
+
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
 
 interface ScenarioInfo {
   readonly difficulty: ScenarioDifficulty;
@@ -97,10 +112,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         King of the Hill:
       </Text>
       <Checkbox
-        assets={{
-          checked: checkboxChecked,
-          unchecked: checkboxUnchecked,
-        }}
+        assets={kingOfTheHillCheckboxAssets}
         checked={kingOfTheHill}
         onChange={toggleKingOfTheHill}
         x={210}
@@ -113,27 +125,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text size="large" x={78} y={388}>
         Difficulty Rating: {rating}%
       </Text>
-      <Button
-        assets={{
-          disabled: okayDisabled,
-          enabled: okayEnabled,
-        }}
-        disabled={!scenario}
-        label="Okay"
-        onClick={onConfirmClick}
-        x={24}
-        y={412}
-      />
-      <Button
-        assets={{
-          disabled: cancelDisabled,
-          enabled: cancelEnabled,
-        }}
-        label="Cancel"
-        onClick={onCancelClick}
-        x={201}
-        y={412}
-      />
+      <Button assets={okayButtonAssets} disabled={!scenario} label="Okay" onClick={onConfirmClick} x={24} y={412} />
+      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} x={201} y={412} />
     </Root>
   );
 };

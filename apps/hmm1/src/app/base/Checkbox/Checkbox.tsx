@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
-interface CheckboxAssets {
+export interface CheckboxAssets {
   readonly checked: string;
   readonly unchecked: string;
 }

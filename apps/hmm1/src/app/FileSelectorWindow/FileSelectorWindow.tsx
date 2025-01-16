@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Button, PositionedComponent, type PositionProps, Text } from '../base';
+import { Button, type ButtonAssets, PositionedComponent, type PositionProps, Text } from '../base';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -10,6 +10,16 @@ import inputBackground from './assets/input-background.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import { ScenarioDetail, type ScenarioInfo } from './ScenarioDetail';
+
+const okayButtonAssets: ButtonAssets = {
+  disabled: okayDisabled,
+  enabled: okayEnabled,
+};
+
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
 
 interface Props extends PositionProps {
   readonly items?: readonly string[];
@@ -38,27 +48,8 @@ export const FileSelectorWindow = ({
     </Text>
     <List items={items} onItemClick={onItemClick} selectedItem={selectedItem} x={59} y={42} />
     <Input value={selectedItem} x={48} y={253} />
-    <Button
-      assets={{
-        disabled: okayDisabled,
-        enabled: okayEnabled,
-      }}
-      disabled={!selectedItem}
-      label="Okay"
-      onClick={onConfirmClick}
-      x={36}
-      y={280}
-    />
-    <Button
-      assets={{
-        disabled: cancelDisabled,
-        enabled: cancelEnabled,
-      }}
-      label="Cancel"
-      onClick={onCancelClick}
-      x={189}
-      y={280}
-    />
+    <Button assets={okayButtonAssets} disabled={!selectedItem} label="Okay" onClick={onConfirmClick} x={36} y={280} />
+    <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} x={189} y={280} />
     {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
   </Root>
 );

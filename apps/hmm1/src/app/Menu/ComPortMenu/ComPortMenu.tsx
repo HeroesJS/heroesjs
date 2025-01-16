@@ -32,6 +32,11 @@ const assets: Readonly<Record<number, ButtonAssets>> = {
   },
 };
 
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
   readonly onPortClick?: (value: number) => void;
@@ -46,14 +51,7 @@ export const ComPortMenu = ({ onCancelClick, onPortClick, x, y }: Props) => {
         </MenuItem>
       ))}
       <MenuItem>
-        <Button
-          assets={{
-            disabled: cancelDisabled,
-            enabled: cancelEnabled,
-          }}
-          label="Cancel"
-          onClick={onCancelClick}
-        />
+        <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
       </MenuItem>
     </Menu>
   );
