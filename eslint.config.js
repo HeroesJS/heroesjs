@@ -15,18 +15,19 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    ignores: ['**/vite.config.ts'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
-              sourceTag: '*',
               onlyDependOnLibsWithTags: ['*'],
+              sourceTag: '*',
             },
           ],
+          enforceBuildableLibDependency: true,
         },
       ],
     },
