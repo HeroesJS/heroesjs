@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
 import { Campaign } from '../../core';
 
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -53,13 +53,9 @@ interface Props extends PositionProps {
 export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) => (
   <Menu label="Campaign Menu" x={x} y={y}>
     {campaigns.map((campaign) => (
-      <MenuItem key={campaign}>
-        <Item onClick={onCampaignClick} value={campaign} />
-      </MenuItem>
+      <Item key={campaign} onClick={onCampaignClick} value={campaign} />
     ))}
-    <MenuItem>
-      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-    </MenuItem>
+    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
   </Menu>
 );
 
@@ -71,5 +67,5 @@ interface ItemProps {
 const Item = ({ onClick, value }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]} label={labels[value]} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={labels[value]} onClick={handleClick} />;
 };

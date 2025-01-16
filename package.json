@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@heroesjs/root",
+  "name": "root",
   "type": "module",
   "description": "",
   "license": "MIT",
@@ -10,7 +10,8 @@
   },
   "scripts": {
     "format:check": "nx format:check --all",
-    "format:write": "nx format:write --all"
+    "format:write": "nx format:write --all",
+    "verify": "nx affected -t lint test build e2e --parallel=1"
   },
   "dependencies": {
     "lodash": "^4.17.21",

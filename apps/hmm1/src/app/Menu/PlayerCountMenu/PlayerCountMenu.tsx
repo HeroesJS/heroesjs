@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '../../base';
 
 import twoPlayersDisabled from './assets/2-players/disabled.png';
 import twoPlayersEnabled from './assets/2-players/enabled.png';
@@ -40,14 +40,10 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
       {Object.keys(assets)
         .map(Number)
         .map((count) => (
-          <MenuItem key={count}>
-            <Item onClick={onCountClick} value={count} />
-          </MenuItem>
+          <Item key={count} onClick={onCountClick} value={count} />
         ))}
-      <MenuItem />
-      <MenuItem>
-        <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-      </MenuItem>
+      <MenuSeparator />
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -60,5 +56,5 @@ interface ItemProps {
 const Item = ({ onClick, value }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]} label={`${value} Players`} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={`${value} Players`} onClick={handleClick} />;
 };

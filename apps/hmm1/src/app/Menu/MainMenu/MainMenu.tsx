@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';
@@ -54,20 +54,10 @@ export const MainMenu = ({
   y,
 }: Props) => (
   <Menu label="Main Menu" x={x} y={y}>
-    <MenuItem>
-      <Button assets={newGameButtonAssets} label="New Game" onClick={onNewGameClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={loadGameButtonAssets} label="Load Game" onClick={onLoadGameClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={viewHighScoresButtonAssets} label="View High Scores" onClick={onViewHighScoresClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={viewCreditsButtonAssets} label="View Credits" onClick={onViewCreditsClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={quitButtonAssets} label="Quit" onClick={onQuitClick} />
-    </MenuItem>
+    <MenuButton assets={newGameButtonAssets} label="New Game" onClick={onNewGameClick} />
+    <MenuButton assets={loadGameButtonAssets} label="Load Game" onClick={onLoadGameClick} />
+    <MenuButton assets={viewHighScoresButtonAssets} label="View High Scores" onClick={onViewHighScoresClick} />
+    <MenuButton assets={viewCreditsButtonAssets} label="View Credits" onClick={onViewCreditsClick} />
+    <MenuButton assets={quitButtonAssets} label="Quit" onClick={onQuitClick} />
   </Menu>
 );

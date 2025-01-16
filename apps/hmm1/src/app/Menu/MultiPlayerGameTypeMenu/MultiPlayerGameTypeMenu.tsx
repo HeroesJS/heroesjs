@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -55,21 +55,11 @@ export const MultiPlayerGameTypeMenu = ({
 }: Props) => {
   return (
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
-      <MenuItem>
-        <Button assets={hotSeatButtonAssets} label="Hot Seat" onClick={onHotSeatClick} />
-      </MenuItem>
-      <MenuItem>
-        <Button assets={networkButtonAssets} label="Network" onClick={onNetworkClick} />
-      </MenuItem>
-      <MenuItem>
-        <Button assets={modemButtonAssets} label="Modem" onClick={onModemClick} />
-      </MenuItem>
-      <MenuItem>
-        <Button assets={directConnectButtonAssets} label="Direct Connect" onClick={onDirectConnectClick} />
-      </MenuItem>
-      <MenuItem>
-        <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-      </MenuItem>
+      <MenuButton assets={hotSeatButtonAssets} label="Hot Seat" onClick={onHotSeatClick} />
+      <MenuButton assets={networkButtonAssets} label="Network" onClick={onNetworkClick} />
+      <MenuButton assets={modemButtonAssets} label="Modem" onClick={onModemClick} />
+      <MenuButton assets={directConnectButtonAssets} label="Direct Connect" onClick={onDirectConnectClick} />
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };

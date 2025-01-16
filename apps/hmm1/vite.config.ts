@@ -3,7 +3,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 
-import { mergeWithBaseConfig } from '../../vite.config';
+import { mergeWithBaseConfig } from '../../vite.config.base';
 
 export default mergeWithBaseConfig(
   defineConfig({

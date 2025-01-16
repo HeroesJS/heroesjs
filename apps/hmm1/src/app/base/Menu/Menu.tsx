@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
@@ -25,9 +25,7 @@ const Root = styled(PositionedComponent)({
   width: 193,
 });
 
-export const MenuItem = (props: PropsWithChildren) => <ItemRoot {...props} />;
-
-const ItemRoot = styled.div({
+export const menuItemStyle = css({
   height: 63,
   marginBottom: 3,
   width: 127,

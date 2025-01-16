@@ -10,6 +10,7 @@ export interface ButtonAssets {
 
 interface Props extends PositionProps {
   readonly assets: ButtonAssets;
+  readonly className?: string;
   readonly disabled?: boolean;
   readonly label: string;
   readonly onClick?: () => void;
@@ -17,7 +18,7 @@ interface Props extends PositionProps {
   readonly onMouseOver?: () => void;
 }
 
-export const Button = ({ assets, disabled, label, onClick, onMouseLeave, onMouseOver, x, y }: Props) => {
+export const Button = ({ assets, className, disabled, label, onClick, onMouseLeave, onMouseOver, x, y }: Props) => {
   const [over, setOver] = useState(false);
   const [pressed, setPressed] = useState(false);
 
@@ -47,6 +48,7 @@ export const Button = ({ assets, disabled, label, onClick, onMouseLeave, onMouse
     <Root
       aria-label={label}
       as="button"
+      className={className}
       disabled={disabled}
       onClick={onClick}
       onMouseDown={handleMouseDown}

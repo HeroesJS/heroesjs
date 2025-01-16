@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '../../base';
 
 import campaignGameDisabled from './assets/campaign-game/disabled.png';
 import campaignGameEnabled from './assets/campaign-game/enabled.png';
@@ -45,18 +45,10 @@ export const GameTypeMenu = ({
   y,
 }: Props) => (
   <Menu label="Game Type Menu" x={x} y={y}>
-    <MenuItem>
-      <Button assets={standardGameButtonAssets} label="Standard Game" onClick={onStandardGameClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={campaignGameButtonAssets} label="Campaign Game" onClick={onCampaignGameClick} />
-    </MenuItem>
-    <MenuItem>
-      <Button assets={multiPlayerGameButtonAssets} label="Multi-Player Game" onClick={onMultiPlayerGameClick} />
-    </MenuItem>
-    <MenuItem />
-    <MenuItem>
-      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-    </MenuItem>
+    <MenuButton assets={standardGameButtonAssets} label="Standard Game" onClick={onStandardGameClick} />
+    <MenuButton assets={campaignGameButtonAssets} label="Campaign Game" onClick={onCampaignGameClick} />
+    <MenuButton assets={multiPlayerGameButtonAssets} label="Multi-Player Game" onClick={onMultiPlayerGameClick} />
+    <MenuSeparator />
+    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
   </Menu>
 );

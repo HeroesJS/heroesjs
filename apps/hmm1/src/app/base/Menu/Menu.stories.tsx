@@ -3,7 +3,8 @@ import { range } from 'lodash';
 
 import { Placeholder } from '../Placeholder';
 
-import { Menu, MenuItem } from './Menu';
+import { Menu } from './Menu';
+import { MenuSeparator } from './MenuSeparator';
 
 const meta: Meta<typeof Menu> = {
   component: Menu,
@@ -16,9 +17,9 @@ type Story = StoryObj<typeof Menu>;
 export const Primary: Story = {
   args: {
     children: range(5).map((i) => (
-      <MenuItem>
+      <MenuSeparator>
         <Placeholder label={`Item ${i}`} />
-      </MenuItem>
+      </MenuSeparator>
     )),
   },
 };

@@ -9,5 +9,3 @@ const baseConfig = defineConfig({
 });
 
 export const mergeWithBaseConfig = (config: UserConfig) => mergeConfig(baseConfig, config);
-
-export default baseConfig;

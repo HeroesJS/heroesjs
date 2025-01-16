@@ -1,4 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '../../base';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -45,24 +45,18 @@ interface Props extends PositionProps {
 
 export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => (
   <Menu label="Host/Guest Menu" x={x} y={y}>
-    <MenuItem>
-      <Button
-        assets={detailed ? hostDialsButtonAssets : hostButtonAssets}
-        label={detailed ? 'Host (Dials)' : 'Host'}
-        onClick={onHostClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={detailed ? guestAnswersButtonAssets : guestButtonAssets}
-        label={detailed ? 'Guest (Answers)' : 'Guest'}
-        onClick={onGuestClick}
-      />
-    </MenuItem>
-    <MenuItem />
-    <MenuItem />
-    <MenuItem>
-      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-    </MenuItem>
+    <MenuButton
+      assets={detailed ? hostDialsButtonAssets : hostButtonAssets}
+      label={detailed ? 'Host (Dials)' : 'Host'}
+      onClick={onHostClick}
+    />
+    <MenuButton
+      assets={detailed ? guestAnswersButtonAssets : guestButtonAssets}
+      label={detailed ? 'Guest (Answers)' : 'Guest'}
+      onClick={onGuestClick}
+    />
+    <MenuSeparator />
+    <MenuSeparator />
+    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
   </Menu>
 );

@@ -1,6 +1,6 @@
 import { range } from 'lodash';
 
-import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -46,13 +46,9 @@ export const ComPortMenu = ({ onCancelClick, onPortClick, x, y }: Props) => {
   return (
     <Menu label="Com Port Menu" x={x} y={y}>
       {range(1, 5).map((i) => (
-        <MenuItem key={i}>
-          <Item onClick={onPortClick} value={i} />
-        </MenuItem>
+        <Item key={i} onClick={onPortClick} value={i} />
       ))}
-      <MenuItem>
-        <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-      </MenuItem>
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -65,5 +61,5 @@ interface ItemProps {
 const Item = ({ value, onClick }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]} label={`Com-${value}`} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={`Com-${value}`} onClick={handleClick} />;
 };
