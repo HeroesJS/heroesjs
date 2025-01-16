@@ -1,6 +1,13 @@
 export const ScreenWidth = 640;
 export const ScreenHeight = 480;
 
+export enum Campaign {
+  LordAlamar = 'lord-alamar',
+  LordIronfist = 'lord-ironfist',
+  LordSlayer = 'lord-slayer',
+  QueenLamanda = 'queen-lamanda',
+}
+
 export enum GameDifficulty {
   Easy = 'easy',
   Expert = 'expert',

@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '../../../testUtils';
+import { Campaign } from '../../core';
 
-import { Campaign, CampaignMenu } from './CampaignMenu';
+import { CampaignMenu } from './CampaignMenu';
 
 describe(CampaignMenu, () => {
   it('renders', async () => {

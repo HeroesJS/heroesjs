@@ -2,17 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Screen } from '../base';
-import { scenarios } from '../core';
+import { type Campaign, scenarios } from '../core';
 import { FileSelectorWindow } from '../FileSelectorWindow';
-import {
-  type Campaign,
-  CampaignMenu,
-  GameTypeMenu,
-  HostGuestMenu,
-  MainMenu,
-  MultiPlayerGameTypeMenu,
-  PlayerCountMenu,
-} from '../menu';
+import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../menu';
 import { NewGameWindow } from '../NewGameWindow';
 
 import background from './assets/background.jpg';

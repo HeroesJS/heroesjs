@@ -1,4 +1,5 @@
 import { Button, type ButtonAssets, Menu, MenuItem, type PositionProps } from '../../base';
+import { Campaign } from '../../core';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -10,13 +11,6 @@ import playLordSlayerDisabled from './assets/play-lord-slayer/disabled.png';
 import playLordSlayerEnabled from './assets/play-lord-slayer/enabled.png';
 import playQueenLamandaDisabled from './assets/play-queen-lamanda/disabled.png';
 import playQueenLamandaEnabled from './assets/play-queen-lamanda/enabled.png';
-
-export enum Campaign {
-  LordAlamar = 'lord-alamar',
-  LordIronfist = 'lord-ironfist',
-  LordSlayer = 'lord-slayer',
-  QueenLamanda = 'queen-lamanda',
-}
 
 const campaigns = [Campaign.LordIronfist, Campaign.LordSlayer, Campaign.QueenLamanda, Campaign.LordAlamar] as const;
 
