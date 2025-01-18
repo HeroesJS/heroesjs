@@ -95,9 +95,6 @@ const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
 };
 
 const ItemRoot = styled(PositionedComponent)({
-  background: 'transparent',
-  border: 0,
-  padding: 0,
   textAlign: 'center',
   width: 200,
 });

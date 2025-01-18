@@ -35,7 +35,7 @@ export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyO
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root onClick={handleClick} x={x} y={y}>
+    <Root aria-label={labels[value]} aria-selected={selected} onClick={handleClick} role="option" x={x} y={y}>
       <Image src={assets[value]} />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {labels[value]}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Button, type ButtonAssets, PositionedComponent, type PositionProps, Text } from '../base';
+import { Button, type ButtonAssets, Input, PositionedComponent, type PositionProps } from '../base';
 
 import background from './assets/scenario-selection-background.jpg';
 import selectDisabled from './assets/select/disabled.png';
@@ -18,9 +18,7 @@ interface Props extends PositionProps {
 
 export const ScenarioSelection = ({ onClick, value, x, y }: Props) => (
   <Root onClick={onClick} x={x} y={y}>
-    <Text align="center" size="large" width={246} x={0} y={1}>
-      {value}
-    </Text>
+    <Input background={background} label="Scenario" value={value} width={246} />
     <Button assets={selectButtonAssets} label="Select Scenario" onClick={onClick} x={248} y={0} />
   </Root>
 );

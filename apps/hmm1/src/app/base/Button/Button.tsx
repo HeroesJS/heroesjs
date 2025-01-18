@@ -66,10 +66,7 @@ export const Button = ({ assets, className, disabled, label, onClick, onMouseLea
 };
 
 const Root = styled(PositionedComponent)({
-  backgroundColor: 'transparent',
-  border: 0,
   fontSize: 0,
-  padding: 0,
 });
 
 const Image = styled.img({

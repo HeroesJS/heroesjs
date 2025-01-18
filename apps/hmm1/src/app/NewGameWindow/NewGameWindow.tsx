@@ -2,14 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '../base';
-import {
-  gameDifficulties,
-  GameDifficulty,
-  opponentDifficulties,
-  OpponentDifficulty,
-  ScenarioDifficulty,
-  ScenarioSize,
-} from '../core';
+import { GameDifficulty, opponentDifficulties, OpponentDifficulty, ScenarioDifficulty, ScenarioSize } from '../core';
 import { calculateRating } from '../rating';
 
 import background from './assets/background.jpg';
@@ -20,7 +13,7 @@ import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
 import { BannerColor, PlayerColor, playerColors } from './BannerColor';
-import { DifficultyOption } from './DifficultyOption';
+import { DifficultyMenu } from './DifficultyMenu';
 import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
 
@@ -78,20 +71,11 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
 
   return (
     <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
-      <Text size="large" x={60} y={22}>
+      <Text heading size="large" x={60} y={22}>
         Choose Game Difficulty:
       </Text>
-      {gameDifficulties.map((difficulty, i) => (
-        <DifficultyOption
-          key={difficulty}
-          onClick={setSelectedDifficulty}
-          selected={difficulty === selectedDifficulty}
-          value={difficulty}
-          x={19 + i * 71}
-          y={36}
-        />
-      ))}
-      <Text size="large" x={70} y={132}>
+      <DifficultyMenu onChange={setSelectedDifficulty} selectedOption={selectedDifficulty} x={19} y={36} />
+      <Text heading size="large" x={70} y={132}>
         Customize Opponents:
       </Text>
       {opponentSettings.map((setting, i) => (
@@ -104,21 +88,22 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           y={149}
         />
       ))}
-      <Text size="large" x={26} y={254}>
+      <Text heading size="large" x={26} y={254}>
         Choose Color:
       </Text>
       <BannerColor onClick={handleColorClick} value={color} x={51} y={270} />
-      <Text size="large" x={169} y={254}>
+      <Text heading size="large" x={169} y={254}>
         King of the Hill:
       </Text>
       <Checkbox
         assets={kingOfTheHillCheckboxAssets}
         checked={kingOfTheHill}
+        label="King of the Hill"
         onChange={toggleKingOfTheHill}
         x={210}
         y={272}
       />
-      <Text size="large" x={91} y={338}>
+      <Text heading size="large" x={91} y={338}>
         Choose Scenario:
       </Text>
       <ScenarioSelection onClick={onSelectScenarioClick} value={scenario?.name ?? ''} x={25} y={354} />

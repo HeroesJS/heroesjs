@@ -28,6 +28,12 @@ const AppStyle = createGlobalStyle`
   body {
     margin: 0;
   }
+
+  button {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
 `;
 
 const Root = styled.div({

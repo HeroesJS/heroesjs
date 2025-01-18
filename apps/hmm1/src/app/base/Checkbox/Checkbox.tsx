@@ -10,14 +10,15 @@ export interface CheckboxAssets {
 interface Props extends PositionProps {
   readonly assets: CheckboxAssets;
   readonly checked?: boolean;
+  readonly label?: string;
   readonly onChange?: (checked: boolean) => void;
 }
 
-export const Checkbox = ({ assets, checked, onChange, x, y }: Props) => {
+export const Checkbox = ({ assets, checked, label, onChange, x, y }: Props) => {
   const handleClick = () => onChange?.(!checked);
 
   return (
-    <Root onClick={handleClick} x={x} y={y}>
+    <Root aria-label={label} onClick={handleClick} role="checkbox" x={x} y={y}>
       <img alt="" src={checked ? assets.checked : assets.unchecked} />
     </Root>
   );
