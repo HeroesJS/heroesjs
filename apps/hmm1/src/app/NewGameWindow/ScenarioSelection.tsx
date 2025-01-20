@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Button, type ButtonAssets, Input, PositionedComponent, type PositionProps } from '../base';
+import { Button, type ButtonAssets, Input, PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import background from './assets/scenario-selection-background.jpg';
 import selectDisabled from './assets/select/disabled.png';

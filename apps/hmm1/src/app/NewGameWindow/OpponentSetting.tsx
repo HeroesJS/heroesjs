@@ -1,6 +1,5 @@
+import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import { opponentDifficulties, OpponentDifficulty } from '@heroesjs/hmm1-core';
-
-import { PositionedComponent, type PositionProps, Text } from '../base';
 
 import average from './assets/opponentSetting/average.jpg';
 import dumb from './assets/opponentSetting/dumb.jpg';

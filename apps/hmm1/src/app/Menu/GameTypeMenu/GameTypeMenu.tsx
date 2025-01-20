@@ -1,4 +1,4 @@
-import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import campaignGameDisabled from './assets/campaign-game/disabled.png';
 import campaignGameEnabled from './assets/campaign-game/enabled.png';

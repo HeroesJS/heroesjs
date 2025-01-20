@@ -1,4 +1,4 @@
-import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';

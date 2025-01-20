@@ -1,4 +1,4 @@
-import { List, Screen, Text } from '../base';
+import { List, Screen, Text } from '@heroesjs/hmm1-base-ui';
 
 import background from './assets/background.jpg';
 
@@ -39,7 +39,7 @@ interface Props {
 
 export const CreditsScreen = ({ onClick }: Props) => (
   <Screen background={background} label="Credits" onClick={onClick}>
-    <Text component="h2" shadow size="large" x={71} y={47}>
+    <Text component="h2" hidden shadow size="large" x={71} y={47}>
       Designed and Directed
     </Text>
     <List items={designAndDirectionBy} label="Designed and Directed" width={width} x={x} y={65} />

@@ -1,4 +1,4 @@
-import { PositionedComponent, type PositionProps } from '../base';
+import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import blue from './assets/bannerColor/blue.png';
 import green from './assets/bannerColor/green.png';

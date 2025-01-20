@@ -22,8 +22,8 @@ export const List = ({ items = [], itemsPerColumn, label, width, x, y }: Props) 
       x={x}
       y={y}
     >
-      {items.map((item) => (
-        <Item>
+      {items.map((item, i) => (
+        <Item key={i}>
           <Text shadow size="large">
             {item}
           </Text>

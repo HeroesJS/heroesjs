@@ -1,8 +1,7 @@
 import { screen, within } from '@testing-library/react';
 
 import { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
-
-import { renderWithProviders } from '../../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { FileSelectorWindow } from './FileSelectorWindow';
 

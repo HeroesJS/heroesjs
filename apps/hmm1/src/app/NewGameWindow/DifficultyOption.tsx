@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
+import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import { GameDifficulty } from '@heroesjs/hmm1-core';
-
-import { PositionedComponent, type PositionProps, Text } from '../base';
 
 import easyDifficulty from './assets/gameDifficulty/easy.jpg';
 import expertDifficulty from './assets/gameDifficulty/expert.jpg';

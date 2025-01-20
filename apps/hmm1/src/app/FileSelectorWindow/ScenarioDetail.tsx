@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
+import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
-
-import { PositionedComponent, type PositionProps, Text } from '../base';
 
 import scenarioInfoBackground from './assets/scenario-info-background.jpg';
 

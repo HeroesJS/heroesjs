@@ -105,7 +105,7 @@ export default [
     },
   },
   merge(testingLibraryPlugin.configs['flat/react'], {
-    files: ['**/*.{spec,test,stories}.{js,jsx,ts,tsx}'],
+    files: ['**/*.{spec,stories}.{js,jsx,ts,tsx}'],
     rules: {
       'testing-library/consistent-data-testid': 'off',
       'testing-library/no-debugging-utils': 'error',

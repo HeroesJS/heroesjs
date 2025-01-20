@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Button, type ButtonAssets, PositionedComponent, type PositionProps, Text } from '../base';
+import { Button, type ButtonAssets, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';

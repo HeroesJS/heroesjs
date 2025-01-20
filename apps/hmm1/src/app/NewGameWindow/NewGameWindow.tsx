@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   GameDifficulty,
@@ -9,8 +10,6 @@ import {
   ScenarioDifficulty,
   ScenarioSize,
 } from '@heroesjs/hmm1-core';
-
-import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '../base';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';

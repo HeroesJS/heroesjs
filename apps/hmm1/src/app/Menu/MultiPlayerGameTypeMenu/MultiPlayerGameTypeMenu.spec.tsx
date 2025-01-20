@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../../../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 

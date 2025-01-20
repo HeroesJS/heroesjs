@@ -1,6 +1,6 @@
 import { range } from 'lodash';
 
-import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';

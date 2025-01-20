@@ -10,7 +10,8 @@ interface Props {
 }
 
 export const Screen = ({ background, children, label, onClick }: PropsWithChildren<Props>) => (
-  <Root aria-label={label} background={background} onClick={onClick}>
+  <Root background={background} onClick={onClick}>
+    {label && <h1>{label}</h1>}
     {children}
   </Root>
 );

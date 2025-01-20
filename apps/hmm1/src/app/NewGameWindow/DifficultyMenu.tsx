@@ -1,6 +1,5 @@
+import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 import { gameDifficulties, type GameDifficulty } from '@heroesjs/hmm1-core';
-
-import { PositionedComponent, type PositionProps } from '../base';
 
 import { DifficultyOption } from './DifficultyOption';
 
