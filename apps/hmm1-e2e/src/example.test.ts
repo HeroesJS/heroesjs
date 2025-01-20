@@ -9,17 +9,17 @@ test('has title', async ({ page }) => {
 test('renders main menu', async ({ page }) => {
   await page.goto('/');
 
-  await expect(await page.locator('#app')).toHaveScreenshot('main-menu.png');
+  await expect(page.locator('#app')).toHaveScreenshot('main-menu.png');
 });
 
 test('renders new game window', async ({ page }) => {
   await page.goto('/game/new/standard/');
 
-  await expect(await page.locator('#app')).toHaveScreenshot('new-game-window.png');
+  await expect(page.locator('#app')).toHaveScreenshot('new-game-window.png');
 });
 
 test('renders scenario selection', async ({ page }) => {
   await page.goto('/game/new/standard/scenario/');
 
-  await expect(await page.locator('#app')).toHaveScreenshot('scenario-selection.png');
+  await expect(page.locator('#app')).toHaveScreenshot('scenario-selection.png');
 });

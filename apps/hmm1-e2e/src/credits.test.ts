@@ -11,15 +11,15 @@ test('url is /credits', async ({ page }) => {
 });
 
 test('renders credits', async ({ page }) => {
-  await expect(page.getByRole('heading', { name: /credits/i })).toBeDefined();
+  expect(page.getByRole('heading', { name: /credits/i })).toBeDefined();
 });
 
 test('matches screenshot', async ({ page }) => {
-  await expect(await page.locator('#app')).toHaveScreenshot('credits.png', { maxDiffPixelRatio: 0.03 });
+  await expect(page.locator('#app')).toHaveScreenshot('credits.png', { maxDiffPixelRatio: 0.03 });
 });
 
 test('navigates to main menu when clicking anywhere', async ({ page }) => {
-  await page.click('#app', { position: { x: 0, y: 0 } });
+  await page.locator('#app').click({ position: { x: 0, y: 0 } });
 
-  await expect(page.getByRole('menu', { name: /main menu/i })).toBeDefined();
+  expect(page.getByRole('menu', { name: /main menu/i })).toBeDefined();
 });
