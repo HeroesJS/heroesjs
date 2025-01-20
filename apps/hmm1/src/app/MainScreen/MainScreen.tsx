@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
+import { type Campaign, scenarios } from '@heroesjs/hmm1-core';
+
 import { Screen } from '../base';
-import { type Campaign, scenarios } from '../core';
 import { FileSelectorWindow } from '../FileSelectorWindow';
-import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../menu';
+import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
 import { NewGameWindow } from '../NewGameWindow';
 
 import background from './assets/background.jpg';

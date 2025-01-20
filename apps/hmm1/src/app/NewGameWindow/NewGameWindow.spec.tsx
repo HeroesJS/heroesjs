@@ -1,8 +1,9 @@
 import { screen, within } from '@testing-library/react';
 import { range } from 'lodash';
 
+import { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
+
 import { renderWithProviders } from '../../testUtils';
-import { ScenarioDifficulty, ScenarioSize } from '../core';
 
 import { NewGameWindow } from './NewGameWindow';
 

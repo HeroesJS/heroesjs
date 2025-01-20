@@ -1,5 +1,6 @@
+import { Campaign } from '@heroesjs/hmm1-core';
+
 import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '../../base';
-import { Campaign } from '../../core';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';

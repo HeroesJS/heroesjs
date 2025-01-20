@@ -67,9 +67,7 @@ export default [
       'typescript-sort-keys/string-enum': 'error',
     },
     settings: {
-      import: {
-        'internal-regex': '^@heroesjs/',
-      },
+      'import/internal-regex': '^@heroesjs/',
       react: {
         version: 'detect',
       },

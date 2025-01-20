@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { ScreenHeight, ScreenWidth } from '../../core';
+import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
 
 interface Props {
   readonly background: string;

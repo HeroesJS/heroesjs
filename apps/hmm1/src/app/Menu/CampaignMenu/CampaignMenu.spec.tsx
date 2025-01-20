@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
 
+import { Campaign } from '@heroesjs/hmm1-core';
+
 import { renderWithProviders } from '../../../testUtils';
-import { Campaign } from '../../core';
 
 import { CampaignMenu } from './CampaignMenu';
 

@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  calculateRating,
+  GameDifficulty,
+  opponentDifficulties,
+  OpponentDifficulty,
+  ScenarioDifficulty,
+  ScenarioSize,
+} from '@heroesjs/hmm1-core';
+
 import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '../base';
-import { GameDifficulty, opponentDifficulties, OpponentDifficulty, ScenarioDifficulty, ScenarioSize } from '../core';
-import { calculateRating } from '../rating';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';

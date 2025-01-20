@@ -1,5 +1,6 @@
+import { opponentDifficulties, OpponentDifficulty } from '@heroesjs/hmm1-core';
+
 import { PositionedComponent, type PositionProps, Text } from '../base';
-import { opponentDifficulties, OpponentDifficulty } from '../core';
 
 import average from './assets/opponentSetting/average.jpg';
 import dumb from './assets/opponentSetting/dumb.jpg';
@@ -34,7 +35,7 @@ export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
 
   return (
     <>
-      <span aria-label={`Opponent ${index + 1} Setting`} hidden role="radiogroup">
+      <span aria-label={`Opponent ${index + 1} Setting`} role="radiogroup">
         {opponentDifficulties.map((difficulty) => (
           <span aria-checked={difficulty === value} key={difficulty} role="radio">
             {labels[difficulty]}
