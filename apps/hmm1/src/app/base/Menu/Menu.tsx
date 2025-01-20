@@ -17,7 +17,7 @@ export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
 
 const Root = styled(PositionedComponent)({
   backgroundImage: `url(${background})`,
-  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 black',
+  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
   boxSizing: 'border-box',
   fontSize: 0,
   height: 410,

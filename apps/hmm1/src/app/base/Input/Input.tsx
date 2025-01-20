@@ -36,6 +36,7 @@ const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'width'>>(({
   fontFamily: "'Heroes 1'",
   fontSize: 13,
   lineHeight: '16px',
+  outline: 0,
   padding: 0,
   paddingTop: 1,
   textAlign: 'center',
