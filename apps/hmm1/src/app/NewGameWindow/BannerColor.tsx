@@ -42,7 +42,7 @@ interface Props extends PositionProps {
 
 export const BannerColor = ({ onClick, value, x, y }: Props) => (
   <>
-    <span aria-label="Banner Color" role="radiogroup">
+    <span aria-label="Banner Color" hidden role="radiogroup">
       {playerColors.map((color) => (
         <span aria-checked={color === value} key={color} role="radio">
           {labels[color]}

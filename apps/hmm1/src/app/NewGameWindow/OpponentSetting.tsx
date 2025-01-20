@@ -34,7 +34,7 @@ export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
 
   return (
     <>
-      <span aria-label={`Opponent ${index + 1} Setting`} role="radiogroup">
+      <span aria-label={`Opponent ${index + 1} Setting`} hidden role="radiogroup">
         {opponentDifficulties.map((difficulty) => (
           <span aria-checked={difficulty === value} key={difficulty} role="radio">
             {labels[difficulty]}
