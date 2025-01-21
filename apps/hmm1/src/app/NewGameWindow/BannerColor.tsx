@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import blue from './assets/bannerColor/blue.png';
@@ -39,7 +41,7 @@ interface Props extends PositionProps {
 }
 
 export const BannerColor = ({ onClick, value, x, y }: Props) => (
-  <>
+  <Root x={x} y={y}>
     <span aria-label="Banner Color" role="radiogroup">
       {playerColors.map((color) => (
         <span aria-checked={color === value} key={color} role="radio">
@@ -47,8 +49,12 @@ export const BannerColor = ({ onClick, value, x, y }: Props) => (
         </span>
       ))}
     </span>
-    <PositionedComponent aria-label="Change Banner Color" as="button" onClick={onClick} x={x} y={y}>
+    <button aria-label="Change Banner Color" onClick={onClick}>
       <img alt="" src={assets[value]} />
-    </PositionedComponent>
-  </>
+    </button>
+  </Root>
 );
+
+const Root = styled(PositionedComponent)({
+  fontSize: 0,
+});
