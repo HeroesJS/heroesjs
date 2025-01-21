@@ -4,6 +4,8 @@ export {
   GameDifficulty,
   opponentDifficulties,
   OpponentDifficulty,
+  PlayerColor,
+  playerColors,
   type ScenarioData,
   scenarioDifficulties,
   ScenarioDifficulty,

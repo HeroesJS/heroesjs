@@ -1,25 +1,12 @@
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { PlayerColor, playerColors } from '@heroesjs/hmm1-core';
 
 import blue from './assets/bannerColor/blue.png';
 import green from './assets/bannerColor/green.png';
 import red from './assets/bannerColor/red.png';
 import yellow from './assets/bannerColor/yellow.png';
-
-export enum PlayerColor {
-  Blue = 'blue',
-  Green = 'green',
-  Red = 'red',
-  Yellow = 'yellow',
-}
-
-export const playerColors: readonly PlayerColor[] = [
-  PlayerColor.Blue,
-  PlayerColor.Green,
-  PlayerColor.Red,
-  PlayerColor.Yellow,
-];
 
 const assets: Record<PlayerColor, string> = {
   [PlayerColor.Blue]: blue,

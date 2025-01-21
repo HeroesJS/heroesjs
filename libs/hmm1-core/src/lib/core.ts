@@ -1,6 +1,20 @@
 export const ScreenWidth = 640;
 export const ScreenHeight = 480;
 
+export enum PlayerColor {
+  Blue = 'blue',
+  Green = 'green',
+  Red = 'red',
+  Yellow = 'yellow',
+}
+
+export const playerColors: readonly PlayerColor[] = [
+  PlayerColor.Blue,
+  PlayerColor.Green,
+  PlayerColor.Red,
+  PlayerColor.Yellow,
+];
+
 export enum Campaign {
   LordAlamar = 'lord-alamar',
   LordIronfist = 'lord-ironfist',
