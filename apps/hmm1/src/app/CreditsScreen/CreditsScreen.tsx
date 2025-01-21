@@ -1,84 +1,91 @@
-import { Screen } from '../base';
+import { List, Screen, Text } from '@heroesjs/hmm1-base-ui';
 
 import background from './assets/background.jpg';
+
+const x = 55;
+const width = 210;
+
+const designAndDirectionBy = ['Jon Van Caneghem'];
+const additionalDesignBy = ['Phil Steinmeyer', 'Debbie Van Caneghem'];
+const leadProgrammingBy = ['Phil Steinmeyer'];
+const programmingBy = ['Mark Caldwell', 'George Ruof', 'Todd Hendrix', 'Bob Rakosky', 'Michael Sean Clement'];
+const artDirectionBy = ['Julia Ulano'];
+const artBy = ['Bonita Long-Hemsath', 'Joel Payne', 'Mike Winterbauer'];
+const musicAndSoundDesignBy = ['Rob King'];
+const orchestralArrangementsBy = ['Paul Romero'];
+const writingAndManualBy = ['Rozita Tolouey', 'Deane Rettig', 'Bruce Schlickbernd'];
+const scenariosBy = ['Jon Van Caneghem', 'Christian Vanover', 'Clayton Retzer', 'Mark Palczynski'];
+const qaManagementBy = ['Peter Ryu'];
+const testingBy = [
+  'Bryan Farina',
+  'Douglas Rothman',
+  'Pavel Vesely',
+  'Walter Johnson',
+  'Scott White',
+  'Mark Caldwell',
+  'George Ruof',
+  'Scott McDaniel',
+  'Benjamin Bent',
+  'Deane Rettig',
+  'Clayton Retzer',
+  'Craig Konas',
+  'Mark Palczynski',
+  'Christian Vanover',
+];
 
 interface Props {
   readonly onClick?: () => void;
 }
 
 export const CreditsScreen = ({ onClick }: Props) => (
-  <Screen background={background} onClick={onClick}>
-    <h1>Credits</h1>
-    <h2>Designed and Directed</h2>
-    <ul>
-      <li>Jon Van Caneghem</li>
-    </ul>
-    <h2>Additional Design</h2>
-    <ul>
-      <li>Phil Steinmeyer</li>
-      <li>Debbie Van Caneghem</li>
-    </ul>
-    <h2>Lead Programming</h2>
-    <li>Phil Steinmeyer</li>
-    <h2>Programming</h2>
-    <ul>
-      <li>Mark Caldwell</li>
-      <li>George Ruof</li>
-      <li>Todd Hendrix</li>
-      <li>Bob Rakosky</li>
-      <li>Michael Sean Clement</li>
-    </ul>
-    <h2>Art Direction</h2>
-    <ul>
-      <li>Julia Ulano</li>
-    </ul>
-    <h2>Artists</h2>
-    <ul>
-      <li>Bonita Long-Hemsath</li>
-      <li>Joel Payne</li>
-      <li>Mike Winterbauer</li>
-    </ul>
-    <h2>Music and Sound Design</h2>
-    <ul>
-      <li>Rob King</li>
-    </ul>
-    <h2>Orchestral Arrangements</h2>
-    <ul>
-      <li>Paul Romero</li>
-    </ul>
-    <h2>Writing and Manual</h2>
-    <ul>
-      <li>Rozita Tolouey</li>
-      <li>Deane Rettig</li>
-      <li>Bruce Schlickbernd</li>
-    </ul>
-    <h2>Scenarios</h2>
-    <ul>
-      <li>Jon Van Caneghem</li>
-      <li>Christian Vanover</li>
-      <li>Clayton Retzer</li>
-      <li>Mark Palczynski</li>
-    </ul>
-    <h2>QA Manager</h2>
-    <ul>
-      <li>Peter Ryu</li>
-    </ul>
-    <h2>Testing</h2>
-    <ul>
-      <li>Bryan Farina</li>
-      <li>Douglas Rothman</li>
-      <li>Pavel Vesely</li>
-      <li>Walter Johnson</li>
-      <li>Scott White</li>
-      <li>Mark Caldwell</li>
-      <li>George Ruof</li>
-      <li>Scott McDaniel</li>
-      <li>Benjamin Bent</li>
-      <li>Deane Rettig</li>
-      <li>Clayton Retzer</li>
-      <li>Craig Konas</li>
-      <li>Mark Palczynski</li>
-      <li>Christian Vanover</li>
-    </ul>
+  <Screen background={background} label="Credits" onClick={onClick}>
+    <Text component="h2" hidden shadow size="large" x={71} y={47}>
+      Designed and Directed
+    </Text>
+    <List items={designAndDirectionBy} label="Designed and Directed" width={width} x={x} y={65} />
+    <Text component="h2" hidden shadow size="large" x={89} y={96}>
+      Additional Design
+    </Text>
+    <List items={additionalDesignBy} label="Additional Design" width={width} x={x - 1} y={114} />
+    <Text component="h2" hidden shadow size="large" x={83} y={159}>
+      Lead Programming
+    </Text>
+    <List items={leadProgrammingBy} label="Lead Programming" width={width} x={x - 1} y={177} />
+    <Text component="h2" hidden shadow size="large" x={103} y={208}>
+      Programming
+    </Text>
+    <List items={programmingBy} label="Programming" width={width} x={x} y={226} />
+    <Text component="h2" hidden shadow size="large" x={107} y={313}>
+      Art Director
+    </Text>
+    <List items={artDirectionBy} label="Art Director" width={width} x={x} y={331} />
+    <Text component="h2" hidden shadow size="large" x={130} y={362}>
+      Artists
+    </Text>
+    <List items={artBy} label="Artists" width={width} x={x} y={380} />
+    <Text component="h2" hidden shadow size="large" x={328} y={39}>
+      Music and Sound Design
+    </Text>
+    <List items={musicAndSoundDesignBy} label="Music and Sound Design" width={width} x={319} y={57} />
+    <Text component="h2" hidden shadow size="large" x={317} y={83}>
+      Orchestral Arrangements
+    </Text>
+    <List items={orchestralArrangementsBy} label="Orchestral Arrangements" width={width} x={318} y={101} />
+    <Text component="h2" hidden shadow size="large" x={342} y={127}>
+      Writing and Manual
+    </Text>
+    <List items={writingAndManualBy} label="Writing and Manual" width={width} x={318} y={145} />
+    <Text component="h2" hidden shadow size="large" x={383} y={199}>
+      Scenarios
+    </Text>
+    <List items={scenariosBy} label="Scenarios" width={width} x={318} y={217} />
+    <Text component="h2" hidden shadow size="large" x={369} y={285}>
+      QA Manager
+    </Text>
+    <List items={qaManagementBy} label="QA Manager" width={width} x={318} y={303} />
+    <Text component="h2" hidden shadow size="large" x={392} y={329}>
+      Testing
+    </Text>
+    <List items={testingBy} itemsPerColumn={7} label="Testing" width={150} x={283} y={347} />
   </Screen>
 );

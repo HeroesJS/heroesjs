@@ -1,5 +1,4 @@
-import { Button, type ButtonAssets, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import twoPlayersDisabled from './assets/2-players/disabled.png';
 import twoPlayersEnabled from './assets/2-players/enabled.png';
@@ -25,6 +24,11 @@ const assets: Readonly<Record<number, ButtonAssets>> = {
   },
 };
 
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
   readonly onCountClick?: (value: number) => void;
@@ -36,21 +40,10 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
       {Object.keys(assets)
         .map(Number)
         .map((count) => (
-          <MenuItem key={count}>
-            <Item onClick={onCountClick} value={count} />
-          </MenuItem>
+          <Item key={count} onClick={onCountClick} value={count} />
         ))}
-      <MenuItem />
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: cancelDisabled,
-            enabled: cancelEnabled,
-          }}
-          label="Cancel"
-          onClick={onCancelClick}
-        />
-      </MenuItem>
+      <MenuSeparator />
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -63,5 +56,5 @@ interface ItemProps {
 const Item = ({ onClick, value }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]!} label={`${value} Players`} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={`${value} Players`} onClick={handleClick} />;
 };

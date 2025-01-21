@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { ScreenHeight, ScreenWidth } from './core';
+import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
+
 import { CreditsScreen } from './CreditsScreen';
 import { MainScreen } from './MainScreen';
 
@@ -27,6 +28,12 @@ export function App() {
 const AppStyle = createGlobalStyle`
   body {
     margin: 0;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    padding: 0;
   }
 `;
 

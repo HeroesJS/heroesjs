@@ -1,0 +1,9 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "// targets": "to see all targets run: nx show project hmm1-test-utils --web",
+  "name": "hmm1-test-utils",
+  "projectType": "library",
+  "sourceRoot": "libs/hmm1-test-utils/src",
+  "tags": [],
+  "targets": {}
+}

@@ -1,7 +1,6 @@
 import { range } from 'lodash';
 
-import { Button, type ButtonAssets, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -33,6 +32,11 @@ const assets: Readonly<Record<number, ButtonAssets>> = {
   },
 };
 
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
   readonly onPortClick?: (value: number) => void;
@@ -42,20 +46,9 @@ export const ComPortMenu = ({ onCancelClick, onPortClick, x, y }: Props) => {
   return (
     <Menu label="Com Port Menu" x={x} y={y}>
       {range(1, 5).map((i) => (
-        <MenuItem key={i}>
-          <Item onClick={onPortClick} value={i} />
-        </MenuItem>
+        <Item key={i} onClick={onPortClick} value={i} />
       ))}
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: cancelDisabled,
-            enabled: cancelEnabled,
-          }}
-          label="Cancel"
-          onClick={onCancelClick}
-        />
-      </MenuItem>
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -68,5 +61,5 @@ interface ItemProps {
 const Item = ({ value, onClick }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]!} label={`Com-${value}`} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={`Com-${value}`} onClick={handleClick} />;
 };

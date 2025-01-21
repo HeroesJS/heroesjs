@@ -15,3 +15,6 @@ vitest.config.*.timestamp*
 
 # Storybook
 storybook-static
+
+# Playwright
+test-results

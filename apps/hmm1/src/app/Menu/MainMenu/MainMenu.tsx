@@ -1,5 +1,4 @@
-import { Button, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';
@@ -11,6 +10,31 @@ import viewCreditsDisabled from './assets/view-credits/disabled.png';
 import viewCreditsEnabled from './assets/view-credits/enabled.png';
 import viewHighScoresDisabled from './assets/view-high-scores/disabled.png';
 import viewHighScoresEnabled from './assets/view-high-scores/enabled.png';
+
+const newGameButtonAssets: ButtonAssets = {
+  disabled: newGameDisabled,
+  enabled: newGameEnabled,
+};
+
+const loadGameButtonAssets: ButtonAssets = {
+  disabled: loadGameDisabled,
+  enabled: loadGameEnabled,
+};
+
+const viewHighScoresButtonAssets: ButtonAssets = {
+  disabled: viewHighScoresDisabled,
+  enabled: viewHighScoresEnabled,
+};
+
+const viewCreditsButtonAssets: ButtonAssets = {
+  disabled: viewCreditsDisabled,
+  enabled: viewCreditsEnabled,
+};
+
+const quitButtonAssets: ButtonAssets = {
+  disabled: quitDisabled,
+  enabled: quitEnabled,
+};
 
 interface Props extends PositionProps {
   readonly onLoadGameClick?: () => void;
@@ -30,55 +54,10 @@ export const MainMenu = ({
   y,
 }: Props) => (
   <Menu label="Main Menu" x={x} y={y}>
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: newGameDisabled,
-          enabled: newGameEnabled,
-        }}
-        label="New Game"
-        onClick={onNewGameClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: loadGameDisabled,
-          enabled: loadGameEnabled,
-        }}
-        label="Load Game"
-        onClick={onLoadGameClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: viewHighScoresDisabled,
-          enabled: viewHighScoresEnabled,
-        }}
-        label="View High Scores"
-        onClick={onViewHighScoresClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: viewCreditsDisabled,
-          enabled: viewCreditsEnabled,
-        }}
-        label="View Credits"
-        onClick={onViewCreditsClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: quitDisabled,
-          enabled: quitEnabled,
-        }}
-        label="Quit"
-        onClick={onQuitClick}
-      />
-    </MenuItem>
+    <MenuButton assets={newGameButtonAssets} label="New Game" onClick={onNewGameClick} />
+    <MenuButton assets={loadGameButtonAssets} label="Load Game" onClick={onLoadGameClick} />
+    <MenuButton assets={viewHighScoresButtonAssets} label="View High Scores" onClick={onViewHighScoresClick} />
+    <MenuButton assets={viewCreditsButtonAssets} label="View Credits" onClick={onViewCreditsClick} />
+    <MenuButton assets={quitButtonAssets} label="Quit" onClick={onQuitClick} />
   </Menu>
 );

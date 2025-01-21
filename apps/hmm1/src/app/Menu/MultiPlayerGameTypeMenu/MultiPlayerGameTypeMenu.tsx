@@ -1,5 +1,4 @@
-import { Button, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -11,6 +10,31 @@ import modemDisabled from './assets/modem/disabled.png';
 import modemEnabled from './assets/modem/enabled.png';
 import networkDisabled from './assets/network/disabled.png';
 import networkEnabled from './assets/network/enabled.png';
+
+const hotSeatButtonAssets: ButtonAssets = {
+  disabled: hotSeatDisabled,
+  enabled: hotSeatEnabled,
+};
+
+const networkButtonAssets: ButtonAssets = {
+  disabled: networkDisabled,
+  enabled: networkEnabled,
+};
+
+const modemButtonAssets: ButtonAssets = {
+  disabled: modemDisabled,
+  enabled: modemEnabled,
+};
+
+const directConnectButtonAssets: ButtonAssets = {
+  disabled: directConnectDisabled,
+  enabled: directConnectEnabled,
+};
+
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
 
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
@@ -31,56 +55,11 @@ export const MultiPlayerGameTypeMenu = ({
 }: Props) => {
   return (
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: hotSeatDisabled,
-            enabled: hotSeatEnabled,
-          }}
-          label="Hot Seat"
-          onClick={onHotSeatClick}
-        />
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: networkDisabled,
-            enabled: networkEnabled,
-          }}
-          label="Network"
-          onClick={onNetworkClick}
-        />
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: modemDisabled,
-            enabled: modemEnabled,
-          }}
-          label="Modem"
-          onClick={onModemClick}
-        />
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: directConnectDisabled,
-            enabled: directConnectEnabled,
-          }}
-          label="Direct Connect"
-          onClick={onDirectConnectClick}
-        />
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={{
-            disabled: cancelDisabled,
-            enabled: cancelEnabled,
-          }}
-          label="Cancel"
-          onClick={onCancelClick}
-        />
-      </MenuItem>
+      <MenuButton assets={hotSeatButtonAssets} label="Hot Seat" onClick={onHotSeatClick} />
+      <MenuButton assets={networkButtonAssets} label="Network" onClick={onNetworkClick} />
+      <MenuButton assets={modemButtonAssets} label="Modem" onClick={onModemClick} />
+      <MenuButton assets={directConnectButtonAssets} label="Direct Connect" onClick={onDirectConnectClick} />
+      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
     </Menu>
   );
 };

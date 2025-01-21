@@ -1,1 +1,1 @@
-export { Campaign, CampaignMenu } from './CampaignMenu';
+export { CampaignMenu } from './CampaignMenu';

@@ -22,11 +22,15 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false,
     "noUncheckedSideEffectImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "paths": {},
+    "paths": {
+      "@heroesjs/hmm1-base-ui": ["libs/hmm1-base-ui/src/index.ts"],
+      "@heroesjs/hmm1-core": ["libs/hmm1-core/src/index.ts"],
+      "@heroesjs/hmm1-test-utils": ["libs/hmm1-test-utils/src/index.ts"]
+    },
     "resolveJsonModule": true,
     "rootDir": ".",
     "skipDefaultLibCheck": true,

@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../../../testUtils';
+import { Campaign } from '@heroesjs/hmm1-core';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
-import { Campaign, CampaignMenu } from './CampaignMenu';
+import { CampaignMenu } from './CampaignMenu';
 
 describe(CampaignMenu, () => {
   it('renders', async () => {

@@ -1,15 +1,12 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Screen } from '../base';
-import {
-  Campaign,
-  CampaignMenu,
-  GameTypeMenu,
-  HostGuestMenu,
-  MainMenu,
-  MultiPlayerGameTypeMenu,
-  PlayerCountMenu,
-} from '../menu';
+import { Screen } from '@heroesjs/hmm1-base-ui';
+import { type Campaign, scenarios } from '@heroesjs/hmm1-core';
+
+import { FileSelectorWindow } from '../FileSelectorWindow';
+import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
+import { NewGameWindow } from '../NewGameWindow';
 
 import background from './assets/background.jpg';
 
@@ -41,12 +38,13 @@ export const MainScreen = () => {
           index
         />
         <Route Component={GameTypeSelection} path="new" />
-        <Route element="New Game" path="new/standard" />
+        <Route Component={NewGameSelection} path="new/standard" />
+        <Route Component={ScenarioSelection} path="new/standard/scenario" />
         <Route Component={CampaignSelection} path="new/campaign" />
         <Route element="Scenario Info" path="new/campaign/*" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
-        <Route element="New Game" path="new/multi-player/hot-seat/:count" />
+        <Route Component={NewGameSelection} path="new/multi-player/hot-seat/:count" />
         <Route Component={HostGuestSelection} path="new/multi-player/network" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/modem" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/direct-connect" />
@@ -154,6 +152,125 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
       onHostClick={handleHostClick}
       x={MenuX}
       y={MenuY}
+    />
+  );
+};
+
+const NewGameSelection = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedScenario = searchParams.get('scenario') ?? undefined;
+
+  const scenario = scenarios.find((s) => s.name === selectedScenario);
+
+  useEffect(() => {
+    if (scenario || !scenarios.length) {
+      return;
+    }
+
+    setSearchParams({
+      scenario: scenarios[0]?.name ?? '',
+    });
+  }, [scenario, setSearchParams]);
+
+  const navigate = useNavigate();
+
+  const handleSelectScenario = useCallback(
+    () =>
+      navigate({
+        pathname: 'scenario',
+        search: createSearchParams({
+          selected: selectedScenario ?? '',
+        }).toString(),
+      }),
+    [navigate, selectedScenario],
+  );
+
+  const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
+
+  return (
+    <NewGameWindow
+      onCancelClick={handleCancelClick}
+      onSelectScenarioClick={handleSelectScenario}
+      scenario={scenario}
+      x={310}
+      y={14}
+    />
+  );
+};
+
+const ScenarioSelection = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedScenario = searchParams.get('selected') ?? undefined;
+
+  const scenario = scenarios.find((s) => s.name === selectedScenario);
+
+  const [initialScenario] = useState(scenario?.name);
+
+  useEffect(() => {
+    if (scenario || !scenarios.length) {
+      return;
+    }
+
+    setSearchParams({
+      selected: scenarios[0]?.name ?? '',
+    });
+  }, [scenario, setSearchParams]);
+
+  const navigate = useNavigate();
+
+  const handleScenarioClick = useCallback(
+    (name: string) =>
+      setSearchParams({
+        selected: name,
+      }),
+    [setSearchParams],
+  );
+
+  const handleConfirmClick = useCallback(
+    () =>
+      navigate(
+        {
+          pathname: '..',
+          search: createSearchParams({
+            scenario: selectedScenario ?? '',
+          }).toString(),
+        },
+        {
+          relative: 'path',
+        },
+      ),
+    [navigate, selectedScenario],
+  );
+
+  const handleCancelClick = useCallback(
+    () =>
+      navigate(
+        {
+          pathname: '..',
+          search: createSearchParams({
+            scenario: initialScenario ?? '',
+          }).toString(),
+        },
+        {
+          relative: 'path',
+        },
+      ),
+    [initialScenario, navigate],
+  );
+
+  return (
+    <FileSelectorWindow
+      items={scenarios.slice(0, 10).map((s) => s.name)}
+      onCancelClick={handleCancelClick}
+      onConfirmClick={handleConfirmClick}
+      onItemClick={handleScenarioClick}
+      scenarioInfo={scenario}
+      selectedItem={selectedScenario}
+      showScenarioInfo
+      x={310}
+      y={14}
     />
   );
 };

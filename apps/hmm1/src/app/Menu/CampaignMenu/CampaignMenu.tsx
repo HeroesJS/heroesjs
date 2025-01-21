@@ -1,5 +1,5 @@
-import { Button, type ButtonAssets, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { Campaign } from '@heroesjs/hmm1-core';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -11,13 +11,6 @@ import playLordSlayerDisabled from './assets/play-lord-slayer/disabled.png';
 import playLordSlayerEnabled from './assets/play-lord-slayer/enabled.png';
 import playQueenLamandaDisabled from './assets/play-queen-lamanda/disabled.png';
 import playQueenLamandaEnabled from './assets/play-queen-lamanda/enabled.png';
-
-export enum Campaign {
-  LordAlamar = 'lord-alamar',
-  LordIronfist = 'lord-ironfist',
-  LordSlayer = 'lord-slayer',
-  QueenLamanda = 'queen-lamanda',
-}
 
 const campaigns = [Campaign.LordIronfist, Campaign.LordSlayer, Campaign.QueenLamanda, Campaign.LordAlamar] as const;
 
@@ -40,6 +33,11 @@ const assets: Record<Campaign, ButtonAssets> = {
   },
 };
 
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 const labels: Record<Campaign, string> = {
   [Campaign.LordAlamar]: 'Play Lord Alamar',
   [Campaign.LordIronfist]: 'Play Lord Ironfist',
@@ -55,20 +53,9 @@ interface Props extends PositionProps {
 export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) => (
   <Menu label="Campaign Menu" x={x} y={y}>
     {campaigns.map((campaign) => (
-      <MenuItem key={campaign}>
-        <Item onClick={onCampaignClick} value={campaign} />
-      </MenuItem>
+      <Item key={campaign} onClick={onCampaignClick} value={campaign} />
     ))}
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: cancelDisabled,
-          enabled: cancelEnabled,
-        }}
-        label="Cancel"
-        onClick={onCancelClick}
-      />
-    </MenuItem>
+    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
   </Menu>
 );
 
@@ -80,5 +67,5 @@ interface ItemProps {
 const Item = ({ onClick, value }: ItemProps) => {
   const handleClick = () => onClick?.(value);
 
-  return <Button assets={assets[value]} label={labels[value]} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={labels[value]} onClick={handleClick} />;
 };

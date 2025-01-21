@@ -1,5 +1,4 @@
-import { Button, Menu, MenuItem } from '../../base';
-import type { PositionProps } from '../../core';
+import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import cancelDisabled from './assets/cancel/disabled.png';
 import cancelEnabled from './assets/cancel/enabled.png';
@@ -12,6 +11,31 @@ import hostEnabled from './assets/host/enabled.png';
 import hostDialsDisabled from './assets/host-dials/disabled.png';
 import hostDialsEnabled from './assets/host-dials/enabled.png';
 
+const hostButtonAssets: ButtonAssets = {
+  disabled: hostDisabled,
+  enabled: hostEnabled,
+};
+
+const guestButtonAssets: ButtonAssets = {
+  disabled: guestDisabled,
+  enabled: guestEnabled,
+};
+
+const hostDialsButtonAssets: ButtonAssets = {
+  disabled: hostDialsDisabled,
+  enabled: hostDialsEnabled,
+};
+
+const guestAnswersButtonAssets: ButtonAssets = {
+  disabled: guestAnswersDisabled,
+  enabled: guestAnswersEnabled,
+};
+
+const cancelButtonAssets: ButtonAssets = {
+  disabled: cancelDisabled,
+  enabled: cancelEnabled,
+};
+
 interface Props extends PositionProps {
   readonly detailed?: boolean;
   readonly onCancelClick?: () => void;
@@ -21,51 +45,18 @@ interface Props extends PositionProps {
 
 export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => (
   <Menu label="Host/Guest Menu" x={x} y={y}>
-    <MenuItem>
-      <Button
-        assets={
-          detailed
-            ? {
-                disabled: hostDialsDisabled,
-                enabled: hostDialsEnabled,
-              }
-            : {
-                disabled: hostDisabled,
-                enabled: hostEnabled,
-              }
-        }
-        label={detailed ? 'Host (Dials)' : 'Host'}
-        onClick={onHostClick}
-      />
-    </MenuItem>
-    <MenuItem>
-      <Button
-        assets={
-          detailed
-            ? {
-                disabled: guestAnswersDisabled,
-                enabled: guestAnswersEnabled,
-              }
-            : {
-                disabled: guestDisabled,
-                enabled: guestEnabled,
-              }
-        }
-        label={detailed ? 'Guest (Answers)' : 'Guest'}
-        onClick={onGuestClick}
-      />
-    </MenuItem>
-    <MenuItem />
-    <MenuItem />
-    <MenuItem>
-      <Button
-        assets={{
-          disabled: cancelDisabled,
-          enabled: cancelEnabled,
-        }}
-        label="Cancel"
-        onClick={onCancelClick}
-      />
-    </MenuItem>
+    <MenuButton
+      assets={detailed ? hostDialsButtonAssets : hostButtonAssets}
+      label={detailed ? 'Host (Dials)' : 'Host'}
+      onClick={onHostClick}
+    />
+    <MenuButton
+      assets={detailed ? guestAnswersButtonAssets : guestButtonAssets}
+      label={detailed ? 'Guest (Answers)' : 'Guest'}
+      onClick={onGuestClick}
+    />
+    <MenuSeparator />
+    <MenuSeparator />
+    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
   </Menu>
 );

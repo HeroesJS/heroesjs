@@ -1,5 +1,7 @@
 import nx from '@nx/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
+import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import typescriptSortKeys from 'eslint-plugin-typescript-sort-keys';
 import merge from 'lodash.merge';
@@ -10,22 +12,23 @@ export default [
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    ignores: ['**/dist'],
+    ignores: ['**/dist', '**/storybook-static'],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    ignores: ['**/vite.config.ts'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
-              sourceTag: '*',
               onlyDependOnLibsWithTags: ['*'],
+              sourceTag: '*',
             },
           ],
+          enforceBuildableLibDependency: true,
         },
       ],
     },
@@ -50,16 +53,50 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'sort-keys': [
+        'error',
+        'asc',
+        {
+          allowLineSeparatedGroups: false,
+          caseSensitive: true,
+          ignoreComputedKeys: false,
+          minKeys: 2,
+          natural: true,
+        },
+      ],
       'typescript-sort-keys/interface': 'error',
       'typescript-sort-keys/string-enum': 'error',
     },
     settings: {
-      import: {
-        'internal-regex': '^@heroesjs/',
-      },
+      'import/internal-regex': '^@heroesjs/',
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        projectService: true,
+      },
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-exports': [
+        'error',
+        {
+          fixMixedExportsWithInlineTypeSpecifier: true,
+        },
+      ],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          disallowTypeAnnotations: true,
+          fixStyle: 'inline-type-imports',
+          prefer: 'type-imports',
+        },
+      ],
     },
   },
   {
@@ -69,7 +106,7 @@ export default [
     },
   },
   merge(testingLibraryPlugin.configs['flat/react'], {
-    files: ['**/*.{spec,test,stories}.{js,jsx,ts,tsx}'],
+    files: ['**/*.{spec,stories}.{js,jsx,ts,tsx}'],
     rules: {
       'testing-library/consistent-data-testid': 'off',
       'testing-library/no-debugging-utils': 'error',
@@ -90,4 +127,50 @@ export default [
       'testing-library/prefer-user-event': 'error',
     },
   }),
+  {
+    ...playwrightPlugin.configs['flat/recommended'],
+    files: ['**/*.test.{js,ts}'],
+    rules: {
+      ...playwrightPlugin.configs['flat/recommended'].rules,
+      'playwright/no-commented-out-tests': 'error',
+      'playwright/no-duplicate-hooks': 'error',
+      'playwright/no-get-by-title': 'error',
+      'playwright/no-hooks': 'off',
+      'playwright/no-nth-methods': 'error',
+      'playwright/no-raw-locators': [
+        'error',
+        {
+          allowed: ['#app'],
+        },
+      ],
+      'playwright/no-restricted-matchers': 'off',
+      'playwright/no-useless-await': 'error',
+      'playwright/prefer-comparison-matcher': 'error',
+      'playwright/prefer-equality-matcher': 'error',
+      'playwright/prefer-hooks-in-order': 'error',
+      'playwright/prefer-hooks-on-top': 'error',
+      'playwright/prefer-locator': 'error',
+      'playwright/prefer-lowercase-title': 'error',
+      'playwright/prefer-native-locators': [
+        'error',
+        {
+          testIdAttribute: 'data-testid',
+        },
+      ],
+      'playwright/prefer-strict-equal': 'error',
+      'playwright/prefer-to-be': 'error',
+      'playwright/prefer-to-contain': 'error',
+      'playwright/prefer-to-have-count': 'error',
+      'playwright/prefer-to-have-length': 'error',
+      'playwright/require-hook': [
+        'error',
+        {
+          allowedFunctionCalls: [],
+        },
+      ],
+      'playwright/require-soft-assertions': 'off',
+      'playwright/require-to-throw-message': 'error',
+      'playwright/require-top-level-describe': 'off',
+    },
+  },
 ];

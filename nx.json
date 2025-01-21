@@ -14,7 +14,8 @@
       },
       "library": {
         "linter": "eslint",
-        "style": "styled-components"
+        "style": "styled-components",
+        "unitTestRunner": "vitest"
       }
     }
   },
