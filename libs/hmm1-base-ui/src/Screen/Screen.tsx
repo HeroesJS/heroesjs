@@ -18,6 +18,7 @@ export const Screen = ({ background, children, label, onClick }: PropsWithChildr
 
 const Root = styled.div<Pick<Props, 'background'>>(({ background }) => ({
   backgroundImage: `url(${background})`,
+  fontSize: 0,
   height: ScreenHeight,
   position: 'relative',
   width: ScreenWidth,

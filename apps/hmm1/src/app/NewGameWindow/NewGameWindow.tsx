@@ -7,6 +7,8 @@ import {
   GameDifficulty,
   opponentDifficulties,
   OpponentDifficulty,
+  PlayerColor,
+  playerColors,
   ScenarioDifficulty,
   ScenarioSize,
 } from '@heroesjs/hmm1-core';
@@ -18,7 +20,7 @@ import checkboxChecked from './assets/checkbox/checked.jpg';
 import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
-import { BannerColor, PlayerColor, playerColors } from './BannerColor';
+import { BannerColor } from './BannerColor';
 import { DifficultyMenu } from './DifficultyMenu';
 import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
