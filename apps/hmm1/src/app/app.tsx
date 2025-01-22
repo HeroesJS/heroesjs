@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
 
+import { AdventureScreen } from './AdventureScreen';
 import { CreditsScreen } from './CreditsScreen';
 import { MainScreen } from './MainScreen';
 
@@ -17,6 +18,7 @@ export function App() {
       <Root id="app">
         <Routes>
           <Route element={<MainScreen />} path="game/*" />
+          <Route element={<AdventureScreen />} path="adventure/*" />
           <Route element={<CreditsScreen onClick={handleCreditsClick} />} path="credits" />
           <Route element={<Navigate to="game" />} path="*" />
         </Routes>
