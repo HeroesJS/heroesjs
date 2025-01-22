@@ -1,4 +1,5 @@
-import { OpponentDifficulty, ScenarioDifficulty, ScenarioSize } from './core';
+import { OpponentDifficulty } from './core';
+import { ScenarioDifficulty, ScenarioSize } from './scenario';
 
 const baseRating = -10;
 
