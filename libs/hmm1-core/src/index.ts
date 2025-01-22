@@ -6,6 +6,7 @@ export {
   OpponentDifficulty,
   PlayerColor,
   playerColors,
+  Town,
 } from './lib/core';
 export { calculateRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';

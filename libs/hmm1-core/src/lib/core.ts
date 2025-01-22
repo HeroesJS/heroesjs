@@ -12,6 +12,13 @@ export const playerColors: readonly PlayerColor[] = [
   PlayerColor.Yellow,
 ];
 
+export enum Town {
+  Farm = 'farm',
+  Forest = 'forest',
+  Mountains = 'mountains',
+  Plains = 'plains',
+}
+
 export enum GameDifficulty {
   Easy = 'easy',
   Expert = 'expert',

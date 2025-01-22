@@ -33,7 +33,7 @@ export const AdventureWindow = ({
     <HeroLocators x={ScreenHeight} y={176}>
       {renderHeroLocators?.()}
     </HeroLocators>
-    <TownLocators x={553} y={176}>
+    <TownLocators x={552} y={176}>
       {renderTownLocators?.()}
     </TownLocators>
     <ActionButtons x={ScreenHeight} y={320}>

@@ -14,7 +14,7 @@ interface Props extends PositionProps {
 export const Locator = ({ children, index = 0, onClick, selected, x, y }: PropsWithChildren<Props>) => (
   <Root background={backgrounds[index % backgrounds.length]} onClick={onClick} x={x} y={y}>
     {children}
-    {selected && <img alt="" src={selection} />}
+    {selected && <PositionedComponent alt="" as="img" src={selection} x={0} y={0} />}
   </Root>
 );
 
