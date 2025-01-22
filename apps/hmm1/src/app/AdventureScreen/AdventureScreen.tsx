@@ -1,7 +1,5 @@
-import { AdventureButtons, HeroLocator, Locator, TownLocator } from '@heroesjs/hmm1-adventure-ui';
+import { AdventureButtons, AdventureWindow, HeroLocator, Locator, TownLocator } from '@heroesjs/hmm1-adventure-ui';
 import { HeroId, Town } from '@heroesjs/hmm1-core';
-
-import { AdventureWindow } from '../AdventureWindow';
 
 export const AdventureScreen = () => (
   <AdventureWindow
