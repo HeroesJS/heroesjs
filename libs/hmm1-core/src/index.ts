@@ -2,6 +2,7 @@ export { Campaign } from './lib/campaign';
 export {
   gameDifficulties,
   GameDifficulty,
+  HeroId,
   opponentDifficulties,
   OpponentDifficulty,
   PlayerColor,
