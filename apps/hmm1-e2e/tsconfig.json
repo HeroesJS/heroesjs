@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "esnext",
     "outDir": "../../dist/out-tsc",
     "sourceMap": false
   },
