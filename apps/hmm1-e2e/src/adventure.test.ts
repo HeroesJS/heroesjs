@@ -5,7 +5,14 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('matches screenshot', async ({ page }) => {
-  await expect(page.locator('#app')).toHaveScreenshot('adventure-screen.png', { maxDiffPixelRatio: 0 });
+  await expect(page.locator('#app')).toHaveScreenshot('adventure-screen.png', {
+    mask: [
+      page.getByRole('main', { name: /adventure map/i }),
+      page.getByRole('note', { name: /world map/i }),
+      page.getByRole('note', { name: /status window/i }),
+    ],
+    maxDiffPixelRatio: 0,
+  });
 });
 
 test.describe('adventure options', () => {

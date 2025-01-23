@@ -25,10 +25,10 @@ export const AdventureWindow = ({
   renderWorldMap,
 }: PropsWithChildren<Props>) => (
   <Screen background={background}>
-    <AdventureMap x={16} y={16}>
+    <AdventureMap aria-label="Adventure Map" role="main" x={16} y={16}>
       {renderAdventureMap?.()}
     </AdventureMap>
-    <WorldMap x={ScreenHeight} y={16}>
+    <WorldMap aria-label="World Map" role="note" x={ScreenHeight} y={16}>
       {renderWorldMap?.()}
     </WorldMap>
     <HeroLocators x={ScreenHeight} y={176}>
@@ -40,7 +40,7 @@ export const AdventureWindow = ({
     <ActionButtons x={ScreenHeight} y={320}>
       {renderActionButtons?.()}
     </ActionButtons>
-    <StatusWindow x={ScreenHeight} y={393}>
+    <StatusWindow aria-label="Status Window" role="note" x={ScreenHeight} y={392}>
       {renderStatusWindow?.()}
     </StatusWindow>
     {children}
@@ -73,6 +73,6 @@ const ActionButtons = styled(PositionedComponent)({
 });
 
 const StatusWindow = styled(PositionedComponent)({
-  height: 71,
+  height: 72,
   width: 144,
 });
