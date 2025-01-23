@@ -14,5 +14,6 @@ const Root = styled.div({
   fontSize: 14,
   height: '100%',
   justifyContent: 'center',
+  textAlign: 'center',
   width: '100%',
 });

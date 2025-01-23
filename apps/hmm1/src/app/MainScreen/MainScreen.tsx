@@ -175,7 +175,7 @@ const NewGameSelection = () => {
 
   const navigate = useNavigate();
 
-  const handleSelectScenario = useCallback(
+  const handleSelectScenarioClick = useCallback(
     () =>
       navigate({
         pathname: 'scenario',
@@ -186,12 +186,15 @@ const NewGameSelection = () => {
     [navigate, selectedScenario],
   );
 
+  const handleConfirmClick = useCallback(() => navigate('/adventure'), [navigate]);
+
   const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
 
   return (
     <NewGameWindow
       onCancelClick={handleCancelClick}
-      onSelectScenarioClick={handleSelectScenario}
+      onConfirmClick={handleConfirmClick}
+      onSelectScenarioClick={handleSelectScenarioClick}
       scenario={scenario}
       x={310}
       y={14}

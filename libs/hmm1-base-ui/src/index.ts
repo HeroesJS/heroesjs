@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './Checkbox';
+export { GlobalStyle } from './globalStyle';
 export * from './Input';
 export * from './List';
 export * from './Menu';

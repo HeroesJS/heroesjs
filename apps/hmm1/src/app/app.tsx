@@ -1,8 +1,10 @@
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
+import { GlobalStyle } from '@heroesjs/hmm1-base-ui';
 import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
 
+import { AdventureScreen } from './AdventureScreen';
 import { CreditsScreen } from './CreditsScreen';
 import { MainScreen } from './MainScreen';
 
@@ -13,10 +15,11 @@ export function App() {
 
   return (
     <>
-      <AppStyle />
+      <GlobalStyle />
       <Root id="app">
         <Routes>
           <Route element={<MainScreen />} path="game/*" />
+          <Route element={<AdventureScreen />} path="adventure/*" />
           <Route element={<CreditsScreen onClick={handleCreditsClick} />} path="credits" />
           <Route element={<Navigate to="game" />} path="*" />
         </Routes>
@@ -24,18 +27,6 @@ export function App() {
     </>
   );
 }
-
-const AppStyle = createGlobalStyle`
-  body {
-    margin: 0;
-  }
-
-  button {
-    background: transparent;
-    border: none;
-    padding: 0;
-  }
-`;
 
 const Root = styled.div({
   height: ScreenHeight,
