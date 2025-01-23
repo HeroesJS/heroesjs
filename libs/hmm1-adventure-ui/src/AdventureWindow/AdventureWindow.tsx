@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, Screen } from '@heroesjs/hmm1-base-ui';
@@ -16,13 +16,14 @@ interface Props {
 }
 
 export const AdventureWindow = ({
+  children,
   renderActionButtons,
   renderAdventureMap,
   renderStatusWindow,
   renderHeroLocators,
   renderTownLocators,
   renderWorldMap,
-}: Props) => (
+}: PropsWithChildren<Props>) => (
   <Screen background={background}>
     <AdventureMap x={16} y={16}>
       {renderAdventureMap?.()}
@@ -42,6 +43,7 @@ export const AdventureWindow = ({
     <StatusWindow x={ScreenHeight} y={393}>
       {renderStatusWindow?.()}
     </StatusWindow>
+    {children}
   </Screen>
 );
 
