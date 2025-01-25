@@ -1,0 +1,1 @@
+export { StandardScenarioInfoWindow } from './StandardScenarioInfoWindow';

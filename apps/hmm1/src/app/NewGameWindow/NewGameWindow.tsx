@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import { PlayerColorGem } from '@heroesjs/hmm1-adventure-ui';
 import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
@@ -20,7 +21,6 @@ import checkboxChecked from './assets/checkbox/checked.jpg';
 import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
 import okayDisabled from './assets/okay/disabled.png';
 import okayEnabled from './assets/okay/enabled.png';
-import { BannerColor } from './BannerColor';
 import { DifficultyMenu } from './DifficultyMenu';
 import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
@@ -99,7 +99,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text heading size="large" x={26} y={254}>
         Choose Color:
       </Text>
-      <BannerColor onClick={handleColorClick} value={color} x={51} y={270} />
+      <PlayerColorGem onClick={handleColorClick} value={color} x={51} y={270} />
       <Text heading size="large" x={169} y={254}>
         King of the Hill:
       </Text>

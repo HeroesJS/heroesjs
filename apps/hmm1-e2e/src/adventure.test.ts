@@ -24,3 +24,15 @@ test.describe('adventure options', () => {
     await expect(page.getByRole('dialog', { name: /adventure options/i })).toHaveScreenshot('adventure-options.png');
   });
 });
+
+test.describe('standard scenario info', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/adventure/scenario-info');
+  });
+
+  test('matches screenshot', async ({ page }) => {
+    await expect(page.getByRole('dialog', { name: /scenario info window/i })).toHaveScreenshot(
+      'standard-scenario-info-window.png',
+    );
+  });
+});

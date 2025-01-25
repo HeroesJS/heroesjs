@@ -21,7 +21,7 @@ export const AdventureOptionsWindow = ({
   x,
   y,
 }: Props) => (
-  <Root aria-label="Adventure Options" role="dialog" x={x} y={y}>
+  <Root aria-label="Adventure Options Window" role="dialog" x={x} y={y}>
     <Button assets={viewWorld} label="View World" onClick={onViewWorldClick} x={46} y={31} />
     <Button assets={viewPuzzle} label="View Puzzle" onClick={onViewPuzzleClick} x={179} y={31} />
     <Button assets={castSpell} label="Cast Spell" onClick={onCastSpellClick} x={46} y={107} />

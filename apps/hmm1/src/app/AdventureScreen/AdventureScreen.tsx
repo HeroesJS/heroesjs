@@ -6,6 +6,7 @@ import {
   AdventureWindow,
   HeroLocator,
   Locator,
+  StandardScenarioInfoWindow,
   TownLocator,
 } from '@heroesjs/hmm1-adventure-ui';
 import { HeroId, Town } from '@heroesjs/hmm1-core';
@@ -34,6 +35,7 @@ export const AdventureScreen = () => {
           element={<AdventureOptionsWindow onConfirmClick={() => navigate(-1)} x={160} y={40} />}
           path="adventure-options"
         />
+        <Route element={<StandardScenarioInfoWindow x={159} y={14} />} path="scenario-info" />
       </Routes>
     </AdventureWindow>
   );
