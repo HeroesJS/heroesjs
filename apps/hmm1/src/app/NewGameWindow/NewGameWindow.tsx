@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PlayerColorGem } from '@heroesjs/hmm1-adventure-ui';
 import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
+  formatRating,
   GameDifficulty,
   opponentDifficulties,
   OpponentDifficulty,
@@ -60,6 +62,8 @@ interface Props {
 }
 
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, scenario, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
   const [color, setColor] = useState(PlayerColor.Blue);
@@ -78,13 +82,13 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
   });
 
   return (
-    <Root aria-label="New Game Window" role="dialog" x={x} y={y}>
+    <Root aria-label={t('title')} role="dialog" x={x} y={y}>
       <Text heading size="large" x={60} y={22}>
-        Choose Game Difficulty:
+        {t('gameDifficultyHeading')}:
       </Text>
       <DifficultyMenu onChange={setSelectedDifficulty} selectedOption={selectedDifficulty} x={19} y={36} />
       <Text heading size="large" x={70} y={132}>
-        Customize Opponents:
+        {t('opponentSettingsHeading')}:
       </Text>
       {opponentSettings.map((setting, i) => (
         <OpponentSetting
@@ -97,29 +101,36 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         />
       ))}
       <Text heading size="large" x={26} y={254}>
-        Choose Color:
+        {t('playerColorHeading')}:
       </Text>
       <PlayerColorGem onClick={handleColorClick} value={color} x={51} y={270} />
       <Text heading size="large" x={169} y={254}>
-        King of the Hill:
+        {t('kingOfTheHillHeading')}:
       </Text>
       <Checkbox
         assets={kingOfTheHillCheckboxAssets}
         checked={kingOfTheHill}
-        label="King of the Hill"
+        label={t('kingOfTheHillHeading')}
         onChange={toggleKingOfTheHill}
         x={210}
         y={272}
       />
       <Text heading size="large" x={91} y={338}>
-        Choose Scenario:
+        {t('scenarioSelectionHeading')}:
       </Text>
       <ScenarioSelection onClick={onSelectScenarioClick} value={scenario?.name ?? ''} x={25} y={354} />
       <Text size="large" x={78} y={388}>
-        Difficulty Rating: {rating}%
+        {t('ratingHeading')}: {formatRating(rating)}
       </Text>
-      <Button assets={okayButtonAssets} disabled={!scenario} label="Okay" onClick={onConfirmClick} x={24} y={412} />
-      <Button assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} x={201} y={412} />
+      <Button
+        assets={okayButtonAssets}
+        disabled={!scenario}
+        label={t('confirmLabel')}
+        onClick={onConfirmClick}
+        x={24}
+        y={412}
+      />
+      <Button assets={cancelButtonAssets} label={t('cancelLabel')} onClick={onCancelClick} x={201} y={412} />
     </Root>
   );
 };

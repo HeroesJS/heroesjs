@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Button, type ButtonAssets, Input, PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
@@ -16,12 +17,16 @@ interface Props extends PositionProps {
   readonly value: string;
 }
 
-export const ScenarioSelection = ({ onClick, value, x, y }: Props) => (
-  <Root onClick={onClick} x={x} y={y}>
-    <Input background={background} label="Scenario" value={value} width={246} />
-    <Button assets={selectButtonAssets} label="Select Scenario" onClick={onClick} x={248} y={0} />
-  </Root>
-);
+export const ScenarioSelection = ({ onClick, value, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+
+  return (
+    <Root onClick={onClick} x={x} y={y}>
+      <Input background={background} label={t('scenarioInputLabel')} value={value} width={246} />
+      <Button assets={selectButtonAssets} label={t('selectScenarioLabel')} onClick={onClick} x={248} y={0} />
+    </Root>
+  );
+};
 
 const Root = styled(PositionedComponent)({
   background: `url(${background})`,

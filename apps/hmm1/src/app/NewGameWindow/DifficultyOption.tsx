@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
@@ -16,13 +17,6 @@ const assets: Record<GameDifficulty, string> = {
   [GameDifficulty.Normal]: normalDifficulty,
 };
 
-const labels: Record<GameDifficulty, string> = {
-  [GameDifficulty.Easy]: 'Easy',
-  [GameDifficulty.Expert]: 'Expert',
-  [GameDifficulty.Hard]: 'Hard',
-  [GameDifficulty.Normal]: 'Normal',
-};
-
 const shiftedLabels = [GameDifficulty.Hard, GameDifficulty.Expert];
 
 interface DifficultyOptionProps extends PositionProps {
@@ -32,13 +26,15 @@ interface DifficultyOptionProps extends PositionProps {
 }
 
 export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyOptionProps) => {
+  const { t } = useTranslation('core', { keyPrefix: 'gameDifficulty' });
+
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root aria-label={labels[value]} aria-selected={selected} onClick={handleClick} role="option" x={x} y={y}>
+    <Root aria-label={t(value)} aria-selected={selected} onClick={handleClick} role="option" x={x} y={y}>
       <Image src={assets[value]} />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
-        {labels[value]}
+        {t(value)}
       </Text>
       {selected && <Selection src={selection} />}
     </Root>

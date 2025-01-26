@@ -42,3 +42,5 @@ export const calculateRating = ({
   scenarioDifficultyRating[scenarioDifficulty] +
   opponentSettings.reduce((p, c) => p + opponentDifficultyRating[c], 0) +
   (kingOfTheHill ? Math.max(opponentSettings.filter((d) => d !== OpponentDifficulty.None).length - 1, 0) * 5 : 0);
+
+export const formatRating = (value: number): string => `${value}%`;

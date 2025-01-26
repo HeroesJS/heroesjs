@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
@@ -17,14 +18,6 @@ const assets: Record<OpponentDifficulty, string> = {
   [OpponentDifficulty.Smart]: smart,
 };
 
-const labels: Record<OpponentDifficulty, string> = {
-  [OpponentDifficulty.Average]: 'Average',
-  [OpponentDifficulty.Dumb]: 'Dumb',
-  [OpponentDifficulty.Genius]: 'Genius',
-  [OpponentDifficulty.None]: 'None',
-  [OpponentDifficulty.Smart]: 'Smart',
-};
-
 interface Props extends PositionProps {
   readonly index: number;
   readonly onClick?: (index: number, value: OpponentDifficulty) => void;
@@ -32,21 +25,24 @@ interface Props extends PositionProps {
 }
 
 export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+  const { t: tCore } = useTranslation('core', { keyPrefix: 'opponentDifficulty' });
+
   const handleClick = () => onClick?.(index, value);
 
   return (
     <Root x={x} y={y}>
-      <span aria-label={`Opponent ${index + 1} Setting`} role="radiogroup">
+      <span aria-label={t('opponentSettingHeading', { index: index + 1 })} role="radiogroup">
         {opponentDifficulties.map((difficulty) => (
           <span aria-checked={difficulty === value} key={difficulty} role="radio">
-            {labels[difficulty]}
+            {tCore(difficulty)}
           </span>
         ))}
       </span>
-      <button aria-label={`Change Opponent ${index + 1} Setting`} onClick={handleClick}>
+      <button aria-label={t('changeOpponentSettingLabel', { index: index + 1 })} onClick={handleClick}>
         <img alt="" src={assets[value]} />
         <Text align="center" size="small" width={66} x={0} y={64}>
-          {labels[value]}
+          {tCore(value)}
         </Text>
       </button>
     </Root>

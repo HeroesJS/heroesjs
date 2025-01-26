@@ -1,0 +1,32 @@
+{
+  "fileSelectorWindow": {
+    "cancelLabel": "Cancel",
+    "confirmLabel": "Okay",
+    "fileName": "File Name",
+    "itemsHeading": "Items",
+    "loadTitle": "File to Load",
+    "scenarioDescription": "Description",
+    "scenarioDifficulty": "Difficulty",
+    "scenarioInfo": "Scenario Info",
+    "scenarioSize": "Size",
+    "title": "File Selector Window"
+  },
+  "newGameWindow": {
+    "cancelLabel": "Cancel",
+    "changeOpponentSettingLabel": "Change Opponent {{index}} Setting",
+    "confirmLabel": "Okay",
+    "difficultyRating": "Difficulty Rating",
+    "gameDifficulty": "Game Difficulty",
+    "gameDifficultyHeading": "Choose Game Difficulty",
+    "kingOfTheHill": "King of the Hill",
+    "kingOfTheHillHeading": "King of the Hill",
+    "opponentSettingHeading": "Opponent {{index}} Setting",
+    "opponentSettingsHeading": "Customize Opponents",
+    "playerColorHeading": "Choose Color",
+    "ratingHeading": "Difficulty Rating",
+    "scenarioInputLabel": "Scenario",
+    "scenarioSelectionHeading": "Choose Scenario",
+    "selectScenarioLabel": "Select Scenario",
+    "title": "New Game Window"
+  }
+}
