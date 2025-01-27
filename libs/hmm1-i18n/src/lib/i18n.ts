@@ -1,16 +1,22 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import { locales } from './locale';
+import { locales as resources } from './locale';
+
+export const fallbackLng = 'en';
+export const defaultNS = 'core';
+
+export { resources };
 
 export const setupI18n = () => {
   i18n.use(initReactI18next).init({
     debug: false,
-    fallbackLng: 'en',
+    defaultNS,
+    fallbackLng,
     interpolation: {
       escapeValue: false,
     },
-    resources: locales,
+    resources,
   });
 
   return i18n;
