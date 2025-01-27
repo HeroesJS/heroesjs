@@ -25,8 +25,7 @@ interface Props extends PositionProps {
 }
 
 export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
-  const { t: tCore } = useTranslation('core', { keyPrefix: 'opponentDifficulty' });
+  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'newGameWindow' });
 
   const handleClick = () => onClick?.(index, value);
 
@@ -35,14 +34,14 @@ export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
       <span aria-label={t('opponentSettingHeading', { index: index + 1 })} role="radiogroup">
         {opponentDifficulties.map((difficulty) => (
           <span aria-checked={difficulty === value} key={difficulty} role="radio">
-            {tCore(difficulty)}
+            {t(`core:opponentDifficulty.${difficulty}`)}
           </span>
         ))}
       </span>
       <button aria-label={t('changeOpponentSettingLabel', { index: index + 1 })} onClick={handleClick}>
         <img alt="" src={assets[value]} />
         <Text align="center" size="small" width={66} x={0} y={64}>
-          {tCore(value)}
+          {t(`core:opponentDifficulty.${value}`)}
         </Text>
       </button>
     </Root>

@@ -1,5 +1,9 @@
 {
   "standardScenarioInfoWindow": {
+    "confirmLabel": "Okay",
+    "scenarioDescription": "Description",
+    "scenarioDifficulty": "Difficulty",
+    "scenarioSize": "Size",
     "title": "Scenario Info Window"
   }
 }

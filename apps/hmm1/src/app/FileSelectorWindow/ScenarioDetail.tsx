@@ -15,16 +15,15 @@ export interface ScenarioInfo {
 interface Props extends PositionProps, Partial<ScenarioInfo> {}
 
 export const ScenarioDetail = ({ description, difficulty, size, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'fileSelectorWindow' });
-  const { t: tCore } = useTranslation('core');
+  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'fileSelectorWindow' });
 
   return (
     <ScenarioDetailRoot aria-label={t('scenarioInfo')} role="note" x={x} y={y}>
       <Text align="center" label={t('scenarioSize')} size="large" width={90} x={25} y={35}>
-        {size && tCore(`scenarioSize.${size}`)}
+        {size && t(`core:scenarioSize.${size}`)}
       </Text>
       <Text align="center" label={t('scenarioDifficulty')} size="large" width={90} x={182} y={35}>
-        {difficulty && tCore(`scenarioDifficulty.${difficulty}`)}
+        {difficulty && t(`core:scenarioDifficulty.${difficulty}`)}
       </Text>
       <Text align="center" label={t('scenarioDescription')} size="large" width={245} x={36} y={65}>
         {description}

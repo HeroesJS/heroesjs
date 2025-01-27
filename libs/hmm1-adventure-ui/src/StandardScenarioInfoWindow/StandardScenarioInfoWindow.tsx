@@ -42,8 +42,7 @@ export const StandardScenarioInfoWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'standardScenarioInfoWindow' });
-  const { t: tCore } = useTranslation('core');
+  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'standardScenarioInfoWindow' });
 
   const rating = calculateRating({
     kingOfTheHill: kingOfTheHill ?? false,
@@ -58,29 +57,29 @@ export const StandardScenarioInfoWindow = ({
         {scenario?.name}
       </Text>
       <Text align="right" size="large" width={115} x={181} y={72}>
-        {gameDifficulty && tCore(`gameDifficulty.${gameDifficulty}`)}
+        {gameDifficulty && t(`core:gameDifficulty.${gameDifficulty}`)}
       </Text>
       <Text align="right" size="large" width={115} x={180} y={106}>
         {opponentSettings &&
-          opponentSettings?.map((difficulty) => tCore(`opponentDifficulty.${difficulty}`)).join('\n')}
+          opponentSettings?.map((difficulty) => t(`core:opponentDifficulty.${difficulty}`)).join('\n')}
       </Text>
       <PlayerColorGem value={playerColor ?? PlayerColor.Blue} x={124} y={153} />
       <Text align="right" size="large" width={115} x={180} y={208}>
-        {kingOfTheHill !== undefined && tCore(`yesNo.${kingOfTheHill}`)}
+        {kingOfTheHill !== undefined && t(`core:yesNo.${kingOfTheHill}`)}
       </Text>
       <Text align="right" size="large" width={115} x={180} y={240}>
         {formatRating(rating)}
       </Text>
-      <Text align="center" label="Size" size="large" width={90} x={25} y={315}>
-        {scenario?.size && tCore(`scenarioSize.${scenario.size}`)}
+      <Text align="center" label={t('scenarioSize')} size="large" width={90} x={25} y={315}>
+        {scenario?.size && t(`core:scenarioSize.${scenario.size}`)}
       </Text>
-      <Text align="center" label="Difficulty" size="large" width={90} x={182} y={315}>
-        {scenario?.difficulty && tCore(`scenarioDifficulty.${scenario.difficulty}`)}
+      <Text align="center" label={t('scenarioDifficulty')} size="large" width={90} x={182} y={315}>
+        {scenario?.difficulty && t(`core:scenarioDifficulty.${scenario.difficulty}`)}
       </Text>
-      <Text align="center" label="Description" size="large" width={245} x={36} y={345}>
+      <Text align="center" label={t('scenarioDescription')} size="large" width={245} x={36} y={345}>
         {scenario?.description}
       </Text>
-      <Button assets={okay} label="Okay" onClick={onConfirmClick} x={112} y={407} />
+      <Button assets={okay} label={t('confirmLabel')} onClick={onConfirmClick} x={112} y={407} />
     </Root>
   );
 };
