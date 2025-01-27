@@ -1,16 +1,10 @@
 import type { Preview } from '@storybook/react';
 
-import { GlobalStyle } from '@heroesjs/hmm1-base-ui';
+import { withGlobalStyle } from '@heroesjs/hmm1-base-ui';
+import { withI18next } from '@heroesjs/hmm1-i18n';
 
 const preview: Preview = {
-  decorators: [
-    (Story) => (
-      <>
-        <GlobalStyle />
-        <Story />
-      </>
-    ),
-  ],
+  decorators: [withI18next, withGlobalStyle],
   parameters: {
     actions: {
       argTypesRegex: '^on.*',

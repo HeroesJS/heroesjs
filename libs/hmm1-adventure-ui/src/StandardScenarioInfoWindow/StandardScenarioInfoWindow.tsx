@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 import { Button, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import {
+  calculateRating,
+  formatRating,
   type GameDifficulty,
-  type OpponentDifficulty,
+  OpponentDifficulty,
   PlayerColor,
-  type ScenarioDifficulty,
-  type ScenarioSize,
+  ScenarioDifficulty,
+  ScenarioSize,
 } from '@heroesjs/hmm1-core';
 
 import { PlayerColorGem } from '../PlayerColorGem';
@@ -43,6 +45,13 @@ export const StandardScenarioInfoWindow = ({
   const { t } = useTranslation('adventure', { keyPrefix: 'standardScenarioInfoWindow' });
   const { t: tCore } = useTranslation('core');
 
+  const rating = calculateRating({
+    kingOfTheHill: kingOfTheHill ?? false,
+    opponentSettings: opponentSettings ?? new Array(3).fill(OpponentDifficulty.Average),
+    scenarioDifficulty: scenario?.difficulty ?? ScenarioDifficulty.Normal,
+    scenarioSize: scenario?.size ?? ScenarioSize.Medium,
+  });
+
   return (
     <Root aria-label={t('title')} role="dialog" x={x} y={y}>
       <Text align="right" size="large" width={150} x={145} y={38}>
@@ -60,13 +69,13 @@ export const StandardScenarioInfoWindow = ({
         {kingOfTheHill !== undefined && tCore(`yesNo.${kingOfTheHill}`)}
       </Text>
       <Text align="right" size="large" width={115} x={180} y={240}>
-        60%
+        {formatRating(rating)}
       </Text>
       <Text align="center" label="Size" size="large" width={90} x={25} y={315}>
         {scenario?.size && tCore(`scenarioSize.${scenario.size}`)}
       </Text>
       <Text align="center" label="Difficulty" size="large" width={90} x={182} y={315}>
-        Easy
+        {scenario?.difficulty && tCore(`scenarioDifficulty.${scenario.difficulty}`)}
       </Text>
       <Text align="center" label="Description" size="large" width={245} x={36} y={345}>
         {scenario?.description}

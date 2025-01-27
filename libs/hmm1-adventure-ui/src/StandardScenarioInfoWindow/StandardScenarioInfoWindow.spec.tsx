@@ -26,10 +26,10 @@ describe(StandardScenarioInfoWindow, () => {
     expect(screen.getByText(/hard/i)).toBeInTheDocument();
     expect(screen.getByText(/dumb/i)).toBeInTheDocument();
     expect(screen.getByText(/smart/i)).toBeInTheDocument();
-    expect(screen.getByText(/genious/i)).toBeInTheDocument();
+    expect(screen.getByText(/genius/i)).toBeInTheDocument();
     expect(screen.getByText(/blue/i)).toBeInTheDocument();
     expect(screen.getByText(/yes/i)).toBeInTheDocument();
-    expect(screen.getByText(/111%/i)).toBeInTheDocument();
+    expect(screen.getByText(/110%/i)).toBeInTheDocument();
     expect(screen.getByText(/large/i)).toBeInTheDocument();
     expect(screen.getByText(/tough/i)).toBeInTheDocument();
     expect(screen.getByText(/scenario description/i)).toBeInTheDocument();

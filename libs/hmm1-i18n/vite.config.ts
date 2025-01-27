@@ -23,16 +23,16 @@ export default mergeWithBaseConfig(
         // Change this to the formats you want to support.
         // Don't forget to update your package.json as well.
         formats: ['es'],
-        name: 'hmm1-test-utils',
+        name: 'hmm1-base-ui',
       },
-      outDir: '../../dist/libs/hmm1-test-utils',
+      outDir: '../../dist/libs/hmm1-base-ui',
       reportCompressedSize: true,
       rollupOptions: {
         // External packages that should not be bundled into your library.
         external: ['react', 'react-dom', 'react/jsx-runtime'],
       },
     },
-    cacheDir: '../../node_modules/.vite/libs/hmm1-test-utils',
+    cacheDir: '../../node_modules/.vite/libs/hmm1-base-ui',
     plugins: [
       react(),
       nxViteTsPaths(),
@@ -43,12 +43,13 @@ export default mergeWithBaseConfig(
     test: {
       coverage: {
         provider: 'v8',
-        reportsDirectory: '../../coverage/libs/hmm1-test-utils',
+        reportsDirectory: '../../coverage/libs/hmm1-base-ui',
       },
       environment: 'jsdom',
       globals: true,
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       reporters: ['default'],
+      setupFiles: ['setupTests'],
       watch: false,
     },
     // Uncomment this if you are using workers.
