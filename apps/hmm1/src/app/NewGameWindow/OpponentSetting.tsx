@@ -25,7 +25,7 @@ interface Props extends PositionProps {
 }
 
 export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
-  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'newGameWindow' });
+  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'component.newGameWindow' });
 
   const handleClick = () => onClick?.(index, value);
 

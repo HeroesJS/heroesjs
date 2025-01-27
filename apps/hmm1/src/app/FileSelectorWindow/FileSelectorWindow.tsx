@@ -43,7 +43,7 @@ export const FileSelectorWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'fileSelectorWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
     <Root aria-label={t('title')} role="dialog" showScenarioInfo={showScenarioInfo} x={x} y={y}>
@@ -79,7 +79,7 @@ interface ListProps extends PositionProps {
 }
 
 const List = ({ items = [], onItemClick, selectedItem, x, y }: ListProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'fileSelectorWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
     <PositionedComponent aria-label={t('itemsHeading')} as="div" role="listbox" x={x} y={y}>
@@ -118,7 +118,7 @@ interface InputProps extends PositionProps {
 }
 
 const Input = ({ value, x, y }: InputProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'fileSelectorWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
     <InputRoot aria-label={t('fileName')} role="textbox" x={x} y={y}>

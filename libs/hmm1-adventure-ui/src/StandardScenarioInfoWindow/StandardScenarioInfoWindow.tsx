@@ -42,7 +42,7 @@ export const StandardScenarioInfoWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'standardScenarioInfoWindow' });
+  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.standardScenarioInfoWindow' });
 
   const rating = calculateRating({
     kingOfTheHill: kingOfTheHill ?? false,

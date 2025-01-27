@@ -15,7 +15,7 @@ export interface ScenarioInfo {
 interface Props extends PositionProps, Partial<ScenarioInfo> {}
 
 export const ScenarioDetail = ({ description, difficulty, size, x, y }: Props) => {
-  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'fileSelectorWindow' });
+  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
     <ScenarioDetailRoot aria-label={t('scenarioInfo')} role="note" x={x} y={y}>

@@ -18,7 +18,7 @@ interface Props extends PositionProps {
 }
 
 export const ScenarioSelection = ({ onClick, value, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   return (
     <Root onClick={onClick} x={x} y={y}>

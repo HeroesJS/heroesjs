@@ -11,7 +11,7 @@ interface Props extends PositionProps {
 }
 
 export const DifficultyMenu = ({ onChange, selectedOption, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   return (
     <PositionedComponent aria-label={t('gameDifficulty')} role="menu" x={x} y={y}>

@@ -62,7 +62,7 @@ interface Props {
 }
 
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, scenario, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'newGameWindow' });
+  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
