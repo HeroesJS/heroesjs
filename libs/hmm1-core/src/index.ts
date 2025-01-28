@@ -1,4 +1,4 @@
-export { Campaign } from './lib/campaign';
+export { Campaign, campaignScenarios } from './lib/campaign';
 export {
   gameDifficulties,
   GameDifficulty,

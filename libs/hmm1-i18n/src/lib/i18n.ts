@@ -13,6 +13,7 @@ export const setupI18n = () => {
     debug: false,
     defaultNS,
     fallbackLng,
+    fallbackNS: 'core',
     interpolation: {
       escapeValue: false,
     },

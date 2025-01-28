@@ -6,6 +6,12 @@ import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 import { StandardScenarioInfoWindow } from './StandardScenarioInfoWindow';
 
 describe(StandardScenarioInfoWindow, () => {
+  it('renders window', () => {
+    renderWithProviders(<StandardScenarioInfoWindow />);
+
+    expect(screen.getByRole('dialog', { name: /scenario info window/i })).toBeInTheDocument();
+  });
+
   it('renders info', () => {
     renderWithProviders(
       <StandardScenarioInfoWindow

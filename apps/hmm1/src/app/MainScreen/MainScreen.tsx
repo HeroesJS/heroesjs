@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
+import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Screen } from '@heroesjs/hmm1-base-ui';
-import { type Campaign, scenarios } from '@heroesjs/hmm1-core';
+import { type Campaign, campaignScenarios, scenarios } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
@@ -41,7 +42,17 @@ export const MainScreen = () => {
         <Route Component={NewGameSelection} path="new/standard" />
         <Route Component={ScenarioSelection} path="new/standard/scenario" />
         <Route Component={CampaignSelection} path="new/campaign" />
-        <Route element="Scenario Info" path="new/campaign/*" />
+        <Route
+          element={
+            <CampaignScenarioInfoWindow
+              onConfirmClick={() => navigate('/adventure')}
+              scenario={campaignScenarios[0]}
+              x={105}
+              y={96}
+            />
+          }
+          path="new/campaign/:leader"
+        />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
         <Route Component={NewGameSelection} path="new/multi-player/hot-seat/:count" />
