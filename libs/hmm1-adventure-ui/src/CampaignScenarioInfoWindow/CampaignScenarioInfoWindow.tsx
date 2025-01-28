@@ -44,6 +44,7 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
 
 const Root = styled(PositionedComponent)({
   background: `url(${background})`,
+  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
   height: 287,
   width: 426,
 });
