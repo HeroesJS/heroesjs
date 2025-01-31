@@ -4,6 +4,6 @@ export * from './AdventureWindow';
 export * from './CampaignScenarioInfoWindow';
 export * from './HeroLocator';
 export * from './Locator';
-export * from './PlayerColorGem';
+export * from './PlayerColorJewel';
 export * from './StandardScenarioInfoWindow';
 export * from './TownLocator';

@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 
 import { Button, PositionedComponent, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
 
@@ -23,7 +22,7 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
 
   return (
     <Window background={background} height={287} label={t('title')} shadow width={426} x={x} y={y}>
-      <ScenarioNumber
+      <PositionedComponent
         aria-label={t('scenarioNumber', { number: scenario.number })}
         as="img"
         src={numbers[scenario.number - 1]}
@@ -41,5 +40,3 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
     </Window>
   );
 };
-
-const ScenarioNumber = styled(PositionedComponent)({});

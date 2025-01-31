@@ -17,7 +17,7 @@ interface Props extends PositionProps {
   readonly value: PlayerColor;
 }
 
-export const PlayerColorGem = ({ onClick, value, x, y }: Props) => (
+export const PlayerColorJewel = ({ onClick, value, x, y }: Props) => (
   <Root x={x} y={y}>
     <span aria-label="Banner Color" role="radiogroup">
       {playerColors.map((color) => (

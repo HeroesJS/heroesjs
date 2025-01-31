@@ -11,7 +11,7 @@ import {
   ScenarioSize,
 } from '@heroesjs/hmm1-core';
 
-import { PlayerColorGem } from '../PlayerColorGem';
+import { PlayerColorJewel } from '../PlayerColorJewel';
 
 import { background, okay } from './assets';
 
@@ -62,7 +62,7 @@ export const StandardScenarioInfoWindow = ({
         {opponentSettings &&
           opponentSettings?.map((difficulty) => t(`core:opponentDifficulty.${difficulty}`)).join('\n')}
       </Text>
-      <PlayerColorGem value={playerColor ?? PlayerColor.Blue} x={124} y={153} />
+      <PlayerColorJewel value={playerColor ?? PlayerColor.Blue} x={124} y={153} />
       <Text align="right" size="large" width={115} x={180} y={208}>
         {kingOfTheHill !== undefined && t(`core:yesNo.${kingOfTheHill}`)}
       </Text>

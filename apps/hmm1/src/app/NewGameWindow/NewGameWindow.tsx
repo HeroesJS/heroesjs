@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PlayerColorGem } from '@heroesjs/hmm1-adventure-ui';
+import { PlayerColorJewel } from '@heroesjs/hmm1-adventure-ui';
 import {
   Button,
   type ButtonAssets,
@@ -110,7 +110,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
       <Text heading size="large" x={26} y={254}>
         {t('playerColorHeading')}:
       </Text>
-      <PlayerColorGem onClick={handleColorClick} value={color} x={51} y={270} />
+      <PlayerColorJewel onClick={handleColorClick} value={color} x={51} y={270} />
       <Text heading size="large" x={169} y={254}>
         {t('kingOfTheHillHeading')}:
       </Text>
