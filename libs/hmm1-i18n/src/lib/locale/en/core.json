@@ -1,0 +1,30 @@
+{
+  "gameDifficulty": {
+    "easy": "Easy",
+    "expert": "Expert",
+    "hard": "Hard",
+    "normal": "Normal"
+  },
+  "opponentDifficulty": {
+    "average": "Average",
+    "dumb": "Dumb",
+    "genius": "Genius",
+    "none": "None",
+    "smart": "Smart"
+  },
+  "scenarioDifficulty": {
+    "easy": "Easy",
+    "impossible": "Impossible",
+    "normal": "Normal",
+    "tough": "Tough"
+  },
+  "scenarioSize": {
+    "large": "Large",
+    "medium": "Medium",
+    "small": "Small"
+  },
+  "yesNo": {
+    "false": "No",
+    "true": "Yes"
+  }
+}

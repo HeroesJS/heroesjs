@@ -1,0 +1,19 @@
+{
+  "component": {
+    "campaignScenarioInfoWindow": {
+      "confirmLabel": "Okay",
+      "restartLabel": "Restart Scenario",
+      "scenarioDescription": "Description",
+      "scenarioName": "Name",
+      "scenarioNumber": "Number {{number}}",
+      "title": "Scenario Info Window"
+    },
+    "standardScenarioInfoWindow": {
+      "confirmLabel": "Okay",
+      "scenarioDescription": "Description",
+      "scenarioDifficulty": "Difficulty",
+      "scenarioSize": "Size",
+      "title": "Scenario Info Window"
+    }
+  }
+}

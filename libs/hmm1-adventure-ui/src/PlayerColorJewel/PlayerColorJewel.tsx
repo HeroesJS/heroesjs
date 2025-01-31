@@ -3,17 +3,7 @@ import styled from 'styled-components';
 import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 import { PlayerColor, playerColors } from '@heroesjs/hmm1-core';
 
-import blue from './assets/bannerColor/blue.png';
-import green from './assets/bannerColor/green.png';
-import red from './assets/bannerColor/red.png';
-import yellow from './assets/bannerColor/yellow.png';
-
-const assets: Record<PlayerColor, string> = {
-  [PlayerColor.Blue]: blue,
-  [PlayerColor.Green]: green,
-  [PlayerColor.Red]: red,
-  [PlayerColor.Yellow]: yellow,
-};
+import { gems } from './assets';
 
 const labels: Record<PlayerColor, string> = {
   [PlayerColor.Blue]: 'Blue',
@@ -27,7 +17,7 @@ interface Props extends PositionProps {
   readonly value: PlayerColor;
 }
 
-export const BannerColor = ({ onClick, value, x, y }: Props) => (
+export const PlayerColorJewel = ({ onClick, value, x, y }: Props) => (
   <Root x={x} y={y}>
     <span aria-label="Banner Color" role="radiogroup">
       {playerColors.map((color) => (
@@ -37,7 +27,7 @@ export const BannerColor = ({ onClick, value, x, y }: Props) => (
       ))}
     </span>
     <button aria-label="Change Banner Color" onClick={onClick}>
-      <img alt="" src={assets[value]} />
+      <img alt="" src={gems[value]} />
     </button>
   </Root>
 );

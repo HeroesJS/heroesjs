@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 import { gameDifficulties, type GameDifficulty } from '@heroesjs/hmm1-core';
 
@@ -9,8 +11,10 @@ interface Props extends PositionProps {
 }
 
 export const DifficultyMenu = ({ onChange, selectedOption, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
+
   return (
-    <PositionedComponent aria-label="Game Difficulty" role="menu" x={x} y={y}>
+    <PositionedComponent aria-label={t('gameDifficulty')} role="menu" x={x} y={y}>
       {gameDifficulties.map((difficulty, i) => (
         <DifficultyOption
           key={difficulty}

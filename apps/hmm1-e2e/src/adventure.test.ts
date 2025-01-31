@@ -24,3 +24,28 @@ test.describe('adventure options', () => {
     await expect(page.getByRole('dialog', { name: /adventure options/i })).toHaveScreenshot('adventure-options.png');
   });
 });
+
+test.describe('standard scenario info', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/adventure/scenario-info');
+  });
+
+  test('matches screenshot', async ({ page }) => {
+    await expect(page.getByRole('dialog', { name: /scenario info window/i })).toHaveScreenshot(
+      'standard-scenario-info-window.png',
+    );
+  });
+});
+
+test.describe('campaign scenario info', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/adventure/campaign-scenario-info');
+  });
+
+  test('matches screenshot', async ({ page }) => {
+    await expect(page.getByRole('dialog', { name: /scenario info window/i })).toHaveScreenshot(
+      'campaign-scenario-info-window.png',
+      { maxDiffPixelRatio: 0.02 },
+    );
+  });
+});

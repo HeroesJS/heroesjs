@@ -89,6 +89,7 @@ const Root = styled.span<Pick<Props, 'align' | 'selected' | 'shadow' | 'size' | 
       ? '0 -1px 0 rgb(0, 0, 0), 1px 0 0 rgb(0, 0, 0), 0 1px 0 rgb(0, 0, 0), -1px 0 0 rgb(0, 0, 0)'
       : undefined,
     top: y,
+    whiteSpace: 'pre-wrap',
     width,
   }),
 );

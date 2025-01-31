@@ -9,3 +9,5 @@ export * from './PositionedComponent';
 export * from './Screen';
 export * from './Text';
 export { useToggle } from './useToggle';
+export * from './Window';
+export { withGlobalStyle } from './withGlobalStyle';

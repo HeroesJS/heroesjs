@@ -8,7 +8,7 @@ describe(AdventureOptionsWindow, () => {
   it('renders window', () => {
     renderWithProviders(<AdventureOptionsWindow />);
 
-    expect(screen.getByRole('dialog', { name: /adventure options/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: /adventure options window/i })).toBeInTheDocument();
   });
 
   it('renders view world button', () => {
