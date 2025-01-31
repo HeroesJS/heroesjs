@@ -2,7 +2,14 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, type ButtonAssets, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
+import {
+  Button,
+  type ButtonAssets,
+  PositionedComponent,
+  type PositionProps,
+  Text,
+  Window,
+} from '@heroesjs/hmm1-base-ui';
 
 import background from './assets/background.jpg';
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -46,7 +53,7 @@ export const FileSelectorWindow = ({
   const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
-    <Root aria-label={t('title')} role="dialog" showScenarioInfo={showScenarioInfo} x={x} y={y}>
+    <Window background={background} height={showScenarioInfo ? 380 : 331} label={t('title')} width={320} x={x} y={y}>
       <Text heading size="large" x={111} y={19}>
         {t('loadTitle')}:
       </Text>
@@ -62,15 +69,9 @@ export const FileSelectorWindow = ({
       />
       <Button assets={cancelButtonAssets} label={t('cancelLabel')} onClick={onCancelClick} x={189} y={280} />
       {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
-    </Root>
+    </Window>
   );
 };
-
-const Root = styled(PositionedComponent)<Pick<Props, 'showScenarioInfo'>>(({ showScenarioInfo }) => ({
-  background: `url(${background})`,
-  height: showScenarioInfo ? 380 : 331,
-  width: 320,
-}));
 
 interface ListProps extends PositionProps {
   readonly items?: readonly string[];

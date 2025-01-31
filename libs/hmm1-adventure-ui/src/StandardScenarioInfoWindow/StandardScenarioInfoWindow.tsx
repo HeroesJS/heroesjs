@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 
-import { Button, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
+import { Button, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   formatRating,
@@ -52,7 +51,7 @@ export const StandardScenarioInfoWindow = ({
   });
 
   return (
-    <Root aria-label={t('title')} role="dialog" x={x} y={y}>
+    <Window background={background} height={459} label={t('title')} width={322} x={x} y={y}>
       <Text align="right" size="large" width={150} x={145} y={38}>
         {scenario?.name}
       </Text>
@@ -80,12 +79,6 @@ export const StandardScenarioInfoWindow = ({
         {scenario?.description}
       </Text>
       <Button assets={okay} label={t('confirmLabel')} onClick={onConfirmClick} x={112} y={407} />
-    </Root>
+    </Window>
   );
 };
-
-const Root = styled(PositionedComponent)({
-  background: `url(${background})`,
-  height: 459,
-  width: 322,
-});

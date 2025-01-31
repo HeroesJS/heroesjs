@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 
 import { PlayerColorGem } from '@heroesjs/hmm1-adventure-ui';
-import { Button, type ButtonAssets, Checkbox, type CheckboxAssets, Text, useToggle } from '@heroesjs/hmm1-base-ui';
+import {
+  Button,
+  type ButtonAssets,
+  Checkbox,
+  type CheckboxAssets,
+  Text,
+  useToggle,
+  Window,
+} from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   formatRating,
@@ -82,7 +89,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
   });
 
   return (
-    <Root aria-label={t('title')} role="dialog" x={x} y={y}>
+    <Window background={background} height={459} label={t('title')} width={320} x={x} y={y}>
       <Text heading size="large" x={60} y={22}>
         {t('gameDifficultyHeading')}:
       </Text>
@@ -131,15 +138,6 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         y={412}
       />
       <Button assets={cancelButtonAssets} label={t('cancelLabel')} onClick={onCancelClick} x={201} y={412} />
-    </Root>
+    </Window>
   );
 };
-
-const Root = styled.div<Pick<Props, 'x' | 'y'>>(({ x, y }) => ({
-  background: `url(${background})`,
-  height: 459,
-  left: x,
-  position: 'absolute',
-  top: y,
-  width: 320,
-}));

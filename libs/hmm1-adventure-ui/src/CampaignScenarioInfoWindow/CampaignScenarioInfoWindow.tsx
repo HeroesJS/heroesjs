@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
+import { Button, PositionedComponent, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
 
 import { background, numbers, okay, restart } from './assets';
 
@@ -22,7 +22,7 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
   const { t } = useTranslation('adventure', { keyPrefix: 'component.campaignScenarioInfoWindow' });
 
   return (
-    <Root aria-label={t('title')} role="dialog" x={x} y={y}>
+    <Window background={background} height={287} label={t('title')} shadow width={426} x={x} y={y}>
       <ScenarioNumber
         aria-label={t('scenarioNumber', { number: scenario.number })}
         as="img"
@@ -38,15 +38,8 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
       </Text>
       <Button assets={okay} label={t('confirmLabel')} onClick={onConfirmClick} x={allowRestart ? 27 : 163} y={234} />
       {allowRestart && <Button assets={restart} label={t('restartLabel')} onClick={onRestartClick} x={180} y={234} />}
-    </Root>
+    </Window>
   );
 };
-
-const Root = styled(PositionedComponent)({
-  background: `url(${background})`,
-  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
-  height: 287,
-  width: 426,
-});
 
 const ScenarioNumber = styled(PositionedComponent)({});
