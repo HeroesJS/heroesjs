@@ -5,6 +5,7 @@ import {
   AdventureOptionsWindow,
   AdventureWindow,
   CampaignScenarioInfoWindow,
+  GameOptionsWindow,
   HeroLocator,
   Locator,
   StandardScenarioInfoWindow,
@@ -20,6 +21,8 @@ import {
   Town,
 } from '@heroesjs/hmm1-core';
 
+import { FileSelectorWindow } from '../FileSelectorWindow';
+
 export const AdventureScreen = () => {
   const navigate = useNavigate();
 
@@ -28,7 +31,11 @@ export const AdventureScreen = () => {
   return (
     <AdventureWindow
       renderActionButtons={() => (
-        <AdventureButtons moveDisabled onAdventureOptionsClick={() => navigate('adventure-options')} />
+        <AdventureButtons
+          moveDisabled
+          onAdventureOptionsClick={() => navigate('adventure-options')}
+          onGameOptionsClick={() => navigate('game-options')}
+        />
       )}
       renderHeroLocators={() => (
         <Locator selected>
@@ -47,6 +54,30 @@ export const AdventureScreen = () => {
             <AdventureOptionsWindow onConfirmClick={() => navigate('..', { relative: 'path' })} x={160} y={40} />
           }
           path="adventure-options"
+        />
+        <Route
+          element={
+            <GameOptionsWindow
+              onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
+              onLoadGameClick={() => navigate('/game/load')}
+              onNewGameClick={() => navigate('/game/new')}
+              onOkayClick={() => navigate('..', { relative: 'path' })}
+              onQuitClick={() => navigate('/')}
+              onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
+              x={160}
+              y={10}
+            />
+          }
+          path="game-options"
+        />
+        <Route
+          element={
+            <FileSelectorWindow
+              onCancelClick={() => navigate('..', { relative: 'path' })}
+              onConfirmClick={() => navigate('..', { relative: 'path' })}
+            />
+          }
+          path="save-game"
         />
         <Route
           element={

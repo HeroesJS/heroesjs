@@ -2,6 +2,7 @@ export * from './AdventureButtons';
 export * from './AdventureOptionsWindow';
 export * from './AdventureWindow';
 export * from './CampaignScenarioInfoWindow';
+export * from './GameOptionsWindow';
 export * from './HeroLocator';
 export * from './Locator';
 export * from './PlayerColorJewel';

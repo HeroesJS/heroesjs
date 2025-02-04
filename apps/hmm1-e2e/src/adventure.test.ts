@@ -25,6 +25,22 @@ test.describe('adventure options', () => {
   });
 });
 
+test.describe('game options', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/adventure/game-options');
+  });
+
+  test('window has correct position', async ({ page }) => {
+    await expect(page.locator('#app')).toHaveScreenshot('game-options-window-position.png');
+  });
+
+  test('matches screenshot', async ({ page }) => {
+    await expect(page.getByRole('dialog', { name: /game options window/i })).toHaveScreenshot(
+      'game-options-window.png',
+    );
+  });
+});
+
 test.describe('standard scenario info', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/adventure/scenario-info');

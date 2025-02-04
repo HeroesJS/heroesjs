@@ -8,6 +8,15 @@
       "scenarioNumber": "Number {{number}}",
       "title": "Scenario Info Window"
     },
+    "gameOptionsWindow": {
+      "infoLabel": "Info",
+      "loadGameLabel": "Load Game",
+      "newGameLabel": "New Game",
+      "okayLabel": "Okay",
+      "quit": "Quit",
+      "saveGameLabel": "Save Game",
+      "title": "Game Options Window"
+    },
     "standardScenarioInfoWindow": {
       "confirmLabel": "Okay",
       "scenarioDescription": "Description",

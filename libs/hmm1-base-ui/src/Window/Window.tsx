@@ -23,22 +23,32 @@ export const Window = ({
   x,
   y,
 }: PropsWithChildren<Props>) => (
-  <Root
-    aria-label={label}
-    background={background}
-    className={className}
-    height={height}
-    role="dialog"
-    shadow={shadow}
-    width={width}
-    x={x}
-    y={y}
-  >
-    {children}
+  <Root id="backdrop">
+    <Element
+      aria-label={label}
+      background={background}
+      className={className}
+      height={height}
+      role="dialog"
+      shadow={shadow}
+      width={width}
+      x={x}
+      y={y}
+    >
+      {children}
+    </Element>
   </Root>
 );
 
-const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
+const Root = styled.div({
+  bottom: 0,
+  left: 0,
+  position: 'absolute',
+  right: 0,
+  top: 0,
+});
+
+const Element = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
   ({ background, height, shadow, width }) => ({
     background: `url(${background})`,
     boxShadow: shadow ? '17px 16px rgba(0 0 0 / 30%), 1px 0 #000' : undefined,
