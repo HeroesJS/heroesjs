@@ -3,10 +3,13 @@ export {
   gameDifficulties,
   GameDifficulty,
   HeroId,
+  isSoundEnabled,
+  MovementSpeed,
   opponentDifficulties,
   OpponentDifficulty,
   PlayerColor,
   playerColors,
+  SoundVolume,
   Town,
 } from './lib/core';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';

@@ -5,6 +5,17 @@
     "hard": "Hard",
     "normal": "Normal"
   },
+  "movementSpeed": {
+    "canter": "Canter",
+    "gallop": "Gallop",
+    "jump": "Jump",
+    "trot": "Trot",
+    "walk": "Walk"
+  },
+  "onOff": {
+    "false": "Off",
+    "true": "On"
+  },
   "opponentDifficulty": {
     "average": "Average",
     "dumb": "Dumb",
