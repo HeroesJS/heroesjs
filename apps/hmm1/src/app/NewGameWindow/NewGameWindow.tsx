@@ -15,6 +15,7 @@ import {
   calculateRating,
   formatRating,
   GameDifficulty,
+  nextOption,
   opponentDifficulties,
   OpponentDifficulty,
   PlayerColor,
@@ -33,10 +34,6 @@ import okayEnabled from './assets/okay/enabled.png';
 import { DifficultyMenu } from './DifficultyMenu';
 import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
-
-function nextOption<T>(values: readonly T[], currentValue: T): T {
-  return values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
-}
 
 const kingOfTheHillCheckboxAssets: CheckboxAssets = {
   checked: checkboxChecked,

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import {
@@ -15,15 +16,24 @@ import {
   campaignScenarios,
   GameDifficulty,
   HeroId,
+  MovementSpeed,
   OpponentDifficulty,
   PlayerColor,
   scenarios,
+  type SoundVolume,
   Town,
 } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
 
 export const AdventureScreen = () => {
+  const [musicVolume, setMusicVolume] = useState<SoundVolume>(0);
+  const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(0);
+  const [movementSpeed, setMovementSpeed] = useState(MovementSpeed.Trot);
+  const [autoSave, setAutoSave] = useState(false);
+  const [showPath, setShowPath] = useState(false);
+  const [viewEnemyMovement, setViewEnemyMovement] = useState(false);
+
   const navigate = useNavigate();
 
   const scenario = scenarios[0];
@@ -58,12 +68,24 @@ export const AdventureScreen = () => {
         <Route
           element={
             <GameOptionsWindow
+              autoSave={autoSave}
+              effectsVolume={effectsVolume}
+              movementSpeed={movementSpeed}
+              musicVolume={musicVolume}
+              onAutoSaveChange={setAutoSave}
+              onEffectsVolumeChange={setEffectsVolume}
               onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
               onLoadGameClick={() => navigate('/game/load')}
+              onMovementSpeedChange={setMovementSpeed}
+              onMusicVolumeChange={setMusicVolume}
               onNewGameClick={() => navigate('/game/new')}
               onOkayClick={() => navigate('..', { relative: 'path' })}
               onQuitClick={() => navigate('/')}
               onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
+              onShowPathChange={setShowPath}
+              onViewEnemyMovementChange={setViewEnemyMovement}
+              showPath={showPath}
+              viewEnemyMovement={viewEnemyMovement}
               x={160}
               y={10}
             />
