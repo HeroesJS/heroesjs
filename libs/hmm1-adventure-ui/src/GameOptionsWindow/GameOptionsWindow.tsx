@@ -10,15 +10,15 @@ import {
   Text,
   Window,
 } from '@heroesjs/hmm1-base-ui';
-import { isSoundEnabled, MovementSpeed, SoundVolume } from '@heroesjs/hmm1-core';
+import { isSoundEnabled, MovementSpeed, type SoundVolume, soundVolumes } from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly autoSave?: boolean;
-  readonly effectsVolume?: number;
+  readonly effectsVolume?: SoundVolume;
   readonly movementSpeed?: MovementSpeed;
-  readonly musicVolume?: number;
+  readonly musicVolume?: SoundVolume;
   readonly onInfoClick?: () => void;
   readonly onLoadGameClick?: () => void;
   readonly onNewGameClick?: () => void;
@@ -31,9 +31,9 @@ interface Props extends PositionProps {
 
 export const GameOptionsWindow = ({
   autoSave,
-  effectsVolume = SoundVolume.Off,
+  effectsVolume = 0,
   movementSpeed = MovementSpeed.Trot,
-  musicVolume = SoundVolume.Off,
+  musicVolume = 0,
   onInfoClick,
   onLoadGameClick,
   onNewGameClick,
@@ -57,6 +57,7 @@ export const GameOptionsWindow = ({
         assets={assets.musicToggle}
         checked={isSoundEnabled(musicVolume)}
         heading={t('musicHeading')}
+        valueLabel={shouldRenderVolume(musicVolume) ? t('volume', { value: musicVolume }) : undefined}
         x={36}
         y={194}
       />
@@ -64,7 +65,7 @@ export const GameOptionsWindow = ({
         assets={assets.effectsToggle}
         checked={isSoundEnabled(effectsVolume)}
         heading={t('effectsHeading')}
-        valueLabel={effectsVolume !== 0 && effectsVolume !== 10 ? t('volume', { value: effectsVolume }) : undefined}
+        valueLabel={shouldRenderVolume(effectsVolume) ? t('volume', { value: effectsVolume }) : undefined}
         x={128}
         y={194}
       />
@@ -90,6 +91,8 @@ export const GameOptionsWindow = ({
     </Window>
   );
 };
+
+const shouldRenderVolume = (value: SoundVolume) => soundVolumes.slice(1, -1).includes(value);
 
 interface GameOptionProps extends PositionProps {
   readonly assets: CheckboxAssets;

@@ -9,7 +9,8 @@ export {
   OpponentDifficulty,
   PlayerColor,
   playerColors,
-  SoundVolume,
+  type SoundVolume,
+  soundVolumes,
   Town,
 } from './lib/core';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';

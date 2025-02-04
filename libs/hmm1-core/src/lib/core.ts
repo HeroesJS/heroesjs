@@ -1,3 +1,5 @@
+import { range } from 'lodash';
+
 export enum PlayerColor {
   Blue = 'blue',
   Green = 'green',
@@ -96,18 +98,8 @@ export enum MovementSpeed {
   Walk = 'walk',
 }
 
-export enum SoundVolume {
-  Off = 0,
-  Volume1 = 1,
-  Volume2 = 2,
-  Volume3 = 3,
-  Volume4 = 4,
-  Volume5 = 5,
-  Volume6 = 6,
-  Volume7 = 7,
-  Volume8 = 8,
-  Volume9 = 9,
-  On = 10,
-}
+export type SoundVolume = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-export const isSoundEnabled = (value: SoundVolume) => value !== SoundVolume.Off;
+export const soundVolumes = range(0, 11) as readonly SoundVolume[];
+
+export const isSoundEnabled = (value: SoundVolume) => value !== soundVolumes[0];
