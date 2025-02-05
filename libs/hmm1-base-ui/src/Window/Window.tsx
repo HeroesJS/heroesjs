@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
+import { Backdrop } from '../Backdrop';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
 interface Props extends PositionProps {
@@ -23,8 +24,8 @@ export const Window = ({
   x,
   y,
 }: PropsWithChildren<Props>) => (
-  <Root id="backdrop">
-    <Element
+  <Backdrop>
+    <Root
       aria-label={label}
       background={background}
       className={className}
@@ -36,19 +37,11 @@ export const Window = ({
       y={y}
     >
       {children}
-    </Element>
-  </Root>
+    </Root>
+  </Backdrop>
 );
 
-const Root = styled.div({
-  bottom: 0,
-  left: 0,
-  position: 'absolute',
-  right: 0,
-  top: 0,
-});
-
-const Element = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
+const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
   ({ background, height, shadow, width }) => ({
     background: `url(${background})`,
     boxShadow: shadow ? '17px 16px rgba(0 0 0 / 30%), 1px 0 #000' : undefined,

@@ -21,7 +21,7 @@ export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRes
   const { t } = useTranslation('adventure', { keyPrefix: 'component.campaignScenarioInfoWindow' });
 
   return (
-    <Window background={background} height={287} label={t('title')} shadow width={426} x={x} y={y}>
+    <Window background={background} height={287} label={t('title')} shadow width={425} x={x} y={y}>
       <PositionedComponent
         aria-label={t('scenarioNumber', { number: scenario.number })}
         as="img"
