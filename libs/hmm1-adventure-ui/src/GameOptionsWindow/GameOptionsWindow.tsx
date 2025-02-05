@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, type PositionProps, Window } from '@heroesjs/hmm1-base-ui';
 import {
   isSoundEnabled,
-  MovementSpeed,
+  type MovementSpeed,
   movementSpeeds,
   nextOption,
   previousOption,
@@ -38,9 +38,9 @@ interface Props extends PositionProps {
 
 export const GameOptionsWindow = ({
   autoSave,
-  effectsVolume = 0,
-  movementSpeed = MovementSpeed.Trot,
-  musicVolume = 0,
+  effectsVolume = soundVolumes[0],
+  movementSpeed = movementSpeeds[0],
+  musicVolume = soundVolumes[0],
   onAutoSaveChange,
   onEffectsVolumeChange,
   onInfoClick,

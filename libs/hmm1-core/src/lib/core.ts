@@ -1,5 +1,3 @@
-import { range } from 'lodash';
-
 export enum PlayerColor {
   Blue = 'blue',
   Green = 'green',
@@ -105,12 +103,6 @@ export const movementSpeeds = [
   MovementSpeed.Gallop,
   MovementSpeed.Jump,
 ] as const;
-
-export type SoundVolume = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-
-export const soundVolumes = range(0, 11) as readonly SoundVolume[];
-
-export const isSoundEnabled = (value: SoundVolume) => value !== soundVolumes[0];
 
 export const nextOption = <T>(values: readonly T[], currentValue: T): T =>
   values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;

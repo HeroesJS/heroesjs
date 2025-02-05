@@ -16,7 +16,7 @@ export const Option = ({ assets, checked = false, heading, onChange, onClick, va
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
 
   return (
-    <Root x={x} y={y}>
+    <Root aria-label={heading} role="option" x={x} y={y}>
       <Heading align="center" size="small" width={80} y={0}>
         {heading}
       </Heading>
