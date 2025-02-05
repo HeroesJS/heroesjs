@@ -1,16 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
 
-import {
-  Button,
-  Checkbox,
-  type CheckboxAssets,
-  PositionedComponent,
-  type PositionProps,
-  Text,
-  Window,
-} from '@heroesjs/hmm1-base-ui';
+import { Button, type PositionProps, Window } from '@heroesjs/hmm1-base-ui';
 import {
   isSoundEnabled,
   MovementSpeed,
@@ -22,6 +13,7 @@ import {
 } from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
+import { Option } from './Option';
 
 interface Props extends PositionProps {
   readonly autoSave?: boolean;
@@ -89,7 +81,7 @@ export const GameOptionsWindow = ({
       <Button assets={assets.loadGameButton} label={t('loadGameLabel')} onClick={onLoadGameClick} x={179} y={31} />
       <Button assets={assets.saveGameButton} label={t('saveGameLabel')} onClick={onSaveGameClick} x={46} y={107} />
       <Button assets={assets.quitButton} label={t('quitLabel')} onClick={onQuitClick} x={179} y={107} />
-      <GameOption
+      <Option
         assets={assets.musicToggle}
         checked={isSoundEnabled(musicVolume)}
         heading={t('musicHeading')}
@@ -98,7 +90,7 @@ export const GameOptionsWindow = ({
         x={36}
         y={194}
       />
-      <GameOption
+      <Option
         assets={assets.effectsToggle}
         checked={isSoundEnabled(effectsVolume)}
         heading={t('effectsHeading')}
@@ -107,7 +99,7 @@ export const GameOptionsWindow = ({
         x={128}
         y={194}
       />
-      <GameOption
+      <Option
         assets={{ checked: assets.movementSpeedMap[movementSpeed], unchecked: '' }}
         checked
         heading={t('movementSpeed')}
@@ -116,7 +108,7 @@ export const GameOptionsWindow = ({
         x={220}
         y={194}
       />
-      <GameOption
+      <Option
         assets={assets.autoSaveToggle}
         checked={autoSave}
         heading={t('autoSaveHeading')}
@@ -124,7 +116,7 @@ export const GameOptionsWindow = ({
         x={36}
         y={314}
       />
-      <GameOption
+      <Option
         assets={assets.showPathToggle}
         checked={showPath}
         heading={t('showPathHeading')}
@@ -132,7 +124,7 @@ export const GameOptionsWindow = ({
         x={128}
         y={314}
       />
-      <GameOption
+      <Option
         assets={assets.viewEnemyMovementToggle}
         checked={viewEnemyMovement}
         heading={t('viewEnemyMovementHeading')}
@@ -147,42 +139,3 @@ export const GameOptionsWindow = ({
 };
 
 const shouldRenderVolume = (value: SoundVolume) => soundVolumes.slice(1, -1).includes(value);
-
-interface GameOptionProps extends PositionProps {
-  readonly assets: CheckboxAssets;
-  readonly checked?: boolean;
-  readonly heading: string;
-  readonly onChange?: (checked: boolean) => void;
-  readonly onClick?: () => void;
-  readonly valueLabel?: string;
-}
-
-const GameOption = ({ assets, checked = false, heading, onChange, onClick, valueLabel, x, y }: GameOptionProps) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
-
-  return (
-    <GameOptionRoot x={x} y={y}>
-      <GameOptionHeading align="center" size="small" width={80} y={0}>
-        {heading}
-      </GameOptionHeading>
-      <Checkbox assets={assets} checked={checked} label={heading} onChange={onChange} onClick={onClick} />
-      <GameOptionValueLabel align="center" size="small" width={66} y={0}>
-        {valueLabel || t(`core:onOff.${checked}`)}
-      </GameOptionValueLabel>
-    </GameOptionRoot>
-  );
-};
-
-const GameOptionRoot = styled(PositionedComponent)({
-  height: 65,
-  width: 65,
-});
-
-const GameOptionHeading = styled(Text)({
-  transform: 'translateY(-100%) translateY(-1px) translateX(-8px)',
-});
-
-const GameOptionValueLabel = styled(Text)({
-  bottom: 0,
-  transform: 'translateY(100%) translateX(-1px)',
-});
