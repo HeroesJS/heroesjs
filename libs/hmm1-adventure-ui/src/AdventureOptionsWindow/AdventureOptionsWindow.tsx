@@ -19,7 +19,7 @@ export const AdventureOptionsWindow = ({
   x,
   y,
 }: Props) => (
-  <Window background={background} height={236} label="Adventure Options Window" shadow width={322} x={x} y={y}>
+  <Window background={background} height={236} label="Adventure Options Window" shadow width={321} x={x} y={y}>
     <Button assets={viewWorld} label="View World" onClick={onViewWorldClick} x={46} y={31} />
     <Button assets={viewPuzzle} label="View Puzzle" onClick={onViewPuzzleClick} x={179} y={31} />
     <Button assets={castSpell} label="Cast Spell" onClick={onCastSpellClick} x={46} y={107} />

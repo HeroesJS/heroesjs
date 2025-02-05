@@ -21,7 +21,7 @@ export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0,
       stylePath: './src/backdropMask.css',
     },
   },

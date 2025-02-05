@@ -27,12 +27,12 @@ import {
 import { FileSelectorWindow } from '../FileSelectorWindow';
 
 export const AdventureScreen = () => {
-  const [musicVolume, setMusicVolume] = useState<SoundVolume>(0);
-  const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(0);
+  const [musicVolume, setMusicVolume] = useState<SoundVolume>(10);
+  const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(10);
   const [movementSpeed, setMovementSpeed] = useState(MovementSpeed.Trot);
-  const [autoSave, setAutoSave] = useState(false);
-  const [showPath, setShowPath] = useState(false);
-  const [viewEnemyMovement, setViewEnemyMovement] = useState(false);
+  const [autoSave, setAutoSave] = useState(true);
+  const [showPath, setShowPath] = useState(true);
+  const [viewEnemyMovement, setViewEnemyMovement] = useState(true);
 
   const navigate = useNavigate();
 
