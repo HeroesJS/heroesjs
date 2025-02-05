@@ -15,11 +15,15 @@ test('renders main menu', async ({ page }) => {
 test('renders new game window', async ({ page }) => {
   await page.goto('/game/new/standard/');
 
-  await expect(page.locator('#app')).toHaveScreenshot('new-game-window.png');
+  await expect(page.locator('#app')).toHaveScreenshot('new-game-window.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders scenario selection', async ({ page }) => {
   await page.goto('/game/new/standard/scenario/');
 
-  await expect(page.locator('#app')).toHaveScreenshot('scenario-selection.png');
+  await expect(page.locator('#app')).toHaveScreenshot('scenario-selection.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });

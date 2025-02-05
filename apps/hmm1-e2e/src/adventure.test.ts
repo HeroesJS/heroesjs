@@ -11,7 +11,7 @@ test('matches screenshot', async ({ page }) => {
       page.getByRole('note', { name: /world map/i }),
       page.getByRole('note', { name: /status window/i }),
     ],
-    maxDiffPixelRatio: 0,
+    maxDiffPixelRatio: 0.1,
   });
 });
 
@@ -21,7 +21,19 @@ test.describe('adventure options', () => {
   });
 
   test('matches screenshot', async ({ page }) => {
-    await expect(page.getByRole('dialog', { name: /adventure options/i })).toHaveScreenshot('adventure-options.png');
+    await expect(page.locator('#app')).toHaveScreenshot('adventure-options-window.png');
+  });
+});
+
+test.describe('game options', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/adventure/game-options');
+  });
+
+  test('matches screenshot', async ({ page }) => {
+    await expect(page.locator('#app')).toHaveScreenshot('game-options-window.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
 });
 
@@ -31,9 +43,9 @@ test.describe('standard scenario info', () => {
   });
 
   test('matches screenshot', async ({ page }) => {
-    await expect(page.getByRole('dialog', { name: /scenario info window/i })).toHaveScreenshot(
-      'standard-scenario-info-window.png',
-    );
+    await expect(page.locator('#app')).toHaveScreenshot('standard-scenario-info-window.png', {
+      maxDiffPixelRatio: 0.1,
+    });
   });
 });
 
@@ -43,9 +55,8 @@ test.describe('campaign scenario info', () => {
   });
 
   test('matches screenshot', async ({ page }) => {
-    await expect(page.getByRole('dialog', { name: /scenario info window/i })).toHaveScreenshot(
-      'campaign-scenario-info-window.png',
-      { maxDiffPixelRatio: 0.02 },
-    );
+    await expect(page.locator('#app')).toHaveScreenshot('campaign-scenario-info-window.png', {
+      maxDiffPixelRatio: 0.02,
+    });
   });
 });

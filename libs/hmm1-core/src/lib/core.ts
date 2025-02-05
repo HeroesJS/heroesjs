@@ -87,3 +87,25 @@ export const opponentDifficulties: readonly OpponentDifficulty[] = [
   OpponentDifficulty.Smart,
   OpponentDifficulty.Genius,
 ];
+
+export enum MovementSpeed {
+  Canter = 'canter',
+  Gallop = 'gallop',
+  Jump = 'jump',
+  Trot = 'trot',
+  Walk = 'walk',
+}
+
+export const movementSpeeds = [
+  MovementSpeed.Walk,
+  MovementSpeed.Trot,
+  MovementSpeed.Canter,
+  MovementSpeed.Gallop,
+  MovementSpeed.Jump,
+] as const;
+
+export const nextOption = <T>(values: readonly T[], currentValue: T): T =>
+  values[(values.indexOf(currentValue) + 1) % values.length] ?? currentValue;
+
+export const previousOption = <T>(values: readonly T[], currentValue: T): T =>
+  values[(values.length + values.indexOf(currentValue) - 1) % values.length] ?? currentValue;

@@ -8,6 +8,7 @@ export type TextSize = 'small' | 'normal' | 'large';
 
 interface Props {
   readonly align?: 'left' | 'center' | 'right';
+  readonly className?: string;
   readonly component?: 'span' | 'h1' | 'h2';
   readonly heading?: boolean;
   readonly hidden?: boolean;
@@ -24,6 +25,7 @@ interface Props {
 export const Text = ({
   align,
   children,
+  className,
   component,
   heading,
   hidden,
@@ -42,6 +44,7 @@ export const Text = ({
       align={align}
       aria-label={label}
       as={component}
+      className={className}
       hidden={hidden}
       onClick={onClick}
       role={heading ? 'heading' : undefined}
@@ -75,13 +78,19 @@ const fontSizes: Record<TextSize, number> = {
   small: 9,
 };
 
+const lineHeights: Record<TextSize, number> = {
+  large: 16,
+  normal: 13,
+  small: 12,
+};
+
 const Root = styled.span<Pick<Props, 'align' | 'selected' | 'shadow' | 'size' | 'width' | 'x' | 'y'>>(
   ({ align, selected, shadow, size = 'normal', width, x, y }) => ({
     color: selected ? '#beeb00' : '#fff',
     fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
     fontSize: fontSizes[size],
     left: x,
-    lineHeight: '16px',
+    lineHeight: `${lineHeights[size]}px`,
     margin: 0,
     position: x !== undefined || y !== undefined ? 'absolute' : undefined,
     textAlign: align,

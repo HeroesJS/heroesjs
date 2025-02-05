@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
+import { Backdrop } from '../Backdrop';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
 import background from './assets/background.jpg';
@@ -10,9 +11,11 @@ interface Props extends PositionProps {
 }
 
 export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
-  <Root aria-label={label} role="menu" x={x} y={y}>
-    {children}
-  </Root>
+  <Backdrop>
+    <Root aria-label={label} role="menu" x={x} y={y}>
+      {children}
+    </Root>
+  </Backdrop>
 );
 
 const Root = styled(PositionedComponent)({

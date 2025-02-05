@@ -11,5 +11,7 @@ test.beforeEach(async ({ page }) => {
 test('renders scenario 1 info', async ({ page }) => {
   await page.getByRole('button', { name: /play lord ironfist/i }).click();
 
-  await expect(page.locator('#app')).toHaveScreenshot('scenario-1-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('scenario-1-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });

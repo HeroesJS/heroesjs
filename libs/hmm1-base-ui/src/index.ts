@@ -1,3 +1,4 @@
+export * from './Backdrop';
 export * from './Button';
 export * from './Checkbox';
 export { GlobalStyle } from './globalStyle';

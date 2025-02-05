@@ -12,10 +12,14 @@ interface Props extends PositionProps {
   readonly checked?: boolean;
   readonly label?: string;
   readonly onChange?: (checked: boolean) => void;
+  readonly onClick?: () => void;
 }
 
-export const Checkbox = ({ assets, checked, label, onChange, x, y }: Props) => {
-  const handleClick = () => onChange?.(!checked);
+export const Checkbox = ({ assets, checked, label, onChange, onClick, x, y }: Props) => {
+  const handleClick = () => {
+    onClick?.();
+    onChange?.(!checked);
+  };
 
   return (
     <Root aria-label={label} onClick={handleClick} role="checkbox" x={x} y={y}>

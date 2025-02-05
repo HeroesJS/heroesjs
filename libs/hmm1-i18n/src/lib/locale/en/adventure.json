@@ -8,6 +8,23 @@
       "scenarioNumber": "Number {{number}}",
       "title": "Scenario Info Window"
     },
+    "gameOptionsWindow": {
+      "autoSaveHeading": "Auto Save",
+      "effectsHeading": "Effects",
+      "infoLabel": "Info",
+      "loadGameLabel": "Load Game",
+      "movementSpeed": "Speed",
+      "musicHeading": "Music",
+      "newGameLabel": "New Game",
+      "okayLabel": "Okay",
+      "quitLabel": "Quit",
+      "saveGameLabel": "Save Game",
+      "showPathHeading": "Show Path",
+      "speedHeading": "Speed",
+      "title": "Game Options Window",
+      "viewEnemyMovementHeading": "View Enemy Movement",
+      "volume": "Volume {{value}}"
+    },
     "standardScenarioInfoWindow": {
       "confirmLabel": "Okay",
       "scenarioDescription": "Description",

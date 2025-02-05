@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import {
@@ -5,6 +6,7 @@ import {
   AdventureOptionsWindow,
   AdventureWindow,
   CampaignScenarioInfoWindow,
+  GameOptionsWindow,
   HeroLocator,
   Locator,
   StandardScenarioInfoWindow,
@@ -14,13 +16,24 @@ import {
   campaignScenarios,
   GameDifficulty,
   HeroId,
+  MovementSpeed,
   OpponentDifficulty,
   PlayerColor,
   scenarios,
+  type SoundVolume,
   Town,
 } from '@heroesjs/hmm1-core';
 
+import { FileSelectorWindow } from '../FileSelectorWindow';
+
 export const AdventureScreen = () => {
+  const [musicVolume, setMusicVolume] = useState<SoundVolume>(10);
+  const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(10);
+  const [movementSpeed, setMovementSpeed] = useState(MovementSpeed.Trot);
+  const [autoSave, setAutoSave] = useState(true);
+  const [showPath, setShowPath] = useState(true);
+  const [viewEnemyMovement, setViewEnemyMovement] = useState(true);
+
   const navigate = useNavigate();
 
   const scenario = scenarios[0];
@@ -28,7 +41,11 @@ export const AdventureScreen = () => {
   return (
     <AdventureWindow
       renderActionButtons={() => (
-        <AdventureButtons moveDisabled onAdventureOptionsClick={() => navigate('adventure-options')} />
+        <AdventureButtons
+          moveDisabled
+          onAdventureOptionsClick={() => navigate('adventure-options')}
+          onGameOptionsClick={() => navigate('game-options')}
+        />
       )}
       renderHeroLocators={() => (
         <Locator selected>
@@ -47,6 +64,42 @@ export const AdventureScreen = () => {
             <AdventureOptionsWindow onConfirmClick={() => navigate('..', { relative: 'path' })} x={160} y={40} />
           }
           path="adventure-options"
+        />
+        <Route
+          element={
+            <GameOptionsWindow
+              autoSave={autoSave}
+              effectsVolume={effectsVolume}
+              movementSpeed={movementSpeed}
+              musicVolume={musicVolume}
+              onAutoSaveChange={setAutoSave}
+              onEffectsVolumeChange={setEffectsVolume}
+              onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
+              onLoadGameClick={() => navigate('/game/load')}
+              onMovementSpeedChange={setMovementSpeed}
+              onMusicVolumeChange={setMusicVolume}
+              onNewGameClick={() => navigate('/game/new')}
+              onOkayClick={() => navigate('..', { relative: 'path' })}
+              onQuitClick={() => navigate('/')}
+              onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
+              onShowPathChange={setShowPath}
+              onViewEnemyMovementChange={setViewEnemyMovement}
+              showPath={showPath}
+              viewEnemyMovement={viewEnemyMovement}
+              x={160}
+              y={10}
+            />
+          }
+          path="game-options"
+        />
+        <Route
+          element={
+            <FileSelectorWindow
+              onCancelClick={() => navigate('..', { relative: 'path' })}
+              onConfirmClick={() => navigate('..', { relative: 'path' })}
+            />
+          }
+          path="save-game"
         />
         <Route
           element={
