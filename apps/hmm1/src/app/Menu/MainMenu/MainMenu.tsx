@@ -1,4 +1,6 @@
-import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { useTranslation } from 'react-i18next';
+
+import { type ButtonAssets, Menu, MenuButton, Modal, type PositionProps, useToggle } from '@heroesjs/hmm1-base-ui';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';
@@ -52,12 +54,83 @@ export const MainMenu = ({
   onViewHighScoresClick,
   x,
   y,
-}: Props) => (
-  <Menu label="Main Menu" x={x} y={y}>
-    <MenuButton assets={newGameButtonAssets} label="New Game" onClick={onNewGameClick} />
-    <MenuButton assets={loadGameButtonAssets} label="Load Game" onClick={onLoadGameClick} />
-    <MenuButton assets={viewHighScoresButtonAssets} label="View High Scores" onClick={onViewHighScoresClick} />
-    <MenuButton assets={viewCreditsButtonAssets} label="View Credits" onClick={onViewCreditsClick} />
-    <MenuButton assets={quitButtonAssets} label="Quit" onClick={onQuitClick} />
-  </Menu>
-);
+}: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
+
+  const { setFalse: closeNewGameInfo, setTrue: openNewGameInfo, value: newGameInfoVisible } = useToggle();
+  const { setFalse: closeLoadGameInfo, setTrue: openLoadGameInfo, value: loadGameInfoVisible } = useToggle();
+  const {
+    setFalse: closeViewHighScoresInfo,
+    setTrue: openViewHighScoresInfo,
+    value: viewHighScoresInfoVisible,
+  } = useToggle();
+  const { setFalse: closeViewCreditsInfo, setTrue: openViewCreditsInfo, value: viewCreditsVisible } = useToggle();
+  const { setFalse: closeQuitInfo, setTrue: openQuitInfo, value: quitInfoVisible } = useToggle();
+
+  return (
+    <>
+      <Menu label={t('title')} x={x} y={y}>
+        <MenuButton
+          assets={newGameButtonAssets}
+          label={t('newGameLabel')}
+          onClick={onNewGameClick}
+          onRightDown={openNewGameInfo}
+          onRightUp={closeNewGameInfo}
+        />
+        <MenuButton
+          assets={loadGameButtonAssets}
+          label={t('loadGameLabel')}
+          onClick={onLoadGameClick}
+          onRightDown={openLoadGameInfo}
+          onRightUp={closeLoadGameInfo}
+        />
+        <MenuButton
+          assets={viewHighScoresButtonAssets}
+          label={t('viewHighScoresLabel')}
+          onClick={onViewHighScoresClick}
+          onRightDown={openViewHighScoresInfo}
+          onRightUp={closeViewHighScoresInfo}
+        />
+        <MenuButton
+          assets={viewCreditsButtonAssets}
+          label={t('viewCreditsLabel')}
+          onClick={onViewCreditsClick}
+          onRightDown={openViewCreditsInfo}
+          onRightUp={closeViewCreditsInfo}
+        />
+        <MenuButton
+          assets={quitButtonAssets}
+          label={t('quitLabel')}
+          onClick={onQuitClick}
+          onRightDown={openQuitInfo}
+          onRightUp={closeQuitInfo}
+        />
+      </Menu>
+      {newGameInfoVisible && (
+        <Modal x={177} y={29}>
+          {t('newGameInfo')}
+        </Modal>
+      )}
+      {loadGameInfoVisible && (
+        <Modal x={177} y={29}>
+          {t('loadGameInfo')}
+        </Modal>
+      )}
+      {viewHighScoresInfoVisible && (
+        <Modal x={177} y={29}>
+          {t('viewHighScoresInfo')}
+        </Modal>
+      )}
+      {viewCreditsVisible && (
+        <Modal x={177} y={29}>
+          {t('viewCreditsInfo')}
+        </Modal>
+      )}
+      {quitInfoVisible && (
+        <Modal x={177} y={29}>
+          {t('quitInfo')}
+        </Modal>
+      )}
+    </>
+  );
+};

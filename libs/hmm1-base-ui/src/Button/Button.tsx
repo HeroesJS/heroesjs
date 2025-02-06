@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type MouseEventHandler, useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
@@ -16,9 +16,23 @@ interface Props extends PositionProps {
   readonly onClick?: () => void;
   readonly onMouseLeave?: () => void;
   readonly onMouseOver?: () => void;
+  readonly onRightDown?: () => void;
+  readonly onRightUp?: () => void;
 }
 
-export const Button = ({ assets, className, disabled, label, onClick, onMouseLeave, onMouseOver, x, y }: Props) => {
+export const Button = ({
+  assets,
+  className,
+  disabled,
+  label,
+  onClick,
+  onMouseLeave,
+  onMouseOver,
+  onRightDown,
+  onRightUp,
+  x,
+  y,
+}: Props) => {
   const [over, setOver] = useState(false);
   const [pressed, setPressed] = useState(false);
 
@@ -26,23 +40,44 @@ export const Button = ({ assets, className, disabled, label, onClick, onMouseLea
 
   const handleMouseOut = () => setOver(false);
 
-  const handleDocumentMouseUp = () => {
-    document.removeEventListener('mouseup', handleDocumentMouseUp);
+  const handleDocumentMouseUp = useCallback(
+    (e: MouseEvent) => {
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
 
-    setPressed(false);
-  };
+      if (e.button === 0) {
+        setPressed(false);
+      } else if (e.button === 2) {
+        onRightUp?.();
+      }
+    },
+    [onRightUp],
+  );
 
-  const handleMouseDown = () => {
-    document.addEventListener('mouseup', handleDocumentMouseUp);
+  const handleMouseDown = useCallback<MouseEventHandler>(
+    (e) => {
+      document.addEventListener('mouseup', handleDocumentMouseUp);
 
-    setPressed(true);
-  };
+      if (e.button === 0) {
+        setPressed(true);
+      } else if (e.button === 2) {
+        onRightDown?.();
+      }
+    },
+    [handleDocumentMouseUp, onRightDown],
+  );
 
-  const handleMouseUp = () => {
-    document.removeEventListener('mouseup', handleDocumentMouseUp);
+  const handleMouseUp = useCallback<MouseEventHandler>(
+    (e) => {
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
 
-    setPressed(false);
-  };
+      if (e.button === 0) {
+        setPressed(false);
+      } else if (e.button === 2) {
+        onRightUp?.();
+      }
+    },
+    [handleDocumentMouseUp, onRightUp],
+  );
 
   return (
     <Root

@@ -1,32 +1,41 @@
 import { range } from 'lodash';
+import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent } from '../PositionedComponent';
+import { Backdrop } from '../Backdrop';
+import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { SystemButton } from '../SystemButton';
+import { Text } from '../Text';
 
 import * as assets from './assets';
 
 type ModalType = 'yesNo' | 'okayCancel' | 'okay' | 'cancel';
 
-interface Props {
+interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
   readonly size?: number;
   readonly type?: ModalType;
 }
 
-export const Modal = ({ onCancelClick, onConfirmClick, size = 1, type }: Props) => (
-  <Root>
-    <Header />
-    {range(0, size).map((i) => (
-      <Body key={i} />
-    ))}
-    <Footer />
-    <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
-  </Root>
+export const Modal = ({ children, onCancelClick, onConfirmClick, size = 0, type, x, y }: PropsWithChildren<Props>) => (
+  <Backdrop>
+    <Root x={x} y={y}>
+      <Header />
+      {range(0, size).map((i) => (
+        <Body key={i} />
+      ))}
+      <Footer />
+      <Text align="center" size="large" width={188} x={49} y={53}>
+        {children}
+      </Text>
+      <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
+    </Root>
+  </Backdrop>
 );
 
 const Root = styled(PositionedComponent)({
+  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
   width: 2 * 143,
 });
 
