@@ -1,7 +1,7 @@
+import type { ComponentProps } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, type ButtonAssets } from '../Button';
-import type { PositionProps } from '../PositionedComponent';
 
 import * as assets from './assets';
 
@@ -14,12 +14,12 @@ const assetMap: Record<SystemButtonType, ButtonAssets> = {
   yes: assets.yesButton,
 };
 
-interface Props extends PositionProps {
+interface Props extends Omit<ComponentProps<typeof Button>, 'assets' | 'label'> {
   readonly onClick?: () => void;
-  readonly type: SystemButtonType;
+  readonly type?: SystemButtonType;
 }
 
-export const SystemButton = ({ type, ...rest }: Props) => {
+export const SystemButton = ({ type = 'okay', ...rest }: Props) => {
   const { t } = useTranslation('core', { keyPrefix: 'component.systemButton' });
 
   return <Button {...rest} assets={assetMap[type]} label={t(type)} />;
