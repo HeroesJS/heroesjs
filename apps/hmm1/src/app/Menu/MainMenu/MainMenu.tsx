@@ -1,4 +1,6 @@
-import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { useTranslation } from 'react-i18next';
+
+import { type ButtonAssets, Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';
@@ -52,12 +54,69 @@ export const MainMenu = ({
   onViewHighScoresClick,
   x,
   y,
-}: Props) => (
-  <Menu label="Main Menu" x={x} y={y}>
-    <MenuButton assets={newGameButtonAssets} label="New Game" onClick={onNewGameClick} />
-    <MenuButton assets={loadGameButtonAssets} label="Load Game" onClick={onLoadGameClick} />
-    <MenuButton assets={viewHighScoresButtonAssets} label="View High Scores" onClick={onViewHighScoresClick} />
-    <MenuButton assets={viewCreditsButtonAssets} label="View Credits" onClick={onViewCreditsClick} />
-    <MenuButton assets={quitButtonAssets} label="Quit" onClick={onQuitClick} />
-  </Menu>
-);
+}: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
+
+  const { closeNewGameInfo, newGameInfoIsOpen, openNewGameInfo } = useModal('newGameInfo');
+  const { closeLoadGameInfo, loadGameInfoIsOpen, openLoadGameInfo } = useModal('loadGameInfo');
+  const { closeViewHighScoresInfo, openViewHighScoresInfo, viewHighScoresInfoIsOpen } = useModal('viewHighScoresInfo');
+  const { closeViewCreditsInfo, openViewCreditsInfo, viewCreditsInfoIsOpen } = useModal('viewCreditsInfo');
+  const { closeQuitInfo, openQuitInfo, quitInfoIsOpen } = useModal('quitInfo');
+
+  return (
+    <>
+      <Menu label={t('title')} x={x} y={y}>
+        <MenuButton
+          assets={newGameButtonAssets}
+          label={t('newGameLabel')}
+          onClick={onNewGameClick}
+          onRightButtonDown={openNewGameInfo}
+          onRightButtonUp={closeNewGameInfo}
+        />
+        <MenuButton
+          assets={loadGameButtonAssets}
+          label={t('loadGameLabel')}
+          onClick={onLoadGameClick}
+          onRightButtonDown={openLoadGameInfo}
+          onRightButtonUp={closeLoadGameInfo}
+        />
+        <MenuButton
+          assets={viewHighScoresButtonAssets}
+          label={t('viewHighScoresLabel')}
+          onClick={onViewHighScoresClick}
+          onRightButtonDown={openViewHighScoresInfo}
+          onRightButtonUp={closeViewHighScoresInfo}
+        />
+        <MenuButton
+          assets={viewCreditsButtonAssets}
+          label={t('viewCreditsLabel')}
+          onClick={onViewCreditsClick}
+          onRightButtonDown={openViewCreditsInfo}
+          onRightButtonUp={closeViewCreditsInfo}
+        />
+        <MenuButton
+          assets={quitButtonAssets}
+          label={t('quitLabel')}
+          onClick={onQuitClick}
+          onRightButtonDown={openQuitInfo}
+          onRightButtonUp={closeQuitInfo}
+        />
+      </Menu>
+      <Modal open={newGameInfoIsOpen} x={177} y={29}>
+        {t('newGameInfo')}
+      </Modal>
+      <Modal open={loadGameInfoIsOpen} x={177} y={29}>
+        {t('loadGameInfo')}
+      </Modal>
+      <Modal open={viewHighScoresInfoIsOpen} x={177} y={29}>
+        {t('viewHighScoresInfo')}
+      </Modal>
+      <Modal open={viewCreditsInfoIsOpen} x={177} y={29}>
+        {t('viewCreditsInfo')}
+      </Modal>
+      <Modal open={quitInfoIsOpen} x={177} y={29}>
+        {t('quitInfo')}
+      </Modal>
+    </>
+  );
+};

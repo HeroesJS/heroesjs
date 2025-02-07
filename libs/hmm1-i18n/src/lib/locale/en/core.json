@@ -1,4 +1,12 @@
 {
+  "component": {
+    "systemButton": {
+      "cancel": "$t(okayCancel.false)",
+      "no": "$(yesNo.false)",
+      "okay": "$(okayCancel.true)",
+      "yes": "$(yesNo.true)"
+    }
+  },
   "gameDifficulty": {
     "easy": "Easy",
     "expert": "Expert",
@@ -11,6 +19,10 @@
     "jump": "Jump",
     "trot": "Trot",
     "walk": "Walk"
+  },
+  "okayCancel": {
+    "false": "Cancel",
+    "true": "Okay"
   },
   "onOff": {
     "false": "Off",

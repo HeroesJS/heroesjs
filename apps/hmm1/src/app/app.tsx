@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,6 +11,18 @@ import { MainScreen } from './MainScreen';
 
 export function App() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
 
   const handleCreditsClick = () => navigate('/');
 

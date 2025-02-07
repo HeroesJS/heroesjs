@@ -44,7 +44,7 @@ export const Window = ({
 const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
   ({ background, height, shadow, width }) => ({
     background: `url(${background})`,
-    boxShadow: shadow ? '17px 16px rgba(0 0 0 / 30%), 1px 0 #000' : undefined,
+    boxShadow: shadow ? '17px 16px rgba(0 0 0 / 30%)' : undefined,
     height,
     width,
   }),

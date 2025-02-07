@@ -12,6 +12,19 @@
       "scenarioSize": "Size",
       "title": "File Selector Window"
     },
+    "mainMenu": {
+      "loadGameInfo": "Load a prevously saved game.",
+      "loadGameLabel": "Load Game",
+      "newGameInfo": "Start a single or multi-player game.",
+      "newGameLabel": "New Game",
+      "quitInfo": "Quit Heroes of Might and Magic and return to the DOS prompt.",
+      "quitLabel": "Quit",
+      "title": "Main Menu",
+      "viewCreditsInfo": "View the credits screen.",
+      "viewCreditsLabel": "View Credits",
+      "viewHighScoresInfo": "View the high score screen.",
+      "viewHighScoresLabel": "View High Scores"
+    },
     "newGameWindow": {
       "cancelLabel": "Cancel",
       "changeOpponentSettingLabel": "Change Opponent {{index}} Setting",
