@@ -16,8 +16,8 @@ interface Props extends PositionProps {
   readonly onClick?: () => void;
   readonly onMouseLeave?: () => void;
   readonly onMouseOver?: () => void;
-  readonly onRightDown?: () => void;
-  readonly onRightUp?: () => void;
+  readonly onRightButtonDown?: () => void;
+  readonly onRightButtonUp?: () => void;
 }
 
 export const Button = ({
@@ -28,8 +28,8 @@ export const Button = ({
   onClick,
   onMouseLeave,
   onMouseOver,
-  onRightDown,
-  onRightUp,
+  onRightButtonDown,
+  onRightButtonUp,
   x,
   y,
 }: Props) => {
@@ -47,10 +47,10 @@ export const Button = ({
       if (e.button === 0) {
         setPressed(false);
       } else if (e.button === 2) {
-        onRightUp?.();
+        onRightButtonUp?.();
       }
     },
-    [onRightUp],
+    [onRightButtonUp],
   );
 
   const handleMouseDown = useCallback<MouseEventHandler>(
@@ -60,10 +60,10 @@ export const Button = ({
       if (e.button === 0) {
         setPressed(true);
       } else if (e.button === 2) {
-        onRightDown?.();
+        onRightButtonDown?.();
       }
     },
-    [handleDocumentMouseUp, onRightDown],
+    [handleDocumentMouseUp, onRightButtonDown],
   );
 
   const handleMouseUp = useCallback<MouseEventHandler>(
@@ -73,10 +73,10 @@ export const Button = ({
       if (e.button === 0) {
         setPressed(false);
       } else if (e.button === 2) {
-        onRightUp?.();
+        onRightButtonUp?.();
       }
     },
-    [handleDocumentMouseUp, onRightUp],
+    [handleDocumentMouseUp, onRightButtonUp],
   );
 
   return (

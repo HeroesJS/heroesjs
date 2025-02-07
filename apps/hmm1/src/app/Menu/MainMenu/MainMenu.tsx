@@ -70,36 +70,36 @@ export const MainMenu = ({
           assets={newGameButtonAssets}
           label={t('newGameLabel')}
           onClick={onNewGameClick}
-          onRightDown={openNewGameInfo}
-          onRightUp={closeNewGameInfo}
+          onRightButtonDown={openNewGameInfo}
+          onRightButtonUp={closeNewGameInfo}
         />
         <MenuButton
           assets={loadGameButtonAssets}
           label={t('loadGameLabel')}
           onClick={onLoadGameClick}
-          onRightDown={openLoadGameInfo}
-          onRightUp={closeLoadGameInfo}
+          onRightButtonDown={openLoadGameInfo}
+          onRightButtonUp={closeLoadGameInfo}
         />
         <MenuButton
           assets={viewHighScoresButtonAssets}
           label={t('viewHighScoresLabel')}
           onClick={onViewHighScoresClick}
-          onRightDown={openViewHighScoresInfo}
-          onRightUp={closeViewHighScoresInfo}
+          onRightButtonDown={openViewHighScoresInfo}
+          onRightButtonUp={closeViewHighScoresInfo}
         />
         <MenuButton
           assets={viewCreditsButtonAssets}
           label={t('viewCreditsLabel')}
           onClick={onViewCreditsClick}
-          onRightDown={openViewCreditsInfo}
-          onRightUp={closeViewCreditsInfo}
+          onRightButtonDown={openViewCreditsInfo}
+          onRightButtonUp={closeViewCreditsInfo}
         />
         <MenuButton
           assets={quitButtonAssets}
           label={t('quitLabel')}
           onClick={onQuitClick}
-          onRightDown={openQuitInfo}
-          onRightUp={closeQuitInfo}
+          onRightButtonDown={openQuitInfo}
+          onRightButtonUp={closeQuitInfo}
         />
       </Menu>
       <Modal open={newGameInfoIsOpen} x={177} y={29}>
