@@ -1,5 +1,18 @@
 {
   "component": {
+    "campaignMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "lord-alamar": "Play Lord Alamar",
+      "lord-ironfist": "Play Lord Ironfist",
+      "lord-slayer": "Play Lord Slayer",
+      "queen-lamanda": "Play Queen Lamanda",
+      "title": "Campaign Menu"
+    },
+    "comPortMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "port": "Com-{{number}}",
+      "title": "Com Port Menu"
+    },
     "fileSelectorWindow": {
       "cancelLabel": "Cancel",
       "confirmLabel": "Okay",
@@ -11,6 +24,21 @@
       "scenarioInfo": "Scenario Info",
       "scenarioSize": "Size",
       "title": "File Selector Window"
+    },
+    "gameTypeMenu": {
+      "campaignGame": "Campaign Game",
+      "cancel": "$t(core:okayCancel.false)",
+      "multiPlayerGame": "Multi-Player Game",
+      "standardGame": "Standard Game",
+      "title": "Game Type Menu"
+    },
+    "hostGuestMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "guest": "Guest",
+      "guestDetail": "Guest (Answers)",
+      "host": "Host",
+      "hostDetail": "Host (Dials)",
+      "title": "Host/Guest Menu"
     },
     "mainMenu": {
       "loadGameInfo": "Load a prevously saved game.",
@@ -24,6 +52,14 @@
       "viewCreditsLabel": "View Credits",
       "viewHighScoresInfo": "View the high score screen.",
       "viewHighScoresLabel": "View High Scores"
+    },
+    "multiPlayerGameTypeMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "directConnect": "Direct Connect",
+      "hotSeat": "Hot Seat",
+      "modem": "Modem",
+      "network": "Network",
+      "title": "Multi-Player Game Type Menu"
     },
     "newGameWindow": {
       "cancelLabel": "Cancel",
@@ -42,6 +78,11 @@
       "scenarioSelectionHeading": "Choose Scenario",
       "selectScenarioLabel": "Select Scenario",
       "title": "New Game Window"
+    },
+    "playerCountMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "playerCount_other": "{{count}} Players",
+      "title": "Player Count Menu"
     }
   }
 }

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import twoPlayersDisabled from './assets/2-players/disabled.png';
@@ -35,15 +37,17 @@ interface Props extends PositionProps {
 }
 
 export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+
   return (
-    <Menu label="Player Count Menu" x={x} y={y}>
+    <Menu label={t('title')} x={x} y={y}>
       {Object.keys(assets)
         .map(Number)
         .map((count) => (
           <Item key={count} onClick={onCountClick} value={count} />
         ))}
       <MenuSeparator />
-      <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
+      <MenuButton assets={cancelButtonAssets} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -54,7 +58,9 @@ interface ItemProps {
 }
 
 const Item = ({ onClick, value }: ItemProps) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+
   const handleClick = () => onClick?.(value);
 
-  return <MenuButton assets={assets[value]} label={`${value} Players`} onClick={handleClick} />;
+  return <MenuButton assets={assets[value]} label={t('playerCount', { count: value })} onClick={handleClick} />;
 };
