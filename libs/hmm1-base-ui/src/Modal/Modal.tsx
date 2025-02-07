@@ -41,6 +41,7 @@ export const Modal = ({
           <Body key={i} />
         ))}
         <Footer />
+        <Shadow />
         <Text align="center" size="large" width={188} x={49} y={53}>
           {children}
         </Text>
@@ -51,7 +52,6 @@ export const Modal = ({
 };
 
 const Root = styled(PositionedComponent)({
-  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
   width: 2 * 143,
 });
 
@@ -88,6 +88,15 @@ const Body = styled(MirroredBackground)({
 const Footer = styled(MirroredBackground)({
   backgroundImage: `url(${assets.footer})`,
   height: 48,
+});
+
+const Shadow = styled.div({
+  bottom: 2,
+  boxShadow: '17px 16px rgba(0 0 0 / 30%)',
+  left: 3,
+  position: 'absolute',
+  right: 5,
+  top: 27,
 });
 
 type ActionsProps = Pick<Props, 'onCancelClick' | 'onConfirmClick' | 'type'>;
