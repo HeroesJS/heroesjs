@@ -19,13 +19,15 @@ export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
 );
 
 const Root = styled(PositionedComponent)({
+  backgroundColor: '#000',
   backgroundImage: `url(${background})`,
-  boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',
+  backgroundRepeat: 'no-repeat',
+  boxShadow: '17px 16px rgba(0 0 0 / 30%)',
   boxSizing: 'border-box',
   fontSize: 0,
   height: 410,
   padding: '45px 33px',
-  width: 193,
+  width: 194,
 });
 
 export const menuItemStyle = css({
