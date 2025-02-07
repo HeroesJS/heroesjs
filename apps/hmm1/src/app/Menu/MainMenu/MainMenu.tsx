@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { type ButtonAssets, Menu, MenuButton, Modal, type PositionProps, useToggle } from '@heroesjs/hmm1-base-ui';
+import { type ButtonAssets, Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
 
 import loadGameDisabled from './assets/load-game/disabled.png';
 import loadGameEnabled from './assets/load-game/enabled.png';
@@ -57,15 +57,11 @@ export const MainMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
 
-  const { setFalse: closeNewGameInfo, setTrue: openNewGameInfo, value: newGameInfoVisible } = useToggle();
-  const { setFalse: closeLoadGameInfo, setTrue: openLoadGameInfo, value: loadGameInfoVisible } = useToggle();
-  const {
-    setFalse: closeViewHighScoresInfo,
-    setTrue: openViewHighScoresInfo,
-    value: viewHighScoresInfoVisible,
-  } = useToggle();
-  const { setFalse: closeViewCreditsInfo, setTrue: openViewCreditsInfo, value: viewCreditsVisible } = useToggle();
-  const { setFalse: closeQuitInfo, setTrue: openQuitInfo, value: quitInfoVisible } = useToggle();
+  const { closeNewGameInfo, newGameInfoIsOpen, openNewGameInfo } = useModal('newGameInfo');
+  const { closeLoadGameInfo, loadGameInfoIsOpen, openLoadGameInfo } = useModal('loadGameInfo');
+  const { closeViewHighScoresInfo, openViewHighScoresInfo, viewHighScoresInfoIsOpen } = useModal('viewHighScoresInfo');
+  const { closeViewCreditsInfo, openViewCreditsInfo, viewCreditsInfoIsOpen } = useModal('viewCreditsInfo');
+  const { closeQuitInfo, openQuitInfo, quitInfoIsOpen } = useModal('quitInfo');
 
   return (
     <>
@@ -106,31 +102,21 @@ export const MainMenu = ({
           onRightUp={closeQuitInfo}
         />
       </Menu>
-      {newGameInfoVisible && (
-        <Modal x={177} y={29}>
-          {t('newGameInfo')}
-        </Modal>
-      )}
-      {loadGameInfoVisible && (
-        <Modal x={177} y={29}>
-          {t('loadGameInfo')}
-        </Modal>
-      )}
-      {viewHighScoresInfoVisible && (
-        <Modal x={177} y={29}>
-          {t('viewHighScoresInfo')}
-        </Modal>
-      )}
-      {viewCreditsVisible && (
-        <Modal x={177} y={29}>
-          {t('viewCreditsInfo')}
-        </Modal>
-      )}
-      {quitInfoVisible && (
-        <Modal x={177} y={29}>
-          {t('quitInfo')}
-        </Modal>
-      )}
+      <Modal open={newGameInfoIsOpen} x={177} y={29}>
+        {t('newGameInfo')}
+      </Modal>
+      <Modal open={loadGameInfoIsOpen} x={177} y={29}>
+        {t('loadGameInfo')}
+      </Modal>
+      <Modal open={viewHighScoresInfoIsOpen} x={177} y={29}>
+        {t('viewHighScoresInfo')}
+      </Modal>
+      <Modal open={viewCreditsInfoIsOpen} x={177} y={29}>
+        {t('viewCreditsInfo')}
+      </Modal>
+      <Modal open={quitInfoIsOpen} x={177} y={29}>
+        {t('quitInfo')}
+      </Modal>
     </>
   );
 };

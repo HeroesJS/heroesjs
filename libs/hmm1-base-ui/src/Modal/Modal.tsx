@@ -14,25 +14,41 @@ type ModalType = 'yesNo' | 'okayCancel' | 'okay' | 'cancel';
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
+  readonly open?: boolean;
   readonly size?: number;
   readonly type?: ModalType;
 }
 
-export const Modal = ({ children, onCancelClick, onConfirmClick, size = 0, type, x, y }: PropsWithChildren<Props>) => (
-  <Backdrop>
-    <Root x={x} y={y}>
-      <Header />
-      {range(0, size).map((i) => (
-        <Body key={i} />
-      ))}
-      <Footer />
-      <Text align="center" size="large" width={188} x={49} y={53}>
-        {children}
-      </Text>
-      <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
-    </Root>
-  </Backdrop>
-);
+export const Modal = ({
+  children,
+  onCancelClick,
+  onConfirmClick,
+  open = true,
+  size = 0,
+  type,
+  x,
+  y,
+}: PropsWithChildren<Props>) => {
+  if (!open) {
+    return null;
+  }
+
+  return (
+    <Backdrop>
+      <Root x={x} y={y}>
+        <Header />
+        {range(0, size).map((i) => (
+          <Body key={i} />
+        ))}
+        <Footer />
+        <Text align="center" size="large" width={188} x={49} y={53}>
+          {children}
+        </Text>
+        <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
+      </Root>
+    </Backdrop>
+  );
+};
 
 const Root = styled(PositionedComponent)({
   boxShadow: '17px 16px rgba(0 0 0 / 30%), 1px 0 #000',

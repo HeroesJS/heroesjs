@@ -11,6 +11,6 @@ export * from './PositionedComponent';
 export * from './Screen';
 export * from './SystemButton';
 export * from './Text';
-export { useToggle } from './useToggle';
+export { useToggle2, useToggle } from './useToggle';
 export * from './Window';
 export { withGlobalStyle } from './withGlobalStyle';

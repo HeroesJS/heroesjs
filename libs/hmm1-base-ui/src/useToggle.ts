@@ -17,3 +17,11 @@ export const useToggle = (initialValue = false): UseToggleResult => {
     value,
   };
 };
+
+type UseToggle2Result = [boolean, () => void, () => void, () => void];
+
+export const useToggle2 = (initialValue = false): UseToggle2Result => {
+  const { setFalse, setTrue, toggle, value } = useToggle(initialValue);
+
+  return [value, setTrue, setFalse, toggle];
+};
