@@ -8,9 +8,11 @@ const scenario = campaignScenarios[0];
 
 const meta: Meta<typeof CampaignScenarioInfoWindow> = {
   args: {
-    scenarioDescription: scenario.description,
-    scenarioName: scenario.name,
-    scenarioNumber: scenario.num,
+    scenario: {
+      description: scenario.description,
+      name: scenario.name,
+      number: scenario.number,
+    },
   },
   component: CampaignScenarioInfoWindow,
 };

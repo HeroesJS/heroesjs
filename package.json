@@ -11,7 +11,7 @@
   "scripts": {
     "format:check": "nx format:check --all",
     "format:write": "nx format:write --all",
-    "verify": "nx affected -t lint test build e2e --parallel=1"
+    "verify": "nx affected -t format:check lint test build typecheck e2e --parallel=1"
   },
   "dependencies": {
     "i18next": "^24.2.2",
