@@ -3,9 +3,18 @@
   "defaultBase": "main",
   "generators": {
     "@nx/react": {
-      "application": { "babel": false, "bundler": "vite", "linter": "eslint", "style": "styled-components" },
+      "application": {
+        "babel": false,
+        "bundler": "vite",
+        "linter": "eslint",
+        "style": "styled-components"
+      },
       "component": { "style": "styled-components" },
-      "library": { "linter": "eslint", "style": "styled-components", "unitTestRunner": "vitest" }
+      "library": {
+        "linter": "eslint",
+        "style": "styled-components",
+        "unitTestRunner": "vitest"
+      }
     }
   },
   "nxCloudId": "67a72634821c3af2179c5b47",
@@ -21,7 +30,12 @@
       },
       "plugin": "@nx/vite/plugin"
     },
-    { "options": { "targetName": "lint" }, "plugin": "@nx/eslint/plugin" },
+    {
+      "options": {
+        "targetName": "lint"
+      },
+      "plugin": "@nx/eslint/plugin"
+    },
     {
       "options": {
         "buildStorybookTargetName": "build-storybook",
@@ -31,7 +45,16 @@
       },
       "plugin": "@nx/storybook/plugin"
     },
-    { "options": { "targetName": "e2e" }, "plugin": "@nx/playwright/plugin" }
+    {
+      "options": {
+        "targetName": "e2e"
+      },
+      "plugin": "@nx/playwright/plugin"
+    }
   ],
-  "targetDefaults": { "e2e-ci--**/*": { "dependsOn": ["^build"] } }
+  "targetDefaults": {
+    "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    }
+  }
 }
