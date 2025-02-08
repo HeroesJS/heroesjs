@@ -1,5 +1,26 @@
 {
   "component": {
+    "adventureButtons": {
+      "adventureOptions": "Adventure Options",
+      "endTurn": "endTurn",
+      "gameOptions": "Game Options",
+      "kingdomOverview": "Kingdom Overview",
+      "move": "Move",
+      "nextHero": "Next Hero"
+    },
+    "adventureOptionsWindow": {
+      "castSpell": "Cast Spell",
+      "dig": "Dig",
+      "okay": "$t(core:okayCancel.true)",
+      "title": "Adventure Options Window",
+      "viewPuzzle": "View Puzzle",
+      "viewWorld": "View World"
+    },
+    "adventureWindow": {
+      "adventureMap": "Adventure Map",
+      "statusWindow": "Status Window",
+      "worldMap": "World Map"
+    },
     "campaignScenarioInfoWindow": {
       "confirmLabel": "Okay",
       "restartLabel": "Restart Scenario",
