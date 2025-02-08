@@ -19,6 +19,10 @@
       }
     }
   },
+  "namedInputs": {
+    "default": ["sharedGlobals"],
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/verify.yml"]
+  },
   "nxCloudId": "67a72634821c3af2179c5b47",
   "plugins": [
     {
