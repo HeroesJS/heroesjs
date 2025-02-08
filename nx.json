@@ -8,6 +8,7 @@
       "library": { "linter": "eslint", "style": "styled-components", "unitTestRunner": "vitest" }
     }
   },
+  "nxCloudId": "67a72634821c3af2179c5b47",
   "plugins": [
     {
       "options": {
@@ -32,6 +33,5 @@
     },
     { "options": { "targetName": "e2e" }, "plugin": "@nx/playwright/plugin" }
   ],
-  "targetDefaults": { "e2e-ci--**/*": { "dependsOn": ["^build"] } },
-  "nxCloudId": "67a72634821c3af2179c5b47"
+  "targetDefaults": { "e2e-ci--**/*": { "dependsOn": ["^build"] } }
 }
