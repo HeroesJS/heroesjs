@@ -9,7 +9,9 @@
         "linter": "eslint",
         "style": "styled-components"
       },
-      "component": { "style": "styled-components" },
+      "component": {
+        "style": "styled-components"
+      },
       "library": {
         "linter": "eslint",
         "style": "styled-components",
