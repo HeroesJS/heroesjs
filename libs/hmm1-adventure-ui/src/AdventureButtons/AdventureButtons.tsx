@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Button, PositionedComponent } from '@heroesjs/hmm1-base-ui';
@@ -24,16 +25,20 @@ export const AdventureButtons = ({
   onKingdomOverviewClick,
   onMoveClick,
   onNextHeroClick,
-}: Props) => (
-  <Root>
-    <Button assets={nextHero} disabled={nextHeroDisabled} label="Next Hero" onClick={onNextHeroClick} />
-    <Button assets={move} disabled={moveDisabled} label="Move" onClick={onMoveClick} />
-    <Button assets={kingdomOverview} label="Kingdom Overview" onClick={onKingdomOverviewClick} />
-    <Button assets={endTurn} label="End Turn" onClick={onEndTurnClick} />
-    <Button assets={adventureOptions} label="Adventure Options" onClick={onAdventureOptionsClick} />
-    <Button assets={gameOptions} label="Game Options" onClick={onGameOptionsClick} />
-  </Root>
-);
+}: Props) => {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureButtons' });
+
+  return (
+    <Root>
+      <Button assets={nextHero} disabled={nextHeroDisabled} label={t('nextHero')} onClick={onNextHeroClick} />
+      <Button assets={move} disabled={moveDisabled} label={t('move')} onClick={onMoveClick} />
+      <Button assets={kingdomOverview} label={t('kingdomOverview')} onClick={onKingdomOverviewClick} />
+      <Button assets={endTurn} label={t('endTurn')} onClick={onEndTurnClick} />
+      <Button assets={adventureOptions} label={t('adventureOptions')} onClick={onAdventureOptionsClick} />
+      <Button assets={gameOptions} label={t('gameOptions')} onClick={onGameOptionsClick} />
+    </Root>
+  );
+};
 
 const Root = styled(PositionedComponent)({
   display: 'inline-block',

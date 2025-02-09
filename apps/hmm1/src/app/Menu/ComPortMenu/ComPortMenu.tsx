@@ -1,4 +1,5 @@
 import { range } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import { Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
@@ -10,12 +11,14 @@ interface Props extends PositionProps {
 }
 
 export const ComPortMenu = ({ onCancelClick, onPortClick, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.comPortMenu' });
+
   return (
-    <Menu label="Com Port Menu" x={x} y={y}>
+    <Menu label={t('title')} x={x} y={y}>
       {range(1, 5).map((i) => (
         <Item key={i} onClick={onPortClick} value={i} />
       ))}
-      <MenuButton assets={assets.cancelButton} label="Cancel" onClick={onCancelClick} />
+      <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -26,7 +29,11 @@ interface ItemProps {
 }
 
 const Item = ({ value, onClick }: ItemProps) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.comPortMenu' });
+
   const handleClick = () => onClick?.(value);
 
-  return <MenuButton assets={assets.comPortButtons[value]} label={`Com-${value}`} onClick={handleClick} />;
+  return (
+    <MenuButton assets={assets.comPortButtons[value]} label={t('port', { number: value })} onClick={handleClick} />
+  );
 };

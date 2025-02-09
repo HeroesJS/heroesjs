@@ -1,7 +1,28 @@
 {
   "component": {
+    "adventureButtons": {
+      "adventureOptions": "Adventure Options",
+      "endTurn": "End Turn",
+      "gameOptions": "Game Options",
+      "kingdomOverview": "Kingdom Overview",
+      "move": "Move",
+      "nextHero": "Next Hero"
+    },
+    "adventureOptionsWindow": {
+      "castSpell": "Cast Spell",
+      "dig": "Dig",
+      "okay": "$t(core:okayCancel.true)",
+      "title": "Adventure Options Window",
+      "viewPuzzle": "View Puzzle",
+      "viewWorld": "View World"
+    },
+    "adventureWindow": {
+      "adventureMap": "Adventure Map",
+      "statusWindow": "Status Window",
+      "worldMap": "World Map"
+    },
     "campaignScenarioInfoWindow": {
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "restartLabel": "Restart Scenario",
       "scenarioDescription": "Description",
       "scenarioName": "Name",
@@ -10,13 +31,13 @@
     },
     "gameOptionsWindow": {
       "autoSaveHeading": "Auto Save",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "effectsHeading": "Effects",
       "infoLabel": "Info",
       "loadGameLabel": "Load Game",
       "movementSpeed": "Speed",
       "musicHeading": "Music",
       "newGameLabel": "New Game",
-      "okayLabel": "Okay",
       "quitLabel": "Quit",
       "saveGameLabel": "Save Game",
       "showPathHeading": "Show Path",
@@ -25,8 +46,12 @@
       "viewEnemyMovementHeading": "View Enemy Movement",
       "volume": "Volume {{value}}"
     },
+    "playerColorJewel": {
+      "changeLabel": "Change Banner Color",
+      "label": "Banner Color"
+    },
     "standardScenarioInfoWindow": {
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "scenarioDescription": "Description",
       "scenarioDifficulty": "Difficulty",
       "scenarioSize": "Size",

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
@@ -19,13 +21,15 @@ export const MultiPlayerGameTypeMenu = ({
   x,
   y,
 }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.multiPlayerGameTypeMenu' });
+
   return (
-    <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
-      <MenuButton assets={assets.hotSeatButton} label="Hot Seat" onClick={onHotSeatClick} />
-      <MenuButton assets={assets.networkButton} label="Network" onClick={onNetworkClick} />
-      <MenuButton assets={assets.modemButton} label="Modem" onClick={onModemClick} />
-      <MenuButton assets={assets.directConnectButton} label="Direct Connect" onClick={onDirectConnectClick} />
-      <MenuButton assets={assets.cancelButton} label="Cancel" onClick={onCancelClick} />
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton assets={assets.hotSeatButton} label={t('hotSeat')} onClick={onHotSeatClick} />
+      <MenuButton assets={assets.networkButton} label={t('network')} onClick={onNetworkClick} />
+      <MenuButton assets={assets.modemButton} label={t('modem')} onClick={onModemClick} />
+      <MenuButton assets={assets.directConnectButton} label={t('directConnect')} onClick={onDirectConnectClick} />
+      <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
   );
 };

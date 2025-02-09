@@ -35,6 +35,12 @@
     "none": "None",
     "smart": "Smart"
   },
+  "playerColor": {
+    "blue": "Blue",
+    "green": "Green",
+    "red": "Red",
+    "yellow": "Yellow"
+  },
   "scenarioDifficulty": {
     "easy": "Easy",
     "impossible": "Impossible",

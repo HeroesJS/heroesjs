@@ -1,4 +1,5 @@
 import type { PropsWithChildren, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, Screen } from '@heroesjs/hmm1-base-ui';
@@ -23,29 +24,33 @@ export const AdventureWindow = ({
   renderHeroLocators,
   renderTownLocators,
   renderWorldMap,
-}: PropsWithChildren<Props>) => (
-  <Screen background={background}>
-    <AdventureMap aria-label="Adventure Map" role="main" x={16} y={16}>
-      {renderAdventureMap?.()}
-    </AdventureMap>
-    <WorldMap aria-label="World Map" role="note" x={ScreenHeight} y={16}>
-      {renderWorldMap?.()}
-    </WorldMap>
-    <HeroLocators x={ScreenHeight} y={176}>
-      {renderHeroLocators?.()}
-    </HeroLocators>
-    <TownLocators x={553} y={177}>
-      {renderTownLocators?.()}
-    </TownLocators>
-    <ActionButtons x={ScreenHeight} y={320}>
-      {renderActionButtons?.()}
-    </ActionButtons>
-    <StatusWindow aria-label="Status Window" role="note" x={ScreenHeight} y={392}>
-      {renderStatusWindow?.()}
-    </StatusWindow>
-    {children}
-  </Screen>
-);
+}: PropsWithChildren<Props>) => {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureWindow' });
+
+  return (
+    <Screen background={background}>
+      <AdventureMap aria-label={t('adventureMap')} role="main" x={16} y={16}>
+        {renderAdventureMap?.()}
+      </AdventureMap>
+      <WorldMap aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
+        {renderWorldMap?.()}
+      </WorldMap>
+      <HeroLocators x={ScreenHeight} y={176}>
+        {renderHeroLocators?.()}
+      </HeroLocators>
+      <TownLocators x={553} y={177}>
+        {renderTownLocators?.()}
+      </TownLocators>
+      <ActionButtons x={ScreenHeight} y={320}>
+        {renderActionButtons?.()}
+      </ActionButtons>
+      <StatusWindow aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
+        {renderStatusWindow?.()}
+      </StatusWindow>
+      {children}
+    </Screen>
+  );
+};
 
 const AdventureMap = styled(PositionedComponent)({
   height: 448,

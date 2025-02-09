@@ -21,13 +21,13 @@ interface Props extends PositionProps {
   readonly movementSpeed?: MovementSpeed;
   readonly musicVolume?: SoundVolume;
   readonly onAutoSaveChange?: (value: boolean) => void;
+  readonly onConfirmClick?: () => void;
   readonly onEffectsVolumeChange?: (value: SoundVolume) => void;
   readonly onInfoClick?: () => void;
   readonly onLoadGameClick?: () => void;
   readonly onMovementSpeedChange?: (value: MovementSpeed) => void;
   readonly onMusicVolumeChange?: (value: SoundVolume) => void;
   readonly onNewGameClick?: () => void;
-  readonly onOkayClick?: () => void;
   readonly onQuitClick?: () => void;
   readonly onSaveGameClick?: () => void;
   readonly onShowPathChange?: (value: boolean) => void;
@@ -42,13 +42,13 @@ export const GameOptionsWindow = ({
   movementSpeed = movementSpeeds[0],
   musicVolume = soundVolumes[0],
   onAutoSaveChange,
+  onConfirmClick,
   onEffectsVolumeChange,
   onInfoClick,
   onLoadGameClick,
   onMovementSpeedChange,
   onMusicVolumeChange,
   onNewGameClick,
-  onOkayClick,
   onQuitClick,
   onSaveGameClick,
   onShowPathChange,
@@ -132,7 +132,7 @@ export const GameOptionsWindow = ({
         x={220}
         y={314}
       />
-      <Button assets={assets.okayButton} label={t('okayLabel')} onClick={onOkayClick} x={24} y={407} />
+      <Button assets={assets.okayButton} label={t('confirmLabel')} onClick={onConfirmClick} x={24} y={407} />
       <Button assets={assets.infoButton} label={t('infoLabel')} onClick={onInfoClick} x={201} y={407} />
     </Window>
   );

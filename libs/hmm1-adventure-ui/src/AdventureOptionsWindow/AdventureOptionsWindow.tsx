@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, type PositionProps, Window } from '@heroesjs/hmm1-base-ui';
 
 import { background, castSpell, dig, okay, viewPuzzle, viewWorld } from './assets';
@@ -18,12 +20,16 @@ export const AdventureOptionsWindow = ({
   onViewWorldClick,
   x,
   y,
-}: Props) => (
-  <Window background={background} height={236} label="Adventure Options Window" shadow width={322} x={x} y={y}>
-    <Button assets={viewWorld} label="View World" onClick={onViewWorldClick} x={46} y={31} />
-    <Button assets={viewPuzzle} label="View Puzzle" onClick={onViewPuzzleClick} x={179} y={31} />
-    <Button assets={castSpell} label="Cast Spell" onClick={onCastSpellClick} x={46} y={107} />
-    <Button assets={dig} label="Dig" onClick={onDigClick} x={179} y={107} />
-    <Button assets={okay} label="Okay" onClick={onConfirmClick} x={112} y={184} />
-  </Window>
-);
+}: Props) => {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureOptionsWindow' });
+
+  return (
+    <Window background={background} height={236} label={t('title')} shadow width={322} x={x} y={y}>
+      <Button assets={viewWorld} label={t('viewWorld')} onClick={onViewWorldClick} x={46} y={31} />
+      <Button assets={viewPuzzle} label={t('viewPuzzle')} onClick={onViewPuzzleClick} x={179} y={31} />
+      <Button assets={castSpell} label={t('castSpell')} onClick={onCastSpellClick} x={46} y={107} />
+      <Button assets={dig} label={t('dig')} onClick={onDigClick} x={179} y={107} />
+      <Button assets={okay} label={t('okay')} onClick={onConfirmClick} x={112} y={184} />
+    </Window>
+  );
+};

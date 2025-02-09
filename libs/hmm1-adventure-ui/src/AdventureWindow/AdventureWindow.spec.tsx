@@ -8,13 +8,13 @@ describe(AdventureWindow, () => {
   it('renders adventure map', async () => {
     renderWithProviders(<AdventureWindow renderAdventureMap={() => 'ADVENTURE MAP'} />);
 
-    expect(screen.getByText(/adventure map/i)).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /adventure map/i })).toHaveTextContent(/adventure map/i);
   });
 
   it('renders world map', async () => {
     renderWithProviders(<AdventureWindow renderWorldMap={() => 'WORLD MAP'} />);
 
-    expect(screen.getByText(/world map/i)).toBeInTheDocument();
+    expect(screen.getByRole('note', { name: /world map/i })).toHaveTextContent(/world map/i);
   });
 
   it('renders hero locators', async () => {
@@ -38,6 +38,6 @@ describe(AdventureWindow, () => {
   it('renders status window', async () => {
     renderWithProviders(<AdventureWindow renderStatusWindow={() => 'STATUS WINDOW'} />);
 
-    expect(screen.getByText(/status window/i)).toBeInTheDocument();
+    expect(screen.getByRole('note', { name: /status window/i })).toHaveTextContent(/status window/i);
   });
 });

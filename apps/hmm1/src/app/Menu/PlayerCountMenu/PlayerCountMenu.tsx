@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { range } from 'lodash';
 
 import { Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
@@ -10,13 +12,15 @@ interface Props extends PositionProps {
 }
 
 export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+
   return (
-    <Menu label="Player Count Menu" x={x} y={y}>
+    <Menu label={t('title')} x={x} y={y}>
       {range(2, 5).map((count) => (
         <Item key={count} onClick={onCountClick} value={count} />
       ))}
       <MenuSeparator />
-      <MenuButton assets={assets.cancelButton} label="Cancel" onClick={onCancelClick} />
+      <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -27,7 +31,15 @@ interface ItemProps {
 }
 
 const Item = ({ onClick, value }: ItemProps) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+
   const handleClick = () => onClick?.(value);
 
-  return <MenuButton assets={assets.playerCountButtons[value]} label={`${value} Players`} onClick={handleClick} />;
+  return (
+    <MenuButton
+      assets={assets.playerCountButtons[value]}
+      label={t('playerCount', { count: value })}
+      onClick={handleClick}
+    />
+  );
 };
