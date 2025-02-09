@@ -1,16 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, type ButtonAssets, Input, PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { Button, Input, PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
-import background from './assets/scenario-selection-background.jpg';
-import selectDisabled from './assets/select/disabled.png';
-import selectEnabled from './assets/select/enabled.png';
-
-const selectButtonAssets: ButtonAssets = {
-  disabled: selectDisabled,
-  enabled: selectEnabled,
-};
+import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
@@ -22,12 +15,17 @@ export const ScenarioSelection = ({ onClick, value, x, y }: Props) => {
 
   return (
     <Root onClick={onClick} x={x} y={y}>
-      <Input background={background} label={t('scenarioInputLabel')} value={value} width={246} />
-      <Button assets={selectButtonAssets} label={t('selectScenarioLabel')} onClick={onClick} x={248} y={0} />
+      <Input
+        background={assets.scenarioSelectionBackground}
+        label={t('scenarioInputLabel')}
+        value={value}
+        width={246}
+      />
+      <Button assets={assets.selectButton} label={t('selectScenarioLabel')} onClick={onClick} x={248} y={0} />
     </Root>
   );
 };
 
 const Root = styled(PositionedComponent)({
-  background: `url(${background})`,
+  background: `url(${assets.scenarioSelectionBackground})`,
 });

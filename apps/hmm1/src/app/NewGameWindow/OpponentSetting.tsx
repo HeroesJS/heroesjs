@@ -2,21 +2,9 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
-import { opponentDifficulties, OpponentDifficulty } from '@heroesjs/hmm1-core';
+import { opponentDifficulties, type OpponentDifficulty } from '@heroesjs/hmm1-core';
 
-import average from './assets/opponentSetting/average.jpg';
-import dumb from './assets/opponentSetting/dumb.jpg';
-import genius from './assets/opponentSetting/genius.jpg';
-import none from './assets/opponentSetting/none.jpg';
-import smart from './assets/opponentSetting/smart.jpg';
-
-const assets: Record<OpponentDifficulty, string> = {
-  [OpponentDifficulty.Average]: average,
-  [OpponentDifficulty.Dumb]: dumb,
-  [OpponentDifficulty.Genius]: genius,
-  [OpponentDifficulty.None]: none,
-  [OpponentDifficulty.Smart]: smart,
-};
+import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly index: number;
@@ -39,7 +27,7 @@ export const OpponentSetting = ({ index, onClick, value, x, y }: Props) => {
         ))}
       </span>
       <button aria-label={t('changeOpponentSettingLabel', { index: index + 1 })} onClick={handleClick}>
-        <img alt="" src={assets[value]} />
+        <img alt="" src={assets.opponentDifficultyImages[value]} />
         <Text align="center" size="small" width={66} x={0} y={64}>
           {t(`core:opponentDifficulty.${value}`)}
         </Text>
