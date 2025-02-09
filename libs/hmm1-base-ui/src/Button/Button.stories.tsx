@@ -1,15 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import disabledImage from './assets/disabled.jpg';
-import enabledImage from './assets/enabled.jpg';
+import { assets } from './assets';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
   args: {
-    assets: {
-      disabled: disabledImage,
-      enabled: enabledImage,
-    },
+    assets,
   },
   component: Button,
 };

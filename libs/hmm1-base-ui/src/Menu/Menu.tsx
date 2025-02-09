@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Backdrop } from '../Backdrop';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
-import background from './assets/background.jpg';
+import { background } from './assets';
 
 interface Props extends PositionProps {
   readonly label: string;

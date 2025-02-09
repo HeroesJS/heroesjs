@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PositionedComponent, Screen } from '@heroesjs/hmm1-base-ui';
 import { ScreenHeight } from '@heroesjs/hmm1-core';
 
-import background from './assets/background.jpg';
+import { background } from './assets';
 
 interface Props {
   readonly renderActionButtons?: () => ReactNode;

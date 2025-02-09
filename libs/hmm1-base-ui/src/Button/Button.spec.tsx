@@ -2,16 +2,10 @@ import { screen } from '@testing-library/react';
 
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
-import disabledImage from './assets/disabled.jpg';
-import enabledImage from './assets/enabled.jpg';
-import { Button, type ButtonAssets } from './Button';
+import { assets } from './assets';
+import { Button } from './Button';
 
 describe(Button, () => {
-  const assets: ButtonAssets = {
-    disabled: disabledImage,
-    enabled: enabledImage,
-  };
-
   it('renders', async () => {
     renderWithProviders(<Button assets={assets} label="Label" />);
 
@@ -21,7 +15,7 @@ describe(Button, () => {
   it('renders enabled image', async () => {
     renderWithProviders(<Button assets={assets} label="Label" />);
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', enabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.enabled);
   });
 
   it('renders disabled image when mouse pressed', async () => {
@@ -36,7 +30,7 @@ describe(Button, () => {
       },
     ]);
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', disabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.disabled);
   });
 
   it('renders enabled image when mouse released', async () => {
@@ -47,7 +41,7 @@ describe(Button, () => {
       target: screen.getByRole('button', { name: /label/i }),
     });
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', enabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.enabled);
   });
 
   it('calls handler when clicked', async () => {
@@ -73,7 +67,7 @@ describe(Button, () => {
       },
     ]);
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', enabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.enabled);
   });
 
   it('renders disabled image when mouse pressed and over againt', async () => {
@@ -92,7 +86,7 @@ describe(Button, () => {
       },
     ]);
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', disabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.disabled);
   });
 
   it('disables', async () => {
@@ -104,6 +98,6 @@ describe(Button, () => {
   it('renders disabled image when disabled', async () => {
     renderWithProviders(<Button assets={assets} disabled label="Label" />);
 
-    expect(screen.getByRole('img')).toHaveAttribute('src', disabledImage);
+    expect(screen.getByRole('img')).toHaveAttribute('src', assets.disabled);
   });
 });

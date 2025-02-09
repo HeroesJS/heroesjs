@@ -4,18 +4,7 @@ import styled from 'styled-components';
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import { GameDifficulty } from '@heroesjs/hmm1-core';
 
-import easyDifficulty from './assets/gameDifficulty/easy.jpg';
-import expertDifficulty from './assets/gameDifficulty/expert.jpg';
-import hardDifficulty from './assets/gameDifficulty/hard.jpg';
-import normalDifficulty from './assets/gameDifficulty/normal.jpg';
-import selection from './assets/gameDifficulty/selection.png';
-
-const assets: Record<GameDifficulty, string> = {
-  [GameDifficulty.Easy]: easyDifficulty,
-  [GameDifficulty.Expert]: expertDifficulty,
-  [GameDifficulty.Hard]: hardDifficulty,
-  [GameDifficulty.Normal]: normalDifficulty,
-};
+import { gameDifficulties, gameDifficultySelection } from './assets';
 
 const shiftedLabels = [GameDifficulty.Hard, GameDifficulty.Expert];
 
@@ -32,11 +21,11 @@ export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyO
 
   return (
     <Root aria-label={t(value)} aria-selected={selected} onClick={handleClick} role="option" x={x} y={y}>
-      <Image src={assets[value]} />
+      <Image src={gameDifficulties[value]} />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {t(value)}
       </Text>
-      {selected && <Selection src={selection} />}
+      {selected && <Selection src={gameDifficultySelection} />}
     </Root>
   );
 };
