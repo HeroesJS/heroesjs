@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Backdrop } from '../Backdrop';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 
-import background from './assets/background.jpg';
+import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly label: string;
@@ -20,7 +20,7 @@ export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
 
 const Root = styled(PositionedComponent)({
   backgroundColor: '#000',
-  backgroundImage: `url(${background})`,
+  backgroundImage: `url(${assets.background})`,
   backgroundRepeat: 'no-repeat',
   boxShadow: '17px 16px rgba(0 0 0 / 30%)',
   boxSizing: 'border-box',
