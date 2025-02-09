@@ -46,6 +46,10 @@
       "viewEnemyMovementHeading": "View Enemy Movement",
       "volume": "Volume {{value}}"
     },
+    "playerColorJewel": {
+      "changeLabel": "Change Banner Color",
+      "label": "Banner Color"
+    },
     "standardScenarioInfoWindow": {
       "confirmLabel": "$t(core:okayCancel.true)",
       "scenarioDescription": "Description",
