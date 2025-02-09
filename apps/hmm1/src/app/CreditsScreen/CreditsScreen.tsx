@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { List, Screen, Text } from '@heroesjs/hmm1-base-ui';
 
-import background from './assets/background.jpg';
+import * as assets from './assets';
 
 const x = 55;
 const width = 210;
@@ -43,7 +43,7 @@ export const CreditsScreen = ({ onClick }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.creditsScreen' });
 
   return (
-    <Screen background={background} label={t('title')} onClick={onClick}>
+    <Screen background={assets.background} label={t('title')} onClick={onClick}>
       <Text component="h2" hidden shadow size="large" x={71} y={47}>
         {t('designAndDirection')}
       </Text>

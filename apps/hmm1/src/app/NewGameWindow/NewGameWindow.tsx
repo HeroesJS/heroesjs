@@ -2,15 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { PlayerColorJewel } from '@heroesjs/hmm1-adventure-ui';
-import {
-  Button,
-  type ButtonAssets,
-  Checkbox,
-  type CheckboxAssets,
-  Text,
-  useToggle,
-  Window,
-} from '@heroesjs/hmm1-base-ui';
+import { Button, Checkbox, Text, useToggle, Window } from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   formatRating,
@@ -24,31 +16,10 @@ import {
   ScenarioSize,
 } from '@heroesjs/hmm1-core';
 
-import background from './assets/background.jpg';
-import cancelDisabled from './assets/cancel/disabled.png';
-import cancelEnabled from './assets/cancel/enabled.png';
-import checkboxChecked from './assets/checkbox/checked.jpg';
-import checkboxUnchecked from './assets/checkbox/unchecked.jpg';
-import okayDisabled from './assets/okay/disabled.png';
-import okayEnabled from './assets/okay/enabled.png';
+import * as assets from './assets';
 import { DifficultyMenu } from './DifficultyMenu';
 import { OpponentSetting } from './OpponentSetting';
 import { ScenarioSelection } from './ScenarioSelection';
-
-const kingOfTheHillCheckboxAssets: CheckboxAssets = {
-  checked: checkboxChecked,
-  unchecked: checkboxUnchecked,
-};
-
-const okayButtonAssets: ButtonAssets = {
-  disabled: okayDisabled,
-  enabled: okayEnabled,
-};
-
-const cancelButtonAssets: ButtonAssets = {
-  disabled: cancelDisabled,
-  enabled: cancelEnabled,
-};
 
 interface ScenarioInfo {
   readonly difficulty: ScenarioDifficulty;
@@ -86,7 +57,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
   });
 
   return (
-    <Window background={background} height={459} label={t('title')} width={320} x={x} y={y}>
+    <Window background={assets.background} height={459} label={t('title')} width={320} x={x} y={y}>
       <Text heading size="large" x={60} y={22}>
         {t('gameDifficultyHeading')}:
       </Text>
@@ -112,7 +83,7 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         {t('kingOfTheHillHeading')}:
       </Text>
       <Checkbox
-        assets={kingOfTheHillCheckboxAssets}
+        assets={assets.checkbox}
         checked={kingOfTheHill}
         label={t('kingOfTheHillHeading')}
         onChange={toggleKingOfTheHill}
@@ -127,14 +98,14 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         {t('ratingHeading')}: {formatRating(rating)}
       </Text>
       <Button
-        assets={okayButtonAssets}
+        assets={assets.okayButton}
         disabled={!scenario}
         label={t('confirmLabel')}
         onClick={onConfirmClick}
         x={24}
         y={412}
       />
-      <Button assets={cancelButtonAssets} label={t('cancelLabel')} onClick={onCancelClick} x={201} y={412} />
+      <Button assets={assets.cancelButton} label={t('cancelLabel')} onClick={onCancelClick} x={201} y={412} />
     </Window>
   );
 };

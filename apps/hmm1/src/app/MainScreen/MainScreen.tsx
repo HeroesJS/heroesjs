@@ -9,7 +9,7 @@ import { FileSelectorWindow } from '../FileSelectorWindow';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
 import { NewGameWindow } from '../NewGameWindow';
 
-import background from './assets/background.jpg';
+import * as assets from './assets';
 
 const MenuX = 400;
 const MenuY = 35;
@@ -24,7 +24,7 @@ export const MainScreen = () => {
   const handleViewCreditsClick = () => navigate('/credits');
 
   return (
-    <Screen background={background}>
+    <Screen background={assets.background}>
       <Routes>
         <Route
           element={

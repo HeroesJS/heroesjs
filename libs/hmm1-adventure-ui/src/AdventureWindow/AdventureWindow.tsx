@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { PositionedComponent, Screen } from '@heroesjs/hmm1-base-ui';
 import { ScreenHeight } from '@heroesjs/hmm1-core';
 
-import background from './assets/background.jpg';
+import * as assets from './assets';
 
 interface Props {
   readonly renderActionButtons?: () => ReactNode;
@@ -28,7 +28,7 @@ export const AdventureWindow = ({
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureWindow' });
 
   return (
-    <Screen background={background}>
+    <Screen background={assets.background}>
       <AdventureMap aria-label={t('adventureMap')} role="main" x={16} y={16}>
         {renderAdventureMap?.()}
       </AdventureMap>
