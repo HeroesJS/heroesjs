@@ -2,7 +2,7 @@
   "component": {
     "adventureButtons": {
       "adventureOptions": "Adventure Options",
-      "endTurn": "endTurn",
+      "endTurn": "End Turn",
       "gameOptions": "Game Options",
       "kingdomOverview": "Kingdom Overview",
       "move": "Move",
