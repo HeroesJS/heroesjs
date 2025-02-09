@@ -73,13 +73,13 @@ export const AdventureScreen = () => {
               movementSpeed={movementSpeed}
               musicVolume={musicVolume}
               onAutoSaveChange={setAutoSave}
+              onConfirmClick={() => navigate('..', { relative: 'path' })}
               onEffectsVolumeChange={setEffectsVolume}
               onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
               onLoadGameClick={() => navigate('/game/load')}
               onMovementSpeedChange={setMovementSpeed}
               onMusicVolumeChange={setMusicVolume}
               onNewGameClick={() => navigate('/game/new')}
-              onOkayClick={() => navigate('..', { relative: 'path' })}
               onQuitClick={() => navigate('/')}
               onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
               onShowPathChange={setShowPath}

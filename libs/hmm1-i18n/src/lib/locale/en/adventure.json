@@ -22,7 +22,7 @@
       "worldMap": "World Map"
     },
     "campaignScenarioInfoWindow": {
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "restartLabel": "Restart Scenario",
       "scenarioDescription": "Description",
       "scenarioName": "Name",
@@ -31,13 +31,13 @@
     },
     "gameOptionsWindow": {
       "autoSaveHeading": "Auto Save",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "effectsHeading": "Effects",
       "infoLabel": "Info",
       "loadGameLabel": "Load Game",
       "movementSpeed": "Speed",
       "musicHeading": "Music",
       "newGameLabel": "New Game",
-      "okayLabel": "Okay",
       "quitLabel": "Quit",
       "saveGameLabel": "Save Game",
       "showPathHeading": "Show Path",
@@ -47,7 +47,7 @@
       "volume": "Volume {{value}}"
     },
     "standardScenarioInfoWindow": {
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "scenarioDescription": "Description",
       "scenarioDifficulty": "Difficulty",
       "scenarioSize": "Size",

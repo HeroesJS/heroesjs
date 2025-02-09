@@ -14,8 +14,8 @@
       "title": "Com Port Menu"
     },
     "fileSelectorWindow": {
-      "cancelLabel": "Cancel",
-      "confirmLabel": "Okay",
+      "cancelLabel": "$t(core:okayCancel.false)",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "fileName": "File Name",
       "itemsHeading": "Items",
       "loadTitle": "File to Load",
@@ -62,9 +62,9 @@
       "title": "Multi-Player Game Type Menu"
     },
     "newGameWindow": {
-      "cancelLabel": "Cancel",
+      "cancelLabel": "$t(core:okayCancel.false)",
       "changeOpponentSettingLabel": "Change Opponent {{index}} Setting",
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "difficultyRating": "Difficulty Rating",
       "gameDifficulty": "Game Difficulty",
       "gameDifficultyHeading": "Choose Game Difficulty",

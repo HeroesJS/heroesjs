@@ -284,7 +284,7 @@ describe(GameOptionsWindow, () => {
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onOkayClick={handler} />);
+      const { user } = renderWithProviders(<GameOptionsWindow onConfirmClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /okay/i }));
 
