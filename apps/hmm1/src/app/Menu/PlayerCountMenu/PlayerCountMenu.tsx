@@ -1,3 +1,4 @@
+import { range } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
@@ -14,11 +15,9 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
 
   return (
     <Menu label={t('title')} x={x} y={y}>
-      {Object.keys(assets)
-        .map(Number)
-        .map((count) => (
-          <Item key={count} onClick={onCountClick} value={count} />
-        ))}
+      {range(2, 5).map((count) => (
+        <Item key={count} onClick={onCountClick} value={count} />
+      ))}
       <MenuSeparator />
       <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
