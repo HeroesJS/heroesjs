@@ -1,42 +1,9 @@
 import { range } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
-import { type ButtonAssets, Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { Menu, MenuButton, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
-import cancelDisabled from './assets/cancel/disabled.png';
-import cancelEnabled from './assets/cancel/enabled.png';
-import com1Disabled from './assets/com-1/disabled.png';
-import com1Enabled from './assets/com-1/enabled.png';
-import com2Disabled from './assets/com-2/disabled.png';
-import com2Enabled from './assets/com-2/enabled.png';
-import com3Disabled from './assets/com-3/disabled.png';
-import com3Enabled from './assets/com-3/enabled.png';
-import com4Disabled from './assets/com-4/disabled.png';
-import com4Enabled from './assets/com-4/enabled.png';
-
-const assets: Readonly<Record<number, ButtonAssets>> = {
-  1: {
-    disabled: com1Disabled,
-    enabled: com1Enabled,
-  },
-  2: {
-    disabled: com2Disabled,
-    enabled: com2Enabled,
-  },
-  3: {
-    disabled: com3Disabled,
-    enabled: com3Enabled,
-  },
-  4: {
-    disabled: com4Disabled,
-    enabled: com4Enabled,
-  },
-};
-
-const cancelButtonAssets: ButtonAssets = {
-  disabled: cancelDisabled,
-  enabled: cancelEnabled,
-};
+import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
@@ -51,7 +18,7 @@ export const ComPortMenu = ({ onCancelClick, onPortClick, x, y }: Props) => {
       {range(1, 5).map((i) => (
         <Item key={i} onClick={onPortClick} value={i} />
       ))}
-      <MenuButton assets={cancelButtonAssets} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
     </Menu>
   );
 };
@@ -66,5 +33,7 @@ const Item = ({ value, onClick }: ItemProps) => {
 
   const handleClick = () => onClick?.(value);
 
-  return <MenuButton assets={assets[value]} label={t('port', { number: value })} onClick={handleClick} />;
+  return (
+    <MenuButton assets={assets.comPortButtons[value]} label={t('port', { number: value })} onClick={handleClick} />
+  );
 };
