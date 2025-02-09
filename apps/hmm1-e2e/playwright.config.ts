@@ -61,6 +61,8 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     } */
   ],
+  snapshotPathTemplate: '{testDir}/{testFileName}-snapshots/{arg}-chromium-darwin{ext}',
+  updateSnapshots: 'none',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL,

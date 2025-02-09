@@ -1,9 +1,7 @@
 {
   "name": "@heroesjs/hmm1-core",
   "version": "0.0.1",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
+  "dependencies": {},
   "type": "module",
   "main": "./index.js",
   "typings": "./index.d.ts",
