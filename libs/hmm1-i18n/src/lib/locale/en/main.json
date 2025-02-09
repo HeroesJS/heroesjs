@@ -13,6 +13,21 @@
       "port": "Com-{{number}}",
       "title": "Com Port Menu"
     },
+    "creditsScreen": {
+      "additionalDesign": "Additional Design",
+      "art": "Artists",
+      "artDirection": "Art Director",
+      "designAndDirection": "Designed and Directed",
+      "leadProgramming": "Lead Programming",
+      "musicAndSound": "Music and Sound Design",
+      "orchestralArrangements": "Orchestral Arrangements",
+      "programming": "Programming",
+      "scenarios": "Scenarios",
+      "testing": "Testing",
+      "testingLead": "QA Manager",
+      "title": "Credits",
+      "writingAndManual": "Writing and Manual"
+    },
     "fileSelectorWindow": {
       "cancelLabel": "$t(core:okayCancel.false)",
       "confirmLabel": "$t(core:okayCancel.true)",
