@@ -2,32 +2,10 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import {
-  Button,
-  type ButtonAssets,
-  PositionedComponent,
-  type PositionProps,
-  Text,
-  Window,
-} from '@heroesjs/hmm1-base-ui';
+import { Button, PositionedComponent, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
 
-import background from './assets/background.jpg';
-import cancelDisabled from './assets/cancel/disabled.png';
-import cancelEnabled from './assets/cancel/enabled.png';
-import inputBackground from './assets/input-background.jpg';
-import okayDisabled from './assets/okay/disabled.png';
-import okayEnabled from './assets/okay/enabled.png';
+import * as assets from './assets';
 import { ScenarioDetail, type ScenarioInfo } from './ScenarioDetail';
-
-const okayButtonAssets: ButtonAssets = {
-  disabled: okayDisabled,
-  enabled: okayEnabled,
-};
-
-const cancelButtonAssets: ButtonAssets = {
-  disabled: cancelDisabled,
-  enabled: cancelEnabled,
-};
 
 interface Props extends PositionProps {
   readonly items?: readonly string[];
@@ -53,21 +31,28 @@ export const FileSelectorWindow = ({
   const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
 
   return (
-    <Window background={background} height={showScenarioInfo ? 380 : 331} label={t('title')} width={320} x={x} y={y}>
+    <Window
+      background={assets.background}
+      height={showScenarioInfo ? 380 : 331}
+      label={t('title')}
+      width={320}
+      x={x}
+      y={y}
+    >
       <Text heading size="large" x={111} y={19}>
         {t('loadTitle')}:
       </Text>
       <List items={items} onItemClick={onItemClick} selectedItem={selectedItem} x={59} y={42} />
       <Input value={selectedItem} x={48} y={253} />
       <Button
-        assets={okayButtonAssets}
+        assets={assets.okayButton}
         disabled={!selectedItem}
         label={t('confirmLabel')}
         onClick={onConfirmClick}
         x={36}
         y={280}
       />
-      <Button assets={cancelButtonAssets} label={t('cancelLabel')} onClick={onCancelClick} x={189} y={280} />
+      <Button assets={assets.cancelButton} label={t('cancelLabel')} onClick={onCancelClick} x={189} y={280} />
       {showScenarioInfo && <ScenarioDetail {...scenarioInfo} y={318} />}
     </Window>
   );
@@ -131,7 +116,7 @@ const Input = ({ value, x, y }: InputProps) => {
 };
 
 const InputRoot = styled(PositionedComponent)({
-  background: `url(${inputBackground})`,
+  background: `url(${assets.inputBackground})`,
   height: 19,
   width: 225,
 });

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
 import type { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
 
-import scenarioInfoBackground from './assets/scenario-info-background.jpg';
+import * as assets from './assets';
 
 export interface ScenarioInfo {
   readonly description: string;
@@ -33,7 +33,7 @@ export const ScenarioDetail = ({ description, difficulty, size, x, y }: Props) =
 };
 
 const ScenarioDetailRoot = styled(PositionedComponent)({
-  background: `url(${scenarioInfoBackground})`,
+  background: `url(${assets.scenarioInfoBackground})`,
   height: 141,
   width: 320,
 });
