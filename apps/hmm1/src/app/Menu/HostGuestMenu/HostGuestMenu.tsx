@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import cancelDisabled from './assets/cancel/disabled.png';
@@ -43,20 +45,24 @@ interface Props extends PositionProps {
   readonly onHostClick?: () => void;
 }
 
-export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => (
-  <Menu label="Host/Guest Menu" x={x} y={y}>
-    <MenuButton
-      assets={detailed ? hostDialsButtonAssets : hostButtonAssets}
-      label={detailed ? 'Host (Dials)' : 'Host'}
-      onClick={onHostClick}
-    />
-    <MenuButton
-      assets={detailed ? guestAnswersButtonAssets : guestButtonAssets}
-      label={detailed ? 'Guest (Answers)' : 'Guest'}
-      onClick={onGuestClick}
-    />
-    <MenuSeparator />
-    <MenuSeparator />
-    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-  </Menu>
-);
+export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.hostGuestMenu' });
+
+  return (
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton
+        assets={detailed ? hostDialsButtonAssets : hostButtonAssets}
+        label={t(detailed ? 'hostDetail' : 'host')}
+        onClick={onHostClick}
+      />
+      <MenuButton
+        assets={detailed ? guestAnswersButtonAssets : guestButtonAssets}
+        label={t(detailed ? 'guestDetail' : 'guest')}
+        onClick={onGuestClick}
+      />
+      <MenuSeparator />
+      <MenuSeparator />
+      <MenuButton assets={cancelButtonAssets} label={t('cancel')} onClick={onCancelClick} />
+    </Menu>
+  );
+};

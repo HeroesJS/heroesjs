@@ -1,8 +1,36 @@
 {
   "component": {
+    "campaignMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "lord-alamar": "Play Lord Alamar",
+      "lord-ironfist": "Play Lord Ironfist",
+      "lord-slayer": "Play Lord Slayer",
+      "queen-lamanda": "Play Queen Lamanda",
+      "title": "Campaign Menu"
+    },
+    "comPortMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "port": "Com-{{number}}",
+      "title": "Com Port Menu"
+    },
+    "creditsScreen": {
+      "additionalDesign": "Additional Design",
+      "art": "Artists",
+      "artDirection": "Art Director",
+      "designAndDirection": "Designed and Directed",
+      "leadProgramming": "Lead Programming",
+      "musicAndSound": "Music and Sound Design",
+      "orchestralArrangements": "Orchestral Arrangements",
+      "programming": "Programming",
+      "scenarios": "Scenarios",
+      "testing": "Testing",
+      "testingLead": "QA Manager",
+      "title": "Credits",
+      "writingAndManual": "Writing and Manual"
+    },
     "fileSelectorWindow": {
-      "cancelLabel": "Cancel",
-      "confirmLabel": "Okay",
+      "cancelLabel": "$t(core:okayCancel.false)",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "fileName": "File Name",
       "itemsHeading": "Items",
       "loadTitle": "File to Load",
@@ -11,6 +39,21 @@
       "scenarioInfo": "Scenario Info",
       "scenarioSize": "Size",
       "title": "File Selector Window"
+    },
+    "gameTypeMenu": {
+      "campaignGame": "Campaign Game",
+      "cancel": "$t(core:okayCancel.false)",
+      "multiPlayerGame": "Multi-Player Game",
+      "standardGame": "Standard Game",
+      "title": "Game Type Menu"
+    },
+    "hostGuestMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "guest": "Guest",
+      "guestDetail": "Guest (Answers)",
+      "host": "Host",
+      "hostDetail": "Host (Dials)",
+      "title": "Host/Guest Menu"
     },
     "mainMenu": {
       "loadGameInfo": "Load a prevously saved game.",
@@ -25,10 +68,18 @@
       "viewHighScoresInfo": "View the high score screen.",
       "viewHighScoresLabel": "View High Scores"
     },
+    "multiPlayerGameTypeMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "directConnect": "Direct Connect",
+      "hotSeat": "Hot Seat",
+      "modem": "Modem",
+      "network": "Network",
+      "title": "Multi-Player Game Type Menu"
+    },
     "newGameWindow": {
-      "cancelLabel": "Cancel",
+      "cancelLabel": "$t(core:okayCancel.false)",
       "changeOpponentSettingLabel": "Change Opponent {{index}} Setting",
-      "confirmLabel": "Okay",
+      "confirmLabel": "$t(core:okayCancel.true)",
       "difficultyRating": "Difficulty Rating",
       "gameDifficulty": "Game Difficulty",
       "gameDifficultyHeading": "Choose Game Difficulty",
@@ -42,6 +93,11 @@
       "scenarioSelectionHeading": "Choose Scenario",
       "selectScenarioLabel": "Select Scenario",
       "title": "New Game Window"
+    },
+    "playerCountMenu": {
+      "cancel": "$t(core:okayCancel.false)",
+      "playerCount_other": "{{count}} Players",
+      "title": "Player Count Menu"
     }
   }
 }

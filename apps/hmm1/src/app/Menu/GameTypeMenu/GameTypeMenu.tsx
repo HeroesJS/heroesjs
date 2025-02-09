@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { type ButtonAssets, Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
 
 import campaignGameDisabled from './assets/campaign-game/disabled.png';
@@ -43,12 +45,16 @@ export const GameTypeMenu = ({
   onStandardGameClick,
   x,
   y,
-}: Props) => (
-  <Menu label="Game Type Menu" x={x} y={y}>
-    <MenuButton assets={standardGameButtonAssets} label="Standard Game" onClick={onStandardGameClick} />
-    <MenuButton assets={campaignGameButtonAssets} label="Campaign Game" onClick={onCampaignGameClick} />
-    <MenuButton assets={multiPlayerGameButtonAssets} label="Multi-Player Game" onClick={onMultiPlayerGameClick} />
-    <MenuSeparator />
-    <MenuButton assets={cancelButtonAssets} label="Cancel" onClick={onCancelClick} />
-  </Menu>
-);
+}: Props) => {
+  const { t } = useTranslation('main', { keyPrefix: 'component.gameTypeMenu' });
+
+  return (
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton assets={standardGameButtonAssets} label={t('standardGame')} onClick={onStandardGameClick} />
+      <MenuButton assets={campaignGameButtonAssets} label={t('campaignGame')} onClick={onCampaignGameClick} />
+      <MenuButton assets={multiPlayerGameButtonAssets} label={t('multiPlayerGame')} onClick={onMultiPlayerGameClick} />
+      <MenuSeparator />
+      <MenuButton assets={cancelButtonAssets} label={t('cancel')} onClick={onCancelClick} />
+    </Menu>
+  );
+};
