@@ -1,42 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { type ButtonAssets, Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
+import { Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
 
-import loadGameDisabled from './assets/load-game/disabled.png';
-import loadGameEnabled from './assets/load-game/enabled.png';
-import newGameDisabled from './assets/new-game/disabled.png';
-import newGameEnabled from './assets/new-game/enabled.png';
-import quitDisabled from './assets/quit/disabled.png';
-import quitEnabled from './assets/quit/enabled.png';
-import viewCreditsDisabled from './assets/view-credits/disabled.png';
-import viewCreditsEnabled from './assets/view-credits/enabled.png';
-import viewHighScoresDisabled from './assets/view-high-scores/disabled.png';
-import viewHighScoresEnabled from './assets/view-high-scores/enabled.png';
-
-const newGameButtonAssets: ButtonAssets = {
-  disabled: newGameDisabled,
-  enabled: newGameEnabled,
-};
-
-const loadGameButtonAssets: ButtonAssets = {
-  disabled: loadGameDisabled,
-  enabled: loadGameEnabled,
-};
-
-const viewHighScoresButtonAssets: ButtonAssets = {
-  disabled: viewHighScoresDisabled,
-  enabled: viewHighScoresEnabled,
-};
-
-const viewCreditsButtonAssets: ButtonAssets = {
-  disabled: viewCreditsDisabled,
-  enabled: viewCreditsEnabled,
-};
-
-const quitButtonAssets: ButtonAssets = {
-  disabled: quitDisabled,
-  enabled: quitEnabled,
-};
+import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly onLoadGameClick?: () => void;
@@ -67,35 +33,35 @@ export const MainMenu = ({
     <>
       <Menu label={t('title')} x={x} y={y}>
         <MenuButton
-          assets={newGameButtonAssets}
+          assets={assets.newGameButton}
           label={t('newGameLabel')}
           onClick={onNewGameClick}
           onRightButtonDown={openNewGameInfo}
           onRightButtonUp={closeNewGameInfo}
         />
         <MenuButton
-          assets={loadGameButtonAssets}
+          assets={assets.loadGameButton}
           label={t('loadGameLabel')}
           onClick={onLoadGameClick}
           onRightButtonDown={openLoadGameInfo}
           onRightButtonUp={closeLoadGameInfo}
         />
         <MenuButton
-          assets={viewHighScoresButtonAssets}
+          assets={assets.viewHighScoresButton}
           label={t('viewHighScoresLabel')}
           onClick={onViewHighScoresClick}
           onRightButtonDown={openViewHighScoresInfo}
           onRightButtonUp={closeViewHighScoresInfo}
         />
         <MenuButton
-          assets={viewCreditsButtonAssets}
+          assets={assets.viewCreditsButton}
           label={t('viewCreditsLabel')}
           onClick={onViewCreditsClick}
           onRightButtonDown={openViewCreditsInfo}
           onRightButtonUp={closeViewCreditsInfo}
         />
         <MenuButton
-          assets={quitButtonAssets}
+          assets={assets.quitButton}
           label={t('quitLabel')}
           onClick={onQuitClick}
           onRightButtonDown={openQuitInfo}
