@@ -6,74 +6,112 @@ test('has title', async ({ page }) => {
   expect(await page.title()).toBe('Hmm1');
 });
 
-test('renders main menu', async ({ page }) => {
-  await page.goto('/');
+test.describe('main menu', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
 
-  await expect(page.locator('#app')).toHaveScreenshot('main-menu.png');
-});
+  test('renders menu', async ({ page }) => {
+    await expect(page.locator('#app')).toHaveScreenshot('main-menu.png');
+  });
 
-test('renders new game info', async ({ page }) => {
-  await page.goto('/');
+  test('renders new game info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /new game/i }).boundingBox();
 
-  const button = await page.getByRole('button', { name: /new game/i }).boundingBox();
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
 
-  await page.mouse.move(button!.x, button!.y);
-  await page.mouse.down({ button: 'right' });
+    await expect(page.locator('#app')).toHaveScreenshot('new-game-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
+  });
 
-  await expect(page.locator('#app')).toHaveScreenshot('new-game-info.png', {
-    maxDiffPixelRatio: 0.01,
+  test('renders load game info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /load game/i }).boundingBox();
+
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.locator('#app')).toHaveScreenshot('load-game-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
+  test('renders view high scores info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /view high scores/i }).boundingBox();
+
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.locator('#app')).toHaveScreenshot('view-high-scores-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
+  test('renders view credits info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /view credits/i }).boundingBox();
+
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.locator('#app')).toHaveScreenshot('view-credits-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
+  });
+
+  test('renders quit info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /quit/i }).boundingBox();
+
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.locator('#app')).toHaveScreenshot('quit-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
 });
 
-test('renders load game info', async ({ page }) => {
-  await page.goto('/');
-
-  const button = await page.getByRole('button', { name: /load game/i }).boundingBox();
-
-  await page.mouse.move(button!.x, button!.y);
-  await page.mouse.down({ button: 'right' });
-
-  await expect(page.locator('#app')).toHaveScreenshot('load-game-info.png', {
-    maxDiffPixelRatio: 0.01,
+test.describe('game type menu', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/game/new');
   });
-});
 
-test('renders view high scores info', async ({ page }) => {
-  await page.goto('/');
+  test('renders standard game info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /standard game/i }).boundingBox();
 
-  const button = await page.getByRole('button', { name: /view high scores/i }).boundingBox();
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
 
-  await page.mouse.move(button!.x, button!.y);
-  await page.mouse.down({ button: 'right' });
-
-  await expect(page.locator('#app')).toHaveScreenshot('view-high-scores-info.png', {
-    maxDiffPixelRatio: 0.01,
+    await expect(page.locator('#app')).toHaveScreenshot('standard-game-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
-});
 
-test('renders view credits info', async ({ page }) => {
-  await page.goto('/');
+  test('renders campaign game info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /campaign game/i }).boundingBox();
 
-  const button = await page.getByRole('button', { name: /view credits/i }).boundingBox();
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
 
-  await page.mouse.move(button!.x, button!.y);
-  await page.mouse.down({ button: 'right' });
-
-  await expect(page.locator('#app')).toHaveScreenshot('view-credits-info.png', {
-    maxDiffPixelRatio: 0.01,
+    await expect(page.locator('#app')).toHaveScreenshot('campaign-game-info.png');
   });
-});
 
-test('renders quit info', async ({ page }) => {
-  await page.goto('/');
+  test('renders multi-player game info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /multi-player game/i }).boundingBox();
 
-  const button = await page.getByRole('button', { name: /quit/i }).boundingBox();
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
 
-  await page.mouse.move(button!.x, button!.y);
-  await page.mouse.down({ button: 'right' });
+    await expect(page.locator('#app')).toHaveScreenshot('multi-player-game-info.png');
+  });
 
-  await expect(page.locator('#app')).toHaveScreenshot('quit-info.png', {
-    maxDiffPixelRatio: 0.01,
+  test('renders cancel info', async ({ page }) => {
+    const button = await page.getByRole('button', { name: /cancel/i }).boundingBox();
+
+    await page.mouse.move(button!.x, button!.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png');
   });
 });
 
