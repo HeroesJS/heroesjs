@@ -7,10 +7,12 @@ import { DifficultyOption } from './DifficultyOption';
 
 interface Props extends PositionProps {
   readonly onChange?: (value: GameDifficulty) => void;
+  readonly onInfoClose?: () => void;
+  readonly onInfoOpen?: () => void;
   readonly selectedOption?: GameDifficulty;
 }
 
-export const DifficultyMenu = ({ onChange, selectedOption, x, y }: Props) => {
+export const DifficultyMenu = ({ onChange, onInfoClose, onInfoOpen, selectedOption, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   return (
@@ -19,6 +21,8 @@ export const DifficultyMenu = ({ onChange, selectedOption, x, y }: Props) => {
         <DifficultyOption
           key={difficulty}
           onClick={onChange}
+          onInfoClose={onInfoClose}
+          onInfoOpen={onInfoOpen}
           selected={difficulty === selectedOption}
           value={difficulty}
           x={i * 71}
