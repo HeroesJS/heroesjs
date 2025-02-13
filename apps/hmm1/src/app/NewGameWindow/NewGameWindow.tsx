@@ -39,16 +39,14 @@ interface Props {
 export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, scenario, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
-  const { closeGameDifficultyInfo, gameDifficultyInfoIsOpen, openGameDifficultyInfo } = useModal('gameDifficultyInfo');
-  const { closeOpponentSettingInfo, openOpponentSettingInfo, opponentSettingInfoIsOpen } =
-    useModal('opponentSettingInfo');
-  const { closePlayerColorInfo, openPlayerColorInfo, playerColorInfoIsOpen } = useModal('playerColorInfo');
-  const { closeKingOfTheHillInfo, kingOfTheHillInfoIsOpen, openKingOfTheHillInfo } = useModal('kingOfTheHillInfo');
-  const { closeScenarioSelectionInfo, openScenarioSelectionInfo, scenarioSelectionInfoIsOpen } =
-    useModal('scenarioSelectionInfo');
-  const { closeRatingInfo, openRatingInfo, ratingInfoIsOpen } = useModal('ratingInfo');
-  const { closeConfirmInfo, confirmInfoIsOpen, openConfirmInfo } = useModal('confirmInfo');
-  const { cancelInfoIsOpen, closeCancelInfo, openCancelInfo } = useModal('cancelInfo');
+  const gameDifficultyInfo = useModal();
+  const opponentSettingInfo = useModal();
+  const playerColorInfo = useModal();
+  const kingOfTheHillInfo = useModal();
+  const scenarioSelectionInfo = useModal();
+  const ratingInfo = useModal();
+  const confirmInfo = useModal();
+  const cancelInfo = useModal();
 
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
@@ -75,8 +73,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         </Text>
         <DifficultyMenu
           onChange={setSelectedDifficulty}
-          onInfoClose={closeGameDifficultyInfo}
-          onInfoOpen={openGameDifficultyInfo}
+          onInfoClose={gameDifficultyInfo.close}
+          onInfoOpen={gameDifficultyInfo.open}
           selectedOption={selectedDifficulty}
           x={19}
           y={36}
@@ -89,8 +87,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
             index={i}
             key={i}
             onClick={handleOpponentSettingClick}
-            onRightButtonDown={openOpponentSettingInfo}
-            onRightButtonUp={closeOpponentSettingInfo}
+            onRightButtonDown={opponentSettingInfo.open}
+            onRightButtonUp={opponentSettingInfo.close}
             value={setting}
             x={55 + i * 72}
             y={149}
@@ -101,8 +99,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         </Text>
         <PlayerColorJewel
           onClick={handleColorClick}
-          onRightButtonDown={openPlayerColorInfo}
-          onRightButtonUp={closePlayerColorInfo}
+          onRightButtonDown={playerColorInfo.open}
+          onRightButtonUp={playerColorInfo.close}
           value={color}
           x={51}
           y={270}
@@ -115,8 +113,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           checked={kingOfTheHill}
           label={t('kingOfTheHillHeading')}
           onChange={toggleKingOfTheHill}
-          onRightButtonDown={openKingOfTheHillInfo}
-          onRightButtonUp={closeKingOfTheHillInfo}
+          onRightButtonDown={kingOfTheHillInfo.open}
+          onRightButtonUp={kingOfTheHillInfo.close}
           x={210}
           y={272}
         />
@@ -125,13 +123,13 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         </Text>
         <ScenarioSelection
           onClick={onSelectScenarioClick}
-          onRightButtonDown={openScenarioSelectionInfo}
-          onRightButtonUp={closeScenarioSelectionInfo}
+          onRightButtonDown={scenarioSelectionInfo.open}
+          onRightButtonUp={scenarioSelectionInfo.close}
           value={scenario?.name ?? ''}
           x={25}
           y={354}
         />
-        <Text onRightButtonDown={openRatingInfo} onRightButtonUp={closeRatingInfo} size="large" x={78} y={388}>
+        <Text onRightButtonDown={ratingInfo.open} onRightButtonUp={ratingInfo.close} size="large" x={78} y={388}>
           {t('ratingHeading')}: {formatRating(rating)}
         </Text>
         <Button
@@ -139,8 +137,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           disabled={!scenario}
           label={t('confirmLabel')}
           onClick={onConfirmClick}
-          onRightButtonDown={openConfirmInfo}
-          onRightButtonUp={closeConfirmInfo}
+          onRightButtonDown={confirmInfo.open}
+          onRightButtonUp={confirmInfo.close}
           x={24}
           y={412}
         />
@@ -148,34 +146,34 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           assets={assets.cancelButton}
           label={t('cancelLabel')}
           onClick={onCancelClick}
-          onRightButtonDown={openCancelInfo}
-          onRightButtonUp={closeCancelInfo}
+          onRightButtonDown={cancelInfo.open}
+          onRightButtonUp={cancelInfo.close}
           x={201}
           y={412}
         />
       </Window>
-      <Modal open={gameDifficultyInfoIsOpen} size={1} x={177} y={29}>
+      <Modal open={gameDifficultyInfo.isOpen} size={1} x={177} y={29}>
         {t('gameDifficultyInfo')}
       </Modal>
-      <Modal open={opponentSettingInfoIsOpen} size={1} x={177} y={29}>
+      <Modal open={opponentSettingInfo.isOpen} size={1} x={177} y={29}>
         {t('opponentSettingInfo')}
       </Modal>
-      <Modal open={playerColorInfoIsOpen} x={177} y={29}>
+      <Modal open={playerColorInfo.isOpen} x={177} y={29}>
         {t('playerColorInfo')}
       </Modal>
-      <Modal open={kingOfTheHillInfoIsOpen} size={2} x={177} y={29}>
+      <Modal open={kingOfTheHillInfo.isOpen} size={2} x={177} y={29}>
         {t('kingOfTheHillInfo')}
       </Modal>
-      <Modal open={scenarioSelectionInfoIsOpen} x={177} y={29}>
+      <Modal open={scenarioSelectionInfo.isOpen} x={177} y={29}>
         {t('scenarioSelectionInfo')}
       </Modal>
-      <Modal open={ratingInfoIsOpen} size={1} x={177} y={29}>
+      <Modal open={ratingInfo.isOpen} size={1} x={177} y={29}>
         {t('ratingInfo')}
       </Modal>
-      <Modal open={confirmInfoIsOpen} x={177} y={29}>
+      <Modal open={confirmInfo.isOpen} x={177} y={29}>
         {t('confirmInfo')}
       </Modal>
-      <Modal open={cancelInfoIsOpen} x={177} y={29}>
+      <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </>

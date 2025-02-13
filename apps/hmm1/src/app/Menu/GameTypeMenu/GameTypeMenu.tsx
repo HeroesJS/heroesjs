@@ -21,11 +21,10 @@ export const GameTypeMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.gameTypeMenu' });
 
-  const { closeStandardGameInfo, openStandardGameInfo, standardGameInfoIsOpen } = useModal('standardGameInfo');
-  const { campaignGameInfoIsOpen, closeCampaignGameInfo, openCampaignGameInfo } = useModal('campaignGameInfo');
-  const { closeMultiPlayerGameInfo, multiPlayerGameInfoIsOpen, openMultiPlayerGameInfo } =
-    useModal('multiPlayerGameInfo');
-  const { cancelInfoIsOpen, closeCancelInfo, openCancelInfo } = useModal('cancelInfo');
+  const standardGameInfo = useModal();
+  const campaignGameInfo = useModal();
+  const multiPlayerGameInfo = useModal();
+  const cancelInfo = useModal();
 
   return (
     <>
@@ -34,42 +33,42 @@ export const GameTypeMenu = ({
           assets={assets.standardGameButton}
           label={t('standardGame')}
           onClick={onStandardGameClick}
-          onRightButtonDown={openStandardGameInfo}
-          onRightButtonUp={closeStandardGameInfo}
+          onRightButtonDown={standardGameInfo.open}
+          onRightButtonUp={standardGameInfo.close}
         />
         <MenuButton
           assets={assets.campaignGameButton}
           label={t('campaignGame')}
           onClick={onCampaignGameClick}
-          onRightButtonDown={openCampaignGameInfo}
-          onRightButtonUp={closeCampaignGameInfo}
+          onRightButtonDown={campaignGameInfo.open}
+          onRightButtonUp={campaignGameInfo.close}
         />
         <MenuButton
           assets={assets.multiPlayerGameButton}
           label={t('multiPlayerGame')}
           onClick={onMultiPlayerGameClick}
-          onRightButtonDown={openMultiPlayerGameInfo}
-          onRightButtonUp={closeMultiPlayerGameInfo}
+          onRightButtonDown={multiPlayerGameInfo.open}
+          onRightButtonUp={multiPlayerGameInfo.close}
         />
         <MenuSeparator />
         <MenuButton
           assets={assets.cancelButton}
           label={t('cancel')}
           onClick={onCancelClick}
-          onRightButtonDown={openCancelInfo}
-          onRightButtonUp={closeCancelInfo}
+          onRightButtonDown={cancelInfo.open}
+          onRightButtonUp={cancelInfo.close}
         />
       </Menu>
-      <Modal open={standardGameInfoIsOpen} x={177} y={29}>
+      <Modal open={standardGameInfo.isOpen} x={177} y={29}>
         {t('standardGameInfo')}
       </Modal>
-      <Modal open={campaignGameInfoIsOpen} x={177} y={29}>
+      <Modal open={campaignGameInfo.isOpen} x={177} y={29}>
         {t('campaignGameInfo')}
       </Modal>
-      <Modal open={multiPlayerGameInfoIsOpen} size={1} x={177} y={29}>
+      <Modal open={multiPlayerGameInfo.isOpen} size={1} x={177} y={29}>
         {t('multiPlayerGameInfo')}
       </Modal>
-      <Modal open={cancelInfoIsOpen} x={177} y={29}>
+      <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </>
