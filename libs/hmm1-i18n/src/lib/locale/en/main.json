@@ -118,6 +118,10 @@
     },
     "playerCountMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
+      "playerCountInfo_2": "Play with 2 human players, and optionally, up to 2 additional computer players.",
+      "playerCountInfo_3": "Play with 3 human players, and optionally 1 computer player.",
+      "playerCountInfo_4": "Play with 4 human players.",
       "playerCount_other": "{{count}} Players",
       "title": "Player Count Menu"
     }
