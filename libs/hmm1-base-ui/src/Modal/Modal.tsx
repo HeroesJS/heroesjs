@@ -42,7 +42,7 @@ export const Modal = ({
         ))}
         <Footer />
         <Shadow />
-        <Text align="center" size="large" width={188} x={49} y={53}>
+        <Text align="center" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />

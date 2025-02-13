@@ -2,10 +2,15 @@
   "component": {
     "campaignMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
       "lord-alamar": "Play Lord Alamar",
       "lord-ironfist": "Play Lord Ironfist",
       "lord-slayer": "Play Lord Slayer",
+      "lordAlamarInfo": "Play the role of Lord Alamar.",
+      "lordIronfistInfo": "Play the role of Lord Ironfist.",
+      "lordSlayerInfo": "Play the role of Lord Slayer.",
       "queen-lamanda": "Play Queen Lamanda",
+      "queenLamandaInfo": "Play the role of Queen Lamanda.",
       "title": "Campaign Menu"
     },
     "comPortMenu": {
@@ -42,9 +47,13 @@
     },
     "gameTypeMenu": {
       "campaignGame": "Campaign Game",
+      "campaignGameInfo": "A single player game playing through a series of maps.",
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to main menu.",
       "multiPlayerGame": "Multi-Player Game",
+      "multiPlayerGameInfo": "A multi-player game, with several human players, competing against each other on a single map.",
       "standardGame": "Standard Game",
+      "standardGameInfo": "A single player game playing out a single map.",
       "title": "Game Type Menu"
     },
     "hostGuestMenu": {
@@ -70,32 +79,49 @@
     },
     "multiPlayerGameTypeMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
       "directConnect": "Direct Connect",
+      "directConnectInfo": "Play a direct connect game, where 2 players use ther own computer directly connected through their serial port by a null modem.",
       "hotSeat": "Hot Seat",
+      "hotSeatInfo": "Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when it is their turn.",
       "modem": "Modem",
+      "modemInfo": "Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.",
       "network": "Network",
+      "networkInfo": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Netowkr).",
       "title": "Multi-Player Game Type Menu"
     },
     "newGameWindow": {
+      "cancelInfo": "Return to the main menu.",
       "cancelLabel": "$t(core:okayCancel.false)",
       "changeOpponentSettingLabel": "Change Opponent {{index}} Setting",
+      "confirmInfo": "Accept these settings and start a new game.",
       "confirmLabel": "$t(core:okayCancel.true)",
       "difficultyRating": "Difficulty Rating",
       "gameDifficulty": "Game Difficulty",
       "gameDifficultyHeading": "Choose Game Difficulty",
+      "gameDifficultyInfo": "Change the starting difficulty at which you will play.  Higher difficulty levels start you off with fewer resources.",
       "kingOfTheHill": "King of the Hill",
       "kingOfTheHillHeading": "King of the Hill",
+      "kingOfTheHillInfo": "Challenge all computer players as 'King of the Hill'. Computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp.",
       "opponentSettingHeading": "Opponent {{index}} Setting",
+      "opponentSettingInfo": "Change the difficulty of this opponent.  Smarter computer players are more aggressive and think longer for each turn.",
       "opponentSettingsHeading": "Customize Opponents",
       "playerColorHeading": "Choose Color",
+      "playerColorInfo": "Change your banner color.",
       "ratingHeading": "Difficulty Rating",
+      "ratingInfo": "The difficulty rating reflects a combination of various settings for your game.  This number will be applied to your final score.",
       "scenarioInputLabel": "Scenario",
       "scenarioSelectionHeading": "Choose Scenario",
+      "scenarioSelectionInfo": "Select which scenario to play.",
       "selectScenarioLabel": "Select Scenario",
       "title": "New Game Window"
     },
     "playerCountMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
+      "playerCountInfo_2": "Play with 2 human players, and optionally, up to 2 additional computer players.",
+      "playerCountInfo_3": "Play with 3 human players, and optionally 1 computer player.",
+      "playerCountInfo_4": "Play with 4 human players.",
       "playerCount_other": "{{count}} Players",
       "title": "Player Count Menu"
     }
