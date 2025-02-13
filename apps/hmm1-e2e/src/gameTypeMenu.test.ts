@@ -5,6 +5,10 @@ test.describe('game type menu', () => {
     await page.goto('/game/new');
   });
 
+  test('renders menu', async ({ page }) => {
+    await expect(page.locator('#app')).toHaveScreenshot('menu.png');
+  });
+
   test('renders standard game info', async ({ page }) => {
     const button = await page.getByRole('button', { name: /standard game/i }).boundingBox();
 

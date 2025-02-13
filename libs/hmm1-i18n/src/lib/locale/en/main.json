@@ -79,10 +79,15 @@
     },
     "multiPlayerGameTypeMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
       "directConnect": "Direct Connect",
+      "directConnectInfo": "Play a direct connect game, where 2 players use ther own computer directly connected through their serial port by a null modem.",
       "hotSeat": "Hot Seat",
+      "hotSeatInfo": "Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when it is their turn.",
       "modem": "Modem",
+      "modemInfo": "Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.",
       "network": "Network",
+      "networkInfo": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Netowkr).",
       "title": "Multi-Player Game Type Menu"
     },
     "newGameWindow": {
