@@ -58,10 +58,15 @@
     },
     "hostGuestMenu": {
       "cancel": "$t(core:okayCancel.false)",
+      "cancelInfo": "Cancel back to the main menu.",
       "guest": "Guest",
       "guestDetail": "Guest (Answers)",
+      "guestDetailInfo": "The guest waits for the host to call and set up the game.",
+      "guestInfo": "The guest waits for the host to set up the game, then is automatically added in. There can only be one guest per network game.",
       "host": "Host",
       "hostDetail": "Host (Dials)",
+      "hostDetailInfo": "The host sets up the game options, chooses the number to dial, and places the call.",
+      "hostInfo": "The host sets up the game options.  There can only be one host per network game.",
       "title": "Host/Guest Menu"
     },
     "mainMenu": {
