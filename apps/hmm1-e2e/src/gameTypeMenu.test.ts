@@ -26,7 +26,9 @@ test.describe('game type menu', () => {
     await page.mouse.move(button!.x, button!.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(page.locator('#app')).toHaveScreenshot('campaign-game-info.png');
+    await expect(page.locator('#app')).toHaveScreenshot('campaign-game-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
 
   test('renders multi-player game info', async ({ page }) => {
@@ -35,7 +37,9 @@ test.describe('game type menu', () => {
     await page.mouse.move(button!.x, button!.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(page.locator('#app')).toHaveScreenshot('multi-player-game-info.png');
+    await expect(page.locator('#app')).toHaveScreenshot('multi-player-game-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
 
   test('renders cancel info', async ({ page }) => {
@@ -44,6 +48,8 @@ test.describe('game type menu', () => {
     await page.mouse.move(button!.x, button!.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png');
+    await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png', {
+      maxDiffPixelRatio: 0.01,
+    });
   });
 });

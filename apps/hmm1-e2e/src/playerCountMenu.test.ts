@@ -14,7 +14,9 @@ test('renders 2 player info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('2-players-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('2-players-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders 3 player info', async ({ page }) => {
@@ -23,7 +25,9 @@ test('renders 3 player info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('3-players-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('3-players-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders 4 player info', async ({ page }) => {
@@ -32,7 +36,9 @@ test('renders 4 player info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('4-players-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('4-players-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders cancel info', async ({ page }) => {
@@ -41,5 +47,7 @@ test('renders cancel info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });

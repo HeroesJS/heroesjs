@@ -48,7 +48,7 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
       <Modal open={hostInfo.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
       </Modal>
-      <Modal open={guestInfo.isOpen} x={177} y={29}>
+      <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
         {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
       </Modal>
       <Modal open={cancelInfo.isOpen} x={177} y={29}>

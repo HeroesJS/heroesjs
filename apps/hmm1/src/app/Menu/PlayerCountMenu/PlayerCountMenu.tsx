@@ -31,16 +31,32 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
     4: fourPlayerInfo,
   };
 
+  const handleRightButtonDown = (value: number) => infoModals[value].open();
+
+  const handleRightButtonUp = (value: number) => infoModals[value].close();
+
   const cancelInfo = useModal();
 
   return (
     <>
       <Menu label={t('title')} x={x} y={y}>
         {range(2, 5).map((count) => (
-          <Item key={count} onClick={onCountClick} value={count} />
+          <Item
+            key={count}
+            onClick={onCountClick}
+            onRightButtonDown={handleRightButtonDown}
+            onRightButtonUp={handleRightButtonUp}
+            value={count}
+          />
         ))}
         <MenuSeparator />
-        <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+        <MenuButton
+          assets={assets.cancelButton}
+          label={t('cancel')}
+          onClick={onCancelClick}
+          onRightButtonDown={cancelInfo.open}
+          onRightButtonUp={cancelInfo.close}
+        />
       </Menu>
       {range(2, 5).map((count) => (
         <Modal open={infoModals[count].isOpen} x={177} y={29}>
@@ -56,19 +72,27 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
 
 interface ItemProps {
   readonly onClick?: (value: number) => void;
+  readonly onRightButtonDown?: (value: number) => void;
+  readonly onRightButtonUp?: (value: number) => void;
   readonly value: number;
 }
 
-const Item = ({ onClick, value }: ItemProps) => {
+const Item = ({ onClick, onRightButtonDown, onRightButtonUp, value }: ItemProps) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
 
   const handleClick = () => onClick?.(value);
+
+  const handleRightButtonDown = () => onRightButtonDown?.(value);
+
+  const handleRightButtonUp = () => onRightButtonUp?.(value);
 
   return (
     <MenuButton
       assets={assets.playerCountButtons[value]}
       label={t('playerCount', { count: value })}
       onClick={handleClick}
+      onRightButtonDown={handleRightButtonDown}
+      onRightButtonUp={handleRightButtonUp}
     />
   );
 };
