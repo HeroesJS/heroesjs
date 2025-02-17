@@ -59,8 +59,8 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
         />
       </Menu>
       {range(2, 5).map((count) => (
-        <Modal open={infoModals[count].isOpen} x={177} y={29}>
-          {t(`playerCountInfo_${count}`)}
+        <Modal key={count} open={infoModals[count].isOpen} x={177} y={29}>
+          {t(`playerCountInfo_${count as 2 | 3 | 4}`)}
         </Modal>
       ))}
       <Modal open={cancelInfo.isOpen} x={177} y={29}>

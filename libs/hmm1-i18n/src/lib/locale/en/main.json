@@ -4,13 +4,13 @@
       "cancel": "$t(core:okayCancel.false)",
       "cancelInfo": "Cancel back to the main menu.",
       "lord-alamar": "Play Lord Alamar",
+      "lord-alamar-info": "Play the role of Lord Alamar.",
       "lord-ironfist": "Play Lord Ironfist",
+      "lord-ironfist-info": "Play the role of Lord Ironfist.",
       "lord-slayer": "Play Lord Slayer",
-      "lordAlamarInfo": "Play the role of Lord Alamar.",
-      "lordIronfistInfo": "Play the role of Lord Ironfist.",
-      "lordSlayerInfo": "Play the role of Lord Slayer.",
+      "lord-slayer-info": "Play the role of Lord Slayer.",
       "queen-lamanda": "Play Queen Lamanda",
-      "queenLamandaInfo": "Play the role of Queen Lamanda.",
+      "queen-lamanda-info": "Play the role of Queen Lamanda.",
       "title": "Campaign Menu"
     },
     "comPortMenu": {
@@ -92,7 +92,7 @@
       "modem": "Modem",
       "modemInfo": "Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.",
       "network": "Network",
-      "networkInfo": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Netowkr).",
+      "networkInfo": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).",
       "title": "Multi-Player Game Type Menu"
     },
     "newGameWindow": {

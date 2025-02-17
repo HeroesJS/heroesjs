@@ -12,83 +12,133 @@ describe(CampaignMenu, () => {
     expect(screen.getByRole('menu', { name: /campaign menu/i })).toBeInTheDocument();
   });
 
-  it('renders play lord ironfist button', async () => {
-    renderWithProviders(<CampaignMenu />);
+  describe('play lord ironfist button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord ironfist/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /play lord ironfist/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /play lord ironfist/i }));
+
+      expect(handler).toHaveBeenCalledWith(Campaign.LordIronfist);
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /play lord ironfist/i }));
+
+      expect(screen.getByText(/play the role of lord ironfist\./i)).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when play lord ironfist button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('play lord slayer button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<CampaignMenu />);
 
-    const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+      expect(screen.getByRole('button', { name: /play lord slayer/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /play lord ironfist/i }));
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalledWith(Campaign.LordIronfist);
+      const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /play lord slayer/i }));
+
+      expect(handler).toHaveBeenCalledWith(Campaign.LordSlayer);
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /play lord slayer/i }));
+
+      expect(screen.getByText(/play the role of lord slayer\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders play lord slayer button', async () => {
-    renderWithProviders(<CampaignMenu />);
+  describe('play queen lamanda button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord slayer/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /play queen lamanda/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /play queen lamanda/i }));
+
+      expect(handler).toHaveBeenCalledWith(Campaign.QueenLamanda);
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /play queen lamanda/i }));
+
+      expect(screen.getByText(/play the role of queen lamanda\./i)).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when play lord slayer button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('play lord alamar button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<CampaignMenu />);
 
-    const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+      expect(screen.getByRole('button', { name: /play lord alamar/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /play lord slayer/i }));
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalledWith(Campaign.LordSlayer);
+      const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /play lord alamar/i }));
+
+      expect(handler).toHaveBeenCalledWith(Campaign.LordAlamar);
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /play lord alamar/i }));
+
+      expect(screen.getByText(/play the role of lord alamar\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders play queen lamanda button', async () => {
-    renderWithProviders(<CampaignMenu />);
+  describe('cancel button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play queen lamanda/i })).toBeInTheDocument();
-  });
+      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    });
 
-  it('calls handler when play queen lamanda button is clicked', async () => {
-    const handler = vitest.fn();
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
+      const { user } = renderWithProviders(<CampaignMenu onCancelClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /play queen lamanda/i }));
+      await user.click(screen.getByRole('button', { name: /cancel/i }));
 
-    expect(handler).toHaveBeenCalledWith(Campaign.QueenLamanda);
-  });
+      expect(handler).toHaveBeenCalled();
+    });
 
-  it('renders play lord alamar button', async () => {
-    renderWithProviders(<CampaignMenu />);
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('button', { name: /play lord alamar/i })).toBeInTheDocument();
-  });
+      await user.rightDown(screen.getByRole('button', { name: /cancel/i }));
 
-  it('calls handler when play lord alamar button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<CampaignMenu onCampaignClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /play lord alamar/i }));
-
-    expect(handler).toHaveBeenCalledWith(Campaign.LordAlamar);
-  });
-
-  it('renders cancel button', async () => {
-    renderWithProviders(<CampaignMenu />);
-
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
-  });
-
-  it('calls handler when cancel button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<CampaignMenu onCancelClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
-
-    expect(handler).toHaveBeenCalled();
+      expect(screen.getByText(/cancel back to the main menu\./i)).toBeInTheDocument();
+    });
   });
 });

@@ -32,19 +32,21 @@ describe(ComPortMenu, () => {
     });
   });
 
-  it('renders cancel button', async () => {
-    renderWithProviders(<ComPortMenu />);
+  describe('cancel button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<ComPortMenu />);
 
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
-  });
+      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    });
 
-  it('calls handler when cancel button is clicked', async () => {
-    const handler = vitest.fn();
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<ComPortMenu onCancelClick={handler} />);
+      const { user } = renderWithProviders(<ComPortMenu onCancelClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /cancel/i }));
 
-    expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalled();
+    });
   });
 });

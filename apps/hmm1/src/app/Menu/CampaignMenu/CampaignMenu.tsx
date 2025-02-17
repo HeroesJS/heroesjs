@@ -1,4 +1,3 @@
-import { camelCase } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, MenuButton, Modal, type PositionProps, useModal, type UseModalResult } from '@heroesjs/hmm1-base-ui';
@@ -51,8 +50,8 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
         />
       </Menu>
       {campaigns.map((campaign) => (
-        <Modal open={infoModals[campaign]['isOpen']} x={177} y={29}>
-          {t(`${camelCase(campaign)}Info`)}
+        <Modal key={campaign} open={infoModals[campaign]['isOpen']} x={177} y={29}>
+          {t(`${campaign}-info`)}
         </Modal>
       ))}
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
