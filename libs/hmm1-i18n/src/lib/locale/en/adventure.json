@@ -19,7 +19,9 @@
     "adventureWindow": {
       "adventureMap": "Adventure Map",
       "statusWindow": "Status Window",
-      "worldMap": "World Map"
+      "statusWindowInfo": "Status Window\n\nThis window provides information on the status of your hero or kingdom, and shows the date.  Left click here to cycle through these windows.",
+      "worldMap": "World Map",
+      "worldMapInfo": "World Map (Left click to move viewing area)."
     },
     "campaignScenarioInfoWindow": {
       "confirmLabel": "$t(core:okayCancel.true)",

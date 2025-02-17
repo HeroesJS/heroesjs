@@ -15,6 +15,28 @@ test('matches screenshot', async ({ page }) => {
   });
 });
 
+test('renders world map info', async ({ page }) => {
+  const worldMap = await page.getByRole('note', { name: /world map/i }).boundingBox();
+
+  await page.mouse.move(worldMap!.x, worldMap!.y);
+  await page.mouse.down({ button: 'right' });
+
+  await expect(page.locator('#app')).toHaveScreenshot('world-map-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
+test('renders status window info', async ({ page }) => {
+  const statusWindow = await page.getByRole('note', { name: /status window/i }).boundingBox();
+
+  await page.mouse.move(statusWindow!.x, statusWindow!.y);
+  await page.mouse.down({ button: 'right' });
+
+  await expect(page.locator('#app')).toHaveScreenshot('status-window-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
 test.describe('adventure options', () => {
   test.beforeEach(async ({ page }) => {
     await page.getByRole('button', { name: /adventure options/i }).click();
