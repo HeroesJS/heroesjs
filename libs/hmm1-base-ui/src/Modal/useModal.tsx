@@ -1,10 +1,12 @@
-import { type DOMAttributes, type MouseEventHandler, useCallback } from 'react';
+import { type ComponentProps, type DOMAttributes, type MouseEventHandler, useCallback } from 'react';
 
+import type { Button } from '../Button';
 import { useToggle2 } from '../useToggle';
 
 export interface UseModalResult {
   readonly close: () => void;
-  readonly handlers: Required<Pick<DOMAttributes<HTMLElement>, 'onMouseDown'>>;
+  readonly handlers: Required<Pick<DOMAttributes<HTMLElement>, 'onMouseDown'>> &
+    Pick<ComponentProps<typeof Button>, 'onRightButtonDown'>;
   readonly isOpen: boolean;
   readonly open: () => void;
 }
@@ -38,6 +40,7 @@ export const useModal = (initialIsOpen = false): UseModalResult => {
     close,
     handlers: {
       onMouseDown: handleMouseDown,
+      onRightButtonDown: handleMouseDown,
     },
     isOpen,
     open,

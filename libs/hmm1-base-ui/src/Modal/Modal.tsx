@@ -1,5 +1,6 @@
 import { range } from 'lodash';
 import type { PropsWithChildren } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 import { Backdrop } from '../Backdrop';
@@ -33,7 +34,7 @@ export const Modal = ({
     return null;
   }
 
-  return (
+  return createPortal(
     <Backdrop>
       <Root x={x} y={y}>
         <Header />
@@ -47,7 +48,8 @@ export const Modal = ({
         </Text>
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
       </Root>
-    </Backdrop>
+    </Backdrop>,
+    document.body,
   );
 };
 

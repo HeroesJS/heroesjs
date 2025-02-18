@@ -2,11 +2,17 @@
   "component": {
     "adventureButtons": {
       "adventureOptions": "Adventure Options",
+      "adventureOptionsInfo": "Adventure Options\n\nBring up the adventure options menu.",
       "endTurn": "End Turn",
+      "endTurnInfo": "End Turn\n\nEnd your turn and let the computer take its turn.",
       "gameOptions": "Game Options",
+      "gameOptionsInfo": "Game Options\n\nBring up the game options menu.",
       "kingdomOverview": "Kingdom Overview",
+      "kingdomOverviewInfo": "Kingdom Summary\n\nView a summary of your kingdom.",
       "move": "Move",
-      "nextHero": "Next Hero"
+      "moveInfo": "Continue Movement\n\nContinue the Hero's movement along his current path.",
+      "nextHero": "Next Hero",
+      "nextHeroInfo": "Next Hero\n\nSelect the next Hero."
     },
     "adventureOptionsWindow": {
       "castSpell": "Cast Spell",
