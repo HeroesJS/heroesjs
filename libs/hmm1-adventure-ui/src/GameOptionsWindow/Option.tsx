@@ -9,10 +9,21 @@ interface Props extends PositionProps {
   readonly heading: string;
   readonly onChange?: (checked: boolean) => void;
   readonly onClick?: () => void;
+  readonly onRightButtonDown?: () => void;
   readonly valueLabel?: string;
 }
 
-export const Option = ({ assets, checked = false, heading, onChange, onClick, valueLabel, x, y }: Props) => {
+export const Option = ({
+  assets,
+  checked = false,
+  heading,
+  onChange,
+  onClick,
+  onRightButtonDown,
+  valueLabel,
+  x,
+  y,
+}: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
 
   return (
@@ -20,7 +31,14 @@ export const Option = ({ assets, checked = false, heading, onChange, onClick, va
       <Heading align="center" size="small" width={80} y={0}>
         {heading}
       </Heading>
-      <Checkbox assets={assets} checked={checked} label={heading} onChange={onChange} onClick={onClick} />
+      <Checkbox
+        assets={assets}
+        checked={checked}
+        label={heading}
+        onChange={onChange}
+        onClick={onClick}
+        onRightButtonDown={onRightButtonDown}
+      />
       <Label align="center" size="small" width={66} y={0}>
         {valueLabel || t(`core:onOff.${checked}`)}
       </Label>

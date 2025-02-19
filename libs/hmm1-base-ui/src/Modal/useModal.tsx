@@ -36,11 +36,17 @@ export const useModal = (initialIsOpen = false): UseModalResult => {
     [handleDocumentMouseUp, open],
   );
 
+  const handleRightButtonDown = useCallback(() => {
+    document.addEventListener('mouseup', handleDocumentMouseUp);
+
+    open();
+  }, [handleDocumentMouseUp, open]);
+
   return {
     close,
     handlers: {
       onMouseDown: handleMouseDown,
-      onRightButtonDown: handleMouseDown,
+      onRightButtonDown: handleRightButtonDown,
     },
     isOpen,
     open,

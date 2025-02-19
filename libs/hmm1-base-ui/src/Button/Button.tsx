@@ -1,4 +1,4 @@
-import { type MouseEvent, type MouseEventHandler, useCallback, useState } from 'react';
+import { type MouseEventHandler, useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
@@ -16,7 +16,7 @@ interface Props extends PositionProps {
   readonly onClick?: () => void;
   readonly onMouseLeave?: () => void;
   readonly onMouseOver?: () => void;
-  readonly onRightButtonDown?: (e: MouseEvent) => void;
+  readonly onRightButtonDown?: () => void;
   readonly onRightButtonUp?: () => void;
 }
 
@@ -60,7 +60,7 @@ export const Button = ({
       if (e.button === 0) {
         setPressed(true);
       } else if (e.button === 2) {
-        onRightButtonDown?.(e);
+        onRightButtonDown?.();
       }
     },
     [handleDocumentMouseUp, onRightButtonDown],

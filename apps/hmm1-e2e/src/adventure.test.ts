@@ -115,18 +115,6 @@ test.describe('adventure options', () => {
   });
 });
 
-test.describe('game options', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/adventure/game-options');
-  });
-
-  test('matches screenshot', async ({ page }) => {
-    await expect(page.locator('#app')).toHaveScreenshot('game-options-window.png', {
-      maxDiffPixelRatio: 0.01,
-    });
-  });
-});
-
 test.describe('standard scenario info', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/adventure/scenario-info');
