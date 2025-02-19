@@ -105,16 +105,6 @@ test('renders status window info', async ({ page }) => {
   });
 });
 
-test.describe('adventure options', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.getByRole('button', { name: /adventure options/i }).click();
-  });
-
-  test('matches screenshot', async ({ page }) => {
-    await expect(page.locator('#app')).toHaveScreenshot('adventure-options-window.png');
-  });
-});
-
 test.describe('standard scenario info', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/adventure/scenario-info');

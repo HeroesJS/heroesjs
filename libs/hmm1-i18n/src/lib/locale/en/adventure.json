@@ -16,11 +16,16 @@
     },
     "adventureOptionsWindow": {
       "castSpell": "Cast Spell",
+      "castSpellInfo": "Cast an adventure spell.",
       "dig": "Dig",
+      "digInfo": "Dig for the Ultimate Artifact.",
       "okay": "$t(core:okayCancel.true)",
+      "okayInfo": "$t(component.adventureOptionsWindow.digInfo)",
       "title": "Adventure Options Window",
       "viewPuzzle": "View Puzzle",
-      "viewWorld": "View World"
+      "viewPuzzleInfo": "View the obelisk puzzle.",
+      "viewWorld": "View World",
+      "viewWorldInfo": "View the entire world."
     },
     "adventureWindow": {
       "adventureMap": "Adventure Map",
