@@ -59,11 +59,11 @@
       "saveGameInfo": "Save the current game.",
       "saveGameLabel": "Save Game",
       "showPathHeading": "Show Path",
-      "showPathInfo": "Toggle 'Show Path' on/off.  If 'Show Path' is on, your first click on a map location will show the path to get there, your second will start you moving, If this option is off, one click starts you moving immediately.",
+      "showPathInfo": "Toggle 'Show Path' on/off.  If 'Show Path' is on, your first click on a map location will show the path to get there, your second will start you moving. If this option is off, one click starts you moving immediately.",
       "speedHeading": "Speed",
       "title": "Game Options Window",
       "viewEnemyMovementHeading": "View Enemy Movement",
-      "viewEnemyMovementInfo": "Toggle 'Show Enemy Moves' on/off. If on, all enemies moving within your visible area will be shown.  If off, no computer movement will be shown.  Note that this option is automatically set to off during network and movem play.",
+      "viewEnemyMovementInfo": "Toggle 'Show Enemy Moves' on/off. If on, all enemies moving within your visible area will be shown.  If off, no computer movement will be shown.  Note that this option is automatically set to off during network and modem play.",
       "volume": "Volume {{value}}"
     },
     "playerColorJewel": {

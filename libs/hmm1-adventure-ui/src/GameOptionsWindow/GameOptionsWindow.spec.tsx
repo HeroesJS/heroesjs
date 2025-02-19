@@ -28,6 +28,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /new game/i }));
+
+      expect(screen.getByText(/start a single or multi-player game\./i)).toBeInTheDocument();
+    });
   });
 
   describe('load game', () => {
@@ -45,6 +53,14 @@ describe(GameOptionsWindow, () => {
       await user.click(screen.getByRole('button', { name: /load game/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /load game/i }));
+
+      expect(screen.getByText(/load a prevously saved game\./i)).toBeInTheDocument();
     });
   });
 
@@ -64,6 +80,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /save game/i }));
+
+      expect(screen.getByText(/save the current game\./i)).toBeInTheDocument();
+    });
   });
 
   describe('quit', () => {
@@ -81,6 +105,14 @@ describe(GameOptionsWindow, () => {
       await user.click(screen.getByRole('button', { name: /quit/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /quit/i }));
+
+      expect(screen.getByText(/quit heroes of might and magic and return to the dos prompt\./i)).toBeInTheDocument();
     });
   });
 
@@ -124,6 +156,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalledWith(4);
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /music/i }));
+
+      expect(screen.getByText(/toggle ambient music on\/off/i)).toBeInTheDocument();
+    });
   });
 
   describe('effects volume', () => {
@@ -166,6 +206,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalledWith(4);
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /effects/i }));
+
+      expect(screen.getByText(/toggle foreground sounds on\/off/i)).toBeInTheDocument();
+    });
   });
 
   describe('movement speed', () => {
@@ -198,6 +246,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalledWith(MovementSpeed.Jump);
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /speed/i }));
+
+      expect(screen.getByText(/change the speed at which heroes move on the main screen\./i)).toBeInTheDocument();
+    });
   });
 
   describe('auto save', () => {
@@ -222,6 +278,18 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalledWith(true);
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /auto save/i }));
+
+      expect(
+        screen.getByText(
+          /toggle 'autosave' on\/off\. 'autosave' saves your game automatically at the end of each turn to a special file, called 'autosave'\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
   describe('show path', () => {
@@ -245,6 +313,18 @@ describe(GameOptionsWindow, () => {
       await user.click(within(screen.getByRole('option', { name: /show path/i })).getByRole('checkbox'));
 
       expect(handler).toHaveBeenCalledWith(true);
+    });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /show path/i }));
+
+      expect(
+        screen.getByText(
+          /toggle 'show path' on\/off\. if 'show path' is on, your first click on a map location will show the path to get there, your second will start you moving\. if this option is off, one click starts you moving immediately\./i,
+        ),
+      ).toBeInTheDocument();
     });
   });
 
@@ -272,6 +352,18 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalledWith(true);
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('checkbox', { name: /view enemy movement/i }));
+
+      expect(
+        screen.getByText(
+          /toggle 'show enemy moves' on\/off. if on, all enemies moving within your visible area will be shown\. if off, no computer movement will be shown\. note that this option is automatically set to off during network and modem play\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
   describe('okay', () => {
@@ -290,6 +382,14 @@ describe(GameOptionsWindow, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /okay/i }));
+
+      expect(screen.getByText(/exit this menu without doing anything\./i)).toBeInTheDocument();
+    });
   });
 
   describe('info', () => {
@@ -307,6 +407,14 @@ describe(GameOptionsWindow, () => {
       await user.click(screen.getByRole('button', { name: /info/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /info/i }));
+
+      expect(screen.getByText(/view information on the scenario you are currently playing\./i)).toBeInTheDocument();
     });
   });
 });

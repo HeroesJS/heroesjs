@@ -131,13 +131,13 @@ test('renders okay info', async ({ page }) => {
   });
 });
 
-test('renders cancel info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /cancel/i }).boundingBox();
+test('renders info info', async ({ page }) => {
+  const button = await page.getByRole('button', { name: /info/i }).boundingBox();
 
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png', {
+  await expect(page.locator('#app')).toHaveScreenshot('info-info.png', {
     maxDiffPixelRatio: 0.01,
   });
 });
