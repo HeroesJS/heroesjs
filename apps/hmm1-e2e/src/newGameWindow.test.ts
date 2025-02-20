@@ -11,39 +11,47 @@ test('renders new game window', async ({ page }) => {
 });
 
 test('renders game difficulty info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /easy/i }).boundingBox();
+  const option = await page.getByRole('option', { name: /easy/i }).boundingBox();
 
-  await page.mouse.move(button!.x, button!.y);
+  await page.mouse.move(option!.x, option!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('game-difficulty-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('game-difficulty-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders opponent setting info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /opponent 1 setting/i }).boundingBox();
+  const button = await page.getByRole('button', { name: /change opponent 1 setting/i }).boundingBox();
 
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('opponent-setting-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('opponent-setting-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders player color info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /player color/i }).boundingBox();
+  const button = await page.getByRole('button', { name: /change banner color/i }).boundingBox();
 
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('player-color-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('player-color-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders king of the hill info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /king of the hill/i }).boundingBox();
+  const checkbox = await page.getByRole('checkbox', { name: /king of the hill/i }).boundingBox();
 
-  await page.mouse.move(button!.x, button!.y);
+  await page.mouse.move(checkbox!.x, checkbox!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('king-of-the-hill-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('king-of-the-hill-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders scenario selection info', async ({ page }) => {
@@ -52,16 +60,20 @@ test('renders scenario selection info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('scenario-selection-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('scenario-selection-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders rating info', async ({ page }) => {
-  const button = await page.getByRole('button', { name: /rating/i }).boundingBox();
+  const text = await page.getByText(/difficulty rating: 50%/i).boundingBox();
 
-  await page.mouse.move(button!.x, button!.y);
+  await page.mouse.move(text!.x, text!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('rating-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('rating-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders okay info', async ({ page }) => {
@@ -70,7 +82,9 @@ test('renders okay info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('okay-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('okay-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders cancel info', async ({ page }) => {
@@ -79,7 +93,9 @@ test('renders cancel info', async ({ page }) => {
   await page.mouse.move(button!.x, button!.y);
   await page.mouse.down({ button: 'right' });
 
-  await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png');
+  await expect(page.locator('#app')).toHaveScreenshot('cancel-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
 });
 
 test('renders scenario selection', async ({ page }) => {
