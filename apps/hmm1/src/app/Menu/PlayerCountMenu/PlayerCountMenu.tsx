@@ -1,5 +1,5 @@
 import { range } from 'lodash';
-import type { MouseEvent } from 'react';
+import { Fragment, type MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -35,23 +35,21 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
   const cancelInfo = useModal();
 
   return (
-    <>
-      <Menu label={t('title')} x={x} y={y}>
-        {range(2, 5).map((count) => (
-          <Item {...infoModals[count].handlers} key={count} onClick={onCountClick} value={count} />
-        ))}
-        <MenuSeparator />
-        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      </Menu>
+    <Menu label={t('title')} x={x} y={y}>
       {range(2, 5).map((count) => (
-        <Modal key={count} open={infoModals[count].isOpen} x={177} y={29}>
-          {t(`playerCountInfo_${count as 2 | 3 | 4}`)}
-        </Modal>
+        <Fragment key={count}>
+          <Item {...infoModals[count].handlers} onClick={onCountClick} value={count} />
+          <Modal open={infoModals[count].isOpen} x={177} y={29}>
+            {t(`playerCountInfo_${count as 2 | 3 | 4}`)}
+          </Modal>
+        </Fragment>
       ))}
+      <MenuSeparator />
+      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
-    </>
+    </Menu>
   );
 };
 

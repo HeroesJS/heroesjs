@@ -30,49 +30,47 @@ export const MainMenu = ({
   const quitInfo = useModal();
 
   return (
-    <>
-      <Menu label={t('title')} x={x} y={y}>
-        <MenuButton
-          {...newGameInfo.handlers}
-          assets={assets.newGameButton}
-          label={t('newGameLabel')}
-          onClick={onNewGameClick}
-        />
-        <MenuButton
-          {...loadGameInfo.handlers}
-          assets={assets.loadGameButton}
-          label={t('loadGameLabel')}
-          onClick={onLoadGameClick}
-        />
-        <MenuButton
-          {...viewHighScoresInfo.handlers}
-          assets={assets.viewHighScoresButton}
-          label={t('viewHighScoresLabel')}
-          onClick={onViewHighScoresClick}
-        />
-        <MenuButton
-          {...viewCreditsInfo.handlers}
-          assets={assets.viewCreditsButton}
-          label={t('viewCreditsLabel')}
-          onClick={onViewCreditsClick}
-        />
-        <MenuButton {...quitInfo.handlers} assets={assets.quitButton} label={t('quitLabel')} onClick={onQuitClick} />
-      </Menu>
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton
+        {...newGameInfo.handlers}
+        assets={assets.newGameButton}
+        label={t('newGameLabel')}
+        onClick={onNewGameClick}
+      />
       <Modal open={newGameInfo.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
+      <MenuButton
+        {...loadGameInfo.handlers}
+        assets={assets.loadGameButton}
+        label={t('loadGameLabel')}
+        onClick={onLoadGameClick}
+      />
       <Modal open={loadGameInfo.isOpen} x={177} y={29}>
         {t('loadGameInfo')}
       </Modal>
+      <MenuButton
+        {...viewHighScoresInfo.handlers}
+        assets={assets.viewHighScoresButton}
+        label={t('viewHighScoresLabel')}
+        onClick={onViewHighScoresClick}
+      />
       <Modal open={viewHighScoresInfo.isOpen} x={177} y={29}>
         {t('viewHighScoresInfo')}
       </Modal>
+      <MenuButton
+        {...viewCreditsInfo.handlers}
+        assets={assets.viewCreditsButton}
+        label={t('viewCreditsLabel')}
+        onClick={onViewCreditsClick}
+      />
       <Modal open={viewCreditsInfo.isOpen} x={177} y={29}>
         {t('viewCreditsInfo')}
       </Modal>
+      <MenuButton {...quitInfo.handlers} assets={assets.quitButton} label={t('quitLabel')} onClick={onQuitClick} />
       <Modal open={quitInfo.isOpen} x={177} y={29}>
         {t('quitInfo')}
       </Modal>
-    </>
+    </Menu>
   );
 };

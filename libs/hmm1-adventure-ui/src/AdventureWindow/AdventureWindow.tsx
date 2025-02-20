@@ -38,6 +38,9 @@ export const AdventureWindow = ({
       <WorldMap {...worldMapInfo.handlers} aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
         {renderWorldMap?.()}
       </WorldMap>
+      <Modal open={worldMapInfo.isOpen} x={97} y={29}>
+        {t('worldMapInfo')}
+      </Modal>
       <HeroLocators x={ScreenHeight} y={176}>
         {renderHeroLocators?.()}
       </HeroLocators>
@@ -50,13 +53,10 @@ export const AdventureWindow = ({
       <StatusWindow {...statusWindowInfo.handlers} aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
         {renderStatusWindow?.()}
       </StatusWindow>
-      {children}
-      <Modal open={worldMapInfo.isOpen} x={97} y={29}>
-        {t('worldMapInfo')}
-      </Modal>
       <Modal open={statusWindowInfo.isOpen} size={2} x={97} y={29}>
         {t('statusWindowInfo')}
       </Modal>
+      {children}
     </Screen>
   );
 };

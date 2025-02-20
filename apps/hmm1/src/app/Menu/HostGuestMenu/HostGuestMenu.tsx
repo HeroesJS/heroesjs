@@ -19,33 +19,31 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
   const cancelInfo = useModal();
 
   return (
-    <>
-      <Menu label={t('title')} x={x} y={y}>
-        <MenuButton
-          {...hostInfo.handlers}
-          assets={detailed ? assets.hostDialsButton : assets.hostButton}
-          label={t(detailed ? 'hostDetail' : 'host')}
-          onClick={onHostClick}
-        />
-        <MenuButton
-          {...guestInfo.handlers}
-          assets={detailed ? assets.guestAnswersButton : assets.guestButton}
-          label={t(detailed ? 'guestDetail' : 'guest')}
-          onClick={onGuestClick}
-        />
-        <MenuSeparator />
-        <MenuSeparator />
-        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      </Menu>
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton
+        {...hostInfo.handlers}
+        assets={detailed ? assets.hostDialsButton : assets.hostButton}
+        label={t(detailed ? 'hostDetail' : 'host')}
+        onClick={onHostClick}
+      />
       <Modal open={hostInfo.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
       </Modal>
+      <MenuButton
+        {...guestInfo.handlers}
+        assets={detailed ? assets.guestAnswersButton : assets.guestButton}
+        label={t(detailed ? 'guestDetail' : 'guest')}
+        onClick={onGuestClick}
+      />
       <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
         {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
       </Modal>
+      <MenuSeparator />
+      <MenuSeparator />
+      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
-    </>
+    </Menu>
   );
 };

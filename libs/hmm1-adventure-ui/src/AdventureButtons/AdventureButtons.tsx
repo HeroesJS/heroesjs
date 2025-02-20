@@ -36,55 +36,53 @@ export const AdventureButtons = ({
   const gameOptionsInfo = useModal();
 
   return (
-    <>
-      <Root>
-        <Button
-          {...nextHeroInfo.handlers}
-          assets={nextHero}
-          disabled={nextHeroDisabled}
-          label={t('nextHero')}
-          onClick={onNextHeroClick}
-        />
-        <Button {...moveInfo.handlers} assets={move} disabled={moveDisabled} label={t('move')} onClick={onMoveClick} />
-        <Button
-          {...kingdomOverviewInfo.handlers}
-          assets={kingdomOverview}
-          label={t('kingdomOverview')}
-          onClick={onKingdomOverviewClick}
-        />
-        <Button {...endTurnInfo.handlers} assets={endTurn} label={t('endTurn')} onClick={onEndTurnClick} />
-        <Button
-          {...adventureOptionsInfo.handlers}
-          assets={adventureOptions}
-          label={t('adventureOptions')}
-          onClick={onAdventureOptionsClick}
-        />
-        <Button
-          {...gameOptionsInfo.handlers}
-          assets={gameOptions}
-          label={t('gameOptions')}
-          onClick={onGameOptionsClick}
-        />
-      </Root>
+    <Root>
+      <Button
+        {...nextHeroInfo.handlers}
+        assets={nextHero}
+        disabled={nextHeroDisabled}
+        label={t('nextHero')}
+        onClick={onNextHeroClick}
+      />
       <Modal open={nextHeroInfo.isOpen} x={97} y={29}>
         {t('nextHeroInfo')}
       </Modal>
+      <Button {...moveInfo.handlers} assets={move} disabled={moveDisabled} label={t('move')} onClick={onMoveClick} />
       <Modal open={moveInfo.isOpen} size={1} x={97} y={29}>
         {t('moveInfo')}
       </Modal>
+      <Button
+        {...kingdomOverviewInfo.handlers}
+        assets={kingdomOverview}
+        label={t('kingdomOverview')}
+        onClick={onKingdomOverviewClick}
+      />
       <Modal open={kingdomOverviewInfo.isOpen} size={1} x={97} y={29}>
         {t('kingdomOverviewInfo')}
       </Modal>
+      <Button {...endTurnInfo.handlers} assets={endTurn} label={t('endTurn')} onClick={onEndTurnClick} />
       <Modal open={endTurnInfo.isOpen} size={1} x={97} y={29}>
         {t('endTurnInfo')}
       </Modal>
+      <Button
+        {...adventureOptionsInfo.handlers}
+        assets={adventureOptions}
+        label={t('adventureOptions')}
+        onClick={onAdventureOptionsClick}
+      />
       <Modal open={adventureOptionsInfo.isOpen} size={1} x={97} y={29}>
         {t('adventureOptionsInfo')}
       </Modal>
+      <Button
+        {...gameOptionsInfo.handlers}
+        assets={gameOptions}
+        label={t('gameOptions')}
+        onClick={onGameOptionsClick}
+      />
       <Modal open={gameOptionsInfo.isOpen} size={1} x={97} y={29}>
         {t('gameOptionsInfo')}
       </Modal>
-    </>
+    </Root>
   );
 };
 

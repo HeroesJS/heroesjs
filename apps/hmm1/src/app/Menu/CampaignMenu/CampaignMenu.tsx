@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import { Fragment, type MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, MenuButton, Modal, type PositionProps, useModal, type UseModalResult } from '@heroesjs/hmm1-base-ui';
@@ -31,22 +31,20 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
   const cancelInfo = useModal();
 
   return (
-    <>
-      <Menu label={t('title')} x={x} y={y}>
-        {campaigns.map((campaign) => (
-          <Item {...infoModals[campaign].handlers} key={campaign} onClick={onCampaignClick} value={campaign} />
-        ))}
-        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      </Menu>
+    <Menu label={t('title')} x={x} y={y}>
       {campaigns.map((campaign) => (
-        <Modal key={campaign} open={infoModals[campaign]['isOpen']} x={177} y={29}>
-          {t(`${campaign}-info`)}
-        </Modal>
+        <Fragment key={campaign}>
+          <Item {...infoModals[campaign].handlers} onClick={onCampaignClick} value={campaign} />
+          <Modal open={infoModals[campaign]['isOpen']} x={177} y={29}>
+            {t(`${campaign}-info`)}
+          </Modal>
+        </Fragment>
       ))}
+      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
-    </>
+    </Menu>
   );
 };
 
