@@ -22,28 +22,20 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
     <>
       <Menu label={t('title')} x={x} y={y}>
         <MenuButton
+          {...hostInfo.handlers}
           assets={detailed ? assets.hostDialsButton : assets.hostButton}
           label={t(detailed ? 'hostDetail' : 'host')}
           onClick={onHostClick}
-          onRightButtonDown={hostInfo.open}
-          onRightButtonUp={hostInfo.close}
         />
         <MenuButton
+          {...guestInfo.handlers}
           assets={detailed ? assets.guestAnswersButton : assets.guestButton}
           label={t(detailed ? 'guestDetail' : 'guest')}
           onClick={onGuestClick}
-          onRightButtonDown={guestInfo.open}
-          onRightButtonUp={guestInfo.close}
         />
         <MenuSeparator />
         <MenuSeparator />
-        <MenuButton
-          assets={assets.cancelButton}
-          label={t('cancel')}
-          onClick={onCancelClick}
-          onRightButtonDown={cancelInfo.open}
-          onRightButtonUp={cancelInfo.close}
-        />
+        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       </Menu>
       <Modal open={hostInfo.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}

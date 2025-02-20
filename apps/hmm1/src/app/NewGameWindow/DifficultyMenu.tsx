@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
@@ -7,12 +8,11 @@ import { DifficultyOption } from './DifficultyOption';
 
 interface Props extends PositionProps {
   readonly onChange?: (value: GameDifficulty) => void;
-  readonly onInfoClose?: () => void;
-  readonly onInfoOpen?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly selectedOption?: GameDifficulty;
 }
 
-export const DifficultyMenu = ({ onChange, onInfoClose, onInfoOpen, selectedOption, x, y }: Props) => {
+export const DifficultyMenu = ({ onChange, onMouseDown, selectedOption, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   return (
@@ -21,8 +21,7 @@ export const DifficultyMenu = ({ onChange, onInfoClose, onInfoOpen, selectedOpti
         <DifficultyOption
           key={difficulty}
           onClick={onChange}
-          onInfoClose={onInfoClose}
-          onInfoOpen={onInfoOpen}
+          onMouseDown={onMouseDown}
           selected={difficulty === selectedOption}
           value={difficulty}
           x={i * 71}

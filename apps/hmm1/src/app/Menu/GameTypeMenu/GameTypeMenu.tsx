@@ -30,34 +30,25 @@ export const GameTypeMenu = ({
     <>
       <Menu label={t('title')} x={x} y={y}>
         <MenuButton
+          {...standardGameInfo.handlers}
           assets={assets.standardGameButton}
           label={t('standardGame')}
           onClick={onStandardGameClick}
-          onRightButtonDown={standardGameInfo.open}
-          onRightButtonUp={standardGameInfo.close}
         />
         <MenuButton
+          {...campaignGameInfo.handlers}
           assets={assets.campaignGameButton}
           label={t('campaignGame')}
           onClick={onCampaignGameClick}
-          onRightButtonDown={campaignGameInfo.open}
-          onRightButtonUp={campaignGameInfo.close}
         />
         <MenuButton
+          {...multiPlayerGameInfo.handlers}
           assets={assets.multiPlayerGameButton}
           label={t('multiPlayerGame')}
           onClick={onMultiPlayerGameClick}
-          onRightButtonDown={multiPlayerGameInfo.open}
-          onRightButtonUp={multiPlayerGameInfo.close}
         />
         <MenuSeparator />
-        <MenuButton
-          assets={assets.cancelButton}
-          label={t('cancel')}
-          onClick={onCancelClick}
-          onRightButtonDown={cancelInfo.open}
-          onRightButtonUp={cancelInfo.close}
-        />
+        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       </Menu>
       <Modal open={standardGameInfo.isOpen} x={177} y={29}>
         {t('standardGameInfo')}

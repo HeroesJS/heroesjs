@@ -72,9 +72,8 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           {t('gameDifficultyHeading')}:
         </Text>
         <DifficultyMenu
+          {...gameDifficultyInfo.handlers}
           onChange={setSelectedDifficulty}
-          onInfoClose={gameDifficultyInfo.close}
-          onInfoOpen={gameDifficultyInfo.open}
           selectedOption={selectedDifficulty}
           x={19}
           y={36}
@@ -84,11 +83,10 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         </Text>
         {opponentSettings.map((setting, i) => (
           <OpponentSetting
+            {...opponentSettingInfo.handlers}
             index={i}
             key={i}
             onClick={handleOpponentSettingClick}
-            onRightButtonDown={opponentSettingInfo.open}
-            onRightButtonUp={opponentSettingInfo.close}
             value={setting}
             x={55 + i * 72}
             y={149}
@@ -97,24 +95,16 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         <Text heading size="large" x={26} y={254}>
           {t('playerColorHeading')}:
         </Text>
-        <PlayerColorJewel
-          onClick={handleColorClick}
-          onRightButtonDown={playerColorInfo.open}
-          onRightButtonUp={playerColorInfo.close}
-          value={color}
-          x={51}
-          y={270}
-        />
+        <PlayerColorJewel {...playerColorInfo.handlers} onClick={handleColorClick} value={color} x={51} y={270} />
         <Text heading size="large" x={169} y={254}>
           {t('kingOfTheHillHeading')}:
         </Text>
         <Checkbox
+          {...kingOfTheHillInfo.handlers}
           assets={assets.checkbox}
           checked={kingOfTheHill}
           label={t('kingOfTheHillHeading')}
           onChange={toggleKingOfTheHill}
-          onRightButtonDown={kingOfTheHillInfo.open}
-          onRightButtonUp={kingOfTheHillInfo.close}
           x={210}
           y={272}
         />
@@ -122,32 +112,29 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
           {t('scenarioSelectionHeading')}:
         </Text>
         <ScenarioSelection
+          {...scenarioSelectionInfo.handlers}
           onClick={onSelectScenarioClick}
-          onRightButtonDown={scenarioSelectionInfo.open}
-          onRightButtonUp={scenarioSelectionInfo.close}
           value={scenario?.name ?? ''}
           x={25}
           y={354}
         />
-        <Text onRightButtonDown={ratingInfo.open} onRightButtonUp={ratingInfo.close} size="large" x={78} y={388}>
+        <Text {...ratingInfo.handlers} size="large" x={78} y={388}>
           {t('ratingHeading')}: {formatRating(rating)}
         </Text>
         <Button
+          {...confirmInfo.handlers}
           assets={assets.okayButton}
           disabled={!scenario}
           label={t('confirmLabel')}
           onClick={onConfirmClick}
-          onRightButtonDown={confirmInfo.open}
-          onRightButtonUp={confirmInfo.close}
           x={24}
           y={412}
         />
         <Button
+          {...cancelInfo.handlers}
           assets={assets.cancelButton}
           label={t('cancelLabel')}
           onClick={onCancelClick}
-          onRightButtonDown={cancelInfo.open}
-          onRightButtonUp={cancelInfo.close}
           x={201}
           y={412}
         />

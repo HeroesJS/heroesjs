@@ -1,4 +1,4 @@
-import { type MouseEventHandler, useCallback } from 'react';
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -8,23 +8,15 @@ import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
-  readonly onRightButtonDown?: () => void;
-  readonly onRightButtonUp?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: string;
 }
 
-export const ScenarioSelection = ({ onClick, onRightButtonDown, onRightButtonUp, value, x, y }: Props) => {
+export const ScenarioSelection = ({ onClick, onMouseDown, value, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
-  const handleMouseDown = useCallback<MouseEventHandler>(
-    (e) => e.button === 2 && onRightButtonDown?.(),
-    [onRightButtonDown],
-  );
-
-  const handleMouseUp = useCallback<MouseEventHandler>((e) => e.button === 2 && onRightButtonUp?.(), [onRightButtonUp]);
-
   return (
-    <Root onClick={onClick} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} x={x} y={y}>
+    <Root onClick={onClick} onMouseDown={onMouseDown} x={x} y={y}>
       <Input
         background={assets.scenarioSelectionBackground}
         label={t('scenarioInputLabel')}

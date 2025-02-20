@@ -1,4 +1,4 @@
-import { type MouseEventHandler, useCallback } from 'react';
+import { type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -10,22 +10,14 @@ import * as assets from './assets';
 interface Props extends PositionProps {
   readonly index: number;
   readonly onClick?: (index: number, value: OpponentDifficulty) => void;
-  readonly onRightButtonDown?: () => void;
-  readonly onRightButtonUp?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: OpponentDifficulty;
 }
 
-export const OpponentSetting = ({ index, onClick, onRightButtonDown, onRightButtonUp, value, x, y }: Props) => {
+export const OpponentSetting = ({ index, onClick, onMouseDown, value, x, y }: Props) => {
   const { t } = useTranslation(['main', 'core'], { keyPrefix: 'component.newGameWindow' });
 
-  const handleMouseDown = useCallback<MouseEventHandler>(
-    (e) => e.button === 2 && onRightButtonDown?.(),
-    [onRightButtonDown],
-  );
-
-  const handleMouseUp = useCallback<MouseEventHandler>((e) => e.button === 2 && onRightButtonUp?.(), [onRightButtonUp]);
-
-  const handleClick = useCallback<MouseEventHandler>(() => onClick?.(index, value), [index, onClick, value]);
+  const handleClick = useCallback(() => onClick?.(index, value), [index, onClick, value]);
 
   return (
     <Root x={x} y={y}>
@@ -39,8 +31,7 @@ export const OpponentSetting = ({ index, onClick, onRightButtonDown, onRightButt
       <button
         aria-label={t('changeOpponentSettingLabel', { index: index + 1 })}
         onClick={handleClick}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
+        onMouseDown={onMouseDown}
       >
         <img alt="" src={assets.opponentDifficultyImages[value]} />
         <Text align="center" size="small" width={66} x={0} y={64}>

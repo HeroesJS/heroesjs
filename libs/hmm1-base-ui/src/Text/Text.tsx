@@ -1,4 +1,4 @@
-import { type MouseEventHandler, type PropsWithChildren, useCallback } from 'react';
+import type { MouseEvent, PropsWithChildren } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import fontSmall from './heroes1-small.ttf';
@@ -14,8 +14,7 @@ interface Props {
   readonly hidden?: boolean;
   readonly label?: string;
   readonly onClick?: () => void;
-  readonly onRightButtonDown?: () => void;
-  readonly onRightButtonUp?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly selected?: boolean;
   readonly shadow?: boolean;
   readonly size?: TextSize;
@@ -33,47 +32,36 @@ export const Text = ({
   hidden,
   label,
   onClick,
-  onRightButtonDown,
-  onRightButtonUp,
+  onMouseDown,
   selected,
   shadow,
   size,
   width,
   x,
   y,
-}: PropsWithChildren<Props>) => {
-  const handleMouseDown = useCallback<MouseEventHandler>(
-    (e) => e.button === 2 && onRightButtonDown?.(),
-    [onRightButtonDown],
-  );
-
-  const handleMouseUp = useCallback<MouseEventHandler>((e) => e.button === 2 && onRightButtonUp?.(), [onRightButtonUp]);
-
-  return (
-    <>
-      <FontStyles />
-      <Root
-        align={align}
-        aria-label={label}
-        as={component}
-        className={className}
-        hidden={hidden}
-        onClick={onClick}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        role={heading ? 'heading' : undefined}
-        selected={selected}
-        shadow={shadow}
-        size={size}
-        width={width}
-        x={x}
-        y={y}
-      >
-        {children}
-      </Root>
-    </>
-  );
-};
+}: PropsWithChildren<Props>) => (
+  <>
+    <FontStyles />
+    <Root
+      align={align}
+      aria-label={label}
+      as={component}
+      className={className}
+      hidden={hidden}
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      role={heading ? 'heading' : undefined}
+      selected={selected}
+      shadow={shadow}
+      size={size}
+      width={width}
+      x={x}
+      y={y}
+    >
+      {children}
+    </Root>
+  </>
+);
 
 const FontStyles = createGlobalStyle`
   @font-face {

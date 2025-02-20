@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -9,7 +10,7 @@ interface Props extends PositionProps {
   readonly heading: string;
   readonly onChange?: (checked: boolean) => void;
   readonly onClick?: () => void;
-  readonly onRightButtonDown?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly valueLabel?: string;
 }
 
@@ -19,7 +20,7 @@ export const Option = ({
   heading,
   onChange,
   onClick,
-  onRightButtonDown,
+  onMouseDown,
   valueLabel,
   x,
   y,
@@ -37,7 +38,7 @@ export const Option = ({
         label={heading}
         onChange={onChange}
         onClick={onClick}
-        onRightButtonDown={onRightButtonDown}
+        onMouseDown={onMouseDown}
       />
       <Label align="center" size="small" width={66} y={0}>
         {valueLabel || t(`core:onOff.${checked}`)}

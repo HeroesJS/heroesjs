@@ -1,4 +1,4 @@
-import { type MouseEventHandler, useCallback } from 'react';
+import { type MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -9,20 +9,12 @@ import { gems } from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
-  readonly onRightButtonDown?: () => void;
-  readonly onRightButtonUp?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: PlayerColor;
 }
 
-export const PlayerColorJewel = ({ onClick, onRightButtonDown, onRightButtonUp, value, x, y }: Props) => {
+export const PlayerColorJewel = ({ onClick, onMouseDown, value, x, y }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.playerColorJewel' });
-
-  const handleMouseDown = useCallback<MouseEventHandler>(
-    (e) => e.button === 2 && onRightButtonDown?.(),
-    [onRightButtonDown],
-  );
-
-  const handleMouseUp = useCallback<MouseEventHandler>((e) => e.button === 2 && onRightButtonUp?.(), [onRightButtonUp]);
 
   return (
     <Root x={x} y={y}>
@@ -33,7 +25,7 @@ export const PlayerColorJewel = ({ onClick, onRightButtonDown, onRightButtonUp, 
           </span>
         ))}
       </span>
-      <button aria-label={t('changeLabel')} onClick={onClick} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+      <button aria-label={t('changeLabel')} onClick={onClick} onMouseDown={onMouseDown}>
         <img alt="" src={gems[value]} />
       </button>
     </Root>

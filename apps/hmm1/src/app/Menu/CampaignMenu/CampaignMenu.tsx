@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, MenuButton, Modal, type PositionProps, useModal, type UseModalResult } from '@heroesjs/hmm1-base-ui';
@@ -33,21 +34,9 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
     <>
       <Menu label={t('title')} x={x} y={y}>
         {campaigns.map((campaign) => (
-          <Item
-            key={campaign}
-            onClick={onCampaignClick}
-            onRightButtonDown={infoModals[campaign].open}
-            onRightButtonUp={infoModals[campaign].close}
-            value={campaign}
-          />
+          <Item {...infoModals[campaign].handlers} key={campaign} onClick={onCampaignClick} value={campaign} />
         ))}
-        <MenuButton
-          assets={assets.cancelButton}
-          label={t('cancel')}
-          onClick={onCancelClick}
-          onRightButtonDown={cancelInfo.open}
-          onRightButtonUp={cancelInfo.close}
-        />
+        <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
       </Menu>
       {campaigns.map((campaign) => (
         <Modal key={campaign} open={infoModals[campaign]['isOpen']} x={177} y={29}>
@@ -63,12 +52,11 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
 
 interface ItemProps {
   readonly onClick?: (value: Campaign) => void;
-  readonly onRightButtonDown?: () => void;
-  readonly onRightButtonUp?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: Campaign;
 }
 
-const Item = ({ onClick, onRightButtonDown, onRightButtonUp, value }: ItemProps) => {
+const Item = ({ onClick, onMouseDown, value }: ItemProps) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
 
   const handleClick = () => onClick?.(value);
@@ -78,8 +66,7 @@ const Item = ({ onClick, onRightButtonDown, onRightButtonUp, value }: ItemProps)
       assets={assets.campaignButtons[value]}
       label={t(value)}
       onClick={handleClick}
-      onRightButtonDown={onRightButtonDown}
-      onRightButtonUp={onRightButtonUp}
+      onMouseDown={onMouseDown}
     />
   );
 };
