@@ -64,11 +64,11 @@ export const Button = ({
 
   return (
     <Root
+      aria-disabled={disabled}
       aria-label={label}
       as="button"
       className={className}
-      disabled={disabled}
-      onClick={onClick}
+      onClick={!disabled ? onClick : undefined}
       onMouseDown={handleMouseDown}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}

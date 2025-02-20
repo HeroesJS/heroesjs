@@ -16,7 +16,7 @@ describe(AdventureButtons, () => {
     it('disables button', async () => {
       renderWithProviders(<AdventureButtons nextHeroDisabled />);
 
-      expect(screen.getByRole('button', { name: /next hero/i })).toBeDisabled();
+      expect(screen.getByRole('button', { name: /next hero/i })).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('calls handler when button is clicked', async () => {
@@ -57,7 +57,7 @@ describe(AdventureButtons, () => {
     it('disables button', async () => {
       renderWithProviders(<AdventureButtons moveDisabled />);
 
-      expect(screen.getByRole('button', { name: /move/i })).toBeDisabled();
+      expect(screen.getByRole('button', { name: /move/i })).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('calls handler when button is clicked', async () => {

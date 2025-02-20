@@ -22,9 +22,16 @@ export const DifficultyOption = ({ onClick, onMouseDown, selected, value, x, y }
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root aria-label={t(value)} aria-selected={selected} role="option" x={x} y={y}>
+    <Root x={x} y={y}>
       {selected && <Selection src={assets.gameDifficultySelection} />}
-      <Image onClick={handleClick} onMouseDown={onMouseDown} src={assets.gameDifficultyImages[value]} />
+      <Image
+        aria-label={t(value)}
+        aria-selected={selected}
+        onClick={handleClick}
+        onMouseDown={onMouseDown}
+        role="option"
+        src={assets.gameDifficultyImages[value]}
+      />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {t(value)}
       </Text>
