@@ -17,6 +17,7 @@ interface Props extends PositionProps {
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly onMouseLeave?: () => void;
   readonly onMouseOver?: () => void;
+  readonly onMouseUp?: (e: MouseEvent) => void;
 }
 
 export const Button = ({
@@ -28,6 +29,7 @@ export const Button = ({
   onMouseDown,
   onMouseLeave,
   onMouseOver,
+  onMouseUp,
   x,
   y,
 }: Props) => {
@@ -49,11 +51,16 @@ export const Button = ({
     [onMouseDown],
   );
 
-  const handleMouseUp = useCallback((e: MouseEvent) => {
-    if (e.button === 0) {
-      setPressed(false);
-    }
-  }, []);
+  const handleMouseUp = useCallback(
+    (e: MouseEvent) => {
+      if (e.button === 0) {
+        setPressed(false);
+      }
+
+      onMouseUp?.(e);
+    },
+    [onMouseUp],
+  );
 
   return (
     <Root

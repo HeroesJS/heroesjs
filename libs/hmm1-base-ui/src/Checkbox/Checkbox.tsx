@@ -1,4 +1,4 @@
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
