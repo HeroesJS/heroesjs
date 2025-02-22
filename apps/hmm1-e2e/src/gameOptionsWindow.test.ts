@@ -21,6 +21,14 @@ test('renders new game info', async ({ page }) => {
   });
 });
 
+test('renders new game confirmation', async ({ page }) => {
+  await page.getByRole('button', { name: /new game/i }).click();
+
+  await expect(page.locator('#app')).toHaveScreenshot('new-game-confirm.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
 test('renders load game info', async ({ page }) => {
   const button = await page.getByRole('button', { name: /load game/i }).boundingBox();
 
@@ -28,6 +36,14 @@ test('renders load game info', async ({ page }) => {
   await page.mouse.down({ button: 'right' });
 
   await expect(page.locator('#app')).toHaveScreenshot('load-game-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
+test('renders load game confirmation', async ({ page }) => {
+  await page.getByRole('button', { name: /load game/i }).click();
+
+  await expect(page.locator('#app')).toHaveScreenshot('load-game-confirm.png', {
     maxDiffPixelRatio: 0.01,
   });
 });
@@ -50,6 +66,14 @@ test('renders quit info', async ({ page }) => {
   await page.mouse.down({ button: 'right' });
 
   await expect(page.locator('#app')).toHaveScreenshot('quit-info.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
+test('renders quit confirmation', async ({ page }) => {
+  await page.getByRole('button', { name: /quit/i }).click();
+
+  await expect(page.locator('#app')).toHaveScreenshot('quit-confirm.png', {
     maxDiffPixelRatio: 0.01,
   });
 });

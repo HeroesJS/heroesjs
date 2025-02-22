@@ -2,9 +2,9 @@
   "component": {
     "systemButton": {
       "cancel": "$t(okayCancel.false)",
-      "no": "$(yesNo.false)",
-      "okay": "$(okayCancel.true)",
-      "yes": "$(yesNo.true)"
+      "no": "$t(yesNo.false)",
+      "okay": "$t(okayCancel.true)",
+      "yes": "$t(yesNo.true)"
     }
   },
   "gameDifficulty": {

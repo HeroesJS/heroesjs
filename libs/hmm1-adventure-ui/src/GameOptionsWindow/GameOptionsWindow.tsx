@@ -76,9 +76,12 @@ export const GameOptionsWindow = ({
   );
 
   const newGameInfo = useModal();
+  const newGameConfirm = useModal();
   const loadGameInfo = useModal();
+  const loadGameConfirm = useModal();
   const saveGameInfo = useModal();
   const quitInfo = useModal();
+  const quitConfirm = useModal();
 
   const musicInfo = useModal();
   const effectsInfo = useModal();
@@ -96,23 +99,45 @@ export const GameOptionsWindow = ({
         {...newGameInfo.handlers}
         assets={assets.newGameButton}
         label={t('newGameLabel')}
-        onClick={onNewGameClick}
+        onClick={newGameConfirm.open}
         x={46}
         y={31}
       />
       <Modal open={newGameInfo.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
+      <Modal
+        onCancelClick={newGameConfirm.close}
+        onConfirmClick={onNewGameClick}
+        open={newGameConfirm.isOpen}
+        size={1}
+        type="yesNo"
+        x={177}
+        y={81}
+      >
+        {t('newGameConfirm')}
+      </Modal>
       <Button
         {...loadGameInfo.handlers}
         assets={assets.loadGameButton}
         label={t('loadGameLabel')}
-        onClick={onLoadGameClick}
+        onClick={loadGameConfirm.open}
         x={179}
         y={31}
       />
       <Modal open={loadGameInfo.isOpen} x={177} y={29}>
         {t('loadGameInfo')}
+      </Modal>
+      <Modal
+        onCancelClick={loadGameConfirm.close}
+        onConfirmClick={onLoadGameClick}
+        open={loadGameConfirm.isOpen}
+        size={1}
+        type="yesNo"
+        x={177}
+        y={81}
+      >
+        {t('loadGameConfirm')}
       </Modal>
       <Button
         {...saveGameInfo.handlers}
@@ -129,12 +154,23 @@ export const GameOptionsWindow = ({
         {...quitInfo.handlers}
         assets={assets.quitButton}
         label={t('quitLabel')}
-        onClick={onQuitClick}
+        onClick={quitConfirm.open}
         x={179}
         y={107}
       />
       <Modal open={quitInfo.isOpen} x={177} y={29}>
         {t('quitInfo')}
+      </Modal>
+      <Modal
+        onCancelClick={quitConfirm.close}
+        onConfirmClick={onQuitClick}
+        open={quitConfirm.isOpen}
+        size={1}
+        type="yesNo"
+        x={177}
+        y={81}
+      >
+        {t('quitConfirm')}
       </Modal>
       <Option
         {...musicInfo.handlers}

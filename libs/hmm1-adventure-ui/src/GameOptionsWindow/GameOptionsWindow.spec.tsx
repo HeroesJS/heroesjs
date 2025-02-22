@@ -19,12 +19,22 @@ describe(GameOptionsWindow, () => {
       expect(screen.getByRole('button', { name: /new game/i })).toBeInTheDocument();
     });
 
-    it('calls handler when button is clicked', async () => {
+    it('renders confirmation when button is clicked', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.click(screen.getByRole('button', { name: /new game/i }));
+
+      expect(screen.getByText(/are you sure you want to restart\? \(your current game will be lost\)/i));
+    });
+
+    it('calls handler when button is clicked and confirmed', async () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(<GameOptionsWindow onNewGameClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /new game/i }));
+
+      await user.click(screen.getByRole('button', { name: /yes/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -45,12 +55,22 @@ describe(GameOptionsWindow, () => {
       expect(screen.getByRole('button', { name: /load game/i })).toBeInTheDocument();
     });
 
-    it('calls handler when button is clicked', async () => {
+    it('renders confirmation when button is clicked', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.click(screen.getByRole('button', { name: /load game/i }));
+
+      expect(screen.getByText(/are you sure you want to load a new game\? \(your current game will be lost\)/i));
+    });
+
+    it('calls handler when button is clicked and confirmed', async () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(<GameOptionsWindow onLoadGameClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /load game/i }));
+
+      await user.click(screen.getByRole('button', { name: /yes/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -97,12 +117,22 @@ describe(GameOptionsWindow, () => {
       expect(screen.getByRole('button', { name: /quit/i })).toBeInTheDocument();
     });
 
-    it('calls handler when button is clicked', async () => {
+    it('renders confirmation when button is clicked', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow />);
+
+      await user.click(screen.getByRole('button', { name: /quit/i }));
+
+      expect(screen.getByText(/are you sure you want to quit\? \(your current game will be lost\)/i));
+    });
+
+    it('calls handler when button is clicked and confirmed', async () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(<GameOptionsWindow onQuitClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /quit/i }));
+
+      await user.click(screen.getByRole('button', { name: /yes/i }));
 
       expect(handler).toHaveBeenCalled();
     });

@@ -24,7 +24,7 @@ export const Modal = ({
   children,
   onCancelClick,
   onConfirmClick,
-  open = true,
+  open = false,
   size = 0,
   type,
   x,
@@ -46,7 +46,7 @@ export const Modal = ({
         <Text align="center" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
-        <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} />
+        <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />
       </Root>
     </Backdrop>,
     document.body,
@@ -101,9 +101,9 @@ const Shadow = styled.div({
   top: 27,
 });
 
-type ActionsProps = Pick<Props, 'onCancelClick' | 'onConfirmClick' | 'type'>;
+type ActionsProps = Pick<Props, 'onCancelClick' | 'onConfirmClick' | 'type' | 'y'>;
 
-const Actions = ({ onCancelClick, onConfirmClick, type }: ActionsProps) => {
+const Actions = ({ onCancelClick, onConfirmClick, type, y }: ActionsProps) => {
   if (!type) {
     return null;
   }
@@ -111,11 +111,11 @@ const Actions = ({ onCancelClick, onConfirmClick, type }: ActionsProps) => {
   if (type === 'yesNo' || type === 'okayCancel') {
     return (
       <>
-        <SystemButton onClick={onConfirmClick} type={type === 'yesNo' ? 'yes' : 'okay'} x={20} y={80} />
-        <SystemButton onClick={onCancelClick} type={type === 'yesNo' ? 'no' : 'cancel'} x={180} y={80} />
+        <SystemButton onClick={onConfirmClick} type={type === 'yesNo' ? 'yes' : 'okay'} x={23} y={y} />
+        <SystemButton onClick={onCancelClick} type={type === 'yesNo' ? 'no' : 'cancel'} x={165} y={y} />
       </>
     );
   }
 
-  return <SystemButton onClick={type === 'okay' ? onConfirmClick : onCancelClick} type={type} x={95} y={80} />;
+  return <SystemButton onClick={type === 'okay' ? onConfirmClick : onCancelClick} type={type} x={95} y={y} />;
 };
