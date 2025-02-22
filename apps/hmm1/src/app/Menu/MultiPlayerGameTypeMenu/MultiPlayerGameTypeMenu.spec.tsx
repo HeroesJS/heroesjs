@@ -11,83 +11,169 @@ describe(MultiPlayerGameTypeMenu, () => {
     expect(screen.getByRole('menu', { name: /multi-player game type menu/i })).toBeInTheDocument();
   });
 
-  it('renders hot seat button', async () => {
-    renderWithProviders(<MultiPlayerGameTypeMenu />);
+  describe('hot seat button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /hot seat/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /hot seat/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onHotSeatClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /hot seat/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.rightDown(
+        screen.getByRole('button', {
+          name: /hot seat/i,
+        }),
+      );
+
+      expect(
+        screen.getByText(
+          /play a hot seat game, where 2 to 4 players play around the same computer, switching into the 'hot seat' when it is their turn\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when hot seat button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('network button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onHotSeatClick={handler} />);
+      expect(screen.getByRole('button', { name: /network/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /hot seat/i }));
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalled();
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onNetworkClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /network/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.rightDown(
+        screen.getByRole('button', {
+          name: /network/i,
+        }),
+      );
+
+      expect(
+        screen.getByText(
+          /play a network game, where 2 players use their own computers connected through a lan \(local area network\)\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('renders network button', async () => {
-    renderWithProviders(<MultiPlayerGameTypeMenu />);
+  describe('modem button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /network/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /modem/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onModemClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /modem/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.rightDown(
+        screen.getByRole('button', {
+          name: /modem/i,
+        }),
+      );
+
+      expect(
+        screen.getByText(
+          /play a modem game, where 2 players use ther own computers connected over the phone lines using modems\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when network button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('direct connect button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onNetworkClick={handler} />);
+      expect(screen.getByRole('button', { name: /direct connect/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /network/i }));
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalled();
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onDirectConnectClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /direct connect/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.rightDown(
+        screen.getByRole('button', {
+          name: /direct connect/i,
+        }),
+      );
+
+      expect(
+        screen.getByText(
+          /play a direct connect game, where 2 players use ther own computer directly connected through their serial port by a null modem\./i,
+        ),
+      ).toBeInTheDocument();
+    });
   });
 
-  it('renders modem button', async () => {
-    renderWithProviders(<MultiPlayerGameTypeMenu />);
+  describe('cancel button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /modem/i })).toBeInTheDocument();
-  });
+      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    });
 
-  it('calls handler when modem button is clicked', async () => {
-    const handler = vitest.fn();
+    it('calls handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onModemClick={handler} />);
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onCancelClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /modem/i }));
+      await user.click(screen.getByRole('button', { name: /cancel/i }));
 
-    expect(handler).toHaveBeenCalled();
-  });
+      expect(handler).toHaveBeenCalled();
+    });
 
-  it('renders direct connect button', async () => {
-    renderWithProviders(<MultiPlayerGameTypeMenu />);
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    expect(screen.getByRole('button', { name: /direct connect/i })).toBeInTheDocument();
-  });
+      await user.rightDown(
+        screen.getByRole('button', {
+          name: /cancel/i,
+        }),
+      );
 
-  it('calls handler when direct connect button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onDirectConnectClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /direct connect/i }));
-
-    expect(handler).toHaveBeenCalled();
-  });
-
-  it('renders cancel button', async () => {
-    renderWithProviders(<MultiPlayerGameTypeMenu />);
-
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
-  });
-
-  it('calls handler when cancel button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onCancelClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
-
-    expect(handler).toHaveBeenCalled();
+      expect(screen.getByText(/cancel back to the main menu\./i)).toBeInTheDocument();
+    });
   });
 });

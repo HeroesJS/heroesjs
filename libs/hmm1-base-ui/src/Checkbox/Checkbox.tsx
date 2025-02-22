@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
@@ -13,16 +14,17 @@ interface Props extends PositionProps {
   readonly label?: string;
   readonly onChange?: (checked: boolean) => void;
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
 }
 
-export const Checkbox = ({ assets, checked, label, onChange, onClick, x, y }: Props) => {
+export const Checkbox = ({ assets, checked, label, onChange, onClick, onMouseDown, x, y }: Props) => {
   const handleClick = () => {
     onClick?.();
     onChange?.(!checked);
   };
 
   return (
-    <Root aria-label={label} onClick={handleClick} role="checkbox" x={x} y={y}>
+    <Root aria-label={label} onClick={handleClick} onMouseDown={onMouseDown} role="checkbox" x={x} y={y}>
       <img alt="" src={checked ? assets.checked : assets.unchecked} />
     </Root>
   );

@@ -23,66 +23,54 @@ export const MainMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
 
-  const { closeNewGameInfo, newGameInfoIsOpen, openNewGameInfo } = useModal('newGameInfo');
-  const { closeLoadGameInfo, loadGameInfoIsOpen, openLoadGameInfo } = useModal('loadGameInfo');
-  const { closeViewHighScoresInfo, openViewHighScoresInfo, viewHighScoresInfoIsOpen } = useModal('viewHighScoresInfo');
-  const { closeViewCreditsInfo, openViewCreditsInfo, viewCreditsInfoIsOpen } = useModal('viewCreditsInfo');
-  const { closeQuitInfo, openQuitInfo, quitInfoIsOpen } = useModal('quitInfo');
+  const newGameInfo = useModal();
+  const loadGameInfo = useModal();
+  const viewHighScoresInfo = useModal();
+  const viewCreditsInfo = useModal();
+  const quitInfo = useModal();
 
   return (
-    <>
-      <Menu label={t('title')} x={x} y={y}>
-        <MenuButton
-          assets={assets.newGameButton}
-          label={t('newGameLabel')}
-          onClick={onNewGameClick}
-          onRightButtonDown={openNewGameInfo}
-          onRightButtonUp={closeNewGameInfo}
-        />
-        <MenuButton
-          assets={assets.loadGameButton}
-          label={t('loadGameLabel')}
-          onClick={onLoadGameClick}
-          onRightButtonDown={openLoadGameInfo}
-          onRightButtonUp={closeLoadGameInfo}
-        />
-        <MenuButton
-          assets={assets.viewHighScoresButton}
-          label={t('viewHighScoresLabel')}
-          onClick={onViewHighScoresClick}
-          onRightButtonDown={openViewHighScoresInfo}
-          onRightButtonUp={closeViewHighScoresInfo}
-        />
-        <MenuButton
-          assets={assets.viewCreditsButton}
-          label={t('viewCreditsLabel')}
-          onClick={onViewCreditsClick}
-          onRightButtonDown={openViewCreditsInfo}
-          onRightButtonUp={closeViewCreditsInfo}
-        />
-        <MenuButton
-          assets={assets.quitButton}
-          label={t('quitLabel')}
-          onClick={onQuitClick}
-          onRightButtonDown={openQuitInfo}
-          onRightButtonUp={closeQuitInfo}
-        />
-      </Menu>
-      <Modal open={newGameInfoIsOpen} x={177} y={29}>
+    <Menu label={t('title')} x={x} y={y}>
+      <MenuButton
+        {...newGameInfo.handlers}
+        assets={assets.newGameButton}
+        label={t('newGameLabel')}
+        onClick={onNewGameClick}
+      />
+      <Modal open={newGameInfo.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
-      <Modal open={loadGameInfoIsOpen} x={177} y={29}>
+      <MenuButton
+        {...loadGameInfo.handlers}
+        assets={assets.loadGameButton}
+        label={t('loadGameLabel')}
+        onClick={onLoadGameClick}
+      />
+      <Modal open={loadGameInfo.isOpen} x={177} y={29}>
         {t('loadGameInfo')}
       </Modal>
-      <Modal open={viewHighScoresInfoIsOpen} x={177} y={29}>
+      <MenuButton
+        {...viewHighScoresInfo.handlers}
+        assets={assets.viewHighScoresButton}
+        label={t('viewHighScoresLabel')}
+        onClick={onViewHighScoresClick}
+      />
+      <Modal open={viewHighScoresInfo.isOpen} x={177} y={29}>
         {t('viewHighScoresInfo')}
       </Modal>
-      <Modal open={viewCreditsInfoIsOpen} x={177} y={29}>
+      <MenuButton
+        {...viewCreditsInfo.handlers}
+        assets={assets.viewCreditsButton}
+        label={t('viewCreditsLabel')}
+        onClick={onViewCreditsClick}
+      />
+      <Modal open={viewCreditsInfo.isOpen} x={177} y={29}>
         {t('viewCreditsInfo')}
       </Modal>
-      <Modal open={quitInfoIsOpen} x={177} y={29}>
+      <MenuButton {...quitInfo.handlers} assets={assets.quitButton} label={t('quitLabel')} onClick={onQuitClick} />
+      <Modal open={quitInfo.isOpen} x={177} y={29}>
         {t('quitInfo')}
       </Modal>
-    </>
+    </Menu>
   );
 };

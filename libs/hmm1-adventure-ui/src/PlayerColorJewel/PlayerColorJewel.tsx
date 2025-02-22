@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -8,10 +9,11 @@ import { gems } from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: PlayerColor;
 }
 
-export const PlayerColorJewel = ({ onClick, value, x, y }: Props) => {
+export const PlayerColorJewel = ({ onClick, onMouseDown, value, x, y }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.playerColorJewel' });
 
   return (
@@ -23,7 +25,7 @@ export const PlayerColorJewel = ({ onClick, value, x, y }: Props) => {
           </span>
         ))}
       </span>
-      <button aria-label={t('changeLabel')} onClick={onClick}>
+      <button aria-label={t('changeLabel')} onClick={onClick} onMouseDown={onMouseDown}>
         <img alt="" src={gems[value]} />
       </button>
     </Root>

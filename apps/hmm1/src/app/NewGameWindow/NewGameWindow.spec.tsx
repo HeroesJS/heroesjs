@@ -178,7 +178,7 @@ describe(NewGameWindow, () => {
   it('renders confirm button as disabled by default', async () => {
     renderWithProviders(<NewGameWindow />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /okay/i })).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('renders confirm button as enabled when scenario is set', async () => {

@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -7,14 +8,15 @@ import * as assets from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: string;
 }
 
-export const ScenarioSelection = ({ onClick, value, x, y }: Props) => {
+export const ScenarioSelection = ({ onClick, onMouseDown, value, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   return (
-    <Root onClick={onClick} x={x} y={y}>
+    <Root onClick={onClick} onMouseDown={onMouseDown} x={x} y={y}>
       <Input
         background={assets.scenarioSelectionBackground}
         label={t('scenarioInputLabel')}

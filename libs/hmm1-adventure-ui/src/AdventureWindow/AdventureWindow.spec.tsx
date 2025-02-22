@@ -17,6 +17,14 @@ describe(AdventureWindow, () => {
     expect(screen.getByRole('note', { name: /world map/i })).toHaveTextContent(/world map/i);
   });
 
+  it('renders world map info', async () => {
+    const { user } = renderWithProviders(<AdventureWindow />);
+
+    await user.rightDown(screen.getByRole('note', { name: /world map/i }));
+
+    expect(screen.getByText(/world map \(left click to move viewing area\)\./i)).toBeInTheDocument();
+  });
+
   it('renders hero locators', async () => {
     renderWithProviders(<AdventureWindow renderHeroLocators={() => 'HERO LOCATORS'} />);
 
@@ -39,5 +47,17 @@ describe(AdventureWindow, () => {
     renderWithProviders(<AdventureWindow renderStatusWindow={() => 'STATUS WINDOW'} />);
 
     expect(screen.getByRole('note', { name: /status window/i })).toHaveTextContent(/status window/i);
+  });
+
+  it('renders status window info', async () => {
+    const { user } = renderWithProviders(<AdventureWindow />);
+
+    await user.rightDown(screen.getByRole('note', { name: /status window/i }));
+
+    expect(
+      screen.getByText(
+        /status window this window provides information on the status of your hero or kingdom, and shows the date\. left click here to cycle through these windows\./i,
+      ),
+    ).toBeInTheDocument();
   });
 });

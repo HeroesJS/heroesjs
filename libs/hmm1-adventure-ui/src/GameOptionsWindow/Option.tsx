@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -9,10 +10,21 @@ interface Props extends PositionProps {
   readonly heading: string;
   readonly onChange?: (checked: boolean) => void;
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly valueLabel?: string;
 }
 
-export const Option = ({ assets, checked = false, heading, onChange, onClick, valueLabel, x, y }: Props) => {
+export const Option = ({
+  assets,
+  checked = false,
+  heading,
+  onChange,
+  onClick,
+  onMouseDown,
+  valueLabel,
+  x,
+  y,
+}: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
 
   return (
@@ -20,7 +32,14 @@ export const Option = ({ assets, checked = false, heading, onChange, onClick, va
       <Heading align="center" size="small" width={80} y={0}>
         {heading}
       </Heading>
-      <Checkbox assets={assets} checked={checked} label={heading} onChange={onChange} onClick={onClick} />
+      <Checkbox
+        assets={assets}
+        checked={checked}
+        label={heading}
+        onChange={onChange}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+      />
       <Label align="center" size="small" width={66} y={0}>
         {valueLabel || t(`core:onOff.${checked}`)}
       </Label>

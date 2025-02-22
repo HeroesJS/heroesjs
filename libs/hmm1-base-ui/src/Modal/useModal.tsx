@@ -1,23 +1,45 @@
-import { upperFirst } from 'lodash';
+import { type DOMAttributes, type MouseEvent, useCallback } from 'react';
 
 import { useToggle2 } from '../useToggle';
 
-interface Props {
+export interface UseModalResult {
   readonly close: () => void;
+  readonly handlers: Required<Pick<DOMAttributes<Element>, 'onMouseDown'>>;
   readonly isOpen: boolean;
   readonly open: () => void;
 }
 
-type UseModalResult<Name extends string> = {
-  readonly [Prop in keyof Props as Prop extends 'isOpen' ? `${Name}IsOpen` : `${Prop}${Capitalize<Name>}`]: Props[Prop];
-};
+export const useModal = (initialIsOpen = false): UseModalResult => {
+  const [isOpen, open, close] = useToggle2(initialIsOpen);
 
-export const useModal = <Name extends string>(name: Name, initialValue?: boolean): UseModalResult<Name> => {
-  const [isOpen, open, close] = useToggle2(initialValue);
+  const handleDocumentMouseUp = useCallback(
+    (e: globalThis.MouseEvent) => {
+      if (e.button === 2) {
+        document.removeEventListener('mouseup', handleDocumentMouseUp);
+
+        close();
+      }
+    },
+    [close],
+  );
+
+  const handleMouseDown = useCallback(
+    (e: MouseEvent) => {
+      if (e.button === 2) {
+        document.addEventListener('mouseup', handleDocumentMouseUp);
+
+        open();
+      }
+    },
+    [handleDocumentMouseUp, open],
+  );
 
   return {
-    [`${name}IsOpen`]: isOpen,
-    [`open${upperFirst(name)}`]: () => open(),
-    [`close${upperFirst(name)}`]: () => close(),
-  } as UseModalResult<Name>;
+    close,
+    handlers: {
+      onMouseDown: handleMouseDown,
+    },
+    isOpen,
+    open,
+  };
 };

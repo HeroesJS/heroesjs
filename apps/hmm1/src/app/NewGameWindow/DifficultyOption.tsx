@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -10,22 +11,30 @@ const shiftedLabels = [GameDifficulty.Hard, GameDifficulty.Expert];
 
 interface DifficultyOptionProps extends PositionProps {
   readonly onClick?: (value: GameDifficulty) => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly selected?: boolean;
   readonly value: GameDifficulty;
 }
 
-export const DifficultyOption = ({ onClick, selected, value, x, y }: DifficultyOptionProps) => {
+export const DifficultyOption = ({ onClick, onMouseDown, selected, value, x, y }: DifficultyOptionProps) => {
   const { t } = useTranslation('core', { keyPrefix: 'gameDifficulty' });
 
   const handleClick = () => onClick?.(value);
 
   return (
-    <Root aria-label={t(value)} aria-selected={selected} onClick={handleClick} role="option" x={x} y={y}>
-      <Image src={assets.gameDifficultyImages[value]} />
+    <Root x={x} y={y}>
+      {selected && <Selection src={assets.gameDifficultySelection} />}
+      <Image
+        aria-label={t(value)}
+        aria-selected={selected}
+        onClick={handleClick}
+        onMouseDown={onMouseDown}
+        role="option"
+        src={assets.gameDifficultyImages[value]}
+      />
       <Text align="center" size="small" width={71 + (shiftedLabels.includes(value) ? -1 : 0)} x={0} y={67}>
         {t(value)}
       </Text>
-      {selected && <Selection src={assets.gameDifficultySelection} />}
     </Root>
   );
 };

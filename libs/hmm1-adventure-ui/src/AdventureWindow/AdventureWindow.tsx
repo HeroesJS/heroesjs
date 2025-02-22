@@ -1,8 +1,8 @@
-import type { PropsWithChildren, ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { PositionedComponent, Screen } from '@heroesjs/hmm1-base-ui';
+import { Modal, PositionedComponent, Screen, useModal } from '@heroesjs/hmm1-base-ui';
 import { ScreenHeight } from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
@@ -27,14 +27,20 @@ export const AdventureWindow = ({
 }: PropsWithChildren<Props>) => {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureWindow' });
 
+  const worldMapInfo = useModal();
+  const statusWindowInfo = useModal();
+
   return (
     <Screen background={assets.background}>
       <AdventureMap aria-label={t('adventureMap')} role="main" x={16} y={16}>
         {renderAdventureMap?.()}
       </AdventureMap>
-      <WorldMap aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
+      <WorldMap {...worldMapInfo.handlers} aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
         {renderWorldMap?.()}
       </WorldMap>
+      <Modal open={worldMapInfo.isOpen} x={97} y={29}>
+        {t('worldMapInfo')}
+      </Modal>
       <HeroLocators x={ScreenHeight} y={176}>
         {renderHeroLocators?.()}
       </HeroLocators>
@@ -44,9 +50,12 @@ export const AdventureWindow = ({
       <ActionButtons x={ScreenHeight} y={320}>
         {renderActionButtons?.()}
       </ActionButtons>
-      <StatusWindow aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
+      <StatusWindow {...statusWindowInfo.handlers} aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
         {renderStatusWindow?.()}
       </StatusWindow>
+      <Modal open={statusWindowInfo.isOpen} size={2} x={97} y={29}>
+        {t('statusWindowInfo')}
+      </Modal>
       {children}
     </Screen>
   );

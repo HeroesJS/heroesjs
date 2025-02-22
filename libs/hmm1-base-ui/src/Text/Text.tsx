@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { MouseEvent, PropsWithChildren } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import fontSmall from './heroes1-small.ttf';
@@ -14,6 +14,7 @@ interface Props {
   readonly hidden?: boolean;
   readonly label?: string;
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly selected?: boolean;
   readonly shadow?: boolean;
   readonly size?: TextSize;
@@ -31,6 +32,7 @@ export const Text = ({
   hidden,
   label,
   onClick,
+  onMouseDown,
   selected,
   shadow,
   size,
@@ -47,6 +49,7 @@ export const Text = ({
       className={className}
       hidden={hidden}
       onClick={onClick}
+      onMouseDown={onMouseDown}
       role={heading ? 'heading' : undefined}
       selected={selected}
       shadow={shadow}

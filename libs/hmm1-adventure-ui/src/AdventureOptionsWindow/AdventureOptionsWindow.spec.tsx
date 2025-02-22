@@ -11,83 +11,133 @@ describe(AdventureOptionsWindow, () => {
     expect(screen.getByRole('dialog', { name: /adventure options window/i })).toBeInTheDocument();
   });
 
-  it('renders view world button', () => {
-    renderWithProviders(<AdventureOptionsWindow />);
+  describe('view world button', () => {
+    it('renders button', () => {
+      renderWithProviders(<AdventureOptionsWindow />);
 
-    expect(screen.getByRole('button', { name: /view world/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /view world/i })).toBeInTheDocument();
+    });
+
+    it('class handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<AdventureOptionsWindow onViewWorldClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /view world/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /view world/i }));
+
+      expect(screen.getByText(/view the entire world\./i)).toBeInTheDocument();
+    });
   });
 
-  it('class handler when view world button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('view puzzle button', () => {
+    it('renders button', () => {
+      renderWithProviders(<AdventureOptionsWindow />);
 
-    const { user } = renderWithProviders(<AdventureOptionsWindow onViewWorldClick={handler} />);
+      expect(screen.getByRole('button', { name: /view puzzle/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /view world/i }));
+    it('class handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalled();
+      const { user } = renderWithProviders(<AdventureOptionsWindow onViewPuzzleClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /view puzzle/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /view puzzle/i }));
+
+      expect(screen.getByText(/view the obelisk puzzle\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders view puzzle button', () => {
-    renderWithProviders(<AdventureOptionsWindow />);
+  describe('cast spell button', () => {
+    it('renders button', () => {
+      renderWithProviders(<AdventureOptionsWindow />);
 
-    expect(screen.getByRole('button', { name: /view puzzle/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /cast spell/i })).toBeInTheDocument();
+    });
+
+    it('class handler when button is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<AdventureOptionsWindow onCastSpellClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /cast spell/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /cast spell/i }));
+
+      expect(screen.getByText(/cast an adventure spell\./i)).toBeInTheDocument();
+    });
   });
 
-  it('class handler when view puzzle button is clicked', async () => {
-    const handler = vitest.fn();
+  describe('dig button', () => {
+    it('renders button', () => {
+      renderWithProviders(<AdventureOptionsWindow />);
 
-    const { user } = renderWithProviders(<AdventureOptionsWindow onViewPuzzleClick={handler} />);
+      expect(screen.getByRole('button', { name: /dig/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /view puzzle/i }));
+    it('class handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    expect(handler).toHaveBeenCalled();
+      const { user } = renderWithProviders(<AdventureOptionsWindow onDigClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /dig/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow />);
+
+      await user.rightDown(screen.getByRole('button', { name: /dig/i }));
+
+      expect(screen.getByText(/dig for the ultimate artifact\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders cast spell button', () => {
-    renderWithProviders(<AdventureOptionsWindow />);
+  describe('okay button', () => {
+    it('renders button', () => {
+      renderWithProviders(<AdventureOptionsWindow />);
 
-    expect(screen.getByRole('button', { name: /cast spell/i })).toBeInTheDocument();
-  });
+      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    });
 
-  it('class handler when cast spell button is clicked', async () => {
-    const handler = vitest.fn();
+    it('class handler when button is clicked', async () => {
+      const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<AdventureOptionsWindow onCastSpellClick={handler} />);
+      const { user } = renderWithProviders(<AdventureOptionsWindow onConfirmClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /cast spell/i }));
+      await user.click(screen.getByRole('button', { name: /okay/i }));
 
-    expect(handler).toHaveBeenCalled();
-  });
+      expect(handler).toHaveBeenCalled();
+    });
 
-  it('renders dig button', () => {
-    renderWithProviders(<AdventureOptionsWindow />);
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow />);
 
-    expect(screen.getByRole('button', { name: /dig/i })).toBeInTheDocument();
-  });
+      await user.rightDown(screen.getByRole('button', { name: /okay/i }));
 
-  it('class handler when dig button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<AdventureOptionsWindow onDigClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /dig/i }));
-
-    expect(handler).toHaveBeenCalled();
-  });
-
-  it('renders okay button', () => {
-    renderWithProviders(<AdventureOptionsWindow />);
-
-    expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
-  });
-
-  it('class handler when okay button is clicked', async () => {
-    const handler = vitest.fn();
-
-    const { user } = renderWithProviders(<AdventureOptionsWindow onConfirmClick={handler} />);
-
-    await user.click(screen.getByRole('button', { name: /okay/i }));
-
-    expect(handler).toHaveBeenCalled();
+      expect(screen.getByText(/dig for the ultimate artifact\./i)).toBeInTheDocument();
+    });
   });
 });

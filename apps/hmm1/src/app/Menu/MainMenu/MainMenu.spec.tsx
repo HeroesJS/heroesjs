@@ -11,83 +11,133 @@ describe(MainMenu, () => {
     expect(screen.getByRole('menu', { name: /main menu/i })).toBeInTheDocument();
   });
 
-  it('renders new game button', async () => {
-    renderWithProviders(<MainMenu />);
+  describe('new game button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /new game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /new game/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handleNewGameClick = vitest.fn();
+
+      const { user } = renderWithProviders(<MainMenu onNewGameClick={handleNewGameClick} />);
+
+      await user.click(screen.getByRole('button', { name: /new game/i }));
+
+      expect(handleNewGameClick).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MainMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /new game/i }));
+
+      expect(screen.getByText(/start a single or multi-player game\./i)).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when new game button is clicked', async () => {
-    const handleNewGameClick = vitest.fn();
+  describe('load game button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MainMenu />);
 
-    const { user } = renderWithProviders(<MainMenu onNewGameClick={handleNewGameClick} />);
+      expect(screen.getByRole('button', { name: /load game/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /new game/i }));
+    it('calls handler when button is clicked', async () => {
+      const handleLoadGameClick = vitest.fn();
 
-    expect(handleNewGameClick).toHaveBeenCalled();
+      const { user } = renderWithProviders(<MainMenu onLoadGameClick={handleLoadGameClick} />);
+
+      await user.click(screen.getByRole('button', { name: /load game/i }));
+
+      expect(handleLoadGameClick).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MainMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /load game/i }));
+
+      expect(screen.getByText(/load a prevously saved game\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders load game button', async () => {
-    renderWithProviders(<MainMenu />);
+  describe('view high scores button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /load game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /view high scores/i })).toBeInTheDocument();
+    });
+
+    it('calls handler when button is clicked', async () => {
+      const handleViewHighScoresClick = vitest.fn();
+
+      const { user } = renderWithProviders(<MainMenu onViewHighScoresClick={handleViewHighScoresClick} />);
+
+      await user.click(screen.getByRole('button', { name: /view high scores/i }));
+
+      expect(handleViewHighScoresClick).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MainMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /view high scores/i }));
+
+      expect(screen.getByText(/view the high score screen\./i)).toBeInTheDocument();
+    });
   });
 
-  it('calls handler when load game button is clicked', async () => {
-    const handleLoadGameClick = vitest.fn();
+  describe('view credits button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MainMenu />);
 
-    const { user } = renderWithProviders(<MainMenu onLoadGameClick={handleLoadGameClick} />);
+      expect(screen.getByRole('button', { name: /view credits/i })).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /load game/i }));
+    it('calls handler when button is clicked', async () => {
+      const handleViewCreditsClick = vitest.fn();
 
-    expect(handleLoadGameClick).toHaveBeenCalled();
+      const { user } = renderWithProviders(<MainMenu onViewCreditsClick={handleViewCreditsClick} />);
+
+      await user.click(screen.getByRole('button', { name: /view credits/i }));
+
+      expect(handleViewCreditsClick).toHaveBeenCalled();
+    });
+
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MainMenu />);
+
+      await user.rightDown(screen.getByRole('button', { name: /view credits/i }));
+
+      expect(screen.getByText(/view the credits screen\./i)).toBeInTheDocument();
+    });
   });
 
-  it('renders view high scores button', async () => {
-    renderWithProviders(<MainMenu />);
+  describe('quit button', () => {
+    it('renders button', async () => {
+      renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /view high scores/i })).toBeInTheDocument();
-  });
+      expect(screen.getByRole('button', { name: /quit/i })).toBeInTheDocument();
+    });
 
-  it('calls handler when view high scores button is clicked', async () => {
-    const handleViewHighScoresClick = vitest.fn();
+    it('calls handler when button is clicked', async () => {
+      const handleQuitClick = vitest.fn();
 
-    const { user } = renderWithProviders(<MainMenu onViewHighScoresClick={handleViewHighScoresClick} />);
+      const { user } = renderWithProviders(<MainMenu onQuitClick={handleQuitClick} />);
 
-    await user.click(screen.getByRole('button', { name: /view high scores/i }));
+      await user.click(screen.getByRole('button', { name: /quit/i }));
 
-    expect(handleViewHighScoresClick).toHaveBeenCalled();
-  });
+      expect(handleQuitClick).toHaveBeenCalled();
+    });
 
-  it('renders view credits button', async () => {
-    renderWithProviders(<MainMenu />);
+    it('renders info when button is right-clicked', async () => {
+      const { user } = renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('button', { name: /view credits/i })).toBeInTheDocument();
-  });
+      await user.rightDown(screen.getByRole('button', { name: /quit/i }));
 
-  it('calls handler when view credits button is clicked', async () => {
-    const handleViewCreditsClick = vitest.fn();
-
-    const { user } = renderWithProviders(<MainMenu onViewCreditsClick={handleViewCreditsClick} />);
-
-    await user.click(screen.getByRole('button', { name: /view credits/i }));
-
-    expect(handleViewCreditsClick).toHaveBeenCalled();
-  });
-
-  it('renders quit button', async () => {
-    renderWithProviders(<MainMenu />);
-
-    expect(screen.getByRole('button', { name: /quit/i })).toBeInTheDocument();
-  });
-
-  it('calls handler when quit button is clicked', async () => {
-    const handleQuitClick = vitest.fn();
-
-    const { user } = renderWithProviders(<MainMenu onQuitClick={handleQuitClick} />);
-
-    await user.click(screen.getByRole('button', { name: /quit/i }));
-
-    expect(handleQuitClick).toHaveBeenCalled();
+      expect(screen.getByText(/quit heroes of might and magic and return to the dos prompt\./i)).toBeInTheDocument();
+    });
   });
 });

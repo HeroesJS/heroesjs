@@ -92,7 +92,7 @@ describe(Button, () => {
   it('disables', async () => {
     renderWithProviders(<Button assets={assets.button} disabled label="Label" />);
 
-    expect(screen.getByRole('button', { name: /label/i })).toBeDisabled();
+    expect(screen.getByRole('button', { name: /label/i })).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('renders disabled image when disabled', async () => {

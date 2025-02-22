@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Menu, MenuButton, MenuSeparator, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import { Menu, MenuButton, MenuSeparator, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -14,21 +14,36 @@ interface Props extends PositionProps {
 export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.hostGuestMenu' });
 
+  const hostInfo = useModal();
+  const guestInfo = useModal();
+  const cancelInfo = useModal();
+
   return (
     <Menu label={t('title')} x={x} y={y}>
       <MenuButton
+        {...hostInfo.handlers}
         assets={detailed ? assets.hostDialsButton : assets.hostButton}
         label={t(detailed ? 'hostDetail' : 'host')}
         onClick={onHostClick}
       />
+      <Modal open={hostInfo.isOpen} x={177} y={29}>
+        {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
+      </Modal>
       <MenuButton
+        {...guestInfo.handlers}
         assets={detailed ? assets.guestAnswersButton : assets.guestButton}
         label={t(detailed ? 'guestDetail' : 'guest')}
         onClick={onGuestClick}
       />
+      <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
+        {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
+      </Modal>
       <MenuSeparator />
       <MenuSeparator />
-      <MenuButton assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+        {t('cancelInfo')}
+      </Modal>
     </Menu>
   );
 };
