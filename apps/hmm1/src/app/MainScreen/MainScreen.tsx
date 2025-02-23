@@ -3,7 +3,7 @@ import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 
 
 import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Screen } from '@heroesjs/hmm1-base-ui';
-import { type Campaign, campaignScenarios, scenarios } from '@heroesjs/hmm1-core';
+import { type Campaign, campaignScenarios, OpponentDifficulty, scenarios } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
@@ -170,6 +170,10 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 const NewGameSelection = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const [opponentSettings, setOpponentSettings] = useState<readonly OpponentDifficulty[]>(
+    new Array(3).fill(OpponentDifficulty.Average),
+  );
+
   const selectedScenario = searchParams.get('scenario') ?? undefined;
 
   const scenario = scenarios.find((s) => s.name === selectedScenario);
@@ -205,7 +209,9 @@ const NewGameSelection = () => {
     <NewGameWindow
       onCancelClick={handleCancelClick}
       onConfirmClick={handleConfirmClick}
+      onOpponentSettingsChange={setOpponentSettings}
       onSelectScenarioClick={handleSelectScenarioClick}
+      opponentSettings={opponentSettings}
       scenario={scenario}
       x={310}
       y={14}
