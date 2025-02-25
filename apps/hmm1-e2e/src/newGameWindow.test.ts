@@ -87,6 +87,20 @@ test('renders okay info', async ({ page }) => {
   });
 });
 
+test('renders no opponents error', async ({ page }) => {
+  for (const control of [1, 2, 3].flatMap((opponentNo) =>
+    [1, 2, 3].map(() => page.getByRole('button', { name: new RegExp(`change opponent ${opponentNo} setting`, 'i') })),
+  )) {
+    await control.click();
+  }
+
+  await page.getByRole('button', { name: /okay/i }).click();
+
+  await expect(page.locator('#app')).toHaveScreenshot('no-opponents-error.png', {
+    maxDiffPixelRatio: 0.01,
+  });
+});
+
 test('renders cancel info', async ({ page }) => {
   const button = await page.getByRole('button', { name: /cancel/i }).boundingBox();
 

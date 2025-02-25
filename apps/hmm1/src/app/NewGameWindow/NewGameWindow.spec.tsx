@@ -1,7 +1,7 @@
 import { screen, within } from '@testing-library/react';
 import { range } from 'lodash';
 
-import { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
+import { OpponentDifficulty, ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { NewGameWindow } from './NewGameWindow';
@@ -166,7 +166,7 @@ describe(NewGameWindow, () => {
   it('renders rating', async () => {
     renderWithProviders(<NewGameWindow />);
 
-    expect(screen.getByText(/difficulty rating: 50%/i)).toBeInTheDocument();
+    expect(screen.getByText(/difficulty rating: -10%/i)).toBeInTheDocument();
   });
 
   it('renders confirm button', async () => {
@@ -195,12 +195,49 @@ describe(NewGameWindow, () => {
     expect(screen.getByRole('button', { name: /okay/i })).toBeEnabled();
   });
 
+  it('renders no opponents error when no opponents are set', async () => {
+    const { user } = renderWithProviders(
+      <NewGameWindow
+        opponentSettings={[OpponentDifficulty.None, OpponentDifficulty.None, OpponentDifficulty.None]}
+        scenario={{
+          difficulty: ScenarioDifficulty.Easy,
+          name: 'Scenario Nmae',
+          size: ScenarioSize.Small,
+        }}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: /okay/i }));
+
+    expect(screen.getByText(/a game requires at least one opponent\./i)).toBeInTheDocument();
+  });
+
+  it('hides no opponents error when okay is clicked', async () => {
+    const { user } = renderWithProviders(
+      <NewGameWindow
+        opponentSettings={[OpponentDifficulty.None, OpponentDifficulty.None, OpponentDifficulty.None]}
+        scenario={{
+          difficulty: ScenarioDifficulty.Easy,
+          name: 'Scenario Nmae',
+          size: ScenarioSize.Small,
+        }}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: /okay/i }));
+
+    await user.click(screen.getByRole('button', { name: /okay/i }));
+
+    expect(screen.queryByText(/a game requires at least one opponent\./i)).not.toBeInTheDocument();
+  });
+
   it('calls handler when confirm button is clicked', async () => {
     const handler = vitest.fn();
 
     const { user } = renderWithProviders(
       <NewGameWindow
         onConfirmClick={handler}
+        opponentSettings={[OpponentDifficulty.Average, OpponentDifficulty.None, OpponentDifficulty.None]}
         scenario={{
           difficulty: ScenarioDifficulty.Easy,
           name: 'Scenario Nmae',

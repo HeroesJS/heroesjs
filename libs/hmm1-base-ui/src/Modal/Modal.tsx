@@ -117,5 +117,5 @@ const Actions = ({ onCancelClick, onConfirmClick, type, y }: ActionsProps) => {
     );
   }
 
-  return <SystemButton onClick={type === 'okay' ? onConfirmClick : onCancelClick} type={type} x={95} y={y} />;
+  return <SystemButton onClick={type === 'okay' ? onConfirmClick : onCancelClick} type={type} x={94} y={y} />;
 };

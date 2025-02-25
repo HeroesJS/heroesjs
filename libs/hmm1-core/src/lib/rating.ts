@@ -1,4 +1,4 @@
-import { OpponentDifficulty } from './core';
+import { OpponentDifficulty, type OpponentSettings } from './core';
 import { ScenarioDifficulty, ScenarioSize } from './scenario';
 
 const baseRating = -10;
@@ -26,7 +26,7 @@ const opponentDifficultyRating: Record<OpponentDifficulty, number> = {
 
 export interface RatingData {
   readonly kingOfTheHill: boolean;
-  readonly opponentSettings: readonly OpponentDifficulty[];
+  readonly opponentSettings: OpponentSettings;
   readonly scenarioDifficulty: ScenarioDifficulty;
   readonly scenarioSize: ScenarioSize;
 }

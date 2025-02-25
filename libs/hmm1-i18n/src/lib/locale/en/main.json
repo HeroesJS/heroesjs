@@ -108,6 +108,7 @@
       "kingOfTheHill": "King of the Hill",
       "kingOfTheHillHeading": "King of the Hill",
       "kingOfTheHillInfo": "Challenge all computer players as 'King of the Hill'. Computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp.",
+      "noOpponentsError": "A game requires at least one opponent.",
       "opponentSettingHeading": "Opponent {{index}} Setting",
       "opponentSettingInfo": "Change the difficulty of this opponent.  Smarter computer players are more aggressive and think longer for each turn.",
       "opponentSettingsHeading": "Customize Opponents",

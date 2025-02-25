@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { PlayerColorJewel } from '@heroesjs/hmm1-adventure-ui';
@@ -7,9 +7,11 @@ import {
   calculateRating,
   formatRating,
   GameDifficulty,
+  getOpponentCount,
   nextOption,
   opponentDifficulties,
   OpponentDifficulty,
+  type OpponentSettings,
   PlayerColor,
   playerColors,
   ScenarioDifficulty,
@@ -30,13 +32,24 @@ interface ScenarioInfo {
 interface Props {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
+  readonly onOpponentSettingsChange?: (value: OpponentSettings) => void;
   readonly onSelectScenarioClick?: () => void;
+  readonly opponentSettings?: OpponentSettings;
   readonly scenario?: ScenarioInfo;
   readonly x?: number;
   readonly y?: number;
 }
 
-export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioClick, scenario, x, y }: Props) => {
+export const NewGameWindow = ({
+  onCancelClick,
+  onConfirmClick,
+  onOpponentSettingsChange,
+  onSelectScenarioClick,
+  opponentSettings = [OpponentDifficulty.None, OpponentDifficulty.None, OpponentDifficulty.None],
+  scenario,
+  x,
+  y,
+}: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
 
   const gameDifficultyInfo = useModal();
@@ -49,12 +62,13 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
   const cancelInfo = useModal();
 
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
-  const [opponentSettings, setOpponentSettings] = useState(new Array(3).fill(OpponentDifficulty.Average));
   const [color, setColor] = useState(PlayerColor.Blue);
   const { toggle: toggleKingOfTheHill, value: kingOfTheHill } = useToggle();
 
   const handleOpponentSettingClick = (index: number, value: OpponentDifficulty) =>
-    setOpponentSettings(opponentSettings.map((v, i) => (i === index ? nextOption(opponentDifficulties, value) : v)));
+    onOpponentSettingsChange?.(
+      opponentSettings.map((v, i) => (i === index ? nextOption(opponentDifficulties, value) : v)),
+    );
 
   const handleColorClick = () => setColor(nextOption(playerColors, color));
 
@@ -64,6 +78,18 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
     scenarioDifficulty: scenario?.difficulty ?? ScenarioDifficulty.Easy,
     scenarioSize: scenario?.size ?? ScenarioSize.Small,
   });
+
+  const noOpponentsError = useModal();
+
+  const handleConfirmClick = useCallback(() => {
+    if (!getOpponentCount(opponentSettings)) {
+      noOpponentsError.open();
+
+      return;
+    }
+
+    onConfirmClick?.();
+  }, [noOpponentsError, onConfirmClick, opponentSettings]);
 
   return (
     <Window background={assets.background} height={459} label={t('title')} width={320} x={x} y={y}>
@@ -143,12 +169,15 @@ export const NewGameWindow = ({ onCancelClick, onConfirmClick, onSelectScenarioC
         assets={assets.okayButton}
         disabled={!scenario}
         label={t('confirmLabel')}
-        onClick={onConfirmClick}
+        onClick={handleConfirmClick}
         x={24}
         y={412}
       />
       <Modal open={confirmInfo.isOpen} x={177} y={29}>
         {t('confirmInfo')}
+      </Modal>
+      <Modal onConfirmClick={noOpponentsError.close} open={noOpponentsError.isOpen} size={1} type="okay" x={177} y={61}>
+        {t('noOpponentsError')}
       </Modal>
       <Button
         {...cancelInfo.handlers}
