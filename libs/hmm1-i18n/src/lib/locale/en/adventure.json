@@ -74,6 +74,22 @@
       "viewEnemyMovementInfo": "Toggle 'Show Enemy Moves' on/off. If on, all enemies moving within your visible area will be shown.  If off, no computer movement will be shown.  Note that this option is automatically set to off during network and modem play.",
       "volume": "Volume {{value}}"
     },
+    "heroWindow": {
+      "defaultStatusText": "Hero Screen",
+      "dismissConfirm": "Are you sure you want to dismiss this Hero?",
+      "dismissLabel": "Dismiss",
+      "dismissStatusText": "Dismiss {{name}}",
+      "exitLabel": "Exit",
+      "exitStatusText": "Exit Hero Screen",
+      "skillDescription": {
+        "attack": "Attack Skill\n\nYour attack skill is a bonus added to each creature's attack skill.",
+        "defense": "Defense Skill\n\nYour defense skill is a bonus added to each creature's defense skill.",
+        "knowledge": "Knowledge\n\nYour knowledge is the number of each spell you are able to memorize.",
+        "spellPower": "Spell Power\n\nYour spell power determines the length or power of a spell."
+      },
+      "title": "Hero Window",
+      "viewSkillInfoStatusText": "View {{name}} Info"
+    },
     "playerColorJewel": {
       "changeLabel": "Change Banner Color",
       "label": "Banner Color"

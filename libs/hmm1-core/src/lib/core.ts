@@ -120,3 +120,12 @@ export const nextOption = <T>(values: readonly T[], currentValue: T): T =>
 
 export const previousOption = <T>(values: readonly T[], currentValue: T): T =>
   values[(values.length + values.indexOf(currentValue) - 1) % values.length] ?? currentValue;
+
+export enum Skill {
+  Attack = 'attack',
+  Defense = 'defense',
+  Knowledge = 'knowledge',
+  SpellPower = 'spellPower',
+}
+
+export const skills: readonly Skill[] = [Skill.Attack, Skill.Defense, Skill.SpellPower, Skill.Knowledge];

@@ -52,6 +52,12 @@
     "medium": "Medium",
     "small": "Small"
   },
+  "skill": {
+    "attack": "Attack Skill",
+    "defense": "Defense Skill",
+    "knowledge": "Knowledge",
+    "spellPower": "Spell Power"
+  },
   "yesNo": {
     "false": "No",
     "true": "Yes"

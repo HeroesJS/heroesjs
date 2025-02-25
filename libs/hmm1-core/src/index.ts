@@ -14,6 +14,8 @@ export {
   PlayerColor,
   playerColors,
   previousOption,
+  Skill,
+  skills,
   Town,
 } from './lib/core';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
