@@ -3,7 +3,7 @@ import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 
 
 import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Screen } from '@heroesjs/hmm1-base-ui';
-import { type Campaign, campaignScenarios, OpponentDifficulty, scenarios } from '@heroesjs/hmm1-core';
+import { type Campaign, campaignScenarios, defaultOpponentSettings, scenarios } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
@@ -170,9 +170,7 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 const NewGameSelection = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [opponentSettings, setOpponentSettings] = useState<readonly OpponentDifficulty[]>(
-    new Array(3).fill(OpponentDifficulty.Average),
-  );
+  const [opponentSettings, setOpponentSettings] = useState(defaultOpponentSettings);
 
   const selectedScenario = searchParams.get('scenario') ?? undefined;
 

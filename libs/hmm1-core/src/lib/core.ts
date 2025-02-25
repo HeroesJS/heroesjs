@@ -88,6 +88,14 @@ export const opponentDifficulties: readonly OpponentDifficulty[] = [
   OpponentDifficulty.Genius,
 ];
 
+export type OpponentSettings = readonly OpponentDifficulty[];
+
+export const defaultOpponentSettings: OpponentSettings = [
+  OpponentDifficulty.Average,
+  OpponentDifficulty.Average,
+  OpponentDifficulty.Average,
+];
+
 export enum MovementSpeed {
   Canter = 'canter',
   Gallop = 'gallop',

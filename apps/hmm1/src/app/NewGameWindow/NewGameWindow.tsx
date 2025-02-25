@@ -10,6 +10,7 @@ import {
   nextOption,
   opponentDifficulties,
   OpponentDifficulty,
+  type OpponentSettings,
   PlayerColor,
   playerColors,
   ScenarioDifficulty,
@@ -30,9 +31,9 @@ interface ScenarioInfo {
 interface Props {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
-  readonly onOpponentSettingsChange?: (value: readonly OpponentDifficulty[]) => void;
+  readonly onOpponentSettingsChange?: (value: OpponentSettings) => void;
   readonly onSelectScenarioClick?: () => void;
-  readonly opponentSettings?: readonly OpponentDifficulty[];
+  readonly opponentSettings?: OpponentSettings;
   readonly scenario?: ScenarioInfo;
   readonly x?: number;
   readonly y?: number;

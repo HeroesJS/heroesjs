@@ -1,5 +1,6 @@
 export { Campaign, campaignScenarios } from './lib/campaign';
 export {
+  defaultOpponentSettings,
   gameDifficulties,
   GameDifficulty,
   HeroId,
@@ -8,6 +9,7 @@ export {
   nextOption,
   opponentDifficulties,
   OpponentDifficulty,
+  type OpponentSettings,
   PlayerColor,
   playerColors,
   previousOption,
