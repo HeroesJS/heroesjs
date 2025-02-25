@@ -2,7 +2,9 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import { type Skill, skills } from '@heroesjs/hmm1-core';
+import { HeroId, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
+
+import { HeroPortrait } from '../HeroPortrait';
 
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
@@ -18,6 +20,7 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props)
 
   const [statusText, setStatusText] = useState(t('title'));
 
+  const heroId = HeroId.Falagar;
   const heroName = 'Falagar the Warlock';
 
   const setDefaultStatusText = useCallback(() => setStatusText(t('defaultStatusText')), [t]);
@@ -34,9 +37,14 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props)
   const handleExitMouseOver = useCallback(() => setStatusText(t('exitStatusText')), [t]);
 
   return (
-    <Window background={assets.background} height={480} label={t('title')} width={640}>
+    <Window background={assets.background} height={HeroWindow.height} label={t('title')} width={HeroWindow.width}>
+      <Text align="center" size="large" width={HeroWindow.width} y={72}>
+        {heroName}
+      </Text>
+      <HeroPortrait heroId={heroId} x={49} y={101} />
       {skills.map((skill, i) => (
         <SkillInfo
+          key={skill}
           onMouseLeave={setDefaultStatusText}
           onMouseOver={handleSkillMouseOver}
           skill={skill}
@@ -81,3 +89,6 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props)
     </Window>
   );
 };
+
+HeroWindow.width = ScreenWidth;
+HeroWindow.height = ScreenHeight;
