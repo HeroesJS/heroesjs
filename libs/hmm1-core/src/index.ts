@@ -3,6 +3,7 @@ export {
   defaultOpponentSettings,
   gameDifficulties,
   GameDifficulty,
+  getOpponentCount,
   HeroId,
   MovementSpeed,
   movementSpeeds,

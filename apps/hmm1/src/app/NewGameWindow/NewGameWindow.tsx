@@ -7,6 +7,7 @@ import {
   calculateRating,
   formatRating,
   GameDifficulty,
+  getOpponentCount,
   nextOption,
   opponentDifficulties,
   OpponentDifficulty,
@@ -81,7 +82,7 @@ export const NewGameWindow = ({
   const noOpponentsError = useModal();
 
   const handleConfirmClick = useCallback(() => {
-    if (opponentSettings.every((s) => s === OpponentDifficulty.None)) {
+    if (!getOpponentCount(opponentSettings)) {
       noOpponentsError.open();
 
       return;

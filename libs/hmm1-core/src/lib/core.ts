@@ -90,6 +90,9 @@ export const opponentDifficulties: readonly OpponentDifficulty[] = [
 
 export type OpponentSettings = readonly OpponentDifficulty[];
 
+export const getOpponentCount = (settings: OpponentSettings) =>
+  settings.filter((s) => s !== OpponentDifficulty.None).length;
+
 export const defaultOpponentSettings: OpponentSettings = [
   OpponentDifficulty.Average,
   OpponentDifficulty.Average,
