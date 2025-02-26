@@ -81,6 +81,8 @@
       "dismissStatusText": "Dismiss {{name}}",
       "exitLabel": "Exit",
       "exitStatusText": "Exit Hero Screen",
+      "kingdomOverviewLabel": "Open Kingdom Overview",
+      "kingdomOverviewStatusText": "Kingdom Overview",
       "skillDescription": {
         "attack": "Attack Skill\n\nYour attack skill is a bonus added to each creature's attack skill.",
         "defense": "Defense Skill\n\nYour defense skill is a bonus added to each creature's defense skill.",

@@ -12,7 +12,7 @@ type Story = StoryObj<typeof HeroWindow>;
 
 export const Primary: Story = {};
 
-export const Dismiss: Story = {
+export const Dismissal: Story = {
   args: {
     allowDismiss: true,
   },

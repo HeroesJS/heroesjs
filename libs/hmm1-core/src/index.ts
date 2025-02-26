@@ -4,6 +4,8 @@ export {
   gameDifficulties,
   GameDifficulty,
   getOpponentCount,
+  heroClasses,
+  HeroClassId,
   HeroId,
   MovementSpeed,
   movementSpeeds,

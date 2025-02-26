@@ -2,8 +2,9 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import { HeroId, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
+import { HeroClassId, HeroId, PlayerColor, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
 
+import { Crest } from '../Crest';
 import { HeroPortrait } from '../HeroPortrait';
 
 import * as assets from './assets';
@@ -13,15 +14,18 @@ interface Props {
   readonly allowDismiss?: boolean;
   readonly onDismissClick?: () => void;
   readonly onExitClick?: () => void;
+  readonly onKingdomOverviewClick?: () => void;
 }
 
-export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props) => {
+export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick, onKingdomOverviewClick }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
   const [statusText, setStatusText] = useState(t('title'));
 
+  const playerColor = PlayerColor.Red;
   const heroId = HeroId.Falagar;
   const heroName = 'Falagar the Warlock';
+  const heroClass = HeroClassId.Warlock;
 
   const setDefaultStatusText = useCallback(() => setStatusText(t('defaultStatusText')), [t]);
 
@@ -29,6 +33,8 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props)
     (value: Skill) => setStatusText(t('viewSkillInfoStatusText', { name: t(`core:skill.${value}`) })),
     [t],
   );
+
+  const handleCrestMouseOver = useCallback(() => setStatusText(t('kingdomOverviewStatusText')), [t]);
 
   const dismissConfirm = useModal();
 
@@ -52,6 +58,16 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick }: Props)
           y={101}
         />
       ))}
+      <Crest
+        color={playerColor}
+        heroClass={heroClass}
+        label={t('kingdomOverviewLabel')}
+        onClick={onKingdomOverviewClick}
+        onMouseLeave={setDefaultStatusText}
+        onMouseOver={handleCrestMouseOver}
+        x={49}
+        y={200}
+      />
       {allowDismiss && (
         <Button
           assets={assets.dismissButton}

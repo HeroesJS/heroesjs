@@ -7,6 +7,6 @@ interface Props extends PositionProps {
   readonly heroId?: HeroId;
 }
 
-export const HeroPortrait = ({ heroId, ...rest }: Props) => (
-  <PositionedComponent {...rest} as="img" src={heroId !== undefined ? assets.poartraits[heroId] : assets.empty} />
+export const HeroPortrait = ({ heroId, ...props }: Props) => (
+  <PositionedComponent {...props} as="img" src={heroId !== undefined ? assets.poartraits[heroId] : assets.empty} />
 );

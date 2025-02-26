@@ -129,3 +129,17 @@ export enum Skill {
 }
 
 export const skills: readonly Skill[] = [Skill.Attack, Skill.Defense, Skill.SpellPower, Skill.Knowledge];
+
+export enum HeroClassId {
+  Knight = 0,
+  Barbarian = 1,
+  Sorceress = 2,
+  Warlock = 3,
+}
+
+export const heroClasses: readonly HeroClassId[] = [
+  HeroClassId.Knight,
+  HeroClassId.Barbarian,
+  HeroClassId.Sorceress,
+  HeroClassId.Warlock,
+];
