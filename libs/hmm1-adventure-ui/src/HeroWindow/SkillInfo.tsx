@@ -24,8 +24,8 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
 
   return (
     <Root
+      {...infoModal.handlers}
       onClick={descriptionModal.open}
-      onMouseDown={infoModal.open}
       onMouseLeave={onMouseLeave}
       onMouseOver={handleMouseOver}
       skill={skill}
