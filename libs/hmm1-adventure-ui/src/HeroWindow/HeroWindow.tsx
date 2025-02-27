@@ -1,31 +1,64 @@
+import { range } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import { HeroClassId, HeroId, PlayerColor, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
+import {
+  CreatureId,
+  HeroClassId,
+  HeroId,
+  PlayerColor,
+  ScreenHeight,
+  ScreenWidth,
+  type Skill,
+  skills,
+  Town,
+} from '@heroesjs/hmm1-core';
 
 import { Crest } from '../Crest';
 import { HeroPortrait } from '../HeroPortrait';
+import { TroopSlot } from '../TroopSlot';
 
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
+
+const playerColor = PlayerColor.Red;
+const heroId = HeroId.Falagar;
+const heroName = 'Falagar the Warlock';
+const heroClass = HeroClassId.Warlock;
+const troops = [
+  {
+    count: 7,
+    creature: CreatureId.Centaur,
+    origin: Town.Mountains,
+  },
+  {
+    count: 2,
+    creature: CreatureId.Gargoyle,
+    origin: Town.Mountains,
+  },
+];
 
 interface Props {
   readonly allowDismiss?: boolean;
   readonly onDismissClick?: () => void;
   readonly onExitClick?: () => void;
   readonly onKingdomOverviewClick?: () => void;
+  readonly onMoveTroop?: (index: number, targetIndex: number) => void;
 }
 
-export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick, onKingdomOverviewClick }: Props) => {
+export const HeroWindow = ({
+  allowDismiss,
+  onDismissClick,
+  onExitClick,
+  onKingdomOverviewClick,
+  onMoveTroop,
+}: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
-  const [statusText, setStatusText] = useState(t('title'));
+  const [selectedTroopIndex, setSelectedTroopIndex] = useState<number>();
 
-  const playerColor = PlayerColor.Red;
-  const heroId = HeroId.Falagar;
-  const heroName = 'Falagar the Warlock';
-  const heroClass = HeroClassId.Warlock;
+  const [statusText, setStatusText] = useState(t('title'));
 
   const setDefaultStatusText = useCallback(() => setStatusText(t('defaultStatusText')), [t]);
 
@@ -35,6 +68,52 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick, onKingdo
   );
 
   const handleCrestMouseOver = useCallback(() => setStatusText(t('kingdomOverviewStatusText')), [t]);
+
+  const troopDetailsModal = useModal();
+
+  const handleTroopMouseOver = useCallback(
+    (index: number) => {
+      const troop = troops[index];
+      const selectedTroop = selectedTroopIndex !== undefined ? troops[selectedTroopIndex] : undefined;
+
+      if (selectedTroop) {
+        setStatusText(
+          troop !== selectedTroop
+            ? troop
+              ? t('exchangeTroop', {
+                  name: t(`core:creatures.${selectedTroop.creature}`),
+                  otherName: t(`core:creatures.${troop.creature}`),
+                })
+              : t('moveTroop', { name: t(`core:creatures.${selectedTroop.creature}`) })
+            : t('selectTroop', { name: t(`core:creatures.${troop.creature}`) }),
+        );
+      } else {
+        setStatusText(troop ? t('selectTroop', { name: t(`core:creatures.${troop.creature}`) }) : t('noTroop'));
+      }
+    },
+    [selectedTroopIndex, t],
+  );
+
+  const handleTroopClick = useCallback(
+    (index: number) => {
+      if (selectedTroopIndex === undefined) {
+        if (!troops[index]) {
+          return;
+        } else {
+          setSelectedTroopIndex(index);
+
+          return;
+        }
+      }
+
+      if (index === selectedTroopIndex) {
+        troopDetailsModal.open();
+      } else {
+        onMoveTroop?.(selectedTroopIndex, index);
+      }
+    },
+    [onMoveTroop, selectedTroopIndex, troopDetailsModal],
+  );
 
   const dismissConfirm = useModal();
 
@@ -68,6 +147,19 @@ export const HeroWindow = ({ allowDismiss, onDismissClick, onExitClick, onKingdo
         x={49}
         y={200}
       />
+      {range(0, 5).map((index, i) => (
+        <TroopSlot
+          {...troops[index]}
+          index={index}
+          key={index}
+          onClick={handleTroopClick}
+          onMouseLeave={setDefaultStatusText}
+          onMouseOver={handleTroopMouseOver}
+          selected={selectedTroopIndex === index}
+          x={156 + i * (TroopSlot.width + 6)}
+          y={200}
+        />
+      ))}
       {allowDismiss && (
         <Button
           assets={assets.dismissButton}

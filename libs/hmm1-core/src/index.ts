@@ -1,5 +1,6 @@
 export { Campaign, campaignScenarios } from './lib/campaign';
 export {
+  CreatureId,
   defaultOpponentSettings,
   gameDifficulties,
   GameDifficulty,

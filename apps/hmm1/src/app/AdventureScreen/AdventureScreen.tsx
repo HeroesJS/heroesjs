@@ -8,6 +8,7 @@ import {
   CampaignScenarioInfoWindow,
   GameOptionsWindow,
   HeroLocator,
+  HeroWindow,
   Locator,
   StandardScenarioInfoWindow,
   TownLocator,
@@ -48,7 +49,7 @@ export const AdventureScreen = () => {
         />
       )}
       renderHeroLocators={() => (
-        <Locator selected>
+        <Locator onClick={() => navigate('hero')} selected>
           <HeroLocator hero={HeroId.Dimitri} mobility={14} x={5} y={5} />
         </Locator>
       )}
@@ -59,6 +60,7 @@ export const AdventureScreen = () => {
       )}
     >
       <Routes>
+        <Route element={<HeroWindow onExitClick={() => navigate('..', { relative: 'path' })} />} path="hero" />
         <Route
           element={
             <AdventureOptionsWindow onConfirmClick={() => navigate('..', { relative: 'path' })} x={160} y={40} />

@@ -35,7 +35,7 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
       <Text align="center" size="small" width={SkillInfo.width} y={6}>
         {t(`core:skill.${skill}`)}
       </Text>
-      <Text align="center" size="large" width={SkillInfo.height} y={71}>
+      <Text align="center" size="large" width={SkillInfo.width} y={71}>
         {value}
       </Text>
       <Modal onConfirmClick={descriptionModal.close} open={descriptionModal.isOpen} size={2} type="okay" x={177} y={29}>
