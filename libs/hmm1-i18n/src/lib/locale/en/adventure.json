@@ -108,9 +108,15 @@
       "title": "Scenario Info Window"
     },
     "troopDetailsWindow": {
+      "damageLabel": "Damage",
       "dismissConfirm": "Are you sure you want to dismiss this army?",
       "dismissLabel": "Dismiss",
       "exitLabel": "Exit",
+      "hitPointsLabel": "Hit Points",
+      "luckLabel": "Luck",
+      "moraleLabel": "Morale",
+      "shotsLabel": "Shots",
+      "speedLabel": "Speed",
       "title": "Troop Details"
     }
   }

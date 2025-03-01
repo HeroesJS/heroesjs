@@ -74,19 +74,19 @@ export const TroopDetailsWindow = ({
         ))}
         {!!creature.shots && (
           <>
-            {t('core:shotsLabel')}: {creature.shots}
+            {t('shotsLabel')}: {creature.shots}
             <br />
           </>
         )}
-        {t('core:damageLabel')}: {formatDamageRange(creature.minDamange, creature.maxDamage)}
+        {t('damageLabel')}: {formatDamageRange(creature.minDamange, creature.maxDamage)}
         <br />
-        {t('core:hitPointsLabel')}: {creature.hitPoints}
+        {t('hitPointsLabel')}: {creature.hitPoints}
         <br />
-        {t('core:creatureSpeedLabel')}: {t(`core:creatureSpeed.${creature.speed}`)}
+        {t('speedLabel')}: {t(`core:creatureSpeed.${creature.speed}`)}
         <br />
-        {t('core:moraleLabel')}: {t(`core:morale.${creature.morale}`)}
+        {t('moraleLabel')}: {t(`core:morale.${creature.morale}`)}
         <br />
-        {t('core:luckLabel')}: {t(`core:luck.${creature.luck}`)}
+        {t('luckLabel')}: {t(`core:luck.${creature.luck}`)}
       </Text>
       {allowDismiss && (
         <Button

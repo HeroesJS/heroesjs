@@ -12,7 +12,6 @@
     "medium": "Medium",
     "slow": "Slow"
   },
-  "creatureSpeedLabel": "Speed",
   "creatures": {
     "0": "Peasant",
     "1": "Archer",
@@ -43,27 +42,23 @@
     "8": "Wolf",
     "9": "Ogre"
   },
-  "damageLabel": "Damage",
   "gameDifficulty": {
     "easy": "Easy",
     "expert": "Expert",
     "hard": "Hard",
     "normal": "Normal"
   },
-  "hitPointsLabel": "Hit Points",
   "luck": {
     "bad": "Bad",
     "good": "Good",
     "normal": "Normal"
   },
-  "luckLabel": "Luck",
   "morale": {
     "bad": "Bad",
     "good": "Good",
     "great": "Great",
     "neutral": "Neutral"
   },
-  "moraleLabel": "Morale",
   "movementSpeed": {
     "canter": "Canter",
     "gallop": "Gallop",
@@ -103,7 +98,6 @@
     "medium": "Medium",
     "small": "Small"
   },
-  "shotsLabel": "Shots",
   "skill": {
     "attack": "Attack Skill",
     "defense": "Defense Skill",
