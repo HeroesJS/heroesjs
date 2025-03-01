@@ -106,6 +106,12 @@
       "scenarioDifficulty": "Difficulty",
       "scenarioSize": "Size",
       "title": "Scenario Info Window"
+    },
+    "troopDetailsWindow": {
+      "dismissConfirm": "Are you sure you want to dismiss this army?",
+      "dismissLabel": "Dismiss",
+      "exitLabel": "Exit",
+      "title": "Troop Details"
     }
   }
 }

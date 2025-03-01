@@ -12,4 +12,5 @@ export * from './Locator';
 export * from './PlayerColorJewel';
 export * from './StandardScenarioInfoWindow';
 export * from './TownLocator';
+export * from './TroopDetailsWindow';
 export * from './TroopSlot';

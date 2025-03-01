@@ -1,13 +1,18 @@
 export { Campaign, campaignScenarios } from './lib/campaign';
 export {
   CreatureId,
+  CreatureSpeed,
   defaultOpponentSettings,
+  formatDamageRange,
+  formatSkillValue,
   gameDifficulties,
   GameDifficulty,
   getOpponentCount,
   heroClasses,
   HeroClassId,
   HeroId,
+  Luck,
+  Morale,
   MovementSpeed,
   movementSpeeds,
   nextOption,
@@ -19,6 +24,7 @@ export {
   previousOption,
   Skill,
   skills,
+  type SkillValues,
   Town,
 } from './lib/core';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';

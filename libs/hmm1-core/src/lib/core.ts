@@ -130,6 +130,15 @@ export enum Skill {
 
 export const skills: readonly Skill[] = [Skill.Attack, Skill.Defense, Skill.SpellPower, Skill.Knowledge];
 
+export type SkillValues = Readonly<Record<Skill, number>>;
+
+export const formatSkillValue = (values: Partial<SkillValues>, skill: Skill, bonuses: Partial<SkillValues>) => {
+  const value = values[skill] ?? 0;
+  const bonus = bonuses[skill] ?? 0;
+
+  return `${value}${bonus ? ` (${value + bonus})` : ''}`;
+};
+
 export enum HeroClassId {
   Knight = 0,
   Barbarian = 1,
@@ -174,3 +183,25 @@ export enum CreatureId {
   Ghost = 26,
   Genie = 27,
 }
+
+export enum CreatureSpeed {
+  Fast = 'fast',
+  Medium = 'medium',
+  Slow = 'slow',
+}
+
+export enum Morale {
+  Bad = 'bad',
+  Good = 'good',
+  Great = 'great',
+  Neutral = 'neutral',
+}
+
+export enum Luck {
+  Bad = 'bad',
+  Good = 'good',
+  Normal = 'normal',
+}
+
+export const formatDamageRange = (minDamage: number, maxDamage: number) =>
+  minDamage === maxDamage ? minDamage : `${minDamage}-${maxDamage}`;
