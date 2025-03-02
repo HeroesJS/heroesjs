@@ -149,5 +149,11 @@ describe(TroopDetailsWindow, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('does not render button when hide exit is set', () => {
+      renderWithProviders(<TroopDetailsWindow creature={creature} hideExit />);
+
+      expect(screen.queryByRole('button', { name: /exit/i })).not.toBeInTheDocument();
+    });
   });
 });
