@@ -97,8 +97,6 @@ export const HeroWindow = ({
 
   const handleCrestMouseOver = useCallback(() => setStatusText(t('kingdomOverviewStatusText')), [t]);
 
-  const troopDetailsModal = useModal();
-
   const handleTroopMouseOver = useCallback(
     (index: number) => {
       const troop = troops[index];
@@ -121,6 +119,17 @@ export const HeroWindow = ({
     },
     [selectedTroopIndex, t],
   );
+
+  const [troopInfoIndex, setTroopInfoIndex] = useState<number>();
+  const infoTroop = troopInfoIndex !== undefined ? troops[troopInfoIndex] : undefined;
+
+  const troopInfoModal = useModal(
+    undefined,
+    (index: number) => setTroopInfoIndex(index),
+    () => setTroopInfoIndex(undefined),
+  );
+
+  const troopDetailsModal = useModal();
 
   const handleTroopClick = useCallback(
     (index: number) => {
@@ -195,6 +204,7 @@ export const HeroWindow = ({
       {range(0, 5).map((index, i) => (
         <TroopSlot
           {...troops[index]}
+          {...troopInfoModal.handlers}
           index={index}
           key={index}
           onClick={handleTroopClick}
@@ -205,6 +215,19 @@ export const HeroWindow = ({
           y={200}
         />
       ))}
+      {infoTroop && troopInfoModal.isOpen && (
+        <TroopDetailsWindow
+          count={infoTroop.count}
+          creature={{
+            ...creature,
+            id: infoTroop.creature,
+          }}
+          hideExit
+          skillsBonus={heroSkills}
+          x={119}
+          y={50}
+        />
+      )}
       {selectedTroop && troopDetailsModal.isOpen && (
         <TroopDetailsWindow
           allowDismiss={compact(troops).length > 1}
@@ -216,7 +239,7 @@ export const HeroWindow = ({
           onDismissClick={handleDismissTroopClick}
           onExitClick={handleExitTroopDetailsClick}
           skillsBonus={heroSkills}
-          x={200}
+          x={119}
           y={50}
         />
       )}

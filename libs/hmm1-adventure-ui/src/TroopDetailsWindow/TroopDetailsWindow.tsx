@@ -33,6 +33,7 @@ interface Props extends PositionProps {
   readonly allowDismiss?: boolean;
   readonly count?: number;
   readonly creature: CreatureInfo;
+  readonly hideExit?: boolean;
   readonly onDismissClick?: () => void;
   readonly onExitClick?: () => void;
   readonly skillsBonus?: Partial<Readonly<Record<Skill, number>>>;
@@ -42,6 +43,7 @@ export const TroopDetailsWindow = ({
   allowDismiss,
   count = 0,
   creature,
+  hideExit,
   onDismissClick,
   onExitClick,
   skillsBonus = {},
@@ -108,7 +110,7 @@ export const TroopDetailsWindow = ({
       >
         {t('dismissConfirm')}
       </Modal>
-      <Button assets={assets.exitButton} label={t('exitLabel')} onClick={onExitClick} x={295} y={181} />
+      {!hideExit && <Button assets={assets.exitButton} label={t('exitLabel')} onClick={onExitClick} x={295} y={181} />}
     </Window>
   );
 };

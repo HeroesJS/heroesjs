@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { type MouseEvent, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
@@ -13,6 +13,7 @@ interface Props extends PositionProps {
   readonly creature?: CreatureId;
   readonly index: number;
   readonly onClick?: (index: number) => void;
+  readonly onMouseDown?: (e: MouseEvent, index: number) => void;
   readonly onMouseLeave?: () => void;
   readonly onMouseOver?: (index: number) => void;
   readonly origin?: Town;
@@ -24,6 +25,7 @@ export const TroopSlot = ({
   creature,
   index,
   onClick,
+  onMouseDown,
   onMouseLeave,
   onMouseOver,
   origin,
@@ -33,10 +35,19 @@ export const TroopSlot = ({
 }: Props) => {
   const handleMouseOver = useCallback(() => onMouseOver?.(index), [index, onMouseOver]);
 
+  const handleMouseDown = useCallback((e: MouseEvent) => onMouseDown?.(e, index), [index, onMouseDown]);
+
   const handleClick = useCallback(() => onClick?.(index), [index, onClick]);
 
   return (
-    <Root onClick={handleClick} onMouseLeave={onMouseLeave} onMouseOver={handleMouseOver} x={x} y={y}>
+    <Root
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={handleMouseOver}
+      x={x}
+      y={y}
+    >
       {creature !== undefined ? (
         <>
           <img alt="" src={origin ? assets.background.town[origin] : assets.background.generic} />
