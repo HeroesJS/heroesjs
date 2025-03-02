@@ -153,43 +153,6 @@ export const heroClasses: readonly HeroClassId[] = [
   HeroClassId.Warlock,
 ];
 
-export enum CreatureId {
-  Peasant = 0,
-  Archer = 1,
-  Pikeman = 2,
-  Swordsman = 3,
-  Cavalry = 4,
-  Paladin = 5,
-  Goblin = 6,
-  Orc = 7,
-  Wolf = 8,
-  Ogre = 9,
-  Troll = 10,
-  Cyclops = 11,
-  Sprite = 12,
-  Dwarf = 13,
-  Elf = 14,
-  Druid = 15,
-  Unicorn = 16,
-  Phoenix = 17,
-  Centaur = 18,
-  Gargoyle = 19,
-  Griffin = 20,
-  Minotaur = 21,
-  Hydra = 22,
-  Dragon = 23,
-  Rogue = 24,
-  Nomad = 25,
-  Ghost = 26,
-  Genie = 27,
-}
-
-export enum CreatureSpeed {
-  Fast = 'fast',
-  Medium = 'medium',
-  Slow = 'slow',
-}
-
 export enum Morale {
   Bad = 'bad',
   Good = 'good',

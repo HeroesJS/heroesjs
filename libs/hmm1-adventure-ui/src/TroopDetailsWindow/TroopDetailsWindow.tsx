@@ -3,37 +3,24 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Button, Modal, PositionedComponent, type PositionProps, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import {
-  type CreatureId,
-  type CreatureSpeed,
-  formatDamageRange,
-  formatSkillValue,
-  type Luck,
-  type Morale,
-  type Skill,
-} from '@heroesjs/hmm1-core';
+import { type CreatureData, formatDamageRange, formatSkillValue, Luck, Morale, type Skill } from '@heroesjs/hmm1-core';
 
 import { CreatureIcon } from '../CreatureIcon';
 
 import * as assets from './assets';
 
-export interface CreatureInfo {
-  readonly hitPoints: number;
-  readonly id: CreatureId;
-  readonly luck: Luck;
-  readonly maxDamage: number;
-  readonly minDamange: number;
-  readonly morale: Morale;
-  readonly shots: number;
-  readonly skills: Readonly<Record<Skill.Attack | Skill.Defense, number>>;
-  readonly speed: CreatureSpeed;
-}
+export type CreatureInfo = Pick<
+  CreatureData,
+  'hitPoints' | 'id' | 'maxDamage' | 'minDamage' | 'shots' | 'skills' | 'speed'
+>;
 
 interface Props extends PositionProps {
   readonly allowDismiss?: boolean;
   readonly count?: number;
   readonly creature: CreatureInfo;
   readonly hideExit?: boolean;
+  readonly luck?: Luck;
+  readonly morale?: Morale;
   readonly onDismissClick?: () => void;
   readonly onExitClick?: () => void;
   readonly skillsBonus?: Partial<Readonly<Record<Skill, number>>>;
@@ -44,6 +31,8 @@ export const TroopDetailsWindow = ({
   count = 0,
   creature,
   hideExit,
+  luck = Luck.Normal,
+  morale = Morale.Neutral,
   onDismissClick,
   onExitClick,
   skillsBonus = {},
@@ -80,15 +69,15 @@ export const TroopDetailsWindow = ({
             <br />
           </>
         )}
-        {t('damageLabel')}: {formatDamageRange(creature.minDamange, creature.maxDamage)}
+        {t('damageLabel')}: {formatDamageRange(creature.minDamage, creature.maxDamage)}
         <br />
         {t('hitPointsLabel')}: {creature.hitPoints}
         <br />
         {t('speedLabel')}: {t(`core:creatureSpeed.${creature.speed}`)}
         <br />
-        {t('moraleLabel')}: {t(`core:morale.${creature.morale}`)}
+        {t('moraleLabel')}: {t(`core:morale.${morale}`)}
         <br />
-        {t('luckLabel')}: {t(`core:luck.${creature.luck}`)}
+        {t('luckLabel')}: {t(`core:luck.${luck}`)}
       </Text>
       {allowDismiss && (
         <Button

@@ -1,25 +1,12 @@
 import { screen } from '@testing-library/react';
 
-import { CreatureId, CreatureSpeed, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
+import { creatureById, CreatureId, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
-import { type CreatureInfo, TroopDetailsWindow } from './TroopDetailsWindow';
+import { TroopDetailsWindow } from './TroopDetailsWindow';
 
 describe(TroopDetailsWindow, () => {
-  const creature: CreatureInfo = {
-    hitPoints: 1,
-    id: CreatureId.Peasant,
-    luck: Luck.Good,
-    maxDamage: 1,
-    minDamange: 1,
-    morale: Morale.Great,
-    shots: 0,
-    skills: {
-      [Skill.Attack]: 1,
-      [Skill.Defense]: 1,
-    },
-    speed: CreatureSpeed.Slow,
-  };
+  const creature = creatureById[CreatureId.Peasant];
 
   it('renders dialog', () => {
     renderWithProviders(<TroopDetailsWindow creature={creature} />);
@@ -62,7 +49,7 @@ describe(TroopDetailsWindow, () => {
   });
 
   it('renders stats', () => {
-    renderWithProviders(<TroopDetailsWindow creature={creature} />);
+    renderWithProviders(<TroopDetailsWindow creature={creature} luck={Luck.Good} morale={Morale.Great} />);
 
     expect(screen.getByText(/damage: 1/i)).toBeInTheDocument();
     expect(screen.getByText(/hit points: 1/i)).toBeInTheDocument();
@@ -77,7 +64,7 @@ describe(TroopDetailsWindow, () => {
         creature={{
           ...creature,
           maxDamage: 3,
-          minDamange: 2,
+          minDamage: 2,
         }}
       />,
     );

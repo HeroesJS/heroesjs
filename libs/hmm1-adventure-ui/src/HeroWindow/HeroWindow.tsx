@@ -4,12 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
 import {
+  creatureById,
   CreatureId,
-  CreatureSpeed,
   HeroClassId,
   HeroId,
-  Luck,
-  Morale,
   PlayerColor,
   ScreenHeight,
   ScreenWidth,
@@ -49,21 +47,6 @@ const troops = [
     origin: Town.Mountains,
   },
 ];
-
-const creature = {
-  hitPoints: 0,
-  id: CreatureId.Peasant,
-  luck: Luck.Normal,
-  maxDamage: 2,
-  minDamange: 1,
-  morale: Morale.Neutral,
-  shots: 0,
-  skills: {
-    [Skill.Attack]: 1,
-    [Skill.Defense]: 1,
-  },
-  speed: CreatureSpeed.Slow,
-};
 
 interface Props {
   readonly allowDismiss?: boolean;
@@ -218,10 +201,7 @@ export const HeroWindow = ({
       {infoTroop && troopInfoModal.isOpen && (
         <TroopDetailsWindow
           count={infoTroop.count}
-          creature={{
-            ...creature,
-            id: infoTroop.creature,
-          }}
+          creature={creatureById[infoTroop.creature]}
           hideExit
           skillsBonus={heroSkills}
           x={119}
@@ -232,10 +212,7 @@ export const HeroWindow = ({
         <TroopDetailsWindow
           allowDismiss={compact(troops).length > 1}
           count={selectedTroop.count}
-          creature={{
-            ...creature,
-            id: selectedTroop.creature,
-          }}
+          creature={creatureById[selectedTroop.creature]}
           onDismissClick={handleDismissTroopClick}
           onExitClick={handleExitTroopDetailsClick}
           skillsBonus={heroSkills}
