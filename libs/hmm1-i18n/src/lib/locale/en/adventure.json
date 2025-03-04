@@ -82,6 +82,7 @@
       "exchangeTroop": "Exchange {{name}} with {{otherName}}",
       "exitLabel": "Exit",
       "exitStatusText": "Exit Hero Screen",
+      "heroTitle": "{{name}} the {{heroClass}}",
       "kingdomOverviewLabel": "Open Kingdom Overview",
       "kingdomOverviewStatusText": "Kingdom Overview",
       "moveTroop": "Move {{name}}",

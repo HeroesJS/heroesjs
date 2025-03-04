@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
 import {
+  type Army,
+  armySize,
   creatureById,
   CreatureId,
   HeroClassId,
@@ -14,7 +16,6 @@ import {
   Skill,
   skills,
   type SkillValues,
-  Town,
 } from '@heroesjs/hmm1-core';
 
 import { Crest } from '../Crest';
@@ -25,28 +26,35 @@ import { TroopSlot } from '../TroopSlot';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-const playerColor = PlayerColor.Red;
-const heroId = HeroId.Falagar;
-const heroName = 'Falagar the Warlock';
-const heroClass = HeroClassId.Warlock;
-const heroSkills: SkillValues = {
-  [Skill.Attack]: 0,
-  [Skill.Defense]: 0,
-  [Skill.Knowledge]: 2,
-  [Skill.SpellPower]: 3,
+interface Hero {
+  readonly army: Army;
+  readonly heroClass: HeroClassId;
+  readonly id: HeroId;
+  readonly player: PlayerColor;
+  readonly skills: SkillValues;
+}
+
+const hero: Hero = {
+  army: [
+    {
+      count: 7,
+      creatureId: CreatureId.Centaur,
+    },
+    {
+      count: 2,
+      creatureId: CreatureId.Gargoyle,
+    },
+  ],
+  heroClass: HeroClassId.Warlock,
+  id: HeroId.Falagar,
+  player: PlayerColor.Red,
+  skills: {
+    [Skill.Attack]: 0,
+    [Skill.Defense]: 0,
+    [Skill.Knowledge]: 2,
+    [Skill.SpellPower]: 3,
+  },
 };
-const troops = [
-  {
-    count: 7,
-    creature: CreatureId.Centaur,
-    origin: Town.Mountains,
-  },
-  {
-    count: 2,
-    creature: CreatureId.Gargoyle,
-    origin: Town.Mountains,
-  },
-];
 
 interface Props {
   readonly allowDismiss?: boolean;
@@ -67,9 +75,14 @@ export const HeroWindow = ({
 }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
+  const heroTitle = t('heroTitle', {
+    heroClass: t(`core:heroClasses.${hero.heroClass}`),
+    name: t(`core:heroes.${hero.id}`),
+  });
+
   const [selectedTroopIndex, setSelectedTroopIndex] = useState<number>();
 
-  const [statusText, setStatusText] = useState(t('title'));
+  const [statusText, setStatusText] = useState(t('defaultStatusText'));
 
   const setDefaultStatusText = useCallback(() => setStatusText(t('defaultStatusText')), [t]);
 
@@ -82,29 +95,29 @@ export const HeroWindow = ({
 
   const handleTroopMouseOver = useCallback(
     (index: number) => {
-      const troop = troops[index];
-      const selectedTroop = selectedTroopIndex !== undefined ? troops[selectedTroopIndex] : undefined;
+      const troop = hero.army[index];
+      const selectedTroop = selectedTroopIndex !== undefined ? hero.army[selectedTroopIndex] : undefined;
 
       if (selectedTroop) {
         setStatusText(
           troop !== selectedTroop
             ? troop
               ? t('exchangeTroop', {
-                  name: t(`core:creatures.${selectedTroop.creature}`),
-                  otherName: t(`core:creatures.${troop.creature}`),
+                  name: t(`core:creatures.${selectedTroop.creatureId}`),
+                  otherName: t(`core:creatures.${troop.creatureId}`),
                 })
-              : t('moveTroop', { name: t(`core:creatures.${selectedTroop.creature}`) })
-            : t('selectTroop', { name: t(`core:creatures.${troop.creature}`) }),
+              : t('moveTroop', { name: t(`core:creatures.${selectedTroop.creatureId}`) })
+            : t('selectTroop', { name: t(`core:creatures.${troop.creatureId}`) }),
         );
       } else {
-        setStatusText(troop ? t('selectTroop', { name: t(`core:creatures.${troop.creature}`) }) : t('noTroop'));
+        setStatusText(troop ? t('selectTroop', { name: t(`core:creatures.${troop.creatureId}`) }) : t('noTroop'));
       }
     },
     [selectedTroopIndex, t],
   );
 
   const [troopInfoIndex, setTroopInfoIndex] = useState<number>();
-  const infoTroop = troopInfoIndex !== undefined ? troops[troopInfoIndex] : undefined;
+  const infoTroop = troopInfoIndex !== undefined ? hero.army[troopInfoIndex] : undefined;
 
   const troopInfoModal = useModal(
     undefined,
@@ -117,7 +130,7 @@ export const HeroWindow = ({
   const handleTroopClick = useCallback(
     (index: number) => {
       if (selectedTroopIndex === undefined) {
-        if (!troops[index]) {
+        if (!hero.army[index]) {
           return;
         } else {
           setSelectedTroopIndex(index);
@@ -151,32 +164,32 @@ export const HeroWindow = ({
 
   const dismissConfirm = useModal();
 
-  const handleDismissMouseOver = useCallback(() => setStatusText(t('dismissStatusText', { name: heroName })), [t]);
+  const handleDismissMouseOver = useCallback(() => setStatusText(t('dismissStatusText', { name: heroTitle })), [t]);
 
   const handleExitMouseOver = useCallback(() => setStatusText(t('exitStatusText')), [t]);
 
-  const selectedTroop = selectedTroopIndex !== undefined ? troops[selectedTroopIndex] : undefined;
+  const selectedTroop = selectedTroopIndex !== undefined ? hero.army[selectedTroopIndex] : undefined;
 
   return (
     <Window background={assets.background} height={HeroWindow.height} label={t('title')} width={HeroWindow.width}>
-      <Text align="center" size="large" width={HeroWindow.width} y={72}>
-        {heroName}
+      <Text align="center" heading size="large" width={HeroWindow.width} y={72}>
+        {heroTitle}
       </Text>
-      <HeroPortrait heroId={heroId} x={49} y={101} />
+      <HeroPortrait heroId={hero.id} x={49} y={101} />
       {skills.map((skill, i) => (
         <SkillInfo
           key={skill}
           onMouseLeave={setDefaultStatusText}
           onMouseOver={handleSkillMouseOver}
           skill={skill}
-          value={heroSkills[skill]}
+          value={hero.skills[skill]}
           x={156 + i * (SkillInfo.width + 6)}
           y={101}
         />
       ))}
       <Crest
-        color={playerColor}
-        heroClass={heroClass}
+        color={hero.player}
+        heroClass={hero.heroClass}
         label={t('kingdomOverviewLabel')}
         onClick={onKingdomOverviewClick}
         onMouseLeave={setDefaultStatusText}
@@ -184,38 +197,40 @@ export const HeroWindow = ({
         x={49}
         y={200}
       />
-      {range(0, 5).map((index, i) => (
-        <TroopSlot
-          {...troops[index]}
-          {...troopInfoModal.handlers}
-          index={index}
-          key={index}
-          onClick={handleTroopClick}
-          onMouseLeave={setDefaultStatusText}
-          onMouseOver={handleTroopMouseOver}
-          selected={selectedTroopIndex === index}
-          x={156 + i * (TroopSlot.width + 6)}
-          y={200}
-        />
-      ))}
+      {range(0, armySize)
+        .map((index) => hero.army[index])
+        .map((troop, i) => (
+          <TroopSlot
+            {...troop}
+            {...troopInfoModal.handlers}
+            index={i}
+            key={i}
+            onClick={handleTroopClick}
+            onMouseLeave={setDefaultStatusText}
+            onMouseOver={handleTroopMouseOver}
+            selected={selectedTroopIndex === i}
+            x={156 + i * (TroopSlot.width + 6)}
+            y={200}
+          />
+        ))}
       {infoTroop && troopInfoModal.isOpen && (
         <TroopDetailsWindow
           count={infoTroop.count}
-          creature={creatureById[infoTroop.creature]}
+          creature={creatureById[infoTroop.creatureId]}
           hideExit
-          skillsBonus={heroSkills}
+          skillsBonus={hero.skills}
           x={119}
           y={50}
         />
       )}
       {selectedTroop && troopDetailsModal.isOpen && (
         <TroopDetailsWindow
-          allowDismiss={compact(troops).length > 1}
+          allowDismiss={compact(hero.army).length > 1}
           count={selectedTroop.count}
-          creature={creatureById[selectedTroop.creature]}
+          creature={creatureById[selectedTroop.creatureId]}
           onDismissClick={handleDismissTroopClick}
           onExitClick={handleExitTroopDetailsClick}
-          skillsBonus={heroSkills}
+          skillsBonus={hero.skills}
           x={119}
           y={50}
         />

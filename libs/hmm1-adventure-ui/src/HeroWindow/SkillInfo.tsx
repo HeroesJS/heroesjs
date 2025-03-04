@@ -25,6 +25,7 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
   return (
     <Root
       {...infoModal.handlers}
+      aria-labelledby={`${skill}-skill-info`}
       onClick={descriptionModal.open}
       onMouseLeave={onMouseLeave}
       onMouseOver={handleMouseOver}
@@ -32,7 +33,7 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
       x={x}
       y={y}
     >
-      <Text align="center" size="small" width={SkillInfo.width} y={6}>
+      <Text align="center" id={`${skill}-skill-info`} size="small" width={SkillInfo.width} y={6}>
         {t(`core:skill.${skill}`)}
       </Text>
       <Text align="center" size="large" width={SkillInfo.width} y={71}>
