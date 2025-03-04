@@ -119,6 +119,11 @@
       "shotsLabel": "Shots",
       "speedLabel": "Speed",
       "title": "Troop Details"
+    },
+    "troopSlot": {
+      "count": "Count",
+      "empty": "Empty",
+      "title": "Troop {{index}} - {{troop}}"
     }
   }
 }

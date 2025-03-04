@@ -1,4 +1,5 @@
 import { type MouseEvent, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
@@ -27,20 +28,24 @@ export const TroopSlot = ({
   onMouseDown,
   onMouseLeave,
   onMouseOver,
-  selected,
+  selected = false,
   x,
   y,
 }: Props) => {
+  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.troopSlot' });
+
   const handleMouseOver = useCallback(() => onMouseOver?.(index), [index, onMouseOver]);
 
   const handleMouseDown = useCallback((e: MouseEvent) => onMouseDown?.(e, index), [index, onMouseDown]);
 
   const handleClick = useCallback(() => onClick?.(index), [index, onClick]);
 
-  const creature = creatureId ? creatureById[creatureId] : undefined;
+  const creature = creatureId !== undefined ? creatureById[creatureId] : undefined;
 
   return (
     <Root
+      aria-label={t('title', { index, troop: creature ? t(`core:creatures.${creature.id}`) : t('empty') })}
+      aria-selected={selected}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
       onMouseLeave={onMouseLeave}
@@ -48,11 +53,11 @@ export const TroopSlot = ({
       x={x}
       y={y}
     >
-      {creatureId !== undefined ? (
+      {creature !== undefined ? (
         <>
-          <img alt="" src={creature?.origin ? assets.background.town[creature.origin] : assets.background.generic} />
-          <CreatureIcon creature={creatureId} size="medium" x={7} y={13} />
-          <Text align="right" size="small" width={TroopSlot.width - 10} x={5} y={80}>
+          <img alt="" src={creature.origin ? assets.background.town[creature.origin] : assets.background.generic} />
+          <CreatureIcon creature={creature.id} size="medium" x={7} y={13} />
+          <Text align="right" label={t('count')} size="small" width={TroopSlot.width - 10} x={5} y={80}>
             {count}
           </Text>
         </>
