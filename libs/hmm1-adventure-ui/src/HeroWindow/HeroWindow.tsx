@@ -3,20 +3,7 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import {
-  type Army,
-  armySize,
-  creatureById,
-  CreatureId,
-  HeroClassId,
-  HeroId,
-  PlayerColor,
-  ScreenHeight,
-  ScreenWidth,
-  Skill,
-  skills,
-  type SkillValues,
-} from '@heroesjs/hmm1-core';
+import { armySize, creatureById, type Hero, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
 
 import { Crest } from '../Crest';
 import { HeroPortrait } from '../HeroPortrait';
@@ -26,38 +13,11 @@ import { TroopSlot } from '../TroopSlot';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-interface Hero {
-  readonly army: Army;
-  readonly heroClass: HeroClassId;
-  readonly id: HeroId;
-  readonly player: PlayerColor;
-  readonly skills: SkillValues;
-}
-
-const hero: Hero = {
-  army: [
-    {
-      count: 7,
-      creatureId: CreatureId.Centaur,
-    },
-    {
-      count: 2,
-      creatureId: CreatureId.Gargoyle,
-    },
-  ],
-  heroClass: HeroClassId.Warlock,
-  id: HeroId.Falagar,
-  player: PlayerColor.Red,
-  skills: {
-    [Skill.Attack]: 0,
-    [Skill.Defense]: 0,
-    [Skill.Knowledge]: 2,
-    [Skill.SpellPower]: 3,
-  },
-};
+type HeroInfo = Pick<Hero, 'army' | 'heroClass' | 'id' | 'player' | 'skills'>;
 
 interface Props {
   readonly allowDismiss?: boolean;
+  readonly hero: HeroInfo;
   readonly onDismissClick?: () => void;
   readonly onDismissTroop?: (index: number) => void;
   readonly onExitClick?: () => void;
@@ -67,6 +27,7 @@ interface Props {
 
 export const HeroWindow = ({
   allowDismiss,
+  hero,
   onDismissClick,
   onDismissTroop,
   onExitClick,
@@ -113,7 +74,7 @@ export const HeroWindow = ({
         setStatusText(troop ? t('selectTroop', { name: t(`core:creatures.${troop.creatureId}`) }) : t('noTroop'));
       }
     },
-    [selectedTroopIndex, t],
+    [hero.army, selectedTroopIndex, t],
   );
 
   const [troopInfoIndex, setTroopInfoIndex] = useState<number>();
@@ -121,7 +82,7 @@ export const HeroWindow = ({
 
   const troopInfoModal = useModal(
     undefined,
-    (index: number) => setTroopInfoIndex(index),
+    (_e, index: number) => setTroopInfoIndex(index),
     () => setTroopInfoIndex(undefined),
   );
 
@@ -143,9 +104,11 @@ export const HeroWindow = ({
         troopDetailsModal.open();
       } else {
         onMoveTroop?.(selectedTroopIndex, index);
+
+        setSelectedTroopIndex(undefined);
       }
     },
-    [onMoveTroop, selectedTroopIndex, troopDetailsModal],
+    [hero.army, onMoveTroop, selectedTroopIndex, troopDetailsModal],
   );
 
   const handleDismissTroopClick = useCallback(() => {
@@ -162,9 +125,18 @@ export const HeroWindow = ({
     setSelectedTroopIndex(undefined);
   }, [troopDetailsModal]);
 
-  const dismissConfirm = useModal();
+  const dismissConfirmModal = useModal();
 
-  const handleDismissMouseOver = useCallback(() => setStatusText(t('dismissStatusText', { name: heroTitle })), [t]);
+  const handleDismissMouseOver = useCallback(
+    () => setStatusText(t('dismissStatusText', { name: heroTitle })),
+    [heroTitle, t],
+  );
+
+  const handleConfirmDismissClick = useCallback(() => {
+    onDismissClick?.();
+
+    dismissConfirmModal.close();
+  }, [dismissConfirmModal, onDismissClick]);
 
   const handleExitMouseOver = useCallback(() => setStatusText(t('exitStatusText')), [t]);
 
@@ -239,7 +211,7 @@ export const HeroWindow = ({
         <Button
           assets={assets.dismissButton}
           label={t('dismissLabel')}
-          onClick={dismissConfirm.open}
+          onClick={dismissConfirmModal.open}
           onMouseLeave={setDefaultStatusText}
           onMouseOver={handleDismissMouseOver}
           x={8}
@@ -247,9 +219,9 @@ export const HeroWindow = ({
         />
       )}
       <Modal
-        onCancelClick={dismissConfirm.close}
-        onConfirmClick={onDismissClick}
-        open={dismissConfirm.isOpen}
+        onCancelClick={dismissConfirmModal.close}
+        onConfirmClick={handleConfirmDismissClick}
+        open={dismissConfirmModal.isOpen}
         size={1}
         type="yesNo"
         x={177}

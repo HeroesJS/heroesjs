@@ -110,6 +110,7 @@
     "trot": "Trot",
     "walk": "Walk"
   },
+  "notImplemented": "Not implemented.",
   "okayCancel": {
     "false": "Cancel",
     "true": "Okay"

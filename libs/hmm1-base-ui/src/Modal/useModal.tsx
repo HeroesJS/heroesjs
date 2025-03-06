@@ -2,16 +2,16 @@ import { type MouseEvent, useCallback } from 'react';
 
 import { useToggle2 } from '../useToggle';
 
-export interface UseModalResult<Args extends Array<unknown> = never> {
+export interface UseModalResult<Args extends [MouseEvent, ...unknown[]] = [MouseEvent]> {
   readonly close: () => void;
   readonly handlers: {
-    onMouseDown: (e: MouseEvent, ...args: Args) => void;
+    onMouseDown: (...args: Args) => void;
   };
   readonly isOpen: boolean;
   readonly open: () => void;
 }
 
-export const useModal = <Args extends Array<unknown> = never>(
+export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
   initialIsOpen = false,
   onBeforeOpen?: (...args: Args) => void,
   onAfterClose?: () => void,
@@ -32,8 +32,8 @@ export const useModal = <Args extends Array<unknown> = never>(
   );
 
   const handleMouseDown = useCallback(
-    (e: MouseEvent, ...args: Args) => {
-      if (e.button === 2) {
+    (...args: Args) => {
+      if (args[0].button === 2) {
         document.addEventListener('mouseup', handleDocumentMouseUp);
 
         onBeforeOpen?.(...args);

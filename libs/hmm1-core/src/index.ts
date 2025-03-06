@@ -27,6 +27,7 @@ export {
   Town,
 } from './lib/core';
 export { creatureById, type CreatureData, CreatureId, creatures, CreatureSpeed } from './lib/creature';
+export type { Hero } from './lib/hero';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';
 export { type ScenarioData, scenarios } from './lib/scenarios';
