@@ -10,10 +10,14 @@ import { HeroPortrait } from '../HeroPortrait';
 import { TroopDetailsWindow } from '../TroopDetailsWindow';
 import { TroopSlot } from '../TroopSlot';
 
+import { AdditionalStats } from './AdditionalStats';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-type HeroInfo = Pick<Hero, 'army' | 'heroClass' | 'id' | 'player' | 'skills'>;
+type HeroInfo = Pick<
+  Hero,
+  'army' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
+>;
 
 interface Props {
   readonly allowDismiss?: boolean;
@@ -51,6 +55,18 @@ export const HeroWindow = ({
     (value: Skill) => setStatusText(t('viewSkillInfoStatusText', { name: t(`core:skill.${value}`) })),
     [t],
   );
+
+  const handleMoraleMouseOver = useCallback(
+    () => setStatusText(t('moraleStatusText', { name: t(`core:morale.${hero.morale}`) })),
+    [hero.morale, t],
+  );
+
+  const handleLuckMouseOver = useCallback(
+    () => setStatusText(t('luckStatusText', { name: t(`core:luck.${hero.luck}`) })),
+    [hero.luck, t],
+  );
+
+  const handleExperienceMouseOver = useCallback(() => setStatusText(t('experienceStatusText')), [t]);
 
   const handleCrestMouseOver = useCallback(() => setStatusText(t('kingdomOverviewStatusText')), [t]);
 
@@ -159,6 +175,21 @@ export const HeroWindow = ({
           y={101}
         />
       ))}
+      <AdditionalStats
+        experience={hero.experience}
+        level={hero.level}
+        luck={hero.luck}
+        morale={hero.morale}
+        nextLevelExperience={1_000}
+        onExperienceMouseLeave={setDefaultStatusText}
+        onExperienceMouseOver={handleExperienceMouseOver}
+        onLuckMouseLeave={setDefaultStatusText}
+        onLuckMouseOver={handleLuckMouseOver}
+        onMoraleMouseLeave={setDefaultStatusText}
+        onMoraleMouseOver={handleMoraleMouseOver}
+        x={508}
+        y={101}
+      />
       <Crest
         color={hero.player}
         heroClass={hero.heroClass}

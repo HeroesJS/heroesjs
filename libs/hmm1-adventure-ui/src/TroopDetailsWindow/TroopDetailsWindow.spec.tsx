@@ -49,12 +49,12 @@ describe(TroopDetailsWindow, () => {
   });
 
   it('renders stats', () => {
-    renderWithProviders(<TroopDetailsWindow creature={creature} luck={Luck.Good} morale={Morale.Great} />);
+    renderWithProviders(<TroopDetailsWindow creature={creature} luck={Luck.Good} morale={Morale.Good} />);
 
     expect(screen.getByText(/damage: 1/i)).toBeInTheDocument();
     expect(screen.getByText(/hit points: 1/i)).toBeInTheDocument();
     expect(screen.getByText(/speed: slow/i)).toBeInTheDocument();
-    expect(screen.getByText(/morale: great/i)).toBeInTheDocument();
+    expect(screen.getByText(/morale: good/i)).toBeInTheDocument();
     expect(screen.getByText(/luck: good/i)).toBeInTheDocument();
   });
 

@@ -156,14 +156,13 @@ export const heroClasses: readonly HeroClassId[] = [
 export enum Morale {
   Bad = 'bad',
   Good = 'good',
-  Great = 'great',
   Neutral = 'neutral',
 }
 
 export enum Luck {
   Bad = 'bad',
   Good = 'good',
-  Normal = 'normal',
+  Neutral = 'neutral',
 }
 
 export const formatDamageRange = (minDamage: number, maxDamage: number) =>

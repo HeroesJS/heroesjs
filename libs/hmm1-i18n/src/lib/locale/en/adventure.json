@@ -82,10 +82,25 @@
       "exchangeTroop": "Exchange {{name}} with {{otherName}}",
       "exitLabel": "Exit",
       "exitStatusText": "Exit Hero Screen",
+      "experienceDescription": "Level {{level}}\n\nCurrent experience {{experience}}\nNext level {{nextLevelExperience}}",
+      "experienceStatusText": "View Experience Info",
       "heroTitle": "{{name}} the {{heroClass}}",
       "kingdomOverviewLabel": "Open Kingdom Overview",
       "kingdomOverviewStatusText": "Kingdom Overview",
+      "luckDescription": {
+        "bad": "Bad Luck\n\nBad luck sometimes falls on your armies in combat, causing their attacks to only do half damage.\n\n\nCurrent Luck Modifiers:\n",
+        "good": "Good Luck\n\nGood luck sometimes lets your armies get lucky attacks (double strength) in combat.\n\n\nCurrent Luck Modifiers:\n",
+        "neutral": "Neutral Luck\n\nNeutral luck means your armies will never get lucky or unlucky attacks on the enemy.\n\n\nCurrent Luck Modifiers:\n"
+      },
+      "luckStatusText": "View {{name}} Luck Info",
+      "moraleDescription": {
+        "bad": "Bad Morale\n\nBad morale may cause your armies to freeze in combat.\n\n\nCurrent Morale Modifiers:\n",
+        "good": "Good Morale\n\nGood morale may give your armies extra attacks in combat.\n\n\nCurrent Morale Modifiers:\n",
+        "neutral": "Neutral Morale\n\nNeutral morale means your armies will never be blessed with extra attacks or freeze in combat.\n\n\nCurrent Morale Modifiers:\n"
+      },
+      "moraleStatusText": "View {{name}} Moral Info",
       "moveTroop": "Move {{name}}",
+      "noModifiers": "none",
       "noTroop": "Empty",
       "selectTroop": "Select {{name}}",
       "skillDescription": {

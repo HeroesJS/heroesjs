@@ -95,12 +95,11 @@
   "luck": {
     "bad": "Bad",
     "good": "Good",
-    "normal": "Normal"
+    "neutral": "Neutral"
   },
   "morale": {
     "bad": "Bad",
     "good": "Good",
-    "great": "Great",
     "neutral": "Neutral"
   },
   "movementSpeed": {

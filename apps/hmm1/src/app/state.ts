@@ -1,4 +1,4 @@
-import { CreatureId, type Hero, HeroClassId, HeroId, PlayerColor, Skill } from '@heroesjs/hmm1-core';
+import { CreatureId, type Hero, HeroClassId, HeroId, Luck, Morale, PlayerColor, Skill } from '@heroesjs/hmm1-core';
 
 export const heroes: readonly Hero[] = [
   {
@@ -12,9 +12,13 @@ export const heroes: readonly Hero[] = [
         creatureId: CreatureId.Gargoyle,
       },
     ],
+    experience: 65,
     heroClass: HeroClassId.Warlock,
     id: HeroId.Falagar,
+    level: 1,
+    luck: Luck.Neutral,
     mobility: 14,
+    morale: Morale.Good,
     player: PlayerColor.Red,
     skills: {
       [Skill.Attack]: 0,
@@ -30,9 +34,13 @@ export const heroes: readonly Hero[] = [
         creatureId: CreatureId.Peasant,
       },
     ],
+    experience: 86,
     heroClass: HeroClassId.Knight,
     id: HeroId.Ambrose,
+    level: 1,
+    luck: Luck.Neutral,
     mobility: 0,
+    morale: Morale.Good,
     player: PlayerColor.Red,
     skills: {
       [Skill.Attack]: 2,

@@ -31,7 +31,7 @@ export const TroopDetailsWindow = ({
   count = 0,
   creature,
   hideExit,
-  luck = Luck.Normal,
+  luck = Luck.Neutral,
   morale = Morale.Neutral,
   onDismissClick,
   onExitClick,
