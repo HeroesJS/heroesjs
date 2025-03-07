@@ -17,8 +17,8 @@ interface Props extends PositionProps {
 export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
-  const descriptionModal = useModal();
   const infoModal = useModal();
+  const descriptionModal = useModal();
 
   const handleMouseOver = useCallback(() => onMouseOver?.(skill), [onMouseOver, skill]);
 
@@ -39,10 +39,14 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
       <Text align="center" size="large" width={SkillInfo.width} y={71}>
         {value}
       </Text>
-      <Modal onConfirmClick={descriptionModal.close} open={descriptionModal.isOpen} size={2} type="okay" x={177} y={29}>
-        {t(`skillDescription.${skill}`)}
-      </Modal>
-      <Modal onConfirmClick={infoModal.close} open={infoModal.isOpen} size={1} x={177} y={29}>
+      <Modal
+        onConfirmClick={descriptionModal.close}
+        open={infoModal.isOpen || descriptionModal.isOpen}
+        size={descriptionModal.isOpen ? 2 : 1}
+        type={descriptionModal.isOpen ? 'okay' : undefined}
+        x={177}
+        y={29}
+      >
         {t(`skillDescription.${skill}`)}
       </Modal>
     </Root>

@@ -57,11 +57,14 @@ export const AdditionalStats = ({
       >
         <PositionedComponent as="img" src={assets.morale.good} x={1} y={2} />
       </MoraleRoot>
-      <Modal open={moraleInfoModal.isOpen} size={3} x={177} y={29}>
-        {t(`morale.${getEffectType(morale)}.description`)}
-        {t('noModifiers')}
-      </Modal>
-      <Modal onConfirmClick={moraleModal.close} open={moraleModal.isOpen} size={3} type="okay" x={177} y={29}>
+      <Modal
+        onConfirmClick={moraleModal.close}
+        open={moraleInfoModal.isOpen || moraleModal.isOpen}
+        size={3}
+        type={moraleModal.isOpen ? 'okay' : undefined}
+        x={177}
+        y={29}
+      >
         {t(`morale.${getEffectType(morale)}.description`)}
         {t('noModifiers')}
       </Modal>
@@ -74,11 +77,14 @@ export const AdditionalStats = ({
       >
         <PositionedComponent as="img" src={assets.luck.neutral} x={1} />
       </LuckRoot>
-      <Modal open={luckInfoModal.isOpen} size={3} x={177} y={29}>
-        {t(`luck.${getEffectType(luck)}.description`)}
-        {t('noModifiers')}
-      </Modal>
-      <Modal onConfirmClick={luckModal.close} open={luckModal.isOpen} size={3} type="okay" x={177} y={29}>
+      <Modal
+        onConfirmClick={luckModal.close}
+        open={luckInfoModal.isOpen || luckModal.isOpen}
+        size={3}
+        type={luckModal.isOpen ? 'okay' : undefined}
+        x={177}
+        y={29}
+      >
         {t(`luck.${getEffectType(luck)}.description`)}
         {t('noModifiers')}
       </Modal>
@@ -94,14 +100,14 @@ export const AdditionalStats = ({
           {experience}
         </Text>
       </ExperienceRoot>
-      <Modal open={experienceInfoModal.isOpen} size={1} x={177} y={29}>
-        {t('experienceDescription', {
-          experience,
-          level,
-          nextLevelExperience,
-        })}
-      </Modal>
-      <Modal onConfirmClick={experienceModal.close} open={experienceModal.isOpen} size={1} type="okay" x={177} y={29}>
+      <Modal
+        onConfirmClick={experienceModal.close}
+        open={experienceInfoModal.isOpen || experienceModal.isOpen}
+        size={1}
+        type={experienceModal.isOpen ? 'okay' : undefined}
+        x={177}
+        y={29}
+      >
         {t('experienceDescription', {
           experience,
           level,
