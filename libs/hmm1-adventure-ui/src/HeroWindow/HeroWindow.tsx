@@ -10,11 +10,11 @@ import { HeroPortrait } from '../HeroPortrait';
 import { TroopDetailsWindow } from '../TroopDetailsWindow';
 import { TroopSlot } from '../TroopSlot';
 
-import { AdditionalStats } from './AdditionalStats';
+import { AdditionalStats, getEffectType } from './AdditionalStats';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-type HeroInfo = Pick<
+export type HeroInfo = Pick<
   Hero,
   'army' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
 >;
@@ -57,12 +57,12 @@ export const HeroWindow = ({
   );
 
   const handleMoraleMouseOver = useCallback(
-    () => setStatusText(t('moraleStatusText', { name: t(`core:morale.${hero.morale}`) })),
+    () => setStatusText(t('moraleStatusText', { name: t(`morale.${getEffectType(hero.morale)}.title`) })),
     [hero.morale, t],
   );
 
   const handleLuckMouseOver = useCallback(
-    () => setStatusText(t('luckStatusText', { name: t(`core:luck.${hero.luck}`) })),
+    () => setStatusText(t('luckStatusText', { name: t(`luck.${getEffectType(hero.luck)}.title`) })),
     [hero.luck, t],
   );
 

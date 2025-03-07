@@ -58,11 +58,11 @@ export const AdditionalStats = ({
         <PositionedComponent as="img" src={assets.morale.good} x={1} y={2} />
       </MoraleRoot>
       <Modal open={moraleInfoModal.isOpen} size={3} x={177} y={29}>
-        {t(`moraleDescription.${morale}`)}
+        {t(`morale.${getEffectType(morale)}.description`)}
         {t('noModifiers')}
       </Modal>
       <Modal onConfirmClick={moraleModal.close} open={moraleModal.isOpen} size={3} type="okay" x={177} y={29}>
-        {t(`moraleDescription.${morale}`)}
+        {t(`morale.${getEffectType(morale)}.description`)}
         {t('noModifiers')}
       </Modal>
       <LuckRoot
@@ -75,11 +75,11 @@ export const AdditionalStats = ({
         <PositionedComponent as="img" src={assets.luck.neutral} x={1} />
       </LuckRoot>
       <Modal open={luckInfoModal.isOpen} size={3} x={177} y={29}>
-        {t(`luckDescription.${luck}`)}
+        {t(`luck.${getEffectType(luck)}.description`)}
         {t('noModifiers')}
       </Modal>
       <Modal onConfirmClick={luckModal.close} open={luckModal.isOpen} size={3} type="okay" x={177} y={29}>
-        {t(`luckDescription.${luck}`)}
+        {t(`luck.${getEffectType(luck)}.description`)}
         {t('noModifiers')}
       </Modal>
       <ExperienceRoot
@@ -114,6 +114,8 @@ export const AdditionalStats = ({
 
 AdditionalStats.width = 82;
 AdditionalStats.height = 93;
+
+export const getEffectType = (value: Morale | Luck) => (value ? (value > 0 ? 'good' : 'bad') : 'neutral');
 
 const Root = styled(PositionedComponent)({
   background: `url(${assets.additionalStatsBackground})`,

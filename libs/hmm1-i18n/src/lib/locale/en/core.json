@@ -77,7 +77,7 @@
     "26": "Troyan",
     "27": "Agar",
     "28": "Grodo",
-    "29": "Falgar",
+    "29": "Falagar",
     "3": "Arturius",
     "30": "Barok",
     "31": "Arie",
@@ -93,14 +93,22 @@
     "9": "Thundax"
   },
   "luck": {
-    "bad": "Bad",
-    "good": "Good",
-    "neutral": "Neutral"
+    "-1": "Bad",
+    "-2": "Terrible",
+    "-3": "Cursed",
+    "0": "Normal",
+    "1": "Good",
+    "2": "Great",
+    "3": "Irish"
   },
   "morale": {
-    "bad": "Bad",
-    "good": "Good",
-    "neutral": "Neutral"
+    "-1": "Poor",
+    "-2": "Awful",
+    "-3": "Treason",
+    "0": "Normal",
+    "1": "Good",
+    "2": "Great",
+    "3": "Blood!"
   },
   "movementSpeed": {
     "canter": "Canter",

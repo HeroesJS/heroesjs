@@ -8,7 +8,7 @@ const meta: Meta<typeof TroopDetailsWindow> = {
   args: {
     count: 41,
     creature: creatureById[CreatureId.Peasant],
-    luck: Luck.Neutral,
+    luck: Luck.Normal,
     morale: Morale.Good,
     skillsBonus: {
       [Skill.Attack]: 1,
@@ -28,7 +28,7 @@ export const Shots: Story = {
   args: {
     count: 10,
     creature: creatureById[CreatureId.Centaur],
-    luck: Luck.Neutral,
+    luck: Luck.Normal,
     morale: Morale.Good,
     skillsBonus: {
       [Skill.Attack]: 0,
