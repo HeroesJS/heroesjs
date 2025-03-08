@@ -1,3 +1,4 @@
+import { range } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
@@ -53,9 +54,20 @@ export const AdditionalStats = ({
         onClick={moraleModal.open}
         onMouseLeave={onMoraleMouseLeave}
         onMouseOver={onMoraleMouseOver}
-        y={0}
+        y={2}
       >
-        <PositionedComponent as="img" src={assets.morale.good} x={1} y={2} />
+        {morale ? (
+          range(0, Math.abs(morale)).map((v) => (
+            <PositionedComponent
+              as="img"
+              key={v}
+              src={morale > 0 ? assets.morale.good : assets.morale.bad}
+              x={1 + v * 27}
+            />
+          ))
+        ) : (
+          <PositionedComponent as="img" src={assets.morale.neutral} x={1} />
+        )}
       </MoraleRoot>
       <Modal
         onConfirmClick={moraleModal.close}
@@ -73,9 +85,21 @@ export const AdditionalStats = ({
         onClick={luckModal.open}
         onMouseLeave={onLuckMouseLeave}
         onMouseOver={onLuckMouseOver}
-        y={32}
+        y={34}
       >
-        <PositionedComponent as="img" src={assets.luck.neutral} x={1} />
+        {luck ? (
+          range(0, Math.abs(luck)).map((v) => (
+            <PositionedComponent
+              as="img"
+              key={v}
+              src={luck > 0 ? assets.luck.good : assets.luck.bad}
+              x={1 + v * 27}
+              y={2}
+            />
+          ))
+        ) : (
+          <PositionedComponent as="img" src={assets.luck.neutral} x={1} />
+        )}
       </LuckRoot>
       <Modal
         onConfirmClick={luckModal.close}
