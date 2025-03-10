@@ -1,5 +1,5 @@
 import { compact, range } from 'lodash';
-import { type MouseEvent, useCallback, useEffect, useState } from 'react';
+import { type MouseEvent, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';

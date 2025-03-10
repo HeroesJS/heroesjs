@@ -8,6 +8,7 @@ import { type HeroInfo, HeroWindow } from './HeroWindow';
 describe(HeroWindow, () => {
   const hero: HeroInfo = {
     army: [],
+    artifacts: [],
     experience: 0,
     heroClass: HeroClassId.Warlock,
     id: HeroId.Falagar,
