@@ -1,4 +1,5 @@
 export { type Army, armySize, type Troop } from './lib/army';
+export { artifactById, ArtifactId } from './lib/artifact';
 export { Campaign, campaignScenarios } from './lib/campaign';
 export {
   defaultOpponentSettings,

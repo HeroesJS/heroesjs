@@ -1,4 +1,14 @@
-import { CreatureId, type Hero, HeroClassId, HeroId, Luck, Morale, PlayerColor, Skill } from '@heroesjs/hmm1-core';
+import {
+  ArtifactId,
+  CreatureId,
+  type Hero,
+  HeroClassId,
+  HeroId,
+  Luck,
+  Morale,
+  PlayerColor,
+  Skill,
+} from '@heroesjs/hmm1-core';
 
 export const heroes: readonly Hero[] = [
   {
@@ -12,6 +22,7 @@ export const heroes: readonly Hero[] = [
         creatureId: CreatureId.Gargoyle,
       },
     ],
+    artifacts: [ArtifactId.Spellbook, ArtifactId.DragonSwordOfDominion, ArtifactId.UltimateBookOfKnowledge],
     experience: 65,
     heroClass: HeroClassId.Warlock,
     id: HeroId.Falagar,
@@ -34,6 +45,7 @@ export const heroes: readonly Hero[] = [
         creatureId: CreatureId.Peasant,
       },
     ],
+    artifacts: [],
     experience: 86,
     heroClass: HeroClassId.Knight,
     id: HeroId.Ambrose,

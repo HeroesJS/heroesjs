@@ -1,10 +1,21 @@
 import { compact, range } from 'lodash';
-import { useCallback, useState } from 'react';
+import { type MouseEvent, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import { armySize, creatureById, type Hero, ScreenHeight, ScreenWidth, type Skill, skills } from '@heroesjs/hmm1-core';
+import {
+  armySize,
+  artifactById,
+  ArtifactId,
+  creatureById,
+  type Hero,
+  ScreenHeight,
+  ScreenWidth,
+  type Skill,
+  skills,
+} from '@heroesjs/hmm1-core';
 
+import { ArtifactSlot } from '../ArtifactSlot';
 import { Crest } from '../Crest';
 import { HeroPortrait } from '../HeroPortrait';
 import { TroopDetailsWindow } from '../TroopDetailsWindow';
@@ -16,7 +27,7 @@ import { SkillInfo } from './SkillInfo';
 
 export type HeroInfo = Pick<
   Hero,
-  'army' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
+  'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
 >;
 
 interface Props {
@@ -39,6 +50,8 @@ export const HeroWindow = ({
   onMoveTroop,
 }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
+
+  const notImplementedModal = useModal();
 
   const heroTitle = t('heroTitle', {
     heroClass: t(`core:heroClasses.${hero.heroClass}`),
@@ -141,6 +154,55 @@ export const HeroWindow = ({
     setSelectedTroopIndex(undefined);
   }, [troopDetailsModal]);
 
+  const [selectedArtifactIndex, setSelectedArtifactIndex] = useState<number>();
+
+  const artifactInfoModal = useModal(
+    undefined,
+    (_e, index: number) => setSelectedArtifactIndex(index),
+    () => setSelectedArtifactIndex(undefined),
+  );
+  const artifactDetailsModal = useModal(
+    undefined,
+    (_e, index: number) => setSelectedArtifactIndex(index),
+    () => setSelectedArtifactIndex(undefined),
+  );
+
+  const handleArtifactMouseOver = useCallback(
+    (_e: MouseEvent, index: number) => {
+      const artifact = hero.artifacts[index];
+
+      if (artifact === ArtifactId.Spellbook) {
+        setStatusText(t('spellbookStatusText'));
+
+        return;
+      }
+
+      setStatusText(
+        t('artifactStatusText', {
+          name: t(`core:artifacts.${hero.artifacts[index]}.name`),
+        }),
+      );
+    },
+    [hero.artifacts, t],
+  );
+
+  const handleArtifactClick = useCallback(
+    (_e: MouseEvent, index: number) => {
+      const artifact = hero.artifacts[index];
+
+      if (artifact === ArtifactId.Spellbook) {
+        notImplementedModal.open();
+
+        return;
+      }
+
+      setSelectedArtifactIndex(index);
+
+      artifactDetailsModal.open();
+    },
+    [artifactDetailsModal, hero.artifacts, notImplementedModal],
+  );
+
   const dismissConfirmModal = useModal();
 
   const handleDismissMouseOver = useCallback(
@@ -238,6 +300,32 @@ export const HeroWindow = ({
           y={50}
         />
       )}
+      {hero.artifacts.map((artifact, index) => (
+        <ArtifactSlot
+          {...artifactInfoModal.handlers}
+          artifactId={artifact}
+          index={index}
+          isUltimate={artifactById[artifact].isUltimate}
+          key={index}
+          onClick={handleArtifactClick}
+          onMouseLeave={setDefaultStatusText}
+          onMouseOver={handleArtifactMouseOver}
+          x={45 + (index % 7) * (ArtifactSlot.width + 3)}
+          y={302 + Math.floor(index / 7) * (ArtifactSlot.height + 3)}
+        />
+      ))}
+      {selectedArtifactIndex !== undefined && (
+        <Modal
+          onConfirmClick={artifactDetailsModal.close}
+          open={artifactInfoModal.isOpen || artifactDetailsModal.isOpen}
+          size={artifactDetailsModal.isOpen ? 2 : 1}
+          type={artifactDetailsModal.isOpen ? 'okay' : undefined}
+          x={177}
+          y={29}
+        >
+          {t(`core:artifacts.${hero.artifacts[selectedArtifactIndex]}.description`)}
+        </Modal>
+      )}
       {allowDismiss && (
         <Button
           assets={assets.dismissButton}
@@ -272,6 +360,9 @@ export const HeroWindow = ({
       <Text align="center" size="large" width={640} y={462}>
         {statusText}
       </Text>
+      <Modal onConfirmClick={notImplementedModal.close} open={notImplementedModal.isOpen} type="okay" x={177} y={29}>
+        {t('core:notImplemented')}
+      </Modal>
     </Window>
   );
 };

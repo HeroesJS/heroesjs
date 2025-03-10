@@ -75,6 +75,7 @@
       "volume": "Volume {{value}}"
     },
     "heroWindow": {
+      "artifactStatusText": "View {{name}} Info",
       "defaultStatusText": "Hero Screen",
       "dismissConfirm": "Are you sure you want to dismiss this Hero?",
       "dismissLabel": "Dismiss",
@@ -116,7 +117,7 @@
           "title": "Neutral"
         }
       },
-      "moraleStatusText": "View {{name}} Moral Info",
+      "moraleStatusText": "View {{name}} Morale Info",
       "moveTroop": "Move {{name}}",
       "noModifiers": "none",
       "noTroop": "Empty",
@@ -127,6 +128,7 @@
         "knowledge": "Knowledge\n\nYour knowledge is the number of each spell you are able to memorize.",
         "spellPower": "Spell Power\n\nYour spell power determines the length or power of a spell."
       },
+      "spellbookStatusText": "View Spells",
       "title": "Hero Window",
       "viewSkillInfoStatusText": "View {{name}} Info"
     },

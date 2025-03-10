@@ -36,7 +36,7 @@ export const AdditionalStats = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'component.heroWindow' });
+  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
   const moraleInfoModal = useModal();
   const moraleModal = useModal();
@@ -78,7 +78,7 @@ export const AdditionalStats = ({
         y={29}
       >
         {t(`morale.${getEffectType(morale)}.description`)}
-        {t('noModifiers')}
+        {t('core:notImplemented')}
       </Modal>
       <LuckRoot
         {...luckInfoModal.handlers}
@@ -110,7 +110,7 @@ export const AdditionalStats = ({
         y={29}
       >
         {t(`luck.${getEffectType(luck)}.description`)}
-        {t('noModifiers')}
+        {t('core:notImplemented')}
       </Modal>
       <ExperienceRoot
         {...experienceInfoModal.handlers}
