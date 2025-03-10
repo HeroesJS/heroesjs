@@ -24,9 +24,9 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
 
   return (
     <Root
-      {...infoModal.handlers}
       aria-labelledby={`${skill}-skill-info`}
       onClick={descriptionModal.open}
+      onMouseDown={infoModal.onMouseDown}
       onMouseLeave={onMouseLeave}
       onMouseOver={handleMouseOver}
       skill={skill}

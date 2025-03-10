@@ -267,10 +267,10 @@ export const HeroWindow = ({
         .map((troop, i) => (
           <TroopSlot
             {...troop}
-            {...troopInfoModal.handlers}
             index={i}
             key={i}
             onClick={handleTroopClick}
+            onMouseDown={troopInfoModal.onMouseDown}
             onMouseLeave={setDefaultStatusText}
             onMouseOver={handleTroopMouseOver}
             selected={selectedTroopIndex === i}
@@ -302,12 +302,12 @@ export const HeroWindow = ({
       )}
       {hero.artifacts.map((artifact, index) => (
         <ArtifactSlot
-          {...artifactInfoModal.handlers}
           artifactId={artifact}
           index={index}
           isUltimate={artifactById[artifact].isUltimate}
           key={index}
           onClick={handleArtifactClick}
+          onMouseDown={artifactInfoModal.onMouseDown}
           onMouseLeave={setDefaultStatusText}
           onMouseOver={handleArtifactMouseOver}
           x={45 + (index % 7) * (ArtifactSlot.width + 3)}

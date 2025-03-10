@@ -38,14 +38,19 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
     <Menu label={t('title')} x={x} y={y}>
       {range(2, 5).map((count) => (
         <Fragment key={count}>
-          <Item {...infoModals[count].handlers} onClick={onCountClick} value={count} />
+          <Item onClick={onCountClick} onMouseDown={infoModals[count].onMouseDown} value={count} />
           <Modal open={infoModals[count].isOpen} x={177} y={29}>
             {t(`playerCountInfo_${count as 2 | 3 | 4}`)}
           </Modal>
         </Fragment>
       ))}
       <MenuSeparator />
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfo.onMouseDown}
+      />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>

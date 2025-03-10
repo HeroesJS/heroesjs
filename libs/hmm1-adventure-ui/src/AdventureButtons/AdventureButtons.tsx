@@ -28,58 +28,69 @@ export const AdventureButtons = ({
 }: Props) => {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureButtons' });
 
-  const nextHeroInfo = useModal();
-  const moveInfo = useModal();
-  const kingdomOverviewInfo = useModal();
-  const endTurnInfo = useModal();
-  const adventureOptionsInfo = useModal();
-  const gameOptionsInfo = useModal();
+  const nextHeroInfoModal = useModal();
+  const moveInfoModal = useModal();
+  const kingdomOverviewInfoModal = useModal();
+  const endTurnInfoModal = useModal();
+  const adventureOptionsInfoModal = useModal();
+  const gameOptionsInfoModal = useModal();
 
   return (
     <Root>
       <Button
-        {...nextHeroInfo.handlers}
         assets={nextHero}
         disabled={nextHeroDisabled}
         label={t('nextHero')}
         onClick={onNextHeroClick}
+        onMouseDown={nextHeroInfoModal.onMouseDown}
       />
-      <Modal open={nextHeroInfo.isOpen} x={97} y={29}>
+      <Modal open={nextHeroInfoModal.isOpen} x={97} y={29}>
         {t('nextHeroInfo')}
       </Modal>
-      <Button {...moveInfo.handlers} assets={move} disabled={moveDisabled} label={t('move')} onClick={onMoveClick} />
-      <Modal open={moveInfo.isOpen} size={1} x={97} y={29}>
+      <Button
+        assets={move}
+        disabled={moveDisabled}
+        label={t('move')}
+        onClick={onMoveClick}
+        onMouseDown={moveInfoModal.onMouseDown}
+      />
+      <Modal open={moveInfoModal.isOpen} size={1} x={97} y={29}>
         {t('moveInfo')}
       </Modal>
       <Button
-        {...kingdomOverviewInfo.handlers}
         assets={kingdomOverview}
         label={t('kingdomOverview')}
         onClick={onKingdomOverviewClick}
+        onMouseDown={kingdomOverviewInfoModal.onMouseDown}
       />
-      <Modal open={kingdomOverviewInfo.isOpen} size={1} x={97} y={29}>
+      <Modal open={kingdomOverviewInfoModal.isOpen} size={1} x={97} y={29}>
         {t('kingdomOverviewInfo')}
       </Modal>
-      <Button {...endTurnInfo.handlers} assets={endTurn} label={t('endTurn')} onClick={onEndTurnClick} />
-      <Modal open={endTurnInfo.isOpen} size={1} x={97} y={29}>
+      <Button
+        assets={endTurn}
+        label={t('endTurn')}
+        onClick={onEndTurnClick}
+        onMouseDown={endTurnInfoModal.onMouseDown}
+      />
+      <Modal open={endTurnInfoModal.isOpen} size={1} x={97} y={29}>
         {t('endTurnInfo')}
       </Modal>
       <Button
-        {...adventureOptionsInfo.handlers}
         assets={adventureOptions}
         label={t('adventureOptions')}
         onClick={onAdventureOptionsClick}
+        onMouseDown={adventureOptionsInfoModal.onMouseDown}
       />
-      <Modal open={adventureOptionsInfo.isOpen} size={1} x={97} y={29}>
+      <Modal open={adventureOptionsInfoModal.isOpen} size={1} x={97} y={29}>
         {t('adventureOptionsInfo')}
       </Modal>
       <Button
-        {...gameOptionsInfo.handlers}
         assets={gameOptions}
         label={t('gameOptions')}
         onClick={onGameOptionsClick}
+        onMouseDown={gameOptionsInfoModal.onMouseDown}
       />
-      <Modal open={gameOptionsInfo.isOpen} size={1} x={97} y={29}>
+      <Modal open={gameOptionsInfoModal.isOpen} size={1} x={97} y={29}>
         {t('gameOptionsInfo')}
       </Modal>
     </Root>

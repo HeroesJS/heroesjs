@@ -32,37 +32,47 @@ export const MultiPlayerGameTypeMenu = ({
   return (
     <Menu label={t('title')} x={x} y={y}>
       <MenuButton
-        {...hotSeatInfo.handlers}
         assets={assets.hotSeatButton}
         label={t('hotSeat')}
         onClick={onHotSeatClick}
+        onMouseDown={hotSeatInfo.onMouseDown}
       />
       <Modal open={hotSeatInfo.isOpen} size={1} x={177} y={29}>
         {t('hotSeatInfo')}
       </Modal>
       <MenuButton
-        {...networkInfo.handlers}
         assets={assets.networkButton}
         label={t('network')}
         onClick={onNetworkClick}
+        onMouseDown={networkInfo.onMouseDown}
       />
       <Modal open={networkInfo.isOpen} size={1} x={177} y={29}>
         {t('networkInfo')}
       </Modal>
-      <MenuButton {...modemInfo.handlers} assets={assets.modemButton} label={t('modem')} onClick={onModemClick} />
+      <MenuButton
+        assets={assets.modemButton}
+        label={t('modem')}
+        onClick={onModemClick}
+        onMouseDown={modemInfo.onMouseDown}
+      />
       <Modal open={modemInfo.isOpen} size={1} x={177} y={29}>
         {t('modemInfo')}
       </Modal>
       <MenuButton
-        {...directConnectInfo.handlers}
         assets={assets.directConnectButton}
         label={t('directConnect')}
         onClick={onDirectConnectClick}
+        onMouseDown={directConnectInfo.onMouseDown}
       />
       <Modal open={directConnectInfo.isOpen} size={1} x={177} y={29}>
         {t('directConnectInfo')}
       </Modal>
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfo.onMouseDown}
+      />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>

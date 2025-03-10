@@ -34,13 +34,18 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
     <Menu label={t('title')} x={x} y={y}>
       {campaigns.map((campaign) => (
         <Fragment key={campaign}>
-          <Item {...infoModals[campaign].handlers} onClick={onCampaignClick} value={campaign} />
+          <Item onClick={onCampaignClick} onMouseDown={infoModals[campaign].onMouseDown} value={campaign} />
           <Modal open={infoModals[campaign]['isOpen']} x={177} y={29}>
             {t(`${campaign}-info`)}
           </Modal>
         </Fragment>
       ))}
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfo.onMouseDown}
+      />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>

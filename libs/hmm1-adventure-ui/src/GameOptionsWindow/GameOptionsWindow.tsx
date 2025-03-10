@@ -75,7 +75,7 @@ export const GameOptionsWindow = ({
     [movementSpeed, onMovementSpeedChange],
   );
 
-  const newGameInfo = useModal();
+  const newGameInfoModal = useModal();
   const newGameConfirm = useModal();
   const loadGameInfo = useModal();
   const loadGameConfirm = useModal();
@@ -96,14 +96,14 @@ export const GameOptionsWindow = ({
   return (
     <Window background={assets.background} height={459} label={t('title')} width={322} x={x} y={y}>
       <Button
-        {...newGameInfo.handlers}
         assets={assets.newGameButton}
         label={t('newGameLabel')}
         onClick={newGameConfirm.open}
+        onMouseDown={newGameInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <Modal open={newGameInfo.isOpen} x={177} y={29}>
+      <Modal open={newGameInfoModal.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
       <Modal
@@ -118,10 +118,10 @@ export const GameOptionsWindow = ({
         {t('newGameConfirm')}
       </Modal>
       <Button
-        {...loadGameInfo.handlers}
         assets={assets.loadGameButton}
         label={t('loadGameLabel')}
         onClick={loadGameConfirm.open}
+        onMouseDown={loadGameInfo.onMouseDown}
         x={179}
         y={31}
       />
@@ -140,10 +140,10 @@ export const GameOptionsWindow = ({
         {t('loadGameConfirm')}
       </Modal>
       <Button
-        {...saveGameInfo.handlers}
         assets={assets.saveGameButton}
         label={t('saveGameLabel')}
         onClick={onSaveGameClick}
+        onMouseDown={saveGameInfo.onMouseDown}
         x={46}
         y={107}
       />
@@ -151,10 +151,10 @@ export const GameOptionsWindow = ({
         {t('saveGameInfo')}
       </Modal>
       <Button
-        {...quitInfo.handlers}
         assets={assets.quitButton}
         label={t('quitLabel')}
         onClick={quitConfirm.open}
+        onMouseDown={quitInfo.onMouseDown}
         x={179}
         y={107}
       />
@@ -173,11 +173,11 @@ export const GameOptionsWindow = ({
         {t('quitConfirm')}
       </Modal>
       <Option
-        {...musicInfo.handlers}
         assets={assets.musicToggle}
         checked={isSoundEnabled(musicVolume)}
         heading={t('musicHeading')}
         onClick={handleMusicVolumeClick}
+        onMouseDown={musicInfo.onMouseDown}
         valueLabel={shouldRenderVolume(musicVolume) ? t('volume', { value: musicVolume }) : undefined}
         x={36}
         y={194}
@@ -186,11 +186,11 @@ export const GameOptionsWindow = ({
         {t('musicInfo')}
       </Modal>
       <Option
-        {...effectsInfo.handlers}
         assets={assets.effectsToggle}
         checked={isSoundEnabled(effectsVolume)}
         heading={t('effectsHeading')}
         onClick={handleEffectsVolumeClick}
+        onMouseDown={effectsInfo.onMouseDown}
         valueLabel={shouldRenderVolume(effectsVolume) ? t('volume', { value: effectsVolume }) : undefined}
         x={128}
         y={194}
@@ -199,11 +199,11 @@ export const GameOptionsWindow = ({
         {t('effectsInfo')}
       </Modal>
       <Option
-        {...movementSpeedInfo.handlers}
         assets={{ checked: assets.movementSpeedMap[movementSpeed], unchecked: '' }}
         checked
         heading={t('movementSpeed')}
         onClick={handleMovementSpeedClick}
+        onMouseDown={movementSpeedInfo.onMouseDown}
         valueLabel={t(`core:movementSpeed.${movementSpeed}`)}
         x={220}
         y={194}
@@ -212,11 +212,11 @@ export const GameOptionsWindow = ({
         {t('movementSpeedInfo')}
       </Modal>
       <Option
-        {...autoSaveInfo.handlers}
         assets={assets.autoSaveToggle}
         checked={autoSave}
         heading={t('autoSaveHeading')}
         onChange={onAutoSaveChange}
+        onMouseDown={autoSaveInfo.onMouseDown}
         x={36}
         y={314}
       />
@@ -224,11 +224,11 @@ export const GameOptionsWindow = ({
         {t('autoSaveInfo')}
       </Modal>
       <Option
-        {...showPathInfo.handlers}
         assets={assets.showPathToggle}
         checked={showPath}
         heading={t('showPathHeading')}
         onChange={onShowPathChange}
+        onMouseDown={showPathInfo.onMouseDown}
         x={128}
         y={314}
       />
@@ -236,11 +236,11 @@ export const GameOptionsWindow = ({
         {t('showPathInfo')}
       </Modal>
       <Option
-        {...viewEnemyMovementInfo.handlers}
         assets={assets.viewEnemyMovementToggle}
         checked={viewEnemyMovement}
         heading={t('viewEnemyMovementHeading')}
         onChange={onViewEnemyMovementChange}
+        onMouseDown={viewEnemyMovementInfo.onMouseDown}
         x={220}
         y={314}
       />
@@ -248,10 +248,10 @@ export const GameOptionsWindow = ({
         {t('viewEnemyMovementInfo')}
       </Modal>
       <Button
-        {...confirmInfo.handlers}
         assets={assets.okayButton}
         label={t('confirmLabel')}
         onClick={onConfirmClick}
+        onMouseDown={confirmInfo.onMouseDown}
         x={24}
         y={407}
       />
@@ -259,10 +259,10 @@ export const GameOptionsWindow = ({
         {t('confirmInfo')}
       </Modal>
       <Button
-        {...infoInfo.handlers}
         assets={assets.infoButton}
         label={t('infoLabel')}
         onClick={onInfoClick}
+        onMouseDown={infoInfo.onMouseDown}
         x={201}
         y={407}
       />

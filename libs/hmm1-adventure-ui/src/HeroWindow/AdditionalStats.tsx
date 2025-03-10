@@ -50,8 +50,8 @@ export const AdditionalStats = ({
   return (
     <Root x={x} y={y}>
       <MoraleRoot
-        {...moraleInfoModal.handlers}
         onClick={moraleModal.open}
+        onMouseDown={moraleInfoModal.onMouseDown}
         onMouseLeave={onMoraleMouseLeave}
         onMouseOver={onMoraleMouseOver}
         y={2}
@@ -81,8 +81,8 @@ export const AdditionalStats = ({
         {t('core:notImplemented')}
       </Modal>
       <LuckRoot
-        {...luckInfoModal.handlers}
         onClick={luckModal.open}
+        onMouseDown={luckInfoModal.onMouseDown}
         onMouseLeave={onLuckMouseLeave}
         onMouseOver={onLuckMouseOver}
         y={34}
@@ -113,8 +113,8 @@ export const AdditionalStats = ({
         {t('core:notImplemented')}
       </Modal>
       <ExperienceRoot
-        {...experienceInfoModal.handlers}
         onClick={experienceModal.open}
+        onMouseDown={experienceInfoModal.onMouseDown}
         onMouseLeave={onExperienceMouseLeave}
         onMouseOver={onExperienceMouseOver}
         y={60}

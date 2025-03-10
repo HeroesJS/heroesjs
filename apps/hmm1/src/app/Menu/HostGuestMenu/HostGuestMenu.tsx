@@ -21,26 +21,31 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
   return (
     <Menu label={t('title')} x={x} y={y}>
       <MenuButton
-        {...hostInfo.handlers}
         assets={detailed ? assets.hostDialsButton : assets.hostButton}
         label={t(detailed ? 'hostDetail' : 'host')}
         onClick={onHostClick}
+        onMouseDown={hostInfo.onMouseDown}
       />
       <Modal open={hostInfo.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
       </Modal>
       <MenuButton
-        {...guestInfo.handlers}
         assets={detailed ? assets.guestAnswersButton : assets.guestButton}
         label={t(detailed ? 'guestDetail' : 'guest')}
         onClick={onGuestClick}
+        onMouseDown={guestInfo.onMouseDown}
       />
       <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
         {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
       </Modal>
       <MenuSeparator />
       <MenuSeparator />
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfo.onMouseDown}
+      />
       <Modal open={cancelInfo.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>

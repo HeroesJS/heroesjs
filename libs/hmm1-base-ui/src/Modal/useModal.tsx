@@ -4,10 +4,8 @@ import { useToggle2 } from '../useToggle';
 
 export interface UseModalResult<Args extends [MouseEvent, ...unknown[]] = [MouseEvent]> {
   readonly close: () => void;
-  readonly handlers: {
-    onMouseDown: (...args: Args) => void;
-  };
   readonly isOpen: boolean;
+  onMouseDown: (...args: Args) => void;
   readonly open: () => void;
 }
 
@@ -46,10 +44,8 @@ export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
 
   return {
     close,
-    handlers: {
-      onMouseDown: handleMouseDown,
-    },
     isOpen,
+    onMouseDown: handleMouseDown,
     open,
   };
 };

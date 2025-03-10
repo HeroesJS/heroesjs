@@ -35,7 +35,7 @@ export const AdventureWindow = ({
       <AdventureMap aria-label={t('adventureMap')} role="main" x={16} y={16}>
         {renderAdventureMap?.()}
       </AdventureMap>
-      <WorldMap {...worldMapInfo.handlers} aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
+      <WorldMap aria-label={t('worldMap')} onMouseDown={worldMapInfo.onMouseDown} role="note" x={ScreenHeight} y={16}>
         {renderWorldMap?.()}
       </WorldMap>
       <Modal open={worldMapInfo.isOpen} x={97} y={29}>
@@ -50,7 +50,13 @@ export const AdventureWindow = ({
       <ActionButtons x={ScreenHeight} y={320}>
         {renderActionButtons?.()}
       </ActionButtons>
-      <StatusWindow {...statusWindowInfo.handlers} aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
+      <StatusWindow
+        aria-label={t('statusWindow')}
+        onMouseDown={statusWindowInfo.onMouseDown}
+        role="note"
+        x={ScreenHeight}
+        y={392}
+      >
         {renderStatusWindow?.()}
       </StatusWindow>
       <Modal open={statusWindowInfo.isOpen} size={2} x={97} y={29}>

@@ -32,10 +32,10 @@ export const AdventureOptionsWindow = ({
   return (
     <Window background={background} height={236} label={t('title')} shadow width={322} x={x} y={y}>
       <Button
-        {...viewWorldInfo.handlers}
         assets={viewWorld}
         label={t('viewWorld')}
         onClick={onViewWorldClick}
+        onMouseDown={viewWorldInfo.onMouseDown}
         x={46}
         y={31}
       />
@@ -43,10 +43,10 @@ export const AdventureOptionsWindow = ({
         {t('viewWorldInfo')}
       </Modal>
       <Button
-        {...viewPuzzleInfo.handlers}
         assets={viewPuzzle}
         label={t('viewPuzzle')}
         onClick={onViewPuzzleClick}
+        onMouseDown={viewPuzzleInfo.onMouseDown}
         x={179}
         y={31}
       />
@@ -54,21 +54,28 @@ export const AdventureOptionsWindow = ({
         {t('viewPuzzleInfo')}
       </Modal>
       <Button
-        {...castSpellInfo.handlers}
         assets={castSpell}
         label={t('castSpell')}
         onClick={onCastSpellClick}
+        onMouseDown={castSpellInfo.onMouseDown}
         x={46}
         y={107}
       />
       <Modal open={castSpellInfo.isOpen} x={177} y={29}>
         {t('castSpellInfo')}
       </Modal>
-      <Button {...digInfo.handlers} assets={dig} label={t('dig')} onClick={onDigClick} x={179} y={107} />
+      <Button assets={dig} label={t('dig')} onClick={onDigClick} onMouseDown={digInfo.onMouseDown} x={179} y={107} />
       <Modal open={digInfo.isOpen} x={177} y={29}>
         {t('digInfo')}
       </Modal>
-      <Button {...okayInfo.handlers} assets={okay} label={t('okay')} onClick={onConfirmClick} x={112} y={184} />
+      <Button
+        assets={okay}
+        label={t('okay')}
+        onClick={onConfirmClick}
+        onMouseDown={okayInfo.onMouseDown}
+        x={112}
+        y={184}
+      />
       <Modal open={okayInfo.isOpen} x={177} y={29}>
         {t('okayInfo')}
       </Modal>

@@ -97,8 +97,8 @@ export const NewGameWindow = ({
         {t('gameDifficultyHeading')}:
       </Text>
       <DifficultyMenu
-        {...gameDifficultyInfo.handlers}
         onChange={setSelectedDifficulty}
+        onMouseDown={gameDifficultyInfo.onMouseDown}
         selectedOption={selectedDifficulty}
         x={19}
         y={36}
@@ -111,10 +111,10 @@ export const NewGameWindow = ({
       </Text>
       {opponentSettings.map((setting, i) => (
         <OpponentSetting
-          {...opponentSettingInfo.handlers}
           index={i}
           key={i}
           onClick={handleOpponentSettingClick}
+          onMouseDown={opponentSettingInfo.onMouseDown}
           value={setting}
           x={55 + i * 72}
           y={149}
@@ -126,7 +126,13 @@ export const NewGameWindow = ({
       <Text heading size="large" x={26} y={254}>
         {t('playerColorHeading')}:
       </Text>
-      <PlayerColorJewel {...playerColorInfo.handlers} onClick={handleColorClick} value={color} x={51} y={270} />
+      <PlayerColorJewel
+        onClick={handleColorClick}
+        onMouseDown={playerColorInfo.onMouseDown}
+        value={color}
+        x={51}
+        y={270}
+      />
       <Modal open={playerColorInfo.isOpen} x={177} y={29}>
         {t('playerColorInfo')}
       </Modal>
@@ -134,11 +140,11 @@ export const NewGameWindow = ({
         {t('kingOfTheHillHeading')}:
       </Text>
       <Checkbox
-        {...kingOfTheHillInfo.handlers}
         assets={assets.checkbox}
         checked={kingOfTheHill}
         label={t('kingOfTheHillHeading')}
         onChange={toggleKingOfTheHill}
+        onMouseDown={kingOfTheHillInfo.onMouseDown}
         x={210}
         y={272}
       />
@@ -149,8 +155,8 @@ export const NewGameWindow = ({
         {t('scenarioSelectionHeading')}:
       </Text>
       <ScenarioSelection
-        {...scenarioSelectionInfo.handlers}
         onClick={onSelectScenarioClick}
+        onMouseDown={scenarioSelectionInfo.onMouseDown}
         value={scenario?.name ?? ''}
         x={25}
         y={354}
@@ -158,18 +164,18 @@ export const NewGameWindow = ({
       <Modal open={scenarioSelectionInfo.isOpen} x={177} y={29}>
         {t('scenarioSelectionInfo')}
       </Modal>
-      <Text {...ratingInfo.handlers} size="large" x={78} y={388}>
+      <Text onMouseDown={ratingInfo.onMouseDown} size="large" x={78} y={388}>
         {t('ratingHeading')}: {formatRating(rating)}
       </Text>
       <Modal open={ratingInfo.isOpen} size={1} x={177} y={29}>
         {t('ratingInfo')}
       </Modal>
       <Button
-        {...confirmInfo.handlers}
         assets={assets.okayButton}
         disabled={!scenario}
         label={t('confirmLabel')}
         onClick={handleConfirmClick}
+        onMouseDown={confirmInfo.onMouseDown}
         x={24}
         y={412}
       />
@@ -180,10 +186,10 @@ export const NewGameWindow = ({
         {t('noOpponentsError')}
       </Modal>
       <Button
-        {...cancelInfo.handlers}
         assets={assets.cancelButton}
         label={t('cancelLabel')}
         onClick={onCancelClick}
+        onMouseDown={cancelInfo.onMouseDown}
         x={201}
         y={412}
       />
