@@ -22,3 +22,9 @@ export const Empty: Story = {
     heroId: undefined,
   },
 };
+
+export const Hero: Story = {
+  args: {
+    heroId: HeroId.LordKilburn,
+  },
+};

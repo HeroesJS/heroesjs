@@ -17,6 +17,12 @@ type Story = StoryObj<typeof Crest>;
 
 export const Primary: Story = {};
 
+export const Generic: Story = {
+  args: {
+    color: playerColors[0],
+  },
+};
+
 export const HeroClass: Story = {
   args: {
     heroClass: HeroClassId.Knight,

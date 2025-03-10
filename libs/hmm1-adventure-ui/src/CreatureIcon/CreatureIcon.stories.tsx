@@ -17,3 +17,23 @@ export default meta;
 type Story = StoryObj<typeof CreatureIcon>;
 
 export const Primary: Story = {};
+
+export const Large: Story = {};
+
+export const Medium: Story = {
+  args: {
+    size: 'medium',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: 'small',
+  },
+};
+
+export const Tiny: Story = {
+  args: {
+    size: 'tiny',
+  },
+};
