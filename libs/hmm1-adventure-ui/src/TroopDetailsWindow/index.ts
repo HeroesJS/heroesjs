@@ -1,0 +1,1 @@
+export { TroopDetailsWindow } from './TroopDetailsWindow';

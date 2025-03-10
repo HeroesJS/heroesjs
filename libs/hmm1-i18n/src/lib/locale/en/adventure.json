@@ -74,6 +74,64 @@
       "viewEnemyMovementInfo": "Toggle 'Show Enemy Moves' on/off. If on, all enemies moving within your visible area will be shown.  If off, no computer movement will be shown.  Note that this option is automatically set to off during network and modem play.",
       "volume": "Volume {{value}}"
     },
+    "heroWindow": {
+      "artifactStatusText": "View {{name}} Info",
+      "defaultStatusText": "Hero Screen",
+      "dismissConfirm": "Are you sure you want to dismiss this Hero?",
+      "dismissLabel": "Dismiss",
+      "dismissStatusText": "Dismiss {{name}}",
+      "exchangeTroop": "Exchange {{name}} with {{otherName}}",
+      "exitLabel": "Exit",
+      "exitStatusText": "Exit Hero Screen",
+      "experienceDescription": "Level {{level}}\n\nCurrent experience {{experience}}\nNext level {{nextLevelExperience}}",
+      "experienceStatusText": "View Experience Info",
+      "heroTitle": "{{name}} the {{heroClass}}",
+      "kingdomOverviewLabel": "Open Kingdom Overview",
+      "kingdomOverviewStatusText": "Kingdom Overview",
+      "luck": {
+        "bad": {
+          "description": "Bad Luck\n\nBad luck sometimes falls on your armies in combat, causing their attacks to only do half damage.\n\n\nCurrent Luck Modifiers:\n",
+          "title": "Bad"
+        },
+        "good": {
+          "description": "Good Luck\n\nGood luck sometimes lets your armies get lucky attacks (double strength) in combat.\n\n\nCurrent Luck Modifiers:\n",
+          "title": "Good"
+        },
+        "neutral": {
+          "description": "Neutral Luck\n\nNeutral luck means your armies will never get lucky or unlucky attacks on the enemy.\n\n\nCurrent Luck Modifiers:\n",
+          "title": "Neutral"
+        }
+      },
+      "luckStatusText": "View {{name}} Luck Info",
+      "morale": {
+        "bad": {
+          "description": "Bad Morale\n\nBad morale may cause your armies to freeze in combat.\n\n\nCurrent Morale Modifiers:\n",
+          "title": "Bad"
+        },
+        "good": {
+          "description": "Good Morale\n\nGood morale may give your armies extra attacks in combat.\n\n\nCurrent Morale Modifiers:\n",
+          "title": "Good"
+        },
+        "neutral": {
+          "description": "Neutral Morale\n\nNeutral morale means your armies will never be blessed with extra attacks or freeze in combat.\n\n\nCurrent Morale Modifiers:\n",
+          "title": "Neutral"
+        }
+      },
+      "moraleStatusText": "View {{name}} Morale Info",
+      "moveTroop": "Move {{name}}",
+      "noModifiers": "none",
+      "noTroop": "Empty",
+      "selectTroop": "Select {{name}}",
+      "skillDescription": {
+        "attack": "Attack Skill\n\nYour attack skill is a bonus added to each creature's attack skill.",
+        "defense": "Defense Skill\n\nYour defense skill is a bonus added to each creature's defense skill.",
+        "knowledge": "Knowledge\n\nYour knowledge is the number of each spell you are able to memorize.",
+        "spellPower": "Spell Power\n\nYour spell power determines the length or power of a spell."
+      },
+      "spellbookStatusText": "View Spells",
+      "title": "Hero Window",
+      "viewSkillInfoStatusText": "View {{name}} Info"
+    },
     "playerColorJewel": {
       "changeLabel": "Change Banner Color",
       "label": "Banner Color"
@@ -84,6 +142,23 @@
       "scenarioDifficulty": "Difficulty",
       "scenarioSize": "Size",
       "title": "Scenario Info Window"
+    },
+    "troopDetailsWindow": {
+      "damageLabel": "Damage",
+      "dismissConfirm": "Are you sure you want to dismiss this army?",
+      "dismissLabel": "Dismiss",
+      "exitLabel": "Exit",
+      "hitPointsLabel": "Hit Points",
+      "luckLabel": "Luck",
+      "moraleLabel": "Morale",
+      "shotsLabel": "Shots",
+      "speedLabel": "Speed",
+      "title": "Troop Details"
+    },
+    "troopSlot": {
+      "count": "Count",
+      "empty": "Empty",
+      "title": "Troop {{index}} - {{troop}}"
     }
   }
 }

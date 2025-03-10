@@ -36,14 +36,14 @@ export const Modal = ({
 
   return createPortal(
     <Backdrop>
-      <Root x={x} y={y}>
+      <Root aria-labelledby="modalLabel" role="dialog" x={x} y={y}>
         <Header />
         {range(0, size).map((i) => (
           <Body key={i} />
         ))}
         <Footer />
         <Shadow />
-        <Text align="center" size="large" width={239} x={23} y={53}>
+        <Text align="center" id="modalLabel" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />

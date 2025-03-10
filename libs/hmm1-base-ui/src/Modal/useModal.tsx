@@ -1,15 +1,21 @@
-import { type DOMAttributes, type MouseEvent, useCallback } from 'react';
+import { type MouseEvent, useCallback } from 'react';
 
 import { useToggle2 } from '../useToggle';
 
-export interface UseModalResult {
+export interface UseModalResult<Args extends [MouseEvent, ...unknown[]] = [MouseEvent]> {
   readonly close: () => void;
-  readonly handlers: Required<Pick<DOMAttributes<Element>, 'onMouseDown'>>;
+  readonly handlers: {
+    onMouseDown: (...args: Args) => void;
+  };
   readonly isOpen: boolean;
   readonly open: () => void;
 }
 
-export const useModal = (initialIsOpen = false): UseModalResult => {
+export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
+  initialIsOpen = false,
+  onBeforeOpen?: (...args: Args) => void,
+  onAfterClose?: () => void,
+): UseModalResult<Args> => {
   const [isOpen, open, close] = useToggle2(initialIsOpen);
 
   const handleDocumentMouseUp = useCallback(
@@ -18,20 +24,24 @@ export const useModal = (initialIsOpen = false): UseModalResult => {
         document.removeEventListener('mouseup', handleDocumentMouseUp);
 
         close();
+
+        onAfterClose?.();
       }
     },
-    [close],
+    [close, onAfterClose],
   );
 
   const handleMouseDown = useCallback(
-    (e: MouseEvent) => {
-      if (e.button === 2) {
+    (...args: Args) => {
+      if (args[0].button === 2) {
         document.addEventListener('mouseup', handleDocumentMouseUp);
+
+        onBeforeOpen?.(...args);
 
         open();
       }
     },
-    [handleDocumentMouseUp, open],
+    [handleDocumentMouseUp, onBeforeOpen, open],
   );
 
   return {

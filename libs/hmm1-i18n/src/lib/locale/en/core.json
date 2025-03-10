@@ -1,4 +1,158 @@
 {
+  "artifacts": {
+    "1": {
+      "description": "Ultimate Book\n(+12 Knowledge)\n\nThe Ultimate Book of Knowledge increases your knowledge by 12.",
+      "name": "Ultimate Book of Knowledge"
+    },
+    "10": {
+      "description": "Medal\n\nThe Medal of Courage increases your morale.",
+      "name": "Medal of Courage"
+    },
+    "11": {
+      "description": "Medal\n\nThe Medal of Honor increases your morale.",
+      "name": "Medal of Honor"
+    },
+    "12": {
+      "description": "Medal\n\nThe Medal of Distinction increases your morale.",
+      "name": "Medal of Distinction"
+    },
+    "13": {
+      "description": "Fizbin\n\nThe Fizbin of Misfortune greatly decreases your morale.",
+      "name": "Fizbin of Misfortune"
+    },
+    "14": {
+      "description": "Thunder Mace\n(+1 Attack)\n\nThe Thunder Mace of Dominion increases your attack skill by 1.",
+      "name": "Thunder Mace of Dominion"
+    },
+    "15": {
+      "description": "Armored Gauntlets\n(+1 Defense)\n\nThe Armored Gauntlets of Protection increase your defense skill by 1.",
+      "name": "Armored Gauntlets of Protection"
+    },
+    "16": {
+      "description": "Defender Helm\n(+1 Defense)\n\nThe Defender Helm of Protection increases your defense skill by 1.",
+      "name": "Defender Helm of Protection"
+    },
+    "17": {
+      "description": "Giant Flail\n(+1 Attack)\n\nThe Giant Flail of Dominion increases your attack skill by 1.",
+      "name": "Giant Flail of Dominion"
+    },
+    "18": {
+      "description": "Ballista\n\nThe Ballista of Quickness lets your catapult fire twice per combat round.",
+      "name": "Ballista of Quickness"
+    },
+    "19": {
+      "description": "Stealth Shield\n(+2 Defense)\n\nThe Stealth Shield of Protection increases your defense skill by 2.",
+      "name": "Stealth Shield of Protection"
+    },
+    "2": {
+      "description": "Ultimate Sword\n(+12 Attack)\n\nThe Ultimate Sword of Dominion increases your attack skill by 12.",
+      "name": "Ultimate Sword of Dominion"
+    },
+    "20": {
+      "description": "Dragon Sword\n(+3 Attack)\n\nThe Dragon Sword of Dominion increases your attack skill by 3.",
+      "name": "Dragon Sword of Dominion"
+    },
+    "21": {
+      "description": "Power Axe\n(+2 Attack)\n\nThe Power Axe of Dominion increases your attack skill by 2.",
+      "name": "Power Axe of Dominion"
+    },
+    "22": {
+      "description": "Divine Breastplate\n(+3 Defense)\n\nThe Divine Breastplate of Protection increases your defense skill by 3.",
+      "name": "Divine Breastplate of Protection"
+    },
+    "23": {
+      "description": "Minor Scroll\n(+2 Knowledge)\n\nThe Minor Scroll of Knowledge increases your knowledge by 2.",
+      "name": "Minor Scroll of Knowledge"
+    },
+    "24": {
+      "description": "Major Scroll\n(+3 Knowledge)\n\nThe Major Scroll of Knowledge increases your knowledge by 3.",
+      "name": "Major Scroll of Knowledge"
+    },
+    "25": {
+      "description": "Superior Scroll\n(+4 Knowledge)\n\nThe Superior Scroll of Knowledge increases your knowledge by 4.",
+      "name": "Superior Scroll of Knowledge"
+    },
+    "26": {
+      "description": "Foremost Scroll\n(+5 Knowledge)\n\nThe Foremost Scroll of Knowledge increases your knowledge by 5.",
+      "name": "Foremost Scroll of Knowledge"
+    },
+    "27": {
+      "description": "Endless Sack\n\nThe Endless Sack of Gold provides you with 1000 gold per day.",
+      "name": "Endless Sack of Gold"
+    },
+    "28": {
+      "description": "Endless Bag\n\nThe Endless Bag of Gold provides you with 750 gold per day.",
+      "name": "Endless Bag of Gold"
+    },
+    "29": {
+      "description": "Endless Purse\n\nThe Endless Purse of Gold provides you with 500 gold per day.",
+      "name": "Endless Purse of Gold"
+    },
+    "3": {
+      "description": "Ultimate Cloak\n(+12 Defense)\n\nThe Ultimate Cloak of Protection increases your defense skill by 12.",
+      "name": "Ultimate Cloak of Protection"
+    },
+    "30": {
+      "description": "Nomad Boots\n\nThe Nomad Boots of Mobility increase your movement on land.",
+      "name": "Nomad Boots of Mobility"
+    },
+    "31": {
+      "description": "Traveler's Boots\n\nThe Traveler's Boots of Mobility increase your movement on land.",
+      "name": "Traveler's Boots of Mobility"
+    },
+    "32": {
+      "description": "Rabbit's Foot\n\nThe Lucky Rabbit's Foot increases your luck in combat.",
+      "name": "Lucky Rabbit's Foot"
+    },
+    "33": {
+      "description": "Horseshoe\n\nThe Golden Horseshoe increases your luck in combat.",
+      "name": "Golden Horseshoe"
+    },
+    "34": {
+      "description": "Coin\n\nThe Gambler's Lucky Coin increases your luck in combat.",
+      "name": "Gambler's Lucky Coin"
+    },
+    "35": {
+      "description": "Clover\n\nThe Four-Leaf Clover increases your luck in combat.",
+      "name": "Four-Leaf Clover"
+    },
+    "36": {
+      "description": "Compass\n\nThe True Compass of Mobility increases your movement on land and sea.",
+      "name": "True Compass of Mobility"
+    },
+    "37": {
+      "description": "Astrolabe\n\nThe Sailors' Astrolabe of Mobility increases your movement on sea.",
+      "name": "Sailor's Astrolabe of Mobility"
+    },
+    "4": {
+      "description": "Ultimate Wand\n(+12 Spell Power)\n\nThe Ultimate Wand of Magic increases your spell power by 12.",
+      "name": "Ultimate Wand of Magic"
+    },
+    "5": {
+      "description": "Arcane Necklace\n(+4 Spell Power)\n\nThe Arcane Necklace of Magic increases your spell power by 4.",
+      "name": "Arcane Necklace of Magic"
+    },
+    "6": {
+      "description": "Caster's Bracelet\n(+2 Spell Power)\n\nThe Caster's Bracelet of Magic increases your spell power by 2.",
+      "name": "Caster's Bracelet of Magic"
+    },
+    "7": {
+      "description": "Mage's Ring\n(+2 Spell Power)\n\nThe Mage's Ring of Power increases your spell power by 2.",
+      "name": "Mage's Ring of Power"
+    },
+    "8": {
+      "description": "Witches Broach\n(+3 Spell Power)\n\nThe Witch's Broach of Magic increases your spell power by 3.",
+      "name": "Witch's Broach of Magic"
+    },
+    "9": {
+      "description": "Medal\n\nThe Medal of Valor increases your morale.",
+      "name": "Medal of Valor"
+    },
+    "99": {
+      "description": "Magic Book\n\nThe Magic Book enables you to cast spells.",
+      "name": "Spellbook"
+    }
+  },
   "component": {
     "systemButton": {
       "cancel": "$t(okayCancel.false)",
@@ -7,11 +161,108 @@
       "yes": "$t(yesNo.true)"
     }
   },
+  "creatureSpeed": {
+    "fast": "Fast",
+    "medium": "Medium",
+    "slow": "Slow"
+  },
+  "creatures": {
+    "0": "Peasant",
+    "1": "Archer",
+    "10": "Troll",
+    "11": "Cyclops",
+    "12": "Sprite",
+    "13": "Dwarf",
+    "14": "Elf",
+    "15": "Druid",
+    "16": "Unicorn",
+    "17": "Phoenix",
+    "18": "Centaur",
+    "19": "Gargoyle",
+    "2": "Pikeman",
+    "20": "Griffin",
+    "21": "Minotaur",
+    "22": "Hydra",
+    "23": "Dragon",
+    "24": "Rogue",
+    "25": "Nomad",
+    "26": "Ghost",
+    "27": "Genie",
+    "3": "Swordsman",
+    "4": "Cavalry",
+    "5": "Paladin",
+    "6": "Goblin",
+    "7": "Orc",
+    "8": "Wolf",
+    "9": "Ogre"
+  },
   "gameDifficulty": {
     "easy": "Easy",
     "expert": "Expert",
     "hard": "Hard",
     "normal": "Normal"
+  },
+  "heroClasses": {
+    "0": "Knight",
+    "1": "Barbarian",
+    "2": "Sorceress",
+    "3": "Warlock"
+  },
+  "heroes": {
+    "0": "Lord Kilburn",
+    "1": "Lord Haart",
+    "10": "Ergon",
+    "11": "Kelzen",
+    "12": "Tsabu",
+    "13": "Crag Hack",
+    "14": "JoJosh",
+    "15": "Atlas",
+    "16": "Yog",
+    "17": "Antoine",
+    "18": "Ariel",
+    "19": "Vatawna",
+    "2": "Sir Gallant",
+    "20": "Carlawn",
+    "21": "Rebecca",
+    "22": "Luna",
+    "23": "Astra",
+    "24": "Natasha",
+    "25": "Gem",
+    "26": "Troyan",
+    "27": "Agar",
+    "28": "Grodo",
+    "29": "Falagar",
+    "3": "Arturius",
+    "30": "Barok",
+    "31": "Arie",
+    "32": "Kastore",
+    "33": "Sandro",
+    "34": "Wrathmont",
+    "35": "Vesper",
+    "4": "Tyro",
+    "5": "Maximus",
+    "6": "Ector",
+    "7": "Dimitri",
+    "8": "Ambrose",
+    "9": "Thundax"
+  },
+  "luck": {
+    "-1": "Bad",
+    "-2": "Terrible",
+    "-3": "Cursed",
+    "0": "Normal",
+    "1": "Good",
+    "2": "Great",
+    "3": "Irish"
+  },
+  "morale": {
+    "-1": "Poor",
+    "-2": "Awful",
+    "-3": "Treason",
+    "0": "Normal",
+    "1": "Good",
+    "2": "Great",
+    "3": "Blood!"
   },
   "movementSpeed": {
     "canter": "Canter",
@@ -20,6 +271,7 @@
     "trot": "Trot",
     "walk": "Walk"
   },
+  "notImplemented": "Not implemented",
   "okayCancel": {
     "false": "Cancel",
     "true": "Okay"
@@ -51,6 +303,12 @@
     "large": "Large",
     "medium": "Medium",
     "small": "Small"
+  },
+  "skill": {
+    "attack": "Attack Skill",
+    "defense": "Defense Skill",
+    "knowledge": "Knowledge",
+    "spellPower": "Spell Power"
   },
   "yesNo": {
     "false": "No",

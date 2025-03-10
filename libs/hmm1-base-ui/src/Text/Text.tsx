@@ -12,6 +12,7 @@ interface Props {
   readonly component?: 'span' | 'h1' | 'h2';
   readonly heading?: boolean;
   readonly hidden?: boolean;
+  readonly id?: string;
   readonly label?: string;
   readonly onClick?: () => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
@@ -30,6 +31,7 @@ export const Text = ({
   component,
   heading,
   hidden,
+  id,
   label,
   onClick,
   onMouseDown,
@@ -48,6 +50,7 @@ export const Text = ({
       as={component}
       className={className}
       hidden={hidden}
+      id={id}
       onClick={onClick}
       onMouseDown={onMouseDown}
       role={heading ? 'heading' : undefined}

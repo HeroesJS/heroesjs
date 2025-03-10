@@ -1,7 +1,17 @@
-import type { PropsWithChildren } from 'react';
+import { type MouseEventHandler, type PropsWithChildren, useCallback } from 'react';
 import styled from 'styled-components';
 
-export const Backdrop = ({ children }: PropsWithChildren) => <Root id="backdrop">{children}</Root>;
+export const Backdrop = ({ children }: PropsWithChildren) => {
+  const handleClick = useCallback<MouseEventHandler>((e) => {
+    e.stopPropagation();
+  }, []);
+
+  return (
+    <Root id="backdrop" onClick={handleClick}>
+      {children}
+    </Root>
+  );
+};
 
 const Root = styled.div({
   bottom: 0,

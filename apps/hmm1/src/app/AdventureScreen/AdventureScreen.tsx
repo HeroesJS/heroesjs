@@ -15,7 +15,6 @@ import {
 import {
   campaignScenarios,
   GameDifficulty,
-  HeroId,
   MovementSpeed,
   OpponentDifficulty,
   PlayerColor,
@@ -25,6 +24,8 @@ import {
 } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
+import { HeroScreen } from '../HeroScreen';
+import { heroes } from '../state';
 
 export const AdventureScreen = () => {
   const [musicVolume, setMusicVolume] = useState<SoundVolume>(10);
@@ -38,6 +39,18 @@ export const AdventureScreen = () => {
 
   const scenario = scenarios[0];
 
+  const [selectedHeroIndex, setSelectedHeroIndex] = useState<number>();
+
+  const handleHeroLocatorClick = (index: number) => {
+    if (selectedHeroIndex !== index) {
+      setSelectedHeroIndex(index);
+
+      return;
+    }
+
+    navigate(`hero/${index}`);
+  };
+
   return (
     <AdventureWindow
       renderActionButtons={() => (
@@ -47,11 +60,13 @@ export const AdventureScreen = () => {
           onGameOptionsClick={() => navigate('game-options')}
         />
       )}
-      renderHeroLocators={() => (
-        <Locator selected>
-          <HeroLocator hero={HeroId.Dimitri} mobility={14} x={5} y={5} />
-        </Locator>
-      )}
+      renderHeroLocators={() =>
+        heroes.map((hero, index) => (
+          <Locator key={index} onClick={() => handleHeroLocatorClick(index)} selected={index === selectedHeroIndex}>
+            <HeroLocator hero={hero.id} mobility={hero.mobility} x={5} y={5} />
+          </Locator>
+        ))
+      }
       renderTownLocators={() => (
         <Locator>
           <TownLocator castle town={Town.Farm} />
@@ -59,6 +74,10 @@ export const AdventureScreen = () => {
       )}
     >
       <Routes>
+        <Route
+          element={<HeroScreen onExitClick={() => navigate('../..', { relative: 'path' })} />}
+          path="hero/:index"
+        />
         <Route
           element={
             <AdventureOptionsWindow onConfirmClick={() => navigate('..', { relative: 'path' })} x={160} y={40} />

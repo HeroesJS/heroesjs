@@ -120,3 +120,58 @@ export const nextOption = <T>(values: readonly T[], currentValue: T): T =>
 
 export const previousOption = <T>(values: readonly T[], currentValue: T): T =>
   values[(values.length + values.indexOf(currentValue) - 1) % values.length] ?? currentValue;
+
+export enum Skill {
+  Attack = 'attack',
+  Defense = 'defense',
+  Knowledge = 'knowledge',
+  SpellPower = 'spellPower',
+}
+
+export const skills: readonly Skill[] = [Skill.Attack, Skill.Defense, Skill.SpellPower, Skill.Knowledge];
+
+export type SkillValues = Readonly<Record<Skill, number>>;
+
+export const formatSkillValue = (values: Partial<SkillValues>, skill: Skill, bonuses: Partial<SkillValues>) => {
+  const value = values[skill] ?? 0;
+  const bonus = bonuses[skill] ?? 0;
+
+  return `${value}${bonus ? ` (${value + bonus})` : ''}`;
+};
+
+export enum HeroClassId {
+  Knight = 0,
+  Barbarian = 1,
+  Sorceress = 2,
+  Warlock = 3,
+}
+
+export const heroClasses: readonly HeroClassId[] = [
+  HeroClassId.Knight,
+  HeroClassId.Barbarian,
+  HeroClassId.Sorceress,
+  HeroClassId.Warlock,
+];
+
+export enum Morale {
+  Treason = -3,
+  Awful = -2,
+  Poor = -1,
+  Normal = 0,
+  Good = 1,
+  Great = 2,
+  Blood = 3,
+}
+
+export enum Luck {
+  Cursed = -3,
+  Terrible = -2,
+  Bad = -1,
+  Normal = 0,
+  Good = 1,
+  Great = 2,
+  Irish = 3,
+}
+
+export const formatDamageRange = (minDamage: number, maxDamage: number) =>
+  minDamage === maxDamage ? minDamage : `${minDamage}-${maxDamage}`;

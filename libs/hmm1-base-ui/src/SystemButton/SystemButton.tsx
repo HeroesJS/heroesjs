@@ -19,8 +19,8 @@ interface Props extends Omit<ComponentProps<typeof Button>, 'assets' | 'label'> 
   readonly type?: SystemButtonType;
 }
 
-export const SystemButton = ({ type = 'okay', ...rest }: Props) => {
+export const SystemButton = ({ type = 'okay', ...props }: Props) => {
   const { t } = useTranslation('core', { keyPrefix: 'component.systemButton' });
 
-  return <Button {...rest} assets={assetMap[type]} label={t(type)} />;
+  return <Button {...props} assets={assetMap[type]} label={t(type)} />;
 };
