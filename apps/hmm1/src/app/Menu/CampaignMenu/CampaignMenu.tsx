@@ -16,19 +16,19 @@ interface Props extends PositionProps {
 export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
 
-  const playLordIronfistInfo = useModal();
-  const playLordSlayerInfo = useModal();
-  const playQueenLamandaInfo = useModal();
-  const playLordAlamarInfo = useModal();
+  const playLordIronfistInfoModal = useModal();
+  const playLordSlayerInfoModal = useModal();
+  const playQueenLamandaInfoModal = useModal();
+  const playLordAlamarInfoModal = useModal();
 
   const infoModals: Record<Campaign, UseModalResult> = {
-    [Campaign.LordAlamar]: playLordAlamarInfo,
-    [Campaign.LordIronfist]: playLordIronfistInfo,
-    [Campaign.LordSlayer]: playLordSlayerInfo,
-    [Campaign.QueenLamanda]: playQueenLamandaInfo,
+    [Campaign.LordAlamar]: playLordAlamarInfoModal,
+    [Campaign.LordIronfist]: playLordIronfistInfoModal,
+    [Campaign.LordSlayer]: playLordSlayerInfoModal,
+    [Campaign.QueenLamanda]: playQueenLamandaInfoModal,
   };
 
-  const cancelInfo = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -44,9 +44,9 @@ export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) =>
         assets={assets.cancelButton}
         label={t('cancel')}
         onClick={onCancelClick}
-        onMouseDown={cancelInfo.onMouseDown}
+        onMouseDown={cancelInfoModal.onMouseDown}
       />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

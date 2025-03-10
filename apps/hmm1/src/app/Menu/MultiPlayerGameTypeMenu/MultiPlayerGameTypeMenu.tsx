@@ -23,11 +23,11 @@ export const MultiPlayerGameTypeMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.multiPlayerGameTypeMenu' });
 
-  const hotSeatInfo = useModal();
-  const networkInfo = useModal();
-  const modemInfo = useModal();
-  const directConnectInfo = useModal();
-  const cancelInfo = useModal();
+  const hotSeatInfoModal = useModal();
+  const networkInfoModal = useModal();
+  const modemInfoModal = useModal();
+  const directConnectInfoModal = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -35,45 +35,45 @@ export const MultiPlayerGameTypeMenu = ({
         assets={assets.hotSeatButton}
         label={t('hotSeat')}
         onClick={onHotSeatClick}
-        onMouseDown={hotSeatInfo.onMouseDown}
+        onMouseDown={hotSeatInfoModal.onMouseDown}
       />
-      <Modal open={hotSeatInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={hotSeatInfoModal.isOpen} size={1} x={177} y={29}>
         {t('hotSeatInfo')}
       </Modal>
       <MenuButton
         assets={assets.networkButton}
         label={t('network')}
         onClick={onNetworkClick}
-        onMouseDown={networkInfo.onMouseDown}
+        onMouseDown={networkInfoModal.onMouseDown}
       />
-      <Modal open={networkInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={networkInfoModal.isOpen} size={1} x={177} y={29}>
         {t('networkInfo')}
       </Modal>
       <MenuButton
         assets={assets.modemButton}
         label={t('modem')}
         onClick={onModemClick}
-        onMouseDown={modemInfo.onMouseDown}
+        onMouseDown={modemInfoModal.onMouseDown}
       />
-      <Modal open={modemInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={modemInfoModal.isOpen} size={1} x={177} y={29}>
         {t('modemInfo')}
       </Modal>
       <MenuButton
         assets={assets.directConnectButton}
         label={t('directConnect')}
         onClick={onDirectConnectClick}
-        onMouseDown={directConnectInfo.onMouseDown}
+        onMouseDown={directConnectInfoModal.onMouseDown}
       />
-      <Modal open={directConnectInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={directConnectInfoModal.isOpen} size={1} x={177} y={29}>
         {t('directConnectInfo')}
       </Modal>
       <MenuButton
         assets={assets.cancelButton}
         label={t('cancel')}
         onClick={onCancelClick}
-        onMouseDown={cancelInfo.onMouseDown}
+        onMouseDown={cancelInfoModal.onMouseDown}
       />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

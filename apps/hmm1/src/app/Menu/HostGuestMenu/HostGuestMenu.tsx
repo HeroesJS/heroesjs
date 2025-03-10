@@ -14,9 +14,9 @@ interface Props extends PositionProps {
 export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.hostGuestMenu' });
 
-  const hostInfo = useModal();
-  const guestInfo = useModal();
-  const cancelInfo = useModal();
+  const hostInfoModal = useModal();
+  const guestInfoModal = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -24,18 +24,18 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
         assets={detailed ? assets.hostDialsButton : assets.hostButton}
         label={t(detailed ? 'hostDetail' : 'host')}
         onClick={onHostClick}
-        onMouseDown={hostInfo.onMouseDown}
+        onMouseDown={hostInfoModal.onMouseDown}
       />
-      <Modal open={hostInfo.isOpen} x={177} y={29}>
+      <Modal open={hostInfoModal.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
       </Modal>
       <MenuButton
         assets={detailed ? assets.guestAnswersButton : assets.guestButton}
         label={t(detailed ? 'guestDetail' : 'guest')}
         onClick={onGuestClick}
-        onMouseDown={guestInfo.onMouseDown}
+        onMouseDown={guestInfoModal.onMouseDown}
       />
-      <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
+      <Modal open={guestInfoModal.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
         {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
       </Modal>
       <MenuSeparator />
@@ -44,9 +44,9 @@ export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostCli
         assets={assets.cancelButton}
         label={t('cancel')}
         onClick={onCancelClick}
-        onMouseDown={cancelInfo.onMouseDown}
+        onMouseDown={cancelInfoModal.onMouseDown}
       />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

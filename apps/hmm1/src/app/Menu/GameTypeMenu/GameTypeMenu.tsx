@@ -21,10 +21,10 @@ export const GameTypeMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.gameTypeMenu' });
 
-  const standardGameInfo = useModal();
-  const campaignGameInfo = useModal();
-  const multiPlayerGameInfo = useModal();
-  const cancelInfo = useModal();
+  const standardGameInfoModal = useModal();
+  const campaignGameInfoModal = useModal();
+  const multiPlayerGameInfoModal = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -32,27 +32,27 @@ export const GameTypeMenu = ({
         assets={assets.standardGameButton}
         label={t('standardGame')}
         onClick={onStandardGameClick}
-        onMouseDown={standardGameInfo.onMouseDown}
+        onMouseDown={standardGameInfoModal.onMouseDown}
       />
-      <Modal open={standardGameInfo.isOpen} x={177} y={29}>
+      <Modal open={standardGameInfoModal.isOpen} x={177} y={29}>
         {t('standardGameInfo')}
       </Modal>
       <MenuButton
         assets={assets.campaignGameButton}
         label={t('campaignGame')}
         onClick={onCampaignGameClick}
-        onMouseDown={campaignGameInfo.onMouseDown}
+        onMouseDown={campaignGameInfoModal.onMouseDown}
       />
-      <Modal open={campaignGameInfo.isOpen} x={177} y={29}>
+      <Modal open={campaignGameInfoModal.isOpen} x={177} y={29}>
         {t('campaignGameInfo')}
       </Modal>
       <MenuButton
         assets={assets.multiPlayerGameButton}
         label={t('multiPlayerGame')}
         onClick={onMultiPlayerGameClick}
-        onMouseDown={multiPlayerGameInfo.onMouseDown}
+        onMouseDown={multiPlayerGameInfoModal.onMouseDown}
       />
-      <Modal open={multiPlayerGameInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={multiPlayerGameInfoModal.isOpen} size={1} x={177} y={29}>
         {t('multiPlayerGameInfo')}
       </Modal>
       <MenuSeparator />
@@ -60,9 +60,9 @@ export const GameTypeMenu = ({
         assets={assets.cancelButton}
         label={t('cancel')}
         onClick={onCancelClick}
-        onMouseDown={cancelInfo.onMouseDown}
+        onMouseDown={cancelInfoModal.onMouseDown}
       />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

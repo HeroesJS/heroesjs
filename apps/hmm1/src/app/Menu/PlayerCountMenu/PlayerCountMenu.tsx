@@ -22,17 +22,17 @@ interface Props extends PositionProps {
 export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
 
-  const twoPlayerInfo = useModal();
-  const threePlayerInfo = useModal();
-  const fourPlayerInfo = useModal();
+  const twoPlayerInfoModal = useModal();
+  const threePlayerInfoModal = useModal();
+  const fourPlayerInfoModal = useModal();
 
   const infoModals: Record<number, UseModalResult> = {
-    2: twoPlayerInfo,
-    3: threePlayerInfo,
-    4: fourPlayerInfo,
+    2: twoPlayerInfoModal,
+    3: threePlayerInfoModal,
+    4: fourPlayerInfoModal,
   };
 
-  const cancelInfo = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -49,9 +49,9 @@ export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) =>
         assets={assets.cancelButton}
         label={t('cancel')}
         onClick={onCancelClick}
-        onMouseDown={cancelInfo.onMouseDown}
+        onMouseDown={cancelInfoModal.onMouseDown}
       />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

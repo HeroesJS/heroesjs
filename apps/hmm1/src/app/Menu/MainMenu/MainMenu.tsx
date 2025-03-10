@@ -23,11 +23,11 @@ export const MainMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
 
-  const newGameInfo = useModal();
-  const loadGameInfo = useModal();
-  const viewHighScoresInfo = useModal();
-  const viewCreditsInfo = useModal();
-  const quitInfo = useModal();
+  const newGameInfoModal = useModal();
+  const loadGameInfoModal = useModal();
+  const viewHighScoresInfoModal = useModal();
+  const viewCreditsInfoModal = useModal();
+  const quitInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
@@ -35,45 +35,45 @@ export const MainMenu = ({
         assets={assets.newGameButton}
         label={t('newGameLabel')}
         onClick={onNewGameClick}
-        onMouseDown={newGameInfo.onMouseDown}
+        onMouseDown={newGameInfoModal.onMouseDown}
       />
-      <Modal open={newGameInfo.isOpen} x={177} y={29}>
+      <Modal open={newGameInfoModal.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
       <MenuButton
         assets={assets.loadGameButton}
         label={t('loadGameLabel')}
         onClick={onLoadGameClick}
-        onMouseDown={loadGameInfo.onMouseDown}
+        onMouseDown={loadGameInfoModal.onMouseDown}
       />
-      <Modal open={loadGameInfo.isOpen} x={177} y={29}>
+      <Modal open={loadGameInfoModal.isOpen} x={177} y={29}>
         {t('loadGameInfo')}
       </Modal>
       <MenuButton
         assets={assets.viewHighScoresButton}
         label={t('viewHighScoresLabel')}
         onClick={onViewHighScoresClick}
-        onMouseDown={viewHighScoresInfo.onMouseDown}
+        onMouseDown={viewHighScoresInfoModal.onMouseDown}
       />
-      <Modal open={viewHighScoresInfo.isOpen} x={177} y={29}>
+      <Modal open={viewHighScoresInfoModal.isOpen} x={177} y={29}>
         {t('viewHighScoresInfo')}
       </Modal>
       <MenuButton
         assets={assets.viewCreditsButton}
         label={t('viewCreditsLabel')}
         onClick={onViewCreditsClick}
-        onMouseDown={viewCreditsInfo.onMouseDown}
+        onMouseDown={viewCreditsInfoModal.onMouseDown}
       />
-      <Modal open={viewCreditsInfo.isOpen} x={177} y={29}>
+      <Modal open={viewCreditsInfoModal.isOpen} x={177} y={29}>
         {t('viewCreditsInfo')}
       </Modal>
       <MenuButton
         assets={assets.quitButton}
         label={t('quitLabel')}
         onClick={onQuitClick}
-        onMouseDown={quitInfo.onMouseDown}
+        onMouseDown={quitInfoModal.onMouseDown}
       />
-      <Modal open={quitInfo.isOpen} x={177} y={29}>
+      <Modal open={quitInfoModal.isOpen} x={177} y={29}>
         {t('quitInfo')}
       </Modal>
     </Menu>
