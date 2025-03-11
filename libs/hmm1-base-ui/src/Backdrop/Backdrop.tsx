@@ -2,12 +2,12 @@ import { type MouseEventHandler, type PropsWithChildren, useCallback } from 'rea
 import styled from 'styled-components';
 
 export const Backdrop = ({ children }: PropsWithChildren) => {
-  const handleClick = useCallback<MouseEventHandler>((e) => {
+  const handleMouseEvent = useCallback<MouseEventHandler>((e) => {
     e.stopPropagation();
   }, []);
 
   return (
-    <Root id="backdrop" onClick={handleClick}>
+    <Root id="backdrop" onClick={handleMouseEvent} onMouseDown={handleMouseEvent}>
       {children}
     </Root>
   );

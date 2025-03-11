@@ -38,20 +38,15 @@ export const AdditionalStats = ({
 }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
-  const moraleInfoModal = useModal();
-  const moraleModal = useModal();
-
-  const luckInfoModal = useModal();
-  const luckModal = useModal();
-
-  const experienceInfoModal = useModal();
-  const experienceModal = useModal();
+  const moraleDetailsModal = useModal();
+  const luckDetailsModal = useModal();
+  const experienceDetailsModal = useModal();
 
   return (
     <Root x={x} y={y}>
       <MoraleRoot
-        onClick={moraleModal.open}
-        onMouseDown={moraleInfoModal.onMouseDown}
+        onClick={moraleDetailsModal.onClick}
+        onMouseDown={moraleDetailsModal.onMouseDown}
         onMouseLeave={onMoraleMouseLeave}
         onMouseOver={onMoraleMouseOver}
         y={2}
@@ -70,10 +65,10 @@ export const AdditionalStats = ({
         )}
       </MoraleRoot>
       <Modal
-        onConfirmClick={moraleModal.close}
-        open={moraleInfoModal.isOpen || moraleModal.isOpen}
+        onConfirmClick={moraleDetailsModal.close}
+        open={moraleDetailsModal.isOpen}
         size={3}
-        type={moraleModal.isOpen ? 'okay' : undefined}
+        type={moraleDetailsModal.clickOpened ? 'okay' : undefined}
         x={177}
         y={29}
       >
@@ -81,8 +76,8 @@ export const AdditionalStats = ({
         {t('core:notImplemented')}
       </Modal>
       <LuckRoot
-        onClick={luckModal.open}
-        onMouseDown={luckInfoModal.onMouseDown}
+        onClick={luckDetailsModal.onClick}
+        onMouseDown={luckDetailsModal.onMouseDown}
         onMouseLeave={onLuckMouseLeave}
         onMouseOver={onLuckMouseOver}
         y={34}
@@ -102,10 +97,10 @@ export const AdditionalStats = ({
         )}
       </LuckRoot>
       <Modal
-        onConfirmClick={luckModal.close}
-        open={luckInfoModal.isOpen || luckModal.isOpen}
+        onConfirmClick={luckDetailsModal.close}
+        open={luckDetailsModal.isOpen}
         size={3}
-        type={luckModal.isOpen ? 'okay' : undefined}
+        type={luckDetailsModal.clickOpened ? 'okay' : undefined}
         x={177}
         y={29}
       >
@@ -113,8 +108,8 @@ export const AdditionalStats = ({
         {t('core:notImplemented')}
       </Modal>
       <ExperienceRoot
-        onClick={experienceModal.open}
-        onMouseDown={experienceInfoModal.onMouseDown}
+        onClick={experienceDetailsModal.onClick}
+        onMouseDown={experienceDetailsModal.onMouseDown}
         onMouseLeave={onExperienceMouseLeave}
         onMouseOver={onExperienceMouseOver}
         y={60}
@@ -125,10 +120,10 @@ export const AdditionalStats = ({
         </Text>
       </ExperienceRoot>
       <Modal
-        onConfirmClick={experienceModal.close}
-        open={experienceInfoModal.isOpen || experienceModal.isOpen}
+        onConfirmClick={experienceDetailsModal.close}
+        open={experienceDetailsModal.isOpen}
         size={1}
-        type={experienceModal.isOpen ? 'okay' : undefined}
+        type={experienceDetailsModal.clickOpened ? 'okay' : undefined}
         x={177}
         y={29}
       >

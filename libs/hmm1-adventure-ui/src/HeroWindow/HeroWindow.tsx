@@ -107,6 +107,7 @@ export const HeroWindow = ({
   );
 
   const [troopInfoIndex, setTroopInfoIndex] = useState<number>();
+
   const infoTroop = troopInfoIndex !== undefined ? hero.army[troopInfoIndex] : undefined;
 
   const troopInfoModal = useModal(undefined, {
@@ -155,10 +156,6 @@ export const HeroWindow = ({
 
   const [selectedArtifactIndex, setSelectedArtifactIndex] = useState<number>();
 
-  const artifactInfoModal = useModal(undefined, {
-    onAfterClose: () => setSelectedArtifactIndex(undefined),
-    onBeforeOpen: (_e, index: number) => setSelectedArtifactIndex(index),
-  });
   const artifactDetailsModal = useModal(undefined, {
     onAfterClose: () => setSelectedArtifactIndex(undefined),
     onBeforeOpen: (_e, index: number) => setSelectedArtifactIndex(index),
@@ -184,7 +181,7 @@ export const HeroWindow = ({
   );
 
   const handleArtifactClick = useCallback(
-    (_e: MouseEvent, index: number) => {
+    (e: MouseEvent, index: number) => {
       const artifact = hero.artifacts[index];
 
       if (artifact === ArtifactId.Spellbook) {
@@ -193,9 +190,7 @@ export const HeroWindow = ({
         return;
       }
 
-      setSelectedArtifactIndex(index);
-
-      artifactDetailsModal.open();
+      artifactDetailsModal.onClick(e, index);
     },
     [artifactDetailsModal, hero.artifacts, notImplementedModal],
   );
@@ -304,7 +299,7 @@ export const HeroWindow = ({
           isUltimate={artifactById[artifact].isUltimate}
           key={index}
           onClick={handleArtifactClick}
-          onMouseDown={artifactInfoModal.onMouseDown}
+          onMouseDown={artifactDetailsModal.onMouseDown}
           onMouseLeave={setDefaultStatusText}
           onMouseOver={handleArtifactMouseOver}
           x={45 + (index % 7) * (ArtifactSlot.width + 3)}
@@ -314,9 +309,9 @@ export const HeroWindow = ({
       {selectedArtifactIndex !== undefined && (
         <Modal
           onConfirmClick={artifactDetailsModal.close}
-          open={artifactInfoModal.isOpen || artifactDetailsModal.isOpen}
-          size={artifactDetailsModal.isOpen ? 2 : 1}
-          type={artifactDetailsModal.isOpen ? 'okay' : undefined}
+          open={artifactDetailsModal.isOpen}
+          size={artifactDetailsModal.clickOpened ? 2 : 1}
+          type={artifactDetailsModal.clickOpened ? 'okay' : undefined}
           x={177}
           y={29}
         >
