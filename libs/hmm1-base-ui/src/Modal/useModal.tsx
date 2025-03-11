@@ -9,11 +9,17 @@ export interface UseModalResult<Args extends [MouseEvent, ...unknown[]] = [Mouse
   readonly open: () => void;
 }
 
+export interface UseModalOptions<Args extends [MouseEvent, ...unknown[]] = [MouseEvent]> {
+  onAfterClose?: () => void;
+  onBeforeOpen?: (...args: Args) => void;
+}
+
 export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
   initialIsOpen = false,
-  onBeforeOpen?: (...args: Args) => void,
-  onAfterClose?: () => void,
+  options: UseModalOptions<Args> = {},
 ): UseModalResult<Args> => {
+  const { onAfterClose, onBeforeOpen } = options;
+
   const [isOpen, open, close] = useToggle2(initialIsOpen);
 
   const handleDocumentMouseUp = useCallback(

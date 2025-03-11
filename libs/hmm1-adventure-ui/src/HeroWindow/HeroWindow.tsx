@@ -109,11 +109,10 @@ export const HeroWindow = ({
   const [troopInfoIndex, setTroopInfoIndex] = useState<number>();
   const infoTroop = troopInfoIndex !== undefined ? hero.army[troopInfoIndex] : undefined;
 
-  const troopInfoModal = useModal(
-    undefined,
-    (_e, index: number) => setTroopInfoIndex(index),
-    () => setTroopInfoIndex(undefined),
-  );
+  const troopInfoModal = useModal(undefined, {
+    onAfterClose: () => setTroopInfoIndex(undefined),
+    onBeforeOpen: (_e, index: number) => setTroopInfoIndex(index),
+  });
 
   const troopDetailsModal = useModal();
 
@@ -156,16 +155,14 @@ export const HeroWindow = ({
 
   const [selectedArtifactIndex, setSelectedArtifactIndex] = useState<number>();
 
-  const artifactInfoModal = useModal(
-    undefined,
-    (_e, index: number) => setSelectedArtifactIndex(index),
-    () => setSelectedArtifactIndex(undefined),
-  );
-  const artifactDetailsModal = useModal(
-    undefined,
-    (_e, index: number) => setSelectedArtifactIndex(index),
-    () => setSelectedArtifactIndex(undefined),
-  );
+  const artifactInfoModal = useModal(undefined, {
+    onAfterClose: () => setSelectedArtifactIndex(undefined),
+    onBeforeOpen: (_e, index: number) => setSelectedArtifactIndex(index),
+  });
+  const artifactDetailsModal = useModal(undefined, {
+    onAfterClose: () => setSelectedArtifactIndex(undefined),
+    onBeforeOpen: (_e, index: number) => setSelectedArtifactIndex(index),
+  });
 
   const handleArtifactMouseOver = useCallback(
     (_e: MouseEvent, index: number) => {
