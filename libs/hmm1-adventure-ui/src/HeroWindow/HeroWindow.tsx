@@ -115,7 +115,9 @@ export const HeroWindow = ({
     onBeforeOpen: (_e, index: number) => setTroopInfoIndex(index),
   });
 
-  const troopDetailsModal = useModal();
+  const troopDetailsModal = useModal(undefined, {
+    onAfterClose: () => setSelectedTroopIndex(undefined),
+  });
 
   const handleTroopClick = useCallback(
     (index: number) => {
@@ -144,15 +146,7 @@ export const HeroWindow = ({
     troopDetailsModal.close();
 
     onDismissTroop?.(selectedTroopIndex!);
-
-    setSelectedTroopIndex(undefined);
   }, [onDismissTroop, selectedTroopIndex, troopDetailsModal]);
-
-  const handleExitTroopDetailsClick = useCallback(() => {
-    troopDetailsModal.close();
-
-    setSelectedTroopIndex(undefined);
-  }, [troopDetailsModal]);
 
   const [selectedArtifactIndex, setSelectedArtifactIndex] = useState<number>();
 
@@ -286,7 +280,7 @@ export const HeroWindow = ({
           count={selectedTroop.count}
           creature={creatureById[selectedTroop.creatureId]}
           onDismissClick={handleDismissTroopClick}
-          onExitClick={handleExitTroopDetailsClick}
+          onExitClick={troopDetailsModal.close}
           skillsBonus={hero.skills}
           x={119}
           y={50}

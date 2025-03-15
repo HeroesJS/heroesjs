@@ -29,7 +29,9 @@ export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
     setClickOpened(false);
 
     close();
-  }, [close]);
+
+    onAfterClose?.();
+  }, [close, onAfterClose]);
 
   const handleDocumentMouseUp = useCallback(
     (e: globalThis.MouseEvent) => {
