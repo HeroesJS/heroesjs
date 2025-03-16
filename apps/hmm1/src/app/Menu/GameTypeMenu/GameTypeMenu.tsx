@@ -21,43 +21,48 @@ export const GameTypeMenu = ({
 }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.gameTypeMenu' });
 
-  const standardGameInfo = useModal();
-  const campaignGameInfo = useModal();
-  const multiPlayerGameInfo = useModal();
-  const cancelInfo = useModal();
+  const standardGameInfoModal = useModal();
+  const campaignGameInfoModal = useModal();
+  const multiPlayerGameInfoModal = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
       <MenuButton
-        {...standardGameInfo.handlers}
         assets={assets.standardGameButton}
         label={t('standardGame')}
         onClick={onStandardGameClick}
+        onMouseDown={standardGameInfoModal.onMouseDown}
       />
-      <Modal open={standardGameInfo.isOpen} x={177} y={29}>
+      <Modal open={standardGameInfoModal.isOpen} x={177} y={29}>
         {t('standardGameInfo')}
       </Modal>
       <MenuButton
-        {...campaignGameInfo.handlers}
         assets={assets.campaignGameButton}
         label={t('campaignGame')}
         onClick={onCampaignGameClick}
+        onMouseDown={campaignGameInfoModal.onMouseDown}
       />
-      <Modal open={campaignGameInfo.isOpen} x={177} y={29}>
+      <Modal open={campaignGameInfoModal.isOpen} x={177} y={29}>
         {t('campaignGameInfo')}
       </Modal>
       <MenuButton
-        {...multiPlayerGameInfo.handlers}
         assets={assets.multiPlayerGameButton}
         label={t('multiPlayerGame')}
         onClick={onMultiPlayerGameClick}
+        onMouseDown={multiPlayerGameInfoModal.onMouseDown}
       />
-      <Modal open={multiPlayerGameInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={multiPlayerGameInfoModal.isOpen} size={1} x={177} y={29}>
         {t('multiPlayerGameInfo')}
       </Modal>
       <MenuSeparator />
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfoModal.onMouseDown}
+      />
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

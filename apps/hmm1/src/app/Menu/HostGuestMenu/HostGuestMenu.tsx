@@ -14,34 +14,39 @@ interface Props extends PositionProps {
 export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.hostGuestMenu' });
 
-  const hostInfo = useModal();
-  const guestInfo = useModal();
-  const cancelInfo = useModal();
+  const hostInfoModal = useModal();
+  const guestInfoModal = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
       <MenuButton
-        {...hostInfo.handlers}
         assets={detailed ? assets.hostDialsButton : assets.hostButton}
         label={t(detailed ? 'hostDetail' : 'host')}
         onClick={onHostClick}
+        onMouseDown={hostInfoModal.onMouseDown}
       />
-      <Modal open={hostInfo.isOpen} x={177} y={29}>
+      <Modal open={hostInfoModal.isOpen} x={177} y={29}>
         {t(detailed ? 'hostDetailInfo' : 'hostInfo')}
       </Modal>
       <MenuButton
-        {...guestInfo.handlers}
         assets={detailed ? assets.guestAnswersButton : assets.guestButton}
         label={t(detailed ? 'guestDetail' : 'guest')}
         onClick={onGuestClick}
+        onMouseDown={guestInfoModal.onMouseDown}
       />
-      <Modal open={guestInfo.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
+      <Modal open={guestInfoModal.isOpen} size={!detailed ? 1 : undefined} x={177} y={29}>
         {t(detailed ? 'guestDetailInfo' : 'guestInfo')}
       </Modal>
       <MenuSeparator />
       <MenuSeparator />
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfoModal.onMouseDown}
+      />
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

@@ -23,53 +23,67 @@ export const AdventureOptionsWindow = ({
 }: Props) => {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureOptionsWindow' });
 
-  const viewWorldInfo = useModal();
-  const viewPuzzleInfo = useModal();
-  const castSpellInfo = useModal();
-  const digInfo = useModal();
-  const okayInfo = useModal();
+  const viewWorldInfoModal = useModal();
+  const viewPuzzleInfoModal = useModal();
+  const castSpellInfoModal = useModal();
+  const digInfoModal = useModal();
+  const okayInfoModal = useModal();
 
   return (
     <Window background={background} height={236} label={t('title')} shadow width={322} x={x} y={y}>
       <Button
-        {...viewWorldInfo.handlers}
         assets={viewWorld}
         label={t('viewWorld')}
         onClick={onViewWorldClick}
+        onMouseDown={viewWorldInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <Modal open={viewWorldInfo.isOpen} x={177} y={29}>
+      <Modal open={viewWorldInfoModal.isOpen} x={177} y={29}>
         {t('viewWorldInfo')}
       </Modal>
       <Button
-        {...viewPuzzleInfo.handlers}
         assets={viewPuzzle}
         label={t('viewPuzzle')}
         onClick={onViewPuzzleClick}
+        onMouseDown={viewPuzzleInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <Modal open={viewPuzzleInfo.isOpen} x={177} y={29}>
+      <Modal open={viewPuzzleInfoModal.isOpen} x={177} y={29}>
         {t('viewPuzzleInfo')}
       </Modal>
       <Button
-        {...castSpellInfo.handlers}
         assets={castSpell}
         label={t('castSpell')}
         onClick={onCastSpellClick}
+        onMouseDown={castSpellInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <Modal open={castSpellInfo.isOpen} x={177} y={29}>
+      <Modal open={castSpellInfoModal.isOpen} x={177} y={29}>
         {t('castSpellInfo')}
       </Modal>
-      <Button {...digInfo.handlers} assets={dig} label={t('dig')} onClick={onDigClick} x={179} y={107} />
-      <Modal open={digInfo.isOpen} x={177} y={29}>
+      <Button
+        assets={dig}
+        label={t('dig')}
+        onClick={onDigClick}
+        onMouseDown={digInfoModal.onMouseDown}
+        x={179}
+        y={107}
+      />
+      <Modal open={digInfoModal.isOpen} x={177} y={29}>
         {t('digInfo')}
       </Modal>
-      <Button {...okayInfo.handlers} assets={okay} label={t('okay')} onClick={onConfirmClick} x={112} y={184} />
-      <Modal open={okayInfo.isOpen} x={177} y={29}>
+      <Button
+        assets={okay}
+        label={t('okay')}
+        onClick={onConfirmClick}
+        onMouseDown={okayInfoModal.onMouseDown}
+        x={112}
+        y={184}
+      />
+      <Modal open={okayInfoModal.isOpen} x={177} y={29}>
         {t('okayInfo')}
       </Modal>
     </Window>

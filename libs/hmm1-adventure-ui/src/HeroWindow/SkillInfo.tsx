@@ -17,16 +17,15 @@ interface Props extends PositionProps {
 export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }: Props) => {
   const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
 
-  const infoModal = useModal();
-  const descriptionModal = useModal();
+  const detailsModal = useModal();
 
   const handleMouseOver = useCallback(() => onMouseOver?.(skill), [onMouseOver, skill]);
 
   return (
     <Root
-      {...infoModal.handlers}
       aria-labelledby={`${skill}-skill-info`}
-      onClick={descriptionModal.open}
+      onClick={detailsModal.onClick}
+      onMouseDown={detailsModal.onMouseDown}
       onMouseLeave={onMouseLeave}
       onMouseOver={handleMouseOver}
       skill={skill}
@@ -40,10 +39,10 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
         {value}
       </Text>
       <Modal
-        onConfirmClick={descriptionModal.close}
-        open={infoModal.isOpen || descriptionModal.isOpen}
-        size={descriptionModal.isOpen ? 2 : 1}
-        type={descriptionModal.isOpen ? 'okay' : undefined}
+        onConfirmClick={detailsModal.close}
+        open={detailsModal.isOpen}
+        size={detailsModal.clickOpened ? 2 : 1}
+        type={detailsModal.clickOpened ? 'okay' : undefined}
         x={177}
         y={29}
       >

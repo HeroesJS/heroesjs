@@ -75,41 +75,41 @@ export const GameOptionsWindow = ({
     [movementSpeed, onMovementSpeedChange],
   );
 
-  const newGameInfo = useModal();
-  const newGameConfirm = useModal();
-  const loadGameInfo = useModal();
-  const loadGameConfirm = useModal();
-  const saveGameInfo = useModal();
-  const quitInfo = useModal();
-  const quitConfirm = useModal();
+  const newGameInfoModal = useModal();
+  const newGameConfirmModal = useModal();
+  const loadGameInfoModal = useModal();
+  const loadGameConfirmModal = useModal();
+  const saveGameInfoModal = useModal();
+  const quitInfoModal = useModal();
+  const quitConfirmModal = useModal();
 
-  const musicInfo = useModal();
-  const effectsInfo = useModal();
-  const movementSpeedInfo = useModal();
-  const autoSaveInfo = useModal();
-  const showPathInfo = useModal();
-  const viewEnemyMovementInfo = useModal();
+  const musicInfoModal = useModal();
+  const effectsInfoModal = useModal();
+  const movementSpeedInfoModal = useModal();
+  const autoSaveInfoModal = useModal();
+  const showPathInfoModal = useModal();
+  const viewEnemyMovementInfoModal = useModal();
 
-  const confirmInfo = useModal();
-  const infoInfo = useModal();
+  const confirmInfoModal = useModal();
+  const infoInfoModal = useModal();
 
   return (
     <Window background={assets.background} height={459} label={t('title')} width={322} x={x} y={y}>
       <Button
-        {...newGameInfo.handlers}
         assets={assets.newGameButton}
         label={t('newGameLabel')}
-        onClick={newGameConfirm.open}
+        onClick={newGameConfirmModal.open}
+        onMouseDown={newGameInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <Modal open={newGameInfo.isOpen} x={177} y={29}>
+      <Modal open={newGameInfoModal.isOpen} x={177} y={29}>
         {t('newGameInfo')}
       </Modal>
       <Modal
-        onCancelClick={newGameConfirm.close}
+        onCancelClick={newGameConfirmModal.close}
         onConfirmClick={onNewGameClick}
-        open={newGameConfirm.isOpen}
+        open={newGameConfirmModal.isOpen}
         size={1}
         type="yesNo"
         x={177}
@@ -118,20 +118,20 @@ export const GameOptionsWindow = ({
         {t('newGameConfirm')}
       </Modal>
       <Button
-        {...loadGameInfo.handlers}
         assets={assets.loadGameButton}
         label={t('loadGameLabel')}
-        onClick={loadGameConfirm.open}
+        onClick={loadGameConfirmModal.open}
+        onMouseDown={loadGameInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <Modal open={loadGameInfo.isOpen} x={177} y={29}>
+      <Modal open={loadGameInfoModal.isOpen} x={177} y={29}>
         {t('loadGameInfo')}
       </Modal>
       <Modal
-        onCancelClick={loadGameConfirm.close}
+        onCancelClick={loadGameConfirmModal.close}
         onConfirmClick={onLoadGameClick}
-        open={loadGameConfirm.isOpen}
+        open={loadGameConfirmModal.isOpen}
         size={1}
         type="yesNo"
         x={177}
@@ -140,31 +140,31 @@ export const GameOptionsWindow = ({
         {t('loadGameConfirm')}
       </Modal>
       <Button
-        {...saveGameInfo.handlers}
         assets={assets.saveGameButton}
         label={t('saveGameLabel')}
         onClick={onSaveGameClick}
+        onMouseDown={saveGameInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <Modal open={saveGameInfo.isOpen} x={177} y={29}>
+      <Modal open={saveGameInfoModal.isOpen} x={177} y={29}>
         {t('saveGameInfo')}
       </Modal>
       <Button
-        {...quitInfo.handlers}
         assets={assets.quitButton}
         label={t('quitLabel')}
-        onClick={quitConfirm.open}
+        onClick={quitConfirmModal.open}
+        onMouseDown={quitInfoModal.onMouseDown}
         x={179}
         y={107}
       />
-      <Modal open={quitInfo.isOpen} x={177} y={29}>
+      <Modal open={quitInfoModal.isOpen} x={177} y={29}>
         {t('quitInfo')}
       </Modal>
       <Modal
-        onCancelClick={quitConfirm.close}
+        onCancelClick={quitConfirmModal.close}
         onConfirmClick={onQuitClick}
-        open={quitConfirm.isOpen}
+        open={quitConfirmModal.isOpen}
         size={1}
         type="yesNo"
         x={177}
@@ -173,100 +173,100 @@ export const GameOptionsWindow = ({
         {t('quitConfirm')}
       </Modal>
       <Option
-        {...musicInfo.handlers}
         assets={assets.musicToggle}
         checked={isSoundEnabled(musicVolume)}
         heading={t('musicHeading')}
         onClick={handleMusicVolumeClick}
+        onMouseDown={musicInfoModal.onMouseDown}
         valueLabel={shouldRenderVolume(musicVolume) ? t('volume', { value: musicVolume }) : undefined}
         x={36}
         y={194}
       />
-      <Modal open={musicInfo.isOpen} x={177} y={29}>
+      <Modal open={musicInfoModal.isOpen} x={177} y={29}>
         {t('musicInfo')}
       </Modal>
       <Option
-        {...effectsInfo.handlers}
         assets={assets.effectsToggle}
         checked={isSoundEnabled(effectsVolume)}
         heading={t('effectsHeading')}
         onClick={handleEffectsVolumeClick}
+        onMouseDown={effectsInfoModal.onMouseDown}
         valueLabel={shouldRenderVolume(effectsVolume) ? t('volume', { value: effectsVolume }) : undefined}
         x={128}
         y={194}
       />
-      <Modal open={effectsInfo.isOpen} x={177} y={29}>
+      <Modal open={effectsInfoModal.isOpen} x={177} y={29}>
         {t('effectsInfo')}
       </Modal>
       <Option
-        {...movementSpeedInfo.handlers}
         assets={{ checked: assets.movementSpeedMap[movementSpeed], unchecked: '' }}
         checked
         heading={t('movementSpeed')}
         onClick={handleMovementSpeedClick}
+        onMouseDown={movementSpeedInfoModal.onMouseDown}
         valueLabel={t(`core:movementSpeed.${movementSpeed}`)}
         x={220}
         y={194}
       />
-      <Modal open={movementSpeedInfo.isOpen} x={177} y={29}>
+      <Modal open={movementSpeedInfoModal.isOpen} x={177} y={29}>
         {t('movementSpeedInfo')}
       </Modal>
       <Option
-        {...autoSaveInfo.handlers}
         assets={assets.autoSaveToggle}
         checked={autoSave}
         heading={t('autoSaveHeading')}
         onChange={onAutoSaveChange}
+        onMouseDown={autoSaveInfoModal.onMouseDown}
         x={36}
         y={314}
       />
-      <Modal open={autoSaveInfo.isOpen} size={1} x={177} y={29}>
+      <Modal open={autoSaveInfoModal.isOpen} size={1} x={177} y={29}>
         {t('autoSaveInfo')}
       </Modal>
       <Option
-        {...showPathInfo.handlers}
         assets={assets.showPathToggle}
         checked={showPath}
         heading={t('showPathHeading')}
         onChange={onShowPathChange}
+        onMouseDown={showPathInfoModal.onMouseDown}
         x={128}
         y={314}
       />
-      <Modal open={showPathInfo.isOpen} size={2} x={177} y={29}>
+      <Modal open={showPathInfoModal.isOpen} size={2} x={177} y={29}>
         {t('showPathInfo')}
       </Modal>
       <Option
-        {...viewEnemyMovementInfo.handlers}
         assets={assets.viewEnemyMovementToggle}
         checked={viewEnemyMovement}
         heading={t('viewEnemyMovementHeading')}
         onChange={onViewEnemyMovementChange}
+        onMouseDown={viewEnemyMovementInfoModal.onMouseDown}
         x={220}
         y={314}
       />
-      <Modal open={viewEnemyMovementInfo.isOpen} size={2} x={177} y={29}>
+      <Modal open={viewEnemyMovementInfoModal.isOpen} size={2} x={177} y={29}>
         {t('viewEnemyMovementInfo')}
       </Modal>
       <Button
-        {...confirmInfo.handlers}
         assets={assets.okayButton}
         label={t('confirmLabel')}
         onClick={onConfirmClick}
+        onMouseDown={confirmInfoModal.onMouseDown}
         x={24}
         y={407}
       />
-      <Modal open={confirmInfo.isOpen} x={177} y={29}>
+      <Modal open={confirmInfoModal.isOpen} x={177} y={29}>
         {t('confirmInfo')}
       </Modal>
       <Button
-        {...infoInfo.handlers}
         assets={assets.infoButton}
         label={t('infoLabel')}
         onClick={onInfoClick}
+        onMouseDown={infoInfoModal.onMouseDown}
         x={201}
         y={407}
       />
-      <Modal open={infoInfo.isOpen} x={177} y={29}>
+      <Modal open={infoInfoModal.isOpen} x={177} y={29}>
         {t('infoInfo')}
       </Modal>
     </Window>

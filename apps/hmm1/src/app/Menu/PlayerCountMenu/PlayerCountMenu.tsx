@@ -22,31 +22,36 @@ interface Props extends PositionProps {
 export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) => {
   const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
 
-  const twoPlayerInfo = useModal();
-  const threePlayerInfo = useModal();
-  const fourPlayerInfo = useModal();
+  const twoPlayerInfoModal = useModal();
+  const threePlayerInfoModal = useModal();
+  const fourPlayerInfoModal = useModal();
 
   const infoModals: Record<number, UseModalResult> = {
-    2: twoPlayerInfo,
-    3: threePlayerInfo,
-    4: fourPlayerInfo,
+    2: twoPlayerInfoModal,
+    3: threePlayerInfoModal,
+    4: fourPlayerInfoModal,
   };
 
-  const cancelInfo = useModal();
+  const cancelInfoModal = useModal();
 
   return (
     <Menu label={t('title')} x={x} y={y}>
       {range(2, 5).map((count) => (
         <Fragment key={count}>
-          <Item {...infoModals[count].handlers} onClick={onCountClick} value={count} />
+          <Item onClick={onCountClick} onMouseDown={infoModals[count].onMouseDown} value={count} />
           <Modal open={infoModals[count].isOpen} x={177} y={29}>
             {t(`playerCountInfo_${count as 2 | 3 | 4}`)}
           </Modal>
         </Fragment>
       ))}
       <MenuSeparator />
-      <MenuButton {...cancelInfo.handlers} assets={assets.cancelButton} label={t('cancel')} onClick={onCancelClick} />
-      <Modal open={cancelInfo.isOpen} x={177} y={29}>
+      <MenuButton
+        assets={assets.cancelButton}
+        label={t('cancel')}
+        onClick={onCancelClick}
+        onMouseDown={cancelInfoModal.onMouseDown}
+      />
+      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
         {t('cancelInfo')}
       </Modal>
     </Menu>

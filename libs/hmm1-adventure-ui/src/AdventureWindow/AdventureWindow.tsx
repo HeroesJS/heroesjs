@@ -27,18 +27,24 @@ export const AdventureWindow = ({
 }: PropsWithChildren<Props>) => {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureWindow' });
 
-  const worldMapInfo = useModal();
-  const statusWindowInfo = useModal();
+  const worldMapInfoModal = useModal();
+  const statusWindowInfoModal = useModal();
 
   return (
     <Screen background={assets.background}>
       <AdventureMap aria-label={t('adventureMap')} role="main" x={16} y={16}>
         {renderAdventureMap?.()}
       </AdventureMap>
-      <WorldMap {...worldMapInfo.handlers} aria-label={t('worldMap')} role="note" x={ScreenHeight} y={16}>
+      <WorldMap
+        aria-label={t('worldMap')}
+        onMouseDown={worldMapInfoModal.onMouseDown}
+        role="note"
+        x={ScreenHeight}
+        y={16}
+      >
         {renderWorldMap?.()}
       </WorldMap>
-      <Modal open={worldMapInfo.isOpen} x={97} y={29}>
+      <Modal open={worldMapInfoModal.isOpen} x={97} y={29}>
         {t('worldMapInfo')}
       </Modal>
       <HeroLocators x={ScreenHeight} y={176}>
@@ -50,10 +56,16 @@ export const AdventureWindow = ({
       <ActionButtons x={ScreenHeight} y={320}>
         {renderActionButtons?.()}
       </ActionButtons>
-      <StatusWindow {...statusWindowInfo.handlers} aria-label={t('statusWindow')} role="note" x={ScreenHeight} y={392}>
+      <StatusWindow
+        aria-label={t('statusWindow')}
+        onMouseDown={statusWindowInfoModal.onMouseDown}
+        role="note"
+        x={ScreenHeight}
+        y={392}
+      >
         {renderStatusWindow?.()}
       </StatusWindow>
-      <Modal open={statusWindowInfo.isOpen} size={2} x={97} y={29}>
+      <Modal open={statusWindowInfoModal.isOpen} size={2} x={97} y={29}>
         {t('statusWindowInfo')}
       </Modal>
       {children}
