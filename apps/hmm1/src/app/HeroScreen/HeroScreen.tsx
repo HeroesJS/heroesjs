@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import { HeroWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Modal, useModal } from '@heroesjs/hmm1-base-ui';
 
-import { heroes } from '../state';
+import { selectCurrentGame } from '../gameSlice';
+import { useAppSelector } from '../hooks';
 
 type Props = Pick<ComponentProps<typeof HeroWindow>, 'onExitClick'>;
 
@@ -18,7 +19,9 @@ export const HeroScreen = ({ onExitClick }: Props) => {
 
   const index = parseInt(params.index ?? '');
 
-  const hero = heroes[index];
+  const game = useAppSelector(selectCurrentGame);
+
+  const hero = game.heroes[index];
 
   useEffect(() => {
     if (!hero) {

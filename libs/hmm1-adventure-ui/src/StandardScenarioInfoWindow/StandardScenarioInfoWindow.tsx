@@ -6,6 +6,7 @@ import {
   formatRating,
   type GameDifficulty,
   OpponentDifficulty,
+  type OpponentSettings,
   PlayerColor,
   ScenarioDifficulty,
   ScenarioSize,
@@ -26,7 +27,7 @@ interface Props extends PositionProps {
   readonly gameDifficulty?: GameDifficulty;
   readonly kingOfTheHill?: boolean;
   readonly onConfirmClick?: () => void;
-  readonly opponentSettings?: OpponentDifficulty[];
+  readonly opponentSettings?: OpponentSettings;
   readonly playerColor?: PlayerColor;
   readonly scenario?: ScenarioInfo;
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import {
@@ -12,44 +11,46 @@ import {
   StandardScenarioInfoWindow,
   TownLocator,
 } from '@heroesjs/hmm1-adventure-ui';
-import {
-  campaignScenarios,
-  GameDifficulty,
-  MovementSpeed,
-  OpponentDifficulty,
-  PlayerColor,
-  scenarios,
-  type SoundVolume,
-  Town,
-} from '@heroesjs/hmm1-core';
+import { Town } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
+import {
+  selectGameOptions,
+  setAutoSave,
+  setEffectsVolume,
+  setMovementSpeed,
+  setMusicVolume,
+  setShowPath,
+  setViewEnemyMovement,
+} from '../gameOptionsSlice';
+import {
+  selectCurrentCampaignScenario,
+  selectCurrentGame,
+  selectCurrentStandardScenario,
+  selectHero,
+} from '../gameSlice';
 import { HeroScreen } from '../HeroScreen';
-import { heroes } from '../state';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 export const AdventureScreen = () => {
-  const [musicVolume, setMusicVolume] = useState<SoundVolume>(10);
-  const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(10);
-  const [movementSpeed, setMovementSpeed] = useState(MovementSpeed.Trot);
-  const [autoSave, setAutoSave] = useState(true);
-  const [showPath, setShowPath] = useState(true);
-  const [viewEnemyMovement, setViewEnemyMovement] = useState(true);
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const scenario = scenarios[0];
-
-  const [selectedHeroIndex, setSelectedHeroIndex] = useState<number>();
+  const game = useAppSelector(selectCurrentGame);
+  const standardScenario = useAppSelector(selectCurrentStandardScenario);
+  const campaignScenario = useAppSelector(selectCurrentCampaignScenario);
 
   const handleHeroLocatorClick = (index: number) => {
-    if (selectedHeroIndex !== index) {
-      setSelectedHeroIndex(index);
+    if (game.selectedHeroIndex !== index) {
+      dispatch(selectHero(index));
 
       return;
     }
 
     navigate(`hero/${index}`);
   };
+
+  const gameOptions = useAppSelector(selectGameOptions);
 
   return (
     <AdventureWindow
@@ -61,8 +62,12 @@ export const AdventureScreen = () => {
         />
       )}
       renderHeroLocators={() =>
-        heroes.map((hero, index) => (
-          <Locator key={index} onClick={() => handleHeroLocatorClick(index)} selected={index === selectedHeroIndex}>
+        game.heroes.map((hero, index) => (
+          <Locator
+            key={index}
+            onClick={() => handleHeroLocatorClick(index)}
+            selected={index === game.selectedHeroIndex}
+          >
             <HeroLocator hero={hero.id} mobility={hero.mobility} x={5} y={5} />
           </Locator>
         ))
@@ -87,24 +92,24 @@ export const AdventureScreen = () => {
         <Route
           element={
             <GameOptionsWindow
-              autoSave={autoSave}
-              effectsVolume={effectsVolume}
-              movementSpeed={movementSpeed}
-              musicVolume={musicVolume}
-              onAutoSaveChange={setAutoSave}
+              autoSave={gameOptions.autoSave}
+              effectsVolume={gameOptions.effectsVolume}
+              movementSpeed={gameOptions.movementSpeed}
+              musicVolume={gameOptions.musicVolume}
+              onAutoSaveChange={(value) => dispatch(setAutoSave(value))}
               onConfirmClick={() => navigate('..', { relative: 'path' })}
-              onEffectsVolumeChange={setEffectsVolume}
+              onEffectsVolumeChange={(value) => dispatch(setEffectsVolume(value))}
               onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
               onLoadGameClick={() => navigate('/game/load')}
-              onMovementSpeedChange={setMovementSpeed}
-              onMusicVolumeChange={setMusicVolume}
+              onMovementSpeedChange={(value) => dispatch(setMovementSpeed(value))}
+              onMusicVolumeChange={(value) => dispatch(setMusicVolume(value))}
               onNewGameClick={() => navigate('/game/new')}
               onQuitClick={() => navigate('/')}
               onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
-              onShowPathChange={setShowPath}
-              onViewEnemyMovementChange={setViewEnemyMovement}
-              showPath={showPath}
-              viewEnemyMovement={viewEnemyMovement}
+              onShowPathChange={(value) => dispatch(setShowPath(value))}
+              onViewEnemyMovementChange={(value) => dispatch(setViewEnemyMovement(value))}
+              showPath={gameOptions.showPath}
+              viewEnemyMovement={gameOptions.viewEnemyMovement}
               x={160}
               y={10}
             />
@@ -123,12 +128,12 @@ export const AdventureScreen = () => {
         <Route
           element={
             <StandardScenarioInfoWindow
-              gameDifficulty={GameDifficulty.Normal}
-              kingOfTheHill={false}
+              gameDifficulty={game.gameDifficulty}
+              kingOfTheHill={game.kingOfTheHill}
               onConfirmClick={() => navigate('..', { relative: 'path' })}
-              opponentSettings={[OpponentDifficulty.Average, OpponentDifficulty.Average, OpponentDifficulty.Average]}
-              playerColor={PlayerColor.Blue}
-              scenario={scenario}
+              opponentSettings={game.opponentSettings}
+              playerColor={game.playerColor}
+              scenario={standardScenario}
               x={159}
               y={14}
             />
@@ -141,7 +146,7 @@ export const AdventureScreen = () => {
               allowRestart
               onConfirmClick={() => navigate('..', { relative: 'path' })}
               onRestartClick={() => navigate('/adventure')}
-              scenario={campaignScenarios[0]}
+              scenario={campaignScenario}
               x={105}
               y={96}
             />
