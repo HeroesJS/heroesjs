@@ -1,9 +1,9 @@
 import nx from '@nx/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
+import perfectionist from 'eslint-plugin-perfectionist';
 import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
-import typescriptSortKeys from 'eslint-plugin-typescript-sort-keys';
 import merge from 'lodash.merge';
 
 export default [
@@ -38,7 +38,7 @@ export default [
     // Override or add rules here
     plugins: {
       import: importPlugin,
-      'typescript-sort-keys': typescriptSortKeys,
+      perfectionist,
     },
     rules: {
       'import/order': [
@@ -53,6 +53,13 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'perfectionist/sort-enums': [
+        'error',
+        {
+          forceNumericSort: true,
+        },
+      ],
+      'perfectionist/sort-interfaces': ['error'],
       'sort-keys': [
         'error',
         'asc',
@@ -64,8 +71,6 @@ export default [
           natural: true,
         },
       ],
-      'typescript-sort-keys/interface': 'error',
-      'typescript-sort-keys/string-enum': 'error',
     },
     settings: {
       'import/internal-regex': '^@heroesjs/',
