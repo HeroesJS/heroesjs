@@ -12,7 +12,7 @@ export default [
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    ignores: ['**/dist', '**/storybook-static'],
+    ignores: ['**/dist', '**/storybook-static', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],

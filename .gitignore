@@ -8,6 +8,7 @@ node_modules
 # Nx
 /.nx/cache
 /.nx/workspace-data
+/migrations.json
 
 # Vite
 vite.config.*.timestamp*
