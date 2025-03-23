@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "out-tsc/lib",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
   },
   "exclude": [
@@ -25,6 +25,6 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx"
   ],
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }

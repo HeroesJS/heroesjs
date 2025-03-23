@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "dependencies": {},
   "type": "module",
-  "main": "./index.js",
-  "typings": "./index.d.ts",
-  "private": true
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  }
 }

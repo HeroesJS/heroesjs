@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/hmm1-adventure-ui"
+    },
+    {
+      "path": "./libs/hmm1-test-utils"
+    },
+    {
+      "path": "./libs/hmm1-base-ui"
+    },
+    {
+      "path": "./libs/hmm1-core"
+    },
+    {
+      "path": "./libs/hmm1-i18n"
+    },
+    {
+      "path": "./apps/hmm1-e2e"
+    },
+    {
+      "path": "./apps/hmm1"
+    }
+  ]
+}

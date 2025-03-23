@@ -27,6 +27,20 @@
   "plugins": [
     {
       "options": {
+        "build": {
+          "buildDepsName": "ts-build-deps",
+          "configName": "ts-tsconfig.lib.json",
+          "targetName": "ts-build",
+          "watchDepsName": "ts-watch-deps"
+        },
+        "typecheck": {
+          "targetName": "ts-typecheck"
+        }
+      },
+      "plugin": "@nx/js/typescript"
+    },
+    {
+      "options": {
         "buildTargetName": "build",
         "previewTargetName": "preview",
         "serveStaticTargetName": "serve-static",
@@ -58,6 +72,9 @@
       "plugin": "@nx/playwright/plugin"
     }
   ],
+  "sync": {
+    "applyChanges": true
+  },
   "targetDefaults": {
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]

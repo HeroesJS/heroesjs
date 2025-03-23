@@ -2,12 +2,11 @@
   "name": "@heroesjs/hmm1-base-ui",
   "type": "module",
   "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "types": "./src/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   }
 }

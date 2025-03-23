@@ -73,7 +73,7 @@ export default defineConfig({
   webServer: {
     command: 'npx nx run hmm1:preview',
     cwd: workspaceRoot,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env['CI'],
     url: 'http://localhost:4300',
   },
 });
