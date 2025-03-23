@@ -3,7 +3,7 @@ import typescriptParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
 import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
-import typescriptSortKeys from 'eslint-plugin-typescript-sort-keys';
+import perfectionist from 'eslint-plugin-perfectionist';
 import merge from 'lodash.merge';
 
 export default [
@@ -12,7 +12,7 @@ export default [
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    ignores: ['**/dist', '**/storybook-static'],
+    ignores: ['**/dist', '**/storybook-static', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -38,9 +38,16 @@ export default [
     // Override or add rules here
     plugins: {
       import: importPlugin,
-      'typescript-sort-keys': typescriptSortKeys,
+      perfectionist,
     },
     rules: {
+      'perfectionist/sort-interfaces': ['error'],
+      'perfectionist/sort-enums': [
+        'error',
+        {
+          forceNumericSort: true,
+        },
+      ],
       'import/order': [
         'error',
         {
@@ -64,8 +71,6 @@ export default [
           natural: true,
         },
       ],
-      'typescript-sort-keys/interface': 'error',
-      'typescript-sort-keys/string-enum': 'error',
     },
     settings: {
       'import/internal-regex': '^@heroesjs/',
