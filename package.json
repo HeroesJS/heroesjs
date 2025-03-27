@@ -14,12 +14,14 @@
     "verify": "nx affected -t format:check lint test build typecheck e2e --parallel=1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
     "i18next": "^24.2.2",
     "lodash": "^4.17.21",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-i18next": "^15.4.0",
     "react-is": "18.3.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "6.11.2",
     "styled-components": "5.3.6"
   },

@@ -25,6 +25,14 @@ export default mergeWithBaseConfig(
     server: {
       host: 'localhost',
       port: 4200,
+      proxy: {
+        '/api/saved-games': {
+          configure: (proxy) =>
+            proxy.on('proxyReq', (_proxyReq, _req, res) => res.setHeader('Content-Type', 'application/json').end('[]')),
+          selfHandleResponse: true,
+          target: '',
+        },
+      },
     },
     test: {
       coverage: {

@@ -5,6 +5,7 @@ import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Screen } from '@heroesjs/hmm1-base-ui';
 import { type Campaign, campaignScenarios, defaultOpponentSettings, scenarios } from '@heroesjs/hmm1-core';
 
+import { useGetSavedGamesQuery } from '../api';
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
 import { NewGameWindow } from '../NewGameWindow';
@@ -60,8 +61,8 @@ export const MainScreen = () => {
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/modem" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/direct-connect" />
         <Route Component={GameTypeSelection} path="load" />
-        <Route element="File Selector" path="load/standard" />
-        <Route element="File Selector" path="load/campaign" />
+        <Route element={<SaveGameSelection />} path="load/standard" />
+        <Route element={<SaveGameSelection />} path="load/campaign" />
         <Route Component={MultiPlayerGameTypeSelection} path="load/multi-player" />
         <Route Component={PlayerCountSelection} path="load/multi-player/hot-seat" />
         <Route element="File Selector" path="load/multi-player/hot-seat/:count" />
@@ -287,6 +288,34 @@ const ScenarioSelection = () => {
       scenarioInfo={scenario}
       selectedItem={selectedScenario}
       showScenarioInfo
+      x={310}
+      y={14}
+    />
+  );
+};
+
+const SaveGameSelection = () => {
+  const navigate = useNavigate();
+
+  const [selectedItem, setSelectedItem] = useState<string>();
+
+  const { data = [] } = useGetSavedGamesQuery();
+
+  const handleConfirmClick = useCallback(() => {
+    // TODO: initialize game
+
+    navigate('/adventure');
+  }, [navigate]);
+
+  const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
+
+  return (
+    <FileSelectorWindow
+      items={data.map((f) => f.name)}
+      onCancelClick={handleCancelClick}
+      onConfirmClick={handleConfirmClick}
+      onItemClick={setSelectedItem}
+      selectedItem={selectedItem}
       x={310}
       y={14}
     />
