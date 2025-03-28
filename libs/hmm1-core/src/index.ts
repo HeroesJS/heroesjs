@@ -25,7 +25,6 @@ export {
   Skill,
   skills,
   type SkillValues,
-  Town,
 } from './lib/core';
 export { creatureById, type CreatureData, CreatureId, creatures, CreatureSpeed } from './lib/creature';
 export type { Hero } from './lib/hero';
@@ -34,3 +33,4 @@ export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes }
 export { type ScenarioData, scenarios } from './lib/scenarios';
 export { ScreenHeight, ScreenWidth } from './lib/screen';
 export { isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes } from './lib/sound';
+export { type Town, TownType } from './lib/town';

@@ -12,13 +12,6 @@ export const playerColors: readonly PlayerColor[] = [
   PlayerColor.Yellow,
 ];
 
-export enum Town {
-  Farm = 'farm',
-  Forest = 'forest',
-  Mountains = 'mountains',
-  Plains = 'plains',
-}
-
 export enum HeroId {
   LordKilburn = 0,
   LordHaart = 1,

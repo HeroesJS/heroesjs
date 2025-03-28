@@ -1,6 +1,7 @@
 import { keyBy } from 'lodash';
 
-import { Skill, Town } from './core';
+import { Skill } from './core';
+import { TownType } from './town';
 
 export enum CreatureId {
   Peasant = 0,
@@ -44,7 +45,7 @@ export interface CreatureData {
   readonly id: CreatureId;
   readonly maxDamage: number;
   readonly minDamage: number;
-  readonly origin: Town | undefined;
+  readonly origin: TownType | undefined;
   readonly shots: number;
   readonly skills: Readonly<Record<Skill.Attack | Skill.Defense, number>>;
   readonly speed: CreatureSpeed;
@@ -55,7 +56,7 @@ const peasant: CreatureData = {
   id: CreatureId.Peasant,
   maxDamage: 1,
   minDamage: 1,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 0,
   skills: {
     [Skill.Attack]: 1,
@@ -69,7 +70,7 @@ const archer: CreatureData = {
   id: CreatureId.Archer,
   maxDamage: 3,
   minDamage: 2,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 12,
   skills: {
     [Skill.Attack]: 5,
@@ -83,7 +84,7 @@ const pikeman: CreatureData = {
   id: CreatureId.Pikeman,
   maxDamage: 4,
   minDamage: 3,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 0,
   skills: {
     [Skill.Attack]: 5,
@@ -97,7 +98,7 @@ const swordsman: CreatureData = {
   id: CreatureId.Swordsman,
   maxDamage: 6,
   minDamage: 4,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 0,
   skills: {
     [Skill.Attack]: 7,
@@ -111,7 +112,7 @@ const cavalry: CreatureData = {
   id: CreatureId.Cavalry,
   maxDamage: 10,
   minDamage: 5,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 0,
   skills: {
     [Skill.Attack]: 10,
@@ -125,7 +126,7 @@ const paladin: CreatureData = {
   id: CreatureId.Paladin,
   maxDamage: 20,
   minDamage: 10,
-  origin: Town.Farm,
+  origin: TownType.Farm,
   shots: 0,
   skills: {
     [Skill.Attack]: 11,
@@ -139,7 +140,7 @@ const goblin: CreatureData = {
   id: CreatureId.Goblin,
   maxDamage: 2,
   minDamage: 1,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 0,
   skills: {
     [Skill.Attack]: 3,
@@ -153,7 +154,7 @@ const orc: CreatureData = {
   id: CreatureId.Orc,
   maxDamage: 3,
   minDamage: 2,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 8,
   skills: {
     [Skill.Attack]: 3,
@@ -167,7 +168,7 @@ const wolf: CreatureData = {
   id: CreatureId.Wolf,
   maxDamage: 5,
   minDamage: 3,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 0,
   skills: {
     [Skill.Attack]: 6,
@@ -181,7 +182,7 @@ const ogre: CreatureData = {
   id: CreatureId.Ogre,
   maxDamage: 6,
   minDamage: 4,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 0,
   skills: {
     [Skill.Attack]: 9,
@@ -195,7 +196,7 @@ const troll: CreatureData = {
   id: CreatureId.Troll,
   maxDamage: 7,
   minDamage: 5,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 8,
   skills: {
     [Skill.Attack]: 10,
@@ -209,7 +210,7 @@ const cyclops: CreatureData = {
   id: CreatureId.Cyclops,
   maxDamage: 24,
   minDamage: 12,
-  origin: Town.Plains,
+  origin: TownType.Plains,
   shots: 0,
   skills: {
     [Skill.Attack]: 12,
@@ -223,7 +224,7 @@ const sprite: CreatureData = {
   id: CreatureId.Sprite,
   maxDamage: 2,
   minDamage: 1,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 0,
   skills: {
     [Skill.Attack]: 4,
@@ -237,7 +238,7 @@ const dwarf: CreatureData = {
   id: CreatureId.Dwarf,
   maxDamage: 4,
   minDamage: 2,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 0,
   skills: {
     [Skill.Attack]: 6,
@@ -251,7 +252,7 @@ const elf: CreatureData = {
   id: CreatureId.Elf,
   maxDamage: 3,
   minDamage: 2,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 24,
   skills: {
     [Skill.Attack]: 4,
@@ -265,7 +266,7 @@ const druid: CreatureData = {
   id: CreatureId.Druid,
   maxDamage: 8,
   minDamage: 5,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 8,
   skills: {
     [Skill.Attack]: 7,
@@ -279,7 +280,7 @@ const unicorn: CreatureData = {
   id: CreatureId.Unicorn,
   maxDamage: 14,
   minDamage: 7,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 0,
   skills: {
     [Skill.Attack]: 10,
@@ -293,7 +294,7 @@ const phoenix: CreatureData = {
   id: CreatureId.Phoenix,
   maxDamage: 40,
   minDamage: 20,
-  origin: Town.Forest,
+  origin: TownType.Forest,
   shots: 0,
   skills: {
     [Skill.Attack]: 12,
@@ -307,7 +308,7 @@ const centaur: CreatureData = {
   id: CreatureId.Centaur,
   maxDamage: 2,
   minDamage: 1,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 8,
   skills: {
     [Skill.Attack]: 3,
@@ -321,7 +322,7 @@ const gargoyle: CreatureData = {
   id: CreatureId.Gargoyle,
   maxDamage: 3,
   minDamage: 2,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 0,
   skills: {
     [Skill.Attack]: 4,
@@ -335,7 +336,7 @@ const griffin: CreatureData = {
   id: CreatureId.Griffin,
   maxDamage: 5,
   minDamage: 3,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 0,
   skills: {
     [Skill.Attack]: 6,
@@ -349,7 +350,7 @@ const minotaur: CreatureData = {
   id: CreatureId.Minotaur,
   maxDamage: 10,
   minDamage: 5,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 0,
   skills: {
     [Skill.Attack]: 9,
@@ -363,7 +364,7 @@ const hydra: CreatureData = {
   id: CreatureId.Hydra,
   maxDamage: 12,
   minDamage: 6,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 0,
   skills: {
     [Skill.Attack]: 8,
@@ -377,7 +378,7 @@ const dragon: CreatureData = {
   id: CreatureId.Dragon,
   maxDamage: 50,
   minDamage: 24,
-  origin: Town.Mountains,
+  origin: TownType.Mountains,
   shots: 0,
   skills: {
     [Skill.Attack]: 12,

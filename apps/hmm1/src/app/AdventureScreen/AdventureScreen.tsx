@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import {
@@ -12,6 +13,7 @@ import {
   StandardScenarioInfoWindow,
   TownLocator,
 } from '@heroesjs/hmm1-adventure-ui';
+import { Modal, useModal } from '@heroesjs/hmm1-base-ui';
 import {
   campaignScenarios,
   GameDifficulty,
@@ -20,14 +22,19 @@ import {
   PlayerColor,
   scenarios,
   type SoundVolume,
-  Town,
 } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
+import { getHeroes, getSelectedHeroIndex, getSelectedTownIndex, getTowns, selectHero, selectTown } from '../gameSlice';
 import { HeroScreen } from '../HeroScreen';
-import { heroes } from '../state';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 export const AdventureScreen = () => {
+  const { t } = useTranslation(['core']);
+  const dispatch = useAppDispatch();
+
+  const notImplementedModal = useModal();
+
   const [musicVolume, setMusicVolume] = useState<SoundVolume>(10);
   const [effectsVolume, setEffectsVolume] = useState<SoundVolume>(10);
   const [movementSpeed, setMovementSpeed] = useState(MovementSpeed.Trot);
@@ -39,16 +46,30 @@ export const AdventureScreen = () => {
 
   const scenario = scenarios[0];
 
-  const [selectedHeroIndex, setSelectedHeroIndex] = useState<number>();
+  const heroes = useAppSelector(getHeroes);
+  const selectedHeroIndex = useAppSelector(getSelectedHeroIndex);
 
   const handleHeroLocatorClick = (index: number) => {
     if (selectedHeroIndex !== index) {
-      setSelectedHeroIndex(index);
+      dispatch(selectHero(index));
 
       return;
     }
 
     navigate(`hero/${index}`);
+  };
+
+  const towns = useAppSelector(getTowns);
+  const selectedTownIndex = useAppSelector(getSelectedTownIndex);
+
+  const handleTownLocatorClick = (index: number) => {
+    if (selectedTownIndex !== index) {
+      dispatch(selectTown(index));
+
+      return;
+    }
+
+    notImplementedModal.open();
   };
 
   return (
@@ -67,11 +88,13 @@ export const AdventureScreen = () => {
           </Locator>
         ))
       }
-      renderTownLocators={() => (
-        <Locator>
-          <TownLocator castle town={Town.Farm} />
-        </Locator>
-      )}
+      renderTownLocators={() =>
+        towns.map((town, index) => (
+          <Locator key={index} onClick={() => handleTownLocatorClick(index)} selected={index === selectedTownIndex}>
+            <TownLocator castle town={town.type} />
+          </Locator>
+        ))
+      }
     >
       <Routes>
         <Route
@@ -149,6 +172,9 @@ export const AdventureScreen = () => {
           path="campaign-scenario-info"
         />
       </Routes>
+      <Modal onConfirmClick={notImplementedModal.close} open={notImplementedModal.isOpen} type="okay" x={177} y={29}>
+        {t('core:notImplemented')}
+      </Modal>
     </AdventureWindow>
   );
 };
