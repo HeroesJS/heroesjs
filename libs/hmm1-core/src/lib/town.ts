@@ -5,6 +5,8 @@ export enum TownType {
   Plains = 'plains',
 }
 
+export const townTypes = Object.values(TownType).filter((v) => typeof v === 'number');
+
 export interface Town {
   readonly id: number;
   readonly type: TownType;

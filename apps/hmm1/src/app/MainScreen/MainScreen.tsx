@@ -7,6 +7,8 @@ import { type Campaign, campaignScenarios, defaultOpponentSettings, scenarios } 
 
 import { useGetSavedGamesQuery } from '../api';
 import { FileSelectorWindow } from '../FileSelectorWindow';
+import { startGame } from '../gameSlice';
+import { useAppDispatch } from '../hooks';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
 import { NewGameWindow } from '../NewGameWindow';
 
@@ -43,17 +45,7 @@ export const MainScreen = () => {
         <Route Component={NewGameSelection} path="new/standard" />
         <Route Component={ScenarioSelection} path="new/standard/scenario" />
         <Route Component={CampaignSelection} path="new/campaign" />
-        <Route
-          element={
-            <CampaignScenarioInfoWindow
-              onConfirmClick={() => navigate('/adventure')}
-              scenario={campaignScenarios[0]}
-              x={105}
-              y={96}
-            />
-          }
-          path="new/campaign/:leader"
-        />
+        <Route Component={CampaignIntroduction} path="new/campaign/:leader" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
         <Route Component={NewGameSelection} path="new/multi-player/hot-seat/:count" />
@@ -105,6 +97,21 @@ const CampaignSelection = () => {
   const handleCancelClick = () => navigate('/');
 
   return <CampaignMenu onCampaignClick={handleCampaignClick} onCancelClick={handleCancelClick} x={MenuX} y={MenuY} />;
+};
+
+const CampaignIntroduction = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const scenario = campaignScenarios[0];
+
+  const handleConfirmClick = useCallback(() => {
+    dispatch(startGame(scenario));
+
+    navigate('/adventure');
+  }, [dispatch, navigate, scenario]);
+
+  return <CampaignScenarioInfoWindow onConfirmClick={handleConfirmClick} scenario={scenario} x={105} y={96} />;
 };
 
 const MultiPlayerGameTypeSelection = () => {
@@ -169,6 +176,8 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 };
 
 const NewGameSelection = () => {
+  const dispatch = useAppDispatch();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [opponentSettings, setOpponentSettings] = useState(defaultOpponentSettings);
@@ -200,7 +209,11 @@ const NewGameSelection = () => {
     [navigate, selectedScenario],
   );
 
-  const handleConfirmClick = useCallback(() => navigate('/adventure'), [navigate]);
+  const handleConfirmClick = useCallback(() => {
+    dispatch(startGame(scenario!));
+
+    navigate('/adventure');
+  }, [dispatch, navigate, scenario]);
 
   const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
 

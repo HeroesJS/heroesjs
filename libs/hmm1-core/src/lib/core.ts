@@ -1,3 +1,12 @@
+import { TownType } from './town';
+
+export enum PlayerColorId {
+  Red = 0,
+  Blue = 1,
+  Yellow = 2,
+  Green = 3,
+}
+
 export enum PlayerColor {
   Blue = 'blue',
   Green = 'green',
@@ -12,7 +21,15 @@ export const playerColors: readonly PlayerColor[] = [
   PlayerColor.Yellow,
 ];
 
+export const playerColorIdToPlayerColorMap: Record<PlayerColorId, PlayerColor> = {
+  [PlayerColorId.Blue]: PlayerColor.Blue,
+  [PlayerColorId.Green]: PlayerColor.Green,
+  [PlayerColorId.Red]: PlayerColor.Red,
+  [PlayerColorId.Yellow]: PlayerColor.Yellow,
+};
+
 export enum HeroId {
+  // knight
   LordKilburn = 0,
   LordHaart = 1,
   SirGallant = 2,
@@ -22,6 +39,7 @@ export enum HeroId {
   Ector = 6,
   Dimitri = 7,
   Ambrose = 8,
+  // barbarian
   Thundax = 9,
   Ergon = 10,
   Kelzen = 11,
@@ -31,6 +49,7 @@ export enum HeroId {
   Atlas = 15,
   Yog = 16,
   Antoine = 17,
+  // sorceress
   Ariel = 18,
   Vatawna = 19,
   Carlawn = 20,
@@ -40,6 +59,7 @@ export enum HeroId {
   Natasha = 24,
   Gem = 25,
   Troyan = 26,
+  // warlock
   Agar = 27,
   Crodo = 28,
   Falagar = 29,
@@ -50,6 +70,8 @@ export enum HeroId {
   Wrathmont = 34,
   Vesper = 35,
 }
+
+export const heroIds = Object.values(HeroId).filter((v) => typeof v === 'number');
 
 export enum GameDifficulty {
   Easy = 'easy',
@@ -145,6 +167,67 @@ export const heroClasses: readonly HeroClassId[] = [
   HeroClassId.Sorceress,
   HeroClassId.Warlock,
 ];
+
+export const playerColorToHeroClassMap: Record<PlayerColorId, HeroClassId> = {
+  [PlayerColorId.Blue]: HeroClassId.Warlock,
+  [PlayerColorId.Green]: HeroClassId.Barbarian,
+  [PlayerColorId.Red]: HeroClassId.Knight,
+  [PlayerColorId.Yellow]: HeroClassId.Sorceress,
+};
+
+export const heroClassHeroes: Record<HeroClassId, readonly HeroId[]> = {
+  [HeroClassId.Barbarian]: [
+    HeroId.Thundax,
+    HeroId.Ergon,
+    HeroId.Kelzen,
+    HeroId.Tsabu,
+    HeroId.CragHack,
+    HeroId.JoJosh,
+    HeroId.Atlas,
+    HeroId.Yog,
+    HeroId.Antoine,
+  ],
+  [HeroClassId.Knight]: [
+    HeroId.LordKilburn,
+    HeroId.LordHaart,
+    HeroId.SirGallant,
+    HeroId.Arturius,
+    HeroId.Tyro,
+    HeroId.Maximus,
+    HeroId.Ector,
+    HeroId.Dimitri,
+    HeroId.Ambrose,
+  ],
+  [HeroClassId.Sorceress]: [
+    HeroId.Ariel,
+    HeroId.Vatawna,
+    HeroId.Carlawn,
+    HeroId.Rebecca,
+    HeroId.Luna,
+    HeroId.Astra,
+    HeroId.Natasha,
+    HeroId.Gem,
+    HeroId.Troyan,
+  ],
+  [HeroClassId.Warlock]: [
+    HeroId.Agar,
+    HeroId.Crodo,
+    HeroId.Falagar,
+    HeroId.Barok,
+    HeroId.Arie,
+    HeroId.Kastore,
+    HeroId.Sandro,
+    HeroId.Wrathmont,
+    HeroId.Vesper,
+  ],
+};
+
+export const heroClassToTownMap: Record<HeroClassId, TownType> = {
+  [HeroClassId.Barbarian]: TownType.Plains,
+  [HeroClassId.Knight]: TownType.Farm,
+  [HeroClassId.Sorceress]: TownType.Forest,
+  [HeroClassId.Warlock]: TownType.Mountains,
+};
 
 export enum Morale {
   Treason = -3,
