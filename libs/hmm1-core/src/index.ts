@@ -11,7 +11,6 @@ export {
   heroClasses,
   heroClassHeroes,
   HeroClassId,
-  heroClassToTownMap,
   HeroId,
   heroIds,
   Luck,
@@ -22,11 +21,11 @@ export {
   opponentDifficulties,
   OpponentDifficulty,
   type OpponentSettings,
+  Player,
   PlayerColor,
-  PlayerColorId,
-  playerColorIdToPlayerColorMap,
   playerColors,
   playerColorToHeroClassMap,
+  players,
   previousOption,
   Skill,
   skills,
@@ -45,6 +44,7 @@ export {
   type MapTile,
   type MapTownInfo,
   type MapTownObjectInfo,
+  RandomTownType,
 } from './lib/map';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';

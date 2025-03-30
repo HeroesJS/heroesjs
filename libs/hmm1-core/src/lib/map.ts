@@ -1,4 +1,4 @@
-import type { HeroId, PlayerColorId } from './core';
+import type { HeroId, Player } from './core';
 import type { TownType } from './town';
 
 export const MapSize = 72;
@@ -11,8 +11,10 @@ export interface MapTile {
   readonly terrainType: number;
 }
 
+export const RandomTownType = 4;
+
 export interface MapTownInfo {
-  readonly class: TownType;
+  readonly type: TownType | typeof RandomTownType;
   readonly x: number;
   readonly y: number;
 }
@@ -33,7 +35,7 @@ export interface MapTownObjectInfo {
   readonly garrison: readonly MapObjectArmy[];
   readonly initFlag: number;
   readonly mageGuildLevel: number;
-  readonly owner: PlayerColorId | undefined;
+  readonly owner: Player | undefined;
   readonly type: 0x46;
 }
 
@@ -41,7 +43,7 @@ export interface MapHeroObjectInfo {
   readonly army: readonly MapObjectArmy[];
   readonly experience: number;
   readonly id: HeroId;
-  readonly owner: PlayerColorId;
+  readonly owner: Player;
   readonly startArtifact: readonly number[];
   readonly type: 0x4b;
 }
@@ -56,10 +58,11 @@ export interface Map {
   readonly objectInfo: readonly MapObjectInfo[];
   // readonly size: ScenarioSize;
   // readonly tiles: readonly MapTile[][];
-  // readonly townInfo: readonly MapTownInfo[];
+  readonly townInfo: readonly MapTownInfo[];
   // readonly width: typeof MapSize;
 }
 
 export const createMap = (): Map => ({
   objectInfo: [],
+  townInfo: [],
 });

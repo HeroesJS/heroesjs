@@ -1,6 +1,7 @@
-import { PlayerColorId } from './core';
+import { Player } from './core';
 import { createMap, type Map } from './map';
 import { ScenarioDifficulty, ScenarioSize } from './scenario';
+import { TownType } from './town';
 
 export interface ScenarioData {
   readonly description: string;
@@ -20,7 +21,7 @@ export const scenarios: readonly ScenarioData[] = [
           army: [],
           experience: 0,
           id: 0,
-          owner: PlayerColorId.Red,
+          owner: Player.Player1,
           startArtifact: [],
           type: 75,
         },
@@ -29,14 +30,14 @@ export const scenarios: readonly ScenarioData[] = [
           garrison: [],
           initFlag: 0,
           mageGuildLevel: 0,
-          owner: PlayerColorId.Red,
+          owner: Player.Player1,
           type: 70,
         },
         {
           army: [],
           experience: 0,
           id: 0,
-          owner: PlayerColorId.Blue,
+          owner: Player.Player2,
           startArtifact: [],
           type: 75,
         },
@@ -45,14 +46,14 @@ export const scenarios: readonly ScenarioData[] = [
           garrison: [],
           initFlag: 0,
           mageGuildLevel: 0,
-          owner: PlayerColorId.Blue,
+          owner: Player.Player2,
           type: 70,
         },
         {
           army: [],
           experience: 0,
           id: 0,
-          owner: PlayerColorId.Yellow,
+          owner: Player.Player3,
           startArtifact: [],
           type: 75,
         },
@@ -61,14 +62,14 @@ export const scenarios: readonly ScenarioData[] = [
           garrison: [],
           initFlag: 0,
           mageGuildLevel: 0,
-          owner: PlayerColorId.Yellow,
+          owner: Player.Player3,
           type: 70,
         },
         {
           army: [],
           experience: 0,
           id: 0,
-          owner: PlayerColorId.Green,
+          owner: Player.Player4,
           startArtifact: [],
           type: 75,
         },
@@ -77,8 +78,30 @@ export const scenarios: readonly ScenarioData[] = [
           garrison: [],
           initFlag: 0,
           mageGuildLevel: 0,
-          owner: PlayerColorId.Green,
+          owner: Player.Player4,
           type: 70,
+        },
+      ],
+      townInfo: [
+        {
+          type: TownType.Farm,
+          x: 0,
+          y: 0,
+        },
+        {
+          type: TownType.Plains,
+          x: 0,
+          y: 0,
+        },
+        {
+          type: TownType.Forest,
+          x: 0,
+          y: 0,
+        },
+        {
+          type: TownType.Mountains,
+          x: 0,
+          y: 0,
         },
       ],
     },

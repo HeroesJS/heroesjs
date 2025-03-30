@@ -5,12 +5,13 @@ import {
   type CampaignScenarioData,
   type Hero,
   heroClassHeroes,
-  heroClassToTownMap,
   heroIds,
   Luck,
   Morale,
-  playerColorIdToPlayerColorMap,
-  playerColorToHeroClassMap,
+  nextOption,
+  Player,
+  players,
+  RandomTownType,
   type ScenarioData,
   Skill,
   type Town,
@@ -20,6 +21,7 @@ import {
 import type { RootState } from './store';
 
 interface GameState {
+  readonly activePlayer: Player;
   readonly heroes: readonly Hero[];
   readonly selectedHeroIndex: number | undefined;
   readonly selectedTownIndex: number | undefined;
@@ -27,6 +29,7 @@ interface GameState {
 }
 
 const initialState: GameState = {
+  activePlayer: Player.Player1,
   heroes: [],
   selectedHeroIndex: undefined,
   selectedTownIndex: undefined,
@@ -37,6 +40,10 @@ export const gameSlice = createSlice({
   initialState,
   name: 'game',
   reducers: {
+    endTurn: (state) => ({
+      ...state,
+      activePlayer: nextOption(players, state.activePlayer),
+    }),
     loadGame: (_state, _action: PayloadAction<GameState>) => {
       // TODO
     },
@@ -75,7 +82,7 @@ export const gameSlice = createSlice({
             luck: Luck.Normal,
             mobility: 0,
             morale: Morale.Normal,
-            player: playerColorIdToPlayerColorMap[info.owner],
+            owner: info.owner,
             skills: {
               [Skill.Attack]: 0,
               [Skill.Defense]: 0,
@@ -87,35 +94,36 @@ export const gameSlice = createSlice({
           return [...heroes, hero];
         }, []);
 
-      const towns = map.objectInfo
-        .filter((o) => o.type === 70)
-        .map<Town>((info, i) => {
-          return {
-            id: i,
-            type:
-              info.owner !== undefined ? heroClassToTownMap[playerColorToHeroClassMap[info.owner]] : sample(townTypes)!,
-          };
-        });
+      const townObjectInfos = map.objectInfo.filter((o) => o.type === 70);
+
+      const towns = townObjectInfos.map<Town>((info, i) => {
+        const townInfo = map.townInfo[i];
+
+        return {
+          id: i,
+          owner: info.owner,
+          type: townInfo.type === RandomTownType ? sample(townTypes)! : townInfo.type,
+        };
+      });
 
       return {
+        ...initialState,
         heroes,
-        selectedHeroIndex: undefined,
-        selectedTownIndex: undefined,
         towns,
       };
     },
   },
 });
 
-export const { loadGame, selectHero, selectTown, startGame } = gameSlice.actions;
+export const { endTurn, loadGame, selectHero, selectTown, startGame } = gameSlice.actions;
 
-export const getHeroes = (state: RootState) => state.game.heroes;
+export const getHeroes = (state: RootState) => state.game.heroes.filter((h) => h.owner === state.game.activePlayer);
 
 export const getSelectedHeroIndex = (state: RootState) => state.game.selectedHeroIndex;
 
-export const getSelectedHero = ({ game: { heroes, selectedHeroIndex } }: RootState) =>
-  selectedHeroIndex !== undefined ? heroes[selectedHeroIndex] : undefined;
+export const getSelectedHero = (state: RootState) =>
+  state.game.selectedHeroIndex !== undefined ? getHeroes(state)[state.game.selectedHeroIndex] : undefined;
 
-export const getTowns = (state: RootState) => state.game.towns;
+export const getTowns = (state: RootState) => state.game.towns.filter((t) => t.owner === state.game.activePlayer);
 
 export const getSelectedTownIndex = (state: RootState) => state.game.selectedTownIndex;

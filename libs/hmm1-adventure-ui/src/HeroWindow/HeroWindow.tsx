@@ -27,7 +27,7 @@ import { SkillInfo } from './SkillInfo';
 
 export type HeroInfo = Pick<
   Hero,
-  'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
+  'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'owner' | 'skills'
 >;
 
 interface Props {
@@ -239,7 +239,7 @@ export const HeroWindow = ({
         y={101}
       />
       <Crest
-        color={hero.player}
+        color={hero.owner}
         heroClass={hero.heroClass}
         label={t('kingdomOverviewLabel')}
         onClick={onKingdomOverviewClick}

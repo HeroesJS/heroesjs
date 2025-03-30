@@ -1,6 +1,6 @@
 import type { Army } from './army';
 import type { ArtifactId } from './artifact';
-import type { HeroClassId, HeroId, Luck, Morale, PlayerColor, SkillValues } from './core';
+import type { HeroClassId, HeroId, Luck, Morale, Player, SkillValues } from './core';
 
 export interface Hero {
   readonly army: Army;
@@ -12,6 +12,6 @@ export interface Hero {
   readonly luck: Luck;
   readonly mobility: number;
   readonly morale: Morale;
-  readonly player: PlayerColor;
+  readonly owner: Player;
   readonly skills: SkillValues;
 }

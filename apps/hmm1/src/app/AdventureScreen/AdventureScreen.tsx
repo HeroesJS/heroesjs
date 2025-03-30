@@ -25,7 +25,15 @@ import {
 } from '@heroesjs/hmm1-core';
 
 import { FileSelectorWindow } from '../FileSelectorWindow';
-import { getHeroes, getSelectedHeroIndex, getSelectedTownIndex, getTowns, selectHero, selectTown } from '../gameSlice';
+import {
+  endTurn,
+  getHeroes,
+  getSelectedHeroIndex,
+  getSelectedTownIndex,
+  getTowns,
+  selectHero,
+  selectTown,
+} from '../gameSlice';
 import { HeroScreen } from '../HeroScreen';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
@@ -78,6 +86,7 @@ export const AdventureScreen = () => {
         <AdventureButtons
           moveDisabled
           onAdventureOptionsClick={() => navigate('adventure-options')}
+          onEndTurnClick={() => dispatch(endTurn())}
           onGameOptionsClick={() => navigate('game-options')}
         />
       )}

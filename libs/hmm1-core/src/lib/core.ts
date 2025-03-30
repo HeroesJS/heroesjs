@@ -1,17 +1,17 @@
-import { TownType } from './town';
+export enum Player {
+  Player1 = 0,
+  Player2 = 1,
+  Player3 = 2,
+  Player4 = 3,
+}
 
-export enum PlayerColorId {
+export const players: readonly Player[] = [Player.Player1, Player.Player2, Player.Player3, Player.Player4];
+
+export enum PlayerColor {
   Red = 0,
   Blue = 1,
   Yellow = 2,
   Green = 3,
-}
-
-export enum PlayerColor {
-  Blue = 'blue',
-  Green = 'green',
-  Red = 'red',
-  Yellow = 'yellow',
 }
 
 export const playerColors: readonly PlayerColor[] = [
@@ -20,13 +20,6 @@ export const playerColors: readonly PlayerColor[] = [
   PlayerColor.Red,
   PlayerColor.Yellow,
 ];
-
-export const playerColorIdToPlayerColorMap: Record<PlayerColorId, PlayerColor> = {
-  [PlayerColorId.Blue]: PlayerColor.Blue,
-  [PlayerColorId.Green]: PlayerColor.Green,
-  [PlayerColorId.Red]: PlayerColor.Red,
-  [PlayerColorId.Yellow]: PlayerColor.Yellow,
-};
 
 export enum HeroId {
   // knight
@@ -168,11 +161,11 @@ export const heroClasses: readonly HeroClassId[] = [
   HeroClassId.Warlock,
 ];
 
-export const playerColorToHeroClassMap: Record<PlayerColorId, HeroClassId> = {
-  [PlayerColorId.Blue]: HeroClassId.Warlock,
-  [PlayerColorId.Green]: HeroClassId.Barbarian,
-  [PlayerColorId.Red]: HeroClassId.Knight,
-  [PlayerColorId.Yellow]: HeroClassId.Sorceress,
+export const playerColorToHeroClassMap: Record<PlayerColor, HeroClassId> = {
+  [PlayerColor.Blue]: HeroClassId.Warlock,
+  [PlayerColor.Green]: HeroClassId.Barbarian,
+  [PlayerColor.Red]: HeroClassId.Knight,
+  [PlayerColor.Yellow]: HeroClassId.Sorceress,
 };
 
 export const heroClassHeroes: Record<HeroClassId, readonly HeroId[]> = {
@@ -220,13 +213,6 @@ export const heroClassHeroes: Record<HeroClassId, readonly HeroId[]> = {
     HeroId.Wrathmont,
     HeroId.Vesper,
   ],
-};
-
-export const heroClassToTownMap: Record<HeroClassId, TownType> = {
-  [HeroClassId.Barbarian]: TownType.Plains,
-  [HeroClassId.Knight]: TownType.Farm,
-  [HeroClassId.Sorceress]: TownType.Forest,
-  [HeroClassId.Warlock]: TownType.Mountains,
 };
 
 export enum Morale {

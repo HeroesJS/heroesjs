@@ -1,6 +1,6 @@
 import { screen, within } from '@testing-library/react';
 
-import { HeroClassId, HeroId, Luck, Morale, PlayerColor, Skill } from '@heroesjs/hmm1-core';
+import { HeroClassId, HeroId, Luck, Morale, Player, Skill } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { type HeroInfo, HeroWindow } from './HeroWindow';
@@ -15,7 +15,7 @@ describe(HeroWindow, () => {
     level: 1,
     luck: Luck.Normal,
     morale: Morale.Normal,
-    player: PlayerColor.Red,
+    owner: Player.Player1,
     skills: {
       [Skill.Attack]: 0,
       [Skill.Defense]: 0,
