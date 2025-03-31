@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/react';
 
-import { creatureById, CreatureId, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
+import { creatureDataById, CreatureId, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { TroopDetailsWindow } from './TroopDetailsWindow';
 
 describe(TroopDetailsWindow, () => {
-  const creature = creatureById[CreatureId.Peasant];
+  const creature = creatureDataById[CreatureId.Peasant];
 
   it('renders dialog', () => {
     renderWithProviders(<TroopDetailsWindow creature={creature} />);

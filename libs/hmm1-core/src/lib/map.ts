@@ -30,14 +30,18 @@ export interface MapObjectArmy {
   readonly creatureId: number;
 }
 
+export const MapTownObjectType = 0x46;
+
 export interface MapTownObjectInfo {
   readonly buildings: number;
   readonly garrison: readonly MapObjectArmy[];
   readonly initFlag: number;
   readonly mageGuildLevel: number;
   readonly owner: Player | undefined;
-  readonly type: 0x46;
+  readonly type: typeof MapTownObjectType;
 }
+
+export const MapHeroObjectType = 0x4b;
 
 export interface MapHeroObjectInfo {
   readonly army: readonly MapObjectArmy[];
@@ -45,7 +49,7 @@ export interface MapHeroObjectInfo {
   readonly id: HeroId;
   readonly owner: Player;
   readonly startArtifact: readonly number[];
-  readonly type: 0x4b;
+  readonly type: typeof MapHeroObjectType;
 }
 
 export type MapObjectInfo = MapTownObjectInfo | MapHeroObjectInfo;

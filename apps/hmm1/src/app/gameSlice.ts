@@ -1,19 +1,21 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { chain, sample } from 'lodash';
+import { chain, isEmpty, random, range, sample } from 'lodash';
 
 import {
   type CampaignScenarioData,
   type Hero,
+  heroClassDataById,
   heroClassHeroes,
   heroIds,
   Luck,
+  MapHeroObjectType,
+  MapTownObjectType,
   Morale,
   nextOption,
   Player,
   players,
   RandomTownType,
   type ScenarioData,
-  Skill,
   type Town,
   townTypes,
 } from '@heroesjs/hmm1-core';
@@ -61,7 +63,7 @@ export const gameSlice = createSlice({
       const { map } = action.payload;
 
       const heroes = map.objectInfo
-        .filter((o) => o.type === 75)
+        .filter((o) => o.type === MapHeroObjectType)
         .reduce<Hero[]>((heroes, info, _i, infos) => {
           const availableHeroes = chain(heroIds)
             .omit(infos.map((i) => i.id))
@@ -72,10 +74,19 @@ export const gameSlice = createSlice({
 
           const heroClass = Number(Object.entries(heroClassHeroes).find(([, ids]) => ids.includes(heroId))![0]);
 
+          const heroClassData = heroClassDataById[heroClass];
+
           const hero: Hero = {
-            army: info.army, // TODO: or default
+            army: isEmpty(info.army)
+              ? heroClassData.army
+                  .map((a) => ({
+                    count: sample((a.optional ? [0] : []).concat(range(a.min, a.max + 1)))!,
+                    creatureId: a.creatureId,
+                  }))
+                  .filter((a) => a.count)
+              : info.army, // TODO: or default
             artifacts: info.startArtifact,
-            experience: info.experience, // TODO: or default?
+            experience: info.experience || random(40, 90),
             heroClass,
             id: heroId,
             level: 1, // TODO: resolve from exp?
@@ -83,18 +94,13 @@ export const gameSlice = createSlice({
             mobility: 0,
             morale: Morale.Normal,
             owner: info.owner,
-            skills: {
-              [Skill.Attack]: 0,
-              [Skill.Defense]: 0,
-              [Skill.Knowledge]: 0,
-              [Skill.SpellPower]: 0,
-            }, // TODO: use hero class defaults + bonuses from level
+            skills: heroClassData.skills, // TODO: add bonuses from level
           };
 
           return [...heroes, hero];
         }, []);
 
-      const townObjectInfos = map.objectInfo.filter((o) => o.type === 70);
+      const townObjectInfos = map.objectInfo.filter((o) => o.type === MapTownObjectType);
 
       const towns = townObjectInfos.map<Town>((info, i) => {
         const townInfo = map.townInfo[i];

@@ -31,12 +31,14 @@ export {
   skills,
   type SkillValues,
 } from './lib/core';
-export { creatureById, type CreatureData, CreatureId, creatures, CreatureSpeed } from './lib/creature';
+export { CreatureId, CreatureSpeed } from './lib/creature';
+export * from './lib/data';
 export type { Hero } from './lib/hero';
 export {
   createMap,
   type Map,
   type MapHeroObjectInfo,
+  MapHeroObjectType,
   type MapMineInfo,
   type MapObjectArmy,
   type MapObjectInfo,
@@ -44,6 +46,7 @@ export {
   type MapTile,
   type MapTownInfo,
   type MapTownObjectInfo,
+  MapTownObjectType,
   RandomTownType,
 } from './lib/map';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';

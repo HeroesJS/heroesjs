@@ -7,7 +7,7 @@ import {
   armySize,
   artifactById,
   ArtifactId,
-  creatureById,
+  creatureDataById,
   type Hero,
   ScreenHeight,
   ScreenWidth,
@@ -267,7 +267,7 @@ export const HeroWindow = ({
       {infoTroop && troopInfoModal.isOpen && (
         <TroopDetailsWindow
           count={infoTroop.count}
-          creature={creatureById[infoTroop.creatureId]}
+          creature={creatureDataById[infoTroop.creatureId]}
           hideExit
           skillsBonus={hero.skills}
           x={119}
@@ -278,7 +278,7 @@ export const HeroWindow = ({
         <TroopDetailsWindow
           allowDismiss={compact(hero.army).length > 1}
           count={selectedTroop.count}
-          creature={creatureById[selectedTroop.creatureId]}
+          creature={creatureDataById[selectedTroop.creatureId]}
           onDismissClick={handleDismissTroopClick}
           onExitClick={troopDetailsModal.close}
           skillsBonus={hero.skills}
