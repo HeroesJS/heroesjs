@@ -3,9 +3,12 @@ import { chain, isEmpty, random, range, sample } from 'lodash';
 
 import {
   type CampaignScenarioData,
+  getHeroLevel,
+  getHeroSkillsForLevel,
   type Hero,
   heroClassDataById,
   heroClassHeroes,
+  type HeroClassId,
   heroIds,
   Luck,
   MapHeroObjectType,
@@ -72,11 +75,18 @@ export const gameSlice = createSlice({
 
           const heroId = heroes.some((h) => h.id === info.id) ? sample(availableHeroes)! : info.id; // TODO: how exactly is this resolved?
 
-          const heroClass = Number(Object.entries(heroClassHeroes).find(([, ids]) => ids.includes(heroId))![0]);
+          const heroClass = Number(
+            Object.entries(heroClassHeroes).find(([, ids]) => ids.includes(heroId))![0],
+          ) as HeroClassId;
 
           const heroClassData = heroClassDataById[heroClass];
 
+          const experience = info.experience || random(40, 90);
+
+          const level = getHeroLevel(experience);
+
           const hero: Hero = {
+            // NOTE: editor allows to create scenarios where heroes have no army
             army: isEmpty(info.army)
               ? heroClassData.army
                   .map((a) => ({
@@ -84,17 +94,17 @@ export const gameSlice = createSlice({
                     creatureId: a.creatureId,
                   }))
                   .filter((a) => a.count)
-              : info.army, // TODO: or default
+              : info.army,
             artifacts: info.startArtifact,
-            experience: info.experience || random(40, 90),
+            experience,
             heroClass,
             id: heroId,
-            level: 1, // TODO: resolve from exp?
+            level,
             luck: Luck.Normal,
             mobility: 0,
             morale: Morale.Normal,
             owner: info.owner,
-            skills: heroClassData.skills, // TODO: add bonuses from level
+            skills: getHeroSkillsForLevel(heroClass, level),
           };
 
           return [...heroes, hero];

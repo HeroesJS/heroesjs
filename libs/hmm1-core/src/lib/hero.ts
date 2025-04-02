@@ -1,6 +1,9 @@
+import { isEmpty, range, sum } from 'lodash';
+
 import type { Army } from './army';
 import type { ArtifactId } from './artifact';
-import type { HeroClassId, HeroId, Luck, Morale, Player, SkillValues } from './core';
+import type { HeroClassId, HeroId, Luck, Morale, Player, Skill, SkillValues } from './core';
+import { heroClassDataById } from './data';
 
 export interface Hero {
   readonly army: Army;
@@ -15,3 +18,121 @@ export interface Hero {
   readonly owner: Player;
   readonly skills: SkillValues;
 }
+
+export const heroLevelExperienceThresholds = [
+  0, // 1
+  1_000,
+  2_000,
+  3_200,
+  4_500,
+  6_000,
+  7_700,
+  9_000,
+  11_000,
+  13_200, // 10
+  15_500,
+  18_500,
+  22_101,
+  26_421,
+  31_605,
+  37_825,
+  45_289,
+  54_245,
+  64_992,
+  77_888, // 20
+  93_363,
+  111_933,
+  134_217,
+  160_957,
+  193_045,
+  231_550,
+  277_756,
+  333_203,
+  399_739,
+  479_582, // 30
+  575_393,
+  690_366,
+  828_333,
+  993_893,
+  1_192_565,
+  1_430_971,
+  1_717_058,
+  2_060_362,
+  2_472_326,
+  2_966_682, // 40
+  3_559_909,
+  4_271_781,
+  5_126_027,
+  6_151_122,
+  7_381_236,
+  8_857_372,
+  10_628_735,
+  12_754_370,
+  15_305_132,
+  18_366_046, // 50
+  22_039_142,
+  26_446_857,
+  31_736_115,
+  38_083_224,
+  45_699_754,
+  54_839_590,
+  65_807_396,
+  78_968_756,
+  94_762_391,
+  113_714_753, // 60
+  136_457_587,
+  163_748_987,
+  196_498_667,
+  235_798_283,
+  282_957_822,
+  339_549_268,
+  407_459_003,
+  488_950_685,
+  586_740_703,
+  704_088_724, // 70
+  844_906_349,
+  1_013_887_499,
+  1_216_664_879,
+  1_459_997_735,
+  1_751_997_162, // 75
+];
+
+export const getHeroLevel = (experience: number) => {
+  const exp = Math.max(experience, 0);
+
+  const thresholds = heroLevelExperienceThresholds.filter((threshold) => threshold <= exp);
+
+  return heroLevelExperienceThresholds.indexOf(thresholds[thresholds.length - 1]) + 1;
+};
+
+export const getHeroSkillsForLevel = (heroClass: HeroClassId, level: number) => {
+  const lvl = Math.max(level, 1);
+
+  const data = heroClassDataById[heroClass];
+
+  const initialSkills = data.skills;
+
+  const skills = range(2, lvl + 1).reduce((p, c) => {
+    const probabilities = data.skillGainProbabilities.forLevel[c] ?? data.skillGainProbabilities.default;
+
+    const weightedProbabilities = Object.values(probabilities).reduce<readonly number[]>(
+      (p, c) => p.concat((!isEmpty(p) ? p[p.length - 1] : 0) + c),
+      [],
+    );
+
+    const total = sum(Object.values(probabilities));
+
+    const value = Math.floor(Math.random() * total);
+
+    const index = weightedProbabilities.findIndex((p) => p >= value);
+
+    const upgradedSkill = Object.keys(probabilities)[index] as Skill;
+
+    return {
+      ...p,
+      [upgradedSkill]: p[upgradedSkill] + 1,
+    };
+  }, initialSkills);
+
+  return skills;
+};
