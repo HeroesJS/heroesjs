@@ -18,10 +18,10 @@ import {
   nextOption,
   Player,
   players,
-  RandomTownType,
+  RandomTownClass,
   type ScenarioData,
   type Town,
-  townTypes,
+  townClasses,
 } from '@heroesjs/hmm1-core';
 
 import type { RootState } from './store';
@@ -117,9 +117,9 @@ export const gameSlice = createSlice({
         const townInfo = map.townInfo[i];
 
         return {
+          class: townInfo.type === RandomTownClass ? sample(townClasses)! : townInfo.type,
           id: i,
           owner: info.owner,
-          type: townInfo.type === RandomTownType ? sample(townTypes)! : townInfo.type,
         };
       });
 

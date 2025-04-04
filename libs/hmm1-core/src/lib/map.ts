@@ -1,5 +1,5 @@
 import type { HeroId, Player } from './core';
-import type { TownType } from './town';
+import type { TownClass } from './town';
 
 export const MapSize = 72;
 
@@ -11,10 +11,10 @@ export interface MapTile {
   readonly terrainType: number;
 }
 
-export const RandomTownType = 4;
+export const RandomTownClass = 4;
 
 export interface MapTownInfo {
-  readonly type: TownType | typeof RandomTownType;
+  readonly type: TownClass | typeof RandomTownClass;
   readonly x: number;
   readonly y: number;
 }

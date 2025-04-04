@@ -1,10 +1,10 @@
-import type { TownType } from '@heroesjs/hmm1-core';
+import type { TownClass } from '@heroesjs/hmm1-core';
 
 import { locators } from './assets';
 
 interface Props {
   readonly castle?: boolean;
-  readonly town: TownType;
+  readonly town: TownClass;
 }
 
 export const TownLocator = ({ castle, town }: Props) => (

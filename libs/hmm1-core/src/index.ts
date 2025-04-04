@@ -47,11 +47,11 @@ export {
   type MapTownInfo,
   type MapTownObjectInfo,
   MapTownObjectType,
-  RandomTownType,
+  RandomTownClass,
 } from './lib/map';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';
 export { type ScenarioData, scenarios } from './lib/scenarios';
 export { ScreenHeight, ScreenWidth } from './lib/screen';
 export { isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes } from './lib/sound';
-export { type Town, TownType, townTypes } from './lib/town';
+export { type Town, TownClass, townClasses } from './lib/town';

@@ -1,7 +1,7 @@
 import { Player } from './core';
-import { createMap, type Map } from './map';
+import { createMap, type Map, MapSize } from './map';
 import { ScenarioDifficulty, ScenarioSize } from './scenario';
-import { TownType } from './town';
+import { TownClass } from './town';
 
 export interface ScenarioData {
   readonly description: string;
@@ -16,6 +16,7 @@ export const scenarios: readonly ScenarioData[] = [
     description: 'The Griffons will protect you  until you are ready to make your move.',
     difficulty: ScenarioDifficulty.Easy,
     map: {
+      height: MapSize,
       objectInfo: [
         {
           army: [],
@@ -84,26 +85,27 @@ export const scenarios: readonly ScenarioData[] = [
       ],
       townInfo: [
         {
-          type: TownType.Farm,
+          type: TownClass.Farm,
           x: 0,
           y: 0,
         },
         {
-          type: TownType.Plains,
+          type: TownClass.Plains,
           x: 0,
           y: 0,
         },
         {
-          type: TownType.Forest,
+          type: TownClass.Forest,
           x: 0,
           y: 0,
         },
         {
-          type: TownType.Mountains,
+          type: TownClass.Mountains,
           x: 0,
           y: 0,
         },
       ],
+      width: MapSize,
     },
     name: 'Claw ( Easy )',
     size: ScenarioSize.Small,
