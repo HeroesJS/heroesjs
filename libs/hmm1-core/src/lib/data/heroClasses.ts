@@ -40,10 +40,10 @@ export const heroClassData: readonly HeroClassData[] = [
     id: HeroClassId.Knight,
     skillGainProbabilities: {
       default: {
-        [Skill.Attack]: 0,
-        [Skill.Defense]: 0,
-        [Skill.Knowledge]: 0,
-        [Skill.SpellPower]: 0,
+        [Skill.Attack]: 25,
+        [Skill.Defense]: 25,
+        [Skill.Knowledge]: 25,
+        [Skill.SpellPower]: 25,
       },
       forLevel: {
         2: {

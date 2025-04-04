@@ -33,7 +33,7 @@ export {
 } from './lib/core';
 export { CreatureId, CreatureSpeed } from './lib/creature';
 export * from './lib/data';
-export { getHeroLevel, getHeroSkillsForLevel, type Hero } from './lib/hero';
+export { getHeroLevel, getHeroSkillsForLevel, type Hero, heroLevelExperienceThresholds } from './lib/hero';
 export {
   createMap,
   type Map,

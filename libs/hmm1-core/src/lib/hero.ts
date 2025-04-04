@@ -1,4 +1,5 @@
-import { isEmpty, range, sum } from 'lodash';
+import { isEmpty, isEqual, last, range, sum } from 'lodash';
+import assert from 'node:assert';
 
 import type { Army } from './army';
 import type { ArtifactId } from './artifact';
@@ -95,44 +96,45 @@ export const heroLevelExperienceThresholds = [
   1_216_664_879,
   1_459_997_735,
   1_751_997_162, // 75
+  // NOTE: levels above 75 are bugged
 ];
 
-export const getHeroLevel = (experience: number) => {
-  const exp = Math.max(experience, 0);
+export const getHeroLevel = (experience: number, thresholds: readonly number[]) => {
+  assert(experience >= 0, 'Experience must be non-negative');
+  assert(thresholds.length, 'Thresholds are required');
+  assert(isEqual(thresholds, Array.from(thresholds).sort()), 'Thresholds must be sorted ascending');
 
-  const thresholds = heroLevelExperienceThresholds.filter((threshold) => threshold <= exp);
+  const crossedThresholds = thresholds.filter((threshold) => threshold <= experience);
 
-  return heroLevelExperienceThresholds.indexOf(thresholds[thresholds.length - 1]) + 1;
+  return crossedThresholds.length + 1;
 };
 
-export const getHeroSkillsForLevel = (heroClass: HeroClassId, level: number) => {
-  const lvl = Math.max(level, 1);
+export const getHeroSkillsForLevel = (level: number, heroClass: HeroClassId) => {
+  assert(level >= 1, 'Level must be greater or equal to 1');
 
   const data = heroClassDataById[heroClass];
 
   const initialSkills = data.skills;
 
-  const skills = range(2, lvl + 1).reduce((p, c) => {
-    const probabilities = data.skillGainProbabilities.forLevel[c] ?? data.skillGainProbabilities.default;
+  return range(2, level + 1).reduce((skills, lvl) => {
+    const probabilities = data.skillGainProbabilities.forLevel[lvl] ?? data.skillGainProbabilities.default;
 
     const weightedProbabilities = Object.values(probabilities).reduce<readonly number[]>(
-      (p, c) => p.concat((!isEmpty(p) ? p[p.length - 1] : 0) + c),
+      (p, c) => p.concat(c + (last(p) ?? 0)),
       [],
     );
 
-    const total = sum(Object.values(probabilities));
+    const total = last(weightedProbabilities)!;
 
     const value = Math.floor(Math.random() * total);
 
-    const index = weightedProbabilities.findIndex((p) => p >= value);
+    const index = weightedProbabilities.findIndex((prob) => prob >= value);
 
-    const upgradedSkill = Object.keys(probabilities)[index] as Skill;
+    const skill = Object.keys(probabilities)[index] as Skill;
 
     return {
-      ...p,
-      [upgradedSkill]: p[upgradedSkill] + 1,
+      ...skills,
+      [skill]: skills[skill] + 1,
     };
   }, initialSkills);
-
-  return skills;
 };

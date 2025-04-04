@@ -10,6 +10,7 @@ import {
   heroClassHeroes,
   type HeroClassId,
   heroIds,
+  heroLevelExperienceThresholds,
   Luck,
   MapHeroObjectType,
   MapTownObjectType,
@@ -83,7 +84,7 @@ export const gameSlice = createSlice({
 
           const experience = info.experience || random(40, 90);
 
-          const level = getHeroLevel(experience);
+          const level = getHeroLevel(experience, heroLevelExperienceThresholds);
 
           const hero: Hero = {
             // NOTE: editor allows to create scenarios where heroes have no army
@@ -104,7 +105,7 @@ export const gameSlice = createSlice({
             mobility: 0,
             morale: Morale.Normal,
             owner: info.owner,
-            skills: getHeroSkillsForLevel(heroClass, level),
+            skills: getHeroSkillsForLevel(level, heroClass),
           };
 
           return [...heroes, hero];
