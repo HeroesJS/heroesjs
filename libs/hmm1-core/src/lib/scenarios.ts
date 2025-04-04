@@ -1,5 +1,5 @@
 import { Player } from './core';
-import { createMap, type Map, MapSize } from './map';
+import { createMap, type Map, MapHeroObjectType, MapSize, MapTownObjectType } from './map';
 import { ScenarioDifficulty, ScenarioSize } from './scenario';
 import { TownClass } from './town';
 
@@ -24,7 +24,7 @@ export const scenarios: readonly ScenarioData[] = [
           id: 0,
           owner: Player.Player1,
           startArtifact: [],
-          type: 75,
+          type: MapHeroObjectType,
         },
         {
           buildings: 0,
@@ -32,7 +32,7 @@ export const scenarios: readonly ScenarioData[] = [
           initFlag: 0,
           mageGuildLevel: 0,
           owner: Player.Player1,
-          type: 70,
+          type: MapTownObjectType,
         },
         {
           army: [],
@@ -40,7 +40,7 @@ export const scenarios: readonly ScenarioData[] = [
           id: 0,
           owner: Player.Player2,
           startArtifact: [],
-          type: 75,
+          type: MapHeroObjectType,
         },
         {
           buildings: 0,
@@ -48,7 +48,7 @@ export const scenarios: readonly ScenarioData[] = [
           initFlag: 0,
           mageGuildLevel: 0,
           owner: Player.Player2,
-          type: 70,
+          type: MapTownObjectType,
         },
         {
           army: [],
@@ -56,7 +56,7 @@ export const scenarios: readonly ScenarioData[] = [
           id: 0,
           owner: Player.Player3,
           startArtifact: [],
-          type: 75,
+          type: MapHeroObjectType,
         },
         {
           buildings: 0,
@@ -64,7 +64,7 @@ export const scenarios: readonly ScenarioData[] = [
           initFlag: 0,
           mageGuildLevel: 0,
           owner: Player.Player3,
-          type: 70,
+          type: MapTownObjectType,
         },
         {
           army: [],
@@ -72,7 +72,7 @@ export const scenarios: readonly ScenarioData[] = [
           id: 0,
           owner: Player.Player4,
           startArtifact: [],
-          type: 75,
+          type: MapHeroObjectType,
         },
         {
           buildings: 0,
@@ -80,7 +80,7 @@ export const scenarios: readonly ScenarioData[] = [
           initFlag: 0,
           mageGuildLevel: 0,
           owner: Player.Player4,
-          type: 70,
+          type: MapTownObjectType,
         },
       ],
       townInfo: [
