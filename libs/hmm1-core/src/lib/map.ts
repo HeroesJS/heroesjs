@@ -55,18 +55,15 @@ export interface MapHeroObjectInfo {
 export type MapObjectInfo = MapTownObjectInfo | MapHeroObjectInfo;
 
 export interface Map {
-  // readonly difficulty: GameDifficulty;
-  // readonly height: typeof MapSize;
-  // readonly mineInfo: readonly MapMineInfo[];
-  // readonly obeliskCount: number;
+  readonly height: typeof MapSize;
   readonly objectInfo: readonly MapObjectInfo[];
-  // readonly size: ScenarioSize;
-  // readonly tiles: readonly MapTile[][];
   readonly townInfo: readonly MapTownInfo[];
-  // readonly width: typeof MapSize;
+  readonly width: typeof MapSize;
 }
 
 export const createMap = (): Map => ({
+  height: MapSize,
   objectInfo: [],
   townInfo: [],
+  width: MapSize,
 });
