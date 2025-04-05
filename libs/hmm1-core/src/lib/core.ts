@@ -8,10 +8,10 @@ export enum Player {
 export const players: readonly Player[] = [Player.Player1, Player.Player2, Player.Player3, Player.Player4];
 
 export enum PlayerColor {
-  Red = 0,
-  Blue = 1,
-  Yellow = 2,
-  Green = 3,
+  Blue = 0,
+  Green = 1,
+  Red = 2,
+  Yellow = 3,
 }
 
 export const playerColors: readonly PlayerColor[] = [

@@ -1,4 +1,5 @@
 import type { HeroId, Player } from './core';
+import type { ScenarioDifficulty, ScenarioSize } from './scenario';
 import type { TownClass } from './town';
 
 export const MapSize = 72;
@@ -55,15 +56,20 @@ export interface MapHeroObjectInfo {
 export type MapObjectInfo = MapTownObjectInfo | MapHeroObjectInfo;
 
 export interface Map {
+  readonly description: string;
+  readonly difficulty: ScenarioDifficulty;
+  readonly editorVersion: number;
   readonly height: typeof MapSize;
+  readonly name: string;
   readonly objectInfo: readonly MapObjectInfo[];
+  readonly size: ScenarioSize;
   readonly townInfo: readonly MapTownInfo[];
   readonly width: typeof MapSize;
 }
 
-export const createMap = (): Map => ({
+export const createMap = (data: Omit<Map, 'editorVersion' | 'height' | 'width'>): Map => ({
+  editorVersion: 0,
   height: MapSize,
-  objectInfo: [],
-  townInfo: [],
   width: MapSize,
+  ...data,
 });

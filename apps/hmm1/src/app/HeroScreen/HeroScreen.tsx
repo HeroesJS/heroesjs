@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { HeroWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Modal, useModal } from '@heroesjs/hmm1-base-ui';
 
-import { getSelectedHero } from '../gameSlice';
+import { getPlayer, getSelectedHero } from '../gameSlice';
 import { useAppSelector } from '../hooks';
 
 type Props = Pick<ComponentProps<typeof HeroWindow>, 'onExitClick'>;
@@ -14,7 +14,9 @@ export const HeroScreen = ({ onExitClick }: Props) => {
 
   const notImplementedModal = useModal();
 
-  const hero = useAppSelector(getSelectedHero);
+  const hero = useAppSelector(getSelectedHero)!;
+
+  const owner = useAppSelector(getPlayer(hero.owner));
 
   useEffect(() => {
     if (!hero) {
@@ -30,7 +32,10 @@ export const HeroScreen = ({ onExitClick }: Props) => {
     <>
       <HeroWindow
         allowDismiss
-        hero={hero}
+        hero={{
+          ...hero,
+          ownerColor: owner.color,
+        }}
         onDismissClick={notImplementedModal.open}
         onDismissTroop={notImplementedModal.open}
         onExitClick={onExitClick}

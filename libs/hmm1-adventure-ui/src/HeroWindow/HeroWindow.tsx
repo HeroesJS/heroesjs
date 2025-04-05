@@ -9,6 +9,7 @@ import {
   ArtifactId,
   creatureDataById,
   type Hero,
+  type PlayerColor,
   ScreenHeight,
   ScreenWidth,
   type Skill,
@@ -25,10 +26,13 @@ import { AdditionalStats, getEffectType } from './AdditionalStats';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-export type HeroInfo = Pick<
-  Hero,
-  'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'owner' | 'skills'
->;
+export interface HeroInfo
+  extends Pick<
+    Hero,
+    'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'skills'
+  > {
+  readonly ownerColor: PlayerColor;
+}
 
 interface Props {
   readonly allowDismiss?: boolean;
@@ -239,7 +243,7 @@ export const HeroWindow = ({
         y={101}
       />
       <Crest
-        color={hero.owner}
+        color={hero.ownerColor}
         heroClass={hero.heroClass}
         label={t('kingdomOverviewLabel')}
         onClick={onKingdomOverviewClick}

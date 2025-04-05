@@ -1,4 +1,4 @@
-import { isEmpty, isEqual, last, range, sum } from 'lodash';
+import { isEqual, last, range, sortBy } from 'lodash';
 import assert from 'node:assert';
 
 import type { Army } from './army';
@@ -102,7 +102,7 @@ export const heroLevelExperienceThresholds = [
 export const getHeroLevel = (experience: number, thresholds: readonly number[]) => {
   assert(experience >= 0, 'Experience must be non-negative');
   assert(thresholds.length, 'Thresholds are required');
-  assert(isEqual(thresholds, Array.from(thresholds).sort()), 'Thresholds must be sorted ascending');
+  assert(isEqual(thresholds, sortBy(thresholds)), 'Thresholds must be sorted ascending');
 
   const crossedThresholds = thresholds.filter((threshold) => threshold <= experience);
 

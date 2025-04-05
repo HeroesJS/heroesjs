@@ -100,7 +100,7 @@ export const AdventureScreen = () => {
       renderTownLocators={() =>
         towns.map((town, index) => (
           <Locator key={index} onClick={() => handleTownLocatorClick(index)} selected={index === selectedTownIndex}>
-            <TownLocator castle town={town.type} />
+            <TownLocator castle town={town.class} />
           </Locator>
         ))
       }
