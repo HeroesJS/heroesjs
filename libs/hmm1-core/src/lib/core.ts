@@ -161,13 +161,6 @@ export const heroClasses: readonly HeroClassId[] = [
   HeroClassId.Warlock,
 ];
 
-export const playerColorToHeroClassMap: Record<PlayerColor, HeroClassId> = {
-  [PlayerColor.Blue]: HeroClassId.Warlock,
-  [PlayerColor.Green]: HeroClassId.Barbarian,
-  [PlayerColor.Red]: HeroClassId.Knight,
-  [PlayerColor.Yellow]: HeroClassId.Sorceress,
-};
-
 export const heroClassHeroes: Record<HeroClassId, readonly HeroId[]> = {
   [HeroClassId.Barbarian]: [
     HeroId.Thundax,

@@ -1,4 +1,4 @@
-import { TownClass } from '@heroesjs/hmm1-core';
+import { TownClassId } from '@heroesjs/hmm1-core';
 
 import farmCastleLocator from './farm/castle-locator.jpg';
 import farmTownLocator from './farm/town-locator.jpg';
@@ -14,20 +14,20 @@ interface TownLocatorAssets {
   readonly town: string;
 }
 
-export const locators: Record<TownClass, TownLocatorAssets> = {
-  [TownClass.Farm]: {
+export const locators: Record<TownClassId, TownLocatorAssets> = {
+  [TownClassId.Farm]: {
     castle: farmCastleLocator,
     town: farmTownLocator,
   },
-  [TownClass.Forest]: {
+  [TownClassId.Forest]: {
     castle: forestCastleLocator,
     town: forestTownLocator,
   },
-  [TownClass.Mountains]: {
+  [TownClassId.Mountains]: {
     castle: mountainsCastleLocator,
     town: mountainsTownLocator,
   },
-  [TownClass.Plains]: {
+  [TownClassId.Plains]: {
     castle: plainsCastleLocator,
     town: plainsTownLocator,
   },

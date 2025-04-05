@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TownClass } from '@heroesjs/hmm1-core';
+import { TownClassId } from '@heroesjs/hmm1-core';
 
 import { TownLocator } from './TownLocator';
 
 const meta: Meta<typeof TownLocator> = {
   args: {
-    town: TownClass.Farm,
+    town: TownClassId.Farm,
   },
   component: TownLocator,
 };

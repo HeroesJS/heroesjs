@@ -19,7 +19,7 @@ import {
   PlayerColor,
   PlayerId,
   players,
-  RandomTownClass,
+  RandomTownClassId,
   type ScenarioData,
   type Town,
   townClasses,
@@ -142,7 +142,7 @@ export const gameSlice = createSlice({
         const townInfo = map.townInfo[i];
 
         return {
-          class: townInfo.class === RandomTownClass ? sample(townClasses)! : townInfo.class,
+          class: townInfo.class === RandomTownClassId ? sample(townClasses)! : townInfo.class,
           id: i,
           owner: info.owner,
         };

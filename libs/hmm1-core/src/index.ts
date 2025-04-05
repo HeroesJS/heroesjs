@@ -23,7 +23,6 @@ export {
   type OpponentSettings,
   PlayerColor,
   playerColors,
-  playerColorToHeroClassMap,
   PlayerId,
   players,
   previousOption,
@@ -47,11 +46,11 @@ export {
   type MapTownInfo,
   type MapTownObjectInfo,
   MapTownObjectType,
-  RandomTownClass,
+  RandomTownClassId,
 } from './lib/map';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';
 export { type ScenarioData, scenarios } from './lib/scenarios';
 export { ScreenHeight, ScreenWidth } from './lib/screen';
 export { isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes } from './lib/sound';
-export { type Town, TownClass, townClasses } from './lib/town';
+export { type Town, townClasses, TownClassId } from './lib/town';

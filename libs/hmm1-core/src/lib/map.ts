@@ -1,6 +1,6 @@
 import type { HeroId, PlayerId } from './core';
 import type { ScenarioDifficulty, ScenarioSize } from './scenario';
-import type { TownClass } from './town';
+import type { TownClassId } from './town';
 
 export const MapSize = 72;
 
@@ -12,10 +12,10 @@ export interface MapTile {
   readonly terrainType: number;
 }
 
-export const RandomTownClass = 4;
+export const RandomTownClassId = 4;
 
 export interface MapTownInfo {
-  readonly class: TownClass | typeof RandomTownClass;
+  readonly class: TownClassId | typeof RandomTownClassId;
   readonly x: number;
   readonly y: number;
 }

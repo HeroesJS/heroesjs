@@ -1,7 +1,7 @@
 import { PlayerId } from './core';
 import { createMap, type Map, MapHeroObjectType, MapTownObjectType } from './map';
 import { ScenarioDifficulty, ScenarioSize } from './scenario';
-import { TownClass } from './town';
+import { TownClassId } from './town';
 
 export type ScenarioData = Map;
 
@@ -79,22 +79,22 @@ export const scenarios: readonly Map[] = [
     size: ScenarioSize.Small,
     townInfo: [
       {
-        class: TownClass.Farm,
+        class: TownClassId.Farm,
         x: 0,
         y: 0,
       },
       {
-        class: TownClass.Plains,
+        class: TownClassId.Plains,
         x: 0,
         y: 0,
       },
       {
-        class: TownClass.Forest,
+        class: TownClassId.Forest,
         x: 0,
         y: 0,
       },
       {
-        class: TownClass.Mountains,
+        class: TownClassId.Mountains,
         x: 0,
         y: 0,
       },
