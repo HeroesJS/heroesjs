@@ -5,7 +5,10 @@ import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
 import { Screen } from '@heroesjs/hmm1-base-ui';
 import { type Campaign, campaignScenarios, defaultOpponentSettings, scenarios } from '@heroesjs/hmm1-core';
 
+import { useGetSavedGamesQuery } from '../api';
 import { FileSelectorWindow } from '../FileSelectorWindow';
+import { startGame } from '../gameSlice';
+import { useAppDispatch } from '../hooks';
 import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
 import { NewGameWindow } from '../NewGameWindow';
 
@@ -42,17 +45,7 @@ export const MainScreen = () => {
         <Route Component={NewGameSelection} path="new/standard" />
         <Route Component={ScenarioSelection} path="new/standard/scenario" />
         <Route Component={CampaignSelection} path="new/campaign" />
-        <Route
-          element={
-            <CampaignScenarioInfoWindow
-              onConfirmClick={() => navigate('/adventure')}
-              scenario={campaignScenarios[0]}
-              x={105}
-              y={96}
-            />
-          }
-          path="new/campaign/:leader"
-        />
+        <Route Component={CampaignIntroduction} path="new/campaign/:leader" />
         <Route Component={MultiPlayerGameTypeSelection} path="new/multi-player" />
         <Route Component={PlayerCountSelection} path="new/multi-player/hot-seat" />
         <Route Component={NewGameSelection} path="new/multi-player/hot-seat/:count" />
@@ -60,8 +53,8 @@ export const MainScreen = () => {
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/modem" />
         <Route element={<HostGuestSelection detailed />} path="new/multi-player/direct-connect" />
         <Route Component={GameTypeSelection} path="load" />
-        <Route element="File Selector" path="load/standard" />
-        <Route element="File Selector" path="load/campaign" />
+        <Route element={<SaveGameSelection />} path="load/standard" />
+        <Route element={<SaveGameSelection />} path="load/campaign" />
         <Route Component={MultiPlayerGameTypeSelection} path="load/multi-player" />
         <Route Component={PlayerCountSelection} path="load/multi-player/hot-seat" />
         <Route element="File Selector" path="load/multi-player/hot-seat/:count" />
@@ -104,6 +97,21 @@ const CampaignSelection = () => {
   const handleCancelClick = () => navigate('/');
 
   return <CampaignMenu onCampaignClick={handleCampaignClick} onCancelClick={handleCancelClick} x={MenuX} y={MenuY} />;
+};
+
+const CampaignIntroduction = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const scenario = campaignScenarios[0];
+
+  const handleConfirmClick = useCallback(() => {
+    dispatch(startGame(scenario));
+
+    navigate('/adventure');
+  }, [dispatch, navigate, scenario]);
+
+  return <CampaignScenarioInfoWindow onConfirmClick={handleConfirmClick} scenario={scenario} x={105} y={96} />;
 };
 
 const MultiPlayerGameTypeSelection = () => {
@@ -168,6 +176,8 @@ const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
 };
 
 const NewGameSelection = () => {
+  const dispatch = useAppDispatch();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [opponentSettings, setOpponentSettings] = useState(defaultOpponentSettings);
@@ -199,7 +209,11 @@ const NewGameSelection = () => {
     [navigate, selectedScenario],
   );
 
-  const handleConfirmClick = useCallback(() => navigate('/adventure'), [navigate]);
+  const handleConfirmClick = useCallback(() => {
+    dispatch(startGame(scenario!));
+
+    navigate('/adventure');
+  }, [dispatch, navigate, scenario]);
 
   const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
 
@@ -287,6 +301,34 @@ const ScenarioSelection = () => {
       scenarioInfo={scenario}
       selectedItem={selectedScenario}
       showScenarioInfo
+      x={310}
+      y={14}
+    />
+  );
+};
+
+const SaveGameSelection = () => {
+  const navigate = useNavigate();
+
+  const [selectedItem, setSelectedItem] = useState<string>();
+
+  const { data = [] } = useGetSavedGamesQuery();
+
+  const handleConfirmClick = useCallback(() => {
+    // TODO: initialize game
+
+    navigate('/adventure');
+  }, [navigate]);
+
+  const handleCancelClick = useCallback(() => navigate('/'), [navigate]);
+
+  return (
+    <FileSelectorWindow
+      items={data.map((f) => f.name)}
+      onCancelClick={handleCancelClick}
+      onConfirmClick={handleConfirmClick}
+      onItemClick={setSelectedItem}
+      selectedItem={selectedItem}
       x={310}
       y={14}
     />

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
-import { creatureById, type CreatureId } from '@heroesjs/hmm1-core';
+import { creatureDataById, type CreatureId } from '@heroesjs/hmm1-core';
 
 import { CreatureIcon } from '../CreatureIcon';
 
@@ -40,7 +40,7 @@ export const TroopSlot = ({
 
   const handleClick = useCallback(() => onClick?.(index), [index, onClick]);
 
-  const creature = creatureId !== undefined ? creatureById[creatureId] : undefined;
+  const creature = creatureId !== undefined ? creatureDataById[creatureId] : undefined;
 
   return (
     <Root

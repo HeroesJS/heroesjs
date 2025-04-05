@@ -1,6 +1,6 @@
 export { type Army, armySize, type Troop } from './lib/army';
 export { artifactById, ArtifactId } from './lib/artifact';
-export { Campaign, campaignScenarios } from './lib/campaign';
+export { Campaign, type CampaignScenarioData, campaignScenarios } from './lib/campaign';
 export {
   defaultOpponentSettings,
   formatDamageRange,
@@ -9,8 +9,10 @@ export {
   GameDifficulty,
   getOpponentCount,
   heroClasses,
+  heroClassHeroes,
   HeroClassId,
   HeroId,
+  heroIds,
   Luck,
   Morale,
   MovementSpeed,
@@ -21,16 +23,34 @@ export {
   type OpponentSettings,
   PlayerColor,
   playerColors,
+  PlayerId,
+  players,
   previousOption,
   Skill,
   skills,
   type SkillValues,
-  Town,
 } from './lib/core';
-export { creatureById, type CreatureData, CreatureId, creatures, CreatureSpeed } from './lib/creature';
-export type { Hero } from './lib/hero';
+export { CreatureId, CreatureSpeed } from './lib/creature';
+export * from './lib/data';
+export { getHeroLevel, getHeroSkillsForLevel, type Hero, heroLevelExperienceThresholds } from './lib/hero';
+export {
+  createMap,
+  type Map,
+  type MapHeroObjectInfo,
+  MapHeroObjectType,
+  type MapMineInfo,
+  type MapObjectArmy,
+  type MapObjectInfo,
+  MapSize,
+  type MapTile,
+  type MapTownInfo,
+  type MapTownObjectInfo,
+  MapTownObjectType,
+  RandomTownClassId,
+} from './lib/map';
 export { calculateRating, formatRating, type RatingData } from './lib/rating';
 export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';
 export { type ScenarioData, scenarios } from './lib/scenarios';
 export { ScreenHeight, ScreenWidth } from './lib/screen';
 export { isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes } from './lib/sound';
+export { type Town, townClasses, TownClassId } from './lib/town';

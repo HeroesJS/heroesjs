@@ -288,10 +288,10 @@
     "smart": "Smart"
   },
   "playerColor": {
-    "blue": "Blue",
-    "green": "Green",
-    "red": "Red",
-    "yellow": "Yellow"
+    "0": "Blue",
+    "1": "Green",
+    "2": "Red",
+    "3": "Yellow"
   },
   "scenarioDifficulty": {
     "easy": "Easy",

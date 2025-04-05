@@ -7,8 +7,9 @@ import {
   armySize,
   artifactById,
   ArtifactId,
-  creatureById,
+  creatureDataById,
   type Hero,
+  type PlayerColor,
   ScreenHeight,
   ScreenWidth,
   type Skill,
@@ -25,10 +26,13 @@ import { AdditionalStats, getEffectType } from './AdditionalStats';
 import * as assets from './assets';
 import { SkillInfo } from './SkillInfo';
 
-export type HeroInfo = Pick<
-  Hero,
-  'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'player' | 'skills'
->;
+export interface HeroInfo
+  extends Pick<
+    Hero,
+    'army' | 'artifacts' | 'experience' | 'heroClass' | 'id' | 'level' | 'luck' | 'morale' | 'skills'
+  > {
+  readonly ownerColor: PlayerColor;
+}
 
 interface Props {
   readonly allowDismiss?: boolean;
@@ -239,7 +243,7 @@ export const HeroWindow = ({
         y={101}
       />
       <Crest
-        color={hero.player}
+        color={hero.ownerColor}
         heroClass={hero.heroClass}
         label={t('kingdomOverviewLabel')}
         onClick={onKingdomOverviewClick}
@@ -267,7 +271,7 @@ export const HeroWindow = ({
       {infoTroop && troopInfoModal.isOpen && (
         <TroopDetailsWindow
           count={infoTroop.count}
-          creature={creatureById[infoTroop.creatureId]}
+          creature={creatureDataById[infoTroop.creatureId]}
           hideExit
           skillsBonus={hero.skills}
           x={119}
@@ -278,7 +282,7 @@ export const HeroWindow = ({
         <TroopDetailsWindow
           allowDismiss={compact(hero.army).length > 1}
           count={selectedTroop.count}
-          creature={creatureById[selectedTroop.creatureId]}
+          creature={creatureDataById[selectedTroop.creatureId]}
           onDismissClick={handleDismissTroopClick}
           onExitClick={troopDetailsModal.close}
           skillsBonus={hero.skills}

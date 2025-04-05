@@ -15,7 +15,7 @@ describe(HeroWindow, () => {
     level: 1,
     luck: Luck.Normal,
     morale: Morale.Normal,
-    player: PlayerColor.Red,
+    ownerColor: PlayerColor.Blue,
     skills: {
       [Skill.Attack]: 0,
       [Skill.Defense]: 0,
