@@ -1,4 +1,4 @@
-import type { Player } from './core';
+import type { PlayerId } from './core';
 
 export enum TownClass {
   Farm = 0,
@@ -12,5 +12,5 @@ export const townClasses = Object.values(TownClass).filter((v) => typeof v === '
 export interface Town {
   readonly class: TownClass;
   readonly id: number;
-  readonly owner: Player | undefined;
+  readonly owner: PlayerId | undefined;
 }

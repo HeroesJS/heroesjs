@@ -1,11 +1,11 @@
-export enum Player {
+export enum PlayerId {
   Player1 = 0,
   Player2 = 1,
   Player3 = 2,
   Player4 = 3,
 }
 
-export const players: readonly Player[] = [Player.Player1, Player.Player2, Player.Player3, Player.Player4];
+export const players: readonly PlayerId[] = [PlayerId.Player1, PlayerId.Player2, PlayerId.Player3, PlayerId.Player4];
 
 export enum PlayerColor {
   Blue = 0,

@@ -1,4 +1,4 @@
-import type { HeroId, Player } from './core';
+import type { HeroId, PlayerId } from './core';
 import type { ScenarioDifficulty, ScenarioSize } from './scenario';
 import type { TownClass } from './town';
 
@@ -38,7 +38,7 @@ export interface MapTownObjectInfo {
   readonly garrison: readonly MapObjectArmy[];
   readonly initFlag: number;
   readonly mageGuildLevel: number;
-  readonly owner: Player | undefined;
+  readonly owner: PlayerId | undefined;
   readonly type: typeof MapTownObjectType;
 }
 
@@ -48,7 +48,7 @@ export interface MapHeroObjectInfo {
   readonly army: readonly MapObjectArmy[];
   readonly experience: number;
   readonly id: HeroId;
-  readonly owner: Player;
+  readonly owner: PlayerId;
   readonly startArtifact: readonly number[];
   readonly type: typeof MapHeroObjectType;
 }

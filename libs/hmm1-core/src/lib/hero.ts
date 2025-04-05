@@ -3,7 +3,7 @@ import assert from 'node:assert';
 
 import type { Army } from './army';
 import type { ArtifactId } from './artifact';
-import type { HeroClassId, HeroId, Luck, Morale, Player, Skill, SkillValues } from './core';
+import type { HeroClassId, HeroId, Luck, Morale, PlayerId, Skill, SkillValues } from './core';
 import { heroClassDataById } from './data';
 
 export interface Hero {
@@ -16,7 +16,7 @@ export interface Hero {
   readonly luck: Luck;
   readonly mobility: number;
   readonly morale: Morale;
-  readonly owner: Player;
+  readonly owner: PlayerId;
   readonly skills: SkillValues;
 }
 

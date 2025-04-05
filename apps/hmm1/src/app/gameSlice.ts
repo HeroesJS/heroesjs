@@ -16,8 +16,8 @@ import {
   MapTownObjectType,
   Morale,
   nextOption,
-  Player,
   PlayerColor,
+  PlayerId,
   players,
   RandomTownClass,
   type ScenarioData,
@@ -27,37 +27,37 @@ import {
 
 import type { RootState } from './store';
 
-interface PlayerState {
+interface Player {
   readonly color: PlayerColor;
   readonly name: string;
 }
 
 interface GameState {
-  readonly activePlayer: Player;
+  readonly activePlayer: PlayerId;
   readonly heroes: readonly Hero[];
-  readonly players: Record<Player, PlayerState>;
+  readonly players: Record<PlayerId, Player>;
   readonly selectedHeroIndex: number | undefined;
   readonly selectedTownIndex: number | undefined;
   readonly towns: readonly Town[];
 }
 
 const initialState: GameState = {
-  activePlayer: Player.Player1,
+  activePlayer: PlayerId.Player1,
   heroes: [],
   players: {
-    [Player.Player1]: {
+    [PlayerId.Player1]: {
       color: PlayerColor.Blue,
       name: 'Player 1',
     },
-    [Player.Player2]: {
+    [PlayerId.Player2]: {
       color: PlayerColor.Green,
       name: 'Player 2',
     },
-    [Player.Player3]: {
+    [PlayerId.Player3]: {
       color: PlayerColor.Red,
       name: 'Player 3',
     },
-    [Player.Player4]: {
+    [PlayerId.Player4]: {
       color: PlayerColor.Yellow,
       name: 'Player 4',
     },
@@ -159,7 +159,7 @@ export const gameSlice = createSlice({
 
 export const { endTurn, loadGame, selectHero, selectTown, startGame } = gameSlice.actions;
 
-export const getPlayer = (value: Player) => (state: RootState) => state.game.players[value];
+export const getPlayer = (value: PlayerId) => (state: RootState) => state.game.players[value];
 
 export const getHeroes = (state: RootState) => state.game.heroes.filter((h) => h.owner === state.game.activePlayer);
 
