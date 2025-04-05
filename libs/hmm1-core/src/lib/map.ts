@@ -15,7 +15,7 @@ export interface MapTile {
 export const RandomTownClass = 4;
 
 export interface MapTownInfo {
-  readonly type: TownClass | typeof RandomTownClass;
+  readonly class: TownClass | typeof RandomTownClass;
   readonly x: number;
   readonly y: number;
 }

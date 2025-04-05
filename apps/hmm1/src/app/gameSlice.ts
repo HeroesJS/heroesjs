@@ -142,7 +142,7 @@ export const gameSlice = createSlice({
         const townInfo = map.townInfo[i];
 
         return {
-          class: townInfo.type === RandomTownClass ? sample(townClasses)! : townInfo.type,
+          class: townInfo.class === RandomTownClass ? sample(townClasses)! : townInfo.class,
           id: i,
           owner: info.owner,
         };

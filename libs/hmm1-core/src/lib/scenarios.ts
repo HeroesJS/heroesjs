@@ -79,22 +79,22 @@ export const scenarios: readonly Map[] = [
     size: ScenarioSize.Small,
     townInfo: [
       {
-        type: TownClass.Farm,
+        class: TownClass.Farm,
         x: 0,
         y: 0,
       },
       {
-        type: TownClass.Plains,
+        class: TownClass.Plains,
         x: 0,
         y: 0,
       },
       {
-        type: TownClass.Forest,
+        class: TownClass.Forest,
         x: 0,
         y: 0,
       },
       {
-        type: TownClass.Mountains,
+        class: TownClass.Mountains,
         x: 0,
         y: 0,
       },
