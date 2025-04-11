@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { AdventureOptionsWindow } from './AdventureOptionsWindow';
+import {AdventureOptionsWindow} from './AdventureOptionsWindow';
 
 const meta: Meta<typeof AdventureOptionsWindow> = {
   component: AdventureOptionsWindow,

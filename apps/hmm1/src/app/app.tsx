@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import {useEffect} from 'react';
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
-import { GlobalStyle } from '@heroesjs/hmm1-base-ui';
-import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
+import {GlobalStyle} from '@heroesjs/hmm1-base-ui';
+import {ScreenHeight, ScreenWidth} from '@heroesjs/hmm1-core';
 
-import { AdventureScreen } from './AdventureScreen';
-import { CreditsScreen } from './CreditsScreen';
-import { MainScreen } from './MainScreen';
+import {AdventureScreen} from './AdventureScreen';
+import {CreditsScreen} from './CreditsScreen';
+import {MainScreen} from './MainScreen';
 
 export function App() {
   const navigate = useNavigate();

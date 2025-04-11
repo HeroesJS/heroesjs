@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { ComPortMenu } from './ComPortMenu';
+import {ComPortMenu} from './ComPortMenu';
 
 const meta: Meta<typeof ComPortMenu> = {
   component: ComPortMenu,

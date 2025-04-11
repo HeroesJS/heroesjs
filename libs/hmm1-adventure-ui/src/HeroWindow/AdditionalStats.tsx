@@ -1,9 +1,9 @@
-import { range } from 'lodash';
-import { useTranslation } from 'react-i18next';
+import {range} from 'lodash';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Modal, PositionedComponent, type PositionProps, Text, useModal } from '@heroesjs/hmm1-base-ui';
-import type { Luck, Morale } from '@heroesjs/hmm1-core';
+import {Modal, PositionedComponent, type PositionProps, Text, useModal} from '@heroesjs/hmm1-base-ui';
+import type {Luck, Morale} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -36,7 +36,7 @@ export const AdditionalStats = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.heroWindow'});
 
   const moraleDetailsModal = useModal();
   const luckDetailsModal = useModal();

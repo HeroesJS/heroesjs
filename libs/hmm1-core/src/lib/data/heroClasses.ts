@@ -1,7 +1,7 @@
-import { keyBy } from 'lodash';
+import {keyBy} from 'lodash';
 
-import { HeroClassId, Skill, type SkillValues } from '../core';
-import { CreatureId } from '../creature';
+import {HeroClassId, Skill, type SkillValues} from '../core';
+import {CreatureId} from '../creature';
 
 export interface SkillGainProbabilities {
   readonly default: SkillValues;

@@ -1,6 +1,6 @@
-import type { HeroId, PlayerId } from './core';
-import type { ScenarioDifficulty, ScenarioSize } from './scenario';
-import type { TownClassId } from './town';
+import type {HeroId, PlayerId} from './core';
+import type {ScenarioDifficulty, ScenarioSize} from './scenario';
+import type {TownClassId} from './town';
 
 export const MapSize = 72;
 

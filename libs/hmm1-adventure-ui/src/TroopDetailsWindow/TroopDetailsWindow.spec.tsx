@@ -1,9 +1,9 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { creatureDataById, CreatureId, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {creatureDataById, CreatureId, Luck, Morale, Skill} from '@heroesjs/hmm1-core';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { TroopDetailsWindow } from './TroopDetailsWindow';
+import {TroopDetailsWindow} from './TroopDetailsWindow';
 
 describe(TroopDetailsWindow, () => {
   const creature = creatureDataById[CreatureId.Peasant];
@@ -11,7 +11,7 @@ describe(TroopDetailsWindow, () => {
   it('renders dialog', () => {
     renderWithProviders(<TroopDetailsWindow creature={creature} />);
 
-    expect(screen.getByRole('dialog', { name: /troop details/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', {name: /troop details/i})).toBeInTheDocument();
   });
 
   it('renders count', () => {
@@ -76,46 +76,46 @@ describe(TroopDetailsWindow, () => {
     it('does not render button by default', () => {
       renderWithProviders(<TroopDetailsWindow creature={creature} />);
 
-      expect(screen.queryByRole('button', { name: /dismiss/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', {name: /dismiss/i})).not.toBeInTheDocument();
     });
 
     it('renders button when dismiss is allowed', () => {
       renderWithProviders(<TroopDetailsWindow allowDismiss creature={creature} />);
 
-      expect(screen.getByRole('button', { name: /dismiss/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /dismiss/i})).toBeInTheDocument();
     });
 
     it('renders confirm modal when clicked', async () => {
-      const { user } = renderWithProviders(<TroopDetailsWindow allowDismiss creature={creature} />);
+      const {user} = renderWithProviders(<TroopDetailsWindow allowDismiss creature={creature} />);
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      expect(screen.getByRole('dialog', { name: /are you sure you want to dismiss this army\?/i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', {name: /are you sure you want to dismiss this army\?/i})).toBeInTheDocument();
     });
 
     it('calls handler when confirm is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(
+      const {user} = renderWithProviders(
         <TroopDetailsWindow allowDismiss creature={creature} onDismissClick={handler} />,
       );
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      await user.click(screen.getByRole('button', { name: /yes/i }));
+      await user.click(screen.getByRole('button', {name: /yes/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('hides modal when cancel is clicked', async () => {
-      const { user } = renderWithProviders(<TroopDetailsWindow allowDismiss creature={creature} />);
+      const {user} = renderWithProviders(<TroopDetailsWindow allowDismiss creature={creature} />);
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      await user.click(screen.getByRole('button', { name: /no/i }));
+      await user.click(screen.getByRole('button', {name: /no/i}));
 
       expect(
-        screen.queryByRole('dialog', { name: /are you sure you want to dismiss this army\?/i }),
+        screen.queryByRole('dialog', {name: /are you sure you want to dismiss this army\?/i}),
       ).not.toBeInTheDocument();
     });
   });
@@ -124,15 +124,15 @@ describe(TroopDetailsWindow, () => {
     it('renders button', () => {
       renderWithProviders(<TroopDetailsWindow creature={creature} />);
 
-      expect(screen.getByRole('button', { name: /exit/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /exit/i})).toBeInTheDocument();
     });
 
     it('calls handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<TroopDetailsWindow creature={creature} onExitClick={handler} />);
+      const {user} = renderWithProviders(<TroopDetailsWindow creature={creature} onExitClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /exit/i }));
+      await user.click(screen.getByRole('button', {name: /exit/i}));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -140,7 +140,7 @@ describe(TroopDetailsWindow, () => {
     it('does not render button when hide exit is set', () => {
       renderWithProviders(<TroopDetailsWindow creature={creature} hideExit />);
 
-      expect(screen.queryByRole('button', { name: /exit/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', {name: /exit/i})).not.toBeInTheDocument();
     });
   });
 });

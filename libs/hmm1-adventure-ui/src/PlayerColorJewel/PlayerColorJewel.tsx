@@ -1,11 +1,11 @@
-import type { MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import type {MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
-import { type PlayerColor, playerColors } from '@heroesjs/hmm1-core';
+import {PositionedComponent, type PositionProps} from '@heroesjs/hmm1-base-ui';
+import {type PlayerColor, playerColors} from '@heroesjs/hmm1-core';
 
-import { gems } from './assets';
+import {gems} from './assets';
 
 interface Props extends PositionProps {
   readonly onClick?: () => void;
@@ -13,8 +13,8 @@ interface Props extends PositionProps {
   readonly value: PlayerColor;
 }
 
-export const PlayerColorJewel = ({ onClick, onMouseDown, value, x, y }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.playerColorJewel' });
+export const PlayerColorJewel = ({onClick, onMouseDown, value, x, y}: Props) => {
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.playerColorJewel'});
 
   return (
     <Root x={x} y={y}>

@@ -4,7 +4,7 @@ interface Props {
   readonly label?: string;
 }
 
-export const Placeholder = ({ label }: Props) => <Root>{label}</Root>;
+export const Placeholder = ({label}: Props) => <Root>{label}</Root>;
 
 const Root = styled.div({
   alignItems: 'center',

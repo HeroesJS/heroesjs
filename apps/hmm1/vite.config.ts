@@ -1,10 +1,10 @@
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
+import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
-import { defineConfig } from 'vite';
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import {defineConfig} from 'vite';
+import {nodePolyfills} from 'vite-plugin-node-polyfills';
 
-import { mergeWithBaseConfig } from '../../vite.config.base';
+import {mergeWithBaseConfig} from '../../vite.config.base';
 
 export default mergeWithBaseConfig(
   defineConfig({

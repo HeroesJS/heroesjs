@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { HeroId } from '@heroesjs/hmm1-core';
+import {HeroId} from '@heroesjs/hmm1-core';
 
-import { HeroPortrait } from './HeroPortrait';
+import {HeroPortrait} from './HeroPortrait';
 
 const meta: Meta<typeof HeroPortrait> = {
   args: {

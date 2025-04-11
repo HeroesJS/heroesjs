@@ -1,38 +1,38 @@
-import { screen, within } from '@testing-library/react';
+import {screen, within} from '@testing-library/react';
 
-import { ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {ScenarioDifficulty, ScenarioSize} from '@heroesjs/hmm1-core';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { FileSelectorWindow } from './FileSelectorWindow';
+import {FileSelectorWindow} from './FileSelectorWindow';
 
 describe(FileSelectorWindow, () => {
   it('renders window', async () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('dialog', { name: /file selector window/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', {name: /file selector window/i})).toBeInTheDocument();
   });
 
   it('renders heading', async () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('heading', { name: /file to load/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /file to load/i})).toBeInTheDocument();
   });
 
   it('renders items', async () => {
     renderWithProviders(<FileSelectorWindow items={['Item A', 'Item B']} />);
 
-    expect(screen.getByRole('listbox', { name: /items/i })).toBeInTheDocument();
+    expect(screen.getByRole('listbox', {name: /items/i})).toBeInTheDocument();
 
-    expect(screen.getByRole('option', { name: /item a/i })).toBeInTheDocument();
-    expect(screen.getByRole('option', { name: /item b/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', {name: /item a/i})).toBeInTheDocument();
+    expect(screen.getByRole('option', {name: /item b/i})).toBeInTheDocument();
   });
 
   it('calls handler when item is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<FileSelectorWindow items={['Item A']} onItemClick={handler} />);
+    const {user} = renderWithProviders(<FileSelectorWindow items={['Item A']} onItemClick={handler} />);
 
-    await user.click(screen.getByRole('option', { name: /item a/i }));
+    await user.click(screen.getByRole('option', {name: /item a/i}));
 
     expect(handler).toHaveBeenCalledWith('Item A');
   });
@@ -40,47 +40,47 @@ describe(FileSelectorWindow, () => {
   it('renders selected item as selected', async () => {
     renderWithProviders(<FileSelectorWindow items={['Item A']} selectedItem="Item A" />);
 
-    expect(screen.getByRole('option', { name: /item a/i })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('option', {name: /item a/i})).toHaveAttribute('aria-selected', 'true');
   });
 
   it('renders name input', () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('textbox', { name: /name/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', {name: /name/i})).toBeInTheDocument();
   });
 
   it('renders selected item in name input', async () => {
     renderWithProviders(<FileSelectorWindow items={['Item A']} selectedItem="Item A" />);
 
-    expect(screen.getByRole('textbox', { name: /name/i })).toHaveTextContent('Item A');
+    expect(screen.getByRole('textbox', {name: /name/i})).toHaveTextContent('Item A');
   });
 
   it('renders confirm button', async () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: /okay/i})).toBeInTheDocument();
   });
 
   it('renders confirm button as disabled when no item selected', async () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('button', {name: /okay/i})).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('renders confirm button as enabled when item selected', async () => {
     renderWithProviders(<FileSelectorWindow items={['Item A']} selectedItem="Item A" />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toBeEnabled();
+    expect(screen.getByRole('button', {name: /okay/i})).toBeEnabled();
   });
 
   it('calls handler when confirm button is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(
+    const {user} = renderWithProviders(
       <FileSelectorWindow items={['Item A']} onConfirmClick={handler} selectedItem="Item A" />,
     );
 
-    await user.click(screen.getByRole('button', { name: /okay/i }));
+    await user.click(screen.getByRole('button', {name: /okay/i}));
 
     expect(handler).toHaveBeenCalled();
   });
@@ -88,15 +88,15 @@ describe(FileSelectorWindow, () => {
   it('renders cancel button', async () => {
     renderWithProviders(<FileSelectorWindow />);
 
-    expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: /cancel/i})).toBeInTheDocument();
   });
 
   it('calls handler when cancel button is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<FileSelectorWindow onCancelClick={handler} />);
+    const {user} = renderWithProviders(<FileSelectorWindow onCancelClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
+    await user.click(screen.getByRole('button', {name: /cancel/i}));
 
     expect(handler).toHaveBeenCalled();
   });
@@ -105,13 +105,13 @@ describe(FileSelectorWindow, () => {
     it("doesn't render by default", async () => {
       renderWithProviders(<FileSelectorWindow />);
 
-      expect(screen.queryByRole('note', { name: /scenario info/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('note', {name: /scenario info/i})).not.toBeInTheDocument();
     });
 
     it('renders when set', async () => {
       renderWithProviders(<FileSelectorWindow showScenarioInfo />);
 
-      const info = screen.getByRole('note', { name: /scenario info/i });
+      const info = screen.getByRole('note', {name: /scenario info/i});
 
       expect(within(info).getByLabelText(/size/i)).toBeInTheDocument();
       expect(within(info).getByLabelText(/size/i)).toHaveTextContent('');
@@ -135,7 +135,7 @@ describe(FileSelectorWindow, () => {
         />,
       );
 
-      const info = screen.getByRole('note', { name: /scenario info/i });
+      const info = screen.getByRole('note', {name: /scenario info/i});
 
       expect(within(info).getByLabelText(/size/i)).toHaveTextContent(/large/i);
       expect(within(info).getByLabelText(/difficulty/i)).toHaveTextContent(/impossible/i);

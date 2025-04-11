@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from 'react';
-import styled, { css } from 'styled-components';
+import type {PropsWithChildren} from 'react';
+import styled, {css} from 'styled-components';
 
-import { Backdrop } from '../Backdrop';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import {Backdrop} from '../Backdrop';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
 
 import * as assets from './assets';
 
@@ -10,7 +10,7 @@ interface Props extends PositionProps {
   readonly label: string;
 }
 
-export const Menu = ({ children, label, x, y }: PropsWithChildren<Props>) => (
+export const Menu = ({children, label, x, y}: PropsWithChildren<Props>) => (
   <Backdrop>
     <Root aria-label={label} role="menu" x={x} y={y}>
       {children}

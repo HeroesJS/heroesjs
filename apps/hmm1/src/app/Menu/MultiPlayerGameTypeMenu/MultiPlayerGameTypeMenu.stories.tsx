@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
+import {MultiPlayerGameTypeMenu} from './MultiPlayerGameTypeMenu';
 
 const meta: Meta<typeof MultiPlayerGameTypeMenu> = {
   component: MultiPlayerGameTypeMenu,

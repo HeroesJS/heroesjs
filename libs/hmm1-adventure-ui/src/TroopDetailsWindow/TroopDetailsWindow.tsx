@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
-import { useTranslation } from 'react-i18next';
+import {Fragment} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, Modal, PositionedComponent, type PositionProps, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
-import { type CreatureData, formatDamageRange, formatSkillValue, Luck, Morale, type Skill } from '@heroesjs/hmm1-core';
+import {Button, Modal, PositionedComponent, type PositionProps, Text, useModal, Window} from '@heroesjs/hmm1-base-ui';
+import {type CreatureData, formatDamageRange, formatSkillValue, Luck, Morale, type Skill} from '@heroesjs/hmm1-core';
 
-import { CreatureIcon } from '../CreatureIcon';
+import {CreatureIcon} from '../CreatureIcon';
 
 import * as assets from './assets';
 
@@ -39,7 +39,7 @@ export const TroopDetailsWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.troopDetailsWindow' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.troopDetailsWindow'});
 
   const confirmDismissModal = useModal();
 

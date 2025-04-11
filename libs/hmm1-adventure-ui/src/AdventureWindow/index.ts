@@ -1,1 +1,1 @@
-export { AdventureWindow } from './AdventureWindow';
+export {AdventureWindow} from './AdventureWindow';

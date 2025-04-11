@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { FileSelectorWindow } from './FileSelectorWindow';
+import {FileSelectorWindow} from './FileSelectorWindow';
 
 const meta: Meta<typeof FileSelectorWindow> = {
   component: FileSelectorWindow,

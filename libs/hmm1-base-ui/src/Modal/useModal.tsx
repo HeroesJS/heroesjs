@@ -1,6 +1,6 @@
-import { type MouseEvent, useCallback, useState } from 'react';
+import {type MouseEvent, useCallback, useState} from 'react';
 
-import { useToggle2 } from '../useToggle';
+import {useToggle2} from '../useToggle';
 
 export interface UseModalResult<Args extends [MouseEvent, ...unknown[]] = [MouseEvent]> {
   readonly clickOpened: boolean;
@@ -20,7 +20,7 @@ export const useModal = <Args extends [MouseEvent, ...unknown[]]>(
   initialIsOpen = false,
   options: UseModalOptions<Args> = {},
 ): UseModalResult<Args> => {
-  const { onAfterClose, onBeforeOpen } = options;
+  const {onAfterClose, onBeforeOpen} = options;
 
   const [isOpen, open, close] = useToggle2(initialIsOpen);
   const [clickOpened, setClickOpened] = useState(false);

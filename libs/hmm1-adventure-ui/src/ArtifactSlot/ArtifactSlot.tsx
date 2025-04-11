@@ -1,10 +1,10 @@
-import { type MouseEvent, useCallback } from 'react';
+import {type MouseEvent, useCallback} from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
-import type { ArtifactId } from '@heroesjs/hmm1-core';
+import {PositionedComponent, type PositionProps} from '@heroesjs/hmm1-base-ui';
+import type {ArtifactId} from '@heroesjs/hmm1-core';
 
-import { ArtifactIcon } from '../ArtifactIcon';
+import {ArtifactIcon} from '../ArtifactIcon';
 
 import * as assets from './assets';
 
@@ -60,7 +60,7 @@ export const ArtifactSlot = ({
 ArtifactSlot.width = 76;
 ArtifactSlot.height = 76;
 
-const Root = styled(PositionedComponent)<Pick<Props, 'isUltimate'>>(({ isUltimate }) => ({
+const Root = styled(PositionedComponent)<Pick<Props, 'isUltimate'>>(({isUltimate}) => ({
   backgroundImage: `url(${isUltimate ? assets.borderUltimate : assets.border})`,
   height: ArtifactSlot.height,
   width: ArtifactSlot.width,

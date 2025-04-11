@@ -1,9 +1,9 @@
-import { HeroClassId } from '@heroesjs/hmm1-core';
+import {HeroClassId} from '@heroesjs/hmm1-core';
 
-import { barbarian } from './barbarian';
-import { knight } from './knight';
-import { sorceress } from './sorceress';
-import { warlock } from './warlock';
+import {barbarian} from './barbarian';
+import {knight} from './knight';
+import {sorceress} from './sorceress';
+import {warlock} from './warlock';
 
 export * from './generic';
 

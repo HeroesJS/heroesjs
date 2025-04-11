@@ -1,6 +1,6 @@
-import { keyBy } from 'lodash';
+import {keyBy} from 'lodash';
 
-import { Skill, type SkillValues } from './core';
+import {Skill, type SkillValues} from './core';
 
 export enum ArtifactId {
   UltimateBookOfKnowledge = 1,

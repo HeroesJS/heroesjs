@@ -1,9 +1,9 @@
-import { screen } from '@testing-library/react';
-import type { ComponentProps } from 'react';
+import {screen} from '@testing-library/react';
+import type {ComponentProps} from 'react';
 
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { CampaignScenarioInfoWindow } from './CampaignScenarioInfoWindow';
+import {CampaignScenarioInfoWindow} from './CampaignScenarioInfoWindow';
 
 describe(CampaignScenarioInfoWindow, () => {
   const scenario: ComponentProps<typeof CampaignScenarioInfoWindow>['scenario'] = {
@@ -15,7 +15,7 @@ describe(CampaignScenarioInfoWindow, () => {
   it('renders window', () => {
     renderWithProviders(<CampaignScenarioInfoWindow scenario={scenario} />);
 
-    expect(screen.getByRole('dialog', { name: /scenario info window/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', {name: /scenario info window/i})).toBeInTheDocument();
   });
 
   it('renders scenario number', () => {
@@ -39,15 +39,15 @@ describe(CampaignScenarioInfoWindow, () => {
   it('renders confirm button', () => {
     renderWithProviders(<CampaignScenarioInfoWindow scenario={scenario} />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: /okay/i})).toBeInTheDocument();
   });
 
   it('calls handler when confirm button is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<CampaignScenarioInfoWindow onConfirmClick={handler} scenario={scenario} />);
+    const {user} = renderWithProviders(<CampaignScenarioInfoWindow onConfirmClick={handler} scenario={scenario} />);
 
-    await user.click(screen.getByRole('button', { name: /okay/i }));
+    await user.click(screen.getByRole('button', {name: /okay/i}));
 
     expect(handler).toHaveBeenCalled();
   });
@@ -55,17 +55,17 @@ describe(CampaignScenarioInfoWindow, () => {
   it('renders restart button when restart is allowed', () => {
     renderWithProviders(<CampaignScenarioInfoWindow allowRestart scenario={scenario} />);
 
-    expect(screen.getByRole('button', { name: /restart scenario/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: /restart scenario/i})).toBeInTheDocument();
   });
 
   it('calls handler when restart button is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(
+    const {user} = renderWithProviders(
       <CampaignScenarioInfoWindow allowRestart onRestartClick={handler} scenario={scenario} />,
     );
 
-    await user.click(screen.getByRole('button', { name: /restart scenario/i }));
+    await user.click(screen.getByRole('button', {name: /restart scenario/i}));
 
     expect(handler).toHaveBeenCalled();
   });

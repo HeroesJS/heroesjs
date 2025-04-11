@@ -1,12 +1,12 @@
-import { range } from 'lodash';
-import type { PropsWithChildren } from 'react';
-import { createPortal } from 'react-dom';
+import {range} from 'lodash';
+import type {PropsWithChildren} from 'react';
+import {createPortal} from 'react-dom';
 import styled from 'styled-components';
 
-import { Backdrop } from '../Backdrop';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { SystemButton } from '../SystemButton';
-import { Text } from '../Text';
+import {Backdrop} from '../Backdrop';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
+import {SystemButton} from '../SystemButton';
+import {Text} from '../Text';
 
 import * as assets from './assets';
 
@@ -103,7 +103,7 @@ const Shadow = styled.div({
 
 type ActionsProps = Pick<Props, 'onCancelClick' | 'onConfirmClick' | 'type' | 'y'>;
 
-const Actions = ({ onCancelClick, onConfirmClick, type, y }: ActionsProps) => {
+const Actions = ({onCancelClick, onConfirmClick, type, y}: ActionsProps) => {
   if (!type) {
     return null;
   }

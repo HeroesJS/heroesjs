@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '@heroesjs/hmm1-base-ui';
+import type {ButtonAssets} from '@heroesjs/hmm1-base-ui';
 
 import adventureOptionsDisabled from './adventure-options/disabled.png';
 import adventureOptionsEnabled from './adventure-options/enabled.png';

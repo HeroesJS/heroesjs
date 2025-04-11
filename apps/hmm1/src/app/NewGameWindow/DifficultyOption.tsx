@@ -1,9 +1,9 @@
-import type { MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import type {MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
-import { GameDifficulty } from '@heroesjs/hmm1-core';
+import {PositionedComponent, type PositionProps, Text} from '@heroesjs/hmm1-base-ui';
+import {GameDifficulty} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -16,8 +16,8 @@ interface DifficultyOptionProps extends PositionProps {
   readonly value: GameDifficulty;
 }
 
-export const DifficultyOption = ({ onClick, onMouseDown, selected, value, x, y }: DifficultyOptionProps) => {
-  const { t } = useTranslation('core', { keyPrefix: 'gameDifficulty' });
+export const DifficultyOption = ({onClick, onMouseDown, selected, value, x, y}: DifficultyOptionProps) => {
+  const {t} = useTranslation('core', {keyPrefix: 'gameDifficulty'});
 
   const handleClick = () => onClick?.(value);
 

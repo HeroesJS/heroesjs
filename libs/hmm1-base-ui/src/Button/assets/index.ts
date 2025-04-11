@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '../Button';
+import type {ButtonAssets} from '../Button';
 
 import disabled from './disabled.jpg';
 import enabled from './enabled.jpg';

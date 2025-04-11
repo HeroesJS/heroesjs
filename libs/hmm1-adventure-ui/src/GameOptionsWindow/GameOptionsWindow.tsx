@@ -1,7 +1,7 @@
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { Button, Modal, type PositionProps, useModal, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, Modal, type PositionProps, useModal, Window} from '@heroesjs/hmm1-base-ui';
 import {
   isSoundEnabled,
   type MovementSpeed,
@@ -13,7 +13,7 @@ import {
 } from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
-import { Option } from './Option';
+import {Option} from './Option';
 
 interface Props extends PositionProps {
   readonly autoSave?: boolean;
@@ -58,7 +58,7 @@ export const GameOptionsWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.gameOptionsWindow'});
 
   const handleMusicVolumeClick = useCallback(
     () => onMusicVolumeChange?.(previousOption(soundVolumes, musicVolume)),
@@ -178,7 +178,7 @@ export const GameOptionsWindow = ({
         heading={t('musicHeading')}
         onClick={handleMusicVolumeClick}
         onMouseDown={musicInfoModal.onMouseDown}
-        valueLabel={shouldRenderVolume(musicVolume) ? t('volume', { value: musicVolume }) : undefined}
+        valueLabel={shouldRenderVolume(musicVolume) ? t('volume', {value: musicVolume}) : undefined}
         x={36}
         y={194}
       />
@@ -191,7 +191,7 @@ export const GameOptionsWindow = ({
         heading={t('effectsHeading')}
         onClick={handleEffectsVolumeClick}
         onMouseDown={effectsInfoModal.onMouseDown}
-        valueLabel={shouldRenderVolume(effectsVolume) ? t('volume', { value: effectsVolume }) : undefined}
+        valueLabel={shouldRenderVolume(effectsVolume) ? t('volume', {value: effectsVolume}) : undefined}
         x={128}
         y={194}
       />
@@ -199,7 +199,7 @@ export const GameOptionsWindow = ({
         {t('effectsInfo')}
       </Modal>
       <Option
-        assets={{ checked: assets.movementSpeedMap[movementSpeed], unchecked: '' }}
+        assets={{checked: assets.movementSpeedMap[movementSpeed], unchecked: ''}}
         checked
         heading={t('movementSpeed')}
         onClick={handleMovementSpeedClick}

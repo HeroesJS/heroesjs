@@ -1,4 +1,4 @@
-import { MovementSpeed } from '@heroesjs/hmm1-core';
+import {MovementSpeed} from '@heroesjs/hmm1-core';
 
 import canter from './canter.jpg';
 import gallop from './gallop.jpg';

@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
+import type {ComponentProps} from 'react';
 
-import { Button } from '@heroesjs/hmm1-base-ui';
-import type { HeroClassId, PlayerColor } from '@heroesjs/hmm1-core';
+import {Button} from '@heroesjs/hmm1-base-ui';
+import type {HeroClassId, PlayerColor} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -10,7 +10,7 @@ interface Props extends Omit<ComponentProps<typeof Button>, 'assets'> {
   readonly heroClass?: HeroClassId;
 }
 
-export const Crest = ({ color, heroClass, ...props }: Props) => {
+export const Crest = ({color, heroClass, ...props}: Props) => {
   const image = heroClass !== undefined ? assets.heroClass[heroClass][color] : assets.generic[color];
 
   return (

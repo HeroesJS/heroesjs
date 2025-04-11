@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { PlayerColor } from '@heroesjs/hmm1-core';
+import {PlayerColor} from '@heroesjs/hmm1-core';
 
-import { PlayerColorJewel } from './PlayerColorJewel';
+import {PlayerColorJewel} from './PlayerColorJewel';
 
 const meta: Meta<typeof PlayerColorJewel> = {
   args: {

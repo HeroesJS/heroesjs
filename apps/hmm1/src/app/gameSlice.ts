@@ -1,5 +1,5 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { chain, isEmpty, random, range, sample } from 'lodash';
+import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
+import {chain, isEmpty, random, range, sample} from 'lodash';
 
 import {
   type CampaignScenarioData,
@@ -25,7 +25,7 @@ import {
   townClasses,
 } from '@heroesjs/hmm1-core';
 
-import type { RootState } from './store';
+import type {RootState} from './store';
 
 interface Player {
   readonly color: PlayerColor;
@@ -157,7 +157,7 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { endTurn, loadGame, selectHero, selectTown, startGame } = gameSlice.actions;
+export const {endTurn, loadGame, selectHero, selectTown, startGame} = gameSlice.actions;
 
 export const getPlayer = (value: PlayerId) => (state: RootState) => state.game.players[value];
 

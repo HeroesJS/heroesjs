@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Button, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, type PositionProps, Text, Window} from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   formatRating,
@@ -11,9 +11,9 @@ import {
   ScenarioSize,
 } from '@heroesjs/hmm1-core';
 
-import { PlayerColorJewel } from '../PlayerColorJewel';
+import {PlayerColorJewel} from '../PlayerColorJewel';
 
-import { background, okay } from './assets';
+import {background, okay} from './assets';
 
 interface ScenarioInfo {
   readonly description: string;
@@ -41,7 +41,7 @@ export const StandardScenarioInfoWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.standardScenarioInfoWindow' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.standardScenarioInfoWindow'});
 
   const rating = calculateRating({
     kingOfTheHill: kingOfTheHill ?? false,

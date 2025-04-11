@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Button, PositionedComponent, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, PositionedComponent, type PositionProps, Text, Window} from '@heroesjs/hmm1-base-ui';
 
-import { background, numbers, okay, restart } from './assets';
+import {background, numbers, okay, restart} from './assets';
 
 interface ScenarioInfo {
   readonly description: string;
@@ -17,13 +17,13 @@ interface Props extends PositionProps {
   readonly scenario: ScenarioInfo;
 }
 
-export const CampaignScenarioInfoWindow = ({ allowRestart, onConfirmClick, onRestartClick, scenario, x, y }: Props) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'component.campaignScenarioInfoWindow' });
+export const CampaignScenarioInfoWindow = ({allowRestart, onConfirmClick, onRestartClick, scenario, x, y}: Props) => {
+  const {t} = useTranslation('adventure', {keyPrefix: 'component.campaignScenarioInfoWindow'});
 
   return (
     <Window background={background} height={287} label={t('title')} shadow width={426} x={x} y={y}>
       <PositionedComponent
-        aria-label={t('scenarioNumber', { number: scenario.number })}
+        aria-label={t('scenarioNumber', {number: scenario.number})}
         as="img"
         src={numbers[scenario.number - 1]}
         x={150}

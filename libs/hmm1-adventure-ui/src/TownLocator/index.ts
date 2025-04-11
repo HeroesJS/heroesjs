@@ -1,1 +1,1 @@
-export { TownLocator } from './TownLocator';
+export {TownLocator} from './TownLocator';

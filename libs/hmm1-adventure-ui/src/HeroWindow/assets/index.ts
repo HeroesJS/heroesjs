@@ -8,4 +8,4 @@ export * from './luck';
 export * from './morale';
 export * from './skill';
 
-export { additionalStatsBackground, background };
+export {additionalStatsBackground, background};

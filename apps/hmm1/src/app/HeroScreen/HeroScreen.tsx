@@ -1,16 +1,16 @@
-import { type ComponentProps, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import {type ComponentProps, useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { HeroWindow } from '@heroesjs/hmm1-adventure-ui';
-import { Modal, useModal } from '@heroesjs/hmm1-base-ui';
+import {HeroWindow} from '@heroesjs/hmm1-adventure-ui';
+import {Modal, useModal} from '@heroesjs/hmm1-base-ui';
 
-import { getPlayer, getSelectedHero } from '../gameSlice';
-import { useAppSelector } from '../hooks';
+import {getPlayer, getSelectedHero} from '../gameSlice';
+import {useAppSelector} from '../hooks';
 
 type Props = Pick<ComponentProps<typeof HeroWindow>, 'onExitClick'>;
 
-export const HeroScreen = ({ onExitClick }: Props) => {
-  const { t } = useTranslation('core');
+export const HeroScreen = ({onExitClick}: Props) => {
+  const {t} = useTranslation('core');
 
   const notImplementedModal = useModal();
 

@@ -1,4 +1,4 @@
-import type { CreatureId } from './creature';
+import type {CreatureId} from './creature';
 
 export interface Troop {
   readonly count: number;

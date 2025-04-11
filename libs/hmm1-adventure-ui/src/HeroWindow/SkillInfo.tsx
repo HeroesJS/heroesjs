@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Modal, PositionedComponent, type PositionProps, Text, useModal } from '@heroesjs/hmm1-base-ui';
-import type { Skill } from '@heroesjs/hmm1-core';
+import {Modal, PositionedComponent, type PositionProps, Text, useModal} from '@heroesjs/hmm1-base-ui';
+import type {Skill} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -14,8 +14,8 @@ interface Props extends PositionProps {
   readonly value?: number;
 }
 
-export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
+export const SkillInfo = ({onMouseLeave, onMouseOver, skill, value = 0, x, y}: Props) => {
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.heroWindow'});
 
   const detailsModal = useModal();
 
@@ -55,7 +55,7 @@ export const SkillInfo = ({ onMouseLeave, onMouseOver, skill, value = 0, x, y }:
 SkillInfo.width = 82;
 SkillInfo.height = 93;
 
-const Root = styled(PositionedComponent)<Pick<Props, 'skill'>>(({ skill }) => ({
+const Root = styled(PositionedComponent)<Pick<Props, 'skill'>>(({skill}) => ({
   background: `url(${assets.skillBackground[skill]})`,
   height: SkillInfo.height,
   width: SkillInfo.width,

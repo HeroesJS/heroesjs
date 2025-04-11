@@ -1,4 +1,4 @@
-import { Skill } from '@heroesjs/hmm1-core';
+import {Skill} from '@heroesjs/hmm1-core';
 
 import attack from './attack.jpg';
 import defense from './defense.jpg';

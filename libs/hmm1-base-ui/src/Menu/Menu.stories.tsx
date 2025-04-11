@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { range } from 'lodash';
+import type {Meta, StoryObj} from '@storybook/react';
+import {range} from 'lodash';
 
-import { Placeholder } from '../Placeholder';
+import {Placeholder} from '../Placeholder';
 
-import { Menu } from './Menu';
-import { MenuSeparator } from './MenuSeparator';
+import {Menu} from './Menu';
+import {MenuSeparator} from './MenuSeparator';
 
 const meta: Meta<typeof Menu> = {
   component: Menu,

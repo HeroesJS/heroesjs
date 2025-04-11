@@ -1,1 +1,1 @@
-export { HostGuestMenu } from './HostGuestMenu';
+export {HostGuestMenu} from './HostGuestMenu';

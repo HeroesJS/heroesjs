@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { CreatureId } from '@heroesjs/hmm1-core';
+import {CreatureId} from '@heroesjs/hmm1-core';
 
-import { CreatureIcon } from './CreatureIcon';
+import {CreatureIcon} from './CreatureIcon';
 
 const meta: Meta<typeof CreatureIcon> = {
   args: {

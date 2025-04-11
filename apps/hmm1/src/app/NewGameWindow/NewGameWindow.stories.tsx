@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { NewGameWindow } from './NewGameWindow';
+import {NewGameWindow} from './NewGameWindow';
 
 const meta: Meta<typeof NewGameWindow> = {
   component: NewGameWindow,

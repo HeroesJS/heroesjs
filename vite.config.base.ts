@@ -1,4 +1,4 @@
-import { defineConfig, mergeConfig, type UserConfig } from 'vite';
+import {defineConfig, mergeConfig, type UserConfig} from 'vite';
 
 const baseConfig = defineConfig({
   test: {

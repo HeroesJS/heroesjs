@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
+import type {PropsWithChildren} from 'react';
 import styled from 'styled-components';
 
-import { ScreenHeight, ScreenWidth } from '@heroesjs/hmm1-core';
+import {ScreenHeight, ScreenWidth} from '@heroesjs/hmm1-core';
 
 interface Props {
   readonly background: string;
@@ -9,14 +9,14 @@ interface Props {
   readonly onClick?: () => void;
 }
 
-export const Screen = ({ background, children, label, onClick }: PropsWithChildren<Props>) => (
+export const Screen = ({background, children, label, onClick}: PropsWithChildren<Props>) => (
   <Root background={background} onClick={onClick}>
     {label && <h1>{label}</h1>}
     {children}
   </Root>
 );
 
-const Root = styled.div<Pick<Props, 'background'>>(({ background }) => ({
+const Root = styled.div<Pick<Props, 'background'>>(({background}) => ({
   backgroundImage: `url(${background})`,
   fontSize: 0,
   height: ScreenHeight,

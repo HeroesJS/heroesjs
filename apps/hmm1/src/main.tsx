@@ -1,12 +1,12 @@
-import { StrictMode } from 'react';
+import {StrictMode} from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
-import { setupI18n } from '@heroesjs/hmm1-i18n';
+import {setupI18n} from '@heroesjs/hmm1-i18n';
 
-import { App } from './app/app';
-import { store } from './app/store';
+import {App} from './app/app';
+import {store} from './app/store';
 
 setupI18n();
 

@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
-import { createSearchParams, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
+import {useCallback, useEffect, useState} from 'react';
+import {createSearchParams, Route, Routes, useNavigate, useSearchParams} from 'react-router-dom';
 
-import { CampaignScenarioInfoWindow } from '@heroesjs/hmm1-adventure-ui';
-import { Screen } from '@heroesjs/hmm1-base-ui';
-import { type Campaign, campaignScenarios, defaultOpponentSettings, scenarios } from '@heroesjs/hmm1-core';
+import {CampaignScenarioInfoWindow} from '@heroesjs/hmm1-adventure-ui';
+import {Screen} from '@heroesjs/hmm1-base-ui';
+import {type Campaign, campaignScenarios, defaultOpponentSettings, scenarios} from '@heroesjs/hmm1-core';
 
-import { useGetSavedGamesQuery } from '../api';
-import { FileSelectorWindow } from '../FileSelectorWindow';
-import { startGame } from '../gameSlice';
-import { useAppDispatch } from '../hooks';
-import { CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu } from '../Menu';
-import { NewGameWindow } from '../NewGameWindow';
+import {useGetSavedGamesQuery} from '../api';
+import {FileSelectorWindow} from '../FileSelectorWindow';
+import {startGame} from '../gameSlice';
+import {useAppDispatch} from '../hooks';
+import {CampaignMenu, GameTypeMenu, HostGuestMenu, MainMenu, MultiPlayerGameTypeMenu, PlayerCountMenu} from '../Menu';
+import {NewGameWindow} from '../NewGameWindow';
 
 import * as assets from './assets';
 
@@ -154,7 +154,7 @@ interface HostGuestSelectionProps {
   readonly detailed?: boolean;
 }
 
-const HostGuestSelection = ({ detailed }: HostGuestSelectionProps) => {
+const HostGuestSelection = ({detailed}: HostGuestSelectionProps) => {
   const navigate = useNavigate();
 
   const handleHostClick = () => navigate('host');
@@ -312,7 +312,7 @@ const SaveGameSelection = () => {
 
   const [selectedItem, setSelectedItem] = useState<string>();
 
-  const { data = [] } = useGetSavedGamesQuery();
+  const {data = []} = useGetSavedGamesQuery();
 
   const handleConfirmClick = useCallback(() => {
     // TODO: initialize game

@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '@heroesjs/hmm1-base-ui';
+import type {ButtonAssets} from '@heroesjs/hmm1-base-ui';
 
 import background from './background.jpg';
 import num1 from './number/1.png';
@@ -16,7 +16,7 @@ import okayEnabled from './okay/enabled.png';
 import restartDisabled from './restart/disabled.png';
 import restartEnabled from './restart/enabled.png';
 
-export { background };
+export {background};
 
 export const numbers: readonly string[] = [num1, num2, num3, num4, num5, num6, num7, num8, num9, num10];
 

@@ -1,7 +1,7 @@
-import { workspaceRoot } from '@nx/devkit';
-import { nxE2EPreset } from '@nx/playwright/preset';
-import { defineConfig, devices } from '@playwright/test';
-import { fileURLToPath } from 'url';
+import {workspaceRoot} from '@nx/devkit';
+import {nxE2EPreset} from '@nx/playwright/preset';
+import {defineConfig, devices} from '@playwright/test';
+import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -18,7 +18,7 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4300';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  ...nxE2EPreset(__filename, { testDir: './src' }),
+  ...nxE2EPreset(__filename, {testDir: './src'}),
   expect: {
     toHaveScreenshot: {
       maxDiffPixelRatio: 0,
@@ -28,7 +28,7 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {...devices['Desktop Chrome']},
     },
 
     // {

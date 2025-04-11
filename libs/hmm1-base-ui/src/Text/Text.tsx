@@ -1,5 +1,5 @@
-import type { MouseEvent, PropsWithChildren } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import type {MouseEvent, PropsWithChildren} from 'react';
+import styled, {createGlobalStyle} from 'styled-components';
 
 import fontSmall from './heroes1-small.ttf';
 import font from './heroes1.ttf';
@@ -91,7 +91,7 @@ const lineHeights: Record<TextSize, number> = {
 };
 
 const Root = styled.span<Pick<Props, 'align' | 'selected' | 'shadow' | 'size' | 'width' | 'x' | 'y'>>(
-  ({ align, selected, shadow, size = 'normal', width, x, y }) => ({
+  ({align, selected, shadow, size = 'normal', width, x, y}) => ({
     color: selected ? '#beeb00' : '#fff',
     fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
     fontSize: fontSizes[size],

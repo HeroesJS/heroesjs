@@ -1,8 +1,8 @@
-import { compact, range } from 'lodash';
-import { type MouseEvent, useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {compact, range} from 'lodash';
+import {type MouseEvent, useCallback, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { Button, Modal, Text, useModal, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, Modal, Text, useModal, Window} from '@heroesjs/hmm1-base-ui';
 import {
   armySize,
   artifactById,
@@ -16,15 +16,15 @@ import {
   skills,
 } from '@heroesjs/hmm1-core';
 
-import { ArtifactSlot } from '../ArtifactSlot';
-import { Crest } from '../Crest';
-import { HeroPortrait } from '../HeroPortrait';
-import { TroopDetailsWindow } from '../TroopDetailsWindow';
-import { TroopSlot } from '../TroopSlot';
+import {ArtifactSlot} from '../ArtifactSlot';
+import {Crest} from '../Crest';
+import {HeroPortrait} from '../HeroPortrait';
+import {TroopDetailsWindow} from '../TroopDetailsWindow';
+import {TroopSlot} from '../TroopSlot';
 
-import { AdditionalStats, getEffectType } from './AdditionalStats';
+import {AdditionalStats, getEffectType} from './AdditionalStats';
 import * as assets from './assets';
-import { SkillInfo } from './SkillInfo';
+import {SkillInfo} from './SkillInfo';
 
 export interface HeroInfo
   extends Pick<
@@ -53,7 +53,7 @@ export const HeroWindow = ({
   onKingdomOverviewClick,
   onMoveTroop,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.heroWindow' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.heroWindow'});
 
   const notImplementedModal = useModal();
 
@@ -69,17 +69,17 @@ export const HeroWindow = ({
   const setDefaultStatusText = useCallback(() => setStatusText(t('defaultStatusText')), [t]);
 
   const handleSkillMouseOver = useCallback(
-    (value: Skill) => setStatusText(t('viewSkillInfoStatusText', { name: t(`core:skill.${value}`) })),
+    (value: Skill) => setStatusText(t('viewSkillInfoStatusText', {name: t(`core:skill.${value}`)})),
     [t],
   );
 
   const handleMoraleMouseOver = useCallback(
-    () => setStatusText(t('moraleStatusText', { name: t(`morale.${getEffectType(hero.morale)}.title`) })),
+    () => setStatusText(t('moraleStatusText', {name: t(`morale.${getEffectType(hero.morale)}.title`)})),
     [hero.morale, t],
   );
 
   const handleLuckMouseOver = useCallback(
-    () => setStatusText(t('luckStatusText', { name: t(`luck.${getEffectType(hero.luck)}.title`) })),
+    () => setStatusText(t('luckStatusText', {name: t(`luck.${getEffectType(hero.luck)}.title`)})),
     [hero.luck, t],
   );
 
@@ -100,11 +100,11 @@ export const HeroWindow = ({
                   name: t(`core:creatures.${selectedTroop.creatureId}`),
                   otherName: t(`core:creatures.${troop.creatureId}`),
                 })
-              : t('moveTroop', { name: t(`core:creatures.${selectedTroop.creatureId}`) })
-            : t('selectTroop', { name: t(`core:creatures.${troop.creatureId}`) }),
+              : t('moveTroop', {name: t(`core:creatures.${selectedTroop.creatureId}`)})
+            : t('selectTroop', {name: t(`core:creatures.${troop.creatureId}`)}),
         );
       } else {
-        setStatusText(troop ? t('selectTroop', { name: t(`core:creatures.${troop.creatureId}`) }) : t('noTroop'));
+        setStatusText(troop ? t('selectTroop', {name: t(`core:creatures.${troop.creatureId}`)}) : t('noTroop'));
       }
     },
     [hero.army, selectedTroopIndex, t],
@@ -196,7 +196,7 @@ export const HeroWindow = ({
   const dismissConfirmModal = useModal();
 
   const handleDismissMouseOver = useCallback(
-    () => setStatusText(t('dismissStatusText', { name: heroTitle })),
+    () => setStatusText(t('dismissStatusText', {name: heroTitle})),
     [heroTitle, t],
   );
 

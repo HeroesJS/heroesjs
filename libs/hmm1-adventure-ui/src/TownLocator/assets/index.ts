@@ -1,4 +1,4 @@
-import { TownClassId } from '@heroesjs/hmm1-core';
+import {TownClassId} from '@heroesjs/hmm1-core';
 
 import farmCastleLocator from './farm/castle-locator.jpg';
 import farmTownLocator from './farm/town-locator.jpg';

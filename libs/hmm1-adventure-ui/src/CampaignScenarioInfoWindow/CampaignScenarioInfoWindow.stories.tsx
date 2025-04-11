@@ -1,8 +1,8 @@
-import { type Meta, type StoryObj } from '@storybook/react';
+import {type Meta, type StoryObj} from '@storybook/react';
 
-import { campaignScenarios } from '@heroesjs/hmm1-core';
+import {campaignScenarios} from '@heroesjs/hmm1-core';
 
-import { CampaignScenarioInfoWindow } from './CampaignScenarioInfoWindow';
+import {CampaignScenarioInfoWindow} from './CampaignScenarioInfoWindow';
 
 const scenario = campaignScenarios[0];
 

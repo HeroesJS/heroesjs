@@ -1,7 +1,7 @@
-import { PlayerId } from './core';
-import { createMap, type Map, MapHeroObjectType, MapTownObjectType } from './map';
-import { ScenarioDifficulty, ScenarioSize } from './scenario';
-import { TownClassId } from './town';
+import {PlayerId} from './core';
+import {createMap, type Map, MapHeroObjectType, MapTownObjectType} from './map';
+import {ScenarioDifficulty, ScenarioSize} from './scenario';
+import {TownClassId} from './town';
 
 export type ScenarioData = Map;
 

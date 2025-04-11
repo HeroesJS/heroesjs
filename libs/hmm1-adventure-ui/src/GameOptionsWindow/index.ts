@@ -1,1 +1,1 @@
-export { GameOptionsWindow } from './GameOptionsWindow';
+export {GameOptionsWindow} from './GameOptionsWindow';

@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useCallback, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { PlayerColorJewel } from '@heroesjs/hmm1-adventure-ui';
-import { Button, Checkbox, Modal, Text, useModal, useToggle, Window } from '@heroesjs/hmm1-base-ui';
+import {PlayerColorJewel} from '@heroesjs/hmm1-adventure-ui';
+import {Button, Checkbox, Modal, Text, useModal, useToggle, Window} from '@heroesjs/hmm1-base-ui';
 import {
   calculateRating,
   formatRating,
@@ -19,9 +19,9 @@ import {
 } from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
-import { DifficultyMenu } from './DifficultyMenu';
-import { OpponentSetting } from './OpponentSetting';
-import { ScenarioSelection } from './ScenarioSelection';
+import {DifficultyMenu} from './DifficultyMenu';
+import {OpponentSetting} from './OpponentSetting';
+import {ScenarioSelection} from './ScenarioSelection';
 
 interface ScenarioInfo {
   readonly difficulty: ScenarioDifficulty;
@@ -50,7 +50,7 @@ export const NewGameWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
+  const {t} = useTranslation('main', {keyPrefix: 'component.newGameWindow'});
 
   const gameDifficultyInfoModal = useModal();
   const opponentSettingInfoModal = useModal();
@@ -63,7 +63,7 @@ export const NewGameWindow = ({
 
   const [selectedDifficulty, setSelectedDifficulty] = useState(GameDifficulty.Normal);
   const [color, setColor] = useState(PlayerColor.Blue);
-  const { toggle: toggleKingOfTheHill, value: kingOfTheHill } = useToggle();
+  const {toggle: toggleKingOfTheHill, value: kingOfTheHill} = useToggle();
 
   const handleOpponentSettingClick = (index: number, value: OpponentDifficulty) =>
     onOpponentSettingsChange?.(

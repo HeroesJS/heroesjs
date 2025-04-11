@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { CampaignMenu } from './CampaignMenu';
+import {CampaignMenu} from './CampaignMenu';
 
 const meta: Meta<typeof CampaignMenu> = {
   component: CampaignMenu,

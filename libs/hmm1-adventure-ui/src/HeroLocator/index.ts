@@ -1,1 +1,1 @@
-export { HeroLocator } from './HeroLocator';
+export {HeroLocator} from './HeroLocator';

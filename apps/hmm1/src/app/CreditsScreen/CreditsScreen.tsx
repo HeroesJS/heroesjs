@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { List, Screen, Text } from '@heroesjs/hmm1-base-ui';
+import {List, Screen, Text} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -39,8 +39,8 @@ interface Props {
   readonly onClick?: () => void;
 }
 
-export const CreditsScreen = ({ onClick }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.creditsScreen' });
+export const CreditsScreen = ({onClick}: Props) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.creditsScreen'});
 
   return (
     <Screen background={assets.background} label={t('title')} onClick={onClick}>

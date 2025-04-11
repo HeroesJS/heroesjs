@@ -3,4 +3,4 @@ import selection from './selection.png';
 
 export * from './background';
 
-export { empty, selection };
+export {empty, selection};

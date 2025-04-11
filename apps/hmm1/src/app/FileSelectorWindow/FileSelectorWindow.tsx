@@ -1,11 +1,11 @@
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import {useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, PositionedComponent, type PositionProps, Text, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, PositionedComponent, type PositionProps, Text, Window} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
-import { ScenarioDetail, type ScenarioInfo } from './ScenarioDetail';
+import {ScenarioDetail, type ScenarioInfo} from './ScenarioDetail';
 
 interface Props extends PositionProps {
   readonly items?: readonly string[];
@@ -28,7 +28,7 @@ export const FileSelectorWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
+  const {t} = useTranslation('main', {keyPrefix: 'component.fileSelectorWindow'});
 
   return (
     <Window
@@ -64,8 +64,8 @@ interface ListProps extends PositionProps {
   readonly selectedItem?: string;
 }
 
-const List = ({ items = [], onItemClick, selectedItem, x, y }: ListProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
+const List = ({items = [], onItemClick, selectedItem, x, y}: ListProps) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.fileSelectorWindow'});
 
   return (
     <PositionedComponent aria-label={t('itemsHeading')} as="div" role="listbox" x={x} y={y}>
@@ -82,7 +82,7 @@ interface ItemProps extends PositionProps {
   readonly value: string;
 }
 
-const Item = ({ onClick, selected, value, x, y }: ItemProps) => {
+const Item = ({onClick, selected, value, x, y}: ItemProps) => {
   const handleClick = useCallback(() => onClick?.(value), [onClick, value]);
 
   return (
@@ -103,8 +103,8 @@ interface InputProps extends PositionProps {
   readonly value?: string;
 }
 
-const Input = ({ value, x, y }: InputProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow' });
+const Input = ({value, x, y}: InputProps) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.fileSelectorWindow'});
 
   return (
     <InputRoot aria-label={t('fileName')} role="textbox" x={x} y={y}>

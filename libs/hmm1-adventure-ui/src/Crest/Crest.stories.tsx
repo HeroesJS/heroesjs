@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { HeroClassId, playerColors } from '@heroesjs/hmm1-core';
+import {HeroClassId, playerColors} from '@heroesjs/hmm1-core';
 
-import { Crest } from './Crest';
+import {Crest} from './Crest';
 
 const meta: Meta<typeof Crest> = {
   args: {

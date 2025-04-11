@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { GameTypeMenu } from './GameTypeMenu';
+import {GameTypeMenu} from './GameTypeMenu';
 
 const meta: Meta<typeof GameTypeMenu> = {
   component: GameTypeMenu,

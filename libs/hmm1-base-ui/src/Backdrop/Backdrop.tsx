@@ -1,7 +1,7 @@
-import { type MouseEventHandler, type PropsWithChildren, useCallback } from 'react';
+import {type MouseEventHandler, type PropsWithChildren, useCallback} from 'react';
 import styled from 'styled-components';
 
-export const Backdrop = ({ children }: PropsWithChildren) => {
+export const Backdrop = ({children}: PropsWithChildren) => {
   const handleMouseEvent = useCallback<MouseEventHandler>((e) => {
     e.stopPropagation();
   }, []);

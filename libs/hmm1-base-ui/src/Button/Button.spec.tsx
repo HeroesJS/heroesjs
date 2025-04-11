@@ -1,15 +1,15 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
 import * as assets from './assets';
-import { Button } from './Button';
+import {Button} from './Button';
 
 describe(Button, () => {
   it('renders', async () => {
     renderWithProviders(<Button assets={assets.button} label="Label" />);
 
-    expect(screen.getByRole('button', { name: /label/i }));
+    expect(screen.getByRole('button', {name: /label/i}));
   });
 
   it('renders enabled image', async () => {
@@ -19,11 +19,11 @@ describe(Button, () => {
   });
 
   it('renders disabled image when mouse pressed', async () => {
-    const { user } = renderWithProviders(<Button assets={assets.button} label="Label" />);
+    const {user} = renderWithProviders(<Button assets={assets.button} label="Label" />);
 
     await user.pointer([
       {
-        target: screen.getByRole('button', { name: /label/i }),
+        target: screen.getByRole('button', {name: /label/i}),
       },
       {
         keys: '[MouseLeft>]',
@@ -34,11 +34,11 @@ describe(Button, () => {
   });
 
   it('renders enabled image when mouse released', async () => {
-    const { user } = renderWithProviders(<Button assets={assets.button} label="Label" />);
+    const {user} = renderWithProviders(<Button assets={assets.button} label="Label" />);
 
     await user.pointer({
       keys: '[MouseLeft>][/MouseLeft]',
-      target: screen.getByRole('button', { name: /label/i }),
+      target: screen.getByRole('button', {name: /label/i}),
     });
 
     expect(screen.getByRole('img')).toHaveAttribute('src', assets.button.enabled);
@@ -47,20 +47,20 @@ describe(Button, () => {
   it('calls handler when clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<Button assets={assets.button} label="Label" onClick={handler} />);
+    const {user} = renderWithProviders(<Button assets={assets.button} label="Label" onClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /label/i }));
+    await user.click(screen.getByRole('button', {name: /label/i}));
 
     expect(handler).toHaveBeenCalled();
   });
 
   it('renders enabled image when mouse pressed and out', async () => {
-    const { container, user } = renderWithProviders(<Button assets={assets.button} label="Label" />);
+    const {container, user} = renderWithProviders(<Button assets={assets.button} label="Label" />);
 
     await user.pointer([
       {
         keys: '[MouseLeft>]',
-        target: screen.getByRole('button', { name: /label/i }),
+        target: screen.getByRole('button', {name: /label/i}),
       },
       {
         target: container,
@@ -71,18 +71,18 @@ describe(Button, () => {
   });
 
   it('renders disabled image when mouse pressed and over againt', async () => {
-    const { container, user } = renderWithProviders(<Button assets={assets.button} label="Label" />);
+    const {container, user} = renderWithProviders(<Button assets={assets.button} label="Label" />);
 
     await user.pointer([
       {
         keys: '[MouseLeft>]',
-        target: screen.getByRole('button', { name: /label/i }),
+        target: screen.getByRole('button', {name: /label/i}),
       },
       {
         target: container,
       },
       {
-        target: screen.getByRole('button', { name: /label/i }),
+        target: screen.getByRole('button', {name: /label/i}),
       },
     ]);
 
@@ -92,7 +92,7 @@ describe(Button, () => {
   it('disables', async () => {
     renderWithProviders(<Button assets={assets.button} disabled label="Label" />);
 
-    expect(screen.getByRole('button', { name: /label/i })).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByRole('button', {name: /label/i})).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('renders disabled image when disabled', async () => {

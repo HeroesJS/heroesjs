@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { HostGuestMenu } from './HostGuestMenu';
+import {HostGuestMenu} from './HostGuestMenu';
 
 const meta: Meta<typeof HostGuestMenu> = {
   component: HostGuestMenu,

@@ -1,8 +1,8 @@
-import type { MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import type {MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Checkbox, type CheckboxAssets, PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
+import {Checkbox, type CheckboxAssets, PositionedComponent, type PositionProps, Text} from '@heroesjs/hmm1-base-ui';
 
 interface Props extends PositionProps {
   readonly assets: CheckboxAssets;
@@ -14,18 +14,8 @@ interface Props extends PositionProps {
   readonly valueLabel?: string;
 }
 
-export const Option = ({
-  assets,
-  checked = false,
-  heading,
-  onChange,
-  onClick,
-  onMouseDown,
-  valueLabel,
-  x,
-  y,
-}: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.gameOptionsWindow' });
+export const Option = ({assets, checked = false, heading, onChange, onClick, onMouseDown, valueLabel, x, y}: Props) => {
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.gameOptionsWindow'});
 
   return (
     <Root aria-label={heading} role="option" x={x} y={y}>

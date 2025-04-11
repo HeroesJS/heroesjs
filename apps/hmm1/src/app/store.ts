@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 
-import { api } from './api';
-import { gameSlice } from './gameSlice';
+import {api} from './api';
+import {gameSlice} from './gameSlice';
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),

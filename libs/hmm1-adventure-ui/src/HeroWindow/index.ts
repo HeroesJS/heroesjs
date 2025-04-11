@@ -1,1 +1,1 @@
-export { HeroWindow } from './HeroWindow';
+export {HeroWindow} from './HeroWindow';

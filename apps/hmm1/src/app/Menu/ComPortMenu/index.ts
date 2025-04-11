@@ -1,1 +1,1 @@
-export { ComPortMenu } from './ComPortMenu';
+export {ComPortMenu} from './ComPortMenu';

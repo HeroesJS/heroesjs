@@ -1,4 +1,4 @@
-import { PlayerColor } from '@heroesjs/hmm1-core';
+import {PlayerColor} from '@heroesjs/hmm1-core';
 
 import blue from './blue.jpg';
 import green from './green.jpg';

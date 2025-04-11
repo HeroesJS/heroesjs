@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { creatureDataById, CreatureId, Luck, Morale, Skill } from '@heroesjs/hmm1-core';
+import {creatureDataById, CreatureId, Luck, Morale, Skill} from '@heroesjs/hmm1-core';
 
-import { TroopDetailsWindow } from './TroopDetailsWindow';
+import {TroopDetailsWindow} from './TroopDetailsWindow';
 
 const meta: Meta<typeof TroopDetailsWindow> = {
   args: {
