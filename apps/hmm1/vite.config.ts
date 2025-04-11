@@ -1,5 +1,4 @@
 import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
-import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
 import {defineConfig} from 'vite';
 import {nodePolyfills} from 'vite-plugin-node-polyfills';
@@ -13,7 +12,6 @@ export default mergeWithBaseConfig(
         transformMixedEsModules: true,
       },
       emptyOutDir: true,
-      outDir: '../../dist/apps/hmm1',
       reportCompressedSize: true,
     },
     cacheDir: '../../node_modules/.vite/apps/hmm1',
@@ -22,7 +20,6 @@ export default mergeWithBaseConfig(
         include: ['assert'],
       }),
       react(),
-      nxViteTsPaths(),
       nxCopyAssetsPlugin(['*.md']),
     ],
     preview: {

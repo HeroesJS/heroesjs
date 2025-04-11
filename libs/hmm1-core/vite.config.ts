@@ -1,5 +1,4 @@
 import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
-import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import * as path from 'path';
 import {defineConfig} from 'vite';
 import dts from 'vite-plugin-dts';
@@ -17,9 +16,8 @@ export default mergeWithBaseConfig(
         entry: 'src/index.ts',
         fileName: 'index',
         formats: ['es'],
-        name: 'hmm1-core',
+        name: '@heroesjs/hmm1-core',
       },
-      outDir: '../../dist/libs/hmm1-core',
       reportCompressedSize: true,
       rollupOptions: {
         external: [],
@@ -27,9 +25,11 @@ export default mergeWithBaseConfig(
     },
     cacheDir: '../../node_modules/.vite/libs/hmm1-core',
     plugins: [
-      nxViteTsPaths(),
       nxCopyAssetsPlugin(['*.md']),
-      dts({entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json')}),
+      dts({
+        entryRoot: 'src',
+        tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      }),
     ],
     root: __dirname,
     test: {

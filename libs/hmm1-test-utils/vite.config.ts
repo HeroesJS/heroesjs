@@ -1,5 +1,4 @@
 import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
-import {nxViteTsPaths} from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import react from '@vitejs/plugin-react-swc';
 import * as path from 'path';
 import {defineConfig} from 'vite';
@@ -18,9 +17,8 @@ export default mergeWithBaseConfig(
         entry: 'src/index.ts',
         fileName: 'index',
         formats: ['es'],
-        name: 'hmm1-test-utils',
+        name: '@heroesjs/hmm1-test-utils',
       },
-      outDir: '../../dist/libs/hmm1-test-utils',
       reportCompressedSize: true,
       rollupOptions: {
         external: ['react', 'react-dom', 'react/jsx-runtime'],
@@ -29,9 +27,11 @@ export default mergeWithBaseConfig(
     cacheDir: '../../node_modules/.vite/libs/hmm1-test-utils',
     plugins: [
       react(),
-      nxViteTsPaths(),
       nxCopyAssetsPlugin(['*.md']),
-      dts({entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json')}),
+      dts({
+        entryRoot: 'src',
+        tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      }),
     ],
     root: __dirname,
     test: {

@@ -13,6 +13,10 @@
     "format:write": "nx format:write --all",
     "verify": "nx affected -t format:check lint test build typecheck e2e --parallel=1"
   },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
     "i18next": "^24.2.2",
