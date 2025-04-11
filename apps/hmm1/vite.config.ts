@@ -54,9 +54,5 @@ export default mergeWithBaseConfig(
       setupFiles: ['setupTests'],
       watch: false,
     },
-    // Uncomment this if you are using workers.
-    // worker: {
-    //  plugins: [ nxViteTsPaths() ],
-    // },
   }),
 );

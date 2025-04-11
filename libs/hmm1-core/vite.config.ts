@@ -8,26 +8,20 @@ import {mergeWithBaseConfig} from '../../vite.config.base';
 
 export default mergeWithBaseConfig(
   defineConfig({
-    // Configuration for building your library.
-    // See: https://vitejs.dev/guide/build.html#library-mode
     build: {
       commonjsOptions: {
         transformMixedEsModules: true,
       },
       emptyOutDir: true,
       lib: {
-        // Could also be a dictionary or array of multiple entry points.
         entry: 'src/index.ts',
         fileName: 'index',
-        // Change this to the formats you want to support.
-        // Don't forget to update your package.json as well.
         formats: ['es'],
         name: 'hmm1-core',
       },
       outDir: '../../dist/libs/hmm1-core',
       reportCompressedSize: true,
       rollupOptions: {
-        // External packages that should not be bundled into your library.
         external: [],
       },
     },
@@ -49,9 +43,5 @@ export default mergeWithBaseConfig(
       reporters: ['default'],
       watch: false,
     },
-    // Uncomment this if you are using workers.
-    // worker: {
-    //  plugins: [ nxViteTsPaths() ],
-    // },
   }),
 );
