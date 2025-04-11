@@ -1,10 +1,10 @@
-import { isEqual, last, range, sortBy } from 'lodash';
+import {isEqual, last, range, sortBy} from 'lodash';
 import assert from 'node:assert';
 
-import type { Army } from './army';
-import type { ArtifactId } from './artifact';
-import type { HeroClassId, HeroId, Luck, Morale, PlayerId, Skill, SkillValues } from './core';
-import { heroClassDataById } from './data';
+import type {Army} from './army';
+import type {ArtifactId} from './artifact';
+import type {HeroClassId, HeroId, Luck, Morale, PlayerId, Skill, SkillValues} from './core';
+import {heroClassDataById} from './data';
 
 export interface Hero {
   readonly army: Army;

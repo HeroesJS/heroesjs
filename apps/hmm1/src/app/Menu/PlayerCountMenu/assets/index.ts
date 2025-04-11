@@ -1,8 +1,8 @@
-import type { ButtonAssets } from '@heroesjs/hmm1-base-ui';
+import type {ButtonAssets} from '@heroesjs/hmm1-base-ui';
 
-import { twoPlayersButton } from './2-players';
-import { threePlayersButton } from './3-players';
-import { fourPlayersButton } from './4-players';
+import {twoPlayersButton} from './2-players';
+import {threePlayersButton} from './3-players';
+import {fourPlayersButton} from './4-players';
 
 export const playerCountButtons: Readonly<Record<number, ButtonAssets>> = {
   2: twoPlayersButton,

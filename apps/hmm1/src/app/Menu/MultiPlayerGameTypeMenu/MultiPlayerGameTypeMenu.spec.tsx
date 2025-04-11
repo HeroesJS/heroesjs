@@ -1,35 +1,35 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
+import {MultiPlayerGameTypeMenu} from './MultiPlayerGameTypeMenu';
 
 describe(MultiPlayerGameTypeMenu, () => {
   it('renders', async () => {
     renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-    expect(screen.getByRole('menu', { name: /multi-player game type menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', {name: /multi-player game type menu/i})).toBeInTheDocument();
   });
 
   describe('hot seat button', () => {
     it('renders button', async () => {
       renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /hot seat/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /hot seat/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onHotSeatClick={handler} />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu onHotSeatClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /hot seat/i }));
+      await user.click(screen.getByRole('button', {name: /hot seat/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {
@@ -49,21 +49,21 @@ describe(MultiPlayerGameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /network/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /network/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onNetworkClick={handler} />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu onNetworkClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /network/i }));
+      await user.click(screen.getByRole('button', {name: /network/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {
@@ -83,21 +83,21 @@ describe(MultiPlayerGameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /modem/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /modem/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onModemClick={handler} />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu onModemClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /modem/i }));
+      await user.click(screen.getByRole('button', {name: /modem/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {
@@ -117,21 +117,21 @@ describe(MultiPlayerGameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /direct connect/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /direct connect/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onDirectConnectClick={handler} />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu onDirectConnectClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /direct connect/i }));
+      await user.click(screen.getByRole('button', {name: /direct connect/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {
@@ -151,21 +151,21 @@ describe(MultiPlayerGameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<MultiPlayerGameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /cancel/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu onCancelClick={handler} />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', {name: /cancel/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+      const {user} = renderWithProviders(<MultiPlayerGameTypeMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {

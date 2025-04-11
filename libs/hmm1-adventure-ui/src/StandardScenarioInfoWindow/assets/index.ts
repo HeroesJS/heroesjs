@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '@heroesjs/hmm1-base-ui';
+import type {ButtonAssets} from '@heroesjs/hmm1-base-ui';
 
 import background from './background.jpg';
 import okayDisabled from './okay/disabled.png';
@@ -9,4 +9,4 @@ const okay: ButtonAssets = {
   enabled: okayEnabled,
 };
 
-export { background, okay };
+export {background, okay};

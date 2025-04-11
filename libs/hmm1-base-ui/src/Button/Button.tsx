@@ -1,7 +1,7 @@
-import { type MouseEvent, useCallback, useState } from 'react';
+import {type MouseEvent, useCallback, useState} from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
 
 export interface ButtonAssets {
   readonly disabled: string;

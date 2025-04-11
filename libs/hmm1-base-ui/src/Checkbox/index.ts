@@ -1,1 +1,1 @@
-export { Checkbox, type CheckboxAssets } from './Checkbox';
+export {Checkbox, type CheckboxAssets} from './Checkbox';

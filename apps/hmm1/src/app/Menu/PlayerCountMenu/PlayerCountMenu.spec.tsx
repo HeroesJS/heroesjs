@@ -1,15 +1,15 @@
-import { screen } from '@testing-library/react';
-import { range } from 'lodash';
+import {screen} from '@testing-library/react';
+import {range} from 'lodash';
 
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { PlayerCountMenu } from './PlayerCountMenu';
+import {PlayerCountMenu} from './PlayerCountMenu';
 
 describe(PlayerCountMenu, () => {
   it('renders', async () => {
     renderWithProviders(<PlayerCountMenu />);
 
-    expect(screen.getByRole('menu', { name: /player count menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', {name: /player count menu/i})).toBeInTheDocument();
   });
 
   describe.each(range(2, 5))('%i players button', (count) => {
@@ -18,22 +18,22 @@ describe(PlayerCountMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<PlayerCountMenu />);
 
-      expect(screen.getByRole('button', { name: countName })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: countName})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
+      const {user} = renderWithProviders(<PlayerCountMenu onCountClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: countName }));
+      await user.click(screen.getByRole('button', {name: countName}));
 
       expect(handler).toHaveBeenCalledWith(count);
     });
   });
 
   it('renders info when 2 players button is right-clicked', async () => {
-    const { user } = renderWithProviders(<PlayerCountMenu />);
+    const {user} = renderWithProviders(<PlayerCountMenu />);
 
     await user.rightDown(
       screen.getByRole('button', {
@@ -47,7 +47,7 @@ describe(PlayerCountMenu, () => {
   });
 
   it('renders info when 3 players button is right-clicked', async () => {
-    const { user } = renderWithProviders(<PlayerCountMenu />);
+    const {user} = renderWithProviders(<PlayerCountMenu />);
 
     await user.rightDown(
       screen.getByRole('button', {
@@ -59,7 +59,7 @@ describe(PlayerCountMenu, () => {
   });
 
   it('renders info when 4 players button is right-clicked', async () => {
-    const { user } = renderWithProviders(<PlayerCountMenu />);
+    const {user} = renderWithProviders(<PlayerCountMenu />);
 
     await user.rightDown(
       screen.getByRole('button', {
@@ -74,21 +74,21 @@ describe(PlayerCountMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<PlayerCountMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /cancel/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<PlayerCountMenu onCancelClick={handler} />);
+      const {user} = renderWithProviders(<PlayerCountMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', {name: /cancel/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<PlayerCountMenu />);
+      const {user} = renderWithProviders(<PlayerCountMenu />);
 
       await user.rightDown(
         screen.getByRole('button', {

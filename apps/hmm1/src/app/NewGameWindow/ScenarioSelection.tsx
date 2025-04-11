@@ -1,8 +1,8 @@
-import type { MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import type {MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, Input, PositionedComponent, type PositionProps } from '@heroesjs/hmm1-base-ui';
+import {Button, Input, PositionedComponent, type PositionProps} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -12,8 +12,8 @@ interface Props extends PositionProps {
   readonly value: string;
 }
 
-export const ScenarioSelection = ({ onClick, onMouseDown, value, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.newGameWindow' });
+export const ScenarioSelection = ({onClick, onMouseDown, value, x, y}: Props) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.newGameWindow'});
 
   return (
     <Root onClick={onClick} onMouseDown={onMouseDown} x={x} y={y}>

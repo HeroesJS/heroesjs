@@ -1,1 +1,1 @@
-export { CreditsScreen } from './CreditsScreen';
+export {CreditsScreen} from './CreditsScreen';

@@ -13,4 +13,4 @@ export * from './saveGame';
 export * from './showPath';
 export * from './viewEnemyMovement';
 
-export { background };
+export {background};

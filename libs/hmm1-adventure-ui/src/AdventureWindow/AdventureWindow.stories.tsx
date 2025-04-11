@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { Placeholder } from '@heroesjs/hmm1-base-ui';
+import {Placeholder} from '@heroesjs/hmm1-base-ui';
 
-import { AdventureWindow } from './AdventureWindow';
+import {AdventureWindow} from './AdventureWindow';
 
 const meta: Meta<typeof AdventureWindow> = {
   args: {

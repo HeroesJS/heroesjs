@@ -1,15 +1,15 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { GameDifficulty, OpponentDifficulty, PlayerColor, ScenarioDifficulty, ScenarioSize } from '@heroesjs/hmm1-core';
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {GameDifficulty, OpponentDifficulty, PlayerColor, ScenarioDifficulty, ScenarioSize} from '@heroesjs/hmm1-core';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { StandardScenarioInfoWindow } from './StandardScenarioInfoWindow';
+import {StandardScenarioInfoWindow} from './StandardScenarioInfoWindow';
 
 describe(StandardScenarioInfoWindow, () => {
   it('renders window', () => {
     renderWithProviders(<StandardScenarioInfoWindow />);
 
-    expect(screen.getByRole('dialog', { name: /scenario info window/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', {name: /scenario info window/i})).toBeInTheDocument();
   });
 
   it('renders info', () => {
@@ -44,15 +44,15 @@ describe(StandardScenarioInfoWindow, () => {
   it('renders okay button', () => {
     renderWithProviders(<StandardScenarioInfoWindow />);
 
-    expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: /okay/i})).toBeInTheDocument();
   });
 
   it('calls handler when okay button is clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<StandardScenarioInfoWindow onConfirmClick={handler} />);
+    const {user} = renderWithProviders(<StandardScenarioInfoWindow onConfirmClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /okay/i }));
+    await user.click(screen.getByRole('button', {name: /okay/i}));
 
     expect(handler).toHaveBeenCalled();
   });

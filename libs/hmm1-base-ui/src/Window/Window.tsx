@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from 'react';
+import type {PropsWithChildren} from 'react';
 import styled from 'styled-components';
 
-import { Backdrop } from '../Backdrop';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import {Backdrop} from '../Backdrop';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
 
 interface Props extends PositionProps {
   readonly background: string;
@@ -42,7 +42,7 @@ export const Window = ({
 );
 
 const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'height' | 'shadow' | 'width'>>(
-  ({ background, height, shadow, width }) => ({
+  ({background, height, shadow, width}) => ({
     background: `url(${background})`,
     boxShadow: shadow ? '17px 16px rgba(0 0 0 / 30%)' : undefined,
     height,

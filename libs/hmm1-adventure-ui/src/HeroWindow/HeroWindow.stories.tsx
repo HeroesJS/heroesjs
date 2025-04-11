@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { HeroWindow } from './HeroWindow';
+import {HeroWindow} from './HeroWindow';
 
 const meta: Meta<typeof HeroWindow> = {
   component: HeroWindow,

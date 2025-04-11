@@ -1,1 +1,1 @@
-export { SystemButton } from './SystemButton';
+export {SystemButton} from './SystemButton';

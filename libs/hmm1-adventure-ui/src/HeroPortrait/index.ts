@@ -1,1 +1,1 @@
-export { HeroPortrait } from './HeroPortrait';
+export {HeroPortrait} from './HeroPortrait';

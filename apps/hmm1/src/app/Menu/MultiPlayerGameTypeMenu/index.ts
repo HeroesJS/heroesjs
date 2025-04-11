@@ -1,1 +1,1 @@
-export { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
+export {MultiPlayerGameTypeMenu} from './MultiPlayerGameTypeMenu';

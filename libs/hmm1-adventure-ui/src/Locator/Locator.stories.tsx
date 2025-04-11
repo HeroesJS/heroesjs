@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { Locator } from './Locator';
+import {Locator} from './Locator';
 
 const meta: Meta<typeof Locator> = {
   component: Locator,

@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { TownClassId } from '@heroesjs/hmm1-core';
+import {TownClassId} from '@heroesjs/hmm1-core';
 
-import { TownLocator } from './TownLocator';
+import {TownLocator} from './TownLocator';
 
 const meta: Meta<typeof TownLocator> = {
   args: {

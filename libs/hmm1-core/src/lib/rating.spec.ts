@@ -1,6 +1,6 @@
-import { OpponentDifficulty } from './core';
-import { calculateRating, type RatingData } from './rating';
-import { ScenarioDifficulty, ScenarioSize } from './scenario';
+import {OpponentDifficulty} from './core';
+import {calculateRating, type RatingData} from './rating';
+import {ScenarioDifficulty, ScenarioSize} from './scenario';
 
 describe(calculateRating, () => {
   const baseData: RatingData = {

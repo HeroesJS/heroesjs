@@ -1,11 +1,11 @@
-import { type MouseEvent, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import {type MouseEvent, useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
-import { creatureDataById, type CreatureId } from '@heroesjs/hmm1-core';
+import {PositionedComponent, type PositionProps, Text} from '@heroesjs/hmm1-base-ui';
+import {creatureDataById, type CreatureId} from '@heroesjs/hmm1-core';
 
-import { CreatureIcon } from '../CreatureIcon';
+import {CreatureIcon} from '../CreatureIcon';
 
 import * as assets from './assets';
 
@@ -32,7 +32,7 @@ export const TroopSlot = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation(['adventure', 'core'], { keyPrefix: 'component.troopSlot' });
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.troopSlot'});
 
   const handleMouseOver = useCallback(() => onMouseOver?.(index), [index, onMouseOver]);
 
@@ -44,7 +44,7 @@ export const TroopSlot = ({
 
   return (
     <Root
-      aria-label={t('title', { index, troop: creature ? t(`core:creatures.${creature.id}`) : t('empty') })}
+      aria-label={t('title', {index, troop: creature ? t(`core:creatures.${creature.id}`) : t('empty')})}
       aria-selected={selected}
       onClick={handleClick}
       onMouseDown={handleMouseDown}

@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '@heroesjs/hmm1-base-ui';
+import type {ButtonAssets} from '@heroesjs/hmm1-base-ui';
 
 import background from './background.jpg';
 import castSpellDisabled from './cast-spell/disabled.png';
@@ -37,4 +37,4 @@ const okay: ButtonAssets = {
   enabled: okayEnabled,
 };
 
-export { background, castSpell, dig, okay, viewPuzzle, viewWorld };
+export {background, castSpell, dig, okay, viewPuzzle, viewWorld};

@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { HeroId } from '@heroesjs/hmm1-core';
+import {HeroId} from '@heroesjs/hmm1-core';
 
-import { HeroLocator } from './HeroLocator';
+import {HeroLocator} from './HeroLocator';
 
 const meta: Meta<typeof HeroLocator> = {
   args: {

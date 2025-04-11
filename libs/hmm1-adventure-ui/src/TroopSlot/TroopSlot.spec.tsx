@@ -1,9 +1,9 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { CreatureId } from '@heroesjs/hmm1-core';
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {CreatureId} from '@heroesjs/hmm1-core';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { TroopSlot } from './TroopSlot';
+import {TroopSlot} from './TroopSlot';
 
 describe(TroopSlot, () => {
   it('renders index', () => {
@@ -57,7 +57,7 @@ describe(TroopSlot, () => {
   it('calls handler when mouse over', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<TroopSlot index={0} onMouseOver={handler} />);
+    const {user} = renderWithProviders(<TroopSlot index={0} onMouseOver={handler} />);
 
     await user.hover(screen.getByLabelText(/troop 0 - empty/i));
 
@@ -67,7 +67,7 @@ describe(TroopSlot, () => {
   it('calls handler when mouse leave', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<TroopSlot index={0} onMouseLeave={handler} />);
+    const {user} = renderWithProviders(<TroopSlot index={0} onMouseLeave={handler} />);
 
     await user.hover(screen.getByLabelText(/troop 0 - empty/i));
 
@@ -79,7 +79,7 @@ describe(TroopSlot, () => {
   it('calls handler when mouse down', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<TroopSlot index={0} onMouseDown={handler} />);
+    const {user} = renderWithProviders(<TroopSlot index={0} onMouseDown={handler} />);
 
     await user.rightDown(screen.getByLabelText(/troop 0 - empty/i));
 
@@ -89,7 +89,7 @@ describe(TroopSlot, () => {
   it('calls handler when clicked', async () => {
     const handler = vitest.fn();
 
-    const { user } = renderWithProviders(<TroopSlot index={0} onClick={handler} />);
+    const {user} = renderWithProviders(<TroopSlot index={0} onClick={handler} />);
 
     await user.click(screen.getByLabelText(/troop 0 - empty/i));
 

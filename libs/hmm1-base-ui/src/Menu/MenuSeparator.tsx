@@ -1,7 +1,7 @@
-import type { PropsWithChildren } from 'react';
+import type {PropsWithChildren} from 'react';
 import styled from 'styled-components';
 
-import { menuItemStyle } from './Menu';
+import {menuItemStyle} from './Menu';
 
 export const MenuSeparator = (props: PropsWithChildren) => <Root {...props} />;
 

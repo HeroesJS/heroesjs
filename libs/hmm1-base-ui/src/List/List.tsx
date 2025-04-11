@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { Text } from '../Text';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
+import {Text} from '../Text';
 
 const itemHeight = 14;
 
@@ -12,7 +12,7 @@ interface Props extends PositionProps {
   readonly width: number;
 }
 
-export const List = ({ items = [], itemsPerColumn, label, width, x, y }: Props) => {
+export const List = ({items = [], itemsPerColumn, label, width, x, y}: Props) => {
   return (
     <Root
       aria-label={label}
@@ -33,7 +33,7 @@ export const List = ({ items = [], itemsPerColumn, label, width, x, y }: Props) 
   );
 };
 
-const Root = styled(PositionedComponent)<Pick<Props, 'width'> & { readonly height?: number }>(({ height, width }) => ({
+const Root = styled(PositionedComponent)<Pick<Props, 'width'> & {readonly height?: number}>(({height, width}) => ({
   columnGap: 4,
   display: 'flex',
   flexDirection: 'column',

@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Button, Modal, type PositionProps, useModal, Window } from '@heroesjs/hmm1-base-ui';
+import {Button, Modal, type PositionProps, useModal, Window} from '@heroesjs/hmm1-base-ui';
 
-import { background, castSpell, dig, okay, viewPuzzle, viewWorld } from './assets';
+import {background, castSpell, dig, okay, viewPuzzle, viewWorld} from './assets';
 
 interface Props extends PositionProps {
   readonly onCastSpellClick?: () => void;
@@ -21,7 +21,7 @@ export const AdventureOptionsWindow = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureOptionsWindow' });
+  const {t} = useTranslation('adventure', {keyPrefix: 'component.adventureOptionsWindow'});
 
   const viewWorldInfoModal = useModal();
   const viewPuzzleInfoModal = useModal();

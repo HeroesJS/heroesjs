@@ -1,1 +1,1 @@
-export { StandardScenarioInfoWindow } from './StandardScenarioInfoWindow';
+export {StandardScenarioInfoWindow} from './StandardScenarioInfoWindow';

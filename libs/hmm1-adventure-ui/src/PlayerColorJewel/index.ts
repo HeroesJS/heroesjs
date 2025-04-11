@@ -1,1 +1,1 @@
-export { PlayerColorJewel } from './PlayerColorJewel';
+export {PlayerColorJewel} from './PlayerColorJewel';

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 
 import {
   AdventureButtons,
@@ -13,7 +13,7 @@ import {
   StandardScenarioInfoWindow,
   TownLocator,
 } from '@heroesjs/hmm1-adventure-ui';
-import { Modal, useModal } from '@heroesjs/hmm1-base-ui';
+import {Modal, useModal} from '@heroesjs/hmm1-base-ui';
 import {
   campaignScenarios,
   GameDifficulty,
@@ -24,7 +24,7 @@ import {
   type SoundVolume,
 } from '@heroesjs/hmm1-core';
 
-import { FileSelectorWindow } from '../FileSelectorWindow';
+import {FileSelectorWindow} from '../FileSelectorWindow';
 import {
   endTurn,
   getHeroes,
@@ -34,11 +34,11 @@ import {
   selectHero,
   selectTown,
 } from '../gameSlice';
-import { HeroScreen } from '../HeroScreen';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import {HeroScreen} from '../HeroScreen';
+import {useAppDispatch, useAppSelector} from '../hooks';
 
 export const AdventureScreen = () => {
-  const { t } = useTranslation(['core']);
+  const {t} = useTranslation(['core']);
   const dispatch = useAppDispatch();
 
   const notImplementedModal = useModal();
@@ -106,14 +106,9 @@ export const AdventureScreen = () => {
       }
     >
       <Routes>
+        <Route element={<HeroScreen onExitClick={() => navigate('../..', {relative: 'path'})} />} path="hero/:index" />
         <Route
-          element={<HeroScreen onExitClick={() => navigate('../..', { relative: 'path' })} />}
-          path="hero/:index"
-        />
-        <Route
-          element={
-            <AdventureOptionsWindow onConfirmClick={() => navigate('..', { relative: 'path' })} x={160} y={40} />
-          }
+          element={<AdventureOptionsWindow onConfirmClick={() => navigate('..', {relative: 'path'})} x={160} y={40} />}
           path="adventure-options"
         />
         <Route
@@ -124,15 +119,15 @@ export const AdventureScreen = () => {
               movementSpeed={movementSpeed}
               musicVolume={musicVolume}
               onAutoSaveChange={setAutoSave}
-              onConfirmClick={() => navigate('..', { relative: 'path' })}
+              onConfirmClick={() => navigate('..', {relative: 'path'})}
               onEffectsVolumeChange={setEffectsVolume}
-              onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
+              onInfoClick={() => navigate('../scenario-info', {relative: 'path'})}
               onLoadGameClick={() => navigate('/game/load')}
               onMovementSpeedChange={setMovementSpeed}
               onMusicVolumeChange={setMusicVolume}
               onNewGameClick={() => navigate('/game/new')}
               onQuitClick={() => navigate('/')}
-              onSaveGameClick={() => navigate('../save-game', { relative: 'path' })}
+              onSaveGameClick={() => navigate('../save-game', {relative: 'path'})}
               onShowPathChange={setShowPath}
               onViewEnemyMovementChange={setViewEnemyMovement}
               showPath={showPath}
@@ -146,8 +141,8 @@ export const AdventureScreen = () => {
         <Route
           element={
             <FileSelectorWindow
-              onCancelClick={() => navigate('..', { relative: 'path' })}
-              onConfirmClick={() => navigate('..', { relative: 'path' })}
+              onCancelClick={() => navigate('..', {relative: 'path'})}
+              onConfirmClick={() => navigate('..', {relative: 'path'})}
             />
           }
           path="save-game"
@@ -157,7 +152,7 @@ export const AdventureScreen = () => {
             <StandardScenarioInfoWindow
               gameDifficulty={GameDifficulty.Normal}
               kingOfTheHill={false}
-              onConfirmClick={() => navigate('..', { relative: 'path' })}
+              onConfirmClick={() => navigate('..', {relative: 'path'})}
               opponentSettings={[OpponentDifficulty.Average, OpponentDifficulty.Average, OpponentDifficulty.Average]}
               playerColor={PlayerColor.Blue}
               scenario={scenario}
@@ -171,7 +166,7 @@ export const AdventureScreen = () => {
           element={
             <CampaignScenarioInfoWindow
               allowRestart
-              onConfirmClick={() => navigate('..', { relative: 'path' })}
+              onConfirmClick={() => navigate('..', {relative: 'path'})}
               onRestartClick={() => navigate('/adventure')}
               scenario={campaignScenarios[0]}
               x={105}

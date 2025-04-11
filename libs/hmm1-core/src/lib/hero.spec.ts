@@ -1,7 +1,7 @@
-import { sum } from 'lodash';
+import {sum} from 'lodash';
 
-import { HeroClassId, Skill, skills, type SkillValues } from './core';
-import { getHeroLevel, getHeroSkillsForLevel } from './hero';
+import {HeroClassId, Skill, skills, type SkillValues} from './core';
+import {getHeroLevel, getHeroSkillsForLevel} from './hero';
 
 describe(getHeroLevel, () => {
   it('returns 1 when no experience', () => {

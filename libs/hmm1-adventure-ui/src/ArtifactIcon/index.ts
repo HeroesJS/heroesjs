@@ -1,1 +1,1 @@
-export { ArtifactIcon } from './ArtifactIcon';
+export {ArtifactIcon} from './ArtifactIcon';

@@ -1,37 +1,37 @@
-import { screen } from '@testing-library/react';
+import {screen} from '@testing-library/react';
 
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { GameTypeMenu } from './GameTypeMenu';
+import {GameTypeMenu} from './GameTypeMenu';
 
 describe(GameTypeMenu, () => {
   it('renders', async () => {
     renderWithProviders(<GameTypeMenu />);
 
-    expect(screen.getByRole('menu', { name: /game type menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', {name: /game type menu/i})).toBeInTheDocument();
   });
 
   describe('standard game button', () => {
     it('renders button', async () => {
       renderWithProviders(<GameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /standard game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /standard game/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameTypeMenu onStandardGameClick={handler} />);
+      const {user} = renderWithProviders(<GameTypeMenu onStandardGameClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /standard game/i }));
+      await user.click(screen.getByRole('button', {name: /standard game/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<GameTypeMenu />);
+      const {user} = renderWithProviders(<GameTypeMenu />);
 
-      await user.rightDown(screen.getByRole('button', { name: /standard game/i }));
+      await user.rightDown(screen.getByRole('button', {name: /standard game/i}));
 
       expect(screen.getByText(/a single player game playing out a single map\./i)).toBeInTheDocument();
     });
@@ -41,23 +41,23 @@ describe(GameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<GameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /campaign game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /campaign game/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameTypeMenu onCampaignGameClick={handler} />);
+      const {user} = renderWithProviders(<GameTypeMenu onCampaignGameClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /campaign game/i }));
+      await user.click(screen.getByRole('button', {name: /campaign game/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<GameTypeMenu />);
+      const {user} = renderWithProviders(<GameTypeMenu />);
 
-      await user.rightDown(screen.getByRole('button', { name: /campaign game/i }));
+      await user.rightDown(screen.getByRole('button', {name: /campaign game/i}));
 
       expect(screen.getByText(/a single player game playing through a series of maps\./i)).toBeInTheDocument();
     });
@@ -67,23 +67,23 @@ describe(GameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<GameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /multi-player game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /multi-player game/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameTypeMenu onMultiPlayerGameClick={handler} />);
+      const {user} = renderWithProviders(<GameTypeMenu onMultiPlayerGameClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /multi-player game/i }));
+      await user.click(screen.getByRole('button', {name: /multi-player game/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<GameTypeMenu />);
+      const {user} = renderWithProviders(<GameTypeMenu />);
 
-      await user.rightDown(screen.getByRole('button', { name: /multi-player game/i }));
+      await user.rightDown(screen.getByRole('button', {name: /multi-player game/i}));
 
       expect(
         screen.getByText(
@@ -97,23 +97,23 @@ describe(GameTypeMenu, () => {
     it('renders button', async () => {
       renderWithProviders(<GameTypeMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /cancel/i})).toBeInTheDocument();
     });
 
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameTypeMenu onCancelClick={handler} />);
+      const {user} = renderWithProviders(<GameTypeMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', {name: /cancel/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('renders info when button is right-clicked', async () => {
-      const { user } = renderWithProviders(<GameTypeMenu />);
+      const {user} = renderWithProviders(<GameTypeMenu />);
 
-      await user.rightDown(screen.getByRole('button', { name: /cancel/i }));
+      await user.rightDown(screen.getByRole('button', {name: /cancel/i}));
 
       expect(screen.getByText(/cancel back to main menu\./i)).toBeInTheDocument();
     });

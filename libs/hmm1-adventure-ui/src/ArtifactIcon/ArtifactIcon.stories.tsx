@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { ArtifactId } from '@heroesjs/hmm1-core';
+import {ArtifactId} from '@heroesjs/hmm1-core';
 
-import { ArtifactIcon } from './ArtifactIcon';
+import {ArtifactIcon} from './ArtifactIcon';
 
 const meta: Meta<typeof ArtifactIcon> = {
   args: {

@@ -1,4 +1,4 @@
-import type { PlayerId } from './core';
+import type {PlayerId} from './core';
 
 export enum TownClassId {
   Farm = 0,

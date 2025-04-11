@@ -1,8 +1,8 @@
-import { Fragment, type MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import {Fragment, type MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { Menu, MenuButton, Modal, type PositionProps, useModal, type UseModalResult } from '@heroesjs/hmm1-base-ui';
-import { Campaign } from '@heroesjs/hmm1-core';
+import {Menu, MenuButton, Modal, type PositionProps, useModal, type UseModalResult} from '@heroesjs/hmm1-base-ui';
+import {Campaign} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -13,8 +13,8 @@ interface Props extends PositionProps {
   readonly onCancelClick?: () => void;
 }
 
-export const CampaignMenu = ({ onCampaignClick, onCancelClick, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
+export const CampaignMenu = ({onCampaignClick, onCancelClick, x, y}: Props) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.campaignMenu'});
 
   const playLordIronfistInfoModal = useModal();
   const playLordSlayerInfoModal = useModal();
@@ -59,8 +59,8 @@ interface ItemProps {
   readonly value: Campaign;
 }
 
-const Item = ({ onClick, onMouseDown, value }: ItemProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
+const Item = ({onClick, onMouseDown, value}: ItemProps) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.campaignMenu'});
 
   const handleClick = () => onClick?.(value);
 

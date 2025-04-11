@@ -1,7 +1,7 @@
-import type { MouseEvent } from 'react';
+import type {MouseEvent} from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
 
 export interface CheckboxAssets {
   readonly checked: string;
@@ -17,7 +17,7 @@ interface Props extends PositionProps {
   readonly onMouseDown?: (e: MouseEvent) => void;
 }
 
-export const Checkbox = ({ assets, checked, label, onChange, onClick, onMouseDown, x, y }: Props) => {
+export const Checkbox = ({assets, checked, label, onChange, onClick, onMouseDown, x, y}: Props) => {
   const handleClick = () => {
     onClick?.();
     onChange?.(!checked);

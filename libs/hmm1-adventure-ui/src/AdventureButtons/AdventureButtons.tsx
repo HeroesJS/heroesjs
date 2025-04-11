@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Button, Modal, PositionedComponent, useModal } from '@heroesjs/hmm1-base-ui';
+import {Button, Modal, PositionedComponent, useModal} from '@heroesjs/hmm1-base-ui';
 
-import { adventureOptions, endTurn, gameOptions, kingdomOverview, move, nextHero } from './assets';
+import {adventureOptions, endTurn, gameOptions, kingdomOverview, move, nextHero} from './assets';
 
 interface Props {
   readonly moveDisabled?: boolean;
@@ -26,7 +26,7 @@ export const AdventureButtons = ({
   onMoveClick,
   onNextHeroClick,
 }: Props) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureButtons' });
+  const {t} = useTranslation('adventure', {keyPrefix: 'component.adventureButtons'});
 
   const nextHeroInfoModal = useModal();
   const moveInfoModal = useModal();

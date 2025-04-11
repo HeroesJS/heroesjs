@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 interface UseToggleResult {
   readonly setFalse: () => void;
@@ -21,7 +21,7 @@ export const useToggle = (initialValue = false): UseToggleResult => {
 type UseToggle2Result = [boolean, () => void, () => void, () => void];
 
 export const useToggle2 = (initialValue = false): UseToggle2Result => {
-  const { setFalse, setTrue, toggle, value } = useToggle(initialValue);
+  const {setFalse, setTrue, toggle, value} = useToggle(initialValue);
 
   return [value, setTrue, setFalse, toggle];
 };

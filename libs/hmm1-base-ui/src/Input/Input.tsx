@@ -1,7 +1,7 @@
-import { type ChangeEvent, useCallback } from 'react';
+import {type ChangeEvent, useCallback} from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import {PositionedComponent, type PositionProps} from '../PositionedComponent';
 
 interface Props extends PositionProps {
   readonly background: string;
@@ -11,7 +11,7 @@ interface Props extends PositionProps {
   readonly width: number;
 }
 
-export const Input = ({ background, label, width, onChange, value, x, y }: Props) => {
+export const Input = ({background, label, width, onChange, value, x, y}: Props) => {
   const handlerChange = useCallback((e: ChangeEvent<HTMLInputElement>) => onChange?.(e.target.value), [onChange]);
 
   return (
@@ -29,7 +29,7 @@ export const Input = ({ background, label, width, onChange, value, x, y }: Props
   );
 };
 
-const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'width'>>(({ background, width }) => ({
+const Root = styled(PositionedComponent)<Pick<Props, 'background' | 'width'>>(({background, width}) => ({
   background: `url(${background})`,
   border: 'none',
   color: '#fff',

@@ -1,1 +1,1 @@
-export { ArtifactSlot } from './ArtifactSlot';
+export {ArtifactSlot} from './ArtifactSlot';

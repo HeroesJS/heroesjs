@@ -1,6 +1,6 @@
-export { type Army, armySize, type Troop } from './lib/army';
-export { artifactById, ArtifactId } from './lib/artifact';
-export { Campaign, type CampaignScenarioData, campaignScenarios } from './lib/campaign';
+export {type Army, armySize, type Troop} from './lib/army';
+export {artifactById, ArtifactId} from './lib/artifact';
+export {Campaign, type CampaignScenarioData, campaignScenarios} from './lib/campaign';
 export {
   defaultOpponentSettings,
   formatDamageRange,
@@ -30,9 +30,9 @@ export {
   skills,
   type SkillValues,
 } from './lib/core';
-export { CreatureId, CreatureSpeed } from './lib/creature';
+export {CreatureId, CreatureSpeed} from './lib/creature';
 export * from './lib/data';
-export { getHeroLevel, getHeroSkillsForLevel, type Hero, heroLevelExperienceThresholds } from './lib/hero';
+export {getHeroLevel, getHeroSkillsForLevel, type Hero, heroLevelExperienceThresholds} from './lib/hero';
 export {
   createMap,
   type Map,
@@ -48,9 +48,9 @@ export {
   MapTownObjectType,
   RandomTownClassId,
 } from './lib/map';
-export { calculateRating, formatRating, type RatingData } from './lib/rating';
-export { scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes } from './lib/scenario';
-export { type ScenarioData, scenarios } from './lib/scenarios';
-export { ScreenHeight, ScreenWidth } from './lib/screen';
-export { isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes } from './lib/sound';
-export { type Town, townClasses, TownClassId } from './lib/town';
+export {calculateRating, formatRating, type RatingData} from './lib/rating';
+export {scenarioDifficulties, ScenarioDifficulty, ScenarioSize, scenarioSizes} from './lib/scenario';
+export {type ScenarioData, scenarios} from './lib/scenarios';
+export {ScreenHeight, ScreenWidth} from './lib/screen';
+export {isSoundEnabled, MaxVolume, MinVolume, type SoundVolume, soundVolumes} from './lib/sound';
+export {type Town, townClasses, TownClassId} from './lib/town';

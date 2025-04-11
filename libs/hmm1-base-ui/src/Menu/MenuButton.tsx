@@ -1,9 +1,9 @@
-import type { ComponentProps } from 'react';
+import type {ComponentProps} from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../Button';
+import {Button} from '../Button';
 
-import { menuItemStyle } from './Menu';
+import {menuItemStyle} from './Menu';
 
 type Props = ComponentProps<typeof Button>;
 

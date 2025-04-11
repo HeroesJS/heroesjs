@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import { I18nextProvider } from 'react-i18next';
+import {Suspense} from 'react';
+import {I18nextProvider} from 'react-i18next';
 
-import { setupI18n } from './i18n';
+import {setupI18n} from './i18n';
 
 const i18n = setupI18n();
 

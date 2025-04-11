@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
-import { useTranslation } from 'react-i18next';
+import type {ComponentProps} from 'react';
+import {useTranslation} from 'react-i18next';
 
-import { Button, type ButtonAssets } from '../Button';
+import {Button, type ButtonAssets} from '../Button';
 
 import * as assets from './assets';
 
@@ -19,8 +19,8 @@ interface Props extends Omit<ComponentProps<typeof Button>, 'assets' | 'label'> 
   readonly type?: SystemButtonType;
 }
 
-export const SystemButton = ({ type = 'okay', ...props }: Props) => {
-  const { t } = useTranslation('core', { keyPrefix: 'component.systemButton' });
+export const SystemButton = ({type = 'okay', ...props}: Props) => {
+  const {t} = useTranslation('core', {keyPrefix: 'component.systemButton'});
 
   return <Button {...props} assets={assetMap[type]} label={t(type)} />;
 };

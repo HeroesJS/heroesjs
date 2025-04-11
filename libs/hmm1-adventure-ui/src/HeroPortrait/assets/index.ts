@@ -36,7 +36,7 @@ import portrait8 from './8.jpg';
 import portrait9 from './9.jpg';
 import empty from './empty.jpg';
 
-export { empty };
+export {empty};
 
 export const poartraits = [
   portrait0,

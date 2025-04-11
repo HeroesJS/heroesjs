@@ -1,1 +1,1 @@
-export { TroopDetailsWindow } from './TroopDetailsWindow';
+export {TroopDetailsWindow} from './TroopDetailsWindow';

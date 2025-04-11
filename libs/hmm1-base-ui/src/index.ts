@@ -1,7 +1,7 @@
 export * from './Backdrop';
 export * from './Button';
 export * from './Checkbox';
-export { GlobalStyle } from './globalStyle';
+export {GlobalStyle} from './globalStyle';
 export * from './Input';
 export * from './List';
 export * from './Menu';
@@ -11,6 +11,6 @@ export * from './PositionedComponent';
 export * from './Screen';
 export * from './SystemButton';
 export * from './Text';
-export { useToggle2, useToggle } from './useToggle';
+export {useToggle2, useToggle} from './useToggle';
 export * from './Window';
-export { withGlobalStyle } from './withGlobalStyle';
+export {withGlobalStyle} from './withGlobalStyle';

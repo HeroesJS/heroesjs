@@ -1,9 +1,9 @@
-import { type PropsWithChildren, type ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import {type PropsWithChildren, type ReactNode} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { Modal, PositionedComponent, Screen, useModal } from '@heroesjs/hmm1-base-ui';
-import { ScreenHeight } from '@heroesjs/hmm1-core';
+import {Modal, PositionedComponent, Screen, useModal} from '@heroesjs/hmm1-base-ui';
+import {ScreenHeight} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -25,7 +25,7 @@ export const AdventureWindow = ({
   renderTownLocators,
   renderWorldMap,
 }: PropsWithChildren<Props>) => {
-  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureWindow' });
+  const {t} = useTranslation('adventure', {keyPrefix: 'component.adventureWindow'});
 
   const worldMapInfoModal = useModal();
   const statusWindowInfoModal = useModal();

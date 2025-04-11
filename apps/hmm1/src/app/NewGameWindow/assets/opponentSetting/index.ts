@@ -1,4 +1,4 @@
-import { OpponentDifficulty } from '@heroesjs/hmm1-core';
+import {OpponentDifficulty} from '@heroesjs/hmm1-core';
 
 import average from './average.jpg';
 import dumb from './dumb.jpg';

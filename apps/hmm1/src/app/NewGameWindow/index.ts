@@ -1,1 +1,1 @@
-export { NewGameWindow } from './NewGameWindow';
+export {NewGameWindow} from './NewGameWindow';

@@ -1,1 +1,1 @@
-export { HeroScreen } from './HeroScreen';
+export {HeroScreen} from './HeroScreen';

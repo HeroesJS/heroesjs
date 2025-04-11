@@ -1,1 +1,1 @@
-export { PlayerCountMenu } from './PlayerCountMenu';
+export {PlayerCountMenu} from './PlayerCountMenu';

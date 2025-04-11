@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
+import {Menu, MenuButton, Modal, type PositionProps, useModal} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -21,7 +21,7 @@ export const MultiPlayerGameTypeMenu = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.multiPlayerGameTypeMenu' });
+  const {t} = useTranslation('main', {keyPrefix: 'component.multiPlayerGameTypeMenu'});
 
   const hotSeatInfoModal = useModal();
   const networkInfoModal = useModal();

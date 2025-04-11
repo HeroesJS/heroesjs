@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Menu, MenuButton, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
+import {Menu, MenuButton, Modal, type PositionProps, useModal} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -21,7 +21,7 @@ export const MainMenu = ({
   x,
   y,
 }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
+  const {t} = useTranslation('main', {keyPrefix: 'component.mainMenu'});
 
   const newGameInfoModal = useModal();
   const loadGameInfoModal = useModal();

@@ -1,8 +1,8 @@
-import { keyBy } from 'lodash';
+import {keyBy} from 'lodash';
 
-import { Skill } from '../core';
-import { CreatureId, CreatureSpeed } from '../creature';
-import { TownClassId } from '../town';
+import {Skill} from '../core';
+import {CreatureId, CreatureSpeed} from '../creature';
+import {TownClassId} from '../town';
 
 export interface CreatureData {
   readonly hitPoints: number;

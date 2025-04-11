@@ -1,7 +1,7 @@
 import background from './background.jpg';
 import scenarioSelectionBackground from './scenario-selection-background.jpg';
 
-export { background, scenarioSelectionBackground };
+export {background, scenarioSelectionBackground};
 
 export * from './cancel';
 export * from './checkbox';

@@ -1,1 +1,1 @@
-export { FileSelectorWindow } from './FileSelectorWindow';
+export {FileSelectorWindow} from './FileSelectorWindow';

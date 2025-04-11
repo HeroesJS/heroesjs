@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { CreatureId } from '@heroesjs/hmm1-core';
+import {CreatureId} from '@heroesjs/hmm1-core';
 
-import { TroopSlot } from './TroopSlot';
+import {TroopSlot} from './TroopSlot';
 
 const meta: Meta<typeof TroopSlot> = {
   args: {

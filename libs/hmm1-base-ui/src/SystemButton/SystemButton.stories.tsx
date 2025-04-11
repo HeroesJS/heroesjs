@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { SystemButton } from './SystemButton';
+import {SystemButton} from './SystemButton';
 
 const meta: Meta<typeof SystemButton> = {
   component: SystemButton,

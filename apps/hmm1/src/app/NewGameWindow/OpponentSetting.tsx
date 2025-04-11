@@ -1,9 +1,9 @@
-import { type MouseEvent, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import {type MouseEvent, useCallback} from 'react';
+import {useTranslation} from 'react-i18next';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps, Text } from '@heroesjs/hmm1-base-ui';
-import { opponentDifficulties, type OpponentDifficulty } from '@heroesjs/hmm1-core';
+import {PositionedComponent, type PositionProps, Text} from '@heroesjs/hmm1-base-ui';
+import {opponentDifficulties, type OpponentDifficulty} from '@heroesjs/hmm1-core';
 
 import * as assets from './assets';
 
@@ -14,14 +14,14 @@ interface Props extends PositionProps {
   readonly value: OpponentDifficulty;
 }
 
-export const OpponentSetting = ({ index, onClick, onMouseDown, value, x, y }: Props) => {
-  const { t } = useTranslation(['main', 'core'], { keyPrefix: 'component.newGameWindow' });
+export const OpponentSetting = ({index, onClick, onMouseDown, value, x, y}: Props) => {
+  const {t} = useTranslation(['main', 'core'], {keyPrefix: 'component.newGameWindow'});
 
   const handleClick = useCallback(() => onClick?.(index, value), [index, onClick, value]);
 
   return (
     <Root x={x} y={y}>
-      <span aria-label={t('opponentSettingHeading', { index: index + 1 })} role="radiogroup">
+      <span aria-label={t('opponentSettingHeading', {index: index + 1})} role="radiogroup">
         {opponentDifficulties.map((difficulty) => (
           <span aria-checked={difficulty === value} key={difficulty} role="radio">
             {t(`core:opponentDifficulty.${difficulty}`)}
@@ -29,7 +29,7 @@ export const OpponentSetting = ({ index, onClick, onMouseDown, value, x, y }: Pr
         ))}
       </span>
       <button
-        aria-label={t('changeOpponentSettingLabel', { index: index + 1 })}
+        aria-label={t('changeOpponentSettingLabel', {index: index + 1})}
         onClick={handleClick}
         onMouseDown={onMouseDown}
       >

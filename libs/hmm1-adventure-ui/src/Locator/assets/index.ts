@@ -19,4 +19,4 @@ export const backgrounds = [
   background7,
 ];
 
-export { selection };
+export {selection};

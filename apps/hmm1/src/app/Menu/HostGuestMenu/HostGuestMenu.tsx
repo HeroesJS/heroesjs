@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
-import { Menu, MenuButton, MenuSeparator, Modal, type PositionProps, useModal } from '@heroesjs/hmm1-base-ui';
+import {Menu, MenuButton, MenuSeparator, Modal, type PositionProps, useModal} from '@heroesjs/hmm1-base-ui';
 
 import * as assets from './assets';
 
@@ -11,8 +11,8 @@ interface Props extends PositionProps {
   readonly onHostClick?: () => void;
 }
 
-export const HostGuestMenu = ({ detailed, onCancelClick, onGuestClick, onHostClick, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.hostGuestMenu' });
+export const HostGuestMenu = ({detailed, onCancelClick, onGuestClick, onHostClick, x, y}: Props) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.hostGuestMenu'});
 
   const hostInfoModal = useModal();
   const guestInfoModal = useModal();

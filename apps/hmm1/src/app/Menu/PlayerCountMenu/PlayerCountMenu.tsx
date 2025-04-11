@@ -1,6 +1,6 @@
-import { range } from 'lodash';
-import { Fragment, type MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import {range} from 'lodash';
+import {Fragment, type MouseEvent} from 'react';
+import {useTranslation} from 'react-i18next';
 
 import {
   Menu,
@@ -19,8 +19,8 @@ interface Props extends PositionProps {
   readonly onCountClick?: (value: number) => void;
 }
 
-export const PlayerCountMenu = ({ onCancelClick, onCountClick, x, y }: Props) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+export const PlayerCountMenu = ({onCancelClick, onCountClick, x, y}: Props) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.playerCountMenu'});
 
   const twoPlayerInfoModal = useModal();
   const threePlayerInfoModal = useModal();
@@ -64,15 +64,15 @@ interface ItemProps {
   readonly value: number;
 }
 
-const Item = ({ onClick, onMouseDown, value }: ItemProps) => {
-  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+const Item = ({onClick, onMouseDown, value}: ItemProps) => {
+  const {t} = useTranslation('main', {keyPrefix: 'component.playerCountMenu'});
 
   const handleClick = () => onClick?.(value);
 
   return (
     <MenuButton
       assets={assets.playerCountButtons[value]}
-      label={t('playerCount', { count: value })}
+      label={t('playerCount', {count: value})}
       onClick={handleClick}
       onMouseDown={onMouseDown}
     />

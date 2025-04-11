@@ -1,9 +1,9 @@
-import { screen, within } from '@testing-library/react';
+import {screen, within} from '@testing-library/react';
 
-import { HeroClassId, HeroId, Luck, Morale, PlayerColor, Skill } from '@heroesjs/hmm1-core';
-import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+import {HeroClassId, HeroId, Luck, Morale, PlayerColor, Skill} from '@heroesjs/hmm1-core';
+import {renderWithProviders} from '@heroesjs/hmm1-test-utils';
 
-import { type HeroInfo, HeroWindow } from './HeroWindow';
+import {type HeroInfo, HeroWindow} from './HeroWindow';
 
 describe(HeroWindow, () => {
   const hero: HeroInfo = {
@@ -27,13 +27,13 @@ describe(HeroWindow, () => {
   it('renders window', () => {
     renderWithProviders(<HeroWindow hero={hero} />);
 
-    expect(screen.getByRole('dialog', { name: /hero window/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', {name: /hero window/i})).toBeInTheDocument();
   });
 
   it('renders title', () => {
     renderWithProviders(<HeroWindow hero={hero} />);
 
-    expect(screen.getByRole('heading', { name: /falagar the warlock/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: /falagar the warlock/i})).toBeInTheDocument();
   });
 
   it('renders status text', () => {
@@ -71,7 +71,7 @@ describe(HeroWindow, () => {
       title: /knowledge/i,
       value: 2,
     },
-  ])('$name', ({ infoText, statusText, title, value }) => {
+  ])('$name', ({infoText, statusText, title, value}) => {
     it('renders skill', () => {
       renderWithProviders(<HeroWindow hero={hero} />);
 
@@ -85,7 +85,7 @@ describe(HeroWindow, () => {
     });
 
     it('renders status text when mouse over', async () => {
-      const { user } = renderWithProviders(<HeroWindow hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} />);
 
       await user.hover(screen.getByLabelText(title));
 
@@ -93,31 +93,31 @@ describe(HeroWindow, () => {
     });
 
     it('renders modal when clicked', async () => {
-      const { user } = renderWithProviders(<HeroWindow hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} />);
 
       await user.click(screen.getByLabelText(title));
 
-      expect(screen.getByRole('dialog', { name: infoText })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', {name: infoText})).toBeInTheDocument();
 
-      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /okay/i})).toBeInTheDocument();
     });
 
     it('hides modal when confirm clicked', async () => {
-      const { user } = renderWithProviders(<HeroWindow hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} />);
 
       await user.click(screen.getByLabelText(title));
 
-      await user.click(screen.getByRole('button', { name: /okay/i }));
+      await user.click(screen.getByRole('button', {name: /okay/i}));
 
-      expect(screen.queryByRole('dialog', { name: infoText })).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog', {name: infoText})).not.toBeInTheDocument();
     });
 
     it('renders info modal when right-clicked', async () => {
-      const { user } = renderWithProviders(<HeroWindow hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} />);
 
       await user.rightDown(screen.getByLabelText(title));
 
-      expect(screen.getByRole('dialog', { name: infoText })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', {name: infoText})).toBeInTheDocument();
     });
   });
 
@@ -125,52 +125,52 @@ describe(HeroWindow, () => {
     it('does not render button by default', () => {
       renderWithProviders(<HeroWindow hero={hero} />);
 
-      expect(screen.queryByRole('button', { name: /dismiss/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', {name: /dismiss/i})).not.toBeInTheDocument();
     });
 
     it('renders button when dismiss is allowed', () => {
       renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
 
-      expect(screen.getByRole('button', { name: /dismiss/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /dismiss/i})).toBeInTheDocument();
     });
 
     it('renders status text when mouse over', async () => {
-      const { user } = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
 
-      await user.hover(screen.getByRole('button', { name: /dismiss/i }));
+      await user.hover(screen.getByRole('button', {name: /dismiss/i}));
 
       expect(screen.getByText(/dismiss falagar the warlock/i)).toBeInTheDocument();
     });
 
     it('renders confirm modal when button is clicked', async () => {
-      const { user } = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      expect(screen.getByRole('dialog', { name: /are you sure you want to dismiss this hero\?/i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', {name: /are you sure you want to dismiss this hero\?/i})).toBeInTheDocument();
     });
 
     it('calls handler when confirm is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<HeroWindow allowDismiss hero={hero} onDismissClick={handler} />);
+      const {user} = renderWithProviders(<HeroWindow allowDismiss hero={hero} onDismissClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      await user.click(screen.getByRole('button', { name: /yes/i }));
+      await user.click(screen.getByRole('button', {name: /yes/i}));
 
       expect(handler).toHaveBeenCalled();
     });
 
     it('hides confirm modal when cancel is clicked', async () => {
-      const { user } = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow allowDismiss hero={hero} />);
 
-      await user.click(screen.getByRole('button', { name: /dismiss/i }));
+      await user.click(screen.getByRole('button', {name: /dismiss/i}));
 
-      await user.click(screen.getByRole('button', { name: /no/i }));
+      await user.click(screen.getByRole('button', {name: /no/i}));
 
       expect(
-        screen.queryByRole('dialog', { name: /are you sure you want to dismiss this hero\?/i }),
+        screen.queryByRole('dialog', {name: /are you sure you want to dismiss this hero\?/i}),
       ).not.toBeInTheDocument();
     });
   });
@@ -179,13 +179,13 @@ describe(HeroWindow, () => {
     it('renders button', () => {
       renderWithProviders(<HeroWindow hero={hero} />);
 
-      expect(screen.getByRole('button', { name: /exit/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', {name: /exit/i})).toBeInTheDocument();
     });
 
     it('renders status text when mouse over', async () => {
-      const { user } = renderWithProviders(<HeroWindow hero={hero} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} />);
 
-      await user.hover(screen.getByRole('button', { name: /exit/i }));
+      await user.hover(screen.getByRole('button', {name: /exit/i}));
 
       expect(screen.getByText(/exit hero screen/i)).toBeInTheDocument();
     });
@@ -193,9 +193,9 @@ describe(HeroWindow, () => {
     it('calls handler when button is clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<HeroWindow hero={hero} onExitClick={handler} />);
+      const {user} = renderWithProviders(<HeroWindow hero={hero} onExitClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /exit/i }));
+      await user.click(screen.getByRole('button', {name: /exit/i}));
 
       expect(handler).toHaveBeenCalled();
     });

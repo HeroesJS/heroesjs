@@ -1,5 +1,5 @@
-import { createMap, type Map } from './map';
-import { ScenarioDifficulty, ScenarioSize } from './scenario';
+import {createMap, type Map} from './map';
+import {ScenarioDifficulty, ScenarioSize} from './scenario';
 
 export enum Campaign {
   LordAlamar = 'lord-alamar',
