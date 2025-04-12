@@ -20,7 +20,17 @@
     }
   },
   "namedInputs": {
-    "default": ["sharedGlobals"],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/setupTests.ts",
+      "!{projectRoot}/**/*.spec.ts?(x)",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/.storybook/*",
+      "!{projectRoot}/**/*.stories.tsx"
+    ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/verify.yml"]
   },
   "nxCloudId": "67a72634821c3af2179c5b47",

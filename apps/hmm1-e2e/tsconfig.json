@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "../../dist/out-tsc",
+    "outDir": "out-tsc/e2e",
     "sourceMap": false
   },
   "extends": "../../tsconfig.base.json",

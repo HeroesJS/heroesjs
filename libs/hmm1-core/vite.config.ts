@@ -2,6 +2,7 @@ import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
 import * as path from 'path';
 import {defineConfig} from 'vite';
 import dts from 'vite-plugin-dts';
+import {externalizeDeps} from 'vite-plugin-externalize-deps';
 
 export default defineConfig({
   build: {
@@ -16,9 +17,6 @@ export default defineConfig({
       name: '@heroesjs/hmm1-core',
     },
     reportCompressedSize: true,
-    rollupOptions: {
-      external: [],
-    },
   },
   cacheDir: '../../node_modules/.vite/libs/hmm1-core',
   plugins: [
@@ -27,6 +25,7 @@ export default defineConfig({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
+    externalizeDeps(),
   ],
   root: __dirname,
   test: {

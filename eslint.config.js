@@ -1,19 +1,19 @@
 import nx from '@nx/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
+import gitignore from 'eslint-config-flat-gitignore';
 import importPlugin from 'eslint-plugin-import';
+import perfectionist from 'eslint-plugin-perfectionist';
 import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
-import perfectionist from 'eslint-plugin-perfectionist';
+import jsoncParser from 'jsonc-eslint-parser';
 import merge from 'lodash.merge';
 
 export default [
+  gitignore(),
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
-  {
-    ignores: ['**/dist', '**/storybook-static', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
-  },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     ignores: ['**/vite.config.ts'],
@@ -41,13 +41,6 @@ export default [
       perfectionist,
     },
     rules: {
-      'perfectionist/sort-interfaces': ['error'],
-      'perfectionist/sort-enums': [
-        'error',
-        {
-          forceNumericSort: true,
-        },
-      ],
       'import/order': [
         'error',
         {
@@ -60,6 +53,13 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'perfectionist/sort-enums': [
+        'error',
+        {
+          forceNumericSort: true,
+        },
+      ],
+      'perfectionist/sort-interfaces': ['error'],
       'sort-keys': [
         'error',
         'asc',
@@ -108,6 +108,20 @@ export default [
     files: ['**/*.{jsx,tsx}'],
     rules: {
       'react/jsx-sort-props': 'error',
+    },
+  },
+  {
+    files: ['**/*.json'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: ['**/vite.config.ts'],
+        },
+      ],
     },
   },
   merge(testingLibraryPlugin.configs['flat/react'], {

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import * as path from 'path';
 import {defineConfig} from 'vite';
 import dts from 'vite-plugin-dts';
+import {externalizeDeps} from 'vite-plugin-externalize-deps';
 
 export default defineConfig({
   build: {
@@ -17,9 +18,6 @@ export default defineConfig({
       name: '@heroesjs/hmm1-base-ui',
     },
     reportCompressedSize: true,
-    rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
-    },
   },
   cacheDir: '../../node_modules/.vite/libs/hmm1-base-ui',
   plugins: [
@@ -29,6 +27,7 @@ export default defineConfig({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
+    externalizeDeps(),
   ],
   root: __dirname,
   test: {
