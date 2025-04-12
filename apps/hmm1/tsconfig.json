@@ -12,6 +12,21 @@
   "include": [],
   "references": [
     {
+      "path": "../../libs/hmm1-test-utils"
+    },
+    {
+      "path": "../../libs/hmm1-core"
+    },
+    {
+      "path": "../../libs/hmm1-adventure-ui"
+    },
+    {
+      "path": "../../libs/hmm1-i18n"
+    },
+    {
+      "path": "../../libs/hmm1-base-ui"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {

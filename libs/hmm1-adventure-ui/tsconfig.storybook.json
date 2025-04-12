@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "emitDecoratorMetadata": true,
-    "outDir": ""
+    "outDir": "out-tsc/storybook"
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -13,7 +13,7 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.js"
   ],
-  "extends": "./tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "files": [
     "../../node_modules/@nx/react/typings/styled-jsx.d.ts",
     "../../node_modules/@nx/react/typings/cssmodule.d.ts",
@@ -28,5 +28,10 @@
     ".storybook/*.js",
     ".storybook/*.ts",
     ".storybook/*.tsx"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.lib.json"
+    }
   ]
 }

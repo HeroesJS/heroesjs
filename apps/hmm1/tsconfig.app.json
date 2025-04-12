@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "out-tsc/app",
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
   },
   "exclude": [
@@ -21,6 +21,23 @@
     "**/*.stories.jsx",
     "**/*.stories.tsx"
   ],
-  "extends": "./tsconfig.json",
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "references": [
+    {
+      "path": "../../libs/hmm1-test-utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-core/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-adventure-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-i18n/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-base-ui/tsconfig.lib.json"
+    }
+  ]
 }
