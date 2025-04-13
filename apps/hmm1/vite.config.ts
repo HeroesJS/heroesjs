@@ -1,4 +1,3 @@
-import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
 import react from '@vitejs/plugin-react-swc';
 import {defineConfig} from 'vite';
 import {nodePolyfills} from 'vite-plugin-node-polyfills';
@@ -17,7 +16,6 @@ export default defineConfig({
       include: ['assert'],
     }),
     react(),
-    nxCopyAssetsPlugin(['*.md']),
   ],
   preview: {
     host: 'localhost',

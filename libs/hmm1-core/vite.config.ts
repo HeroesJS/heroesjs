@@ -1,4 +1,3 @@
-import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
 import * as path from 'path';
 import {defineConfig} from 'vite';
 import dts from 'vite-plugin-dts';
@@ -20,7 +19,6 @@ export default defineConfig({
   },
   cacheDir: '../../node_modules/.vite/libs/hmm1-core',
   plugins: [
-    nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),

@@ -1,4 +1,3 @@
-import {nxCopyAssetsPlugin} from '@nx/vite/plugins/nx-copy-assets.plugin';
 import react from '@vitejs/plugin-react-swc';
 import * as path from 'path';
 import {defineConfig} from 'vite';
@@ -22,7 +21,6 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/libs/hmm1-test-utils',
   plugins: [
     react(),
-    nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
