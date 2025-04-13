@@ -17,7 +17,6 @@ export default defineConfig({
     },
     reportCompressedSize: true,
   },
-  cacheDir: '../../node_modules/.vite/libs/hmm1-core',
   plugins: [
     dts({
       entryRoot: 'src',
@@ -28,13 +27,13 @@ export default defineConfig({
   root: __dirname,
   test: {
     coverage: {
-      exclude: ['src/**/*.stories.tsx'],
+      exclude: ['src/**/*.stories.{ts,tsx}'],
       include: ['src/**/*.{ts,tsx}'],
       provider: 'v8',
     },
     environment: 'node',
     globals: true,
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: ['src/**/*.spec.{ts,tsx}'],
     passWithNoTests: true,
     reporters: ['default'],
     watch: false,

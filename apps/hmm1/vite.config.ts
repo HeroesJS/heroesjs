@@ -10,7 +10,6 @@ export default defineConfig({
     emptyOutDir: true,
     reportCompressedSize: true,
   },
-  cacheDir: '../../node_modules/.vite/apps/hmm1',
   plugins: [
     nodePolyfills({
       include: ['assert'],
@@ -36,13 +35,13 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      exclude: ['src/**/*.stories.tsx'],
+      exclude: ['src/**/*.stories.{ts,tsx}'],
       include: ['src/**/*.{ts,tsx}'],
       provider: 'v8',
     },
     environment: 'jsdom',
     globals: true,
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: ['src/**/*.spec.{ts,tsx}'],
     passWithNoTests: true,
     reporters: ['default'],
     setupFiles: ['setupTests'],
