@@ -83,7 +83,22 @@
     }
   ],
   "targetDefaults": {
+    "build-storybook": {
+      "dependsOn": ["^build"]
+    },
     "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    },
+    "storybook": {
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck-ts": {
       "dependsOn": ["^build"]
     }
   }
