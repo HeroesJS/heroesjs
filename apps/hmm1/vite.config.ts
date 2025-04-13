@@ -41,7 +41,6 @@ export default defineConfig({
       exclude: ['src/**/*.stories.tsx'],
       include: ['src/**/*.{ts,tsx}'],
       provider: 'v8',
-      reportsDirectory: '../../coverage/apps/hmm1',
     },
     environment: 'jsdom',
     globals: true,

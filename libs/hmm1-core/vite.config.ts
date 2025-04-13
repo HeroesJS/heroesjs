@@ -33,7 +33,6 @@ export default defineConfig({
       exclude: ['src/**/*.stories.tsx'],
       include: ['src/**/*.{ts,tsx}'],
       provider: 'v8',
-      reportsDirectory: '../../coverage/libs/hmm1-core',
     },
     environment: 'node',
     globals: true,
