@@ -2,6 +2,7 @@ import nx from '@nx/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import gitignore from 'eslint-config-flat-gitignore';
 import importPlugin from 'eslint-plugin-import';
+import jsoncPlugin from 'eslint-plugin-jsonc';
 import perfectionist from 'eslint-plugin-perfectionist';
 import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
@@ -110,8 +111,9 @@ export default [
       'react/jsx-sort-props': 'error',
     },
   },
+  ...jsoncPlugin.configs['flat/recommended-with-jsonc'],
   {
-    files: ['**/*.json'],
+    files: ['**/package.json'],
     languageOptions: {
       parser: jsoncParser,
     },
@@ -120,6 +122,39 @@ export default [
         'error',
         {
           ignoredFiles: ['**/vite.config.ts'],
+        },
+      ],
+      'jsonc/sort-keys': [
+        'error',
+        {
+          order: [
+            'private',
+            'name',
+            'type',
+            'description',
+            'license',
+            'version',
+            'engines',
+            'scripts',
+            'workspaces',
+            'exports',
+            'dependencies',
+            'bundledDependencies',
+            'peerDependencies',
+            'optionalDependencies',
+            'devDependencies',
+          ],
+          pathPattern: '^$',
+        },
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^(exports|(?:bundled|dev|optional|peer)?[Dd]ependencies)$',
+        },
+        {
+          order: ['types', 'import', 'default'],
+          pathPattern: '^exports',
         },
       ],
     },
