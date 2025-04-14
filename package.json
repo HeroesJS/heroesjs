@@ -9,6 +9,7 @@
     "node": ">=21.5.0"
   },
   "scripts": {
+    "clean": "rimraf {apps,libs}/**/{coverage,dist,node_modules,out-tsc,storybook-static}",
     "format:check": "nx format:check --all",
     "format:write": "nx format:write --all",
     "verify": "nx affected -t format:check lint test build typecheck e2e --parallel=1"
