@@ -19,8 +19,10 @@ export default defineConfig({
   },
   plugins: [
     dts({
+      compilerOptions: {
+        declarationMap: true,
+      },
       entryRoot: 'src',
-      rollupTypes: true,
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
     externalizeDeps(),

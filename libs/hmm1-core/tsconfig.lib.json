@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declarationMap": true,
     "outDir": "out-tsc/lib",
     "types": ["node", "vite/client"]
   },
