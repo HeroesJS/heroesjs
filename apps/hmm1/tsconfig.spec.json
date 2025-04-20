@@ -2,18 +2,18 @@
   "compilerOptions": {
     "outDir": "out-tsc/spec",
     "types": [
-      "vitest/globals",
-      "vitest/importMeta",
-      "vite/client",
-      "node",
-      "vitest",
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
+      "node",
+      "vite/client",
+      "vitest",
+      "vitest/globals",
+      "vitest/importMeta"
     ]
   },
   "extends": "../../tsconfig.base.json",
-  "include": ["vite.config.ts", "setupTests.ts", "src/**/*.spec.*"],
+  "include": ["setupTests.ts", "src/**/*.spec.*", "vite.config.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"

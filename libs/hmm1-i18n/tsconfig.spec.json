@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "out-tsc/spec",
-    "types": ["vitest/globals", "vitest/importMeta", "vite/client", "node", "vitest"]
+    "types": ["node", "vite/client", "vitest", "vitest/globals", "vitest/importMeta"]
   },
   "extends": "../../tsconfig.base.json",
-  "include": ["vite.config.ts", "setupTests.ts", "src/**/*.spec.*"],
+  "include": ["setupTests.ts", "src/**/*.spec.*", "vite.config.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

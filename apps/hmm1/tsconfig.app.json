@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "out-tsc/app",
-    "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"]
+    "types": ["@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "node", "vite/client"]
   },
   "exclude": ["src/**/*.spec.*", "src/**/*.stories.*"],
   "extends": "../../tsconfig.base.json",

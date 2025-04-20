@@ -150,11 +150,37 @@ export default [
           order: {
             type: 'asc',
           },
-          pathPattern: '^(exports|(?:bundled|dev|optional|peer)?[Dd]ependencies)$',
+          pathPattern: '^(?:bundled|dev|optional|peer)?[Dd]ependencies$',
         },
         {
           order: ['types', 'import', 'default'],
           pathPattern: '^exports',
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
+    rules: {
+      'jsonc/sort-array-values': [
+        'error',
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^',
+        },
+      ],
+      'jsonc/sort-keys': [
+        'error',
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^',
         },
       ],
     },

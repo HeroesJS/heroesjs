@@ -5,11 +5,11 @@
   "exclude": ["src/**/*.spec.*"],
   "extends": "../../tsconfig.base.json",
   "files": [
-    "../../node_modules/@nx/react/typings/styled-jsx.d.ts",
     "../../node_modules/@nx/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nx/react/typings/image.d.ts"
+    "../../node_modules/@nx/react/typings/image.d.ts",
+    "../../node_modules/@nx/react/typings/styled-jsx.d.ts"
   ],
-  "include": ["src/**/*.stories.*", ".storybook/*"],
+  "include": [".storybook/*", "src/**/*.stories.*"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
