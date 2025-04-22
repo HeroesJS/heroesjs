@@ -16,7 +16,7 @@ export default [
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{ts,tsx}'],
     ignores: ['**/vite.config.ts'],
     rules: {
       '@nx/enforce-module-boundaries': [
@@ -35,7 +35,7 @@ export default [
     },
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{ts,tsx}'],
     // Override or add rules here
     plugins: {
       import: importPlugin,
@@ -106,7 +106,7 @@ export default [
     },
   },
   {
-    files: ['**/*.{jsx,tsx}'],
+    files: ['**/*.{tsx}'],
     rules: {
       'react/jsx-sort-props': 'error',
     },
@@ -186,7 +186,7 @@ export default [
     },
   },
   merge(testingLibraryPlugin.configs['flat/react'], {
-    files: ['**/*.{spec,stories}.{js,jsx,ts,tsx}'],
+    files: ['**/*.{spec,stories}.{ts,tsx}'],
     rules: {
       'testing-library/consistent-data-testid': 'off',
       'testing-library/no-debugging-utils': 'error',
@@ -209,7 +209,7 @@ export default [
   }),
   {
     ...playwrightPlugin.configs['flat/recommended'],
-    files: ['**/*.test.{js,ts}'],
+    files: ['**/*.test.{ts}'],
     rules: {
       ...playwrightPlugin.configs['flat/recommended'].rules,
       'playwright/no-commented-out-tests': 'error',
