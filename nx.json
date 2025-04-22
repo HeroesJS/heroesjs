@@ -82,6 +82,9 @@
       "plugin": "@nx/playwright/plugin"
     }
   ],
+  "sync": {
+    "applyChanges": true
+  },
   "targetDefaults": {
     "build-storybook": {
       "dependsOn": ["^build"]
