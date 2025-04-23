@@ -7,6 +7,7 @@
     "allowUnusedLabels": false,
     "baseUrl": ".",
     "composite": true,
+    "customConditions": ["development"],
     "declaration": true,
     "declarationMap": false,
     "downlevelIteration": true,

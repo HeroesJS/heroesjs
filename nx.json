@@ -92,17 +92,7 @@
     "e2e-ci--**/*": {
       "dependsOn": ["^build"]
     },
-    "storybook": {
-      "dependsOn": ["^build"]
-    },
-    "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/coverage"]
-    },
     "typecheck": {
-      "dependsOn": ["^build"]
-    },
-    "typecheck-ts": {
       "dependsOn": ["^build"]
     }
   }
