@@ -2,12 +2,21 @@
   "name": "@heroesjs/hmm1-adventure-ui",
   "type": "module",
   "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "peerDependencies": {
+    "@heroesjs/hmm1-base-ui": "*",
+    "@heroesjs/hmm1-core": "*",
+    "lodash": "^4.17.21",
+    "react": "18.3.1",
+    "react-i18next": "^15.4.0",
+    "styled-components": "5.3.6"
   }
 }

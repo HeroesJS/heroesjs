@@ -9,10 +9,15 @@
     "node": "22.15.0"
   },
   "scripts": {
+    "clean": "rimraf {apps,libs}/**/{coverage,dist,node_modules,out-tsc,storybook-static}",
     "format:check": "nx format:check --all",
     "format:write": "nx format:write --all",
     "verify": "nx affected -t format:check lint test build typecheck e2e --parallel=1"
   },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
     "i18next": "^24.2.2",
@@ -63,7 +68,9 @@
     "@vitest/coverage-v8": "^3.0.4",
     "@vitest/ui": "^3.0.4",
     "eslint": "^9.17.0",
+    "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsonc": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-perfectionist": "^4.10.1",
     "eslint-plugin-playwright": "^2.1.0",
@@ -72,6 +79,7 @@
     "eslint-plugin-testing-library": "^7.1.1",
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",
+    "jsonc-eslint-parser": "^2.4.0",
     "nx": "20.6.2",
     "prettier": "^3.4.2",
     "prettier-plugin-sort-json": "^4.0.0",
@@ -82,6 +90,7 @@
     "typescript-eslint": "^8.18.2",
     "vite": "6.2.2",
     "vite-plugin-dts": "4.5.3",
+    "vite-plugin-externalize-deps": "^0.9.0",
     "vite-plugin-node-polyfills": "^0.23.0",
     "vitest": "^3.0.4"
   },

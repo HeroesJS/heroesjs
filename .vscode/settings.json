@@ -1,5 +1,12 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "search.exclude": {
+    "**/coverage": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/out-tsc": true,
+    "**/storybook-static": true
+  },
   "typescript.tsdk": "node_modules/typescript/lib"
 }

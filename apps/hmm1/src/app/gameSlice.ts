@@ -32,7 +32,7 @@ interface Player {
   readonly name: string;
 }
 
-interface GameState {
+export interface GameState {
   readonly activePlayer: PlayerId;
   readonly heroes: readonly Hero[];
   readonly players: Record<PlayerId, Player>;

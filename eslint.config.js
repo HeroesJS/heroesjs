@@ -1,21 +1,22 @@
 import nx from '@nx/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
+import gitignore from 'eslint-config-flat-gitignore';
 import importPlugin from 'eslint-plugin-import';
+import jsoncPlugin from 'eslint-plugin-jsonc';
+import perfectionist from 'eslint-plugin-perfectionist';
 import playwrightPlugin from 'eslint-plugin-playwright';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
-import perfectionist from 'eslint-plugin-perfectionist';
+import jsoncParser from 'jsonc-eslint-parser';
 import merge from 'lodash.merge';
 
 export default [
+  gitignore(),
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
   {
-    ignores: ['**/dist', '**/storybook-static', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{ts,tsx}'],
     ignores: ['**/vite.config.ts'],
     rules: {
       '@nx/enforce-module-boundaries': [
@@ -34,20 +35,13 @@ export default [
     },
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.{ts,tsx}'],
     // Override or add rules here
     plugins: {
       import: importPlugin,
       perfectionist,
     },
     rules: {
-      'perfectionist/sort-interfaces': ['error'],
-      'perfectionist/sort-enums': [
-        'error',
-        {
-          forceNumericSort: true,
-        },
-      ],
       'import/order': [
         'error',
         {
@@ -60,6 +54,13 @@ export default [
           'newlines-between': 'always',
         },
       ],
+      'perfectionist/sort-enums': [
+        'error',
+        {
+          forceNumericSort: true,
+        },
+      ],
+      'perfectionist/sort-interfaces': ['error'],
       'sort-keys': [
         'error',
         'asc',
@@ -105,13 +106,87 @@ export default [
     },
   },
   {
-    files: ['**/*.{jsx,tsx}'],
+    files: ['**/*.{tsx}'],
     rules: {
       'react/jsx-sort-props': 'error',
     },
   },
+  ...jsoncPlugin.configs['flat/recommended-with-jsonc'],
+  {
+    files: ['**/package.json'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: ['**/vite.config.ts'],
+        },
+      ],
+      'jsonc/sort-keys': [
+        'error',
+        {
+          order: [
+            'private',
+            'name',
+            'type',
+            'description',
+            'license',
+            'version',
+            'engines',
+            'scripts',
+            'workspaces',
+            'exports',
+            'dependencies',
+            'bundledDependencies',
+            'peerDependencies',
+            'optionalDependencies',
+            'devDependencies',
+          ],
+          pathPattern: '^$',
+        },
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^(?:bundled|dev|optional|peer)?[Dd]ependencies$',
+        },
+        {
+          order: ['types', 'import', 'default'],
+          pathPattern: '^exports',
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
+    rules: {
+      'jsonc/sort-array-values': [
+        'error',
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^',
+        },
+      ],
+      'jsonc/sort-keys': [
+        'error',
+        {
+          order: {
+            type: 'asc',
+          },
+          pathPattern: '^',
+        },
+      ],
+    },
+  },
   merge(testingLibraryPlugin.configs['flat/react'], {
-    files: ['**/*.{spec,stories}.{js,jsx,ts,tsx}'],
+    files: ['**/*.{spec,stories}.{ts,tsx}'],
     rules: {
       'testing-library/consistent-data-testid': 'off',
       'testing-library/no-debugging-utils': 'error',
@@ -134,7 +209,7 @@ export default [
   }),
   {
     ...playwrightPlugin.configs['flat/recommended'],
-    files: ['**/*.test.{js,ts}'],
+    files: ['**/*.test.{ts}'],
     rules: {
       ...playwrightPlugin.configs['flat/recommended'].rules,
       'playwright/no-commented-out-tests': 'error',

@@ -1,6 +1,6 @@
 import {sum} from 'lodash';
 
-import {HeroClassId, Skill, skills, type SkillValues} from './core';
+import {HeroClassId, Skill, type SkillValues} from './core';
 import {getHeroLevel, getHeroSkillsForLevel} from './hero';
 
 describe(getHeroLevel, () => {

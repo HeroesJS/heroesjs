@@ -2,12 +2,19 @@
   "name": "@heroesjs/hmm1-test-utils",
   "type": "module",
   "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     }
+  },
+  "peerDependencies": {
+    "@testing-library/react": "15.0.6",
+    "@testing-library/user-event": "^14.5.2",
+    "react": "18.3.1",
+    "react-router-dom": "6.11.2"
   }
 }

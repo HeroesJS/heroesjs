@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
-interface SaveGame {
+export interface SaveGame {
   readonly id: number;
   readonly name: string;
 }

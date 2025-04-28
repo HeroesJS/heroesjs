@@ -20,11 +20,35 @@
     }
   },
   "namedInputs": {
-    "default": ["sharedGlobals"],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/setupTests.ts",
+      "!{projectRoot}/**/*.spec.ts?(x)",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/.storybook/*",
+      "!{projectRoot}/**/*.stories.tsx"
+    ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/verify.yml"]
   },
   "nxCloudId": "67a72634821c3af2179c5b47",
   "plugins": [
+    {
+      "options": {
+        "build": {
+          "buildDepsName": "build-deps-ts",
+          "configName": "tsconfig.lib.json",
+          "targetName": "build-ts",
+          "watchDepsName": "watch-deps-ts"
+        },
+        "typecheck": {
+          "targetName": "typecheck-ts"
+        }
+      },
+      "plugin": "@nx/js/typescript"
+    },
     {
       "options": {
         "buildTargetName": "build",
@@ -58,8 +82,17 @@
       "plugin": "@nx/playwright/plugin"
     }
   ],
+  "sync": {
+    "applyChanges": true
+  },
   "targetDefaults": {
+    "build-storybook": {
+      "dependsOn": ["^build"]
+    },
     "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
       "dependsOn": ["^build"]
     }
   }
