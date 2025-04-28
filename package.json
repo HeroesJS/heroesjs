@@ -6,7 +6,7 @@
   "license": "MIT",
   "version": "0.0.0",
   "engines": {
-    "node": ">=21.5.0"
+    "node": "22.15.0"
   },
   "scripts": {
     "format:check": "nx format:check --all",
