@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 
@@ -38,7 +38,7 @@ import {HeroScreen} from '../HeroScreen';
 import {useAppDispatch, useAppSelector} from '../hooks';
 
 export const AdventureScreen = () => {
-  const {t} = useTranslation(['core']);
+  const {t} = useTranslation(['adventure', 'core'], {keyPrefix: 'component.adventureScreen'});
   const dispatch = useAppDispatch();
 
   const notImplementedModal = useModal();
@@ -80,13 +80,31 @@ export const AdventureScreen = () => {
     notImplementedModal.open();
   };
 
+  const confirmEndTurnModal = useModal();
+
+  const handleEndTurnClick = useCallback(() => {
+    if (heroes.some((h) => h.mobility)) {
+      confirmEndTurnModal.open();
+
+      return;
+    }
+
+    dispatch(endTurn());
+  }, [confirmEndTurnModal, dispatch, heroes]);
+
+  const handleConfirmEndTurnClick = useCallback(() => {
+    confirmEndTurnModal.close();
+
+    dispatch(endTurn());
+  }, [confirmEndTurnModal, dispatch]);
+
   return (
     <AdventureWindow
       renderActionButtons={() => (
         <AdventureButtons
           moveDisabled
           onAdventureOptionsClick={() => navigate('adventure-options')}
-          onEndTurnClick={() => dispatch(endTurn())}
+          onEndTurnClick={handleEndTurnClick}
           onGameOptionsClick={() => navigate('game-options')}
         />
       )}
@@ -178,6 +196,17 @@ export const AdventureScreen = () => {
       </Routes>
       <Modal onConfirmClick={notImplementedModal.close} open={notImplementedModal.isOpen} type="okay" x={177} y={29}>
         {t('core:notImplemented')}
+      </Modal>
+      <Modal
+        onCancelClick={confirmEndTurnModal.close}
+        onConfirmClick={handleConfirmEndTurnClick}
+        open={confirmEndTurnModal.isOpen}
+        size={1}
+        type="yesNo"
+        x={177}
+        y={29}
+      >
+        {t('confirmEndTurnMessage')}
       </Modal>
     </AdventureWindow>
   );
