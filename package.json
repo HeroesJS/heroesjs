@@ -2,7 +2,12 @@
   "name": "@heroesjs/source",
   "private": true,
   "version": "0.0.0",
-  "workspaces": ["apps/*", "libs/*"],
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "nx": "22.0.3"
+  }
 }

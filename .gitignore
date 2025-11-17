@@ -1,0 +1,9 @@
+# System files
+Thumbs.db
+
+# Node.js & npm
+node_modules
+
+# Nx
+.nx/cache
+.nx/workspace-data
