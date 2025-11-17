@@ -1,16 +1,8 @@
-import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
-
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="hmm1" />
-    </StyledApp>
+    <div>
+      <h1>HeroesJS</h1>
+      <p>A web-based implementation of Heroes of Might and Magic: A Strategic Quest.</p>
+    </div>
   );
 }
-
-export default App;
