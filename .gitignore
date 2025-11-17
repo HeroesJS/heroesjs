@@ -16,3 +16,6 @@ out-tsc
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 test-output
+
+# Storybook
+storybook-static
