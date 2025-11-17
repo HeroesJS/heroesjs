@@ -44,9 +44,7 @@
   ],
   "targetDefaults": {
     "test": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   },
   "generators": {

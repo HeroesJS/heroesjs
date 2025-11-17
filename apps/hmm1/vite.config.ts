@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react-swc';
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/hmm1',
-  server:{
+  server: {
     port: 4200,
     host: 'localhost',
   },
-  preview:{
+  preview: {
     port: 4200,
     host: 'localhost',
   },
@@ -36,6 +36,6 @@ export default defineConfig(() => ({
     coverage: {
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,
-    }
+    },
   },
 }));
