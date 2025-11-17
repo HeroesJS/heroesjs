@@ -1,0 +1,8 @@
+{
+  "name": "@heroesjs/hmm1",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "hmm1"
+  }
+}
