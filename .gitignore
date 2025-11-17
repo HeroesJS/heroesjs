@@ -7,3 +7,12 @@ node_modules
 # Nx
 .nx/cache
 .nx/workspace-data
+
+# output
+dist
+out-tsc
+
+# Vite & Vitest
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
+test-output
