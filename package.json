@@ -6,8 +6,12 @@
     "apps/*",
     "libs/*"
   ],
-  "dependencies": {},
   "devDependencies": {
+    "@nx/react": "^22.0.3",
     "nx": "22.0.3"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
