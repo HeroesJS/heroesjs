@@ -74,5 +74,10 @@
         "linter": "eslint"
       }
     }
+  },
+  "nxCloudId": "691c2f42d9db341741581033",
+  "namedInputs": {
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
+    "default": ["sharedGlobals"]
   }
 }
