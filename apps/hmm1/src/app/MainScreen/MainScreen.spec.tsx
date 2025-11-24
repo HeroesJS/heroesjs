@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { App } from './app';
+import { MainScreen } from './MainScreen';
 
-describe(App, () => {
-  it('should have a heading', () => {
-    render(<App />);
+describe(MainScreen, () => {
+  it('should render label', () => {
+    render(<MainScreen />);
 
     expect(screen.getByRole('main', { name: /main screen/i })).toBeInTheDocument();
   });

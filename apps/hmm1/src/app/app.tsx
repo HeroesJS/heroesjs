@@ -1,8 +1,17 @@
+import { createGlobalStyle } from 'styled-components';
+import { MainScreen } from './MainScreen';
+
+const GlobalStyle = createGlobalStyle({
+  body: {
+    margin: 0,
+  },
+});
+
 export function App() {
   return (
-    <div>
-      <h1>HeroesJS</h1>
-      <p>A web-based implementation of Heroes of Might and Magic: A Strategic Quest.</p>
-    </div>
+    <>
+      <GlobalStyle />
+      <MainScreen />
+    </>
   );
 }
