@@ -3,16 +3,10 @@ import '@testing-library/jest-dom';
 
 import { App } from './app';
 
-describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<App />);
-
-    expect(baseElement).toBeTruthy();
-  });
-
+describe(App, () => {
   it('should have a heading', () => {
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: /heroesjs/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /main screen/i })).toBeInTheDocument();
   });
 });
