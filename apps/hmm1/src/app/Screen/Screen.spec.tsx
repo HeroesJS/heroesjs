@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 
 import { Screen } from './Screen';
 
 describe(Screen, () => {
-  it('should render label', () => {
+  it('should render', () => {
     render(<Screen background="" label="Label" />);
 
     expect(screen.getByRole('main', { name: /label/i })).toBeInTheDocument();
@@ -12,7 +12,7 @@ describe(Screen, () => {
 
   it('should render children', () => {
     render(
-      <Screen background="" label="">
+      <Screen background="" label="Label">
         CHILDREN
       </Screen>
     );
