@@ -1,0 +1,58 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+
+import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+
+export interface ButtonAssets {
+  readonly active: string;
+  readonly pressed: string;
+}
+
+interface ButtonProps extends PositionProps {
+  readonly assets: ButtonAssets;
+  readonly disabled?: boolean;
+  readonly label: string;
+  readonly onClick?: () => void;
+}
+
+export function Button({ assets, disabled, label, onClick, x, y }: ButtonProps) {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const handleMouseEnter = () => setIsMouseOver(true);
+
+  const handleMouseOut = () => setIsMouseOver(false);
+
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handleMouseDown = () => setIsPressed(true);
+
+  const handleMouseUp = () => setIsPressed(false);
+
+  return (
+    <Root
+      aria-label={label}
+      as="button"
+      disabled={disabled}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onMouseEnter={handleMouseEnter}
+      onMouseOut={handleMouseOut}
+      onMouseUp={handleMouseUp}
+      x={x}
+      y={y}
+    >
+      <img
+        alt={label}
+        draggable={false}
+        src={(isPressed && isMouseOver) || disabled ? assets.pressed : assets.active}
+      />
+    </Root>
+  );
+}
+
+const Root = styled(PositionedComponent)({
+  backgroundColor: 'transparent',
+  border: 'none',
+  fontSize: 0,
+  padding: 0,
+});

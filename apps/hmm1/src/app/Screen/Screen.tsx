@@ -18,7 +18,7 @@ export function Screen({ background, children, label }: PropsWithChildren<Screen
 }
 
 const Root = styled('main')<Pick<ScreenProps, 'background'>>(({ background }) => ({
-  backgroundImage: `url(${background})`,
+  background: `url(${background})`,
   fontSize: 0,
   height: ScreenHeight,
   position: 'relative',

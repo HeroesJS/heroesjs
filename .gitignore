@@ -1,4 +1,5 @@
 # System files
+.DS_Store
 Thumbs.db
 
 # Node.js & npm
