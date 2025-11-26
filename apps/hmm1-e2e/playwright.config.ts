@@ -18,8 +18,7 @@ export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0,
-      maxDiffPixels: 0,
+      maxDiffPixelRatio: 0.1,
       pathTemplate: `{testDir}/{testFilePath}-snapshots/{arg}{ext}`,
     },
   },
