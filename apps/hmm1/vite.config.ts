@@ -28,6 +28,7 @@ export default defineConfig(() => ({
   },
   test: {
     name: 'hmm1',
+    setupFiles: ['./setupTests.ts'],
     watch: false,
     globals: true,
     environment: 'jsdom',
