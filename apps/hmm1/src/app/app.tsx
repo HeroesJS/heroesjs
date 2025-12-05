@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import { MainScreen } from './MainScreen';
 import { MainMenu } from './MainMenu';
+import { MainScreen } from './MainScreen';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -11,6 +12,18 @@ const GlobalStyle = createGlobalStyle({
 });
 
 export function App() {
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
+
   return (
     <>
       <GlobalStyle />
