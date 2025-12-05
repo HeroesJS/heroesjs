@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
@@ -13,9 +13,10 @@ interface ButtonProps extends PositionProps {
   readonly disabled?: boolean;
   readonly label: string;
   readonly onClick?: () => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
 }
 
-export function Button({ assets, disabled, label, onClick, x, y }: ButtonProps) {
+export function Button({ assets, disabled, label, onClick, onMouseDown, x, y }: ButtonProps) {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   const handleMouseEnter = () => setIsMouseOver(true);
@@ -24,7 +25,13 @@ export function Button({ assets, disabled, label, onClick, x, y }: ButtonProps) 
 
   const [isPressed, setIsPressed] = useState(false);
 
-  const handleMouseDown = () => setIsPressed(true);
+  const handleMouseDown = (e: MouseEvent) => {
+    if (e.button === 0) {
+      setIsPressed(true);
+    }
+
+    onMouseDown?.(e);
+  };
 
   const handleMouseUp = () => setIsPressed(false);
 
