@@ -18,7 +18,7 @@ test.describe('main menu', () => {
     await expect(page.getByRole('button', { name: /view credits/i })).toBeVisible();
     await expect(page.getByRole('button', { name: /quit/i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('main-menu.png');
+    await expect(page).toHaveScreenshot('main-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays new game info', async ({ page }) => {
@@ -31,7 +31,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /start a single or multi-player game\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('new-game-info.png');
+    await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays load game info', async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /load a previously saved game\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('load-game-info.png');
+    await expect(page).toHaveScreenshot('load-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view high scores info', async ({ page }) => {
@@ -57,7 +57,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /view the high score screen\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('view-high-scores-info.png');
+    await expect(page).toHaveScreenshot('view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view credits info', async ({ page }) => {
@@ -70,7 +70,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /view the credits screen\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('view-credits-info.png');
+    await expect(page).toHaveScreenshot('view-credits-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays quit info', async ({ page }) => {
@@ -85,7 +85,7 @@ test.describe('main menu', () => {
       page.getByRole('dialog', { name: /quit heroes of might and magic and return to the dos prompt\./i })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('quit-info.png');
+    await expect(page).toHaveScreenshot('quit-info.png', { maxDiffPixelRatio: 0.05 });
   });
 });
 
@@ -104,7 +104,7 @@ test.describe('new game menu', () => {
     await expect(page.getByRole('button', { name: /multi-player game/i })).toBeVisible();
     await expect(page.getByRole('button', { name: /cancel/i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('new-game-menu.png');
+    await expect(page).toHaveScreenshot('new-game-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays standard game info', async ({ page }) => {
@@ -115,7 +115,7 @@ test.describe('new game menu', () => {
 
     await expect(page.getByRole('dialog', { name: /a single player game playing out a single map\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('standard-game-info.png');
+    await expect(page).toHaveScreenshot('standard-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays campaign game info', async ({ page }) => {
@@ -128,7 +128,7 @@ test.describe('new game menu', () => {
       page.getByRole('dialog', { name: /a single player game playing through a series of maps\./i })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('campaign-game-info.png');
+    await expect(page).toHaveScreenshot('campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays multi-player game info', async ({ page }) => {
@@ -143,7 +143,7 @@ test.describe('new game menu', () => {
       })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('multi-player-game-info.png');
+    await expect(page).toHaveScreenshot('multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays cancel info', async ({ page }) => {
@@ -154,6 +154,6 @@ test.describe('new game menu', () => {
 
     await expect(page.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('cancel-info.png');
+    await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 });

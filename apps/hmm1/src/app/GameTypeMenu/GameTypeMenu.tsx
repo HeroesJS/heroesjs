@@ -5,6 +5,7 @@ import type { PositionProps } from '../PositionedComponent';
 import { campaignGame, cancel, multiPlayerGame, standardGame } from './assets';
 
 interface GameTypeMenuProps extends PositionProps {
+  readonly label?: string;
   readonly onCampaignGameClick?: () => void;
   readonly onCancelClick?: () => void;
   readonly onMultiPlayerGameClick?: () => void;
@@ -12,6 +13,7 @@ interface GameTypeMenuProps extends PositionProps {
 }
 
 export function GameTypeMenu({
+  label = 'Game Type Menu',
   onCampaignGameClick,
   onCancelClick,
   onMultiPlayerGameClick,
@@ -25,7 +27,7 @@ export function GameTypeMenu({
   const cancelInfoModal = useInfoModal();
 
   return (
-    <Menu label="Game Type Menu" x={x} y={y}>
+    <Menu label={label} x={x} y={y}>
       <MenuItem>
         <Button
           assets={standardGame}
