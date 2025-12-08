@@ -7,9 +7,11 @@ test('displays main screen', async ({ page }) => {
 });
 
 test.describe('main menu', () => {
-  test('displays main menu', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/');
+  });
 
+  test('displays main menu', async ({ page }) => {
     await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
 
     await expect(page.getByRole('button', { name: /new game/i })).toBeVisible();
@@ -22,8 +24,6 @@ test.describe('main menu', () => {
   });
 
   test('displays new game info', async ({ page }) => {
-    await page.goto('/');
-
     const button = (await page.getByRole('button', { name: /new game/i }).boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
@@ -35,8 +35,6 @@ test.describe('main menu', () => {
   });
 
   test('displays load game info', async ({ page }) => {
-    await page.goto('/');
-
     const button = (await page.getByRole('button', { name: /load game/i }).boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
@@ -48,8 +46,6 @@ test.describe('main menu', () => {
   });
 
   test('displays view high scores info', async ({ page }) => {
-    await page.goto('/');
-
     const button = (await page.getByRole('button', { name: /view high scores/i }).boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
@@ -61,8 +57,6 @@ test.describe('main menu', () => {
   });
 
   test('displays view credits info', async ({ page }) => {
-    await page.goto('/');
-
     const button = (await page.getByRole('button', { name: /view credits/i }).boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
@@ -74,8 +68,6 @@ test.describe('main menu', () => {
   });
 
   test('displays quit info', async ({ page }) => {
-    await page.goto('/');
-
     const button = (await page.getByRole('button', { name: /quit/i }).boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
