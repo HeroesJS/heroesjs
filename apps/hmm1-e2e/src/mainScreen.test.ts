@@ -31,7 +31,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /start a single or multi-player game\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('main-menu-new-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays load game info', async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /load a previously saved game\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('load-game-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('main-menu-load-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view high scores info', async ({ page }) => {
@@ -53,7 +53,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /view the high score screen\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('main-menu-view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view credits info', async ({ page }) => {
@@ -64,7 +64,7 @@ test.describe('main menu', () => {
 
     await expect(page.getByRole('dialog', { name: /view the credits screen\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('view-credits-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('main-menu-view-credits-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays quit info', async ({ page }) => {
@@ -77,7 +77,7 @@ test.describe('main menu', () => {
       page.getByRole('dialog', { name: /quit heroes of might and magic and return to the dos prompt\./i })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('quit-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('main-menu-quit-info.png', { maxDiffPixelRatio: 0.05 });
   });
 });
 
