@@ -109,7 +109,7 @@ test.describe('new game menu', () => {
 
     await expect(page.getByRole('dialog', { name: /a single player game playing out a single map\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('standard-game-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('new-game-menu-standard-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays campaign game info', async ({ page }) => {
@@ -122,7 +122,7 @@ test.describe('new game menu', () => {
       page.getByRole('dialog', { name: /a single player game playing through a series of maps\./i })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('new-game-menu-campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays multi-player game info', async ({ page }) => {
@@ -137,7 +137,7 @@ test.describe('new game menu', () => {
       })
     ).toBeVisible();
 
-    await expect(page).toHaveScreenshot('multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('new-game-menu-multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays cancel info', async ({ page }) => {
@@ -148,7 +148,7 @@ test.describe('new game menu', () => {
 
     await expect(page.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeVisible();
 
-    await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
+    await expect(page).toHaveScreenshot('new-game-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('returns to main menu when cancel is clicked', async ({ page }) => {
