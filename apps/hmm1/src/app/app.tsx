@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
+import { CampaignMenu } from './CampaignMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
@@ -34,10 +35,21 @@ export function App() {
       <MainScreen>
         <Routes>
           <Route element={<MainMenu onNewGameClick={() => navigate('new-game')} x={400} y={35} />} index />
-          <Route
-            element={<GameTypeMenu label="New Game Menu" onCancelClick={() => navigate('/')} x={400} y={35} />}
-            path="new-game"
-          />
+          <Route path="new-game">
+            <Route
+              element={
+                <GameTypeMenu
+                  label="New Game Menu"
+                  onCampaignGameClick={() => navigate('new-game/campaign')}
+                  onCancelClick={() => navigate('/')}
+                  x={400}
+                  y={35}
+                />
+              }
+              index
+            />
+            <Route element={<CampaignMenu x={400} y={35} onCancelClick={() => navigate('/')} />} path="campaign" />
+          </Route>
         </Routes>
       </MainScreen>
     </>

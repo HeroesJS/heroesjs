@@ -148,4 +148,38 @@ test.describe('new game menu', () => {
 
     await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
+
+  test('returns to main menu when cancel is clicked', async ({ page }) => {
+    await page.getByRole('button', { name: /cancel/i }).click();
+
+    await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
+  });
+});
+
+test.describe('campaign menu', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('button', { name: /new game/i }).click();
+
+    await page.getByRole('button', { name: /campaign game/i }).click();
+  });
+
+  test('displays campaign menu', async ({ page }) => {
+    await expect(page.getByRole('menu', { name: /campaign menu/i })).toBeVisible();
+
+    await expect(page.getByRole('button', { name: /play lord ironfist/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /play lord slayer/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /play queen lamanda/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /play lord alamar/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /cancel/i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('returns to main menu when cancel is clicked', async ({ page }) => {
+    await page.getByRole('button', { name: /cancel/i }).click();
+
+    await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
+  });
 });
