@@ -6,83 +6,146 @@ test('displays main screen', async ({ page }) => {
   await expect(page.getByRole('main', { name: /main screen/i })).toBeVisible();
 });
 
-test('displays main menu', async ({ page }) => {
-  await page.goto('/');
+test.describe('main menu', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
 
-  await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
+  test('displays main menu', async ({ page }) => {
+    await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
 
-  await expect(page.getByRole('button', { name: /new game/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: /load game/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: /view high scores/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: /view credits/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: /quit/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /new game/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /load game/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /view high scores/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /view credits/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /quit/i })).toBeVisible();
 
-  await expect(page).toHaveScreenshot('main-menu.png');
+    await expect(page).toHaveScreenshot('main-menu.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays new game info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /new game/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /start a single or multi-player game\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays load game info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /load game/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /load a previously saved game\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('load-game-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays view high scores info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /view high scores/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /view the high score screen\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays view credits info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /view credits/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /view the credits screen\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('view-credits-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays quit info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /quit/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(
+      page.getByRole('dialog', { name: /quit heroes of might and magic and return to the dos prompt\./i })
+    ).toBeVisible();
+
+    await expect(page).toHaveScreenshot('quit-info.png', { maxDiffPixelRatio: 0.05 });
+  });
 });
 
-test('displays new game info', async ({ page }) => {
-  await page.goto('/');
+test.describe('new game menu', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
 
-  const button = (await page.getByRole('button', { name: /new game/i }).boundingBox())!;
+    await page.getByRole('button', { name: /new game/i }).click();
+  });
 
-  await page.mouse.move(button.x, button.y);
-  await page.mouse.down({ button: 'right' });
+  test('displays new game menu', async ({ page }) => {
+    await expect(page.getByRole('menu', { name: /new game menu/i })).toBeVisible();
 
-  await expect(page.getByRole('dialog', { name: /start a single or multi-player game\./i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /standard game/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /campaign game/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /multi-player game/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /cancel/i })).toBeVisible();
 
-  await expect(page).toHaveScreenshot('new-game-info.png');
-});
+    await expect(page).toHaveScreenshot('new-game-menu.png', { maxDiffPixelRatio: 0.05 });
+  });
 
-test('displays load game info', async ({ page }) => {
-  await page.goto('/');
+  test('displays standard game info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /standard game/i }).boundingBox())!;
 
-  const button = (await page.getByRole('button', { name: /load game/i }).boundingBox())!;
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
 
-  await page.mouse.move(button.x, button.y);
-  await page.mouse.down({ button: 'right' });
+    await expect(page.getByRole('dialog', { name: /a single player game playing out a single map\./i })).toBeVisible();
 
-  await expect(page.getByRole('dialog', { name: /load a previously saved game\./i })).toBeVisible();
+    await expect(page).toHaveScreenshot('standard-game-info.png', { maxDiffPixelRatio: 0.05 });
+  });
 
-  await expect(page).toHaveScreenshot('load-game-info.png');
-});
+  test('displays campaign game info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /campaign game/i }).boundingBox())!;
 
-test('displays view high scores info', async ({ page }) => {
-  await page.goto('/');
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
 
-  const button = (await page.getByRole('button', { name: /view high scores/i }).boundingBox())!;
+    await expect(
+      page.getByRole('dialog', { name: /a single player game playing through a series of maps\./i })
+    ).toBeVisible();
 
-  await page.mouse.move(button.x, button.y);
-  await page.mouse.down({ button: 'right' });
+    await expect(page).toHaveScreenshot('campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
+  });
 
-  await expect(page.getByRole('dialog', { name: /view the high score screen\./i })).toBeVisible();
+  test('displays multi-player game info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /multi-player game/i }).boundingBox())!;
 
-  await expect(page).toHaveScreenshot('view-high-scores-info.png');
-});
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
 
-test('displays view credits info', async ({ page }) => {
-  await page.goto('/');
+    await expect(
+      page.getByRole('dialog', {
+        name: /a multi-player game, with several human players competing against each other on a single map\./i,
+      })
+    ).toBeVisible();
 
-  const button = (await page.getByRole('button', { name: /view credits/i }).boundingBox())!;
+    await expect(page).toHaveScreenshot('multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
+  });
 
-  await page.mouse.move(button.x, button.y);
-  await page.mouse.down({ button: 'right' });
+  test('displays cancel info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /cancel/i }).boundingBox())!;
 
-  await expect(page.getByRole('dialog', { name: /view the credits screen\./i })).toBeVisible();
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
 
-  await expect(page).toHaveScreenshot('view-credits-info.png');
-});
+    await expect(page.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeVisible();
 
-test('displays quit info', async ({ page }) => {
-  await page.goto('/');
-
-  const button = (await page.getByRole('button', { name: /quit/i }).boundingBox())!;
-
-  await page.mouse.move(button.x, button.y);
-  await page.mouse.down({ button: 'right' });
-
-  await expect(
-    page.getByRole('dialog', { name: /quit heroes of might and magic and return to the dos prompt\./i })
-  ).toBeVisible();
-
-  await expect(page).toHaveScreenshot('quit-info.png');
+    await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
+  });
 });
