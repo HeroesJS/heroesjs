@@ -27,3 +27,8 @@ const Root = styled(PositionedComponent)({
     marginBottom: 3,
   },
 });
+
+export const MenuItem = styled('div')({
+  height: 63,
+  width: 127,
+});
