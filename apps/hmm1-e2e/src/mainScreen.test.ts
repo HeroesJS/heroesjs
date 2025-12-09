@@ -65,67 +65,59 @@ test.describe('main menu', () => {
 });
 
 test.describe('new game menu', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+  test.beforeEach(async ({ newGameScreen }) => {
+    await newGameScreen.goto();
 
-    await page.getByRole('button', { name: /new game/i }).click();
-
-    await page.getByRole('menu', { name: /new game menu/i }).waitFor();
+    await newGameScreen.menu.waitFor();
   });
 
-  test('displays new game menu', async ({ page }) => {
-    await expect(page.getByRole('menu', { name: /new game menu/i })).toBeVisible();
+  test('displays new game menu', async ({ newGameScreen, page }) => {
+    await expect(newGameScreen.menu).toBeVisible();
 
-    await expect(page.getByRole('button', { name: /standard game/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /campaign game/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /multi-player game/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /cancel/i })).toBeVisible();
+    await expect(newGameScreen.standardGameButton).toBeVisible();
+    await expect(newGameScreen.campaignGameButton).toBeVisible();
+    await expect(newGameScreen.multiPlayerGameButton).toBeVisible();
+    await expect(newGameScreen.cancelButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays standard game info', async ({ mouseRightDown, page }) => {
-    await mouseRightDown(page.getByRole('button', { name: /standard game/i }));
+  test('displays standard game info', async ({ mouseRightDown, newGameScreen, page }) => {
+    await mouseRightDown(newGameScreen.standardGameButton);
 
-    await expect(page.getByRole('dialog', { name: /a single player game playing out a single map\./i })).toBeVisible();
+    await expect(newGameScreen.standardGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-standard-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays campaign game info', async ({ mouseRightDown, page }) => {
-    await mouseRightDown(page.getByRole('button', { name: /campaign game/i }));
+  test('displays campaign game info', async ({ mouseRightDown, newGameScreen, page }) => {
+    await mouseRightDown(newGameScreen.campaignGameButton);
 
-    await expect(
-      page.getByRole('dialog', { name: /a single player game playing through a series of maps\./i })
-    ).toBeVisible();
+    await expect(newGameScreen.campaignGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays multi-player game info', async ({ mouseRightDown, page }) => {
-    await mouseRightDown(page.getByRole('button', { name: /multi-player game/i }));
+  test('displays multi-player game info', async ({ mouseRightDown, newGameScreen, page }) => {
+    await mouseRightDown(newGameScreen.multiPlayerGameButton);
 
-    await expect(
-      page.getByRole('dialog', {
-        name: /a multi-player game, with several human players competing against each other on a single map\./i,
-      })
-    ).toBeVisible();
+    await expect(newGameScreen.multiPlayerGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays cancel info', async ({ mouseRightDown, page }) => {
-    await mouseRightDown(page.getByRole('button', { name: /cancel/i }));
+  test('displays cancel info', async ({ mouseRightDown, newGameScreen, page }) => {
+    await mouseRightDown(newGameScreen.cancelButton);
 
-    await expect(page.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeVisible();
+    await expect(newGameScreen.cancelInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('returns to main menu when cancel is clicked', async ({ page }) => {
-    await page.getByRole('button', { name: /cancel/i }).click();
+  test('returns to main menu when cancel is clicked', async ({ mainScreen, newGameScreen }) => {
+    await newGameScreen.cancelButton.click();
 
-    await expect(page.getByRole('menu', { name: /main menu/i })).toBeVisible();
+    await expect(mainScreen.locator).toBeVisible();
   });
 });
 
