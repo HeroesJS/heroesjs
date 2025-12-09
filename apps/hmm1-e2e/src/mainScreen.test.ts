@@ -86,6 +86,8 @@ test.describe('new game menu', () => {
     await page.goto('/');
 
     await page.getByRole('button', { name: /new game/i }).click();
+
+    await page.getByRole('menu', { name: /new game menu/i }).waitFor();
   });
 
   test('displays new game menu', async ({ page }) => {
@@ -163,6 +165,8 @@ test.describe('campaign menu', () => {
     await page.getByRole('button', { name: /new game/i }).click();
 
     await page.getByRole('button', { name: /campaign game/i }).click();
+
+    await page.getByRole('menu', { name: /campaign menu/i }).waitFor();
   });
 
   test('displays campaign menu', async ({ page }) => {
@@ -175,6 +179,61 @@ test.describe('campaign menu', () => {
     await expect(page.getByRole('button', { name: /cancel/i })).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays play lord ironfist info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /play lord ironfist/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /play the role of lord ironfist\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu-play-lord-ironfist-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays play lord slayer info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /play lord slayer/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /play the role of lord slayer\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu-play-lord-slayer-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays play queen lamanda info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /play queen lamanda/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /play the role of queen lamanda\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu-play-queen-lamanda-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays play lord alamar info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /play lord alamar/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /play the role of lord alamar\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu-play-lord-alamar-info.png', { maxDiffPixelRatio: 0.05 });
+  });
+
+  test('displays cancel info', async ({ page }) => {
+    const button = (await page.getByRole('button', { name: /cancel/i }).boundingBox())!;
+
+    await page.mouse.move(button.x, button.y);
+    await page.mouse.down({ button: 'right' });
+
+    await expect(page.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeVisible();
+
+    await expect(page).toHaveScreenshot('campaign-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('returns to main menu when cancel is clicked', async ({ page }) => {

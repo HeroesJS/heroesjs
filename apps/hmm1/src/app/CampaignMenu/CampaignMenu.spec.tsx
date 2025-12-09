@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/dom';
+import { screen } from '@testing-library/react';
+
 import { renderWithProviders } from '../testUtils';
 import { CampaignMenu } from './CampaignMenu';
 
@@ -25,6 +26,14 @@ describe(CampaignMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /play lord ironfist/i }));
+
+      expect(screen.getByRole('dialog', { name: /play the role of lord ironfist\./i }));
+    });
   });
 
   describe('play lord slayer button', () => {
@@ -42,6 +51,14 @@ describe(CampaignMenu, () => {
       await user.click(screen.getByRole('button', { name: /play lord slayer/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /play lord slayer/i }));
+
+      expect(screen.getByRole('dialog', { name: /play the role of lord slayer\./i }));
     });
   });
 
@@ -61,6 +78,14 @@ describe(CampaignMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /play queen lamanda/i }));
+
+      expect(screen.getByRole('dialog', { name: /play the role of queen lamanda\./i }));
+    });
   });
 
   describe('play lord alamar button', () => {
@@ -79,6 +104,14 @@ describe(CampaignMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /play lord alamar/i }));
+
+      expect(screen.getByRole('dialog', { name: /play the role of lord alamar\./i }));
+    });
   });
 
   describe('cancel button', () => {
@@ -96,6 +129,14 @@ describe(CampaignMenu, () => {
       await user.click(screen.getByRole('button', { name: /cancel/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<CampaignMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+
+      expect(screen.getByRole('dialog', { name: /cancel back to the main menu\./i }));
     });
   });
 });
