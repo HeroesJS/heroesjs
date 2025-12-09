@@ -18,7 +18,7 @@ class MainMenuPageObject {
   readonly quitButton: Locator;
   readonly quitInfoModal: Locator;
 
-  constructor(page: Page) {
+  constructor(protected readonly page: Page) {
     this.menu = page.getByRole('menu', { name: /main menu/i });
 
     this.newGameButton = page.getByRole('button', { name: /new game/i });
@@ -55,7 +55,7 @@ class GameTypeMenuPageObject {
   readonly cancelButton: Locator;
   readonly cancelInfoButton: Locator;
 
-  constructor(page: Page) {
+  constructor(protected readonly page: Page) {
     this.menu = page.getByRole('menu', { name: /new game menu/i });
 
     this.standardGameButton = page.getByRole('button', { name: /standard game/i });
@@ -94,7 +94,7 @@ class CampaignMenuPageObject {
   readonly cancelButton: Locator;
   readonly cancelInfoModal: Locator;
 
-  constructor(page: Page) {
+  constructor(protected readonly page: Page) {
     this.menu = page.getByRole('menu', { name: /campaign menu/i });
 
     this.playLordIronfistButton = page.getByRole('button', { name: /play lord ironfist/i });
@@ -114,22 +114,28 @@ class CampaignMenuPageObject {
   }
 }
 
-export class MainScreen {
+export class MainScreen extends MainMenuPageObject {
   readonly screen: Locator;
 
-  readonly mainMenu: MainMenuPageObject;
-  readonly gameTypeMenu: GameTypeMenuPageObject;
-  readonly campaignMenu: CampaignMenuPageObject;
+  constructor(page: Page) {
+    super(page);
 
-  constructor(private readonly page: Page) {
     this.screen = page.getByRole('main', { name: /main screen/i });
-
-    this.mainMenu = new MainMenuPageObject(page);
-    this.gameTypeMenu = new GameTypeMenuPageObject(page);
-    this.campaignMenu = new CampaignMenuPageObject(page);
   }
 
   public goto() {
     return this.page.goto('/');
+  }
+}
+
+export class NewGameScreen extends GameTypeMenuPageObject {
+  public goto() {
+    return this.page.goto('/new-game');
+  }
+}
+
+export class NewCampaignGameScreen extends CampaignMenuPageObject {
+  public goto() {
+    return this.page.goto('/new-game/campaign');
   }
 }

@@ -1,9 +1,17 @@
 import { expect, test as testBase } from '@playwright/test';
 
-import { MainScreen } from './mainScreen';
+import { MainScreen, NewCampaignGameScreen, NewGameScreen } from './mainScreen';
 
-const test = testBase.extend<{ mainScreen: MainScreen }>({
+interface Fixtures {
+  readonly mainScreen: MainScreen;
+  readonly newCampaignGameScreen: NewCampaignGameScreen;
+  readonly newGameScreen: NewGameScreen;
+}
+
+const test = testBase.extend<Fixtures>({
   mainScreen: async ({ page }, use) => await use(new MainScreen(page)),
+  newCampaignGameScreen: async ({ page }, use) => await use(new NewCampaignGameScreen(page)),
+  newGameScreen: async ({ page }, use) => await use(new NewGameScreen(page)),
 });
 
 test('displays main screen', async ({ mainScreen }) => {
@@ -18,225 +26,225 @@ test.describe('main menu', () => {
   });
 
   test('displays main menu', async ({ mainScreen, page }) => {
-    await expect(mainScreen.mainMenu.menu).toBeVisible();
+    await expect(mainScreen.menu).toBeVisible();
 
-    await expect(mainScreen.mainMenu.newGameButton).toBeVisible();
-    await expect(mainScreen.mainMenu.loadGameButton).toBeVisible();
-    await expect(mainScreen.mainMenu.viewHighScoresButton).toBeVisible();
-    await expect(mainScreen.mainMenu.viewCreditsButton).toBeVisible();
-    await expect(mainScreen.mainMenu.quitButton).toBeVisible();
+    await expect(mainScreen.newGameButton).toBeVisible();
+    await expect(mainScreen.loadGameButton).toBeVisible();
+    await expect(mainScreen.viewHighScoresButton).toBeVisible();
+    await expect(mainScreen.viewCreditsButton).toBeVisible();
+    await expect(mainScreen.quitButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays new game info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.mainMenu.newGameButton.boundingBox())!;
+    const button = (await mainScreen.newGameButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.mainMenu.newGameInfoModal).toBeVisible();
+    await expect(mainScreen.newGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu-new-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays load game info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.mainMenu.loadGameButton.boundingBox())!;
+    const button = (await mainScreen.loadGameButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.mainMenu.loadGameInfoModal).toBeVisible();
+    await expect(mainScreen.loadGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu-load-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view high scores info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.mainMenu.viewHighScoresButton.boundingBox())!;
+    const button = (await mainScreen.viewHighScoresButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.mainMenu.viewHighScoresInfoModal).toBeVisible();
+    await expect(mainScreen.viewHighScoresInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu-view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays view credits info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.mainMenu.viewCreditsButton.boundingBox())!;
+    const button = (await mainScreen.viewCreditsButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.mainMenu.viewCreditsInfoModal).toBeVisible();
+    await expect(mainScreen.viewCreditsInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu-view-credits-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
   test('displays quit info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.mainMenu.quitButton.boundingBox())!;
+    const button = (await mainScreen.quitButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.mainMenu.quitInfoModal).toBeVisible();
+    await expect(mainScreen.quitInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('main-menu-quit-info.png', { maxDiffPixelRatio: 0.05 });
   });
 });
 
 test.describe('new game menu', () => {
-  test.beforeEach(async ({ mainScreen }) => {
+  test.beforeEach(async ({ mainScreen, newGameScreen }) => {
     await mainScreen.goto();
 
-    await mainScreen.mainMenu.newGameButton.click();
+    await mainScreen.newGameButton.click();
 
-    await mainScreen.gameTypeMenu.menu.waitFor();
+    await newGameScreen.menu.waitFor();
   });
 
-  test('displays new game menu', async ({ mainScreen, page }) => {
-    await expect(mainScreen.gameTypeMenu.menu).toBeVisible();
+  test('displays new game menu', async ({ newGameScreen, page }) => {
+    await expect(newGameScreen.menu).toBeVisible();
 
-    await expect(mainScreen.gameTypeMenu.standardGameButton).toBeVisible();
-    await expect(mainScreen.gameTypeMenu.campaignGameButton).toBeVisible();
-    await expect(mainScreen.gameTypeMenu.multiPlayerGameButton).toBeVisible();
-    await expect(mainScreen.gameTypeMenu.cancelButton).toBeVisible();
+    await expect(newGameScreen.standardGameButton).toBeVisible();
+    await expect(newGameScreen.campaignGameButton).toBeVisible();
+    await expect(newGameScreen.multiPlayerGameButton).toBeVisible();
+    await expect(newGameScreen.cancelButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays standard game info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.gameTypeMenu.standardGameButton.boundingBox())!;
+  test('displays standard game info', async ({ newGameScreen, page }) => {
+    const button = (await newGameScreen.standardGameButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.gameTypeMenu.standardGameInfoModal).toBeVisible();
+    await expect(newGameScreen.standardGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-standard-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays campaign game info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.gameTypeMenu.campaignGameButton.boundingBox())!;
+  test('displays campaign game info', async ({ newGameScreen, page }) => {
+    const button = (await newGameScreen.campaignGameButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.gameTypeMenu.campaignGameInfoModal).toBeVisible();
+    await expect(newGameScreen.campaignGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays multi-player game info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.gameTypeMenu.multiPlayerGameButton.boundingBox())!;
+  test('displays multi-player game info', async ({ newGameScreen, page }) => {
+    const button = (await newGameScreen.multiPlayerGameButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.gameTypeMenu.multiPlayerGameInfoModal).toBeVisible();
+    await expect(newGameScreen.multiPlayerGameInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays cancel info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.gameTypeMenu.cancelButton.boundingBox())!;
+  test('displays cancel info', async ({ newGameScreen, page }) => {
+    const button = (await newGameScreen.cancelButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.gameTypeMenu.cancelInfoButton).toBeVisible();
+    await expect(newGameScreen.cancelInfoButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('new-game-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('returns to main menu when cancel is clicked', async ({ mainScreen }) => {
-    await mainScreen.gameTypeMenu.cancelButton.click();
+  test('returns to main menu when cancel is clicked', async ({ newGameScreen, mainScreen }) => {
+    await newGameScreen.cancelButton.click();
 
-    await expect(mainScreen.mainMenu.menu).toBeVisible();
+    await expect(mainScreen.menu).toBeVisible();
   });
 });
 
 test.describe('campaign menu', () => {
-  test.beforeEach(async ({ mainScreen }) => {
+  test.beforeEach(async ({ newCampaignGameScreen, newGameScreen, mainScreen }) => {
     await mainScreen.goto();
 
-    await mainScreen.mainMenu.newGameButton.click();
+    await mainScreen.newGameButton.click();
 
-    await mainScreen.gameTypeMenu.campaignGameButton.click();
+    await newGameScreen.campaignGameButton.click();
 
-    await mainScreen.campaignMenu.menu.waitFor();
+    await newCampaignGameScreen.menu.waitFor();
   });
 
-  test('displays campaign menu', async ({ mainScreen, page }) => {
-    await expect(mainScreen.campaignMenu.menu).toBeVisible();
+  test('displays campaign menu', async ({ newCampaignGameScreen, page }) => {
+    await expect(newCampaignGameScreen.menu).toBeVisible();
 
-    await expect(mainScreen.campaignMenu.playLordIronfistButton).toBeVisible();
-    await expect(mainScreen.campaignMenu.playLordSlayerButton).toBeVisible();
-    await expect(mainScreen.campaignMenu.playQueenLamandaButton).toBeVisible();
-    await expect(mainScreen.campaignMenu.playLordAlamarButton).toBeVisible();
-    await expect(mainScreen.campaignMenu.cancelButton).toBeVisible();
+    await expect(newCampaignGameScreen.playLordIronfistButton).toBeVisible();
+    await expect(newCampaignGameScreen.playLordSlayerButton).toBeVisible();
+    await expect(newCampaignGameScreen.playQueenLamandaButton).toBeVisible();
+    await expect(newCampaignGameScreen.playLordAlamarButton).toBeVisible();
+    await expect(newCampaignGameScreen.cancelButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays play lord ironfist info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.campaignMenu.playLordIronfistButton.boundingBox())!;
+  test('displays play lord ironfist info', async ({ newCampaignGameScreen, page }) => {
+    const button = (await newCampaignGameScreen.playLordIronfistButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.campaignMenu.playLordIronfistInfoModal).toBeVisible();
+    await expect(newCampaignGameScreen.playLordIronfistInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu-play-lord-ironfist-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays play lord slayer info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.campaignMenu.playLordSlayerButton.boundingBox())!;
+  test('displays play lord slayer info', async ({ newCampaignGameScreen, page }) => {
+    const button = (await newCampaignGameScreen.playLordSlayerButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.campaignMenu.playLordSlayerInfoModal).toBeVisible();
+    await expect(newCampaignGameScreen.playLordSlayerInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu-play-lord-slayer-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays play queen lamanda info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.campaignMenu.playQueenLamandaButton.boundingBox())!;
+  test('displays play queen lamanda info', async ({ newCampaignGameScreen, page }) => {
+    const button = (await newCampaignGameScreen.playQueenLamandaButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.campaignMenu.playQueenLamandaInfoModal).toBeVisible();
+    await expect(newCampaignGameScreen.playQueenLamandaInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu-play-queen-lamanda-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays play lord alamar info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.campaignMenu.playLordAlamarButton.boundingBox())!;
+  test('displays play lord alamar info', async ({ newCampaignGameScreen, page }) => {
+    const button = (await newCampaignGameScreen.playLordAlamarButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.campaignMenu.playLordAlamarInfoModal).toBeVisible();
+    await expect(newCampaignGameScreen.playLordAlamarInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu-play-lord-alamar-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('displays cancel info', async ({ mainScreen, page }) => {
-    const button = (await mainScreen.campaignMenu.cancelButton.boundingBox())!;
+  test('displays cancel info', async ({ newCampaignGameScreen, page }) => {
+    const button = (await newCampaignGameScreen.cancelButton.boundingBox())!;
 
     await page.mouse.move(button.x, button.y);
     await page.mouse.down({ button: 'right' });
 
-    await expect(mainScreen.campaignMenu.cancelInfoModal).toBeVisible();
+    await expect(newCampaignGameScreen.cancelInfoModal).toBeVisible();
 
     await expect(page).toHaveScreenshot('campaign-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
   });
 
-  test('returns to main menu when cancel is clicked', async ({ mainScreen }) => {
-    await mainScreen.campaignMenu.cancelButton.click();
+  test('returns to main menu when cancel is clicked', async ({ newCampaignGameScreen, mainScreen }) => {
+    await newCampaignGameScreen.cancelButton.click();
 
-    await expect(mainScreen.mainMenu.menu).toBeVisible();
+    await expect(mainScreen.menu).toBeVisible();
   });
 });
