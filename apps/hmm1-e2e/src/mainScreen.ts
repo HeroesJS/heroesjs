@@ -56,7 +56,7 @@ class GameTypeMenuPageObject {
   readonly cancelInfoButton: Locator;
 
   constructor(protected readonly page: Page) {
-    this.menu = page.getByRole('menu', { name: /new game menu/i });
+    this.menu = page.getByRole('menu', { name: /game type menu/i });
 
     this.standardGameButton = page.getByRole('button', { name: /standard game/i });
     this.standardGameInfoModal = page.getByRole('dialog', { name: /a single player game playing out a single map\./i });
@@ -115,13 +115,7 @@ class CampaignMenuPageObject {
 }
 
 export class MainScreen extends MainMenuPageObject {
-  readonly screen: Locator;
-
-  constructor(page: Page) {
-    super(page);
-
-    this.screen = page.getByRole('main', { name: /main screen/i });
-  }
+  readonly locator = this.page.getByRole('main', { name: /main screen/i });
 
   public goto() {
     return this.page.goto('/');
@@ -129,12 +123,16 @@ export class MainScreen extends MainMenuPageObject {
 }
 
 export class NewGameScreen extends GameTypeMenuPageObject {
+  readonly locator = this.page.getByRole('main', { name: /new game screen/i });
+
   public goto() {
     return this.page.goto('/new-game');
   }
 }
 
 export class NewCampaignGameScreen extends CampaignMenuPageObject {
+  readonly locator = this.page.getByRole('main', { name: /new campaign game screen/i });
+
   public goto() {
     return this.page.goto('/new-game/campaign');
   }
