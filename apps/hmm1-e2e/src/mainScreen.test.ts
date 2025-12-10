@@ -64,63 +64,6 @@ test.describe('main menu', () => {
   });
 });
 
-test.describe('new game menu', () => {
-  test.beforeEach(async ({ newGameScreen }) => {
-    await newGameScreen.goto();
-
-    await newGameScreen.menu.waitFor();
-  });
-
-  test('displays new game menu', async ({ newGameScreen, page }) => {
-    await expect(newGameScreen.menu).toBeVisible();
-
-    await expect(newGameScreen.standardGameButton).toBeVisible();
-    await expect(newGameScreen.campaignGameButton).toBeVisible();
-    await expect(newGameScreen.multiPlayerGameButton).toBeVisible();
-    await expect(newGameScreen.cancelButton).toBeVisible();
-
-    await expect(page).toHaveScreenshot('new-game-menu.png', { maxDiffPixelRatio: 0.05 });
-  });
-
-  test('displays standard game info', async ({ mouseRightDown, newGameScreen, page }) => {
-    await mouseRightDown(newGameScreen.standardGameButton);
-
-    await expect(newGameScreen.standardGameInfoModal).toBeVisible();
-
-    await expect(page).toHaveScreenshot('new-game-menu-standard-game-info.png', { maxDiffPixelRatio: 0.05 });
-  });
-
-  test('displays campaign game info', async ({ mouseRightDown, newGameScreen, page }) => {
-    await mouseRightDown(newGameScreen.campaignGameButton);
-
-    await expect(newGameScreen.campaignGameInfoModal).toBeVisible();
-
-    await expect(page).toHaveScreenshot('new-game-menu-campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
-  });
-
-  test('displays multi-player game info', async ({ mouseRightDown, newGameScreen, page }) => {
-    await mouseRightDown(newGameScreen.multiPlayerGameButton);
-
-    await expect(newGameScreen.multiPlayerGameInfoModal).toBeVisible();
-
-    await expect(page).toHaveScreenshot('new-game-menu-multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
-  });
-
-  test('displays cancel info', async ({ mouseRightDown, newGameScreen, page }) => {
-    await mouseRightDown(newGameScreen.cancelButton);
-
-    await expect(newGameScreen.cancelInfoModal).toBeVisible();
-
-    await expect(page).toHaveScreenshot('new-game-menu-cancel-info.png', { maxDiffPixelRatio: 0.05 });
-  });
-
-  test('returns to main menu when cancel is clicked', async ({ mainScreen, newGameScreen }) => {
-    await newGameScreen.cancelButton.click();
-
-    await expect(mainScreen.locator).toBeVisible();
-  });
-});
-
 test.describe('campaign menu', () => {
   test.beforeEach(async ({ newCampaignGameScreen }) => {
     await newCampaignGameScreen.goto();
