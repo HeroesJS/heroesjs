@@ -1,0 +1,71 @@
+import { Button } from '../Button';
+import { Menu, MenuItem } from '../Menu';
+import { Modal, useInfoModal } from '../Modal';
+import type { PositionProps } from '../PositionedComponent';
+import { cancel, directConnect, hotSeat, modem, network } from './assets';
+
+interface MultiPlayerGameTypeMenuProps extends PositionProps {
+  readonly onCancelClick?: () => void;
+  readonly onDirectConnectClick?: () => void;
+  readonly onHotSeatClick?: () => void;
+  readonly onModemClick?: () => void;
+  readonly onNetworkClick?: () => void;
+}
+
+export function MultiPlayerGameTypeMenu({
+  onCancelClick,
+  onDirectConnectClick,
+  onHotSeatClick,
+  onModemClick,
+  onNetworkClick,
+  x,
+  y,
+}: MultiPlayerGameTypeMenuProps) {
+  const hotSeatInfoModal = useInfoModal();
+  const networkInfoModal = useInfoModal();
+  const modemInfoModal = useInfoModal();
+  const directConnectInfoModal = useInfoModal();
+  const cancelInfoModal = useInfoModal();
+
+  return (
+    <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
+      <MenuItem>
+        <Button assets={hotSeat} label="Hot Seat" onClick={onHotSeatClick} onMouseDown={hotSeatInfoModal.onMouseDown} />
+        <Modal open={hotSeatInfoModal.open} size={1} x={177} y={29}>
+          Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when
+          it is their turn.
+        </Modal>
+      </MenuItem>
+      <MenuItem>
+        <Button assets={network} label="Network" onClick={onNetworkClick} onMouseDown={networkInfoModal.onMouseDown} />
+        <Modal open={networkInfoModal.open} size={1} x={177} y={29}>
+          Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).
+        </Modal>
+      </MenuItem>
+      <MenuItem>
+        <Button assets={modem} label="Modem" onClick={onModemClick} onMouseDown={modemInfoModal.onMouseDown} />
+        <Modal open={modemInfoModal.open} size={1} x={177} y={29}>
+          Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.
+        </Modal>
+      </MenuItem>
+      <MenuItem>
+        <Button
+          assets={directConnect}
+          label="Direct Connect"
+          onClick={onDirectConnectClick}
+          onMouseDown={directConnectInfoModal.onMouseDown}
+        />
+        <Modal open={directConnectInfoModal.open} size={1} x={177} y={29}>
+          Play a direct connect game, where 2 players use ther own computers directly connected through their serial
+          port by a null modem.
+        </Modal>
+      </MenuItem>
+      <MenuItem>
+        <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
+        <Modal open={cancelInfoModal.open} x={177} y={29}>
+          Cancel back to the main menu.
+        </Modal>
+      </MenuItem>
+    </Menu>
+  );
+}

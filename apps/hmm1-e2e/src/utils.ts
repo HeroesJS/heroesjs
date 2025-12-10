@@ -3,6 +3,7 @@ import { expect, type Locator, test as testBase } from '@playwright/test';
 import { MainScreen } from './mainScreen';
 import { NewCampaignGameScreen } from './newCampaignGameScreen';
 import { NewGameScreen } from './newGameScreen';
+import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
 
 export { expect };
 
@@ -11,6 +12,7 @@ interface Fixtures {
   readonly mouseRightDown: (locator: Locator) => Promise<void>;
   readonly newCampaignGameScreen: NewCampaignGameScreen;
   readonly newGameScreen: NewGameScreen;
+  readonly newMultiPlayerGameScreen: NewMultiPlayerGameScreen;
 }
 
 export const test = testBase.extend<Fixtures>({
@@ -24,4 +26,5 @@ export const test = testBase.extend<Fixtures>({
     }),
   newCampaignGameScreen: async ({ page }, use) => await use(new NewCampaignGameScreen(page)),
   newGameScreen: async ({ page }, use) => await use(new NewGameScreen(page)),
+  newMultiPlayerGameScreen: async ({ page }, use) => await use(new NewMultiPlayerGameScreen(page)),
 });
