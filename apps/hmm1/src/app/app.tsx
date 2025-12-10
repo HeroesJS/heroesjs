@@ -6,6 +6,7 @@ import { CampaignMenu } from './CampaignMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
+import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -64,7 +65,14 @@ export function App() {
             }
             path="campaign"
           />
-          <Route element={<MainScreen label="New Multi-Player Game Screen" />} path="multi-player" />
+          <Route
+            element={
+              <MainScreen label="New Multi-Player Game Screen">
+                <MultiPlayerGameTypeMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+              </MainScreen>
+            }
+            path="multi-player"
+          />
         </Route>
       </Routes>
     </>
