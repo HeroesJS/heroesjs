@@ -20,6 +20,46 @@ test('displays menu', async ({ newMultiPlayerGameScreen, page }) => {
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays hot seat info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
+  await mouseRightDown(newMultiPlayerGameScreen.hotSeatButton);
+
+  await expect(newMultiPlayerGameScreen.hotSeatInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('hot-seat-info.png', { maxDiffPixelRatio: 0.05 });
+});
+
+test('displays network info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
+  await mouseRightDown(newMultiPlayerGameScreen.networkButton);
+
+  await expect(newMultiPlayerGameScreen.networkInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('network-info.png', { maxDiffPixelRatio: 0.05 });
+});
+
+test('displays modem info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
+  await mouseRightDown(newMultiPlayerGameScreen.modemButton);
+
+  await expect(newMultiPlayerGameScreen.modemInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('modem-info.png', { maxDiffPixelRatio: 0.05 });
+});
+
+test('displays direct connect info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
+  await mouseRightDown(newMultiPlayerGameScreen.directConnectButton);
+
+  await expect(newMultiPlayerGameScreen.directConnectInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('direct-connect-info.png', { maxDiffPixelRatio: 0.05 });
+});
+
+test('displays cancel info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
+  await mouseRightDown(newMultiPlayerGameScreen.cancelButton);
+
+  await expect(newMultiPlayerGameScreen.cancelInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
+});
+
 test('returns to main screen when cancel is clicked', async ({ mainScreen, newMultiPlayerGameScreen }) => {
   await newMultiPlayerGameScreen.cancelButton.click();
 
