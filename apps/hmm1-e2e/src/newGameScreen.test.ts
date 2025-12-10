@@ -52,6 +52,15 @@ test('displays multi-player game info', async ({ mouseRightDown, newGameScreen, 
   await expect(page).toHaveScreenshot('multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new multi-player game screen when multi-player game is clicked', async ({
+  newGameScreen,
+  newMultiPlayerGameScreen,
+}) => {
+  await newGameScreen.multiPlayerGameButton.click();
+
+  await expect(newMultiPlayerGameScreen.locator).toBeVisible();
+});
+
 test('displays cancel info', async ({ mouseRightDown, newGameScreen, page }) => {
   await mouseRightDown(newGameScreen.cancelButton);
 

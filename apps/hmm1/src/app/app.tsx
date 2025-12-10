@@ -48,6 +48,7 @@ export function App() {
                 <GameTypeMenu
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={() => navigate('/')}
+                  onMultiPlayerGameClick={() => navigate('new-game/multi-player')}
                   x={400}
                   y={35}
                 />
@@ -63,6 +64,7 @@ export function App() {
             }
             path="campaign"
           />
+          <Route element={<MainScreen label="New Multi-Player Game Screen" />} path="multi-player" />
         </Route>
       </Routes>
     </>
