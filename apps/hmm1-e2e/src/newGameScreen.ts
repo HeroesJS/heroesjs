@@ -16,7 +16,7 @@ export class NewGameScreen {
   public readonly cancelInfoModal: Locator;
 
   constructor(private readonly page: Page) {
-    this.menu = page.getByRole('menu', { name: /new game menu/i });
+    this.menu = page.getByRole('menu', { name: /game type menu/i });
 
     this.standardGameButton = page.getByRole('button', { name: /standard game/i });
     this.standardGameInfoModal = page.getByRole('dialog', { name: /a single player game playing out a single map\./i });

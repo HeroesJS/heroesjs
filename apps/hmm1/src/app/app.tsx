@@ -39,7 +39,6 @@ export function App() {
             <Route
               element={
                 <GameTypeMenu
-                  label="New Game Menu"
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={() => navigate('/')}
                   x={400}
