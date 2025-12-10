@@ -1,6 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
 export class NewCampaignGameScreen {
+  public readonly locator: Locator;
+
   public readonly menu: Locator;
 
   public readonly playLordIronfistButton: Locator;
@@ -19,6 +21,8 @@ export class NewCampaignGameScreen {
   public readonly cancelInfoModal: Locator;
 
   constructor(private readonly page: Page) {
+    this.locator = page.getByRole('main', { name: /new campaign game screen/i });
+
     this.menu = page.getByRole('menu', { name: /campaign menu/i });
 
     this.playLordIronfistButton = page.getByRole('button', { name: /play lord ironfist/i });

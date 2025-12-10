@@ -1,6 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
 export class NewGameScreen {
+  public readonly locator: Locator;
+
   public readonly menu: Locator;
 
   public readonly standardGameButton: Locator;
@@ -16,6 +18,8 @@ export class NewGameScreen {
   public readonly cancelInfoModal: Locator;
 
   constructor(private readonly page: Page) {
+    this.locator = page.getByRole('main', { name: /new game screen/i });
+
     this.menu = page.getByRole('menu', { name: /game type menu/i });
 
     this.standardGameButton = page.getByRole('button', { name: /standard game/i });

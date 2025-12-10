@@ -4,6 +4,10 @@ test.beforeEach(async ({ newCampaignGameScreen }) => {
   await newCampaignGameScreen.goto();
 });
 
+test('displays screen', async ({ newCampaignGameScreen }) => {
+  await expect(newCampaignGameScreen.locator).toBeVisible();
+});
+
 test('displays menu', async ({ newCampaignGameScreen, page }) => {
   await expect(newCampaignGameScreen.menu).toBeVisible();
 
@@ -59,5 +63,5 @@ test('displays cancel info', async ({ mouseRightDown, newCampaignGameScreen, pag
 test('returns to main screen when cancel is clicked', async ({ mainScreen, newCampaignGameScreen }) => {
   await newCampaignGameScreen.cancelButton.click();
 
-  await expect(mainScreen.menu).toBeVisible();
+  await expect(mainScreen.locator).toBeVisible();
 });
