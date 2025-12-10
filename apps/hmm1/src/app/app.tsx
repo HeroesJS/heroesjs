@@ -32,26 +32,39 @@ export function App() {
   return (
     <>
       <GlobalStyle />
-      <MainScreen>
-        <Routes>
-          <Route element={<MainMenu onNewGameClick={() => navigate('new-game')} x={400} y={35} />} index />
-          <Route path="new-game">
-            <Route
-              element={
+      <Routes>
+        <Route
+          element={
+            <MainScreen>
+              <MainMenu onNewGameClick={() => navigate('new-game')} x={400} y={35} />
+            </MainScreen>
+          }
+          index
+        />
+        <Route path="new-game">
+          <Route
+            element={
+              <MainScreen label="New Game Screen">
                 <GameTypeMenu
-                  label="New Game Menu"
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={() => navigate('/')}
                   x={400}
                   y={35}
                 />
-              }
-              index
-            />
-            <Route element={<CampaignMenu x={400} y={35} onCancelClick={() => navigate('/')} />} path="campaign" />
-          </Route>
-        </Routes>
-      </MainScreen>
+              </MainScreen>
+            }
+            index
+          />
+          <Route
+            element={
+              <MainScreen label="New Campaign Game Screen">
+                <CampaignMenu x={400} y={35} onCancelClick={() => navigate('/')} />
+              </MainScreen>
+            }
+            path="campaign"
+          />
+        </Route>
+      </Routes>
     </>
   );
 }
