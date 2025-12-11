@@ -65,14 +65,22 @@ export function App() {
             }
             path="campaign"
           />
-          <Route
-            element={
-              <MainScreen label="New Multi-Player Game Screen">
-                <MultiPlayerGameTypeMenu onCancelClick={() => navigate('/')} x={400} y={35} />
-              </MainScreen>
-            }
-            path="multi-player"
-          />
+          <Route path="multi-player">
+            <Route
+              element={
+                <MainScreen label="New Multi-Player Game Screen">
+                  <MultiPlayerGameTypeMenu
+                    onCancelClick={() => navigate('/')}
+                    onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
+                    x={400}
+                    y={35}
+                  />
+                </MainScreen>
+              }
+              index
+            />
+            <Route element={<MainScreen label="New Hot Seat Game Screen" />} path="hot-seat" />
+          </Route>
         </Route>
       </Routes>
     </>

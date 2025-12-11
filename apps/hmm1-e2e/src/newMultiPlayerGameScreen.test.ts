@@ -28,6 +28,15 @@ test('displays hot seat info', async ({ mouseRightDown, newMultiPlayerGameScreen
   await expect(page).toHaveScreenshot('hot-seat-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new hot seat game screen when hot seat is clicked', async ({
+  newHotSeatGameScreen,
+  newMultiPlayerGameScreen,
+}) => {
+  await newMultiPlayerGameScreen.hotSeatButton.click();
+
+  await expect(newHotSeatGameScreen.locator).toBeVisible();
+});
+
 test('displays network info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
   await mouseRightDown(newMultiPlayerGameScreen.networkButton);
 
