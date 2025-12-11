@@ -7,6 +7,7 @@ import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
+import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -79,7 +80,14 @@ export function App() {
               }
               index
             />
-            <Route element={<MainScreen label="New Hot Seat Game Screen" />} path="hot-seat" />
+            <Route
+              element={
+                <MainScreen label="New Hot Seat Game Screen">
+                  <PlayerCountMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="hot-seat"
+            />
           </Route>
         </Route>
       </Routes>
