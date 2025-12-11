@@ -7,6 +7,7 @@ import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
+import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -65,14 +66,29 @@ export function App() {
             }
             path="campaign"
           />
-          <Route
-            element={
-              <MainScreen label="New Multi-Player Game Screen">
-                <MultiPlayerGameTypeMenu onCancelClick={() => navigate('/')} x={400} y={35} />
-              </MainScreen>
-            }
-            path="multi-player"
-          />
+          <Route path="multi-player">
+            <Route
+              element={
+                <MainScreen label="New Multi-Player Game Screen">
+                  <MultiPlayerGameTypeMenu
+                    onCancelClick={() => navigate('/')}
+                    onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
+                    x={400}
+                    y={35}
+                  />
+                </MainScreen>
+              }
+              index
+            />
+            <Route
+              element={
+                <MainScreen label="New Hot Seat Game Screen">
+                  <PlayerCountMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="hot-seat"
+            />
+          </Route>
         </Route>
       </Routes>
     </>
