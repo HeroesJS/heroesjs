@@ -18,6 +18,30 @@ test('displays menu', async ({ newNetworkGameScreen, page }) => {
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
+test('displays host info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
+  await mouseRightDown(newNetworkGameScreen.hostButton);
+
+  await expect(newNetworkGameScreen.hostInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('host-info.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test('displays guest info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
+  await mouseRightDown(newNetworkGameScreen.guestButton);
+
+  await expect(newNetworkGameScreen.guestInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test('displays cancel info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
+  await mouseRightDown(newNetworkGameScreen.cancelButton);
+
+  await expect(newNetworkGameScreen.cancelInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
+});
+
 test('displays main screen when cancel is clicked', async ({ mainScreen, newNetworkGameScreen }) => {
   await newNetworkGameScreen.cancelButton.click();
 
