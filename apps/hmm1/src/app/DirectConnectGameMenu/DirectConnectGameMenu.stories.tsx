@@ -11,3 +11,9 @@ export default meta;
 type Story = StoryObj<typeof DirectConnectGameMenu>;
 
 export const Primary: Story = {};
+
+export const WithConfiguration: Story = {
+  args: {
+    allowConfiguration: true,
+  },
+};

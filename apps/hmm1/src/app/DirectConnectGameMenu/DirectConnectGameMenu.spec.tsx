@@ -46,6 +46,30 @@ describe(DirectConnectGameMenu, () => {
     });
   });
 
+  describe('config button', () => {
+    it('should not render by default', () => {
+      renderWithProviders(<DirectConnectGameMenu />);
+
+      expect(screen.queryByRole('button', { name: /config/i })).toBeNull();
+    });
+
+    it('should render when configuration allowed', () => {
+      renderWithProviders(<DirectConnectGameMenu allowConfiguration />);
+
+      expect(screen.getByRole('button', { name: /config/i })).toBeInTheDocument();
+    });
+
+    it('should call click handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<DirectConnectGameMenu allowConfiguration onConfigClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /config/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
+
   describe('cancel button', () => {
     it('should render', () => {
       renderWithProviders(<DirectConnectGameMenu />);
