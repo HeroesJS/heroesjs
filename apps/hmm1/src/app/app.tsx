@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { CampaignMenu } from './CampaignMenu';
-import { DirectConnectGameMenu } from './DirectConnectGameMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
