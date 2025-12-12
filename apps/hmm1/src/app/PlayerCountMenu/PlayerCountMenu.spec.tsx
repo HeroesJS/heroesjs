@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import { range } from 'lodash';
 
 import { renderWithProviders } from '../testUtils';
 import { PlayerCountMenu } from './PlayerCountMenu';
