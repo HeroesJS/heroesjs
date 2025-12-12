@@ -5,9 +5,9 @@ import type { PositionProps } from '../PositionedComponent';
 import { cancel, guest, host } from './assets';
 
 interface ModemGameMenuProps extends PositionProps {
-  readonly onHostClick?: () => void;
-  readonly onGuestClick?: () => void;
   readonly onCancelClick?: () => void;
+  readonly onGuestClick?: () => void;
+  readonly onHostClick?: () => void;
 }
 
 export function ModemGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: ModemGameMenuProps) {
