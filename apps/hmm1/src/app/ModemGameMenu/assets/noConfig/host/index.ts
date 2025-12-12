@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '../../../Button';
+import type { ButtonAssets } from '../../../../Button';
 
 import active from './active.png';
 import pressed from './pressed.png';

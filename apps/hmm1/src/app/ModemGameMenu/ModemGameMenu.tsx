@@ -2,15 +2,31 @@ import { Button } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 import { Modal, useInfoModal } from '../Modal';
 import type { PositionProps } from '../PositionedComponent';
-import { cancel, guest, host } from './assets';
+import { noConfig, withConfig } from './assets';
 
 interface ModemGameMenuProps extends PositionProps {
+  readonly allowConfiguration?: boolean;
   readonly onCancelClick?: () => void;
+  readonly onConfigClick?: () => void;
   readonly onGuestClick?: () => void;
   readonly onHostClick?: () => void;
 }
 
-export function ModemGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: ModemGameMenuProps) {
+export function ModemGameMenu({
+  allowConfiguration,
+  onCancelClick,
+  onConfigClick,
+  onGuestClick,
+  onHostClick,
+  x,
+  y,
+}: ModemGameMenuProps) {
+  const { cancel, guest, host } = allowConfiguration ? withConfig : noConfig;
+
+  const configButton = allowConfiguration && (
+    <Button assets={withConfig.config} label="Config Modem" onClick={onConfigClick} />
+  );
+
   const hostInfoModal = useInfoModal();
   const guestInfoModal = useInfoModal();
   const cancelInfoModal = useInfoModal();
@@ -34,7 +50,7 @@ export function ModemGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }
           The guest waits for the host to call and set up the game.
         </Modal>
       </MenuItem>
-      <MenuItem />
+      <MenuItem>{configButton}</MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />

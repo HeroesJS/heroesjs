@@ -70,6 +70,30 @@ describe(ModemGameMenu, () => {
     });
   });
 
+  describe('config button', () => {
+    it('should not render by default', () => {
+      renderWithProviders(<ModemGameMenu />);
+
+      expect(screen.queryByRole('button', { name: /config modem/i })).toBeNull();
+    });
+
+    it('should render when configuration allowed', () => {
+      renderWithProviders(<ModemGameMenu allowConfiguration />);
+
+      expect(screen.getByRole('button', { name: /config modem/i })).toBeInTheDocument();
+    });
+
+    it('should call click handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<ModemGameMenu allowConfiguration onConfigClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /config modem/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
+
   describe('cancel button', () => {
     it('should render', () => {
       renderWithProviders(<ModemGameMenu />);
