@@ -6,6 +6,7 @@ import { CampaignMenu } from './CampaignMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
+import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
@@ -99,7 +100,14 @@ export function App() {
               }
               path="network"
             />
-            <Route element={<MainScreen label="New Modem Game Screen" />} path="modem" />
+            <Route
+              element={
+                <MainScreen label="New Modem Game Screen">
+                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="modem"
+            />
           </Route>
         </Route>
       </Routes>
