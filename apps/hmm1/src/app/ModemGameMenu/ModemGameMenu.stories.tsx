@@ -1,0 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { ModemGameMenu } from './ModemGameMenu';
+
+const meta = {
+  component: ModemGameMenu,
+} satisfies Meta<typeof ModemGameMenu>;
+
+export default meta;
+
+type Story = StoryObj<typeof ModemGameMenu>;
+
+export const Primary: Story = {};

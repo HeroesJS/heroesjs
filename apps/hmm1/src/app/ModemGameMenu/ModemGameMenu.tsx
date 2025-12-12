@@ -4,30 +4,34 @@ import { Modal, useInfoModal } from '../Modal';
 import type { PositionProps } from '../PositionedComponent';
 import { cancel, guest, host } from './assets';
 
-interface NetworkGameMenuProps extends PositionProps {
-  readonly onCancelClick?: () => void;
-  readonly onGuestClick?: () => void;
+interface ModemGameMenuProps extends PositionProps {
   readonly onHostClick?: () => void;
+  readonly onGuestClick?: () => void;
+  readonly onCancelClick?: () => void;
 }
 
-export function NetworkGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: NetworkGameMenuProps) {
+export function ModemGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: ModemGameMenuProps) {
   const hostInfoModal = useInfoModal();
   const guestInfoModal = useInfoModal();
   const cancelInfoModal = useInfoModal();
 
   return (
-    <Menu label="Network Game Menu" x={x} y={y}>
+    <Menu label="Modem Game Menu" x={x} y={y}>
       <MenuItem>
-        <Button assets={host} label="Host" onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
+        <Button assets={host} label="Host (Dials)" onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
         <Modal open={hostInfoModal.open} x={177} y={29}>
-          The host sets up the game options.{'  '}There can only be one host per network game.
+          The host sets up the game options, chooses the number to dial, and places the call.
         </Modal>
       </MenuItem>
       <MenuItem>
-        <Button assets={guest} label="Guest" onClick={onGuestClick} onMouseDown={guestInfoModal.onMouseDown} />
-        <Modal open={guestInfoModal.open} size={1} x={177} y={29}>
-          The guest waits for the host to set up the game, then is automatically added in.{'  '}There can only be one
-          guest per network game.
+        <Button
+          assets={guest}
+          label="Guest (Answers)"
+          onClick={onGuestClick}
+          onMouseDown={guestInfoModal.onMouseDown}
+        />
+        <Modal open={guestInfoModal.open} x={177} y={29}>
+          The guest waits for the host to call and set up the game.
         </Modal>
       </MenuItem>
       <MenuItem />

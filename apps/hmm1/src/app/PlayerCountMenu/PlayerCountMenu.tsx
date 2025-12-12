@@ -1,7 +1,7 @@
 import { Button } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 import { Modal, useInfoModal } from '../Modal';
-import { PositionProps } from '../PositionedComponent';
+import type { PositionProps } from '../PositionedComponent';
 import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
 
 interface PlayerCountMenuProps extends PositionProps {
