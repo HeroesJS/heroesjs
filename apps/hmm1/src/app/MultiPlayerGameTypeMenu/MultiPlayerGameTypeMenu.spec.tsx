@@ -26,6 +26,18 @@ describe(MultiPlayerGameTypeMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /hot seat/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /play a hot seat game, where 2 to 4 players play around the same computer, switching into the 'hot seat' when it is their turn\./i,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   describe('network button', () => {
@@ -43,6 +55,18 @@ describe(MultiPlayerGameTypeMenu, () => {
       await user.click(screen.getByRole('button', { name: /network/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /network/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /play a network game, where 2 players use their own computers connected through a lan \(local area network\)\./i,
+        })
+      ).toBeInTheDocument();
     });
   });
 
@@ -62,6 +86,18 @@ describe(MultiPlayerGameTypeMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /modem/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /play a modem game, where 2 players use ther own computers connected over the phone lines using modems\./i,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   describe('direct connect button', () => {
@@ -80,6 +116,18 @@ describe(MultiPlayerGameTypeMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /direct connect/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /play a direct connect game, where 2 players use ther own computers directly connected through their serial port by a null modem\./i,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   describe('cancel button', () => {
@@ -97,6 +145,14 @@ describe(MultiPlayerGameTypeMenu, () => {
       await user.click(screen.getByRole('button', { name: /cancel/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<MultiPlayerGameTypeMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+
+      expect(screen.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeInTheDocument();
     });
   });
 });
