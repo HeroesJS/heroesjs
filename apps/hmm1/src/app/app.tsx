@@ -73,6 +73,7 @@ export function App() {
                   <MultiPlayerGameTypeMenu
                     onCancelClick={() => navigate('/')}
                     onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
+                    onNetworkClick={() => navigate('/new-game/multi-player/network')}
                     x={400}
                     y={35}
                   />
@@ -88,6 +89,7 @@ export function App() {
               }
               path="hot-seat"
             />
+            <Route element={<MainScreen label="New Network Game Screen" />} path="network" />
           </Route>
         </Route>
       </Routes>

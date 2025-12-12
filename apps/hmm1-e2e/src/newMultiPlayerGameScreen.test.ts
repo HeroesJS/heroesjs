@@ -45,6 +45,15 @@ test('displays network info', async ({ mouseRightDown, newMultiPlayerGameScreen,
   await expect(page).toHaveScreenshot('network-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new network game screen when network is clicked', async ({
+  newMultiPlayerGameScreen,
+  newNetworkGameScreen,
+}) => {
+  await newMultiPlayerGameScreen.networkButton.click();
+
+  await expect(newNetworkGameScreen.locator).toBeVisible();
+});
+
 test('displays modem info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
   await mouseRightDown(newMultiPlayerGameScreen.modemButton);
 
