@@ -79,6 +79,15 @@ test('displays direct connect info', async ({ mouseRightDown, newMultiPlayerGame
   await expect(page).toHaveScreenshot('direct-connect-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new direct connect game screen when direct connect is clicked', async ({
+  newDirectConnectGameScreen,
+  newMultiPlayerGameScreen,
+}) => {
+  await newMultiPlayerGameScreen.directConnectButton.click();
+
+  await expect(newDirectConnectGameScreen.locator).toBeVisible();
+});
+
 test('displays cancel info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
   await mouseRightDown(newMultiPlayerGameScreen.cancelButton);
 
