@@ -74,6 +74,7 @@ export function App() {
                 <MainScreen label="New Multi-Player Game Screen">
                   <MultiPlayerGameTypeMenu
                     onCancelClick={() => navigate('/')}
+                    onDirectConnectClick={() => navigate('/new-game/multi-player/direct-connect')}
                     onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
                     onModemClick={() => navigate('/new-game/multi-player/modem')}
                     onNetworkClick={() => navigate('/new-game/multi-player/network')}
@@ -107,6 +108,14 @@ export function App() {
                 </MainScreen>
               }
               path="modem"
+            />
+            <Route
+              element={
+                <MainScreen label="New Direct Connect Game Screen">
+                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="direct-connect"
             />
           </Route>
         </Route>

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ModemGameMenu } from './ModemGameMenu';
+import { DirectConnectGameMenu } from './DirectConnectGameMenu';
 
 const meta = {
-  component: ModemGameMenu,
-} satisfies Meta<typeof ModemGameMenu>;
+  component: DirectConnectGameMenu,
+} satisfies Meta<typeof DirectConnectGameMenu>;
 
 export default meta;
 
-type Story = StoryObj<typeof ModemGameMenu>;
+type Story = StoryObj<typeof DirectConnectGameMenu>;
 
 export const Primary: Story = {};
 

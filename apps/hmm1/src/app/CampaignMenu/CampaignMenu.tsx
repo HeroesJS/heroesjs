@@ -5,11 +5,11 @@ import type { PositionProps } from '../PositionedComponent';
 import { cancel, playLordAlamar, playLordIronfist, playLordSlayer, playQueenLamanda } from './assets';
 
 interface CampaignMenuProps extends PositionProps {
+  readonly onCancelClick?: () => void;
+  readonly onPlayLordAlamarClick?: () => void;
   readonly onPlayLordIronfistClick?: () => void;
   readonly onPlayLordSlayerClick?: () => void;
   readonly onPlayQueenLamandaClick?: () => void;
-  readonly onPlayLordAlamarClick?: () => void;
-  readonly onCancelClick?: () => void;
 }
 
 export function CampaignMenu({

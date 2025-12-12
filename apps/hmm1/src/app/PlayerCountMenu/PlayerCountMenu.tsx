@@ -5,8 +5,8 @@ import type { PositionProps } from '../PositionedComponent';
 import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
 
 interface PlayerCountMenuProps extends PositionProps {
-  readonly onValueClick?: (value: number) => void;
   readonly onCancelClick?: () => void;
+  readonly onValueClick?: (value: number) => void;
 }
 
 export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCountMenuProps) {
