@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { CampaignMenu } from './CampaignMenu';
+import { DirectConnectGameMenu } from './DirectConnectGameMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
@@ -109,7 +110,14 @@ export function App() {
               }
               path="modem"
             />
-            <Route element={<MainScreen label="New Direct Connect Game Screen" />} path="direct-connect" />
+            <Route
+              element={
+                <MainScreen label="New Direct Connect Game Screen">
+                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="direct-connect"
+            />
           </Route>
         </Route>
       </Routes>

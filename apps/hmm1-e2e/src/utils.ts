@@ -2,7 +2,7 @@ import { expect, type Locator, test as testBase } from '@playwright/test';
 
 import { MainScreen } from './mainScreen';
 import { NewCampaignGameScreen } from './newCampaignGameScreen';
-import { NewDirectConnectGameScreen } from './newDirectConnectScreen';
+import { NewDirectConnectGameScreen } from './newDirectConnectGameScreen';
 import { NewGameScreen } from './newGameScreen';
 import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
 import { NewModemGameScreen } from './newModemGameScreen';
