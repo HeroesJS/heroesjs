@@ -8,6 +8,7 @@ import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
+import { NetworkGameMenu } from './NetworkGameMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -89,7 +90,14 @@ export function App() {
               }
               path="hot-seat"
             />
-            <Route element={<MainScreen label="New Network Game Screen" />} path="network" />
+            <Route
+              element={
+                <MainScreen label="New Network Game Screen">
+                  <NetworkGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                </MainScreen>
+              }
+              path="network"
+            />
           </Route>
         </Route>
       </Routes>
