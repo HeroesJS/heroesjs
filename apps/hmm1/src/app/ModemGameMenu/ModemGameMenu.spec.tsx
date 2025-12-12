@@ -26,6 +26,18 @@ describe(ModemGameMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<ModemGameMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /host \(dials\)/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /the host sets up the game options, chooses the number to dial, and places the call\./i,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   describe('guest button', () => {
@@ -44,6 +56,18 @@ describe(ModemGameMenu, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<ModemGameMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /guest \(answers\)/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /the guest waits for the host to call and set up the game\./i,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   describe('cancel button', () => {
@@ -61,6 +85,14 @@ describe(ModemGameMenu, () => {
       await user.click(screen.getByRole('button', { name: /cancel/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<ModemGameMenu />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+
+      expect(screen.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeInTheDocument();
     });
   });
 });
