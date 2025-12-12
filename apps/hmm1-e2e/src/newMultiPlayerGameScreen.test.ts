@@ -62,6 +62,15 @@ test('displays modem info', async ({ mouseRightDown, newMultiPlayerGameScreen, p
   await expect(page).toHaveScreenshot('modem-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new modem game screen when modem is clicked', async ({
+  newModemGameScreen,
+  newMultiPlayerGameScreen,
+}) => {
+  await newMultiPlayerGameScreen.modemButton.click();
+
+  await expect(newModemGameScreen.locator).toBeVisible();
+});
+
 test('displays direct connect info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
   await mouseRightDown(newMultiPlayerGameScreen.directConnectButton);
 

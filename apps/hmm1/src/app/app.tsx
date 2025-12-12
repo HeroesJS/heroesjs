@@ -7,8 +7,8 @@ import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
-import { PlayerCountMenu } from './PlayerCountMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
+import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -74,6 +74,7 @@ export function App() {
                   <MultiPlayerGameTypeMenu
                     onCancelClick={() => navigate('/')}
                     onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
+                    onModemClick={() => navigate('/new-game/multi-player/modem')}
                     onNetworkClick={() => navigate('/new-game/multi-player/network')}
                     x={400}
                     y={35}
@@ -98,6 +99,7 @@ export function App() {
               }
               path="network"
             />
+            <Route element={<MainScreen label="New Modem Game Screen" />} path="modem" />
           </Route>
         </Route>
       </Routes>
