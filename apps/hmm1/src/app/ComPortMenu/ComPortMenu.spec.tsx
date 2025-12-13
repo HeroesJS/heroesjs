@@ -5,6 +5,12 @@ import { renderWithProviders } from '../testUtils';
 import { ComPortMenu } from './ComPortMenu';
 
 describe(ComPortMenu, () => {
+  it('should render', () => {
+    renderWithProviders(<ComPortMenu />);
+
+    expect(screen.getByRole('menu', { name: /com port menu/i }));
+  });
+
   describe.each(range(1, 5).map((v) => [v]))('com %i button', (port) => {
     it('should render', () => {
       renderWithProviders(<ComPortMenu />);
