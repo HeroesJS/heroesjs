@@ -1,4 +1,5 @@
 import { range } from 'lodash';
+
 import { Button, type ButtonAssets } from '../Button';
 import { Menu, MenuItem } from '../Menu';
 import type { PositionProps } from '../PositionedComponent';
@@ -18,7 +19,7 @@ export function ComPortMenu({ onCancelClick, onValueClick, x, y }: ComPortMenuPr
   };
 
   return (
-    <Menu label="COM Port Menu">
+    <Menu label="COM Port Menu" x={x} y={y}>
       {range(1, 5).map((port) => (
         <MenuItem key={port}>
           <Button assets={assets[port]} label={`COM ${port}`} onClick={() => onValueClick?.(port)} />
