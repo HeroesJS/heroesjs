@@ -6,6 +6,9 @@
     "apps/*",
     "libs/*"
   ],
+  "scripts": {
+    "verify": "npx nx affected -t lint test build typecheck e2e --skip-nx-cache"
+  },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@nx/devkit": "22.0.3",
