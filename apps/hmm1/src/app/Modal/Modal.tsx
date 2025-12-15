@@ -4,16 +4,31 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
 import { Backdrop } from '../Backdrop';
+import { Button } from '../Button';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
-import { body, footer, header } from './assets';
+import { body, cancel, footer, header, okay, okayCancel, yesNo } from './assets';
+
+type ModalType = 'okay' | 'cancel' | 'yesNo' | 'okayCancel';
 
 interface ModalProps extends PositionProps {
+  readonly onCancelClick?: () => void;
+  readonly onConfirmClick?: () => void;
   readonly open: boolean;
   readonly size?: number;
+  readonly type?: ModalType;
 }
 
-export function Modal({ children, open, size = 0, x, y }: PropsWithChildren<ModalProps>) {
+export function Modal({
+  children,
+  onCancelClick,
+  onConfirmClick,
+  open,
+  size = 0,
+  type,
+  x,
+  y,
+}: PropsWithChildren<ModalProps>) {
   if (!open) {
     return null;
   }
@@ -30,6 +45,7 @@ export function Modal({ children, open, size = 0, x, y }: PropsWithChildren<Moda
         <Text align="center" id="modalContent" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
+        <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />
       </Root>
     </Backdrop>,
     document.body
@@ -83,3 +99,42 @@ const Shadow = styled.div({
   right: 5,
   top: 27,
 });
+
+type ActionsProps = Pick<ModalProps, 'onCancelClick' | 'onConfirmClick' | 'type' | 'y'>;
+
+function Actions({ onCancelClick, onConfirmClick, type, y }: ActionsProps) {
+  if (!type) {
+    return null;
+  }
+
+  if (type === 'yesNo' || type === 'okayCancel') {
+    return (
+      <>
+        <Button
+          assets={type === 'yesNo' ? yesNo.yes : okayCancel.okay}
+          label={type === 'yesNo' ? 'Yes' : 'Okay'}
+          onClick={onConfirmClick}
+          x={23}
+          y={y}
+        />
+        <Button
+          assets={type === 'yesNo' ? yesNo.no : okayCancel.cancel}
+          label={type === 'yesNo' ? 'No' : 'Cancel'}
+          onClick={onCancelClick}
+          x={165}
+          y={y}
+        />
+      </>
+    );
+  }
+
+  return (
+    <Button
+      assets={type === 'okay' ? okay : cancel}
+      label={type === 'okay' ? 'Okay' : 'Cancel'}
+      onClick={type === 'okay' ? onConfirmClick : onCancelClick}
+      x={94}
+      y={y}
+    />
+  );
+}

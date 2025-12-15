@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type ComponentProps, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
@@ -6,6 +6,7 @@ import { CampaignMenu } from './CampaignMenu';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
+import { Modal } from './Modal';
 import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
@@ -109,17 +110,54 @@ export function App() {
               }
               path="modem"
             />
-            <Route
-              element={
-                <MainScreen label="New Direct Connect Game Screen">
-                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
-                </MainScreen>
-              }
-              path="direct-connect"
-            />
+            <Route path="direct-connect">
+              <Route
+                element={
+                  <MainScreen label="New Direct Connect Game Screen">
+                    <ModemGameMenu
+                      onGuestClick={() => navigate('/new-game/multi-player/direct-connect/join')}
+                      onHostClick={() => navigate('/new-game/multi-player/direct-connect/host')}
+                      onCancelClick={() => navigate('/')}
+                      x={400}
+                      y={35}
+                    />
+                  </MainScreen>
+                }
+                index
+              />
+              <Route
+                element={
+                  <MainScreen label="Host Direct Connect Game Screen">
+                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
+                  </MainScreen>
+                }
+                path="host"
+              />
+              <Route
+                element={
+                  <MainScreen label="Join Direct Connect Game Screen">
+                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
+                  </MainScreen>
+                }
+                path="join"
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>
     </>
+  );
+}
+
+type WaitingForConnectionModalProps = Pick<ComponentProps<typeof Modal>, 'onCancelClick' | 'open' | 'x' | 'y'>;
+
+function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
+  return (
+    <Modal {...props} size={2} type="cancel">
+      Waiting for other computer to log in to direct connection.
+      <br />
+      <br />
+      Press 'CANCEL' to abort.
+    </Modal>
   );
 }
