@@ -2,6 +2,7 @@ import { expect, type Locator, test as testBase } from '@playwright/test';
 
 import { HostDirectConnectGameScreen } from './hostDirectConnectGameScreen';
 import { JoinDirectConnectGameScreen } from './joinDirectConnectGameScreen';
+import { JoinModemGameScreen } from './joinModemGameScreen';
 import { MainScreen } from './mainScreen';
 import { NewCampaignGameScreen } from './newCampaignGameScreen';
 import { NewDirectConnectGameScreen } from './newDirectConnectGameScreen';
@@ -16,6 +17,7 @@ export { expect };
 interface Fixtures {
   readonly hostDirectConnectGameScreen: HostDirectConnectGameScreen;
   readonly joinDirectConnectGameScreen: JoinDirectConnectGameScreen;
+  readonly joinModemGameScreen: JoinModemGameScreen;
   readonly mainScreen: MainScreen;
   readonly mouseRightDown: (locator: Locator) => Promise<void>;
   readonly newCampaignGameScreen: NewCampaignGameScreen;
@@ -30,6 +32,7 @@ interface Fixtures {
 export const test = testBase.extend<Fixtures>({
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   joinDirectConnectGameScreen: async ({ page }, use) => await use(new JoinDirectConnectGameScreen(page)),
+  joinModemGameScreen: async ({ page }, use) => await use(new JoinModemGameScreen(page)),
   mainScreen: async ({ page }, use) => await use(new MainScreen(page)),
   mouseRightDown: async ({ page }, use) =>
     await use(async (locator: Locator) => {

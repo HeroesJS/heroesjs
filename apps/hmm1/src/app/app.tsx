@@ -102,14 +102,31 @@ export function App() {
               }
               path="network"
             />
-            <Route
-              element={
-                <MainScreen label="New Modem Game Screen">
-                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
-                </MainScreen>
-              }
-              path="modem"
-            />
+            <Route path="modem">
+              <Route
+                element={
+                  <MainScreen label="New Modem Game Screen">
+                    <ModemGameMenu
+                      onCancelClick={() => navigate('/')}
+                      onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
+                      x={400}
+                      y={35}
+                    />
+                  </MainScreen>
+                }
+                index
+              />
+              <Route
+                element={
+                  <MainScreen label="Join Modem Game Screen">
+                    <Modal open size={1} type="cancel" onCancelClick={() => navigate('/')} x={177} y={29}>
+                      Waiting for ring...
+                    </Modal>
+                  </MainScreen>
+                }
+                path="join"
+              />
+            </Route>
             <Route path="direct-connect">
               <Route
                 element={

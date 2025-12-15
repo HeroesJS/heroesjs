@@ -34,6 +34,12 @@ test('displays guest info', async ({ mouseRightDown, newModemGameScreen, page })
   await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
+test('displays join modem game screen when guest is clicked', async ({ joinModemGameScreen, newModemGameScreen }) => {
+  await newModemGameScreen.guestButton.click();
+
+  await expect(joinModemGameScreen.locator).toBeVisible();
+});
+
 test('displays cancel info', async ({ mouseRightDown, newModemGameScreen, page }) => {
   await mouseRightDown(newModemGameScreen.cancelButton);
 
