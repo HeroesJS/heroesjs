@@ -128,7 +128,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Host Direct Connect Game Screen">
-                    <WaitingForConnectionModal open x={177} y={29} />
+                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="host"
@@ -136,7 +136,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Join Direct Connect Game Screen">
-                    <WaitingForConnectionModal open x={177} y={29} />
+                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="join"
@@ -149,11 +149,11 @@ export function App() {
   );
 }
 
-type WaitingForConnectionModalProps = Pick<ComponentProps<typeof Modal>, 'open' | 'x' | 'y'>;
+type WaitingForConnectionModalProps = Pick<ComponentProps<typeof Modal>, 'onCancelClick' | 'open' | 'x' | 'y'>;
 
 function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
   return (
-    <Modal {...props} size={2}>
+    <Modal {...props} size={2} type="cancel">
       Waiting for other computer to log in to direct connection.
       <br />
       <br />
