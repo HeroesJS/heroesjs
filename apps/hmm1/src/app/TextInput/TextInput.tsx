@@ -26,7 +26,13 @@ export function TextInput({ className, label, onChange, value = '', x, y }: Text
   useEffect(() => {
     if (!isFocused) {
       ref.current?.blur();
+    } else {
+      document.body.style = 'pointer-events: none;';
     }
+
+    return () => {
+      document.body.style = '';
+    };
   }, [isFocused]);
 
   useEffect(() => {
