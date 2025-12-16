@@ -119,4 +119,24 @@ describe(Modal, () => {
       expect(handler).toHaveBeenCalled();
     });
   });
+
+  describe('input', () => {
+    it('should render input', () => {
+      renderWithProviders(<Modal open showInput />);
+
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    it('should render input with label', () => {
+      renderWithProviders(<Modal inputLabel="Custom Label" open showInput />);
+
+      expect(screen.getByRole('textbox', { name: /custom label/i })).toBeInTheDocument();
+    });
+
+    it('should render default value', () => {
+      renderWithProviders(<Modal open showInput />);
+
+      expect(screen.getByDisplayValue('@')).toBeInTheDocument();
+    });
+  });
 });

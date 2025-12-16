@@ -7,23 +7,27 @@ import { Backdrop } from '../Backdrop';
 import { Button } from '../Button';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
-import { body, cancel, footer, header, okay, okayCancel, yesNo } from './assets';
+import { body, cancel, footer, header, inputBackground, okay, okayCancel, yesNo } from './assets';
 
 type ModalType = 'okay' | 'cancel' | 'yesNo' | 'okayCancel';
 
 interface ModalProps extends PositionProps {
+  readonly inputLabel?: string;
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
   readonly open: boolean;
+  readonly showInput?: boolean;
   readonly size?: number;
   readonly type?: ModalType;
 }
 
 export function Modal({
   children,
+  inputLabel,
   onCancelClick,
   onConfirmClick,
   open,
+  showInput,
   size = 0,
   type,
   x,
@@ -45,6 +49,9 @@ export function Modal({
         <Text align="center" id="modalContent" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
+        {showInput && (
+          <Input aria-label={inputLabel} as="input" defaultValue="@" maxLength={23} x={17} y={42 + size * 45} />
+        )}
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />
       </Root>
     </Backdrop>,
@@ -98,6 +105,20 @@ const Shadow = styled.div({
   position: 'absolute',
   right: 5,
   top: 27,
+});
+
+const Input = styled(PositionedComponent)({
+  background: 'transparent',
+  backgroundImage: `url(${inputBackground})`,
+  border: 'none',
+  boxSizing: 'border-box',
+  color: '#fff',
+  fontFamily: '"Heroes 1"',
+  height: 20,
+  outline: 0,
+  padding: '0 15px',
+  textAlign: 'center',
+  width: 251,
 });
 
 type ActionsProps = Pick<ModalProps, 'onCancelClick' | 'onConfirmClick' | 'type' | 'y'>;

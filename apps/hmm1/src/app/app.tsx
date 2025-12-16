@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect } from 'react';
+import { type ComponentProps, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
@@ -109,6 +109,7 @@ export function App() {
                     <ModemGameMenu
                       onCancelClick={() => navigate('/')}
                       onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
+                      onHostClick={() => navigate('/new-game/multi-player/modem/host')}
                       x={400}
                       y={35}
                     />
@@ -116,6 +117,7 @@ export function App() {
                 }
                 index
               />
+              <Route element={<HostModemGameScreen />} path="host" />
               <Route
                 element={
                   <MainScreen label="Join Modem Game Screen">
@@ -163,6 +165,35 @@ export function App() {
         </Route>
       </Routes>
     </>
+  );
+}
+
+function HostModemGameScreen() {
+  const navigate = useNavigate();
+
+  const [dialing, setDialing] = useState(false);
+
+  return (
+    <MainScreen label="Host Modem Game Screen">
+      {dialing ? (
+        <Modal onCancelClick={() => navigate('/')} open size={1} type="cancel" x={177} y={29}>
+          Dialing...
+        </Modal>
+      ) : (
+        <Modal
+          inputLabel="Telephone Number"
+          onConfirmClick={() => setDialing(true)}
+          open
+          showInput
+          size={2}
+          type="okay"
+          x={177}
+          y={21}
+        >
+          Please enter the telephone number.
+        </Modal>
+      )}
+    </MainScreen>
   );
 }
 
