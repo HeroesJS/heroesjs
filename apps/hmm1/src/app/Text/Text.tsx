@@ -60,5 +60,6 @@ const Root = styled(PositionedComponent)<Pick<TextProps, 'align' | 'highlighted'
     textAlign: align,
     whiteSpace: 'pre-wrap',
     width,
+    '-webkit-font-smoothing': 'none',
   })
 );

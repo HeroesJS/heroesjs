@@ -14,8 +14,10 @@ type ModalType = 'okay' | 'cancel' | 'yesNo' | 'okayCancel';
 
 interface ModalProps extends PositionProps {
   readonly inputLabel?: string;
+  readonly inputValue?: string;
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
+  readonly onInputValueChange?: (value: string) => void;
   readonly open: boolean;
   readonly showInput?: boolean;
   readonly size?: number;
@@ -25,8 +27,10 @@ interface ModalProps extends PositionProps {
 export function Modal({
   children,
   inputLabel,
+  inputValue,
   onCancelClick,
   onConfirmClick,
+  onInputValueChange,
   open,
   showInput,
   size = 0,
@@ -50,7 +54,9 @@ export function Modal({
         <Text align="center" id="modalContent" size="large" width={239} x={23} y={53}>
           {children}
         </Text>
-        {showInput && <Input label={inputLabel} x={17} y={42 + size * 45} />}
+        {showInput && (
+          <Input label={inputLabel} onChange={onInputValueChange} value={inputValue} x={17} y={42 + size * 45} />
+        )}
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />
       </Root>
     </Backdrop>,
@@ -109,6 +115,8 @@ const Shadow = styled.div({
 const Input = styled(TextInput)({
   backgroundImage: `url(${inputBackground})`,
   height: 20,
+  paddingLeft: 15,
+  paddingRight: 15,
   width: 251,
 });
 

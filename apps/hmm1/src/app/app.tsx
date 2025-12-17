@@ -171,18 +171,25 @@ export function App() {
 function HostModemGameScreen() {
   const navigate = useNavigate();
 
+  const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
   return (
     <MainScreen label="Host Modem Game Screen">
       {dialing ? (
         <Modal onCancelClick={() => navigate('/')} open size={1} type="cancel" x={177} y={29}>
-          Dialing...
+          Dialing... {telephoneNumber}
         </Modal>
       ) : (
         <Modal
           inputLabel="Telephone Number"
+          inputValue={telephoneNumber}
           onConfirmClick={() => setDialing(true)}
+          onInputValueChange={(value) => {
+            setTelephoneNumber(value);
+
+            setDialing(true);
+          }}
           open
           showInput
           size={2}

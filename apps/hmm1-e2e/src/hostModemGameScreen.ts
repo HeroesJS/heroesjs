@@ -7,7 +7,6 @@ export class HostModemGameScreen {
   public readonly telephoneNumberInput: Locator;
   public readonly okayButton: Locator;
 
-  public readonly dialingModal: Locator;
   public readonly cancelButton: Locator;
 
   constructor(private readonly page: Page) {
@@ -17,11 +16,14 @@ export class HostModemGameScreen {
     this.telephoneNumberInput = page.getByRole('textbox', { name: /telephone number/i });
     this.okayButton = page.getByRole('button', { name: /okay/i });
 
-    this.dialingModal = page.getByRole('dialog', { name: /dialing\.\.\./i });
     this.cancelButton = page.getByRole('button', { name: /cancel/i });
   }
 
   public goto() {
     return this.page.goto('/new-game/multi-player/modem/host');
+  }
+
+  public dialingModal(telephoneNumber: string) {
+    return this.page.getByRole('dialog', { name: new RegExp(`dialing... ${telephoneNumber}`, 'i') });
   }
 }

@@ -16,16 +16,28 @@ test('displays enter telephone number modal', async ({ hostModemGameScreen, page
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays dialing modal when okay is clicked', async ({ hostModemGameScreen, page }) => {
-  await hostModemGameScreen.okayButton.click();
+test('allows to dial a telephone number', async ({ hostModemGameScreen, page }) => {
+  await hostModemGameScreen.telephoneNumberInput.fill('12345');
 
-  await expect(hostModemGameScreen.dialingModal).toBeVisible();
+  await expect(page).toHaveScreenshot('numberEntered.png', { maxDiffPixelRatio: 0.01 });
 
-  await expect(page).toHaveScreenshot('dialing.png', { maxDiffPixelRatio: 0.01 });
+  await hostModemGameScreen.telephoneNumberInput.press('Enter');
+
+  await expect(hostModemGameScreen.dialingModal('12345')).toBeVisible();
+
+  await expect(page).toHaveScreenshot('dialingNumber.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test('allows to dial an empty telephone number', async ({ hostModemGameScreen, page }) => {
+  await hostModemGameScreen.telephoneNumberInput.press('Enter');
+
+  await expect(page).toHaveScreenshot('dialingEmpty.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when dialing and cancel is clicked', async ({ hostModemGameScreen, mainScreen }) => {
-  await hostModemGameScreen.okayButton.click();
+  await hostModemGameScreen.telephoneNumberInput.fill('12345');
+
+  await hostModemGameScreen.telephoneNumberInput.press('Enter');
 
   await hostModemGameScreen.cancelButton.click();
 
