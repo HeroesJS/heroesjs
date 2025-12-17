@@ -7,13 +7,14 @@ import { PositionedComponent, type PositionProps } from '../PositionedComponent'
 const Caret = '@';
 
 interface TextInputProps extends PositionProps {
+  readonly autoFocus?: boolean;
   readonly className?: string;
   readonly label?: string;
   readonly onChange?: (value: string) => void;
   readonly value?: string;
 }
 
-export function TextInput({ className, label, onChange, value = '', x, y }: TextInputProps) {
+export function TextInput({ autoFocus, className, label, onChange, value = '', x, y }: TextInputProps) {
   const ref = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
@@ -26,9 +27,11 @@ export function TextInput({ className, label, onChange, value = '', x, y }: Text
   useEffect(() => {
     if (!isFocused) {
       ref.current?.blur();
-    } else {
-      document.body.style = 'pointer-events: none;';
+
+      return;
     }
+
+    document.body.style = 'pointer-events: none;';
 
     return () => {
       document.body.style = '';
@@ -36,13 +39,19 @@ export function TextInput({ className, label, onChange, value = '', x, y }: Text
   }, [isFocused]);
 
   useEffect(() => {
+    if (!autoFocus) {
+      return;
+    }
+
     ref.current?.focus();
   }, []);
 
   const handleBlur = () => {
-    if (isFocused) {
-      ref.current?.focus();
+    if (!isFocused) {
+      return;
     }
+
+    ref.current?.focus();
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -53,7 +62,7 @@ export function TextInput({ className, label, onChange, value = '', x, y }: Text
   const handleFocus = () => setIsFocused(true);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.code)) {
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.code)) {
       e.preventDefault();
     }
 
@@ -75,7 +84,7 @@ export function TextInput({ className, label, onChange, value = '', x, y }: Text
       aria-label={label}
       as="input"
       className={className}
-      maxLength={23}
+      maxLength={24}
       name={camelCase(label)}
       onBlur={handleBlur}
       onChange={handleChange}

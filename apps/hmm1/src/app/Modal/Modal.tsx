@@ -55,7 +55,14 @@ export function Modal({
           {children}
         </Text>
         {showInput && (
-          <Input label={inputLabel} onChange={onInputValueChange} value={inputValue} x={17} y={42 + size * 45} />
+          <Input
+            autoFocus
+            label={inputLabel}
+            onChange={onInputValueChange}
+            value={inputValue}
+            x={17}
+            y={42 + size * 45}
+          />
         )}
         <Actions onCancelClick={onCancelClick} onConfirmClick={onConfirmClick} type={type} y={77 + size * 45} />
       </Root>
