@@ -4,6 +4,10 @@ test.beforeEach(async ({ joinDirectConnectGameScreen }) => {
   await joinDirectConnectGameScreen.goto();
 });
 
+test('displays screen', async ({ joinDirectConnectGameScreen }) => {
+  await expect(joinDirectConnectGameScreen.locator).toBeVisible();
+});
+
 test('displays waiting for connection modal', async ({ joinDirectConnectGameScreen, page }) => {
   await expect(joinDirectConnectGameScreen.waitingForConnectionModal).toBeVisible();
 

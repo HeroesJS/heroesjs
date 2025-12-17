@@ -40,3 +40,11 @@ export const Type: Story = {
     type: 'okay',
   },
 };
+
+export const Input: Story = {
+  args: {
+    ...Content.args,
+    ...Type.args,
+    inputLabel: 'Input Label',
+  },
+};

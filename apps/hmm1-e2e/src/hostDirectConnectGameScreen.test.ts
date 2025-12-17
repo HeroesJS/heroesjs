@@ -4,6 +4,10 @@ test.beforeEach(async ({ hostDirectConnectGameScreen }) => {
   await hostDirectConnectGameScreen.goto();
 });
 
+test('displays screen', async ({ hostDirectConnectGameScreen }) => {
+  await expect(hostDirectConnectGameScreen.locator).toBeVisible();
+});
+
 test('displays waiting for connection modal', async ({ hostDirectConnectGameScreen, page }) => {
   await expect(hostDirectConnectGameScreen.waitingForConnectionModal).toBeVisible();
 

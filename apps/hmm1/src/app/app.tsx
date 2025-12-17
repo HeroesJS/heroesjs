@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect } from 'react';
+import { type ComponentProps, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
@@ -102,14 +102,33 @@ export function App() {
               }
               path="network"
             />
-            <Route
-              element={
-                <MainScreen label="New Modem Game Screen">
-                  <ModemGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
-                </MainScreen>
-              }
-              path="modem"
-            />
+            <Route path="modem">
+              <Route
+                element={
+                  <MainScreen label="New Modem Game Screen">
+                    <ModemGameMenu
+                      onCancelClick={() => navigate('/')}
+                      onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
+                      onHostClick={() => navigate('/new-game/multi-player/modem/host')}
+                      x={400}
+                      y={35}
+                    />
+                  </MainScreen>
+                }
+                index
+              />
+              <Route element={<HostModemGameScreen />} path="host" />
+              <Route
+                element={
+                  <MainScreen label="Join Modem Game Screen">
+                    <Modal open size={1} type="cancel" onCancelClick={() => navigate('/')} x={177} y={29}>
+                      Waiting for ring...
+                    </Modal>
+                  </MainScreen>
+                }
+                path="join"
+              />
+            </Route>
             <Route path="direct-connect">
               <Route
                 element={
@@ -146,6 +165,42 @@ export function App() {
         </Route>
       </Routes>
     </>
+  );
+}
+
+function HostModemGameScreen() {
+  const navigate = useNavigate();
+
+  const [telephoneNumber, setTelephoneNumber] = useState('');
+  const [dialing, setDialing] = useState(false);
+
+  return (
+    <MainScreen label="Host Modem Game Screen">
+      {dialing ? (
+        <Modal onCancelClick={() => navigate('/')} open size={1} type="cancel" x={177} y={29}>
+          Dialing... {telephoneNumber}
+        </Modal>
+      ) : (
+        <Modal
+          inputLabel="Telephone Number"
+          inputValue={telephoneNumber}
+          onConfirmClick={() => setDialing(true)}
+          onInputValueChange={(value) => {
+            setTelephoneNumber(value);
+
+            setDialing(true);
+          }}
+          open
+          showInput
+          size={2}
+          type="okay"
+          x={177}
+          y={21}
+        >
+          Please enter the telephone number.
+        </Modal>
+      )}
+    </MainScreen>
   );
 }
 
