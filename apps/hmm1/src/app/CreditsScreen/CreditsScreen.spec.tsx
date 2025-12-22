@@ -50,4 +50,14 @@ describe(CreditsScreen, () => {
       expect(within(list).getByRole('listitem', { name: new RegExp(itemName, 'i') })).toBeInTheDocument();
     });
   });
+
+  it('should call click handler when clicked', async () => {
+    const handler = vitest.fn();
+
+    const { user } = renderWithProviders(<CreditsScreen onClick={handler} />);
+
+    await user.click(screen.getByRole('main', { name: /credits/i }));
+
+    expect(handler).toHaveBeenCalled();
+  });
 });

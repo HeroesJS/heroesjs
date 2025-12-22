@@ -88,3 +88,9 @@ test('displays entries', async ({ creditsScreen, page }) => {
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.03 });
 });
+
+test('displays main screen when clicked', async ({ creditsScreen, mainScreen }) => {
+  await creditsScreen.locator.click();
+
+  await expect(mainScreen.locator).toBeVisible();
+});

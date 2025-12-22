@@ -169,7 +169,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
-        <Route element={<CreditsScreen />} path="credits" />
+        <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
   );

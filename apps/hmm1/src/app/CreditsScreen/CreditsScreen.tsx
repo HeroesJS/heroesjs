@@ -7,9 +7,13 @@ import { Screen } from '../Screen';
 import { Text } from '../Text';
 import { background } from './assets';
 
-export function CreditsScreen() {
+interface CreditsScreenProps {
+  readonly onClick?: () => void;
+}
+
+export function CreditsScreen({ onClick }: CreditsScreenProps) {
   return (
-    <Screen background={background} label="Credits">
+    <Screen background={background} label="Credits" onClick={onClick}>
       <List label="Designed and Directed" width={210} x={55} y={47}>
         <ListItem>Jon Van Caneghem</ListItem>
       </List>
