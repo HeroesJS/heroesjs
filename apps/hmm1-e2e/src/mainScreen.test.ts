@@ -52,6 +52,12 @@ test('displays view credits info', async ({ mainScreen, mouseRightDown, page }) 
   await expect(page).toHaveScreenshot('view-credits-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays credits screen when view credits is clicked', async ({ creditsScreen, mainScreen }) => {
+  await mainScreen.viewCreditsButton.click();
+
+  await expect(creditsScreen.locator).toBeVisible();
+});
+
 test('displays quit info', async ({ mainScreen, mouseRightDown, page }) => {
   await mouseRightDown(mainScreen.quitButton);
 

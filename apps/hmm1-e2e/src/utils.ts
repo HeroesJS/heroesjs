@@ -1,5 +1,6 @@
 import { expect, type Locator, test as testBase } from '@playwright/test';
 
+import { CreditsScreen } from './creditsScreen';
 import { HostDirectConnectGameScreen } from './hostDirectConnectGameScreen';
 import { HostModemGameScreen } from './hostModemGameScreen';
 import { JoinDirectConnectGameScreen } from './joinDirectConnectGameScreen';
@@ -16,6 +17,7 @@ import { NewNetworkGameScreen } from './newNetworkGameScreen';
 export { expect };
 
 interface Fixtures {
+  readonly creditsScreen: CreditsScreen;
   readonly hostDirectConnectGameScreen: HostDirectConnectGameScreen;
   readonly hostModemGameScreen: HostModemGameScreen;
   readonly joinDirectConnectGameScreen: JoinDirectConnectGameScreen;
@@ -32,6 +34,7 @@ interface Fixtures {
 }
 
 export const test = testBase.extend<Fixtures>({
+  creditsScreen: async ({ page }, use) => await use(new CreditsScreen(page)),
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   hostModemGameScreen: async ({ page }, use) => await use(new HostModemGameScreen(page)),
   joinDirectConnectGameScreen: async ({ page }, use) => await use(new JoinDirectConnectGameScreen(page)),

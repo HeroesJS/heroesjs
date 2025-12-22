@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { CampaignMenu } from './CampaignMenu';
+import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
@@ -41,7 +42,12 @@ export function App() {
         <Route
           element={
             <MainScreen>
-              <MainMenu onNewGameClick={() => navigate('new-game')} x={400} y={35} />
+              <MainMenu
+                onNewGameClick={() => navigate('new-game')}
+                onViewCreditsClick={() => navigate('credits')}
+                x={400}
+                y={35}
+              />
             </MainScreen>
           }
           index
@@ -163,6 +169,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
+        <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
   );

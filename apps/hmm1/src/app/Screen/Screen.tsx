@@ -7,11 +7,12 @@ export const ScreenHeight = 480;
 interface ScreenProps {
   readonly background: string;
   readonly label: string;
+  readonly onClick?: () => void;
 }
 
-export function Screen({ background, children, label }: PropsWithChildren<ScreenProps>) {
+export function Screen({ background, children, label, onClick }: PropsWithChildren<ScreenProps>) {
   return (
-    <Root aria-label={label} background={background}>
+    <Root aria-label={label} background={background} onClick={onClick}>
       {children}
     </Root>
   );
