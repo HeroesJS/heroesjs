@@ -56,6 +56,7 @@ const Root = styled(PositionedComponent)<Pick<TextProps, 'align' | 'highlighted'
     color: highlighted ? '#beeb00' : '#fff',
     fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
     fontSize: fontSizes[size],
+    fontWeight: 'normal',
     lineHeight: `${lineHeights[size]}px`,
     textAlign: align,
     whiteSpace: 'pre-wrap',
