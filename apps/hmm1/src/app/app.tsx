@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
-import { HighScoresScreen } from './HighScoresScreen';
+import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { Modal } from './Modal';
@@ -13,7 +13,7 @@ import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
-import { defaultStandardGameHighScores } from './highScores';
+import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -172,10 +172,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
-        <Route
-          element={<HighScoresScreen entries={defaultStandardGameHighScores} onExitClick={() => navigate('/')} />}
-          path="high-scores"
-        />
+        <Route element={<HighScoresScreen />} path="high-scores" />
         <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
@@ -228,5 +225,20 @@ function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
       <br />
       Press 'CANCEL' to abort.
     </Modal>
+  );
+}
+
+function HighScoresScreen() {
+  const navigate = useNavigate();
+
+  const [gameType, setGameType] = useState(defaultHighScoresGameType);
+
+  return (
+    <HighScoresScreenBase
+      entries={defaultHighScores}
+      gameType={gameType}
+      onExitClick={() => navigate('/')}
+      onGameTypeChange={setGameType}
+    />
   );
 }

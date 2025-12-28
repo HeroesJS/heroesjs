@@ -1,3 +1,5 @@
+import { GameType } from './core';
+
 export interface StandardGameScore {
   readonly player: string;
   readonly scenario: string;
@@ -67,3 +69,87 @@ export const defaultStandardGameHighScores: readonly StandardGameScore[] = [
     title: 'Goblin',
   },
 ];
+
+export interface CampaignGameScore {
+  readonly days: number;
+  readonly leader: string;
+  readonly player: string;
+  readonly title: string;
+}
+
+export const defaultCampaignGameHighScores: readonly CampaignGameScore[] = [
+  {
+    days: 500,
+    leader: 'Lord Ironfist',
+    player: 'Maximus',
+    title: 'Paladin',
+  },
+  {
+    days: 700,
+    leader: 'Lord Slayer',
+    player: 'Antoine',
+    title: 'Ghost',
+  },
+  {
+    days: 900,
+    leader: 'Queen Lamanda',
+    player: 'Astra',
+    title: 'Druid',
+  },
+  {
+    days: 1200,
+    leader: 'Lord Alamar',
+    player: 'Agar',
+    title: 'Griffin',
+  },
+  {
+    days: 1500,
+    leader: 'Queen Lamanda',
+    player: 'Vatawna',
+    title: 'Wolf',
+  },
+  {
+    days: 1700,
+    leader: 'Lord Alamar',
+    player: 'Vesper',
+    title: 'Dwarf',
+  },
+  {
+    days: 2000,
+    leader: 'Lord Ironfist',
+    player: 'Ambrose',
+    title: 'Gargoyle',
+  },
+  {
+    days: 2400,
+    leader: 'Queen Lamanda',
+    player: 'Troyan',
+    title: 'Orc',
+  },
+  {
+    days: 3200,
+    leader: 'Lord Slayer',
+    player: 'Jojosh',
+    title: 'Sprite',
+  },
+  {
+    days: 4400,
+    leader: 'Lord Alamar',
+    player: 'Wrathmont',
+    title: 'Peasant',
+  },
+];
+
+export type HighScoresGameType = GameType.Standard | GameType.Campaign;
+
+export const defaultHighScoresGameType: HighScoresGameType = GameType.Standard;
+
+export interface HighScores {
+  [GameType.Campaign]?: readonly CampaignGameScore[];
+  [GameType.Standard]?: readonly StandardGameScore[];
+}
+
+export const defaultHighScores: HighScores = {
+  [GameType.Campaign]: defaultCampaignGameHighScores,
+  [GameType.Standard]: defaultStandardGameHighScores,
+};
