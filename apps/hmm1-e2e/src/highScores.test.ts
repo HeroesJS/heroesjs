@@ -157,7 +157,7 @@ test.describe('campaign game scores', () => {
     await expect(page).toHaveScreenshot('campaign-game.png', { maxDiffPixelRatio: 0.02 });
   });
 
-  test('displays standard game scores when campaiang button is clicked', async ({ highScoresScreen }) => {
+  test('displays standard game scores when campaign button is clicked', async ({ highScoresScreen }) => {
     await highScoresScreen.campaignButton.click();
 
     await expect(highScoresScreen.standardGameScoresTable).toBeVisible();
@@ -168,4 +168,14 @@ test('displays main screen when exit button is clicked', async ({ highScoresScre
   await highScoresScreen.exitButton.click();
 
   await expect(mainScreen.locator).toBeVisible();
+});
+
+test('remembers last viewed scores', async ({ highScoresScreen, mainScreen }) => {
+  await highScoresScreen.standardButton.click();
+
+  await highScoresScreen.exitButton.click();
+
+  await mainScreen.viewHighScoresButton.click();
+
+  await expect(highScoresScreen.campaignGameScoresTable).toBeVisible();
 });

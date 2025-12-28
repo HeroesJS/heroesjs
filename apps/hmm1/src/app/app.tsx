@@ -228,10 +228,16 @@ function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
   );
 }
 
+let lastViewedHighScores = defaultHighScoresGameType;
+
 function HighScoresScreen() {
   const navigate = useNavigate();
 
-  const [gameType, setGameType] = useState(defaultHighScoresGameType);
+  const [gameType, setGameType] = useState(lastViewedHighScores);
+
+  useEffect(() => {
+    lastViewedHighScores = gameType;
+  }, [gameType]);
 
   return (
     <HighScoresScreenBase
