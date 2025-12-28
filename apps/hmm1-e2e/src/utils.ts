@@ -14,6 +14,7 @@ import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
 import { NewModemGameScreen } from './newModemGameScreen';
 import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
 import { NewNetworkGameScreen } from './newNetworkGameScreen';
+import { NewStandardGameScreen } from './newStandardGameScreen';
 
 export { expect };
 
@@ -33,6 +34,7 @@ interface Fixtures {
   readonly newModemGameScreen: NewModemGameScreen;
   readonly newMultiPlayerGameScreen: NewMultiPlayerGameScreen;
   readonly newNetworkGameScreen: NewNetworkGameScreen;
+  readonly newStandardGameScreen: NewStandardGameScreen;
 }
 
 export const test = testBase.extend<Fixtures>({
@@ -57,4 +59,5 @@ export const test = testBase.extend<Fixtures>({
   newModemGameScreen: async ({ page }, use) => await use(new NewModemGameScreen(page)),
   newMultiPlayerGameScreen: async ({ page }, use) => await use(new NewMultiPlayerGameScreen(page)),
   newNetworkGameScreen: async ({ page }, use) => await use(new NewNetworkGameScreen(page)),
+  newStandardGameScreen: async ({ page }, use) => await use(new NewStandardGameScreen(page)),
 });

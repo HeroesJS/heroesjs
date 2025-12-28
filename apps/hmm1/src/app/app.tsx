@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
+import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
@@ -12,8 +13,8 @@ import { Modal } from './Modal';
 import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
+import { NewStandardGameScreen } from './NewStandardGameScreen';
 import { PlayerCountMenu } from './PlayerCountMenu';
-import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -63,6 +64,7 @@ export function App() {
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={() => navigate('/')}
                   onMultiPlayerGameClick={() => navigate('new-game/multi-player')}
+                  onStandardGameClick={() => navigate('new-game/standard')}
                   x={400}
                   y={35}
                 />
@@ -70,6 +72,7 @@ export function App() {
             }
             index
           />
+          <Route element={<NewStandardGameScreen />} path="standard" />
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">
