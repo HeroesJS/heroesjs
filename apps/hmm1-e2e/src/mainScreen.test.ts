@@ -44,6 +44,15 @@ test('displays view high scores info', async ({ mainScreen, mouseRightDown, page
   await expect(page).toHaveScreenshot('view-high-scores-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays high scores screen when view high scores button is clicked', async ({
+  highScoresScreen,
+  mainScreen,
+}) => {
+  await mainScreen.viewHighScoresButton.click();
+
+  await expect(highScoresScreen.locator).toBeVisible();
+});
+
 test('displays view credits info', async ({ mainScreen, mouseRightDown, page }) => {
   await mouseRightDown(mainScreen.viewCreditsButton);
 
@@ -52,7 +61,7 @@ test('displays view credits info', async ({ mainScreen, mouseRightDown, page }) 
   await expect(page).toHaveScreenshot('view-credits-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays credits screen when view credits is clicked', async ({ creditsScreen, mainScreen }) => {
+test('displays credits screen when view credits button is clicked', async ({ creditsScreen, mainScreen }) => {
   await mainScreen.viewCreditsButton.click();
 
   await expect(creditsScreen.locator).toBeVisible();

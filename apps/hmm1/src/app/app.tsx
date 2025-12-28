@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
+import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { Modal } from './Modal';
@@ -12,6 +13,7 @@ import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
+import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -45,6 +47,7 @@ export function App() {
               <MainMenu
                 onNewGameClick={() => navigate('new-game')}
                 onViewCreditsClick={() => navigate('credits')}
+                onViewHighScoresClick={() => navigate('high-scores')}
                 x={400}
                 y={35}
               />
@@ -169,6 +172,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
+        <Route element={<HighScoresScreen />} path="high-scores" />
         <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
@@ -221,5 +225,26 @@ function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
       <br />
       Press 'CANCEL' to abort.
     </Modal>
+  );
+}
+
+let lastViewedHighScores = defaultHighScoresGameType;
+
+function HighScoresScreen() {
+  const navigate = useNavigate();
+
+  const [gameType, setGameType] = useState(lastViewedHighScores);
+
+  useEffect(() => {
+    lastViewedHighScores = gameType;
+  }, [gameType]);
+
+  return (
+    <HighScoresScreenBase
+      entries={defaultHighScores}
+      gameType={gameType}
+      onExitClick={() => navigate('/')}
+      onGameTypeChange={setGameType}
+    />
   );
 }
