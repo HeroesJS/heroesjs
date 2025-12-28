@@ -13,6 +13,7 @@ import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
+import { defaultStandardGameHighScores } from './highScores';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -171,7 +172,10 @@ export function App() {
             </Route>
           </Route>
         </Route>
-        <Route element={<HighScoresScreen onExitClick={() => navigate('/')} />} path="high-scores" />
+        <Route
+          element={<HighScoresScreen entries={defaultStandardGameHighScores} onExitClick={() => navigate('/')} />}
+          path="high-scores"
+        />
         <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
