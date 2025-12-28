@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
+import { HighScoresScreen } from './HighScoresScreen';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
 import { Modal } from './Modal';
@@ -45,6 +46,7 @@ export function App() {
               <MainMenu
                 onNewGameClick={() => navigate('new-game')}
                 onViewCreditsClick={() => navigate('credits')}
+                onViewHighScoresClick={() => navigate('high-scores')}
                 x={400}
                 y={35}
               />
@@ -169,6 +171,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
+        <Route element={<HighScoresScreen onExitClick={() => navigate('/')} />} path="high-scores" />
         <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
     </>
