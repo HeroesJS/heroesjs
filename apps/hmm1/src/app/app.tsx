@@ -72,7 +72,7 @@ export function App() {
             }
             index
           />
-          <Route element={<NewStandardGameScreen />} path="standard" />
+          <Route element={<NewStandardGameScreen onCancelClick={() => navigate('/')} />} path="standard" />
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">
