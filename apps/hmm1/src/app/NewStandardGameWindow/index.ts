@@ -1,0 +1,1 @@
+export { NewStandardGameWindow } from './NewStandardGameWindow';

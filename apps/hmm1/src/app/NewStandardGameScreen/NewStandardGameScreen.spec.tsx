@@ -9,4 +9,10 @@ describe(NewStandardGameScreen, () => {
 
     expect(screen.getByRole('main', { name: /new standard game/i })).toBeInTheDocument();
   });
+
+  it('should render window', () => {
+    renderWithProviders(<NewStandardGameScreen />);
+
+    expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
+  });
 });
