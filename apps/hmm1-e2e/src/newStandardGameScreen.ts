@@ -6,6 +6,8 @@ export class NewStandardGameScreen {
   public readonly window: Locator;
 
   public readonly gameDifficultyLabel: Locator;
+  public readonly gameDifficultyRadioGroup: Locator;
+
   public readonly opponentSettingsLabel: Locator;
   public readonly playerColorLabel: Locator;
   public readonly kingOfTheHillLabel: Locator;
@@ -22,6 +24,8 @@ export class NewStandardGameScreen {
     this.window = page.getByRole('region', { name: /new standard game/i });
 
     this.gameDifficultyLabel = page.getByText(/choose game difficulty:/i);
+    this.gameDifficultyRadioGroup = page.getByRole('radiogroup', { name: /game difficulty/i });
+
     this.opponentSettingsLabel = page.getByText(/customize opponents:/i);
     this.playerColorLabel = page.getByText(/choose color:/i);
     this.kingOfTheHillLabel = page.getByText(/king of the hill:/i);
@@ -35,5 +39,9 @@ export class NewStandardGameScreen {
 
   public goto() {
     return this.page.goto('/new-game/standard');
+  }
+
+  public getGameDifficultyRadio(option: RegExp) {
+    return this.gameDifficultyRadioGroup.getByRole('radio', { name: option });
   }
 }

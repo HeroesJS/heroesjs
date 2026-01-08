@@ -16,6 +16,12 @@ describe(NewStandardGameScreen, () => {
     expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
   });
 
+  it('should select normal game difficulty by default', () => {
+    renderWithProviders(<NewStandardGameScreen />);
+
+    expect(screen.getByRole('radio', { name: /normal/i })).toBeChecked();
+  });
+
   it('should call cancel handler when cancel button is clicked', async () => {
     const handler = vitest.fn();
 

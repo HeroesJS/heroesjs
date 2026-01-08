@@ -12,6 +12,16 @@ test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.window).toBeVisible();
 
   await expect(newStandardGameScreen.gameDifficultyLabel).toBeVisible();
+
+  await expect(newStandardGameScreen.gameDifficultyRadioGroup).toBeVisible();
+
+  await expect(newStandardGameScreen.getGameDifficultyRadio(/easy/i)).toBeVisible();
+  await expect(newStandardGameScreen.getGameDifficultyRadio(/normal/i)).toBeVisible();
+  await expect(newStandardGameScreen.getGameDifficultyRadio(/hard/i)).toBeVisible();
+  await expect(newStandardGameScreen.getGameDifficultyRadio(/expert/i)).toBeVisible();
+
+  await expect(newStandardGameScreen.getGameDifficultyRadio(/normal/i)).toBeChecked();
+
   await expect(newStandardGameScreen.opponentSettingsLabel).toBeVisible();
   await expect(newStandardGameScreen.playerColorLabel).toBeVisible();
   await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
@@ -22,7 +32,15 @@ test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.okayButton).toBeVisible();
   await expect(newStandardGameScreen.cancelButton).toBeVisible();
 
-  await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.02 });
+  await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test.describe('game difficulty', () => {
+  test('allows to change difficulty', async ({ newStandardGameScreen }) => {
+    await newStandardGameScreen.getGameDifficultyRadio(/hard/i).click();
+
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/hard/i)).toBeChecked();
+  });
 });
 
 test('displays main screen when cancel is clicked', async ({ mainScreen, newStandardGameScreen }) => {
