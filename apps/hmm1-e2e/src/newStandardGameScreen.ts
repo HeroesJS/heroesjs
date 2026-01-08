@@ -44,4 +44,12 @@ export class NewStandardGameScreen {
   public getGameDifficultyRadio(option: RegExp) {
     return this.gameDifficultyRadioGroup.getByRole('radio', { name: option });
   }
+
+  public getOpponentSetting(index: number) {
+    return this.page.getByRole('radiogroup', { name: RegExp(`opponent ${index} setting`, 'i') });
+  }
+
+  public getOpponentSettingOption(index: number, setting: RegExp) {
+    return this.getOpponentSetting(index).getByRole('radio', { name: setting });
+  }
 }

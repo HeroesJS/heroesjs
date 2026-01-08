@@ -1,16 +1,19 @@
 import { Button } from '../Button';
-import { GameDifficulty } from '../core';
+import { GameDifficulty, OpponentSetting } from '../core';
 import type { PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
 import { background, cancel, okay } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
+import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 
 interface NewStandardGameWindowProps extends PositionProps {
   readonly gameDifficulty: GameDifficulty;
   readonly onCancelClick?: () => void;
   readonly onGameDifficultyChange?: (value: GameDifficulty) => void;
   readonly onOkayClick?: () => void;
+  readonly onOpponentSettingsChange?: (value: readonly OpponentSetting[]) => void;
+  readonly opponentSettings: readonly OpponentSetting[];
 }
 
 export function NewStandardGameWindow({
@@ -18,6 +21,8 @@ export function NewStandardGameWindow({
   onCancelClick,
   onGameDifficultyChange,
   onOkayClick,
+  onOpponentSettingsChange,
+  opponentSettings,
   x,
   y,
 }: NewStandardGameWindowProps) {
@@ -44,6 +49,7 @@ export function NewStandardGameWindow({
       <Text size="large" x={70} y={132}>
         Customize Opponents:
       </Text>
+      <OpponentSettingsSelector onChange={onOpponentSettingsChange} value={opponentSettings} x={55} y={149} />
       <Text size="large" x={26} y={254}>
         Choose Color:
       </Text>

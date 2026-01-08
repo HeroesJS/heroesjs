@@ -1,20 +1,26 @@
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 
 import { renderWithProviders } from '../testUtils';
 import { NewStandardGameWindow } from './NewStandardGameWindow';
-import { GameDifficulty } from '../core';
+import { GameDifficulty, MaxPlayerCount, OpponentSetting } from '../core';
+import { range } from 'lodash';
 
 describe(NewStandardGameWindow, () => {
+  const opponentSettings: readonly OpponentSetting[] = new Array(MaxPlayerCount - 1).fill(OpponentSetting.Dumb);
+
   it('should render', () => {
-    renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+    renderWithProviders(
+      <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+    );
 
     expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
   });
 
   it('should render labels', () => {
-    renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+    renderWithProviders(
+      <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+    );
 
-    expect(screen.getByText(/customize opponents:/i)).toBeInTheDocument();
     expect(screen.getByText(/choose color:/i)).toBeInTheDocument();
     expect(screen.getByText(/king of the hill:/i)).toBeInTheDocument();
     expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
@@ -24,13 +30,17 @@ describe(NewStandardGameWindow, () => {
 
   describe('game difficulty', () => {
     it('should render label', () => {
-      renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
 
       expect(screen.getByText(/choose game difficulty:/i)).toBeInTheDocument();
     });
 
     it('should render options', () => {
-      renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
 
       expect(screen.getByRole('radiogroup', { name: /game difficulty/i })).toBeInTheDocument();
 
@@ -46,7 +56,11 @@ describe(NewStandardGameWindow, () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} onGameDifficultyChange={handler} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onGameDifficultyChange={handler}
+          opponentSettings={opponentSettings}
+        />
       );
 
       await user.click(screen.getByRole('radio', { name: /normal/i }));
@@ -55,9 +69,55 @@ describe(NewStandardGameWindow, () => {
     });
   });
 
+  describe('opponent settings', () => {
+    it('should render label', () => {
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
+
+      expect(screen.getByText(/customize opponents:/i)).toBeInTheDocument();
+    });
+
+    it('should render settings', () => {
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
+
+      range(1, MaxPlayerCount).forEach((i) => {
+        const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent ${i} setting`, 'i') });
+
+        expect(within(group).getByRole('radio', { name: /dumb/i })).toBeChecked();
+      });
+    });
+
+    it('should call handler when setting clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onOpponentSettingsChange={handler}
+          opponentSettings={opponentSettings}
+        />
+      );
+
+      const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+
+      await user.click(group);
+
+      expect(handler).toHaveBeenCalledWith<[readonly OpponentSetting[]]>([
+        OpponentSetting.Average,
+        OpponentSetting.Dumb,
+        OpponentSetting.Dumb,
+      ]);
+    });
+  });
+
   describe('okay button', () => {
     it('should render', () => {
-      renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
 
       expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
     });
@@ -66,7 +126,11 @@ describe(NewStandardGameWindow, () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} onOkayClick={handler} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onOkayClick={handler}
+          opponentSettings={opponentSettings}
+        />
       );
 
       await user.click(screen.getByRole('button', { name: /okay/i }));
@@ -77,7 +141,9 @@ describe(NewStandardGameWindow, () => {
 
   describe('cancel button', () => {
     it('should render', () => {
-      renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} />);
+      renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      );
 
       expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
     });
@@ -86,7 +152,11 @@ describe(NewStandardGameWindow, () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} onCancelClick={handler} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onCancelClick={handler}
+          opponentSettings={opponentSettings}
+        />
       );
 
       await user.click(screen.getByRole('button', { name: /cancel/i }));

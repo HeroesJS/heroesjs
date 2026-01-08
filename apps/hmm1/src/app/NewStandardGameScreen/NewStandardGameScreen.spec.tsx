@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 
 import { renderWithProviders } from '../testUtils';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
@@ -20,6 +20,20 @@ describe(NewStandardGameScreen, () => {
     renderWithProviders(<NewStandardGameScreen />);
 
     expect(screen.getByRole('radio', { name: /normal/i })).toBeChecked();
+  });
+
+  it('should set average computer opponents by default', () => {
+    renderWithProviders(<NewStandardGameScreen />);
+
+    expect(
+      within(screen.getByRole('radiogroup', { name: /opponent 1 setting/i })).getByRole('radio', { name: /average/i })
+    ).toBeChecked();
+    expect(
+      within(screen.getByRole('radiogroup', { name: /opponent 2 setting/i })).getByRole('radio', { name: /average/i })
+    ).toBeChecked();
+    expect(
+      within(screen.getByRole('radiogroup', { name: /opponent 3 setting/i })).getByRole('radio', { name: /average/i })
+    ).toBeChecked();
   });
 
   it('should call cancel handler when cancel button is clicked', async () => {
