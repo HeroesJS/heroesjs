@@ -13,6 +13,8 @@ export class NewStandardGameScreen {
   public readonly playerColorLabel: Locator;
 
   public readonly kingOfTheHillLabel: Locator;
+  public readonly kingOfTheHillCheckbox: Locator;
+
   public readonly scenarioSelectionLabel: Locator;
   public readonly scenarioLabel: Locator;
   public readonly difficultyRatingLabel: Locator;
@@ -29,8 +31,12 @@ export class NewStandardGameScreen {
     this.gameDifficultyRadioGroup = page.getByRole('radiogroup', { name: /game difficulty/i });
 
     this.opponentSettingsLabel = page.getByText(/customize opponents:/i);
+
     this.playerColorLabel = page.getByText(/choose color:/i);
+
     this.kingOfTheHillLabel = page.getByText(/king of the hill:/i);
+    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill/i });
+
     this.scenarioSelectionLabel = page.getByText(/choose scenario:/i);
     this.scenarioLabel = page.getByText(/claw \( easy \)/i);
     this.difficultyRatingLabel = page.getByText(/difficulty rating: 60%/i);

@@ -29,7 +29,6 @@ describe(NewStandardGameWindow, () => {
       />
     );
 
-    expect(screen.getByText(/king of the hill:/i)).toBeInTheDocument();
     expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
     expect(screen.getByText(/claw \( easy \)/i)).toBeInTheDocument();
     expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
@@ -182,6 +181,63 @@ describe(NewStandardGameWindow, () => {
       );
 
       expect(handler).toHaveBeenCalledWith<[PlayerColor]>(PlayerColor.Green);
+    });
+  });
+
+  describe('king of the hill', () => {
+    it('should render label', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByText(/king of the hill:/i)).toBeInTheDocument();
+    });
+
+    it('should render option', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeInTheDocument();
+      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
+    });
+
+    it('should call handler when option is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onKingOfTheHillChange={handler}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.click(screen.getByRole('checkbox', { name: /king of the hill/i }));
+
+      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+    });
+
+    it('should render option as checked', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          kingOfTheHill
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeChecked();
     });
   });
 

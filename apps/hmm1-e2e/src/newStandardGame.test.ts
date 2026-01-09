@@ -11,7 +11,6 @@ test('displays screen', async ({ newStandardGameScreen }) => {
 test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.window).toBeVisible();
 
-  await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
   await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
   await expect(newStandardGameScreen.scenarioLabel).toBeVisible();
   await expect(newStandardGameScreen.difficultyRatingLabel).toBeVisible();
@@ -102,6 +101,20 @@ test.describe('player color', () => {
     await newStandardGameScreen.getPlayerColor().click();
 
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
+  });
+});
+
+test.describe('king of the hill', () => {
+  test('displays option', async ({ newStandardGameScreen }) => {
+    await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
+
+    await expect(newStandardGameScreen.kingOfTheHillCheckbox).not.toBeChecked();
+  });
+
+  test('allows to change option', async ({ newStandardGameScreen }) => {
+    await newStandardGameScreen.kingOfTheHillCheckbox.click();
+
+    await expect(newStandardGameScreen.kingOfTheHillCheckbox).toBeChecked();
   });
 });
 

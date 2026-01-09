@@ -44,6 +44,12 @@ describe(NewStandardGameScreen, () => {
     ).toBeChecked();
   });
 
+  it('should not select king of the hill by default', () => {
+    renderWithProviders(<NewStandardGameScreen />);
+
+    expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
+  });
+
   it('should call cancel handler when cancel button is clicked', async () => {
     const handler = vitest.fn();
 

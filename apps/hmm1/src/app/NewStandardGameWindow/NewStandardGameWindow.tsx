@@ -1,17 +1,20 @@
 import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
 import { GameDifficulty, OpponentSetting, PlayerColor, playerColorLabel, playerColors } from '../core';
 import { CycleToggle } from '../CycleToggle';
 import type { PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
-import { background, cancel, okay, playerColorAssets } from './assets';
+import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 
 interface NewStandardGameWindowProps extends PositionProps {
   readonly gameDifficulty: GameDifficulty;
+  readonly kingOfTheHill?: boolean;
   readonly onCancelClick?: () => void;
   readonly onGameDifficultyChange?: (value: GameDifficulty) => void;
+  readonly onKingOfTheHillChange?: (value: boolean) => void;
   readonly onOkayClick?: () => void;
   readonly onOpponentSettingsChange?: (value: readonly OpponentSetting[]) => void;
   readonly onPlayerColorChange?: (value: PlayerColor) => void;
@@ -21,8 +24,10 @@ interface NewStandardGameWindowProps extends PositionProps {
 
 export function NewStandardGameWindow({
   gameDifficulty,
+  kingOfTheHill,
   onCancelClick,
   onGameDifficultyChange,
+  onKingOfTheHillChange,
   onOkayClick,
   onOpponentSettingsChange,
   onPlayerColorChange,
@@ -71,6 +76,14 @@ export function NewStandardGameWindow({
       <Text size="large" x={169} y={254}>
         King of the Hill:
       </Text>
+      <Checkbox
+        assets={kingOfTheHillAssets}
+        checked={kingOfTheHill}
+        label="King of the Hill"
+        onChange={onKingOfTheHillChange}
+        x={210}
+        y={272}
+      />
       <Text size="large" x={91} y={338}>
         Choose Scenario:
       </Text>

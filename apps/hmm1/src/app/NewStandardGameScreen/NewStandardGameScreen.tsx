@@ -12,13 +12,16 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
   const [gameDifficulty, setGameDifficulty] = useState(defaultGameDifficulty);
   const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings(0));
   const [playerColor, setPlayerColor] = useState(defaultPlayerColor);
+  const [kingOfTheHill, setKingOfTheHill] = useState(false);
 
   return (
     <MainScreen label="New Standard Game">
       <NewStandardGameWindow
         gameDifficulty={gameDifficulty}
+        kingOfTheHill={kingOfTheHill}
         onCancelClick={onCancelClick}
         onGameDifficultyChange={setGameDifficulty}
+        onKingOfTheHillChange={setKingOfTheHill}
         onOpponentSettingsChange={setOpponentSettings}
         onPlayerColorChange={setPlayerColor}
         opponentSettings={opponentSettings}
