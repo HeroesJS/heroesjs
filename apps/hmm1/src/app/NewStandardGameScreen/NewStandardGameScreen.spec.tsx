@@ -36,6 +36,14 @@ describe(NewStandardGameScreen, () => {
     ).toBeChecked();
   });
 
+  it('should select blue player color by default', () => {
+    renderWithProviders(<NewStandardGameScreen />);
+
+    expect(
+      within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+    ).toBeChecked();
+  });
+
   it('should call cancel handler when cancel button is clicked', async () => {
     const handler = vitest.fn();
 

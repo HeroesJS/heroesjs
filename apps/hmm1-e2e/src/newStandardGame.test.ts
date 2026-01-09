@@ -11,7 +11,6 @@ test('displays screen', async ({ newStandardGameScreen }) => {
 test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.window).toBeVisible();
 
-  await expect(newStandardGameScreen.playerColorLabel).toBeVisible();
   await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
   await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
   await expect(newStandardGameScreen.scenarioLabel).toBeVisible();
@@ -75,6 +74,34 @@ test.describe('opponent settings', () => {
     await newStandardGameScreen.getOpponentSetting(1).click();
 
     await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
+  });
+});
+
+test.describe('player color', () => {
+  test('displays color', async ({ newStandardGameScreen }) => {
+    await expect(newStandardGameScreen.playerColorLabel).toBeVisible();
+
+    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
+  });
+
+  test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
+    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
+
+    await newStandardGameScreen.getPlayerColor().click();
+
+    await expect(newStandardGameScreen.getPlayerColorOption(/green/i)).toBeChecked();
+
+    await newStandardGameScreen.getPlayerColor().click();
+
+    await expect(newStandardGameScreen.getPlayerColorOption(/red/i)).toBeChecked();
+
+    await newStandardGameScreen.getPlayerColor().click();
+
+    await expect(newStandardGameScreen.getPlayerColorOption(/yellow/i)).toBeChecked();
+
+    await newStandardGameScreen.getPlayerColor().click();
+
+    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
   });
 });
 

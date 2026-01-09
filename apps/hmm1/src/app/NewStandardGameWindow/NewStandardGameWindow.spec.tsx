@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 
 import { renderWithProviders } from '../testUtils';
 import { NewStandardGameWindow } from './NewStandardGameWindow';
-import { GameDifficulty, MaxPlayerCount, OpponentSetting } from '../core';
+import { GameDifficulty, MaxPlayerCount, OpponentSetting, PlayerColor } from '../core';
 import { range } from 'lodash';
 
 describe(NewStandardGameWindow, () => {
@@ -10,7 +10,11 @@ describe(NewStandardGameWindow, () => {
 
   it('should render', () => {
     renderWithProviders(
-      <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      <NewStandardGameWindow
+        gameDifficulty={GameDifficulty.Easy}
+        opponentSettings={opponentSettings}
+        playerColor={PlayerColor.Blue}
+      />
     );
 
     expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
@@ -18,10 +22,13 @@ describe(NewStandardGameWindow, () => {
 
   it('should render labels', () => {
     renderWithProviders(
-      <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+      <NewStandardGameWindow
+        gameDifficulty={GameDifficulty.Easy}
+        opponentSettings={opponentSettings}
+        playerColor={PlayerColor.Blue}
+      />
     );
 
-    expect(screen.getByText(/choose color:/i)).toBeInTheDocument();
     expect(screen.getByText(/king of the hill:/i)).toBeInTheDocument();
     expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
     expect(screen.getByText(/claw \( easy \)/i)).toBeInTheDocument();
@@ -31,7 +38,11 @@ describe(NewStandardGameWindow, () => {
   describe('game difficulty', () => {
     it('should render label', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       expect(screen.getByText(/choose game difficulty:/i)).toBeInTheDocument();
@@ -39,7 +50,11 @@ describe(NewStandardGameWindow, () => {
 
     it('should render options', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       expect(screen.getByRole('radiogroup', { name: /game difficulty/i })).toBeInTheDocument();
@@ -60,6 +75,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           onGameDifficultyChange={handler}
           opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
         />
       );
 
@@ -72,7 +88,11 @@ describe(NewStandardGameWindow, () => {
   describe('opponent settings', () => {
     it('should render label', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       expect(screen.getByText(/customize opponents:/i)).toBeInTheDocument();
@@ -80,7 +100,11 @@ describe(NewStandardGameWindow, () => {
 
     it('should render settings', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       range(1, MaxPlayerCount).forEach((i) => {
@@ -98,6 +122,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           onOpponentSettingsChange={handler}
           opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
         />
       );
 
@@ -113,10 +138,61 @@ describe(NewStandardGameWindow, () => {
     });
   });
 
+  describe('player color', () => {
+    it('should render label', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByText(/choose color:/i)).toBeInTheDocument();
+    });
+
+    it('should render color', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+      ).toBeChecked();
+    });
+
+    it('should call handler when option is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onPlayerColorChange={handler}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.click(
+        within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+      );
+
+      expect(handler).toHaveBeenCalledWith<[PlayerColor]>(PlayerColor.Green);
+    });
+  });
+
   describe('okay button', () => {
     it('should render', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
@@ -130,6 +206,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           onOkayClick={handler}
           opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
         />
       );
 
@@ -142,7 +219,11 @@ describe(NewStandardGameWindow, () => {
   describe('cancel button', () => {
     it('should render', () => {
       renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} opponentSettings={opponentSettings} />
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
       );
 
       expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
@@ -156,6 +237,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           onCancelClick={handler}
           opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
         />
       );
 

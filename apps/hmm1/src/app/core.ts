@@ -6,6 +6,29 @@ export enum GameType {
 
 export const MaxPlayerCount = 4;
 
+export enum PlayerColor {
+  Blue = 'blue',
+  Green = 'green',
+  Red = 'red',
+  Yellow = 'yellow',
+}
+
+export const playerColors: readonly PlayerColor[] = [
+  PlayerColor.Blue,
+  PlayerColor.Green,
+  PlayerColor.Red,
+  PlayerColor.Yellow,
+];
+
+export const defaultPlayerColor = PlayerColor.Blue;
+
+export const playerColorLabel: Readonly<Record<PlayerColor, string>> = {
+  [PlayerColor.Blue]: 'Blue',
+  [PlayerColor.Green]: 'Green',
+  [PlayerColor.Red]: 'Red',
+  [PlayerColor.Yellow]: 'Yellow',
+};
+
 export enum GameDifficulty {
   Easy = 'easy',
   Expert = 'expert',

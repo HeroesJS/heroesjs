@@ -1,11 +1,12 @@
 import { Button } from '../Button';
-import { GameDifficulty, OpponentSetting } from '../core';
+import { GameDifficulty, OpponentSetting, PlayerColor } from '../core';
 import type { PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
 import { background, cancel, okay } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
+import { PlayerColorSelector } from './PlayerColorSelector';
 
 interface NewStandardGameWindowProps extends PositionProps {
   readonly gameDifficulty: GameDifficulty;
@@ -13,7 +14,9 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly onGameDifficultyChange?: (value: GameDifficulty) => void;
   readonly onOkayClick?: () => void;
   readonly onOpponentSettingsChange?: (value: readonly OpponentSetting[]) => void;
+  readonly onPlayerColorChange?: (value: PlayerColor) => void;
   readonly opponentSettings: readonly OpponentSetting[];
+  readonly playerColor: PlayerColor;
 }
 
 export function NewStandardGameWindow({
@@ -22,7 +25,9 @@ export function NewStandardGameWindow({
   onGameDifficultyChange,
   onOkayClick,
   onOpponentSettingsChange,
+  onPlayerColorChange,
   opponentSettings,
+  playerColor,
   x,
   y,
 }: NewStandardGameWindowProps) {
@@ -53,6 +58,7 @@ export function NewStandardGameWindow({
       <Text size="large" x={26} y={254}>
         Choose Color:
       </Text>
+      <PlayerColorSelector label="Player Color" onChange={onPlayerColorChange} value={playerColor} x={51} y={270} />
       <Text size="large" x={169} y={254}>
         King of the Hill:
       </Text>

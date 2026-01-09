@@ -9,7 +9,9 @@ export class NewStandardGameScreen {
   public readonly gameDifficultyRadioGroup: Locator;
 
   public readonly opponentSettingsLabel: Locator;
+
   public readonly playerColorLabel: Locator;
+
   public readonly kingOfTheHillLabel: Locator;
   public readonly scenarioSelectionLabel: Locator;
   public readonly scenarioLabel: Locator;
@@ -51,5 +53,13 @@ export class NewStandardGameScreen {
 
   public getOpponentSettingOption(index: number, setting: RegExp) {
     return this.getOpponentSetting(index).getByRole('radio', { name: setting });
+  }
+
+  public getPlayerColor() {
+    return this.page.getByRole('radiogroup', { name: /player color/i });
+  }
+
+  public getPlayerColorOption(option: RegExp) {
+    return this.getPlayerColor().getByRole('radio', { name: option });
   }
 }
