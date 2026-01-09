@@ -1,11 +1,15 @@
+import { Button } from '../Button';
 import type { PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
-import { background } from './assets';
+import { background, cancel, okay } from './assets';
 
-type NewStandardGameWindowProps = PositionProps;
+interface NewStandardGameWindowProps extends PositionProps {
+  readonly onOkayClick?: () => void;
+  readonly onCancelClick?: () => void;
+}
 
-export function NewStandardGameWindow({ x, y }: NewStandardGameWindowProps) {
+export function NewStandardGameWindow({ onCancelClick, onOkayClick, x, y }: NewStandardGameWindowProps) {
   return (
     <Window
       background={background}
@@ -37,6 +41,8 @@ export function NewStandardGameWindow({ x, y }: NewStandardGameWindowProps) {
       <Text size="large" x={78} y={388}>
         Difficulty Rating: 60%
       </Text>
+      <Button assets={okay} label="Okay" onClick={onOkayClick} x={24} y={412} />
+      <Button assets={cancel} label="Cancel" onClick={onCancelClick} x={201} y={412} />
     </Window>
   );
 }

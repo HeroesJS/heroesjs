@@ -21,4 +21,40 @@ describe(NewStandardGameWindow, () => {
     expect(screen.getByText(/claw \( easy \)/i)).toBeInTheDocument();
     expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
   });
+
+  describe('okay button', () => {
+    it('should render', () => {
+      renderWithProviders(<NewStandardGameWindow />);
+
+      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    });
+
+    it('should call okay handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<NewStandardGameWindow onOkayClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /okay/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
+
+  describe('cancel button', () => {
+    it('should render', () => {
+      renderWithProviders(<NewStandardGameWindow />);
+
+      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    });
+
+    it('should call cancel handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<NewStandardGameWindow onCancelClick={handler} />);
+
+      await user.click(screen.getByRole('button', { name: /cancel/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
 });

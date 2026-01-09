@@ -15,4 +15,14 @@ describe(NewStandardGameScreen, () => {
 
     expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
   });
+
+  it('should call cancel handler when cancel button is clicked', async () => {
+    const handler = vitest.fn();
+
+    const { user } = renderWithProviders(<NewStandardGameScreen onCancelClick={handler} />);
+
+    await user.click(screen.getByRole('button', { name: /cancel/i }));
+
+    expect(handler).toHaveBeenCalled();
+  });
 });

@@ -1,10 +1,14 @@
 import { MainScreen } from '../MainScreen';
 import { NewStandardGameWindow } from '../NewStandardGameWindow';
 
-export function NewStandardGameScreen() {
+interface NewStandardGameScreenProps {
+  readonly onCancelClick?: () => void;
+}
+
+export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenProps) {
   return (
     <MainScreen label="New Standard Game">
-      <NewStandardGameWindow x={310} y={14} />
+      <NewStandardGameWindow onCancelClick={onCancelClick} x={310} y={14} />
     </MainScreen>
   );
 }

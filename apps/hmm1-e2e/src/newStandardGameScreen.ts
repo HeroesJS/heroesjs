@@ -13,6 +13,9 @@ export class NewStandardGameScreen {
   public readonly scenarioLabel: Locator;
   public readonly difficultyRatingLabel: Locator;
 
+  public readonly okayButton: Locator;
+  public readonly cancelButton: Locator;
+
   constructor(private page: Page) {
     this.locator = page.getByRole('main', { name: /new standard game/i });
 
@@ -25,6 +28,9 @@ export class NewStandardGameScreen {
     this.scenarioSelectionLabel = page.getByText(/choose scenario:/i);
     this.scenarioLabel = page.getByText(/claw \( easy \)/i);
     this.difficultyRatingLabel = page.getByText(/difficulty rating: 60%/i);
+
+    this.okayButton = page.getByRole('button', { name: /okay/i });
+    this.cancelButton = page.getByRole('button', { name: /cancel/i });
   }
 
   public goto() {
