@@ -13,7 +13,7 @@ interface GameDifficultySelectorProps extends PositionProps {
 
 export function GameDifficultySelector({ label, onChange, value, x, y }: GameDifficultySelectorProps) {
   return (
-    <Root aria-label={label} aria-required role="radiogroup" x={x} y={y}>
+    <Root aria-label={label} role="radiogroup" x={x} y={y}>
       {gameDifficulties.map((difficulty) => (
         <Item
           key={difficulty}
@@ -54,8 +54,7 @@ function Item({ onClick, selected, value }: ItemProps) {
 Item.width = 71;
 Item.height = 81;
 
-const ItemRoot = styled('div')({
+const ItemRoot = styled(PositionedComponent)({
   height: Item.height,
-  position: 'relative',
   width: Item.width,
 });

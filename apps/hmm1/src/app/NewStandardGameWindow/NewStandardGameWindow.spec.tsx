@@ -1,9 +1,9 @@
 import { screen, within } from '@testing-library/react';
+import { range } from 'lodash';
 
+import { GameDifficulty, MaxPlayerCount, OpponentSetting, PlayerColor } from '../core';
 import { renderWithProviders } from '../testUtils';
 import { NewStandardGameWindow } from './NewStandardGameWindow';
-import { GameDifficulty, MaxPlayerCount, OpponentSetting, PlayerColor } from '../core';
-import { range } from 'lodash';
 
 describe(NewStandardGameWindow, () => {
   const opponentSettings: readonly OpponentSetting[] = new Array(MaxPlayerCount - 1).fill(OpponentSetting.Dumb);

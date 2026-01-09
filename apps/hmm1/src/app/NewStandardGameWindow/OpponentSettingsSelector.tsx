@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { computerOpponentSettings, OpponentSetting, opponentSettingLabel } from '../core';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
-import { nextOption } from '../util';
 import { opponentSetting } from './assets';
+import { CycleToggle } from '../CycleToggle';
 
 interface OpponentSettingsSelectorProps extends PositionProps {
   readonly value: readonly OpponentSetting[];
@@ -16,11 +16,9 @@ export function OpponentSettingsSelector({ onChange, value, x, y }: OpponentSett
     <Root x={x} y={y}>
       {value.map((setting, index) => (
         <Item
-          index={index}
           key={index}
-          onClick={() =>
-            onChange?.(value.map((v, i) => (i === index ? nextOption(computerOpponentSettings, setting) : v)))
-          }
+          label={`Opponent ${index + 1} Setting`}
+          onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
           value={setting}
         />
       ))}
@@ -35,20 +33,22 @@ const Root = styled(PositionedComponent)({
 });
 
 interface ItemProps {
-  readonly index: number;
-  readonly onClick?: () => void;
+  readonly label: string;
+  readonly onChange?: (value: OpponentSetting) => void;
   readonly value: OpponentSetting;
 }
 
-function Item({ index, onClick, value }: ItemProps) {
+function Item({ label, onChange, value }: ItemProps) {
   return (
-    <ItemRoot aria-label={`Opponent ${index + 1} Setting`} onClick={onClick} role="radiogroup">
-      <img alt="" src={opponentSetting[value]} />
-      <Text align="center" size="small" width={Item.width + 1} x={0} y={66}>
-        <span aria-checked role="radio">
-          {opponentSettingLabel[value]}
-        </span>
-      </Text>
+    <ItemRoot label={label} onChange={onChange} options={computerOpponentSettings} value={value}>
+      {(value) => (
+        <>
+          <img alt="" src={opponentSetting[value]} />
+          <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
+            {opponentSettingLabel[value]}
+          </Text>
+        </>
+      )}
     </ItemRoot>
   );
 }
@@ -56,8 +56,7 @@ function Item({ index, onClick, value }: ItemProps) {
 Item.width = 65;
 Item.height = 78;
 
-const ItemRoot = styled('div')({
+const ItemRoot = styled(CycleToggle<OpponentSetting>)({
   height: Item.height,
-  position: 'relative',
   width: Item.width,
 });

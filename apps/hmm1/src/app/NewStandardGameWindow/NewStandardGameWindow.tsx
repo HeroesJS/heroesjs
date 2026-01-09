@@ -1,12 +1,12 @@
 import { Button } from '../Button';
-import { GameDifficulty, OpponentSetting, PlayerColor } from '../core';
+import { GameDifficulty, OpponentSetting, PlayerColor, playerColorLabel, playerColors } from '../core';
+import { CycleToggle } from '../CycleToggle';
 import type { PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
-import { background, cancel, okay } from './assets';
+import { background, cancel, okay, playerColorAssets } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
-import { PlayerColorSelector } from './PlayerColorSelector';
 
 interface NewStandardGameWindowProps extends PositionProps {
   readonly gameDifficulty: GameDifficulty;
@@ -58,7 +58,16 @@ export function NewStandardGameWindow({
       <Text size="large" x={26} y={254}>
         Choose Color:
       </Text>
-      <PlayerColorSelector label="Player Color" onChange={onPlayerColorChange} value={playerColor} x={51} y={270} />
+      <CycleToggle
+        label="Player Color"
+        onChange={onPlayerColorChange}
+        options={playerColors}
+        value={playerColor}
+        x={51}
+        y={270}
+      >
+        {(value) => <img alt={playerColorLabel[value]} src={playerColorAssets[value]} />}
+      </CycleToggle>
       <Text size="large" x={169} y={254}>
         King of the Hill:
       </Text>
