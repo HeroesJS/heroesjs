@@ -11,8 +11,6 @@ test('displays screen', async ({ newStandardGameScreen }) => {
 test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.window).toBeVisible();
 
-  await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
-  await expect(newStandardGameScreen.scenarioLabel).toBeVisible();
   await expect(newStandardGameScreen.difficultyRatingLabel).toBeVisible();
 
   await expect(newStandardGameScreen.okayButton).toBeVisible();
@@ -115,6 +113,15 @@ test.describe('king of the hill', () => {
     await newStandardGameScreen.kingOfTheHillCheckbox.click();
 
     await expect(newStandardGameScreen.kingOfTheHillCheckbox).toBeChecked();
+  });
+});
+
+test.describe('scenario', () => {
+  test('displays option', async ({ newStandardGameScreen }) => {
+    await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
+
+    await expect(newStandardGameScreen.scenarioLabel).toHaveText('Claw ( Easy )');
+    await expect(newStandardGameScreen.selectScenarioButton).toBeVisible();
   });
 });
 

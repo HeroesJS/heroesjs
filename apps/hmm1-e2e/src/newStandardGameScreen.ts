@@ -17,6 +17,8 @@ export class NewStandardGameScreen {
 
   public readonly scenarioSelectionLabel: Locator;
   public readonly scenarioLabel: Locator;
+  public readonly selectScenarioButton: Locator;
+
   public readonly difficultyRatingLabel: Locator;
 
   public readonly okayButton: Locator;
@@ -38,7 +40,9 @@ export class NewStandardGameScreen {
     this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill/i });
 
     this.scenarioSelectionLabel = page.getByText(/choose scenario:/i);
-    this.scenarioLabel = page.getByText(/claw \( easy \)/i);
+    this.scenarioLabel = page.getByRole('textbox', { name: /scenario/i });
+    this.selectScenarioButton = page.getByRole('button', { name: /select scenario/i });
+
     this.difficultyRatingLabel = page.getByText(/difficulty rating: 60%/i);
 
     this.okayButton = page.getByRole('button', { name: /okay/i });
