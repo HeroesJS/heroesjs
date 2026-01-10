@@ -14,6 +14,7 @@ describe(NewStandardGameWindow, () => {
         gameDifficulty={GameDifficulty.Easy}
         opponentSettings={opponentSettings}
         playerColor={PlayerColor.Blue}
+        scenarioName="Scenario"
       />
     );
 
@@ -26,11 +27,10 @@ describe(NewStandardGameWindow, () => {
         gameDifficulty={GameDifficulty.Easy}
         opponentSettings={opponentSettings}
         playerColor={PlayerColor.Blue}
+        scenarioName="Scenario"
       />
     );
 
-    expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
-    expect(screen.getByText(/claw \( easy \)/i)).toBeInTheDocument();
     expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
   });
 
@@ -41,6 +41,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -53,6 +54,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -75,6 +77,7 @@ describe(NewStandardGameWindow, () => {
           onGameDifficultyChange={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -91,6 +94,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -103,6 +107,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -122,6 +127,7 @@ describe(NewStandardGameWindow, () => {
           onOpponentSettingsChange={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -144,6 +150,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -156,6 +163,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -173,6 +181,7 @@ describe(NewStandardGameWindow, () => {
           onPlayerColorChange={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -191,6 +200,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -203,6 +213,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -219,6 +230,7 @@ describe(NewStandardGameWindow, () => {
           onKingOfTheHillChange={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -234,10 +246,88 @@ describe(NewStandardGameWindow, () => {
           kingOfTheHill
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
       expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeChecked();
+    });
+  });
+
+  describe('scenario selection', () => {
+    it('should render label', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
+    });
+
+    it('should render scenario name', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      expect(screen.getByRole('textbox', { name: /scenario/i })).toBeInTheDocument();
+    });
+
+    it('should call select scenario handler when scenario name is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onSelectScenarioClick={handler}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      await user.click(screen.getByRole('textbox', { name: /scenario/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+
+    it('should render select scenario button', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      expect(screen.getByRole('button', { name: /select scenario/i })).toBeInTheDocument();
+    });
+
+    it('should call select scenario handler when select scenario is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          onSelectScenarioClick={handler}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      await user.click(screen.getByRole('button', { name: /select scenario/i }));
+
+      expect(handler).toHaveBeenCalled();
     });
   });
 
@@ -248,6 +338,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -263,6 +354,7 @@ describe(NewStandardGameWindow, () => {
           onOkayClick={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -279,6 +371,7 @@ describe(NewStandardGameWindow, () => {
           gameDifficulty={GameDifficulty.Easy}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 
@@ -294,6 +387,7 @@ describe(NewStandardGameWindow, () => {
           onCancelClick={handler}
           opponentSettings={opponentSettings}
           playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
         />
       );
 

@@ -14,6 +14,8 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
   const [playerColor, setPlayerColor] = useState(defaultPlayerColor);
   const [kingOfTheHill, setKingOfTheHill] = useState(false);
 
+  const scenarioName = 'Claw ( Easy )';
+
   return (
     <MainScreen label="New Standard Game">
       <NewStandardGameWindow
@@ -26,6 +28,7 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
         onPlayerColorChange={setPlayerColor}
         opponentSettings={opponentSettings}
         playerColor={playerColor}
+        scenarioName={scenarioName}
         x={310}
         y={14}
       />

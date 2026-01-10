@@ -1,11 +1,13 @@
+import styled from 'styled-components';
+
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { GameDifficulty, OpponentSetting, PlayerColor, playerColorLabel, playerColors } from '../core';
 import { CycleToggle } from '../CycleToggle';
-import type { PositionProps } from '../PositionedComponent';
+import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
-import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets } from './assets';
+import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 
@@ -18,8 +20,10 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly onOkayClick?: () => void;
   readonly onOpponentSettingsChange?: (value: readonly OpponentSetting[]) => void;
   readonly onPlayerColorChange?: (value: PlayerColor) => void;
+  readonly onSelectScenarioClick?: () => void;
   readonly opponentSettings: readonly OpponentSetting[];
   readonly playerColor: PlayerColor;
+  readonly scenarioName: string;
 }
 
 export function NewStandardGameWindow({
@@ -31,8 +35,10 @@ export function NewStandardGameWindow({
   onOkayClick,
   onOpponentSettingsChange,
   onPlayerColorChange,
+  onSelectScenarioClick,
   opponentSettings,
   playerColor,
+  scenarioName,
   x,
   y,
 }: NewStandardGameWindowProps) {
@@ -87,9 +93,20 @@ export function NewStandardGameWindow({
       <Text size="large" x={91} y={338}>
         Choose Scenario:
       </Text>
-      <Text size="large" x={95} y={355}>
-        Claw ( Easy )
-      </Text>
+      <Input
+        aria-label="Scenario"
+        aria-readonly
+        aria-required
+        onClick={onSelectScenarioClick}
+        role="textbox"
+        x={24}
+        y={354}
+      >
+        <Text align="center" size="large" width={248} x={0} y={1}>
+          {scenarioName}
+        </Text>
+      </Input>
+      <Button assets={scenario.select} label="Select Scenario" onClick={onSelectScenarioClick} x={273} y={354} />
       <Text size="large" x={78} y={388}>
         Difficulty Rating: 60%
       </Text>
@@ -101,3 +118,9 @@ export function NewStandardGameWindow({
 
 NewStandardGameWindow.width = 322 - 2;
 NewStandardGameWindow.height = 459;
+
+const Input = styled(PositionedComponent)({
+  backgroundImage: `url(${scenario.inputBackground})`,
+  height: 20,
+  width: 249,
+});
