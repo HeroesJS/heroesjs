@@ -1,5 +1,4 @@
-import { kebabCase } from 'lodash';
-import type { PropsWithChildren } from 'react';
+import { useId, type PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
@@ -86,12 +85,14 @@ interface ListProps extends PositionProps {
 }
 
 function List({ children, height, label, width, x, y }: PropsWithChildren<ListProps>) {
+  const labelId = useId();
+
   return (
     <Root width={width} x={x} y={y}>
-      <ListLabel id={`${kebabCase(label)}-list`}>
+      <ListLabel id={labelId}>
         <Text size="large">{label}</Text>
       </ListLabel>
-      <ListRoot aria-labelledby={`${kebabCase(label)}-list`} height={height}>
+      <ListRoot aria-labelledby={labelId} height={height}>
         {children}
       </ListRoot>
     </Root>
