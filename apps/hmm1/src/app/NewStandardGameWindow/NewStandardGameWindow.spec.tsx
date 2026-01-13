@@ -21,19 +21,6 @@ describe(NewStandardGameWindow, () => {
     expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
   });
 
-  it('should render labels', () => {
-    renderWithProviders(
-      <NewStandardGameWindow
-        gameDifficulty={GameDifficulty.Easy}
-        opponentSettings={opponentSettings}
-        playerColor={PlayerColor.Blue}
-        scenarioName="Scenario"
-      />
-    );
-
-    expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
-  });
-
   describe('game difficulty', () => {
     it('should render label', () => {
       renderWithProviders(
@@ -66,6 +53,24 @@ describe(NewStandardGameWindow, () => {
       expect(screen.getByRole('radio', { name: /expert/i })).toBeInTheDocument();
 
       expect(screen.getByRole('radio', { name: /easy/i })).toBeChecked();
+    });
+
+    it('should render info when option is right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('radio', { name: /easy/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\./i,
+        })
+      ).toBeInTheDocument();
     });
 
     it('should call handler when option clicked', async () => {
@@ -116,6 +121,24 @@ describe(NewStandardGameWindow, () => {
 
         expect(within(group).getByRole('radio', { name: /dumb/i })).toBeChecked();
       });
+    });
+
+    it('should render opponent setting info when option is right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
+        })
+      );
     });
 
     it('should call handler when setting clicked', async () => {
@@ -172,6 +195,20 @@ describe(NewStandardGameWindow, () => {
       ).toBeChecked();
     });
 
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /player color/i }));
+
+      expect(screen.getByRole('dialog', { name: /change your banner color\./i })).toBeInTheDocument();
+    });
+
     it('should call handler when option is clicked', async () => {
       const handler = vitest.fn();
 
@@ -219,6 +256,24 @@ describe(NewStandardGameWindow, () => {
 
       expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeInTheDocument();
       expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('checkbox', { name: /king of the hill/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\./i,
+        })
+      );
     });
 
     it('should call handler when option is clicked', async () => {
@@ -329,6 +384,52 @@ describe(NewStandardGameWindow, () => {
 
       expect(handler).toHaveBeenCalled();
     });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /select scenario/i }));
+
+      expect(screen.getByRole('dialog', { name: /select which scenario to play\./i }));
+    });
+  });
+
+  describe('difficulty rating', () => {
+    it('should render', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
+    });
+
+    it('should render difficulty rating info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByText(/difficulty rating: 60%/i));
+
+      await expect(
+        screen.getByRole('dialog', {
+          name: /the difficulty rating reflects a combination of various settings for your game\. this number will be applied to your final score\./i,
+        })
+      );
+    });
   });
 
   describe('okay button', () => {
@@ -343,6 +444,21 @@ describe(NewStandardGameWindow, () => {
       );
 
       expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+          scenarioName="Scenario"
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /okay/i }));
+
+      expect(screen.getByRole('dialog', { name: /accept these settings and start a new game\./i }));
     });
 
     it('should call okay handler when clicked', async () => {
@@ -376,6 +492,20 @@ describe(NewStandardGameWindow, () => {
       );
 
       expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+
+      expect(screen.getByRole('dialog', { name: /return to the main menu\./i }));
     });
 
     it('should call cancel handler when clicked', async () => {

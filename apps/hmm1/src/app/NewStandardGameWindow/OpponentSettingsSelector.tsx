@@ -1,17 +1,19 @@
+import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import { computerOpponentSettings, OpponentSetting, opponentSettingLabel } from '../core';
+import { CycleToggle } from '../CycleToggle';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { opponentSetting } from './assets';
-import { CycleToggle } from '../CycleToggle';
 
 interface OpponentSettingsSelectorProps extends PositionProps {
   readonly value: readonly OpponentSetting[];
   readonly onChange?: (value: readonly OpponentSetting[]) => void;
+  readonly onOptionMouseDown?: (e: MouseEvent) => void;
 }
 
-export function OpponentSettingsSelector({ onChange, value, x, y }: OpponentSettingsSelectorProps) {
+export function OpponentSettingsSelector({ onChange, onOptionMouseDown, value, x, y }: OpponentSettingsSelectorProps) {
   return (
     <Root x={x} y={y}>
       {value.map((setting, index) => (
@@ -19,6 +21,7 @@ export function OpponentSettingsSelector({ onChange, value, x, y }: OpponentSett
           key={index}
           label={`Opponent ${index + 1} Setting`}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
+          onMouseDown={onOptionMouseDown}
           value={setting}
         />
       ))}
@@ -35,12 +38,19 @@ const Root = styled(PositionedComponent)({
 interface ItemProps {
   readonly label: string;
   readonly onChange?: (value: OpponentSetting) => void;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: OpponentSetting;
 }
 
-function Item({ label, onChange, value }: ItemProps) {
+function Item({ label, onChange, onMouseDown, value }: ItemProps) {
   return (
-    <ItemRoot label={label} onChange={onChange} options={computerOpponentSettings} value={value}>
+    <ItemRoot
+      label={label}
+      onChange={onChange}
+      onMouseDown={onMouseDown}
+      options={computerOpponentSettings}
+      value={value}
+    >
       {(value) => (
         <>
           <img alt="" src={opponentSetting[value]} />

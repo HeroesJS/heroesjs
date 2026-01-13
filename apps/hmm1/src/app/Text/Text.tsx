@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { MouseEvent, PropsWithChildren } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { font, fontSmall } from './assets';
@@ -18,6 +18,7 @@ interface TextProps extends PositionProps {
   readonly invisible?: boolean;
   readonly label?: string;
   readonly labelId?: string;
+  readonly onMouseDown?: (e: MouseEvent) => void;
   readonly size?: TextSize;
   readonly width?: number;
 }
@@ -33,6 +34,7 @@ export function Text({
   invisible,
   label,
   labelId,
+  onMouseDown,
   size,
   width,
   x,
@@ -52,6 +54,7 @@ export function Text({
         highlighted={highlighted}
         id={id}
         invisible={invisible}
+        onMouseDown={onMouseDown}
         size={size}
         width={width}
         x={x}

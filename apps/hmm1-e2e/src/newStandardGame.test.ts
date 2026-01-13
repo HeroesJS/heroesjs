@@ -11,8 +11,6 @@ test('displays screen', async ({ newStandardGameScreen }) => {
 test('displays window', async ({ newStandardGameScreen, page }) => {
   await expect(newStandardGameScreen.window).toBeVisible();
 
-  await expect(newStandardGameScreen.difficultyRatingLabel).toBeVisible();
-
   await expect(newStandardGameScreen.okayButton).toBeVisible();
   await expect(newStandardGameScreen.cancelButton).toBeVisible();
 
@@ -33,6 +31,14 @@ test.describe('game difficulty', () => {
     await expect(newStandardGameScreen.getGameDifficultyRadio(/normal/i)).toBeChecked();
   });
 
+  test('displays game difficulty info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+    await mouseRightDown(newStandardGameScreen.gameDifficultyRadioGroup);
+
+    await expect(newStandardGameScreen.gameDifficultyInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('game-difficulty-info.png', { maxDiffPixelRatio: 0.01 });
+  });
+
   test('allows to change difficulty', async ({ newStandardGameScreen }) => {
     await newStandardGameScreen.getGameDifficultyRadio(/hard/i).click();
 
@@ -47,6 +53,14 @@ test.describe('opponent settings', () => {
     await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
     await expect(newStandardGameScreen.getOpponentSettingOption(2, /average/i)).toBeChecked();
     await expect(newStandardGameScreen.getOpponentSettingOption(3, /average/i)).toBeChecked();
+  });
+
+  test('displays opponent setting info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
+    await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
+
+    await expect(newStandardGameScreen.opponentSettingInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('opponent-setting-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('allows to cycle through options', async ({ newStandardGameScreen }) => {
@@ -81,22 +95,30 @@ test.describe('player color', () => {
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
   });
 
+  test('displays player color info when right-clicked', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+    await mouseRightDown(newStandardGameScreen.playerColor);
+
+    await expect(newStandardGameScreen.playerColorInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('player-color-info.png', { maxDiffPixelRatio: 0.01 });
+  });
+
   test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
 
-    await newStandardGameScreen.getPlayerColor().click();
+    await newStandardGameScreen.playerColor.click();
 
     await expect(newStandardGameScreen.getPlayerColorOption(/green/i)).toBeChecked();
 
-    await newStandardGameScreen.getPlayerColor().click();
+    await newStandardGameScreen.playerColor.click();
 
     await expect(newStandardGameScreen.getPlayerColorOption(/red/i)).toBeChecked();
 
-    await newStandardGameScreen.getPlayerColor().click();
+    await newStandardGameScreen.playerColor.click();
 
     await expect(newStandardGameScreen.getPlayerColorOption(/yellow/i)).toBeChecked();
 
-    await newStandardGameScreen.getPlayerColor().click();
+    await newStandardGameScreen.playerColor.click();
 
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
   });
@@ -107,6 +129,14 @@ test.describe('king of the hill', () => {
     await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
 
     await expect(newStandardGameScreen.kingOfTheHillCheckbox).not.toBeChecked();
+  });
+
+  test('displays king of the hill info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
+    await mouseRightDown(newStandardGameScreen.kingOfTheHillCheckbox);
+
+    await expect(newStandardGameScreen.kingOfTheHillInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('king-of-the-hill-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('allows to change option', async ({ newStandardGameScreen }) => {
@@ -122,6 +152,14 @@ test.describe('scenario', () => {
 
     await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
     await expect(newStandardGameScreen.selectScenarioButton).toBeVisible();
+  });
+
+  test('displays scenario selection info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+    await mouseRightDown(newStandardGameScreen.selectScenarioButton);
+
+    await expect(newStandardGameScreen.selectScenarioInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('select-scenario-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('displays scenario selection window', async ({ newStandardGameScreen, page }) => {
@@ -149,6 +187,36 @@ test.describe('scenario', () => {
 
     await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
   });
+});
+
+test.describe('difficulty rating', () => {
+  test('displays difficulty rating', async ({ newStandardGameScreen }) => {
+    await expect(newStandardGameScreen.difficultyRatingLabel).toBeVisible();
+  });
+
+  test('displays difficulty rating info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+    await mouseRightDown(newStandardGameScreen.difficultyRatingLabel);
+
+    await expect(newStandardGameScreen.difficultyRatingInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('difficulty-rating-info.png', { maxDiffPixelRatio: 0.01 });
+  });
+});
+
+test('displays okay info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+  await mouseRightDown(newStandardGameScreen.okayButton);
+
+  await expect(newStandardGameScreen.okayInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test('displays cancel info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+  await mouseRightDown(newStandardGameScreen.cancelButton);
+
+  await expect(newStandardGameScreen.cancelInfoModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancel is clicked', async ({ mainScreen, newStandardGameScreen }) => {
