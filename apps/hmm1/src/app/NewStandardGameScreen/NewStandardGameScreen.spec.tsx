@@ -50,6 +50,24 @@ describe(NewStandardGameScreen, () => {
     expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
   });
 
+  it('should open file selector when select scenario is clicked', async () => {
+    const { user } = renderWithProviders(<NewStandardGameScreen />);
+
+    await user.click(screen.getByRole('button', { name: /select scenario/i }));
+
+    expect(screen.getByRole('region', { name: /file selector window/i })).toBeInTheDocument();
+  });
+
+  it('should return to settings when cancel is clicked', async () => {
+    const { user } = renderWithProviders(<NewStandardGameScreen />);
+
+    await user.click(screen.getByRole('button', { name: /select scenario/i }));
+
+    await user.click(screen.getByRole('button', { name: /cancel/i }));
+
+    expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
+  });
+
   it('should call cancel handler when cancel button is clicked', async () => {
     const handler = vitest.fn();
 

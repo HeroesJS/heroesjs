@@ -120,8 +120,34 @@ test.describe('scenario', () => {
   test('displays option', async ({ newStandardGameScreen }) => {
     await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
 
-    await expect(newStandardGameScreen.scenarioLabel).toHaveText('Claw ( Easy )');
+    await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
     await expect(newStandardGameScreen.selectScenarioButton).toBeVisible();
+  });
+
+  test('displays scenario selection window', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.selectScenarioButton.click();
+
+    await expect(page).toHaveScreenshot('scenario-selection.png', { maxDiffPixelRatio: 0.01 });
+  });
+
+  test('displays screen when cancel button is clicked', async ({ newStandardGameScreen }) => {
+    await newStandardGameScreen.selectScenarioButton.click();
+
+    await newStandardGameScreen.fileSelector.cancelButton.click();
+
+    await expect(newStandardGameScreen.locator).toBeVisible();
+  });
+
+  test('preserves selection when scenario is changed and cancel button is clicked', async ({
+    newStandardGameScreen,
+  }) => {
+    await newStandardGameScreen.selectScenarioButton.click();
+
+    await newStandardGameScreen.fileSelector.getItem(/around the bay/i).click();
+
+    await newStandardGameScreen.cancelButton.click();
+
+    await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
   });
 });
 

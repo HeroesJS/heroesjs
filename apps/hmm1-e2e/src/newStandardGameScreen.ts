@@ -1,4 +1,6 @@
-import { Locator, Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
+
+import { FileSelectorWindow } from './fileSelectorWindow';
 
 export class NewStandardGameScreen {
   public readonly locator: Locator;
@@ -24,6 +26,8 @@ export class NewStandardGameScreen {
   public readonly okayButton: Locator;
   public readonly cancelButton: Locator;
 
+  public readonly fileSelector: FileSelectorWindow;
+
   constructor(private page: Page) {
     this.locator = page.getByRole('main', { name: /new standard game/i });
 
@@ -47,6 +51,8 @@ export class NewStandardGameScreen {
 
     this.okayButton = page.getByRole('button', { name: /okay/i });
     this.cancelButton = page.getByRole('button', { name: /cancel/i });
+
+    this.fileSelector = new FileSelectorWindow(page);
   }
 
   public goto() {

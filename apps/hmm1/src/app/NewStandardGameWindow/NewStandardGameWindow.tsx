@@ -23,7 +23,7 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly onSelectScenarioClick?: () => void;
   readonly opponentSettings: readonly OpponentSetting[];
   readonly playerColor: PlayerColor;
-  readonly scenarioName: string;
+  readonly scenarioName?: string;
 }
 
 export function NewStandardGameWindow({
