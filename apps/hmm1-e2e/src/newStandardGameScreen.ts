@@ -27,7 +27,7 @@ export class NewStandardGameScreen {
   public readonly selectScenarioButton: Locator;
   public readonly selectScenarioInfoModal: Locator;
 
-  public readonly difficultyRatingLabel: Locator;
+  public readonly difficultyRating: Locator;
   public readonly difficultyRatingInfoModal: Locator;
 
   public readonly okayButton: Locator;
@@ -69,7 +69,7 @@ export class NewStandardGameScreen {
     this.selectScenarioButton = page.getByRole('button', { name: /select scenario/i });
     this.selectScenarioInfoModal = page.getByRole('dialog', { name: /select which scenario to play\./i });
 
-    this.difficultyRatingLabel = page.getByText(/difficulty rating: 60%/i);
+    this.difficultyRating = page.getByLabel(/difficulty rating:/i);
     this.difficultyRatingInfoModal = page.getByRole('dialog', {
       name: /the difficulty rating reflects a combination of various settings for your game. this number will be applied to your final score\./i,
     });

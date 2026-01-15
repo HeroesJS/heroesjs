@@ -5,6 +5,7 @@ import { FileSelectorWindow } from '../FileSelectorWindow';
 import { MainScreen } from '../MainScreen';
 import { mapSupportsHumanPlayers } from '../map';
 import { NewStandardGameWindow } from '../NewStandardGameWindow';
+import { getDifficultyRating } from '../rating';
 import { scenarios } from '../scenario';
 
 interface NewStandardGameScreenProps {
@@ -25,6 +26,14 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
   const [scenarioFileNameBackup, setScenarioFileNameBackup] = useState('');
 
   const selectedScenario = scenarios.find((s) => s.fileName === scenarioFileName);
+
+  const rating = getDifficultyRating({
+    gameDifficulty,
+    kingOfTheHill,
+    mapDifficulty: selectedScenario!.difficulty,
+    mapSize: selectedScenario!.size,
+    opponentSettings,
+  });
 
   return (
     <MainScreen label="New Standard Game">
@@ -49,6 +58,7 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
         />
       ) : (
         <NewStandardGameWindow
+          difficultyRating={rating}
           gameDifficulty={gameDifficulty}
           kingOfTheHill={kingOfTheHill}
           onCancelClick={onCancelClick}

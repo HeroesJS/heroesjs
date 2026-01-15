@@ -191,11 +191,11 @@ test.describe('scenario', () => {
 
 test.describe('difficulty rating', () => {
   test('displays difficulty rating', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.difficultyRatingLabel).toBeVisible();
+    await expect(newStandardGameScreen.difficultyRating).toHaveText(/60%/i);
   });
 
   test('displays difficulty rating info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.difficultyRatingLabel);
+    await mouseRightDown(newStandardGameScreen.difficultyRating);
 
     await expect(newStandardGameScreen.difficultyRatingInfoModal).toBeVisible();
 

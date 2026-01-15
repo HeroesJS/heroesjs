@@ -13,6 +13,7 @@ import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 import { Modal, useInfoModal } from '../Modal';
 
 interface NewStandardGameWindowProps extends PositionProps {
+  readonly difficultyRating?: number;
   readonly gameDifficulty: GameDifficulty;
   readonly kingOfTheHill?: boolean;
   readonly onCancelClick?: () => void;
@@ -28,6 +29,7 @@ interface NewStandardGameWindowProps extends PositionProps {
 }
 
 export function NewStandardGameWindow({
+  difficultyRating = 0,
   gameDifficulty,
   kingOfTheHill,
   onCancelClick,
@@ -154,7 +156,10 @@ export function NewStandardGameWindow({
         Select which scenario to play.
       </Modal>
       <Text size="large" onMouseDown={difficultyRatingInfoModal.onMouseDown} x={78} y={388}>
-        Difficulty Rating: 60%
+        <span aria-hidden id="difficultyRatingLabel">
+          Difficulty Rating:
+        </span>{' '}
+        <span aria-labelledby="difficultyRatingLabel">{difficultyRating}%</span>
       </Text>
       <Modal open={difficultyRatingInfoModal.open} size={1} x={177} y={29}>
         The difficulty rating reflects a combination of various settings for your game.&nbsp;&nbsp;This number will be

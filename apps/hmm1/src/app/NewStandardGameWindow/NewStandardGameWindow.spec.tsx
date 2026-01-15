@@ -410,7 +410,20 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      expect(screen.getByText(/difficulty rating: 60%/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/difficulty rating:/i)).toHaveTextContent(/0%/i);
+    });
+
+    it('should render rating', () => {
+      renderWithProviders(
+        <NewStandardGameWindow
+          difficultyRating={60}
+          gameDifficulty={GameDifficulty.Easy}
+          opponentSettings={opponentSettings}
+          playerColor={PlayerColor.Blue}
+        />
+      );
+
+      expect(screen.getByLabelText(/difficulty rating:/i)).toHaveTextContent(/60%/i);
     });
 
     it('should render difficulty rating info when right-clicked', async () => {
@@ -422,7 +435,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.mouseRightDown(screen.getByText(/difficulty rating: 60%/i));
+      await user.mouseRightDown(screen.getByLabelText(/difficulty rating:/i));
 
       await expect(
         screen.getByRole('dialog', {
