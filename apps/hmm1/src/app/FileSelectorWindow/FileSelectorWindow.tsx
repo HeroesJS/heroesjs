@@ -1,9 +1,10 @@
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from '../Button';
 import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '../map';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { Scrollbar } from '../Scrollbar';
 import { Text } from '../Text';
 import { Window } from '../Window';
 import { background, cancel, inputBackground, okay, scenarioInfoBackground } from './assets';
@@ -45,6 +46,10 @@ export function FileSelectorWindow({
 
   const selectedItem = items.find((item) => item.value === value);
 
+  const [listPosition, setListPosition] = useState(0);
+
+  const listHeight = 10;
+
   return (
     <Window
       background={background}
@@ -59,7 +64,7 @@ export function FileSelectorWindow({
         File to Load:
       </Text>
       <List aria-label="Items" role="listbox" x={55} y={42}>
-        {items.map((item) => (
+        {items.slice(listPosition, listPosition + listHeight).map((item) => (
           <ListItem
             aria-label={item.label}
             aria-selected={item.value === value}
@@ -73,6 +78,13 @@ export function FileSelectorWindow({
           </ListItem>
         ))}
       </List>
+      <Scrollbar
+        height={212}
+        onDownClick={() => setListPosition(Math.min(items.length - listHeight, listPosition + 1))}
+        onUpClick={() => setListPosition(Math.max(listPosition - 1, 0))}
+        x={280}
+        y={36}
+      />
       <Input aria-label="Selected Item" role="textbox" x={48} y={253}>
         <Text align="center" fullWidth size="large" x={0} y={1}>
           {selectedItem?.label}
@@ -94,7 +106,6 @@ const List = styled(PositionedComponent)({
   display: 'flex',
   flexDirection: 'column',
   height: 195,
-  overflowY: 'scroll',
   rowGap: 4,
   textAlign: 'center',
   width: 208,
