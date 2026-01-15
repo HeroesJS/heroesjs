@@ -7,6 +7,6 @@ export interface PositionProps {
 
 export const PositionedComponent = styled('div')<PositionProps>(({ x, y }) => ({
   left: x,
-  position: x !== undefined && y !== undefined ? 'absolute' : 'unset',
+  position: x !== undefined && y !== undefined ? 'absolute' : 'relative',
   top: y,
 }));

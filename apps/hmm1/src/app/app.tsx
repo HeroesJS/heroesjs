@@ -14,6 +14,7 @@ import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
 import { defaultHighScores, defaultHighScoresGameType } from './highScores';
+import { NewStandardGameScreen } from './NewStandardGameScreen';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -63,6 +64,7 @@ export function App() {
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={() => navigate('/')}
                   onMultiPlayerGameClick={() => navigate('new-game/multi-player')}
+                  onStandardGameClick={() => navigate('new-game/standard')}
                   x={400}
                   y={35}
                 />
@@ -70,6 +72,7 @@ export function App() {
             }
             index
           />
+          <Route element={<NewStandardGameScreen onCancelClick={() => navigate('/')} />} path="standard" />
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">

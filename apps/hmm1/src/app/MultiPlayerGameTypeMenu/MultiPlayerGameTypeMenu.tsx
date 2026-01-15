@@ -45,7 +45,8 @@ export function MultiPlayerGameTypeMenu({
       <MenuItem>
         <Button assets={modem} label="Modem" onClick={onModemClick} onMouseDown={modemInfoModal.onMouseDown} />
         <Modal open={modemInfoModal.open} size={1} x={177} y={29}>
-          Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.
+          Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.{' '}
+          {/* TODO: ther? */}
         </Modal>
       </MenuItem>
       <MenuItem>
@@ -57,7 +58,7 @@ export function MultiPlayerGameTypeMenu({
         />
         <Modal open={directConnectInfoModal.open} size={1} x={177} y={29}>
           Play a direct connect game, where 2 players use ther own computers directly connected through their serial
-          port by a null modem.
+          port by a null modem. {/* TODO: ther? */}
         </Modal>
       </MenuItem>
       <MenuItem>

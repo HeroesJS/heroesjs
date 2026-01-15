@@ -27,6 +27,12 @@ test('displays standard game info', async ({ mouseRightDown, newGameScreen, page
   await expect(page).toHaveScreenshot('standard-game-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
+test('displays new standard game screen when standard is clicked', async ({ newGameScreen, newStandardGameScreen }) => {
+  await newGameScreen.standardGameButton.click();
+
+  await expect(newStandardGameScreen.locator).toBeVisible();
+});
+
 test('displays campaign game info', async ({ mouseRightDown, newGameScreen, page }) => {
   await mouseRightDown(newGameScreen.campaignGameButton);
 

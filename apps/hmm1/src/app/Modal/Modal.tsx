@@ -51,7 +51,7 @@ export function Modal({
           <Body key={i} />
         ))}
         <Footer />
-        <Text align="center" id="modalContent" size="large" width={239} x={23} y={53}>
+        <Text align="center" id="modalContent" size="large" width={240} x={23} y={53}>
           {children}
         </Text>
         {showInput && (
