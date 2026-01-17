@@ -72,7 +72,10 @@ export function App() {
             }
             index
           />
-          <Route element={<NewStandardGameScreen onCancelClick={() => navigate('/')} />} path="standard" />
+          <Route
+            element={<NewStandardGameScreen onCancelClick={() => navigate('/')} />}
+            path="standard/:humanPlayerCount?"
+          />
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">
@@ -101,7 +104,12 @@ export function App() {
             <Route
               element={
                 <MainScreen label="New Hot Seat Game Screen">
-                  <PlayerCountMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                  <PlayerCountMenu
+                    onCancelClick={() => navigate('/')}
+                    onValueClick={(count) => navigate(`/new-game/standard/${count}`)}
+                    x={400}
+                    y={35}
+                  />
                 </MainScreen>
               }
               path="hot-seat"

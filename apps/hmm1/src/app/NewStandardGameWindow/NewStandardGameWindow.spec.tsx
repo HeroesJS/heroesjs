@@ -1,12 +1,13 @@
 import { screen, within } from '@testing-library/react';
-import { range } from 'lodash';
 
-import { GameDifficulty, MaxPlayerCount, OpponentSetting, PlayerColor } from '../core';
+import { ComputerOpponentSetting, GameDifficulty, MaxPlayerCount, OpponentSettings, PlayerColor } from '../core';
 import { renderWithProviders } from '../testUtils';
 import { NewStandardGameWindow } from './NewStandardGameWindow';
 
 describe(NewStandardGameWindow, () => {
-  const opponentSettings: readonly OpponentSetting[] = new Array(MaxPlayerCount - 1).fill(OpponentSetting.Dumb);
+  const opponentSettings: readonly ComputerOpponentSetting[] = new Array(MaxPlayerCount - 1).fill(
+    ComputerOpponentSetting.Dumb
+  );
 
   it('should render', () => {
     renderWithProviders(
@@ -106,63 +107,122 @@ describe(NewStandardGameWindow, () => {
       expect(screen.getByText(/customize opponents:/i)).toBeInTheDocument();
     });
 
-    it('should render settings', () => {
-      renderWithProviders(
-        <NewStandardGameWindow
-          gameDifficulty={GameDifficulty.Easy}
-          opponentSettings={opponentSettings}
-          playerColor={PlayerColor.Blue}
-          scenarioName="Scenario"
-        />
-      );
+    describe('computer opponent', () => {
+      it('should render', () => {
+        renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            opponentSettings={opponentSettings}
+            playerColor={PlayerColor.Blue}
+            scenarioName="Scenario"
+          />
+        );
 
-      range(1, MaxPlayerCount).forEach((i) => {
-        const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent ${i} setting`, 'i') });
+        const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent 1 setting`, 'i') });
 
         expect(within(group).getByRole('radio', { name: /dumb/i })).toBeChecked();
       });
+
+      it('should render info', async () => {
+        const { user } = renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            opponentSettings={opponentSettings}
+            playerColor={PlayerColor.Blue}
+          />
+        );
+
+        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
+
+        expect(
+          screen.getByRole('dialog', {
+            name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
+          })
+        );
+      });
+
+      it('should call handler when clicked', async () => {
+        const handler = vitest.fn();
+
+        const { user } = renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            onOpponentSettingsChange={handler}
+            opponentSettings={opponentSettings}
+            playerColor={PlayerColor.Blue}
+            scenarioName="Scenario"
+          />
+        );
+
+        const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+
+        await user.click(group);
+
+        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([
+          ComputerOpponentSetting.Average,
+          ComputerOpponentSetting.Dumb,
+          ComputerOpponentSetting.Dumb,
+        ]);
+      });
     });
 
-    it('should render opponent setting info when option is right-clicked', async () => {
-      const { user } = renderWithProviders(
-        <NewStandardGameWindow
-          gameDifficulty={GameDifficulty.Easy}
-          opponentSettings={opponentSettings}
-          playerColor={PlayerColor.Blue}
-        />
-      );
+    describe('human opponent', () => {
+      it('should render', () => {
+        renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            opponentSettings={[GameDifficulty.Easy, ComputerOpponentSetting.None, ComputerOpponentSetting.None]}
+            playerColor={PlayerColor.Blue}
+            scenarioName="Scenario"
+          />
+        );
 
-      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
+        const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent 1 setting`, 'i') });
 
-      expect(
-        screen.getByRole('dialog', {
-          name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
-        })
-      );
-    });
+        expect(within(group).getByRole('radio', { name: /human easy/i })).toBeChecked();
+      });
 
-    it('should call handler when setting clicked', async () => {
-      const handler = vitest.fn();
+      it('should render info', async () => {
+        const { user } = renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            opponentSettings={[GameDifficulty.Easy, ComputerOpponentSetting.None, ComputerOpponentSetting.None]}
+            playerColor={PlayerColor.Blue}
+          />
+        );
 
-      const { user } = renderWithProviders(
-        <NewStandardGameWindow
-          gameDifficulty={GameDifficulty.Easy}
-          onOpponentSettingsChange={handler}
-          opponentSettings={opponentSettings}
-          playerColor={PlayerColor.Blue}
-          scenarioName="Scenario"
-        />
-      );
+        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
 
-      const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+        expect(
+          screen.getByRole('dialog', {
+            name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
+          })
+        );
+      });
 
-      await user.click(group);
+      it('should call handler when clicked', async () => {
+        const handler = vitest.fn();
 
-      expect(handler).toHaveBeenCalledWith<[readonly OpponentSetting[]]>([
-        OpponentSetting.Average,
-        OpponentSetting.Dumb,
-        OpponentSetting.Dumb,
-      ]);
+        const { user } = renderWithProviders(
+          <NewStandardGameWindow
+            gameDifficulty={GameDifficulty.Easy}
+            onOpponentSettingsChange={handler}
+            opponentSettings={[GameDifficulty.Easy, ComputerOpponentSetting.None, ComputerOpponentSetting.None]}
+            playerColor={PlayerColor.Blue}
+            scenarioName="Scenario"
+          />
+        );
+
+        const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+
+        await user.click(group);
+
+        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([
+          GameDifficulty.Normal,
+          ComputerOpponentSetting.None,
+          ComputerOpponentSetting.None,
+        ]);
+      });
     });
   });
 
