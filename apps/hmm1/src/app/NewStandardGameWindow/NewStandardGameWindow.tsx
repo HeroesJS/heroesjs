@@ -2,15 +2,22 @@ import styled from 'styled-components';
 
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
-import { GameDifficulty, OpponentSetting, PlayerColor, playerColorLabel, playerColors } from '../core';
+import {
+  GameDifficulty,
+  isHumanOpponentSetting,
+  OpponentSettings,
+  PlayerColor,
+  playerColorLabel,
+  playerColors,
+} from '../core';
 import { CycleToggle } from '../CycleToggle';
+import { Modal, useInfoModal } from '../Modal';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { Window } from '../Window';
 import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
-import { Modal, useInfoModal } from '../Modal';
 
 interface NewStandardGameWindowProps extends PositionProps {
   readonly difficultyRating?: number;
@@ -20,10 +27,10 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly onGameDifficultyChange?: (value: GameDifficulty) => void;
   readonly onKingOfTheHillChange?: (value: boolean) => void;
   readonly onOkayClick?: () => void;
-  readonly onOpponentSettingsChange?: (value: readonly OpponentSetting[]) => void;
+  readonly onOpponentSettingsChange?: (value: OpponentSettings) => void;
   readonly onPlayerColorChange?: (value: PlayerColor) => void;
   readonly onSelectScenarioClick?: () => void;
-  readonly opponentSettings: readonly OpponentSetting[];
+  readonly opponentSettings: OpponentSettings;
   readonly playerColor: PlayerColor;
   readonly scenarioName?: string;
 }
@@ -46,7 +53,8 @@ export function NewStandardGameWindow({
   y,
 }: NewStandardGameWindowProps) {
   const gameDifficultyInfoModal = useInfoModal();
-  const opponentSettingInfoModal = useInfoModal();
+  const computerOpponentSettingInfoModal = useInfoModal();
+  const humanOpponentSettingInfoModal = useInfoModal();
   const playerColorInfoModal = useInfoModal();
   const kingOfTheHillInfoModal = useInfoModal();
   const selectScenarioInfoModal = useInfoModal();
@@ -85,14 +93,23 @@ export function NewStandardGameWindow({
       </Text>
       <OpponentSettingsSelector
         onChange={onOpponentSettingsChange}
-        onOptionMouseDown={opponentSettingInfoModal.onMouseDown}
+        onOptionMouseDown={(e, setting) =>
+          (isHumanOpponentSetting(setting)
+            ? humanOpponentSettingInfoModal
+            : computerOpponentSettingInfoModal
+          ).onMouseDown(e)
+        }
         value={opponentSettings}
         x={55}
         y={149}
       />
-      <Modal open={opponentSettingInfoModal.open} size={1} x={177} y={29}>
+      <Modal open={computerOpponentSettingInfoModal.open} size={1} x={177} y={29}>
         Change the difficulty of this opponent.&nbsp;&nbsp;Smarter computer players are more aggressive and think longer
         for each turn.
+      </Modal>
+      <Modal open={humanOpponentSettingInfoModal.open} size={1} x={177} y={29}>
+        Change the starting difficulty of another human player.&nbsp;&nbsp;Higher difficulty levels start you off with
+        fewer resources.
       </Modal>
       <Text size="large" x={26} y={254}>
         Choose Color:

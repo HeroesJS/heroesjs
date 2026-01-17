@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router';
 
 import { defaultGameDifficulty, defaultPlayerColor, getDefaultOpponentSettings } from '../core';
 import { FileSelectorWindow } from '../FileSelectorWindow';
@@ -13,8 +14,12 @@ interface NewStandardGameScreenProps {
 }
 
 export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenProps) {
+  const params = useParams<'humanPlayerCount'>();
+
+  const playerCount = Number(params.humanPlayerCount ?? 1);
+
   const [gameDifficulty, setGameDifficulty] = useState(defaultGameDifficulty);
-  const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings(0));
+  const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings(playerCount - 1));
   const [playerColor, setPlayerColor] = useState(defaultPlayerColor);
   const [kingOfTheHill, setKingOfTheHill] = useState(false);
 
@@ -22,7 +27,7 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
 
   const [isSelectingScenario, setIsSelectingScenario] = useState(false);
 
-  const [scenarioFileName, setScenarioFileName] = useState('AES31000.MAP');
+  const [scenarioFileName, setScenarioFileName] = useState(playerCount !== 1 ? 'CNM51234.MAP' : 'AES31000.MAP');
   const [scenarioFileNameBackup, setScenarioFileNameBackup] = useState('');
 
   const selectedScenario = scenarios.find((s) => s.fileName === scenarioFileName);

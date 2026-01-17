@@ -1,49 +1,54 @@
 import { expect, test } from './utils';
 
+const playerCounts: readonly number[] = [2, 3, 4];
+
 test.beforeEach(async ({ newHotSeatGameScreen }) => {
   await newHotSeatGameScreen.goto();
 });
 
-test('displays screen', async ({ newHotSeatGameScreen }) => {
+test('displays screen', async ({ newHotSeatGameScreen, page }) => {
   await expect(newHotSeatGameScreen.locator).toBeVisible();
-});
 
-test('displays menu', async ({ newHotSeatGameScreen, page }) => {
   await expect(newHotSeatGameScreen.menu).toBeVisible();
 
-  await expect(newHotSeatGameScreen.twoPlayersButton).toBeVisible();
-  await expect(newHotSeatGameScreen.threePlayersButton).toBeVisible();
-  await expect(newHotSeatGameScreen.fourPlayersButton).toBeVisible();
   await expect(newHotSeatGameScreen.cancelButton).toBeVisible();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays 2 players info', async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
-  await mouseRightDown(newHotSeatGameScreen.twoPlayersButton);
+playerCounts.forEach((count) => {
+  test.describe(`${count} players`, () => {
+    test(`displays ${count} players button`, async ({ newHotSeatGameScreen }) => {
+      await expect(newHotSeatGameScreen.playerCountButtons[count]).toBeVisible();
+    });
 
-  await expect(newHotSeatGameScreen.twoPlayersInfoModal).toBeVisible();
+    test(`displays ${count} players button info`, async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
+      await mouseRightDown(newHotSeatGameScreen.playerCountButtons[count]);
 
-  await expect(page).toHaveScreenshot('2-players-info.png', { maxDiffPixelRatio: 0.01 });
+      await expect(newHotSeatGameScreen.playerCountInfoModals[count]).toBeVisible();
+
+      await expect(page).toHaveScreenshot(`${count}-players-info.png`, { maxDiffPixelRatio: 0.01 });
+    });
+
+    test(`displays new game screen with ${
+      count - 1
+    } human opponent(s) when ${count} players button is clicked`, async ({
+      newHotSeatGameScreen,
+      newStandardGameScreen,
+      page,
+    }) => {
+      await newHotSeatGameScreen.playerCountButtons[count].click();
+
+      await expect(newStandardGameScreen.locator).toBeVisible();
+
+      expect(await newStandardGameScreen.getHumanOpponentCount()).toBe(count - 1);
+
+      await expect(page).toHaveScreenshot(`${count}-players-game.png`, { maxDiffPixelRatio: 0.01 });
+    });
+  });
 });
 
-test('displays 3 players info', async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
-  await mouseRightDown(newHotSeatGameScreen.threePlayersButton);
-
-  await expect(newHotSeatGameScreen.threePlayersInfoModal).toBeVisible();
-
-  await expect(page).toHaveScreenshot('3-players-info.png', { maxDiffPixelRatio: 0.01 });
-});
-
-test('displays 4 players info', async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
-  await mouseRightDown(newHotSeatGameScreen.fourPlayersButton);
-
-  await expect(newHotSeatGameScreen.fourPlayersInfoModal).toBeVisible();
-
-  await expect(page).toHaveScreenshot('4-players-info.png', { maxDiffPixelRatio: 0.01 });
-});
-
-test('displays cancel info', async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
+test('displays cancel button info', async ({ mouseRightDown, newHotSeatGameScreen, page }) => {
   await mouseRightDown(newHotSeatGameScreen.cancelButton);
 
   await expect(newHotSeatGameScreen.cancelInfoModal).toBeVisible();
@@ -51,7 +56,7 @@ test('displays cancel info', async ({ mouseRightDown, newHotSeatGameScreen, page
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('returns to main screen when cancel is clicked', async ({ newHotSeatGameScreen, mainScreen }) => {
+test('displays main screen when cancel button is clicked', async ({ newHotSeatGameScreen, mainScreen }) => {
   await newHotSeatGameScreen.cancelButton.click();
 
   await expect(mainScreen.locator).toBeVisible();

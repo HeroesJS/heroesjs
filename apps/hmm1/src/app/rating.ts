@@ -1,6 +1,12 @@
 import { sum } from 'lodash';
 
-import { GameDifficulty, OpponentSetting } from './core';
+import {
+  ComputerOpponentSetting,
+  GameDifficulty,
+  OpponentSettings,
+  isComputerOpponentSetting,
+  isHumanOpponentSetting,
+} from './core';
 import { MapDifficulty, MapSize } from './map';
 
 const gameDifficultyRating: Readonly<Record<GameDifficulty, number>> = {
@@ -23,13 +29,12 @@ const mapDifficultyRating: Readonly<Record<MapDifficulty, number>> = {
   [MapDifficulty.Tough]: 40,
 };
 
-const opponentSettingRating: Readonly<Record<OpponentSetting, number>> = {
-  [OpponentSetting.Average]: 10,
-  [OpponentSetting.Dumb]: 5,
-  [OpponentSetting.Genius]: 20,
-  [OpponentSetting.Human]: 0,
-  [OpponentSetting.None]: -10,
-  [OpponentSetting.Smart]: 15,
+const computerOpponentSettingRating: Readonly<Record<ComputerOpponentSetting, number>> = {
+  [ComputerOpponentSetting.Average]: 10,
+  [ComputerOpponentSetting.Dumb]: 5,
+  [ComputerOpponentSetting.Genius]: 20,
+  [ComputerOpponentSetting.None]: -10,
+  [ComputerOpponentSetting.Smart]: 15,
 };
 
 export interface DifficultyRatingSettings {
@@ -37,7 +42,7 @@ export interface DifficultyRatingSettings {
   readonly kingOfTheHill: boolean;
   readonly mapDifficulty: MapDifficulty;
   readonly mapSize: MapSize;
-  readonly opponentSettings: readonly OpponentSetting[];
+  readonly opponentSettings: OpponentSettings;
 }
 
 export function getDifficultyRating({
@@ -51,9 +56,18 @@ export function getDifficultyRating({
     mapSizeRating[mapSize] +
     mapDifficultyRating[mapDifficulty] +
     gameDifficultyRating[gameDifficulty] +
-    sum(opponentSettings.map((setting) => opponentSettingRating[setting])) +
+    sum(
+      opponentSettings.map((setting) =>
+        isHumanOpponentSetting(setting) ? gameDifficultyRating[setting] : computerOpponentSettingRating[setting]
+      )
+    ) +
     (kingOfTheHill
-      ? Math.max(opponentSettings.filter((setting) => setting !== OpponentSetting.None).length - 1, 0) * 5
+      ? Math.max(
+          opponentSettings.filter(
+            (setting) => isComputerOpponentSetting(setting) && setting !== ComputerOpponentSetting.None
+          ).length - 1,
+          0
+        ) * 5
       : 0)
   );
 }

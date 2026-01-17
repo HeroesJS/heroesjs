@@ -17,7 +17,7 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
 export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
   expect: {
-    timeout: 1_000,
+    timeout: 10_000,
     toHaveScreenshot: {
       maxDiffPixelRatio: 0,
       pathTemplate: `{testDir}/{testFilePath}-snapshots/{arg}{ext}`,

@@ -12,7 +12,8 @@ export class NewStandardGameScreen {
   public readonly gameDifficultyInfoModal: Locator;
 
   public readonly opponentSettingsLabel: Locator;
-  public readonly opponentSettingInfoModal: Locator;
+  public readonly computerOpponentSettingInfoModal: Locator;
+  public readonly humanOpponentSettingInfoModal: Locator;
 
   public readonly playerColorLabel: Locator;
   public readonly playerColor: Locator;
@@ -50,8 +51,11 @@ export class NewStandardGameScreen {
     });
 
     this.opponentSettingsLabel = page.getByText(/customize opponents:/i);
-    this.opponentSettingInfoModal = page.getByRole('dialog', {
+    this.computerOpponentSettingInfoModal = page.getByRole('dialog', {
       name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
+    });
+    this.humanOpponentSettingInfoModal = page.getByRole('dialog', {
+      name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
     });
 
     this.playerColorLabel = page.getByText(/choose color:/i);
@@ -83,8 +87,8 @@ export class NewStandardGameScreen {
     this.fileSelector = new FileSelectorWindow(page);
   }
 
-  public goto() {
-    return this.page.goto('/new-game/standard');
+  public goto(humanPlayerCount = 1) {
+    return this.page.goto(`/new-game/standard/${humanPlayerCount}`);
   }
 
   public getGameDifficultyRadio(option: RegExp) {
@@ -97,6 +101,10 @@ export class NewStandardGameScreen {
 
   public getOpponentSettingOption(index: number, setting: RegExp) {
     return this.getOpponentSetting(index).getByRole('radio', { name: setting });
+  }
+
+  public getHumanOpponentCount() {
+    return this.page.getByRole('radio', { name: /human/i }).count();
   }
 
   public getPlayerColorOption(option: RegExp) {

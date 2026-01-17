@@ -1,16 +1,24 @@
 import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
-import { computerOpponentSettings, OpponentSetting, opponentSettingLabel } from '../core';
+import {
+  computerOpponentSettingLabel,
+  computerOpponentSettings,
+  gameDifficulties,
+  gameDifficultyLabel,
+  isHumanOpponentSetting,
+  OpponentSetting,
+  OpponentSettings,
+} from '../core';
 import { CycleToggle } from '../CycleToggle';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { opponentSetting } from './assets';
 
 interface OpponentSettingsSelectorProps extends PositionProps {
-  readonly value: readonly OpponentSetting[];
-  readonly onChange?: (value: readonly OpponentSetting[]) => void;
-  readonly onOptionMouseDown?: (e: MouseEvent) => void;
+  readonly value: OpponentSettings;
+  readonly onChange?: (value: OpponentSettings) => void;
+  readonly onOptionMouseDown?: (e: MouseEvent, setting: OpponentSetting) => void;
 }
 
 export function OpponentSettingsSelector({ onChange, onOptionMouseDown, value, x, y }: OpponentSettingsSelectorProps) {
@@ -21,7 +29,7 @@ export function OpponentSettingsSelector({ onChange, onOptionMouseDown, value, x
           key={index}
           label={`Opponent ${index + 1} Setting`}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
-          onMouseDown={onOptionMouseDown}
+          onMouseDown={(e) => onOptionMouseDown?.(e, setting)}
           value={setting}
         />
       ))}
@@ -48,14 +56,22 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
       label={label}
       onChange={onChange}
       onMouseDown={onMouseDown}
-      options={computerOpponentSettings}
+      options={isHumanOpponentSetting(value) ? gameDifficulties : computerOpponentSettings}
       value={value}
     >
       {(value) => (
         <>
-          <img alt="" src={opponentSetting[value]} />
+          <img alt="" src={isHumanOpponentSetting(value) ? opponentSetting.human : opponentSetting.computer[value]} />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {opponentSettingLabel[value]}
+            {isHumanOpponentSetting(value) ? (
+              <>
+                Human
+                <br />
+                {gameDifficultyLabel[value]}
+              </>
+            ) : (
+              computerOpponentSettingLabel[value]
+            )}
           </Text>
         </>
       )}
