@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import {
+  ComputerOpponentSetting,
   GameDifficulty,
   isHumanOpponentSetting,
+  MaxPlayerCount,
+  OpponentSetting,
   OpponentSettings,
   PlayerColor,
   playerColorLabel,
@@ -30,7 +33,7 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly onOpponentSettingsChange?: (value: OpponentSettings) => void;
   readonly onPlayerColorChange?: (value: PlayerColor) => void;
   readonly onSelectScenarioClick?: () => void;
-  readonly opponentSettings: OpponentSettings;
+  readonly opponentSettings?: OpponentSettings;
   readonly playerColor: PlayerColor;
   readonly scenarioName?: string;
 }
@@ -46,7 +49,7 @@ export function NewStandardGameWindow({
   onOpponentSettingsChange,
   onPlayerColorChange,
   onSelectScenarioClick,
-  opponentSettings,
+  opponentSettings = new Array<OpponentSetting>(MaxPlayerCount - 1).fill(ComputerOpponentSetting.None),
   playerColor,
   scenarioName,
   x,
