@@ -124,8 +124,6 @@ test.describe('player color', () => {
 
 test.describe('king of the hill', () => {
   test('displays option', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
-
     await expect(newStandardGameScreen.kingOfTheHillCheckbox).not.toBeChecked();
   });
 

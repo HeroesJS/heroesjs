@@ -19,7 +19,6 @@ export class NewStandardGameScreen {
   public readonly playerColor: Locator;
   public readonly playerColorInfoModal: Locator;
 
-  public readonly kingOfTheHillLabel: Locator;
   public readonly kingOfTheHillCheckbox: Locator;
   public readonly kingOfTheHillInfoModal: Locator;
 
@@ -62,8 +61,7 @@ export class NewStandardGameScreen {
     this.playerColor = this.page.getByRole('radiogroup', { name: /player color/i });
     this.playerColorInfoModal = this.page.getByRole('dialog', { name: /change your banner color\./i });
 
-    this.kingOfTheHillLabel = page.getByText(/king of the hill:/i);
-    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill/i });
+    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill:/i });
     this.kingOfTheHillInfoModal = page.getByRole('dialog', {
       name: /challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\./i,
     });

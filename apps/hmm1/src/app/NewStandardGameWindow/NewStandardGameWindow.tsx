@@ -131,13 +131,13 @@ export function NewStandardGameWindow({
       <Modal open={playerColorInfoModal.open} x={177} y={29}>
         Change your banner color.
       </Modal>
-      <Text size="large" x={169} y={254}>
+      <Text hidden id="kingOfTheHillLabel" size="large" x={169} y={254}>
         King of the Hill:
       </Text>
       <Checkbox
         assets={kingOfTheHillAssets}
         checked={kingOfTheHill}
-        label="King of the Hill"
+        labelId="kingOfTheHillLabel"
         onChange={onKingOfTheHillChange}
         onMouseDown={kingOfTheHillInfoModal.onMouseDown}
         x={210}

@@ -47,7 +47,7 @@ describe(NewStandardGameScreen, () => {
   it('should not select king of the hill by default', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
-    expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
+    expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).not.toBeChecked();
   });
 
   it('should open file selector when select scenario is clicked', async () => {

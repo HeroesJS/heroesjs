@@ -264,8 +264,8 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeInTheDocument();
-      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).not.toBeChecked();
+      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).toBeInTheDocument();
+      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).not.toBeChecked();
     });
 
     it('should render info when right-clicked', async () => {
@@ -273,7 +273,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('checkbox', { name: /king of the hill/i }));
+      await user.mouseRightDown(screen.getByRole('checkbox', { name: /king of the hill:/i }));
 
       expect(
         screen.getByRole('dialog', {
@@ -293,7 +293,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('checkbox', { name: /king of the hill/i }));
+      await user.click(screen.getByRole('checkbox', { name: /king of the hill:/i }));
 
       expect(handler).toHaveBeenCalledWith<[boolean]>(true);
     });
@@ -303,7 +303,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} kingOfTheHill playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('checkbox', { name: /king of the hill/i })).toBeChecked();
+      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).toBeChecked();
     });
   });
 
