@@ -100,8 +100,6 @@ test.describe('opponents', () => {
 
 test.describe('player color', () => {
   test('displays color', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.playerColorLabel).toBeVisible();
-
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
   });
 

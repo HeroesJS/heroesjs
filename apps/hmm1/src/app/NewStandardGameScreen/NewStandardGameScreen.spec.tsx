@@ -40,7 +40,7 @@ describe(NewStandardGameScreen, () => {
     renderWithProviders(<NewStandardGameScreen />);
 
     expect(
-      within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+      within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
     ).toBeChecked();
   });
 

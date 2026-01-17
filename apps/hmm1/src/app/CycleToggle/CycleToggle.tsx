@@ -6,7 +6,8 @@ import { nextOption } from '../util';
 interface CycleToggleProps<T> extends PositionProps {
   readonly children: (value: T) => ReactNode;
   readonly className?: string;
-  readonly label: string;
+  readonly label?: string;
+  readonly labelId?: string;
   readonly onChange?: (value: T) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly options: readonly T[];
@@ -17,6 +18,7 @@ export function CycleToggle<T>({
   children,
   className,
   label,
+  labelId,
   onChange,
   onMouseDown,
   options,
@@ -27,6 +29,7 @@ export function CycleToggle<T>({
   return (
     <PositionedComponent
       aria-label={label}
+      aria-labelledby={labelId}
       className={className}
       onClick={() => onChange?.(nextOption(options, value))}
       onMouseDown={onMouseDown}

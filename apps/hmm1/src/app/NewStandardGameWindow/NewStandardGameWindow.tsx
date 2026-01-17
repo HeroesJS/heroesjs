@@ -114,11 +114,11 @@ export function NewStandardGameWindow({
         Change the starting difficulty of another human player.&nbsp;&nbsp;Higher difficulty levels start you off with
         fewer resources.
       </Modal>
-      <Text size="large" x={26} y={254}>
+      <Text hidden id="playerColorLabel" size="large" x={26} y={254}>
         Choose Color:
       </Text>
       <CycleToggle
-        label="Player Color"
+        labelId="playerColorLabel"
         onChange={onPlayerColorChange}
         onMouseDown={playerColorInfoModal.onMouseDown}
         options={playerColors}

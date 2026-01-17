@@ -203,21 +203,13 @@ describe(NewStandardGameWindow, () => {
   });
 
   describe('player color', () => {
-    it('should render label', () => {
-      renderWithProviders(
-        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
-      );
-
-      expect(screen.getByText(/choose color:/i)).toBeInTheDocument();
-    });
-
     it('should render color', () => {
       renderWithProviders(
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
       expect(
-        within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+        within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
       ).toBeChecked();
     });
 
@@ -226,7 +218,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /player color/i }));
+      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /choose color:/i }));
 
       expect(screen.getByRole('dialog', { name: /change your banner color\./i })).toBeInTheDocument();
     });
@@ -243,7 +235,7 @@ describe(NewStandardGameWindow, () => {
       );
 
       await user.click(
-        within(screen.getByRole('radiogroup', { name: /player color/i })).getByRole('radio', { name: /blue/i })
+        within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
       );
 
       expect(handler).toHaveBeenCalledWith<[PlayerColor]>(PlayerColor.Green);

@@ -15,7 +15,6 @@ export class NewStandardGameScreen {
   public readonly computerOpponentSettingInfoModal: Locator;
   public readonly humanOpponentSettingInfoModal: Locator;
 
-  public readonly playerColorLabel: Locator;
   public readonly playerColor: Locator;
   public readonly playerColorInfoModal: Locator;
 
@@ -57,8 +56,7 @@ export class NewStandardGameScreen {
       name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
     });
 
-    this.playerColorLabel = page.getByText(/choose color:/i);
-    this.playerColor = this.page.getByRole('radiogroup', { name: /player color/i });
+    this.playerColor = this.page.getByRole('radiogroup', { name: /choose color:/i });
     this.playerColorInfoModal = this.page.getByRole('dialog', { name: /change your banner color\./i });
 
     this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill:/i });
