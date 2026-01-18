@@ -1,7 +1,7 @@
 import { expect, test } from './utils';
 
-test.beforeEach(async ({ newStandardGameScreen }) => {
-  await newStandardGameScreen.goto();
+test.beforeEach(async ({ newStandardGameScreen, playerCount }) => {
+  await newStandardGameScreen.goto(playerCount);
 });
 
 test('displays screen', async ({ newStandardGameScreen }) => {
@@ -46,53 +46,69 @@ test.describe('game difficulty', () => {
   });
 });
 
-test.describe('opponent settings', () => {
-  test('displays settings', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.opponentSettingsLabel).toBeVisible();
+test.describe('opponents', () => {
+  test.describe('computer opponent', () => {
+    test('displays opponent', async ({ newStandardGameScreen }) => {
+      await expect(newStandardGameScreen.opponentSettingsLabel).toBeVisible();
 
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
-    await expect(newStandardGameScreen.getOpponentSettingOption(2, /average/i)).toBeChecked();
-    await expect(newStandardGameScreen.getOpponentSettingOption(3, /average/i)).toBeChecked();
+      await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
+    });
+
+    test('allows to cycle through settings', async ({ newStandardGameScreen }) => {
+      for (const setting of [/smart/i, /genius/i, /none/i, /dumb/i, /average/i]) {
+        await newStandardGameScreen.getOpponentSetting(1).click();
+
+        await expect(newStandardGameScreen.getOpponentSettingOption(1, setting)).toBeChecked();
+      }
+    });
+
+    test('displays opponent info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
+      await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
+
+      await expect(newStandardGameScreen.computerOpponentSettingInfoModal).toBeVisible();
+
+      await expect(page).toHaveScreenshot('computer-opponent-info.png', { maxDiffPixelRatio: 0.01 });
+    });
   });
 
-  test('displays opponent setting info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
-    await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
+  test.describe('human opponent', () => {
+    test.use({
+      playerCount: 2,
+    });
 
-    await expect(newStandardGameScreen.opponentSettingInfoModal).toBeVisible();
+    test('displays opponent', async ({ newStandardGameScreen }) => {
+      await expect(newStandardGameScreen.getOpponentSettingOption(1, /human normal/i)).toBeVisible();
+    });
 
-    await expect(page).toHaveScreenshot('opponent-setting-info.png', { maxDiffPixelRatio: 0.01 });
-  });
+    test('allows to cycle through settings', async ({ newStandardGameScreen }) => {
+      for (const setting of [/human hard/i, /human expert/i, /human easy/i, /human normal/i]) {
+        await newStandardGameScreen.getOpponentSetting(1).click();
 
-  test('allows to cycle through options', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
+        await expect(newStandardGameScreen.getOpponentSettingOption(1, setting)).toBeVisible();
+      }
+    });
 
-    await newStandardGameScreen.getOpponentSetting(1).click();
+    test('displays opponent info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+      await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
 
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /smart/i)).toBeChecked();
+      await expect(newStandardGameScreen.humanOpponentSettingInfoModal).toBeVisible();
 
-    await newStandardGameScreen.getOpponentSetting(1).click();
-
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /genius/i)).toBeChecked();
-
-    await newStandardGameScreen.getOpponentSetting(1).click();
-
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /none/i)).toBeChecked();
-
-    await newStandardGameScreen.getOpponentSetting(1).click();
-
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /dumb/i)).toBeChecked();
-
-    await newStandardGameScreen.getOpponentSetting(1).click();
-
-    await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
+      await expect(page).toHaveScreenshot('human-opponent-info.png', { maxDiffPixelRatio: 0.01 });
+    });
   });
 });
 
 test.describe('player color', () => {
   test('displays color', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.playerColorLabel).toBeVisible();
-
     await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
+  });
+
+  test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
+    for (const color of [/green/i, /red/i, /yellow/i, /blue/i]) {
+      await newStandardGameScreen.playerColor.click();
+
+      await expect(newStandardGameScreen.getPlayerColorOption(color)).toBeChecked();
+    }
   });
 
   test('displays player color info when right-clicked', async ({ mouseRightDown, newStandardGameScreen, page }) => {
@@ -102,32 +118,10 @@ test.describe('player color', () => {
 
     await expect(page).toHaveScreenshot('player-color-info.png', { maxDiffPixelRatio: 0.01 });
   });
-
-  test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
-
-    await newStandardGameScreen.playerColor.click();
-
-    await expect(newStandardGameScreen.getPlayerColorOption(/green/i)).toBeChecked();
-
-    await newStandardGameScreen.playerColor.click();
-
-    await expect(newStandardGameScreen.getPlayerColorOption(/red/i)).toBeChecked();
-
-    await newStandardGameScreen.playerColor.click();
-
-    await expect(newStandardGameScreen.getPlayerColorOption(/yellow/i)).toBeChecked();
-
-    await newStandardGameScreen.playerColor.click();
-
-    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
-  });
 });
 
 test.describe('king of the hill', () => {
   test('displays option', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.kingOfTheHillLabel).toBeVisible();
-
     await expect(newStandardGameScreen.kingOfTheHillCheckbox).not.toBeChecked();
   });
 
@@ -203,7 +197,7 @@ test.describe('difficulty rating', () => {
   });
 });
 
-test('displays okay info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+test('displays okay button info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
   await mouseRightDown(newStandardGameScreen.okayButton);
 
   await expect(newStandardGameScreen.okayInfoModal).toBeVisible();
@@ -211,7 +205,7 @@ test('displays okay info', async ({ mouseRightDown, newStandardGameScreen, page 
   await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays cancel info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
+test('displays cancel button info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
   await mouseRightDown(newStandardGameScreen.cancelButton);
 
   await expect(newStandardGameScreen.cancelInfoModal).toBeVisible();
@@ -219,7 +213,7 @@ test('displays cancel info', async ({ mouseRightDown, newStandardGameScreen, pag
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays main screen when cancel is clicked', async ({ mainScreen, newStandardGameScreen }) => {
+test('displays main screen when cancel button is clicked', async ({ mainScreen, newStandardGameScreen }) => {
   await newStandardGameScreen.cancelButton.click();
 
   await expect(mainScreen.locator).toBeVisible();

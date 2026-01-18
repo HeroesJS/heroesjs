@@ -5,13 +5,19 @@ import { CycleToggle } from './CycleToggle';
 
 describe(CycleToggle, () => {
   it('should render', async () => {
+    renderWithProviders(<CycleToggle children={(v) => v} options={['A', 'B']} value="A" />);
+
+    expect(screen.getByRole('radiogroup')).toBeInTheDocument();
+  });
+
+  it('should render label', () => {
     renderWithProviders(<CycleToggle children={(v) => v} label="Label" options={['A', 'B']} value="A" />);
 
     expect(screen.getByRole('radiogroup', { name: /label/i })).toBeInTheDocument();
   });
 
   it('should render value', () => {
-    renderWithProviders(<CycleToggle children={(v) => v} label="Label" options={['A', 'B']} value="A" />);
+    renderWithProviders(<CycleToggle children={(v) => v} options={['A', 'B']} value="A" />);
 
     expect(screen.getByRole('radio', { name: /a/i })).toBeChecked();
   });
@@ -20,10 +26,10 @@ describe(CycleToggle, () => {
     const handler = vitest.fn();
 
     const { user } = renderWithProviders(
-      <CycleToggle children={(v) => v} label="Label" onChange={handler} options={['A', 'B']} value="A" />
+      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B']} value="A" />
     );
 
-    await user.click(screen.getByRole('radiogroup', { name: /label/i }));
+    await user.click(screen.getByRole('radiogroup'));
 
     expect(handler).toHaveBeenCalledWith<[string]>('B');
   });
@@ -32,10 +38,10 @@ describe(CycleToggle, () => {
     const handler = vitest.fn();
 
     const { user } = renderWithProviders(
-      <CycleToggle children={(v) => v} label="Label" onChange={handler} options={['A', 'B']} value="B" />
+      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B']} value="B" />
     );
 
-    await user.click(screen.getByRole('radiogroup', { name: /label/i }));
+    await user.click(screen.getByRole('radiogroup'));
 
     expect(handler).toHaveBeenCalledWith<[string]>('A');
   });

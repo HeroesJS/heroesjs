@@ -37,11 +37,18 @@ interface Fixtures {
   readonly newStandardGameScreen: NewStandardGameScreen;
 }
 
-export const test = testBase.extend<Fixtures>({
+interface NewStandardGameScreenOptions {
+  readonly playerCount?: number;
+}
+
+type FixturesOptions = NewStandardGameScreenOptions;
+
+export const test = testBase.extend<Fixtures, FixturesOptions>({
   creditsScreen: async ({ page }, use) => await use(new CreditsScreen(page)),
   highScoresScreen: async ({ page }, use) => await use(new HighScoresScreen(page)),
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   hostModemGameScreen: async ({ page }, use) => await use(new HostModemGameScreen(page)),
+  playerCount: undefined,
   joinDirectConnectGameScreen: async ({ page }, use) => await use(new JoinDirectConnectGameScreen(page)),
   joinModemGameScreen: async ({ page }, use) => await use(new JoinModemGameScreen(page)),
   mainScreen: async ({ page }, use) => await use(new MainScreen(page)),

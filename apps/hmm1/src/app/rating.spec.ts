@@ -1,4 +1,4 @@
-import { GameDifficulty, OpponentSetting } from './core';
+import { GameDifficulty, ComputerOpponentSetting } from './core';
 import { MapDifficulty, MapSize } from './map';
 import { type DifficultyRatingSettings, getDifficultyRating } from './rating';
 
@@ -8,7 +8,7 @@ describe(getDifficultyRating, () => {
     kingOfTheHill: false,
     mapDifficulty: MapDifficulty.Easy,
     mapSize: MapSize.Small,
-    opponentSettings: [OpponentSetting.None, OpponentSetting.None, OpponentSetting.None],
+    opponentSettings: [ComputerOpponentSetting.None, ComputerOpponentSetting.None, ComputerOpponentSetting.None],
   };
 
   const baseRating = -10;
@@ -33,20 +33,60 @@ describe(getDifficultyRating, () => {
     [{ gameDifficulty: GameDifficulty.Hard }, 10],
     [{ gameDifficulty: GameDifficulty.Expert }, 20],
     // opponent settings
-    [{ opponentSettings: [OpponentSetting.None, OpponentSetting.None, OpponentSetting.None] }, -10],
-    [{ opponentSettings: [OpponentSetting.Dumb, OpponentSetting.None, OpponentSetting.None] }, 5],
-    [{ opponentSettings: [OpponentSetting.Average, OpponentSetting.None, OpponentSetting.None] }, 10],
-    [{ opponentSettings: [OpponentSetting.Smart, OpponentSetting.None, OpponentSetting.None] }, 15],
-    [{ opponentSettings: [OpponentSetting.Genius, OpponentSetting.None, OpponentSetting.None] }, 20],
-    [{ opponentSettings: [OpponentSetting.Human, OpponentSetting.None, OpponentSetting.None] }, 0],
-    // king of the hill
     [
-      { kingOfTheHill: true, opponentSettings: [OpponentSetting.None, OpponentSetting.None, OpponentSetting.None] },
+      { opponentSettings: [ComputerOpponentSetting.None, ComputerOpponentSetting.None, ComputerOpponentSetting.None] },
       -10,
     ],
-    [{ kingOfTheHill: true, opponentSettings: [OpponentSetting.Dumb, OpponentSetting.None, OpponentSetting.None] }, 5],
-    [{ kingOfTheHill: true, opponentSettings: [OpponentSetting.Dumb, OpponentSetting.Dumb, OpponentSetting.None] }, 25],
-    [{ kingOfTheHill: true, opponentSettings: [OpponentSetting.Dumb, OpponentSetting.Dumb, OpponentSetting.Dumb] }, 45],
+    [
+      { opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.None, ComputerOpponentSetting.None] },
+      5,
+    ],
+    [
+      {
+        opponentSettings: [ComputerOpponentSetting.Average, ComputerOpponentSetting.None, ComputerOpponentSetting.None],
+      },
+      10,
+    ],
+    [
+      { opponentSettings: [ComputerOpponentSetting.Smart, ComputerOpponentSetting.None, ComputerOpponentSetting.None] },
+      15,
+    ],
+    [
+      {
+        opponentSettings: [ComputerOpponentSetting.Genius, ComputerOpponentSetting.None, ComputerOpponentSetting.None],
+      },
+      20,
+    ],
+    [{ opponentSettings: [GameDifficulty.Easy, ComputerOpponentSetting.None, ComputerOpponentSetting.None] }, 0],
+    // king of the hill
+    [
+      {
+        kingOfTheHill: true,
+        opponentSettings: [ComputerOpponentSetting.None, ComputerOpponentSetting.None, ComputerOpponentSetting.None],
+      },
+      -10,
+    ],
+    [
+      {
+        kingOfTheHill: true,
+        opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.None, ComputerOpponentSetting.None],
+      },
+      5,
+    ],
+    [
+      {
+        kingOfTheHill: true,
+        opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb, ComputerOpponentSetting.None],
+      },
+      25,
+    ],
+    [
+      {
+        kingOfTheHill: true,
+        opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb],
+      },
+      45,
+    ],
   ])('should return rating for %o', (settings, rating) => {
     expect(getDifficultyRating({ ...baseSettings, ...settings })).toBe(rating);
   });

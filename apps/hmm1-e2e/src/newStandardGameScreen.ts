@@ -12,13 +12,12 @@ export class NewStandardGameScreen {
   public readonly gameDifficultyInfoModal: Locator;
 
   public readonly opponentSettingsLabel: Locator;
-  public readonly opponentSettingInfoModal: Locator;
+  public readonly computerOpponentSettingInfoModal: Locator;
+  public readonly humanOpponentSettingInfoModal: Locator;
 
-  public readonly playerColorLabel: Locator;
   public readonly playerColor: Locator;
   public readonly playerColorInfoModal: Locator;
 
-  public readonly kingOfTheHillLabel: Locator;
   public readonly kingOfTheHillCheckbox: Locator;
   public readonly kingOfTheHillInfoModal: Locator;
 
@@ -50,16 +49,17 @@ export class NewStandardGameScreen {
     });
 
     this.opponentSettingsLabel = page.getByText(/customize opponents:/i);
-    this.opponentSettingInfoModal = page.getByRole('dialog', {
+    this.computerOpponentSettingInfoModal = page.getByRole('dialog', {
       name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
     });
+    this.humanOpponentSettingInfoModal = page.getByRole('dialog', {
+      name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
+    });
 
-    this.playerColorLabel = page.getByText(/choose color:/i);
-    this.playerColor = this.page.getByRole('radiogroup', { name: /player color/i });
+    this.playerColor = this.page.getByRole('radiogroup', { name: /choose color:/i });
     this.playerColorInfoModal = this.page.getByRole('dialog', { name: /change your banner color\./i });
 
-    this.kingOfTheHillLabel = page.getByText(/king of the hill:/i);
-    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill/i });
+    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill:/i });
     this.kingOfTheHillInfoModal = page.getByRole('dialog', {
       name: /challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\./i,
     });
@@ -83,8 +83,8 @@ export class NewStandardGameScreen {
     this.fileSelector = new FileSelectorWindow(page);
   }
 
-  public goto() {
-    return this.page.goto('/new-game/standard');
+  public goto(playerCount = 1) {
+    return this.page.goto(`/new-game/standard/${playerCount}`);
   }
 
   public getGameDifficultyRadio(option: RegExp) {
@@ -97,6 +97,10 @@ export class NewStandardGameScreen {
 
   public getOpponentSettingOption(index: number, setting: RegExp) {
     return this.getOpponentSetting(index).getByRole('radio', { name: setting });
+  }
+
+  public getHumanOpponentCount() {
+    return this.page.getByRole('radio', { name: /human/i }).count();
   }
 
   public getPlayerColorOption(option: RegExp) {

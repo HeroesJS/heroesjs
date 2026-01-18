@@ -17,6 +17,9 @@ export class NewHotSeatGameScreen {
   public readonly cancelButton: Locator;
   public readonly cancelInfoModal: Locator;
 
+  public readonly playerCountButtons: Readonly<Record<number, Locator>>;
+  public readonly playerCountInfoModals: Readonly<Record<number, Locator>>;
+
   constructor(private readonly page: Page) {
     this.locator = page.getByRole('main', { name: /new hot seat game screen/i });
 
@@ -34,6 +37,18 @@ export class NewHotSeatGameScreen {
 
     this.fourPlayersButton = page.getByRole('button', { name: /4 players/i });
     this.fourPlayersInfoModal = page.getByRole('dialog', { name: /play with 4 human players\./i });
+
+    this.playerCountButtons = {
+      2: this.twoPlayersButton,
+      3: this.threePlayersButton,
+      4: this.fourPlayersButton,
+    };
+
+    this.playerCountInfoModals = {
+      2: this.twoPlayersInfoModal,
+      3: this.threePlayersInfoModal,
+      4: this.fourPlayersInfoModal,
+    };
 
     this.cancelButton = page.getByRole('button', { name: /cancel/i });
     this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });

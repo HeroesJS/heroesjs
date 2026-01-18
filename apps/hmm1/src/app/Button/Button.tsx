@@ -11,7 +11,7 @@ export interface ButtonAssets {
 interface ButtonProps extends PositionProps {
   readonly assets: ButtonAssets;
   readonly disabled?: boolean;
-  readonly label: string;
+  readonly label?: string;
   readonly onClick?: () => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
 }

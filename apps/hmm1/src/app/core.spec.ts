@@ -1,39 +1,39 @@
-import { getDefaultOpponentSettings, OpponentSetting } from './core';
+import { ComputerOpponentSetting, GameDifficulty, getDefaultOpponentSettings, MaxPlayerCount } from './core';
 
 describe(getDefaultOpponentSettings, () => {
-  it('should return average computer players when no human players', () => {
+  it('should return average computer opponents when no human opponents', () => {
     expect(getDefaultOpponentSettings(0)).toEqual([
-      OpponentSetting.Average,
-      OpponentSetting.Average,
-      OpponentSetting.Average,
+      ComputerOpponentSetting.Average,
+      ComputerOpponentSetting.Average,
+      ComputerOpponentSetting.Average,
     ]);
   });
 
-  it('should return human players and average computer players when human players set', () => {
+  it('should return human opponents and average computer opponents when human opponents is set', () => {
     expect(getDefaultOpponentSettings(1)).toEqual([
-      OpponentSetting.Human,
-      OpponentSetting.Average,
-      OpponentSetting.Average,
+      GameDifficulty.Normal,
+      ComputerOpponentSetting.Average,
+      ComputerOpponentSetting.Average,
     ]);
 
     expect(getDefaultOpponentSettings(2)).toEqual([
-      OpponentSetting.Human,
-      OpponentSetting.Human,
-      OpponentSetting.Average,
+      GameDifficulty.Normal,
+      GameDifficulty.Normal,
+      ComputerOpponentSetting.Average,
     ]);
 
     expect(getDefaultOpponentSettings(3)).toEqual([
-      OpponentSetting.Human,
-      OpponentSetting.Human,
-      OpponentSetting.Human,
+      GameDifficulty.Normal,
+      GameDifficulty.Normal,
+      GameDifficulty.Normal,
     ]);
   });
 
-  it('should throw when human player count is negative', () => {
+  it('should throw when human opponent count is negative', () => {
     expect(() => getDefaultOpponentSettings(-1)).toThrow();
   });
 
-  it('should throw when human player count is greater or equal 4', () => {
-    expect(() => getDefaultOpponentSettings(4)).toThrow();
+  it('should throw when human opponent count is greater or equal max player count', () => {
+    expect(() => getDefaultOpponentSettings(MaxPlayerCount)).toThrow();
   });
 });
