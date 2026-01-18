@@ -1,7 +1,7 @@
 import { expect, test } from './utils';
 
-test.beforeEach(async ({ humanPlayerCount, newStandardGameScreen }) => {
-  await newStandardGameScreen.goto(humanPlayerCount);
+test.beforeEach(async ({ newStandardGameScreen, playerCount }) => {
+  await newStandardGameScreen.goto(playerCount);
 });
 
 test('displays screen', async ({ newStandardGameScreen }) => {
@@ -73,7 +73,7 @@ test.describe('opponents', () => {
 
   test.describe('human opponent', () => {
     test.use({
-      humanPlayerCount: 2,
+      playerCount: 2,
     });
 
     test('displays opponent', async ({ newStandardGameScreen }) => {

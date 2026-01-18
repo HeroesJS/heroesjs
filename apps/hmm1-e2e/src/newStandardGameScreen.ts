@@ -83,8 +83,8 @@ export class NewStandardGameScreen {
     this.fileSelector = new FileSelectorWindow(page);
   }
 
-  public goto(humanPlayerCount = 1) {
-    return this.page.goto(`/new-game/standard/${humanPlayerCount}`);
+  public goto(playerCount = 1) {
+    return this.page.goto(`/new-game/standard/${playerCount}`);
   }
 
   public getGameDifficultyRadio(option: RegExp) {
