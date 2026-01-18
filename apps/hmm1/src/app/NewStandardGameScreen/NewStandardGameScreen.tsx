@@ -14,9 +14,9 @@ interface NewStandardGameScreenProps {
 }
 
 export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenProps) {
-  const params = useParams<'humanPlayerCount'>();
+  const params = useParams<'playerCount'>();
 
-  const playerCount = Number(params.humanPlayerCount ?? 1);
+  const playerCount = Number(params.playerCount ?? 1);
 
   const [gameDifficulty, setGameDifficulty] = useState(defaultGameDifficulty);
   const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings(playerCount - 1));

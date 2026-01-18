@@ -1,5 +1,5 @@
-import { type ComponentProps, useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router';
+import { type ComponentProps, PropsWithChildren, useEffect, useState } from 'react';
+import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { CampaignMenu } from './CampaignMenu';
@@ -15,6 +15,7 @@ import { NetworkGameMenu } from './NetworkGameMenu';
 import { PlayerCountMenu } from './PlayerCountMenu';
 import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
+import { MaxPlayerCount } from './core';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -73,8 +74,12 @@ export function App() {
             index
           />
           <Route
-            element={<NewStandardGameScreen onCancelClick={() => navigate('/')} />}
-            path="standard/:humanPlayerCount?"
+            element={
+              <PlayerCountProtectedRoute navigateTo="/">
+                <NewStandardGameScreen onCancelClick={() => navigate('/')} />
+              </PlayerCountProtectedRoute>
+            }
+            path="standard/:playerCount?"
           />
           <Route
             element={
@@ -258,4 +263,20 @@ function HighScoresScreen() {
       onGameTypeChange={setGameType}
     />
   );
+}
+
+interface PlayerCountProtectedRouteProps {
+  readonly navigateTo: string;
+}
+
+function PlayerCountProtectedRoute({ children, navigateTo }: PropsWithChildren<PlayerCountProtectedRouteProps>) {
+  const params = useParams<'playerCount'>();
+
+  const playerCount = Number(params.playerCount ?? 1);
+
+  if (isNaN(playerCount) || playerCount < 1 || playerCount > MaxPlayerCount) {
+    return <Navigate to={navigateTo} />;
+  }
+
+  return children ? children : <Outlet />;
 }
