@@ -21,5 +21,7 @@
   "nx": {
     "name": "hmm1-core"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "4.17.21"
+  }
 }

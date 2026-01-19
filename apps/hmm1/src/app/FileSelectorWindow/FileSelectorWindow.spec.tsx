@@ -1,8 +1,9 @@
 import { screen, within } from '@testing-library/react';
 
+import { MapDifficulty, MapSize } from '@heroesjs/hmm1-core';
+
 import { renderWithProviders } from '../testUtils';
 import { FileSelectorItem, FileSelectorWindow } from './FileSelectorWindow';
-import { MapDifficulty, MapSize } from '../map';
 
 describe(FileSelectorWindow, () => {
   const items: readonly FileSelectorItem[] = [

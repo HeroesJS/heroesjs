@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { range } from 'lodash';
 
-import { GameType } from '../core';
-import type { CampaignGameScore, StandardGameScore } from '../highScores';
+import { GameType } from '@heroesjs/hmm1-core';
+import type { CampaignGameScore, StandardGameScore } from '@heroesjs/hmm1-core';
+
 import { HighScoresScreen } from './HighScoresScreen';
 
 const meta = {

@@ -1,4 +1,4 @@
-import { GameType } from './core';
+import { GameType } from './core.js';
 
 export interface StandardGameScore {
   readonly player: string;

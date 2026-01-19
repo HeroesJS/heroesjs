@@ -1,4 +1,4 @@
-import { ComputerOpponentSetting, GameDifficulty, getDefaultOpponentSettings, MaxPlayerCount } from './core';
+import { ComputerOpponentSetting, GameDifficulty, getDefaultOpponentSettings, MaxPlayerCount } from './core.js';
 
 describe(getDefaultOpponentSettings, () => {
   it('should return average computer opponents when no human opponents', () => {

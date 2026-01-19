@@ -1,4 +1,4 @@
-import { nextOption } from './util';
+import { nextOption } from './util.js';
 
 describe(nextOption, () => {
   it('should return next option', () => {

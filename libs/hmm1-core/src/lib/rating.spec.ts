@@ -1,6 +1,6 @@
-import { GameDifficulty, ComputerOpponentSetting } from './core';
-import { MapDifficulty, MapSize } from './map';
-import { type DifficultyRatingSettings, getDifficultyRating } from './rating';
+import { GameDifficulty, ComputerOpponentSetting } from './core.js';
+import { MapDifficulty, MapSize } from './map.js';
+import { type DifficultyRatingSettings, getDifficultyRating } from './rating.js';
 
 describe(getDifficultyRating, () => {
   const baseSettings: DifficultyRatingSettings = {

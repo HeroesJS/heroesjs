@@ -1,4 +1,5 @@
-import { ComputerOpponentSetting } from '../../../core';
+import { ComputerOpponentSetting } from '@heroesjs/hmm1-core';
+
 import average from './average.jpg';
 import dumb from './dumb.jpg';
 import genius from './genius.jpg';

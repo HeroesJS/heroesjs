@@ -6,8 +6,8 @@ import {
   OpponentSettings,
   isComputerOpponentSetting,
   isHumanOpponentSetting,
-} from './core';
-import { MapDifficulty, MapSize } from './map';
+} from './core.js';
+import { MapDifficulty, MapSize } from './map.js';
 
 const gameDifficultyRating: Readonly<Record<GameDifficulty, number>> = {
   [GameDifficulty.Easy]: 0,

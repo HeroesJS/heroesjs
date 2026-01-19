@@ -1,4 +1,4 @@
-import { mapSupportsHumanPlayers } from './map';
+import { mapSupportsHumanPlayers } from './map.js';
 
 describe(mapSupportsHumanPlayers, () => {
   test.each([
