@@ -10,6 +10,6 @@ export { PositionedComponent } from './PositionedComponent';
 export type { PositionProps } from './PositionedComponent';
 export { Screen, ScreenHeight, ScreenWidth } from './Screen';
 export { Scrollbar } from './Scrollbar';
-export { Text } from './Text';
+export { GlobalFontStyles, Text } from './Text';
 export { TextInput } from './TextInput';
 export { Window } from './Window';

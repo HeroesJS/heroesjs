@@ -1,1 +1,1 @@
-export { Text } from './Text';
+export { GlobalFontStyles, Text } from './Text';

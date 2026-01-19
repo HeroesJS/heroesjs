@@ -41,32 +41,29 @@ export function Text({
   y,
 }: PropsWithChildren<TextProps>) {
   return (
-    <>
-      <FontStyles />
-      <Root
-        align={align}
-        aria-hidden={hidden}
-        aria-label={label}
-        aria-labelledby={labelId}
-        as="span"
-        className={className}
-        fullWidth={fullWidth}
-        highlighted={highlighted}
-        id={id}
-        invisible={invisible}
-        onMouseDown={onMouseDown}
-        size={size}
-        width={width}
-        x={x}
-        y={y}
-      >
-        {children}
-      </Root>
-    </>
+    <Root
+      align={align}
+      aria-hidden={hidden}
+      aria-label={label}
+      aria-labelledby={labelId}
+      as="span"
+      className={className}
+      fullWidth={fullWidth}
+      highlighted={highlighted}
+      id={id}
+      invisible={invisible}
+      onMouseDown={onMouseDown}
+      size={size}
+      width={width}
+      x={x}
+      y={y}
+    >
+      {children}
+    </Root>
   );
 }
 
-const FontStyles = createGlobalStyle`
+export const GlobalFontStyles = createGlobalStyle`
   @font-face {
     font-family: 'Heroes 1';
     src: url(${font}) format('truetype');

@@ -3,7 +3,7 @@ import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-r
 import { createGlobalStyle } from 'styled-components';
 
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
-import { Modal } from '@heroesjs/hmm1-core-ui';
+import { GlobalFontStyles, Modal } from '@heroesjs/hmm1-core-ui';
 
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
@@ -42,6 +42,7 @@ export function App() {
   return (
     <>
       <GlobalStyle />
+      <GlobalFontStyles />
       <Routes>
         <Route
           element={
