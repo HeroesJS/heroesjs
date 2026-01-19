@@ -1,8 +1,8 @@
 import { range } from 'lodash';
 
-import { Button, type ButtonAssets } from '../Button';
-import { Menu, MenuItem } from '../Menu';
-import type { PositionProps } from '../PositionedComponent';
+import type { ButtonAssets, PositionProps } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
+
 import { cancel, com1, com2, com3, com4 } from './assets';
 
 interface ComPortMenuProps extends PositionProps {

@@ -2,12 +2,9 @@ import { useId, useState } from 'react';
 import styled from 'styled-components';
 
 import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '@heroesjs/hmm1-core';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import { Button, PositionedComponent, Scrollbar, Text, Window } from '@heroesjs/hmm1-core-ui';
 
-import { Button } from '../Button';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { Scrollbar } from '../Scrollbar';
-import { Text } from '../Text';
-import { Window } from '../Window';
 import { background, cancel, inputBackground, okay, scenarioInfoBackground } from './assets';
 
 export interface FileSelectorItem {

@@ -59,6 +59,9 @@
       }
     }
   ],
+  "sync": {
+    "applyChanges": true
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],

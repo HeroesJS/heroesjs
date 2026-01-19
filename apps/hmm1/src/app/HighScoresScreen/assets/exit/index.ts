@@ -1,4 +1,4 @@
-import type { ButtonAssets } from '../../../Button';
+import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 
 import active from './active.png';
 import pressed from './pressed.png';

@@ -37,6 +37,7 @@ export default defineConfig(() => ({
   },
   test: {
     name: 'hmm1-core-ui',
+    setupFiles: ['./setupTests.ts'],
     watch: false,
     globals: true,
     environment: 'jsdom',

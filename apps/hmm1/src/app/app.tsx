@@ -3,6 +3,7 @@ import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-r
 import { createGlobalStyle } from 'styled-components';
 
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
+import { Modal } from '@heroesjs/hmm1-core-ui';
 
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
@@ -10,7 +11,6 @@ import { GameTypeMenu } from './GameTypeMenu';
 import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
 import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
-import { Modal } from './Modal';
 import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';

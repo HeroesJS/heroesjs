@@ -11,14 +11,18 @@ import {
   playerColorLabel,
   playerColors,
 } from '@heroesjs/hmm1-core';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import {
+  Button,
+  Checkbox,
+  CycleToggle,
+  Modal,
+  PositionedComponent,
+  Text,
+  useInfoModal,
+  Window,
+} from '@heroesjs/hmm1-core-ui';
 
-import { Button } from '../Button';
-import { Checkbox } from '../Checkbox';
-import { CycleToggle } from '../CycleToggle';
-import { Modal, useInfoModal } from '../Modal';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { Text } from '../Text';
-import { Window } from '../Window';
 import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';

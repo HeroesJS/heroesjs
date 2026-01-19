@@ -1,10 +1,7 @@
 import type { CampaignGameScore, HighScores, HighScoresGameType, StandardGameScore } from '@heroesjs/hmm1-core';
 import { GameType } from '@heroesjs/hmm1-core';
+import { Button, PositionedComponent, Screen, Text } from '@heroesjs/hmm1-core-ui';
 
-import { Button } from '../Button';
-import { PositionedComponent } from '../PositionedComponent';
-import { Screen } from '../Screen';
-import { Text } from '../Text';
 import { background, campaign, days, exit, land, leader, player, score, standard, title } from './assets';
 
 interface HighScoresScreenProps {

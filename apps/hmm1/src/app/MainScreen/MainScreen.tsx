@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
-import { Screen } from '../Screen';
+import { Screen } from '@heroesjs/hmm1-core-ui';
+
 import { background } from './assets';
 
 interface MainScreenProps {
