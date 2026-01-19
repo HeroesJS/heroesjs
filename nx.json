@@ -104,7 +104,7 @@
       "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/storybook/**/*",
+      "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/src/test-setup.[jt]s"

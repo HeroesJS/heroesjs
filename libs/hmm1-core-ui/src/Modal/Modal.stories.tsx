@@ -46,5 +46,7 @@ export const Input: Story = {
     ...Content.args,
     ...Type.args,
     inputLabel: 'Input Label',
+    showInput: true,
+    size: 1,
   },
 };
