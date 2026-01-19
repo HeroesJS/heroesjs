@@ -1,4 +1,5 @@
-import { GameDifficulty } from '../../../core';
+import { GameDifficulty } from '@heroesjs/hmm1-core';
+
 import easy from './easy.jpg';
 import expert from './expert.jpg';
 import hard from './hard.jpg';

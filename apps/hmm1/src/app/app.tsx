@@ -2,6 +2,8 @@ import { type ComponentProps, PropsWithChildren, useEffect, useState } from 'rea
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
+import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
+
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
@@ -12,10 +14,8 @@ import { Modal } from './Modal';
 import { ModemGameMenu } from './ModemGameMenu';
 import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 import { NetworkGameMenu } from './NetworkGameMenu';
-import { PlayerCountMenu } from './PlayerCountMenu';
-import { defaultHighScores, defaultHighScoresGameType } from './highScores';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
-import { MaxPlayerCount } from './core';
+import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {

@@ -1,7 +1,7 @@
 import { screen, within } from '@testing-library/react';
 
-import { GameType } from '../core';
-import { CampaignGameScore, HighScoresGameType, StandardGameScore } from '../highScores';
+import { CampaignGameScore, GameType, HighScoresGameType, StandardGameScore } from '@heroesjs/hmm1-core';
+
 import { renderWithProviders } from '../testUtils';
 import { HighScoresScreen } from './HighScoresScreen';
 

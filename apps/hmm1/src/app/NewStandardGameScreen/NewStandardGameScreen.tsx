@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
 
-import { defaultGameDifficulty, defaultPlayerColor, getDefaultOpponentSettings } from '../core';
+import {
+  defaultGameDifficulty,
+  defaultPlayerColor,
+  getDefaultOpponentSettings,
+  getDifficultyRating,
+  mapSupportsHumanPlayers,
+  scenarios,
+} from '@heroesjs/hmm1-core';
+
 import { FileSelectorWindow } from '../FileSelectorWindow';
 import { MainScreen } from '../MainScreen';
-import { mapSupportsHumanPlayers } from '../map';
 import { NewStandardGameWindow } from '../NewStandardGameWindow';
-import { getDifficultyRating } from '../rating';
-import { scenarios } from '../scenario';
 
 interface NewStandardGameScreenProps {
   readonly onCancelClick?: () => void;

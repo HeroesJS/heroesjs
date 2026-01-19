@@ -1,4 +1,4 @@
-import { MaxPlayerCount } from './core';
+import { MaxPlayerCount } from './core.js';
 
 export enum MapSize {
   Large = 'large',

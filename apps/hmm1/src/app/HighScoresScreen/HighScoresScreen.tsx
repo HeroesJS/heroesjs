@@ -1,6 +1,7 @@
+import type { CampaignGameScore, HighScores, HighScoresGameType, StandardGameScore } from '@heroesjs/hmm1-core';
+import { GameType } from '@heroesjs/hmm1-core';
+
 import { Button } from '../Button';
-import { GameType } from '../core';
-import type { CampaignGameScore, HighScores, HighScoresGameType, StandardGameScore } from '../highScores';
 import { PositionedComponent } from '../PositionedComponent';
 import { Screen } from '../Screen';
 import { Text } from '../Text';

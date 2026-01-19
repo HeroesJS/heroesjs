@@ -1,4 +1,4 @@
-import { MapDifficulty, MapSize } from './map';
+import { MapDifficulty, MapSize } from './map.js';
 
 export interface Scenario {
   readonly name: string;

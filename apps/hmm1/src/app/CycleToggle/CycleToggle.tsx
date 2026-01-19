@@ -1,7 +1,8 @@
 import type { MouseEvent, ReactNode } from 'react';
 
+import { nextOption } from '@heroesjs/hmm1-core';
+
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { nextOption } from '../util';
 
 interface CycleToggleProps<T> extends PositionProps {
   readonly children: (value: T) => ReactNode;

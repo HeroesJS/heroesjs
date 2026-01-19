@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { MapDifficulty, MapSize } from '../map';
+import { MapDifficulty, MapSize } from '@heroesjs/hmm1-core';
+
 import { FileSelectorWindow } from './FileSelectorWindow';
 
 const meta = {

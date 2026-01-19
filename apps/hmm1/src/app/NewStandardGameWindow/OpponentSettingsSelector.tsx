@@ -9,7 +9,8 @@ import {
   isHumanOpponentSetting,
   OpponentSetting,
   OpponentSettings,
-} from '../core';
+} from '@heroesjs/hmm1-core';
+
 import { CycleToggle } from '../CycleToggle';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';

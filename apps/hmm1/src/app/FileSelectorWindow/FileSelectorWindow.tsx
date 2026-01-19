@@ -1,8 +1,9 @@
 import { useId, useState } from 'react';
 import styled from 'styled-components';
 
+import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '@heroesjs/hmm1-core';
+
 import { Button } from '../Button';
-import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '../map';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';
 import { Scrollbar } from '../Scrollbar';
 import { Text } from '../Text';

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Button } from '../Button';
-import { Checkbox } from '../Checkbox';
 import {
   ComputerOpponentSetting,
   GameDifficulty,
@@ -12,7 +10,10 @@ import {
   PlayerColor,
   playerColorLabel,
   playerColors,
-} from '../core';
+} from '@heroesjs/hmm1-core';
+
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
 import { CycleToggle } from '../CycleToggle';
 import { Modal, useInfoModal } from '../Modal';
 import { PositionedComponent, type PositionProps } from '../PositionedComponent';

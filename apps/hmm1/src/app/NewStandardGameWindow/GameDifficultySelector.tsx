@@ -1,7 +1,8 @@
 import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
-import { gameDifficulties, GameDifficulty, gameDifficultyLabel } from '../core';
+import { gameDifficulties, GameDifficulty, gameDifficultyLabel } from '@heroesjs/hmm1-core';
+
 import { PositionedComponent, PositionProps } from '../PositionedComponent';
 import { Text } from '../Text';
 import { gameDifficulty } from './assets';
