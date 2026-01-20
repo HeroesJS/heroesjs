@@ -18,6 +18,13 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
+  "peerDependencies": {
+    "@heroesjs/hmm1-core": "*",
+    "lodash": "4.17.21",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "styled-components": "5.3.6"
+  },
   "nx": {
     "name": "hmm1-core-ui"
   }
