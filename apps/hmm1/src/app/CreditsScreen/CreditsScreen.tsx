@@ -1,9 +1,9 @@
 import { useId, type PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { Screen } from '../Screen';
-import { Text } from '../Text';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import { PositionedComponent, Screen, Text } from '@heroesjs/hmm1-core-ui';
+
 import { background } from './assets';
 
 interface CreditsScreenProps {

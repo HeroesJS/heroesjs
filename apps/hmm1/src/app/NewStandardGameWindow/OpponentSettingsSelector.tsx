@@ -10,10 +10,9 @@ import {
   OpponentSetting,
   OpponentSettings,
 } from '@heroesjs/hmm1-core';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import { CycleToggle, PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 
-import { CycleToggle } from '../CycleToggle';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
-import { Text } from '../Text';
 import { opponentSetting } from './assets';
 
 interface OpponentSettingsSelectorProps extends PositionProps {

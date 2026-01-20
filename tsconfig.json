@@ -11,6 +11,12 @@
     },
     {
       "path": "./libs/hmm1-core"
+    },
+    {
+      "path": "./libs/hmm1-core-ui"
+    },
+    {
+      "path": "./libs/hmm1-test-utils"
     }
   ],
   "ts-node": {

@@ -1,6 +1,6 @@
-import { Button, type ButtonAssets } from '../Button';
-import { Menu, MenuItem } from '../Menu';
-import type { PositionProps } from '../PositionedComponent';
+import type { ButtonAssets, PositionProps } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
+
 import { baud19200, baud2400, baud38400, baud9600, cancel } from './assets';
 
 interface BaudMenuProps extends PositionProps {

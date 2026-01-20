@@ -1,7 +1,6 @@
-import { Button } from '../Button';
-import { Menu, MenuItem } from '../Menu';
-import { Modal, useInfoModal } from '../Modal';
-import type { PositionProps } from '../PositionedComponent';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+
 import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
 
 interface PlayerCountMenuProps extends PositionProps {

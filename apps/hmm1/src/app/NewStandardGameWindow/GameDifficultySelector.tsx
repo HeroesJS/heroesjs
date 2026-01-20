@@ -2,9 +2,9 @@ import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import { gameDifficulties, GameDifficulty, gameDifficultyLabel } from '@heroesjs/hmm1-core';
+import type { PositionProps } from '@heroesjs/hmm1-core-ui';
+import { PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 
-import { PositionedComponent, PositionProps } from '../PositionedComponent';
-import { Text } from '../Text';
 import { gameDifficulty } from './assets';
 
 interface GameDifficultySelectorProps extends PositionProps {

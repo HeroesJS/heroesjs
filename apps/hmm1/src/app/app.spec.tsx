@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react';
 
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+
 import { App } from './app';
-import { renderWithProviders } from './testUtils';
 
 describe(App, () => {
-  it('should have a heading', () => {
+  it('should render main screen', () => {
     renderWithProviders(<App />);
 
     expect(screen.getByRole('main', { name: /main screen/i })).toBeInTheDocument();

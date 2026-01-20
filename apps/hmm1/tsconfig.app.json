@@ -35,6 +35,12 @@
   "references": [
     {
       "path": "../../libs/hmm1-core/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-test-utils/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/hmm1-core-ui/tsconfig.lib.json"
     }
   ]
 }

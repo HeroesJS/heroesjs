@@ -1,4 +1,5 @@
-import type { CheckboxAssets } from '../../../Checkbox';
+import type { CheckboxAssets } from '@heroesjs/hmm1-core-ui';
+
 import checked from './checked.jpg';
 import unchecked from './unchecked.jpg';
 

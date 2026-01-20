@@ -2,7 +2,8 @@ import { screen, within } from '@testing-library/react';
 
 import { MapDifficulty, MapSize } from '@heroesjs/hmm1-core';
 
-import { renderWithProviders } from '../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+
 import { FileSelectorItem, FileSelectorWindow } from './FileSelectorWindow';
 
 describe(FileSelectorWindow, () => {
