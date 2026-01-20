@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
 
 import { ComputerOpponentSetting, GameDifficulty, OpponentSettings, PlayerColor } from '@heroesjs/hmm1-core';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
-import { renderWithProviders } from '../testUtils';
 import { NewStandardGameWindow } from './NewStandardGameWindow';
 
 describe(NewStandardGameWindow, () => {

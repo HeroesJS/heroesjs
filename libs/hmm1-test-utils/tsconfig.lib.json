@@ -5,7 +5,6 @@
     "types": ["node", "@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "vite/client"],
     "rootDir": "src",
     "jsx": "react-jsx",
-    "lib": ["dom"],
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
   "exclude": [
@@ -33,19 +32,7 @@
     "src/**/*.spec.jsx",
     "eslint.config.js",
     "eslint.config.cjs",
-    "eslint.config.mjs",
-    "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.jsx",
-    "**/*.stories.tsx"
+    "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    {
-      "path": "../hmm1-core/tsconfig.lib.json"
-    },
-    {
-      "path": "../hmm1-test-utils/tsconfig.lib.json"
-    }
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }

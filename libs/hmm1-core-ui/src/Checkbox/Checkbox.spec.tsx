@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+
 import { Checkbox, type CheckboxAssets } from './Checkbox';
 
 describe(Checkbox, () => {

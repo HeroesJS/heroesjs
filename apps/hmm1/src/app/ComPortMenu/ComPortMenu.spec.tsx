@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
 import { range } from 'lodash';
 
-import { renderWithProviders } from '../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+
 import { ComPortMenu } from './ComPortMenu';
 
 describe(ComPortMenu, () => {

@@ -1,4 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { Button, ButtonAssets } from './Button';
 
@@ -9,25 +11,25 @@ describe(Button, () => {
   };
 
   it('should render', () => {
-    render(<Button assets={assets} />);
+    renderWithProviders(<Button assets={assets} />);
 
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('should render label', () => {
-    render(<Button assets={assets} label="Label" />);
+    renderWithProviders(<Button assets={assets} label="Label" />);
 
     expect(screen.getByRole('button', { name: /label/i })).toBeInTheDocument();
   });
 
   it('should render as active', () => {
-    render(<Button assets={assets} />);
+    renderWithProviders(<Button assets={assets} />);
 
     expect(screen.getByRole('img')).toHaveAttribute('src', 'active.png');
   });
 
   it('should render as pressed when pressed', () => {
-    render(<Button assets={assets} />);
+    renderWithProviders(<Button assets={assets} />);
 
     fireEvent.mouseOver(screen.getByRole('img'));
     fireEvent.mouseDown(screen.getByRole('img'));
@@ -36,7 +38,7 @@ describe(Button, () => {
   });
 
   it('should render as active when pressed and mouse leaves', () => {
-    render(<Button assets={assets} />);
+    renderWithProviders(<Button assets={assets} />);
 
     fireEvent.mouseDown(screen.getByRole('button'));
     fireEvent.mouseLeave(screen.getByRole('button'));
@@ -47,7 +49,7 @@ describe(Button, () => {
   it('should call click handler when clicked', () => {
     const handler = vitest.fn();
 
-    render(<Button assets={assets} onClick={handler} />);
+    renderWithProviders(<Button assets={assets} onClick={handler} />);
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -55,13 +57,13 @@ describe(Button, () => {
   });
 
   it('should be disabled when disabled', () => {
-    render(<Button assets={assets} disabled />);
+    renderWithProviders(<Button assets={assets} disabled />);
 
     expect(screen.getByRole('button')).toBeDisabled();
   });
 
   it('should render as pressed when disabled', () => {
-    render(<Button assets={assets} disabled />);
+    renderWithProviders(<Button assets={assets} disabled />);
 
     expect(screen.getByRole('img')).toHaveAttribute('src', 'pressed.png');
   });

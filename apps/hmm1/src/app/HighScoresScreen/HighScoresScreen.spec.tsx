@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
 
 import { CampaignGameScore, GameType, HighScoresGameType, StandardGameScore } from '@heroesjs/hmm1-core';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
-import { renderWithProviders } from '../testUtils';
 import { HighScoresScreen } from './HighScoresScreen';
 
 describe(HighScoresScreen, () => {

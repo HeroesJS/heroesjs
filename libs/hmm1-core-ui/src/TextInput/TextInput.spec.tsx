@@ -1,6 +1,7 @@
 import { act, screen } from '@testing-library/react';
 
-import { renderWithProviders } from '../testUtils';
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
+
 import { TextInput } from './TextInput';
 
 describe(TextInput, () => {

@@ -1,10 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+
+import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { Text } from './Text';
 
 describe(Text, () => {
   it('should render children', () => {
-    render(<Text>CHILDREN</Text>);
+    renderWithProviders(<Text>CHILDREN</Text>);
 
     expect(screen.getByText(/children/i)).toBeInTheDocument();
   });
