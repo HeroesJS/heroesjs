@@ -1,13 +1,18 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import dts from 'vite-plugin-dts';
 import * as path from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
+import { externalizeDeps } from 'vite-plugin-externalize-deps';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/libs/hmm1-core-ui',
-  plugins: [react(), dts({ entryRoot: 'src', tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json') })],
+  plugins: [
+    react(),
+    dts({ entryRoot: 'src', tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json') }),
+    externalizeDeps(),
+  ],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [],
@@ -29,10 +34,6 @@ export default defineConfig(() => ({
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
-    },
-    rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
   },
   test: {
