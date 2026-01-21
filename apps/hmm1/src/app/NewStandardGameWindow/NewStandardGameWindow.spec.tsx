@@ -428,13 +428,24 @@ describe(NewStandardGameWindow, () => {
       expect(screen.getByRole('dialog', { name: /accept these settings and start a new game\./i }));
     });
 
-    it('should call okay handler when clicked', async () => {
+    it('should render no opponents modal when clicked', async () => {
+      const { user } = renderWithProviders(
+        <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
+      );
+
+      await user.click(screen.getByRole('button', { name: /okay/i }));
+
+      expect(screen.getByRole('dialog', { name: /a game requires at least one opponent\./i })).toBeInTheDocument();
+    });
+
+    it('should call okay handler when clicked and at least one opponent is set', async () => {
       const handler = vitest.fn();
 
       const { user } = renderWithProviders(
         <NewStandardGameWindow
           gameDifficulty={GameDifficulty.Easy}
           onOkayClick={handler}
+          opponentSettings={[ComputerOpponentSetting.Dumb, ComputerOpponentSetting.None, ComputerOpponentSetting.None]}
           playerColor={PlayerColor.Blue}
         />
       );

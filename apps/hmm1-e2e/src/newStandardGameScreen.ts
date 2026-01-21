@@ -37,6 +37,8 @@ export class NewStandardGameScreen {
 
   public readonly fileSelector: FileSelectorWindow;
 
+  public readonly noOpponentsModal: Locator;
+
   constructor(private page: Page) {
     this.locator = page.getByRole('main', { name: /new standard game/i });
 
@@ -81,6 +83,8 @@ export class NewStandardGameScreen {
     this.cancelInfoModal = page.getByRole('dialog', { name: /return to the main menu\./i });
 
     this.fileSelector = new FileSelectorWindow(page);
+
+    this.noOpponentsModal = page.getByRole('dialog', { name: /a game requires at least one opponent\./i });
   }
 
   public goto(playerCount = 1) {

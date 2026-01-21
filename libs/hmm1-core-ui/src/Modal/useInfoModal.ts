@@ -1,12 +1,18 @@
 import { type MouseEvent, useState } from 'react';
 
 interface UseInfoModalResult {
-  readonly open: boolean;
+  readonly close: () => void;
+  readonly isOpen: boolean;
   readonly onMouseDown: (e: MouseEvent) => void;
+  readonly open: () => void;
 }
 
 export function useInfoModal(): UseInfoModalResult {
   const [isOpen, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const handleDocumentMouseUp = (e: globalThis.MouseEvent) => {
     if (e.button === 2) {
@@ -25,7 +31,9 @@ export function useInfoModal(): UseInfoModalResult {
   };
 
   return {
-    open: isOpen,
+    close: handleClose,
+    isOpen,
     onMouseDown: handleMouseDown,
+    open: handleOpen,
   };
 }

@@ -16,9 +16,10 @@ import { NewStandardGameWindow } from '../NewStandardGameWindow';
 
 interface NewStandardGameScreenProps {
   readonly onCancelClick?: () => void;
+  readonly onOkayClick?: () => void;
 }
 
-export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenProps) {
+export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandardGameScreenProps) {
   const params = useParams<'playerCount'>();
 
   const playerCount = Number(params.playerCount ?? 1);
@@ -74,6 +75,7 @@ export function NewStandardGameScreen({ onCancelClick }: NewStandardGameScreenPr
           onCancelClick={onCancelClick}
           onGameDifficultyChange={setGameDifficulty}
           onKingOfTheHillChange={setKingOfTheHill}
+          onOkayClick={onOkayClick}
           onOpponentSettingsChange={setOpponentSettings}
           onPlayerColorChange={setPlayerColor}
           onSelectScenarioClick={() => {

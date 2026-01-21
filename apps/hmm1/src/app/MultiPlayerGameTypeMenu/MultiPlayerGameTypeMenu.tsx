@@ -30,20 +30,20 @@ export function MultiPlayerGameTypeMenu({
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={hotSeat} label="Hot Seat" onClick={onHotSeatClick} onMouseDown={hotSeatInfoModal.onMouseDown} />
-        <Modal open={hotSeatInfoModal.open} size={1} x={177} y={29}>
+        <Modal open={hotSeatInfoModal.isOpen} size={1} x={177} y={29}>
           Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when
           it is their turn.
         </Modal>
       </MenuItem>
       <MenuItem>
         <Button assets={network} label="Network" onClick={onNetworkClick} onMouseDown={networkInfoModal.onMouseDown} />
-        <Modal open={networkInfoModal.open} size={1} x={177} y={29}>
+        <Modal open={networkInfoModal.isOpen} size={1} x={177} y={29}>
           Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).
         </Modal>
       </MenuItem>
       <MenuItem>
         <Button assets={modem} label="Modem" onClick={onModemClick} onMouseDown={modemInfoModal.onMouseDown} />
-        <Modal open={modemInfoModal.open} size={1} x={177} y={29}>
+        <Modal open={modemInfoModal.isOpen} size={1} x={177} y={29}>
           Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.{' '}
           {/* TODO: ther? */}
         </Modal>
@@ -55,14 +55,14 @@ export function MultiPlayerGameTypeMenu({
           onClick={onDirectConnectClick}
           onMouseDown={directConnectInfoModal.onMouseDown}
         />
-        <Modal open={directConnectInfoModal.open} size={1} x={177} y={29}>
+        <Modal open={directConnectInfoModal.isOpen} size={1} x={177} y={29}>
           Play a direct connect game, where 2 players use ther own computers directly connected through their serial
           port by a null modem. {/* TODO: ther? */}
         </Modal>
       </MenuItem>
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.open} x={177} y={29}>
+        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
           Cancel back to the main menu.
         </Modal>
       </MenuItem>

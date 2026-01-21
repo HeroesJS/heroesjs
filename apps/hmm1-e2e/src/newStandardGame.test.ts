@@ -205,6 +205,32 @@ test('displays okay button info', async ({ mouseRightDown, newStandardGameScreen
   await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
+test('displays no opponents modal when no opponents are selected and okay button is clicked', async ({
+  newStandardGameScreen,
+  page,
+}) => {
+  for (const opponentNumber of [1, 2, 3]) {
+    while (await newStandardGameScreen.getOpponentSettingOption(opponentNumber, /none/i).isHidden()) {
+      await newStandardGameScreen.getOpponentSetting(opponentNumber).click();
+    }
+  }
+
+  await newStandardGameScreen.okayButton.click();
+
+  await expect(newStandardGameScreen.noOpponentsModal).toBeVisible();
+
+  await expect(page).toHaveScreenshot('no-opponents-modal.png', { maxDiffPixelRatio: 0.01 });
+});
+
+test('displays adventure screen when some opponents are selected and okay button is clicked', async ({
+  adventureScreen,
+  newStandardGameScreen,
+}) => {
+  await newStandardGameScreen.okayButton.click();
+
+  await expect(adventureScreen.locator).toBeVisible();
+});
+
 test('displays cancel button info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
   await mouseRightDown(newStandardGameScreen.cancelButton);
 

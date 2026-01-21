@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
 import { GlobalFontStyles, Modal } from '@heroesjs/hmm1-core-ui';
 
+import { AdventureScreen } from './AdventureScreen';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
@@ -77,7 +78,7 @@ export function App() {
           <Route
             element={
               <PlayerCountProtectedRoute navigateTo="/">
-                <NewStandardGameScreen onCancelClick={() => navigate('/')} />
+                <NewStandardGameScreen onCancelClick={() => navigate('/')} onOkayClick={() => navigate('/adventure')} />
               </PlayerCountProtectedRoute>
             }
             path="standard/:playerCount?"
@@ -189,6 +190,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
+        <Route element={<AdventureScreen />} path="adventure" />
         <Route element={<HighScoresScreen />} path="high-scores" />
         <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
       </Routes>
