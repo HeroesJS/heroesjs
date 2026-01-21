@@ -32,7 +32,7 @@ export function GameTypeMenu({
           onClick={onStandardGameClick}
           onMouseDown={standardGameInfoModal.onMouseDown}
         />
-        <Modal open={standardGameInfoModal.open} x={177} y={29}>
+        <Modal open={standardGameInfoModal.isOpen} x={177} y={29}>
           A single player game playing out a single map.
         </Modal>
       </MenuItem>
@@ -43,7 +43,7 @@ export function GameTypeMenu({
           onClick={onCampaignGameClick}
           onMouseDown={campaignGameInfoModal.onMouseDown}
         />
-        <Modal open={campaignGameInfoModal.open} x={177} y={29}>
+        <Modal open={campaignGameInfoModal.isOpen} x={177} y={29}>
           A single player game playing through a series of maps.
         </Modal>
       </MenuItem>
@@ -54,14 +54,14 @@ export function GameTypeMenu({
           onClick={onMultiPlayerGameClick}
           onMouseDown={multiPlayerGameInfoModal.onMouseDown}
         />
-        <Modal open={multiPlayerGameInfoModal.open} size={1} x={177} y={29}>
+        <Modal open={multiPlayerGameInfoModal.isOpen} size={1} x={177} y={29}>
           A multi-player game, with several human players competing against each other on a single map.
         </Modal>
       </MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.open} x={177} y={29}>
+        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
           Cancel back to the main menu.
         </Modal>
       </MenuItem>

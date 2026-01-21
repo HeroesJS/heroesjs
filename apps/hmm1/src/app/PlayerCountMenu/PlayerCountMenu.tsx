@@ -23,7 +23,7 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(2)}
           onMouseDown={twoPlayersInfoModal.onMouseDown}
         />
-        <Modal open={twoPlayersInfoModal.open} x={177} y={29}>
+        <Modal open={twoPlayersInfoModal.isOpen} x={177} y={29}>
           Play with 2 human players, and optionally, up to 2 additional computer players.
         </Modal>
       </MenuItem>
@@ -34,7 +34,7 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(3)}
           onMouseDown={threePlayersInfoModal.onMouseDown}
         />
-        <Modal open={threePlayersInfoModal.open} x={177} y={29}>
+        <Modal open={threePlayersInfoModal.isOpen} x={177} y={29}>
           Play with 3 human players, and optionally 1 computer player.
         </Modal>
       </MenuItem>
@@ -45,14 +45,14 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(4)}
           onMouseDown={fourPlayersInfoModal.onMouseDown}
         />
-        <Modal open={fourPlayersInfoModal.open} x={177} y={29}>
+        <Modal open={fourPlayersInfoModal.isOpen} x={177} y={29}>
           Play with 4 human players.
         </Modal>
       </MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.open} x={177} y={29}>
+        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
           Cancel back to the main menu.
         </Modal>
       </MenuItem>

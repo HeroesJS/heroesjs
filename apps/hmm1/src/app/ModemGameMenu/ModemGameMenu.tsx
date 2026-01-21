@@ -34,7 +34,7 @@ export function ModemGameMenu({
     <Menu label="Modem Game Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={host} label="Host (Dials)" onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
-        <Modal open={hostInfoModal.open} x={177} y={29}>
+        <Modal open={hostInfoModal.isOpen} x={177} y={29}>
           The host sets up the game options, chooses the number to dial, and places the call.
         </Modal>
       </MenuItem>
@@ -45,7 +45,7 @@ export function ModemGameMenu({
           onClick={onGuestClick}
           onMouseDown={guestInfoModal.onMouseDown}
         />
-        <Modal open={guestInfoModal.open} x={177} y={29}>
+        <Modal open={guestInfoModal.isOpen} x={177} y={29}>
           The guest waits for the host to call and set up the game.
         </Modal>
       </MenuItem>
@@ -53,7 +53,7 @@ export function ModemGameMenu({
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.open} x={177} y={29}>
+        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
           Cancel back to the main menu.
         </Modal>
       </MenuItem>

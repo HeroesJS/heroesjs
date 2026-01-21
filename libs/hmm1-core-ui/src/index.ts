@@ -12,4 +12,5 @@ export { Screen, ScreenHeight, ScreenWidth } from './Screen';
 export { Scrollbar } from './Scrollbar';
 export { GlobalFontStyles, Text } from './Text';
 export { TextInput } from './TextInput';
+export { useToggle } from './useToggle';
 export { Window } from './Window';

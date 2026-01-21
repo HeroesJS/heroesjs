@@ -35,7 +35,7 @@ export function CampaignMenu({
           onClick={onPlayLordIronfistClick}
           onMouseDown={playLordIronfistInfoModal.onMouseDown}
         />
-        <Modal open={playLordIronfistInfoModal.open} x={177} y={29}>
+        <Modal open={playLordIronfistInfoModal.isOpen} x={177} y={29}>
           Play the role of Lord Ironfist.
         </Modal>
       </MenuItem>
@@ -46,7 +46,7 @@ export function CampaignMenu({
           onClick={onPlayLordSlayerClick}
           onMouseDown={playLordSlayerInfoModal.onMouseDown}
         />
-        <Modal open={playLordSlayerInfoModal.open} x={177} y={29}>
+        <Modal open={playLordSlayerInfoModal.isOpen} x={177} y={29}>
           Play the role of Lord Slayer.
         </Modal>
       </MenuItem>
@@ -57,7 +57,7 @@ export function CampaignMenu({
           onClick={onPlayQueenLamandaClick}
           onMouseDown={playQueenLamandaInfoModal.onMouseDown}
         />
-        <Modal open={playQueenLamandaInfoModal.open} x={177} y={29}>
+        <Modal open={playQueenLamandaInfoModal.isOpen} x={177} y={29}>
           Play the role of Queen Lamanda.
         </Modal>
       </MenuItem>
@@ -68,13 +68,13 @@ export function CampaignMenu({
           onClick={onPlayLordAlamarClick}
           onMouseDown={playLordAlamarInfoModal.onMouseDown}
         />
-        <Modal open={playLordAlamarInfoModal.open} x={177} y={29}>
+        <Modal open={playLordAlamarInfoModal.isOpen} x={177} y={29}>
           Play the role of Lord Alamar.
         </Modal>
       </MenuItem>
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.open} x={177} y={29}>
+        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
           Cancel back to the main menu.
         </Modal>
       </MenuItem>
