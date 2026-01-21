@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 
 import { useInfoModal } from './useInfoModal';
 
@@ -12,7 +12,7 @@ describe(useInfoModal, () => {
   it('should open', () => {
     const { rerender, result } = renderHook(() => useInfoModal());
 
-    result.current.open();
+    act(() => result.current.open());
 
     rerender();
 
@@ -22,11 +22,11 @@ describe(useInfoModal, () => {
   it('should close', () => {
     const { rerender, result } = renderHook(() => useInfoModal());
 
-    result.current.open();
+    act(() => result.current.open());
 
     rerender();
 
-    result.current.close();
+    act(() => result.current.close());
 
     rerender();
 

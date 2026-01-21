@@ -1,4 +1,6 @@
-import { type MouseEvent, useState } from 'react';
+import type { MouseEvent } from 'react';
+
+import { useToggle } from '../useToggle';
 
 interface UseInfoModalResult {
   readonly close: () => void;
@@ -8,32 +10,28 @@ interface UseInfoModalResult {
 }
 
 export function useInfoModal(): UseInfoModalResult {
-  const [isOpen, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-
-  const handleClose = () => setOpen(false);
+  const [isOpen, open, close] = useToggle();
 
   const handleDocumentMouseUp = (e: globalThis.MouseEvent) => {
     if (e.button === 2) {
       document.removeEventListener('mouseup', handleDocumentMouseUp);
 
-      setOpen(false);
+      close();
     }
   };
 
   const handleMouseDown = (e: MouseEvent) => {
     if (e.button === 2) {
-      setOpen(true);
+      open();
 
       document.addEventListener('mouseup', handleDocumentMouseUp);
     }
   };
 
   return {
-    close: handleClose,
+    close,
     isOpen,
     onMouseDown: handleMouseDown,
-    open: handleOpen,
+    open,
   };
 }
