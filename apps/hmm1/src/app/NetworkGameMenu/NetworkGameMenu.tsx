@@ -1,12 +1,13 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, guest, host } from './assets';
 
-interface NetworkGameMenuProps extends PositionProps {
+interface NetworkGameMenuProps {
   readonly onCancelClick?: () => void;
   readonly onGuestClick?: () => void;
   readonly onHostClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function NetworkGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: NetworkGameMenuProps) {

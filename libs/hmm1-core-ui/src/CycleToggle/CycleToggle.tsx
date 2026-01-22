@@ -2,9 +2,9 @@ import type { MouseEvent, ReactNode } from 'react';
 
 import { nextOption } from '@heroesjs/hmm1-core';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
-interface CycleToggleProps<T> extends PositionProps {
+interface CycleToggleProps<T> {
   readonly children: (value: T) => ReactNode;
   readonly className?: string;
   readonly label?: string;
@@ -13,6 +13,8 @@ interface CycleToggleProps<T> extends PositionProps {
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly options: readonly T[];
   readonly value: T;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function CycleToggle<T>({

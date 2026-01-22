@@ -1,19 +1,21 @@
 import { type MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
 export interface ButtonAssets {
   readonly active: string;
   readonly pressed: string;
 }
 
-interface ButtonProps extends PositionProps {
+interface ButtonProps {
   readonly assets: ButtonAssets;
   readonly disabled?: boolean;
   readonly label?: string;
   readonly onClick?: () => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Button({ assets, disabled, label, onClick, onMouseDown, x, y }: ButtonProps) {

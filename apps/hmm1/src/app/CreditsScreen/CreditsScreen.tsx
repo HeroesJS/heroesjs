@@ -1,7 +1,6 @@
 import { useId, type PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { PositionedComponent, Screen, Text } from '@heroesjs/hmm1-core-ui';
 
 import { background } from './assets';
@@ -78,10 +77,12 @@ export function CreditsScreen({ onClick }: CreditsScreenProps) {
   );
 }
 
-interface ListProps extends PositionProps {
+interface ListProps {
   readonly label: string;
   readonly width: number;
   readonly height?: number;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 function List({ children, height, label, width, x, y }: PropsWithChildren<ListProps>) {

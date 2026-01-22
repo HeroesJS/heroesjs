@@ -1,13 +1,14 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { campaignGame, cancel, multiPlayerGame, standardGame } from './assets';
 
-interface GameTypeMenuProps extends PositionProps {
+interface GameTypeMenuProps {
   readonly onCampaignGameClick?: () => void;
   readonly onCancelClick?: () => void;
   readonly onMultiPlayerGameClick?: () => void;
   readonly onStandardGameClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function GameTypeMenu({

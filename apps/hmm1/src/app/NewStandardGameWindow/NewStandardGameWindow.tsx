@@ -11,14 +11,13 @@ import {
   playerColorLabel,
   playerColors,
 } from '@heroesjs/hmm1-core';
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Checkbox, CycleToggle, PositionedComponent, Text, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 
-interface NewStandardGameWindowProps extends PositionProps {
+interface NewStandardGameWindowProps {
   readonly difficultyRating?: number;
   readonly gameDifficulty: GameDifficulty;
   readonly kingOfTheHill?: boolean;
@@ -32,6 +31,8 @@ interface NewStandardGameWindowProps extends PositionProps {
   readonly opponentSettings?: OpponentSettings;
   readonly playerColor: PlayerColor;
   readonly scenarioName?: string;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function NewStandardGameWindow({

@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 import { Button } from '../Button';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 import { down, thumb, up } from './assets';
 import { useLayoutEffect, useRef } from 'react';
 
-interface ScrollbarProps extends PositionProps {
+interface ScrollbarProps {
   readonly height: number;
   readonly onDownClick?: () => void;
   readonly onUpClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Scrollbar({ height, onDownClick, onUpClick, x, y }: ScrollbarProps) {

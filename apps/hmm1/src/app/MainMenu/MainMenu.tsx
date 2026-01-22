@@ -1,14 +1,15 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { loadGame, newGame, quit, viewCredits, viewHighScores } from './assets';
 
-interface MainMenuProps extends PositionProps {
+interface MainMenuProps {
   readonly onLoadGameClick?: () => void;
   readonly onNewGameClick?: () => void;
   readonly onQuitClick?: () => void;
   readonly onViewCreditsClick?: () => void;
   readonly onViewHighScoresClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function MainMenu({

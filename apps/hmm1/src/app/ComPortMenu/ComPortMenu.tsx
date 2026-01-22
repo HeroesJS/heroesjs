@@ -1,13 +1,15 @@
 import { range } from 'lodash';
 
-import type { ButtonAssets, PositionProps } from '@heroesjs/hmm1-core-ui';
+import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, com1, com2, com3, com4 } from './assets';
 
-interface ComPortMenuProps extends PositionProps {
+interface ComPortMenuProps {
   readonly onCancelClick?: () => void;
   readonly onValueClick?: (value: number) => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function ComPortMenu({ onCancelClick, onValueClick, x, y }: ComPortMenuProps) {

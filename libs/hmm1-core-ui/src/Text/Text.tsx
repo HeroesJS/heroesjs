@@ -2,13 +2,13 @@ import type { MouseEvent, PropsWithChildren } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { font, fontSmall } from './assets';
-import { PositionedComponent, PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
 type TextSize = 'large' | 'medium' | 'small';
 
 type TextAlign = 'left' | 'center' | 'right';
 
-interface TextProps extends PositionProps {
+interface TextProps {
   readonly align?: TextAlign;
   readonly className?: string;
   readonly fullWidth?: boolean;
@@ -21,6 +21,8 @@ interface TextProps extends PositionProps {
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly size?: TextSize;
   readonly width?: number;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Text({

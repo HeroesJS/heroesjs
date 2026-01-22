@@ -1,11 +1,13 @@
-import type { ButtonAssets, PositionProps } from '@heroesjs/hmm1-core-ui';
+import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
 
 import { baud19200, baud2400, baud38400, baud9600, cancel } from './assets';
 
-interface BaudMenuProps extends PositionProps {
+interface BaudMenuProps {
   readonly onValueClick?: (value: number) => void;
   readonly onCancelClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function BaudMenu({ onCancelClick, onValueClick, x, y }: BaudMenuProps) {

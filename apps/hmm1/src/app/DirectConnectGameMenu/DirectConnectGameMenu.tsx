@@ -1,14 +1,16 @@
-import type { ButtonAssets, PositionProps } from '@heroesjs/hmm1-core-ui';
+import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
 
 import { noConfig, withConfig } from './assets';
 
-interface DirectConnectGameMenuProps extends PositionProps {
+interface DirectConnectGameMenuProps {
   readonly allowConfiguration?: boolean;
   readonly onCancelClick?: () => void;
   readonly onConfigClick?: () => void;
   readonly onGuestClick?: () => void;
   readonly onHostClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function DirectConnectGameMenu({
