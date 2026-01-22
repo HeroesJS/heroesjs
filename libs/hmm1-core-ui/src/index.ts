@@ -5,7 +5,7 @@ export { Checkbox } from './Checkbox';
 export type { CheckboxAssets } from './Checkbox';
 export { CycleToggle } from './CycleToggle';
 export { Menu, MenuItem } from './Menu';
-export { Modal, useInfoModal } from './Modal';
+export { Modal, useModal } from './Modal';
 export { PositionedComponent } from './PositionedComponent';
 export type { PositionProps } from './PositionedComponent';
 export { Screen, ScreenHeight, ScreenWidth } from './Screen';

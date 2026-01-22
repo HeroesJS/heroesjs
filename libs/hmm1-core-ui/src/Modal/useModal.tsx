@@ -3,9 +3,9 @@ import type { ComponentProps, JSX, MouseEvent } from 'react';
 import { useToggle } from '../useToggle';
 import { Modal } from './Modal';
 
-type UseInfoModalOptions = Partial<ComponentProps<typeof Modal>>;
+type UseModalOptions = Partial<ComponentProps<typeof Modal>>;
 
-interface UseInfoModalResult {
+interface UseModalResult {
   readonly close: () => void;
   readonly isOpen: boolean;
   readonly Modal: (props: Partial<ComponentProps<typeof Modal>>) => JSX.Element;
@@ -13,7 +13,7 @@ interface UseInfoModalResult {
   readonly open: () => void;
 }
 
-export function useInfoModal(options: UseInfoModalOptions = {}): UseInfoModalResult {
+export function useModal(options: UseModalOptions = {}): UseModalResult {
   const [isOpen, open, close] = useToggle();
 
   const handleDocumentMouseUp = (e: globalThis.MouseEvent) => {

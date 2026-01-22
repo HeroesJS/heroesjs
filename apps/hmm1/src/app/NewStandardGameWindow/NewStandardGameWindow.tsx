@@ -12,7 +12,7 @@ import {
   playerColors,
 } from '@heroesjs/hmm1-core';
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Checkbox, CycleToggle, PositionedComponent, Text, useInfoModal, Window } from '@heroesjs/hmm1-core-ui';
+import { Button, Checkbox, CycleToggle, PositionedComponent, Text, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
@@ -51,18 +51,18 @@ export function NewStandardGameWindow({
   x,
   y,
 }: NewStandardGameWindowProps) {
-  const { Modal: GameDifficultyInfoModal, ...gameDifficultyInfoModal } = useInfoModal();
-  const { Modal: ComputerOpponentSettingInfoModal, ...computerOpponentSettingInfoModal } = useInfoModal();
-  const { Modal: HumanOpponentSettingInfoModal, ...humanOpponentSettingInfoModal } = useInfoModal();
-  const { Modal: PlayerColorInfoModal, ...playerColorInfoModal } = useInfoModal();
-  const { Modal: KingOfTheHillInfoModal, ...kingOfTheHillInfoModal } = useInfoModal();
-  const { Modal: SelectScenarioInfoModal, ...selectScenarioInfoModal } = useInfoModal();
-  const { Modal: DifficultyRatingInfoModal, ...difficultyRatingInfoModal } = useInfoModal();
+  const { Modal: GameDifficultyInfoModal, ...gameDifficultyInfoModal } = useModal();
+  const { Modal: ComputerOpponentSettingInfoModal, ...computerOpponentSettingInfoModal } = useModal();
+  const { Modal: HumanOpponentSettingInfoModal, ...humanOpponentSettingInfoModal } = useModal();
+  const { Modal: PlayerColorInfoModal, ...playerColorInfoModal } = useModal();
+  const { Modal: KingOfTheHillInfoModal, ...kingOfTheHillInfoModal } = useModal();
+  const { Modal: SelectScenarioInfoModal, ...selectScenarioInfoModal } = useModal();
+  const { Modal: DifficultyRatingInfoModal, ...difficultyRatingInfoModal } = useModal();
 
-  const { Modal: OkayInfoModal, ...okayInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: OkayInfoModal, ...okayInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
-  const { Modal: NoOpponentsErrorModal, ...noOpponentsErrorModal } = useInfoModal();
+  const { Modal: NoOpponentsErrorModal, ...noOpponentsErrorModal } = useModal();
 
   const handleOkayClick = () => {
     if (opponentSettings.every((opponent) => opponent === ComputerOpponentSetting.None)) {

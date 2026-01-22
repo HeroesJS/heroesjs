@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { campaignGame, cancel, multiPlayerGame, standardGame } from './assets';
 
@@ -18,10 +18,10 @@ export function GameTypeMenu({
   x,
   y,
 }: GameTypeMenuProps) {
-  const { Modal: StandardGameInfoModal, ...standardGameInfoModal } = useInfoModal();
-  const { Modal: CampaignGameInfoModal, ...campaignGameInfoModal } = useInfoModal();
-  const { Modal: MultiPlayerGameInfoModal, ...multiPlayerGameInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: StandardGameInfoModal, ...standardGameInfoModal } = useModal();
+  const { Modal: CampaignGameInfoModal, ...campaignGameInfoModal } = useModal();
+  const { Modal: MultiPlayerGameInfoModal, ...multiPlayerGameInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Game Type Menu" x={x} y={y}>

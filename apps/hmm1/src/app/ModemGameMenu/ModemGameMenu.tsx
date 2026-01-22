@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { noConfig, withConfig } from './assets';
 
@@ -26,9 +26,9 @@ export function ModemGameMenu({
     <Button assets={withConfig.config} label="Config Modem" onClick={onConfigClick} />
   );
 
-  const { Modal: HostInfoModal, ...hostInfoModal } = useInfoModal();
-  const { Modal: GuestInfoModal, ...guestInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: HostInfoModal, ...hostInfoModal } = useModal();
+  const { Modal: GuestInfoModal, ...guestInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Modem Game Menu" x={x} y={y}>

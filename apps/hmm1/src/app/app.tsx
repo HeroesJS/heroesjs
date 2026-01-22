@@ -3,7 +3,7 @@ import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-r
 import { createGlobalStyle } from 'styled-components';
 
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
-import { GlobalFontStyles, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { AdventureScreen } from './AdventureScreen';
 import { CampaignMenu } from './CampaignMenu';
@@ -42,9 +42,9 @@ export function App() {
 
   const navigateToMainScreen = () => navigate('/');
 
-  const { Modal: WaitingForRingModal } = useInfoModal();
+  const { Modal: WaitingForRingModal } = useModal();
 
-  const { Modal: WaitingForConnectionModal } = useInfoModal({
+  const { Modal: WaitingForConnectionModal } = useModal({
     children: (
       <>
         Waiting for other computer to log in to direct connection.
@@ -227,8 +227,8 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
-  const { Modal: EnterTelephoneNumberModal } = useInfoModal();
-  const { Modal: DialingModal } = useInfoModal();
+  const { Modal: EnterTelephoneNumberModal } = useModal();
+  const { Modal: DialingModal } = useModal();
 
   return (
     <MainScreen label="Host Modem Game Screen">

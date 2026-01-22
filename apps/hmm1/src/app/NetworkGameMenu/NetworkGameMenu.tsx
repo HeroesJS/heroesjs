@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, guest, host } from './assets';
 
@@ -10,9 +10,9 @@ interface NetworkGameMenuProps extends PositionProps {
 }
 
 export function NetworkGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: NetworkGameMenuProps) {
-  const { Modal: HostInfoModal, ...hostInfoModal } = useInfoModal();
-  const { Modal: GuestInfoModal, ...guestInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: HostInfoModal, ...hostInfoModal } = useModal();
+  const { Modal: GuestInfoModal, ...guestInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Network Game Menu" x={x} y={y}>

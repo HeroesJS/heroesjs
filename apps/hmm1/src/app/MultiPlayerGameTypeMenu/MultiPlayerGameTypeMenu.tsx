@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, directConnect, hotSeat, modem, network } from './assets';
 
@@ -20,11 +20,11 @@ export function MultiPlayerGameTypeMenu({
   x,
   y,
 }: MultiPlayerGameTypeMenuProps) {
-  const { Modal: HotSeatInfoModal, ...hotSeatInfoModal } = useInfoModal();
-  const { Modal: NetworkInfoModal, ...networkInfoModal } = useInfoModal();
-  const { Modal: ModemInfoModal, ...modemInfoModal } = useInfoModal();
-  const { Modal: DirectConnectInfoModal, ...directConnectInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: HotSeatInfoModal, ...hotSeatInfoModal } = useModal();
+  const { Modal: NetworkInfoModal, ...networkInfoModal } = useModal();
+  const { Modal: ModemInfoModal, ...modemInfoModal } = useModal();
+  const { Modal: DirectConnectInfoModal, ...directConnectInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>

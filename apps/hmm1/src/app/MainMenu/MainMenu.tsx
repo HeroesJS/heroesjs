@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { loadGame, newGame, quit, viewCredits, viewHighScores } from './assets';
 
@@ -20,11 +20,11 @@ export function MainMenu({
   x,
   y,
 }: MainMenuProps) {
-  const { Modal: NewGameInfoModal, ...newGameInfoModal } = useInfoModal();
-  const { Modal: LoadGameInfoModal, ...loadGameInfoModal } = useInfoModal();
-  const { Modal: ViewHighScoresInfoModal, ...viewHighScoresInfoModal } = useInfoModal();
-  const { Modal: ViewCreditsInfoModal, ...viewCreditsInfoModal } = useInfoModal();
-  const { Modal: QuitInfoModal, ...quitInfoModal } = useInfoModal();
+  const { Modal: NewGameInfoModal, ...newGameInfoModal } = useModal();
+  const { Modal: LoadGameInfoModal, ...loadGameInfoModal } = useModal();
+  const { Modal: ViewHighScoresInfoModal, ...viewHighScoresInfoModal } = useModal();
+  const { Modal: ViewCreditsInfoModal, ...viewCreditsInfoModal } = useModal();
+  const { Modal: QuitInfoModal, ...quitInfoModal } = useModal();
 
   return (
     <Menu label="Main Menu" x={x} y={y}>

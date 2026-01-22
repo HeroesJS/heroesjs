@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, playLordAlamar, playLordIronfist, playLordSlayer, playQueenLamanda } from './assets';
 
@@ -20,11 +20,11 @@ export function CampaignMenu({
   x,
   y,
 }: CampaignMenuProps) {
-  const { Modal: PlayLordIronfistInfoModal, ...playLordIronfistInfoModal } = useInfoModal();
-  const { Modal: PlayLordSlayerInfoModal, ...playLordSlayerInfoModal } = useInfoModal();
-  const { Modal: PlayQueenLamandaInfoModal, ...playQueenLamandaInfoModal } = useInfoModal();
-  const { Modal: PlayLordAlamarInfoModal, ...playLordAlamarInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: PlayLordIronfistInfoModal, ...playLordIronfistInfoModal } = useModal();
+  const { Modal: PlayLordSlayerInfoModal, ...playLordSlayerInfoModal } = useModal();
+  const { Modal: PlayQueenLamandaInfoModal, ...playQueenLamandaInfoModal } = useModal();
+  const { Modal: PlayLordAlamarInfoModal, ...playLordAlamarInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Campaign Menu" x={x} y={y}>

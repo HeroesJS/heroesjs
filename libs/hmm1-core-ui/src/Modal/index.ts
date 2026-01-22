@@ -1,2 +1,2 @@
 export { Modal } from './Modal';
-export { useInfoModal } from './useInfoModal';
+export { useModal } from './useModal';

@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
 
@@ -9,10 +9,10 @@ interface PlayerCountMenuProps extends PositionProps {
 }
 
 export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCountMenuProps) {
-  const { Modal: TwoPlayersInfoModal, ...twoPlayersInfoModal } = useInfoModal();
-  const { Modal: ThreePlayersInfoModal, ...threePlayersInfoModal } = useInfoModal();
-  const { Modal: FourPlayersInfoModal, ...fourPlayersInfoModal } = useInfoModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
+  const { Modal: TwoPlayersInfoModal, ...twoPlayersInfoModal } = useModal();
+  const { Modal: ThreePlayersInfoModal, ...threePlayersInfoModal } = useModal();
+  const { Modal: FourPlayersInfoModal, ...fourPlayersInfoModal } = useModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
 
   return (
     <Menu label="Player Count Menu" x={x} y={y}>

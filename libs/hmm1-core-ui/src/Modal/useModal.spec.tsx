@@ -1,16 +1,16 @@
 import { act, renderHook } from '@testing-library/react';
 
-import { useInfoModal } from './useInfoModal';
+import { useModal } from './useModal';
 
-describe(useInfoModal, () => {
+describe(useModal, () => {
   it('should be closed by default', () => {
-    const { result } = renderHook(() => useInfoModal());
+    const { result } = renderHook(() => useModal());
 
     expect(result.current.isOpen).toBe(false);
   });
 
   it('should open', () => {
-    const { rerender, result } = renderHook(() => useInfoModal());
+    const { rerender, result } = renderHook(() => useModal());
 
     act(() => result.current.open());
 
@@ -20,7 +20,7 @@ describe(useInfoModal, () => {
   });
 
   it('should close', () => {
-    const { rerender, result } = renderHook(() => useInfoModal());
+    const { rerender, result } = renderHook(() => useModal());
 
     act(() => result.current.open());
 
