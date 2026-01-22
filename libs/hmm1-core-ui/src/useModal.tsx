@@ -1,6 +1,6 @@
 import type { ComponentProps, JSX, MouseEvent } from 'react';
 
-import { useToggle } from '../useToggle';
+import { useToggle } from './useToggle';
 import { Modal } from './Modal';
 
 type ModalProps = Partial<ComponentProps<typeof Modal>> & {
