@@ -10,15 +10,16 @@ import {
   OpponentSetting,
   OpponentSettings,
 } from '@heroesjs/hmm1-core';
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { CycleToggle, PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 
 import { opponentSetting } from './assets';
 
-interface OpponentSettingsSelectorProps extends PositionProps {
+interface OpponentSettingsSelectorProps {
   readonly value: OpponentSettings;
   readonly onChange?: (value: OpponentSettings) => void;
   readonly onOptionMouseDown?: (e: MouseEvent, setting: OpponentSetting) => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function OpponentSettingsSelector({ onChange, onOptionMouseDown, value, x, y }: OpponentSettingsSelectorProps) {

@@ -1,14 +1,15 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { noConfig, withConfig } from './assets';
 
-interface ModemGameMenuProps extends PositionProps {
+interface ModemGameMenuProps {
   readonly allowConfiguration?: boolean;
   readonly onCancelClick?: () => void;
   readonly onConfigClick?: () => void;
   readonly onGuestClick?: () => void;
   readonly onHostClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function ModemGameMenu({

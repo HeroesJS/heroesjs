@@ -7,7 +7,6 @@ export { CycleToggle } from './CycleToggle';
 export { Menu, MenuItem } from './Menu';
 export { Modal } from './Modal';
 export { PositionedComponent } from './PositionedComponent';
-export type { PositionProps } from './PositionedComponent';
 export { Screen, ScreenHeight, ScreenWidth } from './Screen';
 export { Scrollbar } from './Scrollbar';
 export { GlobalFontStyles, Text } from './Text';

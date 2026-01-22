@@ -1,14 +1,16 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
-interface WindowProps extends PositionProps {
+interface WindowProps {
   readonly background: string;
   readonly height: number;
   readonly label: string;
   readonly open: boolean;
   readonly width: number;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Window({ background, children, height, label, open, width, x, y }: PropsWithChildren<WindowProps>) {

@@ -2,7 +2,6 @@ import { useId, useState } from 'react';
 import styled from 'styled-components';
 
 import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '@heroesjs/hmm1-core';
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, PositionedComponent, Scrollbar, Text, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, inputBackground, okay, scenarioInfoBackground } from './assets';
@@ -18,7 +17,7 @@ export interface ScenarioDetail {
   readonly size: MapSize;
 }
 
-interface FileSelectorWindowProps extends PositionProps {
+interface FileSelectorWindowProps {
   readonly items?: readonly FileSelectorItem[];
   readonly onCancelClick?: () => void;
   readonly onItemSelect?: (value: string) => void;
@@ -26,6 +25,8 @@ interface FileSelectorWindowProps extends PositionProps {
   readonly scenarioDetail?: ScenarioDetail;
   readonly showScenarioDetail?: boolean;
   readonly value?: string;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function FileSelectorWindow({
@@ -117,8 +118,10 @@ const Input = styled(PositionedComponent)({
   width: 225,
 });
 
-interface ScenarioInfoProps extends PositionProps {
+interface ScenarioInfoProps {
   readonly detail?: ScenarioDetail;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 function ScenarioInfo({ detail, x, y }: ScenarioInfoProps) {

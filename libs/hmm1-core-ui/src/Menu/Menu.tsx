@@ -2,10 +2,12 @@ import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
 import { background } from './assets';
-import { PositionedComponent, PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
-interface MenuProps extends PositionProps {
+interface MenuProps {
   readonly label: string;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Menu({ label, children, x, y }: PropsWithChildren<MenuProps>) {

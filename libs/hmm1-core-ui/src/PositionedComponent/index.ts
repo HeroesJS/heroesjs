@@ -1,1 +1,1 @@
-export { PositionedComponent, type PositionProps } from './PositionedComponent';
+export { PositionedComponent } from './PositionedComponent';

@@ -1,14 +1,15 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, playLordAlamar, playLordIronfist, playLordSlayer, playQueenLamanda } from './assets';
 
-interface CampaignMenuProps extends PositionProps {
+interface CampaignMenuProps {
   readonly onCancelClick?: () => void;
   readonly onPlayLordAlamarClick?: () => void;
   readonly onPlayLordIronfistClick?: () => void;
   readonly onPlayLordSlayerClick?: () => void;
   readonly onPlayQueenLamandaClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function CampaignMenu({

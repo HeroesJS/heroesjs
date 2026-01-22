@@ -2,16 +2,18 @@ import { camelCase } from 'lodash';
 import { type ChangeEvent, type KeyboardEvent, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 
 const Caret = '@';
 
-interface TextInputProps extends PositionProps {
+interface TextInputProps {
   readonly autoFocus?: boolean;
   readonly className?: string;
   readonly label?: string;
   readonly onChange?: (value: string) => void;
   readonly value?: string;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function TextInput({ autoFocus, className, label, onChange, value = '', x, y }: TextInputProps) {

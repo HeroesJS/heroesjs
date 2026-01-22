@@ -2,16 +2,17 @@ import type { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import { gameDifficulties, GameDifficulty, gameDifficultyLabel } from '@heroesjs/hmm1-core';
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 
 import { gameDifficulty } from './assets';
 
-interface GameDifficultySelectorProps extends PositionProps {
+interface GameDifficultySelectorProps {
   readonly label: string;
   readonly onChange?: (value: GameDifficulty) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: GameDifficulty;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function GameDifficultySelector({ label, onChange, onMouseDown, value, x, y }: GameDifficultySelectorProps) {

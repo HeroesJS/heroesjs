@@ -1,14 +1,15 @@
-import type { PositionProps } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, directConnect, hotSeat, modem, network } from './assets';
 
-interface MultiPlayerGameTypeMenuProps extends PositionProps {
+interface MultiPlayerGameTypeMenuProps {
   readonly onCancelClick?: () => void;
   readonly onDirectConnectClick?: () => void;
   readonly onHotSeatClick?: () => void;
   readonly onModemClick?: () => void;
   readonly onNetworkClick?: () => void;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function MultiPlayerGameTypeMenu({
