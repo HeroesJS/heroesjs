@@ -40,7 +40,10 @@ export function App() {
     };
   }, []);
 
+  const navigateToMainScreen = () => navigate('/');
+
   const { Modal: WaitingForRingModal } = useInfoModal();
+
   const { Modal: WaitingForConnectionModal } = useInfoModal({
     children: (
       <>
@@ -50,7 +53,7 @@ export function App() {
         Press 'CANCEL' to abort.
       </>
     ),
-    onCancelClick: () => navigate('/'),
+    onCancelClick: navigateToMainScreen,
     size: 2,
     type: 'cancel',
   });
@@ -80,7 +83,7 @@ export function App() {
               <MainScreen label="New Game Screen">
                 <GameTypeMenu
                   onCampaignGameClick={() => navigate('new-game/campaign')}
-                  onCancelClick={() => navigate('/')}
+                  onCancelClick={navigateToMainScreen}
                   onMultiPlayerGameClick={() => navigate('new-game/multi-player')}
                   onStandardGameClick={() => navigate('new-game/standard')}
                   x={400}
@@ -93,7 +96,10 @@ export function App() {
           <Route
             element={
               <PlayerCountProtectedRoute navigateTo="/">
-                <NewStandardGameScreen onCancelClick={() => navigate('/')} onOkayClick={() => navigate('/adventure')} />
+                <NewStandardGameScreen
+                  onCancelClick={navigateToMainScreen}
+                  onOkayClick={() => navigate('/adventure')}
+                />
               </PlayerCountProtectedRoute>
             }
             path="standard/:playerCount?"
@@ -101,7 +107,7 @@ export function App() {
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">
-                <CampaignMenu x={400} y={35} onCancelClick={() => navigate('/')} />
+                <CampaignMenu x={400} y={35} onCancelClick={navigateToMainScreen} />
               </MainScreen>
             }
             path="campaign"
@@ -111,7 +117,7 @@ export function App() {
               element={
                 <MainScreen label="New Multi-Player Game Screen">
                   <MultiPlayerGameTypeMenu
-                    onCancelClick={() => navigate('/')}
+                    onCancelClick={navigateToMainScreen}
                     onDirectConnectClick={() => navigate('/new-game/multi-player/direct-connect')}
                     onHotSeatClick={() => navigate('/new-game/multi-player/hot-seat')}
                     onModemClick={() => navigate('/new-game/multi-player/modem')}
@@ -127,7 +133,7 @@ export function App() {
               element={
                 <MainScreen label="New Hot Seat Game Screen">
                   <PlayerCountMenu
-                    onCancelClick={() => navigate('/')}
+                    onCancelClick={navigateToMainScreen}
                     onValueClick={(count) => navigate(`/new-game/standard/${count}`)}
                     x={400}
                     y={35}
@@ -139,7 +145,7 @@ export function App() {
             <Route
               element={
                 <MainScreen label="New Network Game Screen">
-                  <NetworkGameMenu onCancelClick={() => navigate('/')} x={400} y={35} />
+                  <NetworkGameMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
                 </MainScreen>
               }
               path="network"
@@ -149,7 +155,7 @@ export function App() {
                 element={
                   <MainScreen label="New Modem Game Screen">
                     <ModemGameMenu
-                      onCancelClick={() => navigate('/')}
+                      onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
                       onHostClick={() => navigate('/new-game/multi-player/modem/host')}
                       x={400}
@@ -159,11 +165,11 @@ export function App() {
                 }
                 index
               />
-              <Route element={<HostModemGameScreen />} path="host" />
+              <Route element={<HostModemGameScreen onCancelClick={navigateToMainScreen} />} path="host" />
               <Route
                 element={
                   <MainScreen label="Join Modem Game Screen">
-                    <WaitingForRingModal open size={1} type="cancel" onCancelClick={() => navigate('/')}>
+                    <WaitingForRingModal open size={1} type="cancel" onCancelClick={navigateToMainScreen}>
                       Waiting for ring...
                     </WaitingForRingModal>
                   </MainScreen>
@@ -178,7 +184,7 @@ export function App() {
                     <ModemGameMenu
                       onGuestClick={() => navigate('/new-game/multi-player/direct-connect/join')}
                       onHostClick={() => navigate('/new-game/multi-player/direct-connect/host')}
-                      onCancelClick={() => navigate('/')}
+                      onCancelClick={navigateToMainScreen}
                       x={400}
                       y={35}
                     />
@@ -206,16 +212,18 @@ export function App() {
           </Route>
         </Route>
         <Route element={<AdventureScreen />} path="adventure" />
-        <Route element={<HighScoresScreen />} path="high-scores" />
-        <Route element={<CreditsScreen onClick={() => navigate('/')} />} path="credits" />
+        <Route element={<HighScoresScreen onExitClick={navigateToMainScreen} />} path="high-scores" />
+        <Route element={<CreditsScreen onClick={navigateToMainScreen} />} path="credits" />
       </Routes>
     </>
   );
 }
 
-function HostModemGameScreen() {
-  const navigate = useNavigate();
+interface HostModemGameScreenProps {
+  readonly onCancelClick?: () => void;
+}
 
+function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
@@ -225,7 +233,7 @@ function HostModemGameScreen() {
   return (
     <MainScreen label="Host Modem Game Screen">
       {dialing ? (
-        <DialingModal onCancelClick={() => navigate('/')} open size={1} type="cancel">
+        <DialingModal onCancelClick={onCancelClick} open size={1} type="cancel">
           Dialing... {telephoneNumber}
         </DialingModal>
       ) : (
@@ -253,9 +261,11 @@ function HostModemGameScreen() {
 
 let lastViewedHighScores = defaultHighScoresGameType;
 
-function HighScoresScreen() {
-  const navigate = useNavigate();
+interface HighScoresScreenProps {
+  readonly onExitClick?: () => void;
+}
 
+function HighScoresScreen({ onExitClick }: HighScoresScreenProps) {
   const [gameType, setGameType] = useState(lastViewedHighScores);
 
   useEffect(() => {
@@ -266,7 +276,7 @@ function HighScoresScreen() {
     <HighScoresScreenBase
       entries={defaultHighScores}
       gameType={gameType}
-      onExitClick={() => navigate('/')}
+      onExitClick={onExitClick}
       onGameTypeChange={setGameType}
     />
   );
