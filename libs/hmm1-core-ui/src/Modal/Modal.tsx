@@ -18,7 +18,7 @@ interface ModalProps {
   readonly onCancelClick?: () => void;
   readonly onConfirmClick?: () => void;
   readonly onInputValueChange?: (value: string) => void;
-  readonly open: boolean;
+  readonly open?: boolean;
   readonly showInput?: boolean;
   readonly size?: number;
   readonly type?: ModalType;

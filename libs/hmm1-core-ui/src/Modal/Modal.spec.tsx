@@ -5,16 +5,22 @@ import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 import { Modal } from './Modal';
 
 describe(Modal, () => {
-  it('should render', () => {
+  it('should not render by default', () => {
+    renderWithProviders(<Modal>CONTENT</Modal>);
+
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('should render when open', () => {
+    renderWithProviders(<Modal open>CONTENT</Modal>);
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
+
+  it('should render content as label', () => {
     renderWithProviders(<Modal open>CONTENT</Modal>);
 
     expect(screen.getByRole('dialog', { name: /content/i })).toBeInTheDocument();
-  });
-
-  it('should not render when not open', () => {
-    renderWithProviders(<Modal open={false}>CONTENT</Modal>);
-
-    expect(screen.queryByRole('dialog', { name: /content/i })).toBeNull();
   });
 
   describe('okay type', () => {

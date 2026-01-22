@@ -207,7 +207,7 @@ export function NewStandardGameWindow({
         y={412}
       />
       <CancelInfoModal>Return to the main menu.</CancelInfoModal>
-      <NoOpponentsErrorModal onConfirmClick={noOpponentsErrorModal.close} size={1} type="okay" y={61}>
+      <NoOpponentsErrorModal autoClose size={1} type="okay" y={61}>
         A game requires at least one opponent.
       </NoOpponentsErrorModal>
     </Window>
