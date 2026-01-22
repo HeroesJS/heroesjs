@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, directConnect, hotSeat, modem, network } from './assets';
 
@@ -20,33 +20,33 @@ export function MultiPlayerGameTypeMenu({
   x,
   y,
 }: MultiPlayerGameTypeMenuProps) {
-  const hotSeatInfoModal = useInfoModal();
-  const networkInfoModal = useInfoModal();
-  const modemInfoModal = useInfoModal();
-  const directConnectInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const { Modal: HotSeatInfoModal, ...hotSeatInfoModal } = useInfoModal();
+  const { Modal: NetworkInfoModal, ...networkInfoModal } = useInfoModal();
+  const { Modal: ModemInfoModal, ...modemInfoModal } = useInfoModal();
+  const { Modal: DirectConnectInfoModal, ...directConnectInfoModal } = useInfoModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
 
   return (
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={hotSeat} label="Hot Seat" onClick={onHotSeatClick} onMouseDown={hotSeatInfoModal.onMouseDown} />
-        <Modal open={hotSeatInfoModal.isOpen} size={1} x={177} y={29}>
+        <HotSeatInfoModal size={1}>
           Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when
           it is their turn.
-        </Modal>
+        </HotSeatInfoModal>
       </MenuItem>
       <MenuItem>
         <Button assets={network} label="Network" onClick={onNetworkClick} onMouseDown={networkInfoModal.onMouseDown} />
-        <Modal open={networkInfoModal.isOpen} size={1} x={177} y={29}>
+        <NetworkInfoModal size={1}>
           Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).
-        </Modal>
+        </NetworkInfoModal>
       </MenuItem>
       <MenuItem>
         <Button assets={modem} label="Modem" onClick={onModemClick} onMouseDown={modemInfoModal.onMouseDown} />
-        <Modal open={modemInfoModal.isOpen} size={1} x={177} y={29}>
+        <ModemInfoModal size={1}>
           Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.{' '}
           {/* TODO: ther? */}
-        </Modal>
+        </ModemInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -55,16 +55,14 @@ export function MultiPlayerGameTypeMenu({
           onClick={onDirectConnectClick}
           onMouseDown={directConnectInfoModal.onMouseDown}
         />
-        <Modal open={directConnectInfoModal.isOpen} size={1} x={177} y={29}>
+        <DirectConnectInfoModal size={1}>
           Play a direct connect game, where 2 players use ther own computers directly connected through their serial
           port by a null modem. {/* TODO: ther? */}
-        </Modal>
+        </DirectConnectInfoModal>
       </MenuItem>
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-          Cancel back to the main menu.
-        </Modal>
+        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

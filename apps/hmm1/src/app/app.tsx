@@ -1,9 +1,9 @@
-import { type ComponentProps, PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
-import { GlobalFontStyles, Modal } from '@heroesjs/hmm1-core-ui';
+import { GlobalFontStyles, useInfoModal } from '@heroesjs/hmm1-core-ui';
 
 import { AdventureScreen } from './AdventureScreen';
 import { CampaignMenu } from './CampaignMenu';
@@ -39,6 +39,21 @@ export function App() {
       document.removeEventListener('contextmenu', handleContextMenu);
     };
   }, []);
+
+  const { Modal: WaitingForRingModal } = useInfoModal();
+  const { Modal: WaitingForConnectionModal } = useInfoModal({
+    children: (
+      <>
+        Waiting for other computer to log in to direct connection.
+        <br />
+        <br />
+        Press 'CANCEL' to abort.
+      </>
+    ),
+    onCancelClick: () => navigate('/'),
+    size: 2,
+    type: 'cancel',
+  });
 
   return (
     <>
@@ -148,9 +163,9 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Join Modem Game Screen">
-                    <Modal open size={1} type="cancel" onCancelClick={() => navigate('/')} x={177} y={29}>
+                    <WaitingForRingModal open size={1} type="cancel" onCancelClick={() => navigate('/')}>
                       Waiting for ring...
-                    </Modal>
+                    </WaitingForRingModal>
                   </MainScreen>
                 }
                 path="join"
@@ -174,7 +189,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Host Direct Connect Game Screen">
-                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
+                    <WaitingForConnectionModal open />
                   </MainScreen>
                 }
                 path="host"
@@ -182,7 +197,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Join Direct Connect Game Screen">
-                    <WaitingForConnectionModal onCancelClick={() => navigate('/')} open x={177} y={29} />
+                    <WaitingForConnectionModal open />
                   </MainScreen>
                 }
                 path="join"
@@ -204,14 +219,17 @@ function HostModemGameScreen() {
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
+  const { Modal: EnterTelephoneNumberModal } = useInfoModal();
+  const { Modal: DialingModal } = useInfoModal();
+
   return (
     <MainScreen label="Host Modem Game Screen">
       {dialing ? (
-        <Modal onCancelClick={() => navigate('/')} open size={1} type="cancel" x={177} y={29}>
+        <DialingModal onCancelClick={() => navigate('/')} open size={1} type="cancel">
           Dialing... {telephoneNumber}
-        </Modal>
+        </DialingModal>
       ) : (
-        <Modal
+        <EnterTelephoneNumberModal
           inputLabel="Telephone Number"
           inputValue={telephoneNumber}
           onConfirmClick={() => setDialing(true)}
@@ -224,26 +242,12 @@ function HostModemGameScreen() {
           showInput
           size={2}
           type="okay"
-          x={177}
           y={21}
         >
           Please enter the telephone number.
-        </Modal>
+        </EnterTelephoneNumberModal>
       )}
     </MainScreen>
-  );
-}
-
-type WaitingForConnectionModalProps = Pick<ComponentProps<typeof Modal>, 'onCancelClick' | 'open' | 'x' | 'y'>;
-
-function WaitingForConnectionModal(props: WaitingForConnectionModalProps) {
-  return (
-    <Modal {...props} size={2} type="cancel">
-      Waiting for other computer to log in to direct connection.
-      <br />
-      <br />
-      Press 'CANCEL' to abort.
-    </Modal>
   );
 }
 

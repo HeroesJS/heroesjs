@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
 
 import { loadGame, newGame, quit, viewCredits, viewHighScores } from './assets';
 
@@ -20,19 +20,17 @@ export function MainMenu({
   x,
   y,
 }: MainMenuProps) {
-  const newGameInfoModal = useInfoModal();
-  const loadGameInfoModal = useInfoModal();
-  const viewHighScoresInfoModal = useInfoModal();
-  const viewCreditsInfoModal = useInfoModal();
-  const quitInfoModal = useInfoModal();
+  const { Modal: NewGameInfoModal, ...newGameInfoModal } = useInfoModal();
+  const { Modal: LoadGameInfoModal, ...loadGameInfoModal } = useInfoModal();
+  const { Modal: ViewHighScoresInfoModal, ...viewHighScoresInfoModal } = useInfoModal();
+  const { Modal: ViewCreditsInfoModal, ...viewCreditsInfoModal } = useInfoModal();
+  const { Modal: QuitInfoModal, ...quitInfoModal } = useInfoModal();
 
   return (
     <Menu label="Main Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={newGame} label="New Game" onClick={onNewGameClick} onMouseDown={newGameInfoModal.onMouseDown} />
-        <Modal open={newGameInfoModal.isOpen} x={177} y={29}>
-          Start a single or multi-player game.
-        </Modal>
+        <NewGameInfoModal>Start a single or multi-player game.</NewGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -41,9 +39,7 @@ export function MainMenu({
           onClick={onLoadGameClick}
           onMouseDown={loadGameInfoModal.onMouseDown}
         />
-        <Modal open={loadGameInfoModal.isOpen} x={177} y={29}>
-          Load a previously saved game.
-        </Modal>
+        <LoadGameInfoModal>Load a previously saved game.</LoadGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -52,9 +48,7 @@ export function MainMenu({
           onClick={onViewHighScoresClick}
           onMouseDown={viewHighScoresInfoModal.onMouseDown}
         />
-        <Modal open={viewHighScoresInfoModal.isOpen} x={177} y={29}>
-          View the high score screen.
-        </Modal>
+        <ViewHighScoresInfoModal>View the high score screen.</ViewHighScoresInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -63,15 +57,11 @@ export function MainMenu({
           onClick={onViewCreditsClick}
           onMouseDown={viewCreditsInfoModal.onMouseDown}
         />
-        <Modal open={viewCreditsInfoModal.isOpen} x={177} y={29}>
-          View the credits screen.
-        </Modal>
+        <ViewCreditsInfoModal>View the credits screen.</ViewCreditsInfoModal>
       </MenuItem>
       <MenuItem>
         <Button assets={quit} label="Quit" onClick={onQuitClick} onMouseDown={quitInfoModal.onMouseDown} />
-        <Modal open={quitInfoModal.isOpen} x={177} y={29}>
-          Quit Heroes of Might and Magic and return to the DOS prompt.
-        </Modal>
+        <QuitInfoModal>Quit Heroes of Might and Magic and return to the DOS prompt.</QuitInfoModal>
       </MenuItem>
     </Menu>
   );

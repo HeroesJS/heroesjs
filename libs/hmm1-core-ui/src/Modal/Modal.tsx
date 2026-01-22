@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 import { Backdrop } from '../Backdrop';
 import { Button } from '../Button';
-import { PositionedComponent, type PositionProps } from '../PositionedComponent';
+import { PositionedComponent } from '../PositionedComponent';
 import { Text } from '../Text';
 import { TextInput } from '../TextInput';
 import { body, cancel, footer, header, inputBackground, okay, okayCancel, yesNo } from './assets';
 
 type ModalType = 'okay' | 'cancel' | 'yesNo' | 'okayCancel';
 
-interface ModalProps extends PositionProps {
+interface ModalProps {
   readonly inputLabel?: string;
   readonly inputValue?: string;
   readonly onCancelClick?: () => void;
@@ -22,6 +22,8 @@ interface ModalProps extends PositionProps {
   readonly showInput?: boolean;
   readonly size?: number;
   readonly type?: ModalType;
+  readonly x?: number;
+  readonly y?: number;
 }
 
 export function Modal({

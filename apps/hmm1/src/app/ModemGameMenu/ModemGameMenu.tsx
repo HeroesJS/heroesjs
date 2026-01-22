@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
 
 import { noConfig, withConfig } from './assets';
 
@@ -26,17 +26,17 @@ export function ModemGameMenu({
     <Button assets={withConfig.config} label="Config Modem" onClick={onConfigClick} />
   );
 
-  const hostInfoModal = useInfoModal();
-  const guestInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const { Modal: HostInfoModal, ...hostInfoModal } = useInfoModal();
+  const { Modal: GuestInfoModal, ...guestInfoModal } = useInfoModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
 
   return (
     <Menu label="Modem Game Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={host} label="Host (Dials)" onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
-        <Modal open={hostInfoModal.isOpen} x={177} y={29}>
+        <HostInfoModal>
           The host sets up the game options, chooses the number to dial, and places the call.
-        </Modal>
+        </HostInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -45,17 +45,13 @@ export function ModemGameMenu({
           onClick={onGuestClick}
           onMouseDown={guestInfoModal.onMouseDown}
         />
-        <Modal open={guestInfoModal.isOpen} x={177} y={29}>
-          The guest waits for the host to call and set up the game.
-        </Modal>
+        <GuestInfoModal>The guest waits for the host to call and set up the game.</GuestInfoModal>
       </MenuItem>
       <MenuItem>{configButton}</MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-          Cancel back to the main menu.
-        </Modal>
+        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

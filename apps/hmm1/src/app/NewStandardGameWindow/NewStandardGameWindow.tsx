@@ -12,16 +12,7 @@ import {
   playerColors,
 } from '@heroesjs/hmm1-core';
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import {
-  Button,
-  Checkbox,
-  CycleToggle,
-  Modal,
-  PositionedComponent,
-  Text,
-  useInfoModal,
-  Window,
-} from '@heroesjs/hmm1-core-ui';
+import { Button, Checkbox, CycleToggle, PositionedComponent, Text, useInfoModal, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
@@ -60,18 +51,18 @@ export function NewStandardGameWindow({
   x,
   y,
 }: NewStandardGameWindowProps) {
-  const gameDifficultyInfoModal = useInfoModal();
-  const computerOpponentSettingInfoModal = useInfoModal();
-  const humanOpponentSettingInfoModal = useInfoModal();
-  const playerColorInfoModal = useInfoModal();
-  const kingOfTheHillInfoModal = useInfoModal();
-  const selectScenarioInfoModal = useInfoModal();
-  const difficultyRatingInfoModal = useInfoModal();
+  const { Modal: GameDifficultyInfoModal, ...gameDifficultyInfoModal } = useInfoModal();
+  const { Modal: ComputerOpponentSettingInfoModal, ...computerOpponentSettingInfoModal } = useInfoModal();
+  const { Modal: HumanOpponentSettingInfoModal, ...humanOpponentSettingInfoModal } = useInfoModal();
+  const { Modal: PlayerColorInfoModal, ...playerColorInfoModal } = useInfoModal();
+  const { Modal: KingOfTheHillInfoModal, ...kingOfTheHillInfoModal } = useInfoModal();
+  const { Modal: SelectScenarioInfoModal, ...selectScenarioInfoModal } = useInfoModal();
+  const { Modal: DifficultyRatingInfoModal, ...difficultyRatingInfoModal } = useInfoModal();
 
-  const okayInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const { Modal: OkayInfoModal, ...okayInfoModal } = useInfoModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
 
-  const noOpponentsErrorModal = useInfoModal();
+  const { Modal: NoOpponentsErrorModal, ...noOpponentsErrorModal } = useInfoModal();
 
   const handleOkayClick = () => {
     if (opponentSettings.every((opponent) => opponent === ComputerOpponentSetting.None)) {
@@ -104,10 +95,10 @@ export function NewStandardGameWindow({
         x={19}
         y={36}
       />
-      <Modal open={gameDifficultyInfoModal.isOpen} size={1} x={177} y={29}>
+      <GameDifficultyInfoModal size={1}>
         Change the starting difficulty at which you will play.&nbsp;&nbsp;Higher difficulty levels start you off with
         fewer resources.
-      </Modal>
+      </GameDifficultyInfoModal>
       <Text size="large" x={70} y={132}>
         Customize Opponents:
       </Text>
@@ -123,14 +114,14 @@ export function NewStandardGameWindow({
         x={55}
         y={149}
       />
-      <Modal open={computerOpponentSettingInfoModal.isOpen} size={1} x={177} y={29}>
+      <ComputerOpponentSettingInfoModal size={1}>
         Change the difficulty of this opponent.&nbsp;&nbsp;Smarter computer players are more aggressive and think longer
         for each turn.
-      </Modal>
-      <Modal open={humanOpponentSettingInfoModal.isOpen} size={1} x={177} y={29}>
+      </ComputerOpponentSettingInfoModal>
+      <HumanOpponentSettingInfoModal size={1}>
         Change the starting difficulty of another human player.&nbsp;&nbsp;Higher difficulty levels start you off with
         fewer resources.
-      </Modal>
+      </HumanOpponentSettingInfoModal>
       <Text hidden id="playerColorLabel" size="large" x={26} y={254}>
         Choose Color:
       </Text>
@@ -145,9 +136,7 @@ export function NewStandardGameWindow({
       >
         {(value) => <img alt={playerColorLabel[value]} src={playerColorAssets[value]} />}
       </CycleToggle>
-      <Modal open={playerColorInfoModal.isOpen} x={177} y={29}>
-        Change your banner color.
-      </Modal>
+      <PlayerColorInfoModal>Change your banner color.</PlayerColorInfoModal>
       <Text hidden id="kingOfTheHillLabel" size="large" x={169} y={254}>
         King of the Hill:
       </Text>
@@ -160,10 +149,10 @@ export function NewStandardGameWindow({
         x={210}
         y={272}
       />
-      <Modal open={kingOfTheHillInfoModal.isOpen} size={2} x={177} y={29}>
+      <KingOfTheHillInfoModal size={2}>
         Challenge all computer players as 'King of the Hill'.&nbsp; Computer players will be offended by your
         boastfulness, and lay off each other in an attempt to beat you to a pulp.
-      </Modal>
+      </KingOfTheHillInfoModal>
       <Text size="large" x={91} y={338}>
         Choose Scenario:
       </Text>
@@ -189,19 +178,17 @@ export function NewStandardGameWindow({
         x={273}
         y={354}
       />
-      <Modal open={selectScenarioInfoModal.isOpen} x={177} y={29}>
-        Select which scenario to play.
-      </Modal>
+      <SelectScenarioInfoModal>Select which scenario to play.</SelectScenarioInfoModal>
       <Text size="large" onMouseDown={difficultyRatingInfoModal.onMouseDown} x={78} y={388}>
         <span aria-hidden id="difficultyRatingLabel">
           Difficulty Rating:
         </span>{' '}
         <span aria-labelledby="difficultyRatingLabel">{difficultyRating}%</span>
       </Text>
-      <Modal open={difficultyRatingInfoModal.isOpen} size={1} x={177} y={29}>
+      <DifficultyRatingInfoModal size={1}>
         The difficulty rating reflects a combination of various settings for your game.&nbsp;&nbsp;This number will be
         applied to your final score.
-      </Modal>
+      </DifficultyRatingInfoModal>
       <Button
         assets={okay}
         label="Okay"
@@ -210,9 +197,7 @@ export function NewStandardGameWindow({
         x={24}
         y={412}
       />
-      <Modal open={okayInfoModal.isOpen} x={177} y={29}>
-        Accept these settings and start a new game.
-      </Modal>
+      <OkayInfoModal>Accept these settings and start a new game.</OkayInfoModal>
       <Button
         assets={cancel}
         label="Cancel"
@@ -221,19 +206,10 @@ export function NewStandardGameWindow({
         x={201}
         y={412}
       />
-      <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-        Return to the main menu.
-      </Modal>
-      <Modal
-        onConfirmClick={noOpponentsErrorModal.close}
-        open={noOpponentsErrorModal.isOpen}
-        size={1}
-        type="okay"
-        x={177}
-        y={61}
-      >
+      <CancelInfoModal>Return to the main menu.</CancelInfoModal>
+      <NoOpponentsErrorModal onConfirmClick={noOpponentsErrorModal.close} size={1} type="okay" y={61}>
         A game requires at least one opponent.
-      </Modal>
+      </NoOpponentsErrorModal>
     </Window>
   );
 }

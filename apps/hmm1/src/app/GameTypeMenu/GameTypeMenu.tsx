@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useInfoModal } from '@heroesjs/hmm1-core-ui';
 
 import { campaignGame, cancel, multiPlayerGame, standardGame } from './assets';
 
@@ -18,10 +18,10 @@ export function GameTypeMenu({
   x,
   y,
 }: GameTypeMenuProps) {
-  const standardGameInfoModal = useInfoModal();
-  const campaignGameInfoModal = useInfoModal();
-  const multiPlayerGameInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const { Modal: StandardGameInfoModal, ...standardGameInfoModal } = useInfoModal();
+  const { Modal: CampaignGameInfoModal, ...campaignGameInfoModal } = useInfoModal();
+  const { Modal: MultiPlayerGameInfoModal, ...multiPlayerGameInfoModal } = useInfoModal();
+  const { Modal: CancelInfoModal, ...cancelInfoModal } = useInfoModal();
 
   return (
     <Menu label="Game Type Menu" x={x} y={y}>
@@ -32,9 +32,7 @@ export function GameTypeMenu({
           onClick={onStandardGameClick}
           onMouseDown={standardGameInfoModal.onMouseDown}
         />
-        <Modal open={standardGameInfoModal.isOpen} x={177} y={29}>
-          A single player game playing out a single map.
-        </Modal>
+        <StandardGameInfoModal>A single player game playing out a single map.</StandardGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -43,9 +41,7 @@ export function GameTypeMenu({
           onClick={onCampaignGameClick}
           onMouseDown={campaignGameInfoModal.onMouseDown}
         />
-        <Modal open={campaignGameInfoModal.isOpen} x={177} y={29}>
-          A single player game playing through a series of maps.
-        </Modal>
+        <CampaignGameInfoModal>A single player game playing through a series of maps.</CampaignGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -54,16 +50,14 @@ export function GameTypeMenu({
           onClick={onMultiPlayerGameClick}
           onMouseDown={multiPlayerGameInfoModal.onMouseDown}
         />
-        <Modal open={multiPlayerGameInfoModal.isOpen} size={1} x={177} y={29}>
+        <MultiPlayerGameInfoModal size={1}>
           A multi-player game, with several human players competing against each other on a single map.
-        </Modal>
+        </MultiPlayerGameInfoModal>
       </MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-          Cancel back to the main menu.
-        </Modal>
+        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
       </MenuItem>
     </Menu>
   );
