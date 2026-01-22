@@ -20,11 +20,11 @@ export function CampaignMenu({
   x,
   y,
 }: CampaignMenuProps) {
-  const { Modal: PlayLordIronfistInfoModal, ...playLordIronfistInfoModal } = useModal();
-  const { Modal: PlayLordSlayerInfoModal, ...playLordSlayerInfoModal } = useModal();
-  const { Modal: PlayQueenLamandaInfoModal, ...playQueenLamandaInfoModal } = useModal();
-  const { Modal: PlayLordAlamarInfoModal, ...playLordAlamarInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [PlayLordIronfistInfoModal, playLordIronfistInfoModal] = useModal();
+  const [PlayLordSlayerInfoModal, playLordSlayerInfoModal] = useModal();
+  const [PlayQueenLamandaInfoModal, playQueenLamandaInfoModal] = useModal();
+  const [PlayLordAlamarInfoModal, playLordAlamarInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Campaign Menu" x={x} y={y}>

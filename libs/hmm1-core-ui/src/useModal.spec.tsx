@@ -6,30 +6,30 @@ describe(useModal, () => {
   it('should be closed by default', () => {
     const { result } = renderHook(() => useModal());
 
-    expect(result.current.isOpen).toBe(false);
+    expect(result.current[1].isOpen).toBe(false);
   });
 
   it('should open', () => {
     const { rerender, result } = renderHook(() => useModal());
 
-    act(() => result.current.open());
+    act(() => result.current[1].open());
 
     rerender();
 
-    expect(result.current.isOpen).toBe(true);
+    expect(result.current[1].isOpen).toBe(true);
   });
 
   it('should close', () => {
     const { rerender, result } = renderHook(() => useModal());
 
-    act(() => result.current.open());
+    act(() => result.current[1].open());
 
     rerender();
 
-    act(() => result.current.close());
+    act(() => result.current[1].close());
 
     rerender();
 
-    expect(result.current.isOpen).toBe(false);
+    expect(result.current[1].isOpen).toBe(false);
   });
 });

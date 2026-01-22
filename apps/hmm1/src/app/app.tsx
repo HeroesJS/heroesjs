@@ -42,9 +42,9 @@ export function App() {
 
   const navigateToMainScreen = () => navigate('/');
 
-  const { Modal: WaitingForRingModal } = useModal();
+  const [WaitingForRingModal] = useModal();
 
-  const { Modal: WaitingForConnectionModal } = useModal({
+  const [WaitingForConnectionModal] = useModal({
     children: (
       <>
         Waiting for other computer to log in to direct connection.
@@ -227,8 +227,8 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
-  const { Modal: EnterTelephoneNumberModal } = useModal();
-  const { Modal: DialingModal } = useModal();
+  const [EnterTelephoneNumberModal] = useModal();
+  const [DialingModal] = useModal();
 
   return (
     <MainScreen label="Host Modem Game Screen">

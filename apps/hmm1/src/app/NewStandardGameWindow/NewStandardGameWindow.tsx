@@ -51,18 +51,18 @@ export function NewStandardGameWindow({
   x,
   y,
 }: NewStandardGameWindowProps) {
-  const { Modal: GameDifficultyInfoModal, ...gameDifficultyInfoModal } = useModal();
-  const { Modal: ComputerOpponentSettingInfoModal, ...computerOpponentSettingInfoModal } = useModal();
-  const { Modal: HumanOpponentSettingInfoModal, ...humanOpponentSettingInfoModal } = useModal();
-  const { Modal: PlayerColorInfoModal, ...playerColorInfoModal } = useModal();
-  const { Modal: KingOfTheHillInfoModal, ...kingOfTheHillInfoModal } = useModal();
-  const { Modal: SelectScenarioInfoModal, ...selectScenarioInfoModal } = useModal();
-  const { Modal: DifficultyRatingInfoModal, ...difficultyRatingInfoModal } = useModal();
+  const [GameDifficultyInfoModal, gameDifficultyInfoModal] = useModal();
+  const [ComputerOpponentSettingInfoModal, computerOpponentSettingInfoModal] = useModal();
+  const [HumanOpponentSettingInfoModal, humanOpponentSettingInfoModal] = useModal();
+  const [PlayerColorInfoModal, playerColorInfoModal] = useModal();
+  const [KingOfTheHillInfoModal, kingOfTheHillInfoModal] = useModal();
+  const [SelectScenarioInfoModal, selectScenarioInfoModal] = useModal();
+  const [DifficultyRatingInfoModal, difficultyRatingInfoModal] = useModal();
 
-  const { Modal: OkayInfoModal, ...okayInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [OkayInfoModal, okayInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
-  const { Modal: NoOpponentsErrorModal, ...noOpponentsErrorModal } = useModal();
+  const [NoOpponentsErrorModal, noOpponentsErrorModal] = useModal();
 
   const handleOkayClick = () => {
     if (opponentSettings.every((opponent) => opponent === ComputerOpponentSetting.None)) {

@@ -20,11 +20,11 @@ export function MainMenu({
   x,
   y,
 }: MainMenuProps) {
-  const { Modal: NewGameInfoModal, ...newGameInfoModal } = useModal();
-  const { Modal: LoadGameInfoModal, ...loadGameInfoModal } = useModal();
-  const { Modal: ViewHighScoresInfoModal, ...viewHighScoresInfoModal } = useModal();
-  const { Modal: ViewCreditsInfoModal, ...viewCreditsInfoModal } = useModal();
-  const { Modal: QuitInfoModal, ...quitInfoModal } = useModal();
+  const [NewGameInfoModal, newGameInfoModal] = useModal();
+  const [LoadGameInfoModal, loadGameInfoModal] = useModal();
+  const [ViewHighScoresInfoModal, viewHighScoresInfoModal] = useModal();
+  const [ViewCreditsInfoModal, viewCreditsInfoModal] = useModal();
+  const [QuitInfoModal, quitInfoModal] = useModal();
 
   return (
     <Menu label="Main Menu" x={x} y={y}>

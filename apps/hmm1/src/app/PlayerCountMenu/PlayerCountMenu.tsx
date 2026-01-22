@@ -9,10 +9,10 @@ interface PlayerCountMenuProps extends PositionProps {
 }
 
 export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCountMenuProps) {
-  const { Modal: TwoPlayersInfoModal, ...twoPlayersInfoModal } = useModal();
-  const { Modal: ThreePlayersInfoModal, ...threePlayersInfoModal } = useModal();
-  const { Modal: FourPlayersInfoModal, ...fourPlayersInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [TwoPlayersInfoModal, twoPlayersInfoModal] = useModal();
+  const [ThreePlayersInfoModal, threePlayersInfoModal] = useModal();
+  const [FourPlayersInfoModal, fourPlayersInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Player Count Menu" x={x} y={y}>

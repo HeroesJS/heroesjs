@@ -18,10 +18,10 @@ export function GameTypeMenu({
   x,
   y,
 }: GameTypeMenuProps) {
-  const { Modal: StandardGameInfoModal, ...standardGameInfoModal } = useModal();
-  const { Modal: CampaignGameInfoModal, ...campaignGameInfoModal } = useModal();
-  const { Modal: MultiPlayerGameInfoModal, ...multiPlayerGameInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [StandardGameInfoModal, standardGameInfoModal] = useModal();
+  const [CampaignGameInfoModal, campaignGameInfoModal] = useModal();
+  const [MultiPlayerGameInfoModal, multiPlayerGameInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Game Type Menu" x={x} y={y}>

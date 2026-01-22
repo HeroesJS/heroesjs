@@ -26,9 +26,9 @@ export function ModemGameMenu({
     <Button assets={withConfig.config} label="Config Modem" onClick={onConfigClick} />
   );
 
-  const { Modal: HostInfoModal, ...hostInfoModal } = useModal();
-  const { Modal: GuestInfoModal, ...guestInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [HostInfoModal, hostInfoModal] = useModal();
+  const [GuestInfoModal, guestInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Modem Game Menu" x={x} y={y}>

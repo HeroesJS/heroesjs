@@ -10,9 +10,9 @@ interface NetworkGameMenuProps extends PositionProps {
 }
 
 export function NetworkGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y }: NetworkGameMenuProps) {
-  const { Modal: HostInfoModal, ...hostInfoModal } = useModal();
-  const { Modal: GuestInfoModal, ...guestInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [HostInfoModal, hostInfoModal] = useModal();
+  const [GuestInfoModal, guestInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Network Game Menu" x={x} y={y}>

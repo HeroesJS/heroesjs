@@ -1,7 +1,7 @@
-import type { ComponentProps, JSX, MouseEvent } from 'react';
+import type { ComponentProps, FunctionComponent, MouseEvent } from 'react';
 
-import { useToggle } from './useToggle';
 import { Modal } from './Modal';
+import { useToggle } from './useToggle';
 
 type ModalProps = Partial<ComponentProps<typeof Modal>> & {
   readonly autoClose?: boolean;
@@ -10,13 +10,14 @@ type ModalProps = Partial<ComponentProps<typeof Modal>> & {
 
 type UseModalOptions = ModalProps;
 
-interface UseModalResult {
+interface ModalApi {
   readonly close: () => void;
   readonly isOpen: boolean;
-  readonly Modal: (props: ModalProps) => JSX.Element;
   readonly onMouseDown: (e: MouseEvent) => void;
   readonly open: () => void;
 }
+
+type UseModalResult = [FunctionComponent<ModalProps>, ModalApi];
 
 export function useModal(options: UseModalOptions = {}): UseModalResult {
   const [isOpen, open, close] = useToggle();
@@ -37,13 +38,15 @@ export function useModal(options: UseModalOptions = {}): UseModalResult {
     }
   };
 
-  return {
-    close,
-    Modal: (props) => <ModalWrapper onClose={close} open={isOpen} x={177} y={29} {...options} {...props} />,
-    isOpen,
-    onMouseDown: handleMouseDown,
-    open,
-  };
+  return [
+    (props) => <ModalWrapper onClose={close} open={isOpen} x={177} y={29} {...options} {...props} />,
+    {
+      close,
+      isOpen,
+      onMouseDown: handleMouseDown,
+      open,
+    },
+  ];
 }
 
 function ModalWrapper(props: ModalProps) {

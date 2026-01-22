@@ -20,11 +20,11 @@ export function MultiPlayerGameTypeMenu({
   x,
   y,
 }: MultiPlayerGameTypeMenuProps) {
-  const { Modal: HotSeatInfoModal, ...hotSeatInfoModal } = useModal();
-  const { Modal: NetworkInfoModal, ...networkInfoModal } = useModal();
-  const { Modal: ModemInfoModal, ...modemInfoModal } = useModal();
-  const { Modal: DirectConnectInfoModal, ...directConnectInfoModal } = useModal();
-  const { Modal: CancelInfoModal, ...cancelInfoModal } = useModal();
+  const [HotSeatInfoModal, hotSeatInfoModal] = useModal();
+  const [NetworkInfoModal, networkInfoModal] = useModal();
+  const [ModemInfoModal, modemInfoModal] = useModal();
+  const [DirectConnectInfoModal, directConnectInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Multi-Player Game Type Menu" x={x} y={y}>
