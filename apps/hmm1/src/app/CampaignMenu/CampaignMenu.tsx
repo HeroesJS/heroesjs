@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, playLordAlamar, playLordIronfist, playLordSlayer, playQueenLamanda } from './assets';
 
@@ -20,11 +20,11 @@ export function CampaignMenu({
   x,
   y,
 }: CampaignMenuProps) {
-  const playLordIronfistInfoModal = useInfoModal();
-  const playLordSlayerInfoModal = useInfoModal();
-  const playQueenLamandaInfoModal = useInfoModal();
-  const playLordAlamarInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const [PlayLordIronfistInfoModal, playLordIronfistInfoModal] = useModal();
+  const [PlayLordSlayerInfoModal, playLordSlayerInfoModal] = useModal();
+  const [PlayQueenLamandaInfoModal, playQueenLamandaInfoModal] = useModal();
+  const [PlayLordAlamarInfoModal, playLordAlamarInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Campaign Menu" x={x} y={y}>
@@ -35,9 +35,7 @@ export function CampaignMenu({
           onClick={onPlayLordIronfistClick}
           onMouseDown={playLordIronfistInfoModal.onMouseDown}
         />
-        <Modal open={playLordIronfistInfoModal.isOpen} x={177} y={29}>
-          Play the role of Lord Ironfist.
-        </Modal>
+        <PlayLordIronfistInfoModal>Play the role of Lord Ironfist.</PlayLordIronfistInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -46,9 +44,7 @@ export function CampaignMenu({
           onClick={onPlayLordSlayerClick}
           onMouseDown={playLordSlayerInfoModal.onMouseDown}
         />
-        <Modal open={playLordSlayerInfoModal.isOpen} x={177} y={29}>
-          Play the role of Lord Slayer.
-        </Modal>
+        <PlayLordSlayerInfoModal>Play the role of Lord Slayer.</PlayLordSlayerInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -57,9 +53,7 @@ export function CampaignMenu({
           onClick={onPlayQueenLamandaClick}
           onMouseDown={playQueenLamandaInfoModal.onMouseDown}
         />
-        <Modal open={playQueenLamandaInfoModal.isOpen} x={177} y={29}>
-          Play the role of Queen Lamanda.
-        </Modal>
+        <PlayQueenLamandaInfoModal>Play the role of Queen Lamanda.</PlayQueenLamandaInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -68,15 +62,11 @@ export function CampaignMenu({
           onClick={onPlayLordAlamarClick}
           onMouseDown={playLordAlamarInfoModal.onMouseDown}
         />
-        <Modal open={playLordAlamarInfoModal.isOpen} x={177} y={29}>
-          Play the role of Lord Alamar.
-        </Modal>
+        <PlayLordAlamarInfoModal>Play the role of Lord Alamar.</PlayLordAlamarInfoModal>
       </MenuItem>
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-          Cancel back to the main menu.
-        </Modal>
+        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

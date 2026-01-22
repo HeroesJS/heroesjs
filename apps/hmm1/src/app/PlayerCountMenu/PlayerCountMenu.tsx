@@ -1,5 +1,5 @@
 import type { PositionProps } from '@heroesjs/hmm1-core-ui';
-import { Button, Menu, MenuItem, Modal, useInfoModal } from '@heroesjs/hmm1-core-ui';
+import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
 
@@ -9,10 +9,10 @@ interface PlayerCountMenuProps extends PositionProps {
 }
 
 export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCountMenuProps) {
-  const twoPlayersInfoModal = useInfoModal();
-  const threePlayersInfoModal = useInfoModal();
-  const fourPlayersInfoModal = useInfoModal();
-  const cancelInfoModal = useInfoModal();
+  const [TwoPlayersInfoModal, twoPlayersInfoModal] = useModal();
+  const [ThreePlayersInfoModal, threePlayersInfoModal] = useModal();
+  const [FourPlayersInfoModal, fourPlayersInfoModal] = useModal();
+  const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
     <Menu label="Player Count Menu" x={x} y={y}>
@@ -23,9 +23,9 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(2)}
           onMouseDown={twoPlayersInfoModal.onMouseDown}
         />
-        <Modal open={twoPlayersInfoModal.isOpen} x={177} y={29}>
+        <TwoPlayersInfoModal>
           Play with 2 human players, and optionally, up to 2 additional computer players.
-        </Modal>
+        </TwoPlayersInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -34,9 +34,7 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(3)}
           onMouseDown={threePlayersInfoModal.onMouseDown}
         />
-        <Modal open={threePlayersInfoModal.isOpen} x={177} y={29}>
-          Play with 3 human players, and optionally 1 computer player.
-        </Modal>
+        <ThreePlayersInfoModal>Play with 3 human players, and optionally 1 computer player.</ThreePlayersInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
@@ -45,16 +43,12 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           onClick={() => onValueClick?.(4)}
           onMouseDown={fourPlayersInfoModal.onMouseDown}
         />
-        <Modal open={fourPlayersInfoModal.isOpen} x={177} y={29}>
-          Play with 4 human players.
-        </Modal>
+        <FourPlayersInfoModal>Play with 4 human players.</FourPlayersInfoModal>
       </MenuItem>
       <MenuItem />
       <MenuItem>
         <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <Modal open={cancelInfoModal.isOpen} x={177} y={29}>
-          Cancel back to the main menu.
-        </Modal>
+        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
       </MenuItem>
     </Menu>
   );
