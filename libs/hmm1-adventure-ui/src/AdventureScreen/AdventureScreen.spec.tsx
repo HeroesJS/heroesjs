@@ -8,6 +8,12 @@ describe(AdventureScreen, () => {
   it('should render', () => {
     renderWithProviders(<AdventureScreen />);
 
-    expect(screen.getByRole('main', { name: /adventure screen/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^adventure screen$/i })).toBeInTheDocument();
+  });
+
+  it('should render children', () => {
+    renderWithProviders(<AdventureScreen>CHILDREN</AdventureScreen>);
+
+    expect(screen.getByText(/^children$/i)).toBeInTheDocument();
   });
 });

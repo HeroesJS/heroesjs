@@ -1,12 +1,13 @@
+import type { PropsWithChildren } from 'react';
+
 import { Screen } from '@heroesjs/hmm1-core-ui';
 
-import { AdventureButtons } from '../AdventureButtons';
 import { background } from './assets';
 
-export function AdventureScreen() {
+export function AdventureScreen({ children }: PropsWithChildren) {
   return (
     <Screen background={background} label="Adventure Screen">
-      <AdventureButtons x={480} y={320} />
+      {children}
     </Screen>
   );
 }
