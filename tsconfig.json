@@ -17,6 +17,9 @@
     },
     {
       "path": "./libs/hmm1-test-utils"
+    },
+    {
+      "path": "./libs/hmm1-adventure-ui"
     }
   ],
   "ts-node": {

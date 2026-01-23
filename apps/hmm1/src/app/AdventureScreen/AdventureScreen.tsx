@@ -1,11 +1,8 @@
-import { Screen } from '@heroesjs/hmm1-core-ui';
-
-import { AdventureButtons } from '../AdventureButtons';
-import { background } from './assets';
+import { AdventureButtons, AdventureScreen as Screen } from '@heroesjs/hmm1-adventure-ui';
 
 export function AdventureScreen() {
   return (
-    <Screen background={background} label="Adventure Screen">
+    <Screen>
       <AdventureButtons x={480} y={320} />
     </Screen>
   );
