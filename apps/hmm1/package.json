@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@heroesjs/hmm1-adventure-ui": "*",
     "@heroesjs/hmm1-core": "*",
     "@heroesjs/hmm1-core-ui": "*",
     "lodash": "4.17.21",

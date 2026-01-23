@@ -20,5 +20,10 @@
   ],
   "nx": {
     "name": "hmm1-adventure-ui"
+  },
+  "dependencies": {
+    "@heroesjs/hmm1-core-ui": "*",
+    "react": "^19.0.0",
+    "styled-components": "5.3.6"
   }
 }

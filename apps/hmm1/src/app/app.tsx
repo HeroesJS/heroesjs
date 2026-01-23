@@ -2,10 +2,10 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
+import { AdventureScreen } from '@heroesjs/hmm1-adventure-ui';
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
 import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
 
-import { AdventureScreen } from './AdventureScreen';
 import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
 import { GameTypeMenu } from './GameTypeMenu';
