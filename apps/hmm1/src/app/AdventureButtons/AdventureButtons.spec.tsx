@@ -18,6 +18,14 @@ describe(AdventureButtons, () => {
       expect(screen.getByRole('button', { name: /^next hero$/i })).toBeDisabled();
     });
 
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^next hero$/i }));
+
+      expect(screen.getByRole('dialog', { name: /^next hero select the next hero\.$/i })).toBeInTheDocument();
+    });
+
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
@@ -42,6 +50,18 @@ describe(AdventureButtons, () => {
       expect(screen.getByRole('button', { name: /^move$/i })).toBeDisabled();
     });
 
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^move$/i }));
+
+      expect(
+        screen.getByRole('dialog', {
+          name: /^continue movement continue the hero's movement along his current path\.$/i,
+        })
+      ).toBeInTheDocument();
+    });
+
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
@@ -58,6 +78,16 @@ describe(AdventureButtons, () => {
       renderWithProviders(<AdventureButtons />);
 
       expect(screen.getByRole('button', { name: /^kingdom overview$/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^kingdom overview$/i }));
+
+      expect(
+        screen.getByRole('dialog', { name: /^kingdom summary view a summary of your kingdom\.$/i })
+      ).toBeInTheDocument();
     });
 
     it('should call handler when clicked', async () => {
@@ -78,6 +108,16 @@ describe(AdventureButtons, () => {
       expect(screen.getByRole('button', { name: /^end turn$/i })).toBeInTheDocument();
     });
 
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^end turn$/i }));
+
+      expect(
+        screen.getByRole('dialog', { name: /^end turn end your turn and let the computer take its turn\.$/i })
+      ).toBeInTheDocument();
+    });
+
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
@@ -96,6 +136,16 @@ describe(AdventureButtons, () => {
       expect(screen.getByRole('button', { name: /^adventure options$/i })).toBeInTheDocument();
     });
 
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^adventure options$/i }));
+
+      expect(
+        screen.getByRole('dialog', { name: /^adventure options bring up the adventure options menu\.$/i })
+      ).toBeInTheDocument();
+    });
+
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
@@ -112,6 +162,16 @@ describe(AdventureButtons, () => {
       renderWithProviders(<AdventureButtons />);
 
       expect(screen.getByRole('button', { name: /^game options$/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureButtons />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^game options$/i }));
+
+      expect(
+        screen.getByRole('dialog', { name: /^game options bring up the game options menu\.$/i })
+      ).toBeInTheDocument();
     });
 
     it('should call handler when clicked', async () => {

@@ -6,7 +6,7 @@ import { background } from './assets';
 export function AdventureScreen() {
   return (
     <Screen background={background} label="Adventure Screen">
-      <AdventureButtons moveDisabled nextHeroDisabled x={480} y={320} />
+      <AdventureButtons x={480} y={320} />
     </Screen>
   );
 }
