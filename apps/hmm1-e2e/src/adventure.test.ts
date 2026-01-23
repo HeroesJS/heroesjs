@@ -18,3 +18,11 @@ test('displays adventure buttons', async ({ adventureScreen }) => {
   await expect(adventureScreen.adventureOptionsButton).toBeVisible();
   await expect(adventureScreen.gameOptionsButton).toBeVisible();
 });
+
+test('next hero button is disabled when no heroes available', async ({ adventureScreen }) => {
+  await expect(adventureScreen.nextHeroButton).toBeDisabled();
+});
+
+test('move button is disabled when no movement path is selected', async ({ adventureScreen }) => {
+  await expect(adventureScreen.moveButton).toBeDisabled();
+});

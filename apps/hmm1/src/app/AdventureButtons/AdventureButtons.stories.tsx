@@ -11,3 +11,15 @@ export default meta;
 type Story = StoryObj<typeof AdventureButtons>;
 
 export const Primary: Story = {};
+
+export const NextHeroDisabled: Story = {
+  args: {
+    nextHeroDisabled: true,
+  },
+};
+
+export const MoveDisabled: Story = {
+  args: {
+    moveDisabled: true,
+  },
+};

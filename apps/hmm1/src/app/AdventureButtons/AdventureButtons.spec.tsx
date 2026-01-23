@@ -12,6 +12,12 @@ describe(AdventureButtons, () => {
       expect(screen.getByRole('button', { name: /^next hero$/i })).toBeInTheDocument();
     });
 
+    it('should be disabled', () => {
+      renderWithProviders(<AdventureButtons nextHeroDisabled />);
+
+      expect(screen.getByRole('button', { name: /^next hero$/i })).toBeDisabled();
+    });
+
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
@@ -28,6 +34,12 @@ describe(AdventureButtons, () => {
       renderWithProviders(<AdventureButtons />);
 
       expect(screen.getByRole('button', { name: /^move$/i })).toBeInTheDocument();
+    });
+
+    it('should be disabled', () => {
+      renderWithProviders(<AdventureButtons moveDisabled />);
+
+      expect(screen.getByRole('button', { name: /^move$/i })).toBeDisabled();
     });
 
     it('should call handler when clicked', async () => {

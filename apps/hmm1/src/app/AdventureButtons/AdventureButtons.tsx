@@ -5,6 +5,8 @@ import { Button, PositionedComponent } from '@heroesjs/hmm1-core-ui';
 import { adventureOptions, endTurn, gameOptions, kingdomOverview, move, nextHero } from './assets';
 
 interface AdventureButtonsProps {
+  readonly moveDisabled?: boolean;
+  readonly nextHeroDisabled?: boolean;
   readonly onAdventureOptionsClick?: () => void;
   readonly onEndTurnClick?: () => void;
   readonly onGameOptionsClick?: () => void;
@@ -16,6 +18,8 @@ interface AdventureButtonsProps {
 }
 
 export function AdventureButtons({
+  moveDisabled,
+  nextHeroDisabled,
   onAdventureOptionsClick,
   onEndTurnClick,
   onGameOptionsClick,
@@ -27,8 +31,8 @@ export function AdventureButtons({
 }: AdventureButtonsProps) {
   return (
     <Root x={x} y={y}>
-      <Button assets={nextHero} label="Next Hero" onClick={onNextHeroClick} />
-      <Button assets={move} label="Move" onClick={onMoveClick} />
+      <Button assets={nextHero} disabled={nextHeroDisabled} label="Next Hero" onClick={onNextHeroClick} />
+      <Button assets={move} disabled={moveDisabled} label="Move" onClick={onMoveClick} />
       <Button assets={kingdomOverview} label="Kingdom Overview" onClick={onKingdomOverview} />
       <Button assets={endTurn} label="End Turn" onClick={onEndTurnClick} />
       <Button assets={adventureOptions} label="Adventure Options" onClick={onAdventureOptionsClick} />
