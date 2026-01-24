@@ -76,11 +76,23 @@ test('displays game options button info', async ({ adventureScreen, mouseRightDo
 });
 
 test.describe('game options', () => {
-  test('displays game options window when game options button is clicked', async ({ adventureScreen, page }) => {
+  test.beforeEach(async ({ adventureScreen }) => {
     await adventureScreen.gameOptionsButton.click();
+  });
 
-    await expect(adventureScreen.gameOptionsWindow.locator).toBeVisible();
+  test('displays game options window when game options button is clicked', async ({ adventureScreen, page }) => {
+    const { gameOptionsWindow } = adventureScreen;
 
-    await expect(page).toHaveScreenshot('game-options-window.png', { maxDiffPixelRatio: 0.14 });
+    await expect(gameOptionsWindow.locator).toBeVisible();
+
+    await expect(gameOptionsWindow.newGameButton).toBeVisible();
+    await expect(gameOptionsWindow.loadGameButton).toBeVisible();
+    await expect(gameOptionsWindow.saveGameButton).toBeVisible();
+    await expect(gameOptionsWindow.quitButton).toBeVisible();
+
+    await expect(gameOptionsWindow.okayButton).toBeVisible();
+    await expect(gameOptionsWindow.infoButton).toBeVisible();
+
+    await expect(page).toHaveScreenshot('game-options-window.png', { maxDiffPixelRatio: 0.12 });
   });
 });
