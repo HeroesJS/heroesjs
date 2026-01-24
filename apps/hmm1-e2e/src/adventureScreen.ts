@@ -21,6 +21,8 @@ export class AdventureScreen {
   public readonly gameOptionsButton: Locator;
   public readonly gameOptionsInfoModal: Locator;
 
+  public readonly gameOptionsWindow: GameOptionsWindow;
+
   public constructor(private readonly page: Page) {
     this.locator = page.getByRole('main', { name: /^adventure screen$/i });
 
@@ -51,9 +53,19 @@ export class AdventureScreen {
     this.gameOptionsInfoModal = page.getByRole('dialog', {
       name: /^game options bring up the game options menu\.$/i,
     });
+
+    this.gameOptionsWindow = new GameOptionsWindow(page);
   }
 
   public async goto() {
     return this.page.goto('/adventure');
+  }
+}
+
+class GameOptionsWindow {
+  public readonly locator: Locator;
+
+  constructor(page: Page) {
+    this.locator = page.getByRole('region', { name: /^game options window$/i });
   }
 }

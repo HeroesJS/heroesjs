@@ -211,7 +211,7 @@ export function App() {
             </Route>
           </Route>
         </Route>
-        <Route element={<AdventureScreen />} path="adventure" />
+        <Route element={<AdventureScreen />} path="adventure/*" />
         <Route element={<HighScoresScreen onExitClick={navigateToMainScreen} />} path="high-scores" />
         <Route element={<CreditsScreen onClick={navigateToMainScreen} />} path="credits" />
       </Routes>
