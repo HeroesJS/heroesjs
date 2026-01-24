@@ -7,6 +7,8 @@ export class GameOptionsWindow {
   public readonly newGameConfirmationModal: Locator;
 
   public readonly loadGameButton: Locator;
+  public readonly loadGameConfirmationModal: Locator;
+
   public readonly saveGameButton: Locator;
   public readonly quitButton: Locator;
 
@@ -25,6 +27,10 @@ export class GameOptionsWindow {
     });
 
     this.loadGameButton = page.getByRole('button', { name: /^load game$/i });
+    this.loadGameConfirmationModal = page.getByRole('dialog', {
+      name: /^are you sure you want to load a new game\? \(your current game will be lost\)$/i,
+    });
+
     this.saveGameButton = page.getByRole('button', { name: /^save game$/i });
     this.quitButton = page.getByRole('button', { name: /^quit$/i });
 

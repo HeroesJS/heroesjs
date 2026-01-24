@@ -8,6 +8,7 @@ import { HostDirectConnectGameScreen } from './hostDirectConnectGameScreen';
 import { HostModemGameScreen } from './hostModemGameScreen';
 import { JoinDirectConnectGameScreen } from './joinDirectConnectGameScreen';
 import { JoinModemGameScreen } from './joinModemGameScreen';
+import { LoadGameScreen } from './loadGameScreen';
 import { MainScreen } from './mainScreen';
 import { NewCampaignGameScreen } from './newCampaignGameScreen';
 import { NewDirectConnectGameScreen } from './newDirectConnectGameScreen';
@@ -29,6 +30,7 @@ interface Fixtures {
   readonly hostModemGameScreen: HostModemGameScreen;
   readonly joinDirectConnectGameScreen: JoinDirectConnectGameScreen;
   readonly joinModemGameScreen: JoinModemGameScreen;
+  readonly loadGameScreen: LoadGameScreen;
   readonly mainScreen: MainScreen;
   readonly mouseRightDown: (locator: Locator) => Promise<void>;
   readonly newCampaignGameScreen: NewCampaignGameScreen;
@@ -54,9 +56,9 @@ export const test = testBase.extend<Fixtures, FixturesOptions>({
   highScoresScreen: async ({ page }, use) => await use(new HighScoresScreen(page)),
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   hostModemGameScreen: async ({ page }, use) => await use(new HostModemGameScreen(page)),
-  playerCount: undefined,
   joinDirectConnectGameScreen: async ({ page }, use) => await use(new JoinDirectConnectGameScreen(page)),
   joinModemGameScreen: async ({ page }, use) => await use(new JoinModemGameScreen(page)),
+  loadGameScreen: async ({ page }, use) => await use(new LoadGameScreen(page)),
   mainScreen: async ({ page }, use) => await use(new MainScreen(page)),
   mouseRightDown: async ({ page }, use) =>
     await use(async (locator: Locator) => {
@@ -73,4 +75,5 @@ export const test = testBase.extend<Fixtures, FixturesOptions>({
   newMultiPlayerGameScreen: async ({ page }, use) => await use(new NewMultiPlayerGameScreen(page)),
   newNetworkGameScreen: async ({ page }, use) => await use(new NewNetworkGameScreen(page)),
   newStandardGameScreen: async ({ page }, use) => await use(new NewStandardGameScreen(page)),
+  playerCount: undefined,
 });

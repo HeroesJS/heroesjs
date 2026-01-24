@@ -20,3 +20,9 @@ export const NewGameConfirmation: Story = {
     await userEvent.click(canvas.getByRole('button', { name: /^new game$/i }));
   },
 };
+
+export const LoadGameConfirmation: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: /^load game$/i }));
+  },
+};

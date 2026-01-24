@@ -120,4 +120,31 @@ test.describe('game options', () => {
 
     await expect(newGameScreen.locator).toBeVisible();
   });
+
+  test('displays confirmation modal when load game button is clicked', async ({ gameOptionsWindow, page }) => {
+    await gameOptionsWindow.loadGameButton.click();
+
+    await expect(gameOptionsWindow.loadGameConfirmationModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('load-game-confirmation.png', { maxDiffPixelRatio: 0.12 });
+  });
+
+  test('closes load game confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
+    await gameOptionsWindow.loadGameButton.click();
+
+    await gameOptionsWindow.noButton.click();
+
+    await expect(gameOptionsWindow.loadGameConfirmationModal).toBeHidden();
+  });
+
+  test('displays load game screen when load game confirmation modal is open and yes button is clicked', async ({
+    gameOptionsWindow,
+    loadGameScreen,
+  }) => {
+    await gameOptionsWindow.loadGameButton.click();
+
+    await gameOptionsWindow.yesButton.click();
+
+    await expect(loadGameScreen.locator).toBeVisible();
+  });
 });
