@@ -26,3 +26,9 @@ export const LoadGameConfirmation: Story = {
     await userEvent.click(canvas.getByRole('button', { name: /^load game$/i }));
   },
 };
+
+export const QuitConfirmation: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: /^quit$/i }));
+  },
+};

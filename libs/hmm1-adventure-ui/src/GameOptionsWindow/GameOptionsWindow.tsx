@@ -27,6 +27,7 @@ export function GameOptionsWindow({
 }: GameOptionsWindowProps) {
   const [NewGameConfirmationModal, newGameConfirmationModal] = useModal();
   const [LoadGameConfirmationModal, loadGameConfirmationModal] = useModal();
+  const [QuitConfirmationModal, quitConfirmationModal] = useModal();
 
   return (
     <Window background={background} label="Game Options Window" height={459} open={open} width={322} x={x} y={y}>
@@ -51,7 +52,16 @@ export function GameOptionsWindow({
         Are you sure you want to load a new game?&nbsp;&nbsp;(Your current game will be lost)
       </LoadGameConfirmationModal>
       <Button assets={saveGame} label="Save Game" onClick={onSaveGameClick} x={46} y={107} />
-      <Button assets={quit} label="Quit" onClick={onQuitClick} x={179} y={107} />
+      <Button assets={quit} label="Quit" onClick={quitConfirmationModal.open} x={179} y={107} />
+      <QuitConfirmationModal
+        onCancelClick={quitConfirmationModal.close}
+        onConfirmClick={onQuitClick}
+        size={1}
+        type="yesNo"
+        y={81}
+      >
+        Are you sure you want to quit?&nbsp;&nbsp;(Your current game will be lost)
+      </QuitConfirmationModal>
       <Button assets={okay} label="Okay" onClick={onOkayClick} x={24} y={407} />
       <Button assets={info} label="Info" onClick={onInfoClick} x={201} y={407} />
     </Window>

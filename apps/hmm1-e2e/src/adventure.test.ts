@@ -147,4 +147,31 @@ test.describe('game options', () => {
 
     await expect(loadGameScreen.locator).toBeVisible();
   });
+
+  test('displays quit confirmation modal when quit button is clicked', async ({ gameOptionsWindow, page }) => {
+    await gameOptionsWindow.quitButton.click();
+
+    await expect(gameOptionsWindow.quitConfirmationModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('quit-confirmation.png', { maxDiffPixelRatio: 0.09 });
+  });
+
+  test('closes quit confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
+    await gameOptionsWindow.quitButton.click();
+
+    await gameOptionsWindow.noButton.click();
+
+    await expect(gameOptionsWindow.quitConfirmationModal).toBeHidden();
+  });
+
+  test('displays main screen when quit confirmation modal is open and yes button is clicked', async ({
+    gameOptionsWindow,
+    mainScreen,
+  }) => {
+    await gameOptionsWindow.quitButton.click();
+
+    await gameOptionsWindow.yesButton.click();
+
+    await expect(mainScreen.locator).toBeVisible();
+  });
 });

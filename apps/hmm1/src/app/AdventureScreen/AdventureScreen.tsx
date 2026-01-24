@@ -18,6 +18,7 @@ export function AdventureScreen() {
             <GameOptionsWindow
               onLoadGameClick={() => navigate('/load-game')}
               onNewGameClick={() => navigate('/new-game')}
+              onQuitClick={() => navigate('/')}
               open
               x={160}
               y={10}

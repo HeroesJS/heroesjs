@@ -10,7 +10,9 @@ export class GameOptionsWindow {
   public readonly loadGameConfirmationModal: Locator;
 
   public readonly saveGameButton: Locator;
+
   public readonly quitButton: Locator;
+  public readonly quitConfirmationModal: Locator;
 
   public readonly okayButton: Locator;
   public readonly infoButton: Locator;
@@ -32,7 +34,11 @@ export class GameOptionsWindow {
     });
 
     this.saveGameButton = page.getByRole('button', { name: /^save game$/i });
+
     this.quitButton = page.getByRole('button', { name: /^quit$/i });
+    this.quitConfirmationModal = page.getByRole('dialog', {
+      name: /^are you sure you want to quit\? \(your current game will be lost\)$/i,
+    });
 
     this.okayButton = page.getByRole('button', { name: /^okay$/i });
     this.infoButton = page.getByRole('button', { name: /^info$/i });
