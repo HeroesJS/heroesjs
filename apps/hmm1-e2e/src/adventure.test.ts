@@ -80,9 +80,7 @@ test.describe('game options', () => {
     await adventureScreen.gameOptionsButton.click();
   });
 
-  test('displays game options window when game options button is clicked', async ({ adventureScreen, page }) => {
-    const { gameOptionsWindow } = adventureScreen;
-
+  test('displays game options window when game options button is clicked', async ({ gameOptionsWindow, page }) => {
     await expect(gameOptionsWindow.locator).toBeVisible();
 
     await expect(gameOptionsWindow.newGameButton).toBeVisible();
@@ -94,5 +92,32 @@ test.describe('game options', () => {
     await expect(gameOptionsWindow.infoButton).toBeVisible();
 
     await expect(page).toHaveScreenshot('game-options-window.png', { maxDiffPixelRatio: 0.12 });
+  });
+
+  test('displays confirmation modal when new game button is clicked', async ({ gameOptionsWindow, page }) => {
+    await gameOptionsWindow.newGameButton.click();
+
+    await expect(gameOptionsWindow.newGameConfirmationModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('new-game-confirmation.png', { maxDiffPixelRatio: 0.12 });
+  });
+
+  test('closes new game confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
+    await gameOptionsWindow.newGameButton.click();
+
+    await gameOptionsWindow.noButton.click();
+
+    await expect(gameOptionsWindow.newGameConfirmationModal).toBeHidden();
+  });
+
+  test('displays new game screen when new game confirmation modal is open and yes button is clicked', async ({
+    gameOptionsWindow,
+    newGameScreen,
+  }) => {
+    await gameOptionsWindow.newGameButton.click();
+
+    await gameOptionsWindow.yesButton.click();
+
+    await expect(newGameScreen.locator).toBeVisible();
   });
 });

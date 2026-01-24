@@ -2,6 +2,7 @@ import { expect, type Locator, test as testBase } from '@playwright/test';
 
 import { AdventureScreen } from './adventureScreen';
 import { CreditsScreen } from './creditsScreen';
+import { GameOptionsWindow } from './gameOptionsWindow';
 import { HighScoresScreen } from './highScoresScreen';
 import { HostDirectConnectGameScreen } from './hostDirectConnectGameScreen';
 import { HostModemGameScreen } from './hostModemGameScreen';
@@ -22,6 +23,7 @@ export { expect };
 interface Fixtures {
   readonly adventureScreen: AdventureScreen;
   readonly creditsScreen: CreditsScreen;
+  readonly gameOptionsWindow: GameOptionsWindow;
   readonly highScoresScreen: HighScoresScreen;
   readonly hostDirectConnectGameScreen: HostDirectConnectGameScreen;
   readonly hostModemGameScreen: HostModemGameScreen;
@@ -48,6 +50,7 @@ type FixturesOptions = NewStandardGameScreenOptions;
 export const test = testBase.extend<Fixtures, FixturesOptions>({
   adventureScreen: async ({ page }, use) => await use(new AdventureScreen(page)),
   creditsScreen: async ({ page }, use) => await use(new CreditsScreen(page)),
+  gameOptionsWindow: async ({ page }, use) => await use(new GameOptionsWindow(page)),
   highScoresScreen: async ({ page }, use) => await use(new HighScoresScreen(page)),
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   hostModemGameScreen: async ({ page }, use) => await use(new HostModemGameScreen(page)),

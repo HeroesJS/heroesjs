@@ -13,7 +13,10 @@ export function AdventureScreen() {
     <AdventureScreenBase>
       <AdventureButtons onGameOptionsClick={() => navigate('game-options')} x={480} y={320} />
       <Routes>
-        <Route element={<GameOptionsWindow open x={160} y={10} />} path="game-options" />
+        <Route
+          element={<GameOptionsWindow onNewGameClick={() => navigate('/new-game')} open x={160} y={10} />}
+          path="game-options"
+        />
       </Routes>
     </AdventureScreenBase>
   );

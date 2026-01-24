@@ -17,6 +17,38 @@ describe(GameOptionsWindow, () => {
 
       expect(screen.getByRole('button', { name: /^new game$/i })).toBeInTheDocument();
     });
+
+    it('should render confirmation modal when clicked', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow open />);
+
+      await user.click(screen.getByRole('button', { name: /^new game$/i }));
+
+      expect(
+        screen.getByRole('dialog', { name: /^are you sure you want to restart\? \(your current game will be lost\)$/i })
+      );
+    });
+
+    it('should close confirmation modal when no is clicked', async () => {
+      const { user } = renderWithProviders(<GameOptionsWindow open />);
+
+      await user.click(screen.getByRole('button', { name: /^new game$/i }));
+
+      await user.click(screen.getByRole('button', { name: /^no$/i }));
+
+      expect(screen.queryByRole('dialog')).toBeNull();
+    });
+
+    it('should call handler when yes is clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onNewGameClick={handler} open />);
+
+      await user.click(screen.getByRole('button', { name: /^new game$/i }));
+
+      await user.click(screen.getByRole('button', { name: /^yes$/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
   });
 
   describe('load game button', () => {
