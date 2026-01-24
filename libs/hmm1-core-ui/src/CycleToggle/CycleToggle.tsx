@@ -1,4 +1,5 @@
 import type { MouseEvent, ReactNode } from 'react';
+import styled from 'styled-components';
 
 import { nextOption } from '@heroesjs/hmm1-core';
 
@@ -30,7 +31,7 @@ export function CycleToggle<T>({
   y,
 }: CycleToggleProps<T>) {
   return (
-    <PositionedComponent
+    <Root
       aria-label={label}
       aria-labelledby={labelId}
       className={className}
@@ -43,6 +44,10 @@ export function CycleToggle<T>({
       <div aria-checked role="radio">
         {children(value)}
       </div>
-    </PositionedComponent>
+    </Root>
   );
 }
+
+const Root = styled(PositionedComponent)({
+  fontSize: 0,
+});

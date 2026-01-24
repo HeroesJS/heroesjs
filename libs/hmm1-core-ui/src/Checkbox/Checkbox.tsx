@@ -1,4 +1,6 @@
 import type { MouseEvent } from 'react';
+import styled from 'styled-components';
+
 import { PositionedComponent } from '../PositionedComponent';
 
 export interface CheckboxAssets {
@@ -19,7 +21,7 @@ interface CheckboxProps {
 
 export function Checkbox({ assets, checked, label, labelId, onChange, onMouseDown, x, y }: CheckboxProps) {
   return (
-    <PositionedComponent
+    <Root
       aria-checked={checked}
       aria-label={label}
       aria-labelledby={labelId}
@@ -30,6 +32,10 @@ export function Checkbox({ assets, checked, label, labelId, onChange, onMouseDow
       y={y}
     >
       <img alt={label} src={checked ? assets.checked : assets.unchecked} />
-    </PositionedComponent>
+    </Root>
   );
 }
+
+const Root = styled(PositionedComponent)({
+  fontSize: 0,
+});

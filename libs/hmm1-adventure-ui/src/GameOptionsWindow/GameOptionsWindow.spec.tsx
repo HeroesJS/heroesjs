@@ -1,8 +1,9 @@
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { GameOptionsWindow } from './GameOptionsWindow';
+import { MovementSpeed, SoundVolume } from '@heroesjs/hmm1-core';
 
 describe(GameOptionsWindow, () => {
   it('should render', () => {
@@ -140,6 +141,202 @@ describe(GameOptionsWindow, () => {
       await user.click(screen.getByRole('button', { name: /^yes$/i }));
 
       expect(handler).toHaveBeenCalled();
+    });
+  });
+
+  describe('music volume', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('radiogroup', { name: /^music$/i })).toBeInTheDocument();
+    });
+
+    it('should render off by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /^music$/i })).getByRole('radio', { name: /^off$/i })
+      ).toBeInTheDocument();
+    });
+
+    it('should render on when enabled', () => {
+      renderWithProviders(<GameOptionsWindow musicVolume={SoundVolume.On} open />);
+
+      expect(within(screen.getByRole('radiogroup', { name: /^music$/i })).getByRole('radio', { name: /^on$/i }));
+    });
+
+    it('should render volume when neither on nor off', () => {
+      renderWithProviders(<GameOptionsWindow musicVolume={SoundVolume.Volume5} open />);
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /^music$/i })).getByRole('radio', { name: /^on - volume 5$/i })
+      );
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onMusicVolumeChange={handler} open />);
+
+      await user.click(screen.getByRole('radiogroup', { name: /^music$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[SoundVolume]>(SoundVolume.On);
+    });
+  });
+
+  describe('effects volume', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('radiogroup', { name: /^effects$/i })).toBeInTheDocument();
+    });
+
+    it('should render off by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /^effects$/i })).getByRole('radio', { name: /^off$/i })
+      ).toBeInTheDocument();
+    });
+
+    it('should render on when enabled', () => {
+      renderWithProviders(<GameOptionsWindow effectsVolume={SoundVolume.On} open />);
+
+      expect(within(screen.getByRole('radiogroup', { name: /^effects$/i })).getByRole('radio', { name: /^on$/i }));
+    });
+
+    it('should render volume when neither on nor off', () => {
+      renderWithProviders(<GameOptionsWindow effectsVolume={SoundVolume.Volume5} open />);
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /^effects$/i })).getByRole('radio', { name: /^on - volume 5$/i })
+      );
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onMusicVolumeChange={handler} open />);
+
+      await user.click(screen.getByRole('radiogroup', { name: /^music$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[SoundVolume]>(SoundVolume.On);
+    });
+  });
+
+  describe('movement speed', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('radiogroup', { name: /^speed$/i })).toBeInTheDocument();
+    });
+
+    it('should be walk by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(
+        within(screen.getByRole('radiogroup', { name: /^speed$/i })).getByRole('radio', { name: /walk/i })
+      ).toBeInTheDocument();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onMovementSpeedChange={handler} open />);
+
+      await user.click(screen.getByRole('radiogroup', { name: /^speed$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[MovementSpeed]>(MovementSpeed.Trot);
+    });
+  });
+
+  describe('auto save', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^auto save$/i })).toBeInTheDocument();
+    });
+
+    it('should be unchecked by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^auto save$/i })).not.toBeChecked();
+    });
+
+    it('should be checked when set', () => {
+      renderWithProviders(<GameOptionsWindow open autoSave />);
+
+      expect(screen.getByRole('checkbox', { name: /^auto save$/i })).toBeChecked();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onAutoSaveChange={handler} open />);
+
+      await user.click(screen.getByRole('checkbox', { name: /^auto save$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+    });
+  });
+
+  describe('show path', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^show path$/i })).toBeInTheDocument();
+    });
+
+    it('should be unchecked by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^show path$/i })).not.toBeChecked();
+    });
+
+    it('should be checked when set', () => {
+      renderWithProviders(<GameOptionsWindow open showPath />);
+
+      expect(screen.getByRole('checkbox', { name: /^show path$/i })).toBeChecked();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onShowPathChange={handler} open />);
+
+      await user.click(screen.getByRole('checkbox', { name: /^show path$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+    });
+  });
+
+  describe('view enemy movement', () => {
+    it('should render', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^view enemy movement$/i })).toBeInTheDocument();
+    });
+
+    it('should be unchecked by default', () => {
+      renderWithProviders(<GameOptionsWindow open />);
+
+      expect(screen.getByRole('checkbox', { name: /^view enemy movement$/i })).not.toBeChecked();
+    });
+
+    it('should be checked when set', () => {
+      renderWithProviders(<GameOptionsWindow open viewEnemyMovement />);
+
+      expect(screen.getByRole('checkbox', { name: /^view enemy movement$/i })).toBeChecked();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<GameOptionsWindow onViewEnemyMovementChange={handler} open />);
+
+      await user.click(screen.getByRole('checkbox', { name: /^view enemy movement$/i }));
+
+      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
     });
   });
 

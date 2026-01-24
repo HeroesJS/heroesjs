@@ -14,6 +14,18 @@ export class GameOptionsWindow {
   public readonly quitButton: Locator;
   public readonly quitConfirmationModal: Locator;
 
+  public readonly musicVolumeToggle: Locator;
+
+  public readonly effectsVolumeToggle: Locator;
+
+  public readonly movementSpeedToggle: Locator;
+
+  public readonly autoSaveCheckbox: Locator;
+
+  public readonly showPathCheckbox: Locator;
+
+  public readonly viewEnemyMovementCheckbox: Locator;
+
   public readonly okayButton: Locator;
   public readonly infoButton: Locator;
 
@@ -40,10 +52,34 @@ export class GameOptionsWindow {
       name: /^are you sure you want to quit\? \(your current game will be lost\)$/i,
     });
 
+    this.musicVolumeToggle = page.getByRole('radiogroup', { name: /^music$/i });
+
+    this.effectsVolumeToggle = page.getByRole('radiogroup', { name: /^effects$/i });
+
+    this.movementSpeedToggle = page.getByRole('radiogroup', { name: /^speed$/i });
+
+    this.autoSaveCheckbox = page.getByRole('checkbox', { name: /auto save/i });
+
+    this.showPathCheckbox = page.getByRole('checkbox', { name: /^show path$/i });
+
+    this.viewEnemyMovementCheckbox = page.getByRole('checkbox', { name: /^view enemy movement$/i });
+
     this.okayButton = page.getByRole('button', { name: /^okay$/i });
     this.infoButton = page.getByRole('button', { name: /^info$/i });
 
     this.yesButton = page.getByRole('button', { name: /^yes$/i });
     this.noButton = page.getByRole('button', { name: /^no$/i });
+  }
+
+  public getMusicVolumeOption(name: RegExp) {
+    return this.musicVolumeToggle.getByRole('radio', { name });
+  }
+
+  public getEffectsVolumeOption(name: RegExp) {
+    return this.effectsVolumeToggle.getByRole('radio', { name });
+  }
+
+  public getMovementSpeedOption(name: RegExp) {
+    return this.movementSpeedToggle.getByRole('radio', { name });
   }
 }
