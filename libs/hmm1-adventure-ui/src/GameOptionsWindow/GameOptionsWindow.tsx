@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { type ReactNode, useId } from 'react';
 import styled from 'styled-components';
 
 import { MovementSpeed, movementSpeedLabel, movementSpeeds, SoundVolume, soundVolumes } from '@heroesjs/hmm1-core';
@@ -138,7 +138,7 @@ export function GameOptionsWindow({
       <Text align="center" hidden size="small" width={64} x={220} y={259}>
         {movementSpeedLabel[movementSpeed]}
       </Text>
-      <ToggleSetting
+      <CheckboxSetting
         assets={autoSaveAssets}
         label="Auto Save"
         onChange={onAutoSaveChange}
@@ -146,7 +146,7 @@ export function GameOptionsWindow({
         x={26}
         y={301}
       />
-      <ToggleSetting
+      <CheckboxSetting
         assets={showPathAssets}
         label="Show Path"
         onChange={onShowPathChange}
@@ -154,7 +154,7 @@ export function GameOptionsWindow({
         x={117}
         y={301}
       />
-      <ToggleSetting
+      <CheckboxSetting
         assets={viewEnemyMovementAssets}
         label="View Enemy Movement"
         onChange={onViewEnemyMovementChange}
@@ -168,7 +168,7 @@ export function GameOptionsWindow({
   );
 }
 
-interface ToggleSettingProps {
+interface CheckboxSettingProps {
   readonly assets: CheckboxAssets;
   readonly label: string;
   readonly onChange?: (value: boolean) => void;
@@ -177,19 +177,11 @@ interface ToggleSettingProps {
   readonly y?: number;
 }
 
-function ToggleSetting({ assets, label, onChange, value, x, y }: ToggleSettingProps) {
-  const id = useId();
-
+function CheckboxSetting({ assets, label, onChange, value, x, y }: CheckboxSettingProps) {
   return (
-    <SettingRoot x={x} y={y}>
-      <SettingLabel align="center" hidden id={id} size="small">
-        {label}
-      </SettingLabel>
-      <Checkbox assets={assets} checked={value} labelId={id} onChange={onChange} />
-      <SettingValue align="center" hidden size="small" fullWidth>
-        {value ? 'On' : 'Off'}
-      </SettingValue>
-    </SettingRoot>
+    <Setting label={label} valueLabel={value ? 'On' : 'Off'} x={x} y={y}>
+      {(labelId) => <Checkbox assets={assets} checked={value} labelId={labelId} onChange={onChange} />}
+    </Setting>
   );
 }
 
@@ -203,32 +195,59 @@ interface VolumeSettingProps {
 }
 
 function VolumeSetting({ assets, label, onChange, value, x, y }: VolumeSettingProps) {
-  const id = useId();
-
-  const valueLabel = value !== SoundVolume.Off ? 'On' : 'Off';
+  const enabledLabel = value !== SoundVolume.Off ? 'On' : 'Off';
   const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? `Volume ${value}` : '';
 
   return (
+    <Setting
+      label={label}
+      valueLabel={
+        <>
+          {enabledLabel}
+          {volumeLabel && (
+            <>
+              <br />
+              {volumeLabel}
+            </>
+          )}
+        </>
+      }
+      x={x}
+      y={y}
+    >
+      {(labelId) => (
+        <CycleToggle labelId={labelId} onChange={onChange} options={soundVolumes} reverse value={value}>
+          {(value) => (
+            <img
+              alt={`${enabledLabel}${volumeLabel ? ` - ${volumeLabel}` : ''}`}
+              src={value ? assets.checked : assets.unchecked}
+            />
+          )}
+        </CycleToggle>
+      )}
+    </Setting>
+  );
+}
+
+interface SettingProps {
+  readonly children: (labelId: string) => ReactNode;
+  readonly label: string;
+  readonly valueLabel: ReactNode;
+  readonly x?: number;
+  readonly y?: number;
+}
+
+function Setting({ children, label, valueLabel, x, y }: SettingProps) {
+  const labelId = useId();
+
+  return (
     <SettingRoot x={x} y={y}>
-      <SettingLabel align="center" hidden id={id} size="small">
+      <SettingLabel align="center" hidden id={labelId} size="small">
         {label}
       </SettingLabel>
-      <CycleToggle labelId={id} onChange={onChange} options={soundVolumes} reverse value={value}>
-        {(value) => (
-          <img
-            alt={`${valueLabel}${volumeLabel ? ` - ${volumeLabel}` : ''}`}
-            src={value ? assets.checked : assets.unchecked}
-          />
-        )}
-      </CycleToggle>
+      {children(labelId)}
       <Text align="center" hidden size="small" fullWidth>
         {valueLabel}
-        {volumeLabel && (
-          <>
-            <br />
-            {volumeLabel}
-          </>
-        )}
       </Text>
     </SettingRoot>
   );
