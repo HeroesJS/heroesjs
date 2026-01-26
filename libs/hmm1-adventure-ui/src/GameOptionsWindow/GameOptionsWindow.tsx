@@ -113,62 +113,15 @@ export function GameOptionsWindow({
       >
         Are you sure you want to quit?&nbsp;&nbsp;(Your current game will be lost)
       </QuitConfirmationModal>
-      <Text align="center" hidden id="musicVolumeLabel" size="small" width={66} x={35} y={181}>
-        Music
-      </Text>
-      <CycleToggle
-        labelId="musicVolumeLabel"
-        onChange={onMusicVolumeChange}
-        options={soundVolumes}
-        reverse
-        value={musicVolume}
-        x={36}
-        y={194}
-      >
-        {(value) => (
-          <img
-            alt={musicVolume ? `On${musicVolume !== SoundVolume.On ? ` - Volume ${musicVolume}` : ''}` : 'Off'}
-            src={value ? music.checked : music.unchecked}
-          />
-        )}
-      </CycleToggle>
-      <Text align="center" hidden size="small" width={64} x={36} y={259}>
-        {musicVolume ? 'On' : 'Off'}
-        {![SoundVolume.On, SoundVolume.Off].includes(musicVolume) && (
-          <>
-            <br />
-            {`Volume ${musicVolume}`}
-          </>
-        )}
-      </Text>
-      <Text align="center" hidden id="effectsVolumeLabel" size="small" width={67} x={127} y={181}>
-        Effects
-      </Text>
-      <CycleToggle
-        labelId="effectsVolumeLabel"
+      <VolumeSetting assets={music} label="Music" onChange={onMusicVolumeChange} value={musicVolume} x={25} y={181} />
+      <VolumeSetting
+        assets={effects}
+        label="Effects"
         onChange={onEffectsVolumeChange}
-        options={soundVolumes}
-        reverse
         value={effectsVolume}
-        x={128}
-        y={194}
-      >
-        {(value) => (
-          <img
-            alt={effectsVolume ? `On${effectsVolume !== SoundVolume.On ? ` - Volume ${effectsVolume}` : ''}` : 'Off'}
-            src={value ? effects.checked : effects.unchecked}
-          />
-        )}
-      </CycleToggle>
-      <Text align="center" hidden size="small" width={64} x={128} y={259}>
-        {effectsVolume ? 'On' : 'Off'}
-        {![SoundVolume.On, SoundVolume.Off].includes(effectsVolume) && (
-          <>
-            <br />
-            {`Volume ${effectsVolume}`}
-          </>
-        )}
-      </Text>
+        x={118}
+        y={181}
+      />
       <Text align="center" hidden id="movementSpeedLabel" size="small" width={67} x={219} y={181}>
         Speed
       </Text>
@@ -185,9 +138,23 @@ export function GameOptionsWindow({
       <Text align="center" hidden size="small" width={64} x={220} y={259}>
         {movementSpeedLabel[movementSpeed]}
       </Text>
-      <Setting assets={autoSaveAssets} label="Auto Save" onChange={onAutoSaveChange} value={autoSave} x={26} y={301} />
-      <Setting assets={showPathAssets} label="Show Path" onChange={onShowPathChange} value={showPath} x={117} y={301} />
-      <Setting
+      <ToggleSetting
+        assets={autoSaveAssets}
+        label="Auto Save"
+        onChange={onAutoSaveChange}
+        value={autoSave}
+        x={26}
+        y={301}
+      />
+      <ToggleSetting
+        assets={showPathAssets}
+        label="Show Path"
+        onChange={onShowPathChange}
+        value={showPath}
+        x={117}
+        y={301}
+      />
+      <ToggleSetting
         assets={viewEnemyMovementAssets}
         label="View Enemy Movement"
         onChange={onViewEnemyMovementChange}
@@ -201,7 +168,7 @@ export function GameOptionsWindow({
   );
 }
 
-interface SettingProps {
+interface ToggleSettingProps {
   readonly assets: CheckboxAssets;
   readonly label: string;
   readonly onChange?: (value: boolean) => void;
@@ -210,7 +177,7 @@ interface SettingProps {
   readonly y?: number;
 }
 
-function Setting({ assets, label, onChange, value, x, y }: SettingProps) {
+function ToggleSetting({ assets, label, onChange, value, x, y }: ToggleSettingProps) {
   const id = useId();
 
   return (
@@ -222,6 +189,47 @@ function Setting({ assets, label, onChange, value, x, y }: SettingProps) {
       <SettingValue align="center" hidden size="small" fullWidth>
         {value ? 'On' : 'Off'}
       </SettingValue>
+    </SettingRoot>
+  );
+}
+
+interface VolumeSettingProps {
+  readonly assets: CheckboxAssets;
+  readonly label: string;
+  readonly onChange?: (value: SoundVolume) => void;
+  readonly value: SoundVolume;
+  readonly x?: number;
+  readonly y?: number;
+}
+
+function VolumeSetting({ assets, label, onChange, value, x, y }: VolumeSettingProps) {
+  const id = useId();
+
+  const valueLabel = value !== SoundVolume.Off ? 'On' : 'Off';
+  const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? `Volume ${value}` : '';
+
+  return (
+    <SettingRoot x={x} y={y}>
+      <SettingLabel align="center" hidden id={id} size="small">
+        {label}
+      </SettingLabel>
+      <CycleToggle labelId={id} onChange={onChange} options={soundVolumes} reverse value={value}>
+        {(value) => (
+          <img
+            alt={`${valueLabel}${volumeLabel ? ` - ${volumeLabel}` : ''}`}
+            src={value ? assets.checked : assets.unchecked}
+          />
+        )}
+      </CycleToggle>
+      <Text align="center" hidden size="small" fullWidth>
+        {valueLabel}
+        {volumeLabel && (
+          <>
+            <br />
+            {volumeLabel}
+          </>
+        )}
+      </Text>
     </SettingRoot>
   );
 }
