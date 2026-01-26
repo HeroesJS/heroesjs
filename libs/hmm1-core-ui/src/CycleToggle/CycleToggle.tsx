@@ -13,6 +13,7 @@ interface CycleToggleProps<T> {
   readonly onChange?: (value: T) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly options: readonly T[];
+  readonly reverse?: boolean;
   readonly value: T;
   readonly x?: number;
   readonly y?: number;
@@ -26,6 +27,7 @@ export function CycleToggle<T>({
   onChange,
   onMouseDown,
   options,
+  reverse,
   value,
   x,
   y,
@@ -35,7 +37,7 @@ export function CycleToggle<T>({
       aria-label={label}
       aria-labelledby={labelId}
       className={className}
-      onClick={() => onChange?.(nextOption(options, value))}
+      onClick={() => onChange?.(nextOption(reverse ? Array.from(options).reverse() : options, value))}
       onMouseDown={onMouseDown}
       role="radiogroup"
       x={x}

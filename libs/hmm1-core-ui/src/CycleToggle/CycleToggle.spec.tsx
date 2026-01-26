@@ -27,7 +27,7 @@ describe(CycleToggle, () => {
     const handler = vitest.fn();
 
     const { user } = renderWithProviders(
-      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B']} value="A" />
+      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B', 'C']} value="A" />
     );
 
     await user.click(screen.getByRole('radiogroup'));
@@ -39,11 +39,37 @@ describe(CycleToggle, () => {
     const handler = vitest.fn();
 
     const { user } = renderWithProviders(
-      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B']} value="B" />
+      <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B', 'C']} value="C" />
     );
 
     await user.click(screen.getByRole('radiogroup'));
 
     expect(handler).toHaveBeenCalledWith<[string]>('A');
+  });
+
+  describe('reverse', () => {
+    it('should call change handler with previous option when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B', 'C']} reverse value="C" />
+      );
+
+      await user.click(screen.getByRole('radiogroup'));
+
+      expect(handler).toHaveBeenCalledWith<[string]>('B');
+    });
+
+    it('should call change handler with last option when clicked and first option is selected', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(
+        <CycleToggle children={(v) => v} onChange={handler} options={['A', 'B', 'C']} reverse value="A" />
+      );
+
+      await user.click(screen.getByRole('radiogroup'));
+
+      expect(handler).toHaveBeenCalledWith<[string]>('C');
+    });
   });
 });

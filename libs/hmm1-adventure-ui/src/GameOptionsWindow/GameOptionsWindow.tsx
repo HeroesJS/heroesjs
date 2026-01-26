@@ -80,8 +80,6 @@ export function GameOptionsWindow({
   const [LoadGameConfirmationModal, loadGameConfirmationModal] = useModal();
   const [QuitConfirmationModal, quitConfirmationModal] = useModal();
 
-  const volumes = Array.from(soundVolumes).reverse();
-
   return (
     <Window background={background} label="Game Options Window" height={459} open={open} width={322} x={x} y={y}>
       <Button assets={newGame} label="New Game" onClick={newGameConfirmationModal.open} x={46} y={31} />
@@ -119,9 +117,10 @@ export function GameOptionsWindow({
         Music
       </Text>
       <CycleToggle
-        options={volumes}
         labelId="musicVolumeLabel"
         onChange={onMusicVolumeChange}
+        options={soundVolumes}
+        reverse
         value={musicVolume}
         x={36}
         y={194}
@@ -146,9 +145,10 @@ export function GameOptionsWindow({
         Effects
       </Text>
       <CycleToggle
-        options={volumes}
         labelId="effectsVolumeLabel"
         onChange={onEffectsVolumeChange}
+        options={soundVolumes}
+        reverse
         value={effectsVolume}
         x={128}
         y={194}
