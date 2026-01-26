@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
+import { Backdrop } from '../Backdrop';
 import { PositionedComponent } from '../PositionedComponent';
 
 interface WindowProps {
@@ -19,9 +20,11 @@ export function Window({ background, children, height, label, open, width, x, y 
   }
 
   return (
-    <Root aria-label={label} background={background} height={height} role="region" width={width} x={x} y={y}>
-      {children}
-    </Root>
+    <Backdrop>
+      <Root aria-label={label} background={background} height={height} role="region" width={width} x={x} y={y}>
+        {children}
+      </Root>
+    </Backdrop>
   );
 }
 
