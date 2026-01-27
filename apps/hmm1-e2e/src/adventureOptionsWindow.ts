@@ -12,6 +12,9 @@ export class AdventureOptionsWindow {
   public readonly castSpellButton: Locator;
   public readonly castSpellInfoModal: Locator;
 
+  public readonly digButton: Locator;
+  public readonly digInfoModal: Locator;
+
   public constructor(page: Page) {
     this.locator = page.getByRole('region', { name: /^adventure options window$/i });
 
@@ -23,5 +26,8 @@ export class AdventureOptionsWindow {
 
     this.castSpellButton = page.getByRole('button', { name: /^cast spell$/i });
     this.castSpellInfoModal = page.getByRole('dialog', { name: /^cast an adventure spell\.$/i });
+
+    this.digButton = page.getByRole('button', { name: /^dig$/i });
+    this.digInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
   }
 }

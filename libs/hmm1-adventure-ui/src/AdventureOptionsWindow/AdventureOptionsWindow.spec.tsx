@@ -88,4 +88,30 @@ describe(AdventureOptionsWindow, () => {
       expect(handler).toHaveBeenCalled();
     });
   });
+
+  describe('dig', () => {
+    it('should render', () => {
+      renderWithProviders(<AdventureOptionsWindow open />);
+
+      expect(screen.getByRole('button', { name: /^dig$/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow open />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^dig$/i }));
+
+      expect(screen.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i })).toBeInTheDocument();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<AdventureOptionsWindow onDigClick={handler} open />);
+
+      await user.click(screen.getByRole('button', { name: /^dig$/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
 });

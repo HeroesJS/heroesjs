@@ -41,3 +41,12 @@ export const CastSpellInfo: Story = {
     });
   },
 };
+
+export const DigInfo: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.pointer({
+      target: canvas.getByRole('button', { name: /^dig$/i }),
+      keys: '[MouseRight>]',
+    });
+  },
+};

@@ -1,9 +1,10 @@
 import { Button, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
-import { background, castSpellAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
+import { background, castSpellAssets, digAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
 
 interface AdventureOptionsWindowProps {
   readonly onCastSpellClick?: () => void;
+  readonly onDigClick?: () => void;
   readonly onViewPuzzleClick?: () => void;
   readonly onViewWorldClick?: () => void;
   readonly open: boolean;
@@ -13,6 +14,7 @@ interface AdventureOptionsWindowProps {
 
 export function AdventureOptionsWindow({
   onCastSpellClick,
+  onDigClick,
   onViewPuzzleClick,
   onViewWorldClick,
   open,
@@ -22,6 +24,7 @@ export function AdventureOptionsWindow({
   const [ViewWorldInfoModal, viewWorldInfoModal] = useModal();
   const [ViewPuzzleInfoModal, viewPuzzleInfoModal] = useModal();
   const [CastSpellInfoModal, castSpellInfoModal] = useModal();
+  const [DigInfoModal, digInfoModal] = useModal();
 
   return (
     <Window background={background} height={236} label="Adventure Options Window" open={open} width={322} x={x} y={y}>
@@ -52,6 +55,15 @@ export function AdventureOptionsWindow({
         y={107}
       />
       <CastSpellInfoModal>Cast an adventure spell.</CastSpellInfoModal>
+      <Button
+        assets={digAssets}
+        label="Dig"
+        onClick={onDigClick}
+        onMouseDown={digInfoModal.onMouseDown}
+        x={179}
+        y={107}
+      />
+      <DigInfoModal>Dig for the Ultimate Artifact.</DigInfoModal>
     </Window>
   );
 }

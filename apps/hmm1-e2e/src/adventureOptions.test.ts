@@ -43,3 +43,13 @@ test.describe('cast spell', () => {
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
+
+test.describe('dig', () => {
+  test('displays dig button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(adventureOptionsWindow.digButton);
+
+    await expect(adventureOptionsWindow.digInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
+  });
+});
