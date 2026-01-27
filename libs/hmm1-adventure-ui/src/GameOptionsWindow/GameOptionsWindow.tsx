@@ -122,22 +122,16 @@ export function GameOptionsWindow({
         x={118}
         y={181}
       />
-      <Text align="center" hidden id="movementSpeedLabel" size="small" width={67} x={219} y={181}>
-        Speed
-      </Text>
-      <CycleToggle
-        options={movementSpeeds}
-        labelId="movementSpeedLabel"
+      <CycleToggleSetting
+        assets={movementSpeedAssets}
+        label="Speed"
         onChange={onMovementSpeedChange}
+        options={movementSpeeds}
         value={movementSpeed}
-        x={220}
-        y={194}
-      >
-        {(value) => <img alt={movementSpeedLabel[value]} src={movementSpeedAssets[value]} />}
-      </CycleToggle>
-      <Text align="center" hidden size="small" width={64} x={220} y={259}>
-        {movementSpeedLabel[movementSpeed]}
-      </Text>
+        valueLabels={movementSpeedLabel}
+        x={209}
+        y={181}
+      />
       <CheckboxSetting
         assets={autoSaveAssets}
         label="Auto Save"
@@ -223,6 +217,38 @@ function VolumeSetting({ assets, label, onChange, value, x, y }: VolumeSettingPr
               src={value ? assets.checked : assets.unchecked}
             />
           )}
+        </CycleToggle>
+      )}
+    </Setting>
+  );
+}
+
+interface CycleToggleSettingProps<T extends string> {
+  readonly assets: Readonly<Record<T, string>>;
+  readonly label: string;
+  readonly onChange?: (value: T) => void;
+  readonly options: readonly T[];
+  readonly value: T;
+  readonly valueLabels: Readonly<Record<T, string>>;
+  readonly x?: number;
+  readonly y?: number;
+}
+
+function CycleToggleSetting<T extends string>({
+  assets,
+  label,
+  onChange,
+  options,
+  value,
+  valueLabels,
+  x,
+  y,
+}: CycleToggleSettingProps<T>) {
+  return (
+    <Setting label={label} valueLabel={valueLabels[value]} x={x} y={y}>
+      {(labelId) => (
+        <CycleToggle labelId={labelId} onChange={onChange} options={options} value={value}>
+          {(value) => <img alt={valueLabels[value]} src={assets[value]} />}
         </CycleToggle>
       )}
     </Setting>
