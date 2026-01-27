@@ -80,8 +80,8 @@ export function NewStandardGameWindow({
       background={background}
       height={NewStandardGameWindow.height}
       label="New Standard Game"
-      width={NewStandardGameWindow.width}
       open
+      width={NewStandardGameWindow.width}
       x={x}
       y={y}
     >
@@ -180,7 +180,7 @@ export function NewStandardGameWindow({
         y={354}
       />
       <SelectScenarioInfoModal>Select which scenario to play.</SelectScenarioInfoModal>
-      <Text size="large" onMouseDown={difficultyRatingInfoModal.onMouseDown} x={78} y={388}>
+      <Text onMouseDown={difficultyRatingInfoModal.onMouseDown} size="large" x={78} y={388}>
         <span aria-hidden id="difficultyRatingLabel">
           Difficulty Rating:
         </span>{' '}

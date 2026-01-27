@@ -28,29 +28,29 @@ export function HighScoresScreen({
         <thead>
           <tr style={{ height: 35 }}>
             <th scope="col" style={{ width: 166 }}>
-              <PositionedComponent as="img" src={player} alt="Player" x={17} y={0} />
+              <PositionedComponent alt="Player" as="img" src={player} x={17} y={0} />
             </th>
             {showCampaignGameScores ? (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent as="img" src={leader} alt="Leader" x={187} y={0} />
+                  <PositionedComponent alt="Leader" as="img" src={leader} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent as="img" src={days} alt="Days" x={291} y={0} />
+                  <PositionedComponent alt="Days" as="img" src={days} x={291} y={0} />
                 </th>
               </>
             ) : (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent as="img" src={land} alt="Land" x={187} y={0} />
+                  <PositionedComponent alt="Land" as="img" src={land} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent as="img" src={score} alt="Score" x={291} y={0} />
+                  <PositionedComponent alt="Score" as="img" src={score} x={291} y={0} />
                 </th>
               </>
             )}
             <th scope="col" style={{ width: 140 }}>
-              <PositionedComponent as="img" src={title} alt="Title" x={379} y={0} />
+              <PositionedComponent alt="Title" as="img" src={title} x={379} y={0} />
             </th>
           </tr>
         </thead>

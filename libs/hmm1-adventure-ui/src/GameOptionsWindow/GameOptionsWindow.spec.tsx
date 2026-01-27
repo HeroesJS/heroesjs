@@ -326,7 +326,7 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should be checked when set', () => {
-      renderWithProviders(<GameOptionsWindow open autoSave />);
+      renderWithProviders(<GameOptionsWindow autoSave open />);
 
       expect(screen.getByRole('checkbox', { name: /^auto save$/i })).toBeChecked();
     });

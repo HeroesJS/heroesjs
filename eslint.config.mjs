@@ -56,3 +56,7 @@ export default [
     rules: {},
   },
 ];
+
+export const reactRules = {
+  'react/jsx-sort-props': 'error',
+};

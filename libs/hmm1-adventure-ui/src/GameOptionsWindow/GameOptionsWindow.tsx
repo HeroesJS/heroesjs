@@ -99,7 +99,7 @@ export function GameOptionsWindow({
   const [InfoInfoModal, infoInfoModal] = useModal();
 
   return (
-    <Window background={background} label="Game Options Window" height={459} open={open} width={322} x={x} y={y}>
+    <Window background={background} height={459} label="Game Options Window" open={open} width={322} x={x} y={y}>
       <Button
         assets={newGame}
         label="New Game"
@@ -369,11 +369,11 @@ function Setting({ children, label, valueLabel, x, y }: SettingProps) {
 
   return (
     <SettingRoot x={x} y={y}>
-      <SettingLabel align="center" hidden id={labelId} size="small" fullWidth>
+      <SettingLabel align="center" fullWidth hidden id={labelId} size="small">
         {label}
       </SettingLabel>
       <SettingControl>{children(labelId)}</SettingControl>
-      <Text align="center" hidden size="small" fullWidth>
+      <Text align="center" fullWidth hidden size="small">
         {valueLabel}
       </Text>
     </SettingRoot>
