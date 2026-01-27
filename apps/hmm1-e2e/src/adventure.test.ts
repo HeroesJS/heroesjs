@@ -67,6 +67,15 @@ test('displays adventure options button info', async ({ adventureScreen, mouseRi
   await expect(page).toHaveScreenshot('adventure-options-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
+test('displays adventure options window when adventure options button is clicked', async ({
+  adventureScreen,
+  adventureOptionsWindow,
+}) => {
+  await adventureScreen.adventureOptionsButton.click();
+
+  await expect(adventureOptionsWindow.locator).toBeVisible();
+});
+
 test('displays game options button info', async ({ adventureScreen, mouseRightDown, page }) => {
   await mouseRightDown(adventureScreen.gameOptionsButton);
 
