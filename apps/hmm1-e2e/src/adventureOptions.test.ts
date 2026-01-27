@@ -23,3 +23,13 @@ test.describe('view world', () => {
     await expect(page).toHaveScreenshot('view-world-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
+
+test.describe('view puzzle', () => {
+  test('displays view puzzle button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(adventureOptionsWindow.viewPuzzleButton);
+
+    await expect(adventureOptionsWindow.viewPuzzleInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('view-puzzle-info.png', { maxDiffPixelRatio: 0.32 });
+  });
+});

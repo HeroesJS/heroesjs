@@ -23,3 +23,12 @@ export const ViewWorldInfo: Story = {
     });
   },
 };
+
+export const ViewPuzzleInfo: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.pointer({
+      target: canvas.getByRole('button', { name: /^view puzzle$/i }),
+      keys: '[MouseRight>]',
+    });
+  },
+};
