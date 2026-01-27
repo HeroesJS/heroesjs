@@ -50,3 +50,12 @@ export const DigInfo: Story = {
     });
   },
 };
+
+export const OkayInfo: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.pointer({
+      target: canvas.getByRole('button', { name: /^okay$/i }),
+      keys: '[MouseRight>]',
+    });
+  },
+};

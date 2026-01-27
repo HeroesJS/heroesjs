@@ -53,3 +53,19 @@ test.describe('dig', () => {
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
+
+test.describe('okay', () => {
+  test('displays okay button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(adventureOptionsWindow.okayButton);
+
+    await expect(adventureOptionsWindow.okayInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.32 });
+  });
+
+  test('closes adventure options window when okay button is clicked', async ({ adventureOptionsWindow }) => {
+    await adventureOptionsWindow.okayButton.click();
+
+    await expect(adventureOptionsWindow.locator).toBeHidden();
+  });
+});

@@ -114,4 +114,30 @@ describe(AdventureOptionsWindow, () => {
       expect(handler).toHaveBeenCalled();
     });
   });
+
+  describe('okay', () => {
+    it('should render', () => {
+      renderWithProviders(<AdventureOptionsWindow open />);
+
+      expect(screen.getByRole('button', { name: /^okay$/i })).toBeInTheDocument();
+    });
+
+    it('should render info when right-clicked', async () => {
+      const { user } = renderWithProviders(<AdventureOptionsWindow open />);
+
+      await user.mouseRightDown(screen.getByRole('button', { name: /^okay$/i }));
+
+      expect(screen.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i })).toBeInTheDocument();
+    });
+
+    it('should call handler when clicked', async () => {
+      const handler = vitest.fn();
+
+      const { user } = renderWithProviders(<AdventureOptionsWindow onOkayClick={handler} open />);
+
+      await user.click(screen.getByRole('button', { name: /^okay$/i }));
+
+      expect(handler).toHaveBeenCalled();
+    });
+  });
 });

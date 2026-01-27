@@ -28,7 +28,12 @@ export function AdventureScreen() {
         y={320}
       />
       <Routes>
-        <Route element={<AdventureOptionsWindow open x={160} y={40} />} path="adventure-options" />
+        <Route
+          element={
+            <AdventureOptionsWindow onOkayClick={() => navigate('..', { relative: 'path' })} open x={160} y={40} />
+          }
+          path="adventure-options"
+        />
         <Route
           element={
             <GameOptionsWindow

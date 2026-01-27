@@ -1,10 +1,11 @@
 import { Button, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
-import { background, castSpellAssets, digAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
+import { background, castSpellAssets, digAssets, okayAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
 
 interface AdventureOptionsWindowProps {
   readonly onCastSpellClick?: () => void;
   readonly onDigClick?: () => void;
+  readonly onOkayClick?: () => void;
   readonly onViewPuzzleClick?: () => void;
   readonly onViewWorldClick?: () => void;
   readonly open: boolean;
@@ -15,6 +16,7 @@ interface AdventureOptionsWindowProps {
 export function AdventureOptionsWindow({
   onCastSpellClick,
   onDigClick,
+  onOkayClick,
   onViewPuzzleClick,
   onViewWorldClick,
   open,
@@ -25,6 +27,8 @@ export function AdventureOptionsWindow({
   const [ViewPuzzleInfoModal, viewPuzzleInfoModal] = useModal();
   const [CastSpellInfoModal, castSpellInfoModal] = useModal();
   const [DigInfoModal, digInfoModal] = useModal();
+
+  const [OkayInfoModal, okayInfoModal] = useModal();
 
   return (
     <Window background={background} height={236} label="Adventure Options Window" open={open} width={322} x={x} y={y}>
@@ -64,6 +68,15 @@ export function AdventureOptionsWindow({
         y={107}
       />
       <DigInfoModal>Dig for the Ultimate Artifact.</DigInfoModal>
+      <Button
+        assets={okayAssets}
+        label="Okay"
+        onClick={onOkayClick}
+        onMouseDown={okayInfoModal.onMouseDown}
+        x={112}
+        y={184}
+      />
+      <OkayInfoModal>Dig for the Ultimate Artifact.{/* TODO: ? */}</OkayInfoModal>
     </Window>
   );
 }

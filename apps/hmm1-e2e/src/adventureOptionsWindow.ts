@@ -15,6 +15,9 @@ export class AdventureOptionsWindow {
   public readonly digButton: Locator;
   public readonly digInfoModal: Locator;
 
+  public readonly okayButton: Locator;
+  public readonly okayInfoModal: Locator;
+
   public constructor(page: Page) {
     this.locator = page.getByRole('region', { name: /^adventure options window$/i });
 
@@ -29,5 +32,8 @@ export class AdventureOptionsWindow {
 
     this.digButton = page.getByRole('button', { name: /^dig$/i });
     this.digInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
+
+    this.okayButton = page.getByRole('button', { name: /^okay$/i });
+    this.okayInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
   }
 }

@@ -4,5 +4,6 @@ export { background };
 
 export { assets as castSpellAssets } from './castSpell';
 export { assets as digAssets } from './dig';
+export { assets as okayAssets } from './okay';
 export { assets as viewPuzzleAssets } from './viewPuzzle';
 export { assets as viewWorldAssets } from './viewWorld';
