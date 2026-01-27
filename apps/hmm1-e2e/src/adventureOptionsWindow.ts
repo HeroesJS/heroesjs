@@ -9,6 +9,9 @@ export class AdventureOptionsWindow {
   public readonly viewPuzzleButton: Locator;
   public readonly viewPuzzleInfoModal: Locator;
 
+  public readonly castSpellButton: Locator;
+  public readonly castSpellInfoModal: Locator;
+
   public constructor(page: Page) {
     this.locator = page.getByRole('region', { name: /^adventure options window$/i });
 
@@ -17,5 +20,8 @@ export class AdventureOptionsWindow {
 
     this.viewPuzzleButton = page.getByRole('button', { name: /^view puzzle$/i });
     this.viewPuzzleInfoModal = page.getByRole('dialog', { name: /^view the obelisk puzzle\.$/i });
+
+    this.castSpellButton = page.getByRole('button', { name: /^cast spell$/i });
+    this.castSpellInfoModal = page.getByRole('dialog', { name: /^cast an adventure spell\.$/i });
   }
 }

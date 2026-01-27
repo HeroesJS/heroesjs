@@ -32,3 +32,12 @@ export const ViewPuzzleInfo: Story = {
     });
   },
 };
+
+export const CastSpellInfo: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.pointer({
+      target: canvas.getByRole('button', { name: /^cast spell$/i }),
+      keys: '[MouseRight>]',
+    });
+  },
+};

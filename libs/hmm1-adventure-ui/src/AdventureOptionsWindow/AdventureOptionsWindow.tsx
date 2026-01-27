@@ -1,8 +1,9 @@
 import { Button, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
-import { background, viewPuzzleAssets, viewWorldAssets } from './assets';
+import { background, castSpellAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
 
 interface AdventureOptionsWindowProps {
+  readonly onCastSpellClick?: () => void;
   readonly onViewPuzzleClick?: () => void;
   readonly onViewWorldClick?: () => void;
   readonly open: boolean;
@@ -11,6 +12,7 @@ interface AdventureOptionsWindowProps {
 }
 
 export function AdventureOptionsWindow({
+  onCastSpellClick,
   onViewPuzzleClick,
   onViewWorldClick,
   open,
@@ -19,6 +21,7 @@ export function AdventureOptionsWindow({
 }: AdventureOptionsWindowProps) {
   const [ViewWorldInfoModal, viewWorldInfoModal] = useModal();
   const [ViewPuzzleInfoModal, viewPuzzleInfoModal] = useModal();
+  const [CastSpellInfoModal, castSpellInfoModal] = useModal();
 
   return (
     <Window background={background} height={236} label="Adventure Options Window" open={open} width={322} x={x} y={y}>
@@ -40,6 +43,15 @@ export function AdventureOptionsWindow({
         y={31}
       />
       <ViewPuzzleInfoModal>View the obelisk puzzle.</ViewPuzzleInfoModal>
+      <Button
+        assets={castSpellAssets}
+        label="Cast Spell"
+        onClick={onCastSpellClick}
+        onMouseDown={castSpellInfoModal.onMouseDown}
+        x={46}
+        y={107}
+      />
+      <CastSpellInfoModal>Cast an adventure spell.</CastSpellInfoModal>
     </Window>
   );
 }

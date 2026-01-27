@@ -33,3 +33,13 @@ test.describe('view puzzle', () => {
     await expect(page).toHaveScreenshot('view-puzzle-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
+
+test.describe('cast spell', () => {
+  test('displays cast spell button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(adventureOptionsWindow.castSpellButton);
+
+    await expect(adventureOptionsWindow.castSpellInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
+  });
+});
