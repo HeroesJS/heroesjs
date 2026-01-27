@@ -21,6 +21,14 @@ test('displays game options', async ({ gameOptionsWindow, page }) => {
 });
 
 test.describe('new game', () => {
+  test('displays new game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.newGameButton);
+
+    await expect(gameOptionsWindow.newGameInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+
   test('displays confirmation modal when new game button is clicked', async ({ gameOptionsWindow, page }) => {
     await gameOptionsWindow.newGameButton.click();
 
@@ -49,7 +57,25 @@ test.describe('new game', () => {
   });
 });
 
+test.describe('save game', () => {
+  test('displays save game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.saveGameButton);
+
+    await expect(gameOptionsWindow.saveGameInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('save-game-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+});
+
 test.describe('load game', () => {
+  test('displays load game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.loadGameButton);
+
+    await expect(gameOptionsWindow.loadGameInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('load-game-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+
   test('displays confirmation modal when load game button is clicked', async ({ gameOptionsWindow, page }) => {
     await gameOptionsWindow.loadGameButton.click();
 
@@ -79,6 +105,14 @@ test.describe('load game', () => {
 });
 
 test.describe('quit', () => {
+  test('displays quit info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.quitButton);
+
+    await expect(gameOptionsWindow.quitInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('quit-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+
   test('displays quit confirmation modal when quit button is clicked', async ({ gameOptionsWindow, page }) => {
     await gameOptionsWindow.quitButton.click();
 
@@ -133,6 +167,14 @@ test.describe('music volume', () => {
       await expect(gameOptionsWindow.getMusicVolumeOption(volume)).toBeChecked();
     }
   });
+
+  test('displays music volume info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.musicVolumeToggle);
+
+    await expect(gameOptionsWindow.musicVolumeInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('music-volume-info.png', { maxDiffPixelRatio: 0.12 });
+  });
 });
 
 test.describe('effects volume', () => {
@@ -161,6 +203,14 @@ test.describe('effects volume', () => {
       await expect(gameOptionsWindow.getEffectsVolumeOption(volume)).toBeChecked();
     }
   });
+
+  test('displays effects volume info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.effectsVolumeToggle);
+
+    await expect(gameOptionsWindow.effectsVolumeInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('effects-volume-info.png', { maxDiffPixelRatio: 0.12 });
+  });
 });
 
 test.describe('movement speed', () => {
@@ -176,6 +226,14 @@ test.describe('movement speed', () => {
 
       await expect(gameOptionsWindow.getMovementSpeedOption(option)).toBeVisible();
     }
+  });
+
+  test('displays movement speed info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.movementSpeedToggle);
+
+    await expect(gameOptionsWindow.movementSpeedInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('movement-speed-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
@@ -195,6 +253,14 @@ test.describe('auto save', () => {
 
     await expect(gameOptionsWindow.autoSaveCheckbox).toBeChecked();
   });
+
+  test('displays auto save info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.autoSaveCheckbox);
+
+    await expect(gameOptionsWindow.autoSaveInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('auto-save-info.png', { maxDiffPixelRatio: 0.13 });
+  });
 });
 
 test.describe('show path', () => {
@@ -212,6 +278,14 @@ test.describe('show path', () => {
     await gameOptionsWindow.showPathCheckbox.click();
 
     await expect(gameOptionsWindow.showPathCheckbox).toBeChecked();
+  });
+
+  test('displays show path info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.showPathCheckbox);
+
+    await expect(gameOptionsWindow.showPathInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('show-path-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
@@ -231,10 +305,38 @@ test.describe('view enemy movement', () => {
 
     await expect(gameOptionsWindow.viewEnemyMovementCheckbox).toBeChecked();
   });
+
+  test('displays view enemy movement info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.viewEnemyMovementCheckbox);
+
+    await expect(gameOptionsWindow.viewEnemyMovementInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('view-enemy-movement-info.png', { maxDiffPixelRatio: 0.13 });
+  });
 });
 
-test('closes game options window when okay is clicked', async ({ gameOptionsWindow }) => {
-  await gameOptionsWindow.okayButton.click();
+test.describe('okay button', () => {
+  test('displays okay button info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.okayButton);
 
-  await expect(gameOptionsWindow.locator).toBeHidden();
+    await expect(gameOptionsWindow.okayInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+
+  test('closes game options window when okay is clicked', async ({ gameOptionsWindow }) => {
+    await gameOptionsWindow.okayButton.click();
+
+    await expect(gameOptionsWindow.locator).toBeHidden();
+  });
+});
+
+test.describe('info button', () => {
+  test('displays info button info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
+    await mouseRightDown(gameOptionsWindow.infoButton);
+
+    await expect(gameOptionsWindow.infoInfoModal).toBeVisible();
+
+    await expect(page).toHaveScreenshot('info-info.png', { maxDiffPixelRatio: 0.12 });
+  });
 });
