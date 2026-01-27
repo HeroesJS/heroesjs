@@ -1,5 +1,6 @@
 import { expect, type Locator, test as testBase } from '@playwright/test';
 
+import { AdventureOptionsWindow } from './adventureOptionsWindow';
 import { AdventureScreen } from './adventureScreen';
 import { CreditsScreen } from './creditsScreen';
 import { GameOptionsWindow } from './gameOptionsWindow';
@@ -22,6 +23,7 @@ import { NewStandardGameScreen } from './newStandardGameScreen';
 export { expect };
 
 interface Fixtures {
+  readonly adventureOptionsWindow: AdventureOptionsWindow;
   readonly adventureScreen: AdventureScreen;
   readonly creditsScreen: CreditsScreen;
   readonly gameOptionsWindow: GameOptionsWindow;
@@ -50,6 +52,7 @@ interface NewStandardGameScreenOptions {
 type FixturesOptions = NewStandardGameScreenOptions;
 
 export const test = testBase.extend<Fixtures, FixturesOptions>({
+  adventureOptionsWindow: async ({ page }, use) => await use(new AdventureOptionsWindow(page)),
   adventureScreen: async ({ page }, use) => await use(new AdventureScreen(page)),
   creditsScreen: async ({ page }, use) => await use(new CreditsScreen(page)),
   gameOptionsWindow: async ({ page }, use) => await use(new GameOptionsWindow(page)),

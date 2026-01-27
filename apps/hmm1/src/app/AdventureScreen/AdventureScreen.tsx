@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from 'react-router';
 
 import {
   AdventureButtons,
+  AdventureOptionsWindow,
   AdventureScreen as AdventureScreenBase,
   GameOptionsWindow,
 } from '@heroesjs/hmm1-adventure-ui';
@@ -20,8 +21,19 @@ export function AdventureScreen() {
 
   return (
     <AdventureScreenBase>
-      <AdventureButtons onGameOptionsClick={() => navigate('game-options')} x={480} y={320} />
+      <AdventureButtons
+        onAdventureOptionsClick={() => navigate('adventure-options')}
+        onGameOptionsClick={() => navigate('game-options')}
+        x={480}
+        y={320}
+      />
       <Routes>
+        <Route
+          element={
+            <AdventureOptionsWindow onOkayClick={() => navigate('..', { relative: 'path' })} open x={160} y={40} />
+          }
+          path="adventure-options"
+        />
         <Route
           element={
             <GameOptionsWindow
