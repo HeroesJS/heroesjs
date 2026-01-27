@@ -119,7 +119,7 @@ export function GameOptionsWindow({
         label="Effects"
         onChange={onEffectsVolumeChange}
         value={effectsVolume}
-        x={118}
+        x={117}
         y={181}
       />
       <CycleToggleSetting
@@ -137,7 +137,7 @@ export function GameOptionsWindow({
         label="Auto Save"
         onChange={onAutoSaveChange}
         value={autoSave}
-        x={26}
+        x={25}
         y={301}
       />
       <CheckboxSetting
@@ -268,10 +268,10 @@ function Setting({ children, label, valueLabel, x, y }: SettingProps) {
 
   return (
     <SettingRoot x={x} y={y}>
-      <SettingLabel align="center" hidden id={labelId} size="small">
+      <SettingLabel align="center" hidden id={labelId} size="small" fullWidth>
         {label}
       </SettingLabel>
-      {children(labelId)}
+      <SettingControl>{children(labelId)}</SettingControl>
       <Text align="center" hidden size="small" fullWidth>
         {valueLabel}
       </Text>
@@ -288,8 +288,9 @@ const SettingRoot = styled(PositionedComponent)({
 
 const SettingLabel = styled(Text)({
   marginBottom: 1,
+  paddingLeft: 1,
 });
 
-const SettingValue = styled(Text)({
-  textIndent: -1,
+const SettingControl = styled('div')({
+  paddingLeft: 1,
 });
