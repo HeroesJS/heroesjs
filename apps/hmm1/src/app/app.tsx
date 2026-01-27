@@ -108,7 +108,7 @@ export function App() {
           <Route
             element={
               <MainScreen label="New Campaign Game Screen">
-                <CampaignMenu x={400} y={35} onCancelClick={navigateToMainScreen} />
+                <CampaignMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
               </MainScreen>
             }
             path="campaign"
@@ -170,7 +170,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Join Modem Game Screen">
-                    <WaitingForRingModal open size={1} type="cancel" onCancelClick={navigateToMainScreen}>
+                    <WaitingForRingModal onCancelClick={navigateToMainScreen} open size={1} type="cancel">
                       Waiting for ring...
                     </WaitingForRingModal>
                   </MainScreen>
@@ -183,9 +183,9 @@ export function App() {
                 element={
                   <MainScreen label="New Direct Connect Game Screen">
                     <ModemGameMenu
+                      onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/direct-connect/join')}
                       onHostClick={() => navigate('/new-game/multi-player/direct-connect/host')}
-                      onCancelClick={navigateToMainScreen}
                       x={400}
                       y={35}
                     />

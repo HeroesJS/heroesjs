@@ -55,8 +55,8 @@ function ModalWrapper(props: ModalProps) {
   return (
     <Modal
       {...props}
-      onConfirmClick={onConfirmClick ?? (type === 'okay' && autoClose ? onClose : undefined)}
       onCancelClick={onCancelClick ?? (type === 'cancel' && autoClose ? onClose : undefined)}
+      onConfirmClick={onConfirmClick ?? (type === 'okay' && autoClose ? onClose : undefined)}
     />
   );
 }

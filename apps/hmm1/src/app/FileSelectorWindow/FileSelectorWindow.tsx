@@ -52,8 +52,8 @@ export function FileSelectorWindow({
   return (
     <Window
       background={background}
-      label="File Selector Window"
       height={FileSelectorWindow.height + (showScenarioDetail ? scenarioInfoHeight : 0)}
+      label="File Selector Window"
       open
       width={320}
       x={x}
@@ -142,7 +142,7 @@ function ScenarioInfo({ detail, x, y }: ScenarioInfoProps) {
       <Text align="center" labelId={difficultyLabelId} size="large" width={134} x={160} y={35}>
         {detail && mapDifficultyLabel[detail.difficulty]}
       </Text>
-      <ScenarioDescription label="Description:" align="center" size="large" width={245} x={36} y={65}>
+      <ScenarioDescription align="center" label="Description:" size="large" width={245} x={36} y={65}>
         {detail?.description}
       </ScenarioDescription>
     </ScenarioInfoRoot>
