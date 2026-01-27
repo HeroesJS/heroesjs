@@ -1,4 +1,5 @@
 import type { MouseEvent, ReactNode } from 'react';
+import styled from 'styled-components';
 
 import { nextOption } from '@heroesjs/hmm1-core';
 
@@ -12,6 +13,7 @@ interface CycleToggleProps<T> {
   readonly onChange?: (value: T) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly options: readonly T[];
+  readonly reverse?: boolean;
   readonly value: T;
   readonly x?: number;
   readonly y?: number;
@@ -25,16 +27,17 @@ export function CycleToggle<T>({
   onChange,
   onMouseDown,
   options,
+  reverse,
   value,
   x,
   y,
 }: CycleToggleProps<T>) {
   return (
-    <PositionedComponent
+    <Root
       aria-label={label}
       aria-labelledby={labelId}
       className={className}
-      onClick={() => onChange?.(nextOption(options, value))}
+      onClick={() => onChange?.(nextOption(reverse ? Array.from(options).reverse() : options, value))}
       onMouseDown={onMouseDown}
       role="radiogroup"
       x={x}
@@ -43,6 +46,10 @@ export function CycleToggle<T>({
       <div aria-checked role="radio">
         {children(value)}
       </div>
-    </PositionedComponent>
+    </Root>
   );
 }
+
+const Root = styled(PositionedComponent)({
+  fontSize: 0,
+});

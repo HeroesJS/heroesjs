@@ -12,9 +12,14 @@ export {
   isComputerOpponentSetting,
   isHumanOpponentSetting,
   MaxPlayerCount,
+  MovementSpeed,
+  movementSpeedLabel,
+  movementSpeeds,
   PlayerColor,
   playerColorLabel,
   playerColors,
+  SoundVolume,
+  soundVolumes,
 } from './lib/core.js';
 export type { HumanOpponentSetting, OpponentSetting, OpponentSettings } from './lib/core.js';
 export {
@@ -24,7 +29,7 @@ export {
   defaultStandardGameHighScores,
 } from './lib/highScores.js';
 export type { CampaignGameScore, HighScores, HighScoresGameType, StandardGameScore } from './lib/highScores.js';
-export { MapDifficulty, MapSize, mapDifficultyLabel, mapSizeLabel, mapSupportsHumanPlayers } from './lib/map.js';
+export { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel, mapSupportsHumanPlayers } from './lib/map.js';
 export { getDifficultyRating } from './lib/rating.js';
 export type { DifficultyRatingSettings } from './lib/rating.js';
 export { scenarios } from './lib/scenario.js';

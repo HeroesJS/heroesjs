@@ -104,3 +104,55 @@ export function getDefaultOpponentSettings(humanOpponentCount: number): Opponent
     ...new Array<ComputerOpponentSetting>(MaxPlayerCount - humanOpponentCount - 1).fill(defaultComputerOpponentSetting),
   ];
 }
+
+export enum SoundVolume {
+  Off = 0,
+  Volume1 = 1,
+  Volume2 = 2,
+  Volume3 = 3,
+  Volume4 = 4,
+  Volume5 = 5,
+  Volume6 = 6,
+  Volume7 = 7,
+  Volume8 = 8,
+  Volume9 = 9,
+  On = 10,
+}
+
+export const soundVolumes: readonly SoundVolume[] = [
+  SoundVolume.Off,
+  SoundVolume.Volume1,
+  SoundVolume.Volume2,
+  SoundVolume.Volume3,
+  SoundVolume.Volume4,
+  SoundVolume.Volume5,
+  SoundVolume.Volume6,
+  SoundVolume.Volume7,
+  SoundVolume.Volume8,
+  SoundVolume.Volume9,
+  SoundVolume.On,
+];
+
+export enum MovementSpeed {
+  Canter = 'canter',
+  Gallop = 'gallop',
+  Jump = 'jump',
+  Trot = 'trot',
+  Walk = 'walk',
+}
+
+export const movementSpeeds: readonly MovementSpeed[] = [
+  MovementSpeed.Walk,
+  MovementSpeed.Trot,
+  MovementSpeed.Canter,
+  MovementSpeed.Gallop,
+  MovementSpeed.Jump,
+];
+
+export const movementSpeedLabel: Readonly<Record<MovementSpeed, string>> = {
+  [MovementSpeed.Canter]: 'Canter',
+  [MovementSpeed.Gallop]: 'Gallop',
+  [MovementSpeed.Jump]: 'Jump',
+  [MovementSpeed.Trot]: 'Trot',
+  [MovementSpeed.Walk]: 'Walk',
+};

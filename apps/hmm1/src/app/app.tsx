@@ -67,6 +67,7 @@ export function App() {
           element={
             <MainScreen>
               <MainMenu
+                onLoadGameClick={() => navigate('load-game')}
                 onNewGameClick={() => navigate('new-game')}
                 onViewCreditsClick={() => navigate('credits')}
                 onViewHighScoresClick={() => navigate('high-scores')}
@@ -211,7 +212,15 @@ export function App() {
             </Route>
           </Route>
         </Route>
-        <Route element={<AdventureScreen />} path="adventure" />
+        <Route
+          element={
+            <MainScreen label="Load Game Screen">
+              <GameTypeMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
+            </MainScreen>
+          }
+          path="load-game"
+        />
+        <Route element={<AdventureScreen />} path="adventure/*" />
         <Route element={<HighScoresScreen onExitClick={navigateToMainScreen} />} path="high-scores" />
         <Route element={<CreditsScreen onClick={navigateToMainScreen} />} path="credits" />
       </Routes>
