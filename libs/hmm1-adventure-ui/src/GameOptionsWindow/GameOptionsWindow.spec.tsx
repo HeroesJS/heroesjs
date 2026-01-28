@@ -25,7 +25,7 @@ describe(GameOptionsWindow, () => {
       await user.mouseRightDown(screen.getByRole('button', { name: /^new game$/i }));
 
       await expect(
-        screen.getByRole('dialog', { name: /^start a single or multi\u{02011}player game\.$/iu })
+        screen.getByRole('dialog', { name: /^start a single or multi‑player game\.$/iu })
       ).toBeInTheDocument();
     });
 

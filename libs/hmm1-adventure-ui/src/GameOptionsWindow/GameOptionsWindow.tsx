@@ -108,7 +108,7 @@ export function GameOptionsWindow({
         x={46}
         y={31}
       />
-      <NewGameInfoModal>Start a single or multi&#8209;player game.</NewGameInfoModal>
+      <NewGameInfoModal>Start a single or multi‑player game.</NewGameInfoModal>
       <NewGameConfirmationModal
         onCancelClick={newGameConfirmationModal.close}
         onConfirmClick={onNewGameClick}
