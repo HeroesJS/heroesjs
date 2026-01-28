@@ -20,6 +20,9 @@
     },
     {
       "path": "./libs/hmm1-adventure-ui"
+    },
+    {
+      "path": "./libs/hmm1-main-ui"
     }
   ],
   "ts-node": {
