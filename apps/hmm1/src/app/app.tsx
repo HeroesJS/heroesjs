@@ -2,14 +2,12 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
-import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
+import { MaxPlayerCount } from '@heroesjs/hmm1-core';
 import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
-
 import {
   CampaignMenu,
   CreditsScreen,
   GameTypeMenu,
-  HighScoresScreen as HighScoresScreenBase,
   MainMenu,
   MainScreen,
   ModemGameMenu,
@@ -17,7 +15,9 @@ import {
   NetworkGameMenu,
   PlayerCountMenu,
 } from '@heroesjs/hmm1-main-ui';
+
 import { AdventureScreen } from './AdventureScreen';
+import { HighScoresScreen } from './HighScoresScreen';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
 
 const GlobalStyle = createGlobalStyle({
@@ -267,29 +267,6 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
         </EnterTelephoneNumberModal>
       )}
     </MainScreen>
-  );
-}
-
-let lastViewedHighScores = defaultHighScoresGameType;
-
-interface HighScoresScreenProps {
-  readonly onExitClick?: () => void;
-}
-
-function HighScoresScreen({ onExitClick }: HighScoresScreenProps) {
-  const [gameType, setGameType] = useState(lastViewedHighScores);
-
-  useEffect(() => {
-    lastViewedHighScores = gameType;
-  }, [gameType]);
-
-  return (
-    <HighScoresScreenBase
-      entries={defaultHighScores}
-      gameType={gameType}
-      onExitClick={onExitClick}
-      onGameTypeChange={setGameType}
-    />
   );
 }
 
