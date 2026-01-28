@@ -2,21 +2,23 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
-import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
+import { MaxPlayerCount } from '@heroesjs/hmm1-core';
 import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
+import {
+  CampaignMenu,
+  CreditsScreen,
+  GameTypeMenu,
+  MainMenu,
+  MainScreen,
+  ModemGameMenu,
+  MultiPlayerGameTypeMenu,
+  NetworkGameMenu,
+  PlayerCountMenu,
+} from '@heroesjs/hmm1-main-ui';
 
 import { AdventureScreen } from './AdventureScreen';
-import { CampaignMenu } from './CampaignMenu';
-import { CreditsScreen } from './CreditsScreen';
-import { GameTypeMenu } from './GameTypeMenu';
-import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
-import { MainMenu } from './MainMenu';
-import { MainScreen } from './MainScreen';
-import { ModemGameMenu } from './ModemGameMenu';
-import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
-import { NetworkGameMenu } from './NetworkGameMenu';
+import { HighScoresScreen } from './HighScoresScreen';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
-import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -265,29 +267,6 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
         </EnterTelephoneNumberModal>
       )}
     </MainScreen>
-  );
-}
-
-let lastViewedHighScores = defaultHighScoresGameType;
-
-interface HighScoresScreenProps {
-  readonly onExitClick?: () => void;
-}
-
-function HighScoresScreen({ onExitClick }: HighScoresScreenProps) {
-  const [gameType, setGameType] = useState(lastViewedHighScores);
-
-  useEffect(() => {
-    lastViewedHighScores = gameType;
-  }, [gameType]);
-
-  return (
-    <HighScoresScreenBase
-      entries={defaultHighScores}
-      gameType={gameType}
-      onExitClick={onExitClick}
-      onGameTypeChange={setGameType}
-    />
   );
 }
 

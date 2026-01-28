@@ -6,7 +6,7 @@
     "@heroesjs/hmm1-adventure-ui": "*",
     "@heroesjs/hmm1-core": "*",
     "@heroesjs/hmm1-core-ui": "*",
-    "lodash": "4.17.21",
+    "@heroesjs/hmm1-main-ui": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "7.10.1",
