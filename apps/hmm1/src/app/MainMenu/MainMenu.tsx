@@ -31,7 +31,7 @@ export function MainMenu({
     <Menu label="Main Menu" x={x} y={y}>
       <MenuItem>
         <Button assets={newGame} label="New Game" onClick={onNewGameClick} onMouseDown={newGameInfoModal.onMouseDown} />
-        <NewGameInfoModal>Start a single or multi&#8209;player game.</NewGameInfoModal>
+        <NewGameInfoModal>Start a single or multi‑player game.</NewGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button

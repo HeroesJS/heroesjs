@@ -49,7 +49,7 @@ export class GameOptionsWindow {
     this.locator = page.getByRole('region', { name: /^game options window$/i });
 
     this.newGameButton = page.getByRole('button', { name: /^new game$/i });
-    this.newGameInfoModal = page.getByRole('dialog', { name: /^start a single or multi\u{02011}player game\.$/iu });
+    this.newGameInfoModal = page.getByRole('dialog', { name: /^start a single or multi‑player game\.$/iu });
     this.newGameConfirmationModal = page.getByRole('dialog', {
       name: /^are you sure you want to restart\? \(your current game will be lost\)$/i,
     });
