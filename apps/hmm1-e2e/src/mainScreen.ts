@@ -26,7 +26,7 @@ export class MainScreen {
     this.menu = page.getByRole('menu', { name: /main menu/i });
 
     this.newGameButton = page.getByRole('button', { name: /new game/i });
-    this.newGameInfoModal = page.getByRole('dialog', { name: /start a single or multi-player game\./i });
+    this.newGameInfoModal = page.getByRole('dialog', { name: /start a single or multi\u{02011}player game\./iu });
 
     this.loadGameButton = page.getByRole('button', { name: /load game/i });
     this.loadGameInfoModal = page.getByRole('dialog', { name: /load a previously saved game\./i });
