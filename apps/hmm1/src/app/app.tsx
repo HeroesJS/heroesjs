@@ -5,18 +5,20 @@ import { createGlobalStyle } from 'styled-components';
 import { defaultHighScores, defaultHighScoresGameType, MaxPlayerCount } from '@heroesjs/hmm1-core';
 import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
 
+import {
+  CampaignMenu,
+  GameTypeMenu,
+  MainMenu,
+  ModemGameMenu,
+  MultiPlayerGameTypeMenu,
+  NetworkGameMenu,
+  PlayerCountMenu,
+} from '@heroesjs/hmm1-main-ui';
 import { AdventureScreen } from './AdventureScreen';
-import { CampaignMenu } from './CampaignMenu';
 import { CreditsScreen } from './CreditsScreen';
-import { GameTypeMenu } from './GameTypeMenu';
 import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
-import { MainMenu } from './MainMenu';
 import { MainScreen } from './MainScreen';
-import { ModemGameMenu } from './ModemGameMenu';
-import { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
-import { NetworkGameMenu } from './NetworkGameMenu';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
-import { PlayerCountMenu } from './PlayerCountMenu';
 
 const GlobalStyle = createGlobalStyle({
   body: {

@@ -20,5 +20,12 @@
   ],
   "nx": {
     "name": "hmm1-main-ui"
+  },
+  "dependencies": {
+    "@heroesjs/hmm1-core": "*",
+    "@heroesjs/hmm1-core-ui": "*",
+    "lodash": "4.17.21",
+    "react": "^19.0.0",
+    "styled-components": "5.3.6"
   }
 }
