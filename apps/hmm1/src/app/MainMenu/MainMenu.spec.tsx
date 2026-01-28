@@ -33,7 +33,9 @@ describe(MainMenu, () => {
 
       await user.mouseRightDown(screen.getByRole('button', { name: /new game/i }));
 
-      expect(screen.getByRole('dialog', { name: /start a single or multi-player game\./i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('dialog', { name: /start a single or multi\u{02011}player game\./iu })
+      ).toBeInTheDocument();
     });
   });
 

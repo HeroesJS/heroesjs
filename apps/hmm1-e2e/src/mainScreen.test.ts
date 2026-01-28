@@ -25,7 +25,7 @@ test('displays new game info', async ({ mainScreen, mouseRightDown, page }) => {
 
   await expect(mainScreen.newGameInfoModal).toBeVisible();
 
-  await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.05 });
+  await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays load game info', async ({ mainScreen, mouseRightDown, page }) => {
