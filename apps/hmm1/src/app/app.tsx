@@ -7,17 +7,17 @@ import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
 
 import {
   CampaignMenu,
+  CreditsScreen,
   GameTypeMenu,
+  HighScoresScreen as HighScoresScreenBase,
   MainMenu,
+  MainScreen,
   ModemGameMenu,
   MultiPlayerGameTypeMenu,
   NetworkGameMenu,
   PlayerCountMenu,
 } from '@heroesjs/hmm1-main-ui';
 import { AdventureScreen } from './AdventureScreen';
-import { CreditsScreen } from './CreditsScreen';
-import { HighScoresScreen as HighScoresScreenBase } from './HighScoresScreen';
-import { MainScreen } from './MainScreen';
 import { NewStandardGameScreen } from './NewStandardGameScreen';
 
 const GlobalStyle = createGlobalStyle({

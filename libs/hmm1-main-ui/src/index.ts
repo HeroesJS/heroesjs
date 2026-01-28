@@ -1,10 +1,15 @@
 export { BaudMenu } from './BaudMenu';
 export { CampaignMenu } from './CampaignMenu';
 export { ComPortMenu } from './ComPortMenu';
+export { CreditsScreen } from './CreditsScreen';
 export { DirectConnectGameMenu } from './DirectConnectGameMenu';
+export { FileSelectorWindow } from './FileSelectorWindow';
 export { GameTypeMenu } from './GameTypeMenu';
+export { HighScoresScreen } from './HighScoresScreen';
 export { MainMenu } from './MainMenu';
+export { MainScreen } from './MainScreen';
 export { ModemGameMenu } from './ModemGameMenu';
 export { MultiPlayerGameTypeMenu } from './MultiPlayerGameTypeMenu';
 export { NetworkGameMenu } from './NetworkGameMenu';
+export { NewStandardGameWindow } from './NewStandardGameWindow';
 export { PlayerCountMenu } from './PlayerCountMenu';

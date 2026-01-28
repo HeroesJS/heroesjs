@@ -9,10 +9,7 @@ import {
   mapSupportsHumanPlayers,
   scenarios,
 } from '@heroesjs/hmm1-core';
-
-import { FileSelectorWindow } from '../FileSelectorWindow';
-import { MainScreen } from '../MainScreen';
-import { NewStandardGameWindow } from '../NewStandardGameWindow';
+import { FileSelectorWindow, MainScreen, NewStandardGameWindow } from '@heroesjs/hmm1-main-ui';
 
 interface NewStandardGameScreenProps {
   readonly onCancelClick?: () => void;
