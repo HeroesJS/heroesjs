@@ -6,6 +6,7 @@ import {
   OpponentSettings,
   isComputerOpponentSetting,
   isHumanOpponentSetting,
+  noOpponent,
 } from './core.js';
 import { MapDifficulty, MapSize } from './map.js';
 
@@ -44,6 +45,9 @@ export interface DifficultyRatingSettings {
   readonly opponentSettings: OpponentSettings;
 }
 
+const noOpponentRating = -10;
+const kingOfTheHillOpponentRating = 5;
+
 export function getDifficultyRating({
   gameDifficulty,
   kingOfTheHill,
@@ -57,15 +61,16 @@ export function getDifficultyRating({
     gameDifficultyRating[gameDifficulty] +
     sum(
       opponentSettings.map((setting) =>
-        setting
+        setting !== noOpponent
           ? isHumanOpponentSetting(setting)
             ? gameDifficultyRating[setting]
             : computerOpponentSettingRating[setting]
-          : -10
+          : noOpponentRating
       )
     ) +
     (kingOfTheHill
-      ? Math.max(opponentSettings.filter((setting) => setting && isComputerOpponentSetting(setting)).length - 1, 0) * 5
+      ? Math.max(opponentSettings.filter((setting) => setting && isComputerOpponentSetting(setting)).length - 1, 0) *
+        kingOfTheHillOpponentRating
       : 0)
   );
 }

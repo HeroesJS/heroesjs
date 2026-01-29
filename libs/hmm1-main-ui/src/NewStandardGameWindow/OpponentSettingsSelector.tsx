@@ -7,6 +7,7 @@ import {
   gameDifficulties,
   gameDifficultyLabel,
   isHumanOpponentSetting,
+  noOpponent,
   OpponentSetting,
   OpponentSettings,
 } from '@heroesjs/hmm1-core';
@@ -65,7 +66,7 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
           <img
             alt=""
             src={
-              value
+              value !== noOpponent
                 ? isHumanOpponentSetting(value)
                   ? opponentSetting.human
                   : opponentSetting.computer[value]
@@ -73,7 +74,7 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
             }
           />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {value ? (
+            {value !== noOpponent ? (
               isHumanOpponentSetting(value) ? (
                 <>
                   Human
