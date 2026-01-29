@@ -15,6 +15,7 @@ export {
   MovementSpeed,
   movementSpeedLabel,
   movementSpeeds,
+  noOpponent,
   PlayerColor,
   playerColorLabel,
   playerColors,

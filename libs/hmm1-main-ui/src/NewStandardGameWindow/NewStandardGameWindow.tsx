@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import {
-  ComputerOpponentSetting,
   GameDifficulty,
   isHumanOpponentSetting,
   MaxPlayerCount,
+  noOpponent,
   OpponentSetting,
   OpponentSettings,
   PlayerColor,
@@ -46,7 +46,7 @@ export function NewStandardGameWindow({
   onOpponentSettingsChange,
   onPlayerColorChange,
   onSelectScenarioClick,
-  opponentSettings = new Array<OpponentSetting>(MaxPlayerCount - 1).fill(ComputerOpponentSetting.None),
+  opponentSettings = new Array<OpponentSetting>(MaxPlayerCount - 1).fill(noOpponent),
   playerColor,
   scenarioName,
   x,
@@ -66,7 +66,7 @@ export function NewStandardGameWindow({
   const [NoOpponentsErrorModal, noOpponentsErrorModal] = useModal();
 
   const handleOkayClick = () => {
-    if (opponentSettings.every((opponent) => opponent === ComputerOpponentSetting.None)) {
+    if (opponentSettings.every((opponent) => opponent === noOpponent)) {
       noOpponentsErrorModal.open();
 
       return;

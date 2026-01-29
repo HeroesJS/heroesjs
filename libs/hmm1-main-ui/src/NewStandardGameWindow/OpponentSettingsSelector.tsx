@@ -7,6 +7,7 @@ import {
   gameDifficulties,
   gameDifficultyLabel,
   isHumanOpponentSetting,
+  noOpponent,
   OpponentSetting,
   OpponentSettings,
 } from '@heroesjs/hmm1-core';
@@ -62,16 +63,29 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
     >
       {(value) => (
         <>
-          <img alt="" src={isHumanOpponentSetting(value) ? opponentSetting.human : opponentSetting.computer[value]} />
+          <img
+            alt=""
+            src={
+              value !== noOpponent
+                ? isHumanOpponentSetting(value)
+                  ? opponentSetting.human
+                  : opponentSetting.computer[value]
+                : opponentSetting.none
+            }
+          />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {isHumanOpponentSetting(value) ? (
-              <>
-                Human
-                <br />
-                {gameDifficultyLabel[value]}
-              </>
+            {value !== noOpponent ? (
+              isHumanOpponentSetting(value) ? (
+                <>
+                  Human
+                  <br />
+                  {gameDifficultyLabel[value]}
+                </>
+              ) : (
+                computerOpponentSettingLabel[value]
+              )
             ) : (
-              computerOpponentSettingLabel[value]
+              'None'
             )}
           </Text>
         </>
