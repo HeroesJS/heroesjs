@@ -21,8 +21,10 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
 
   const playerCount = Number(params.playerCount ?? 1);
 
+  const humanOpponentsCount = playerCount - 1;
+
   const [gameDifficulty, setGameDifficulty] = useState(defaultGameDifficulty);
-  const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings(playerCount - 1));
+  const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings());
   const [playerColor, setPlayerColor] = useState(defaultPlayerColor);
   const [kingOfTheHill, setKingOfTheHill] = useState(false);
 
@@ -37,6 +39,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
 
   const rating = getDifficultyRating({
     gameDifficulty,
+    humanOpponentsCount,
     kingOfTheHill,
     mapDifficulty: selectedScenario!.difficulty,
     mapSize: selectedScenario!.size,
@@ -68,6 +71,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
         <NewStandardGameWindow
           difficultyRating={rating}
           gameDifficulty={gameDifficulty}
+          humanOpponentsCount={humanOpponentsCount}
           kingOfTheHill={kingOfTheHill}
           onCancelClick={onCancelClick}
           onGameDifficultyChange={setGameDifficulty}

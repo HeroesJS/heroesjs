@@ -54,55 +54,54 @@ export const defaultGameDifficulty = GameDifficulty.Normal;
 
 export const noOpponent = undefined;
 
-export enum ComputerOpponentSetting {
+export enum OpponentDifficulty {
   Average = 'average',
   Dumb = 'dumb',
   Genius = 'genius',
   Smart = 'smart',
 }
 
-export const computerOpponentSettings: readonly (ComputerOpponentSetting | typeof noOpponent)[] = [
-  noOpponent,
-  ComputerOpponentSetting.Dumb,
-  ComputerOpponentSetting.Average,
-  ComputerOpponentSetting.Smart,
-  ComputerOpponentSetting.Genius,
+export const opponentDifficulties: readonly OpponentDifficulty[] = [
+  OpponentDifficulty.Dumb,
+  OpponentDifficulty.Average,
+  OpponentDifficulty.Smart,
+  OpponentDifficulty.Genius,
 ];
 
-export const computerOpponentSettingLabel: Readonly<Record<ComputerOpponentSetting, string>> = {
-  [ComputerOpponentSetting.Average]: 'Average',
-  [ComputerOpponentSetting.Dumb]: 'Dumb',
-  [ComputerOpponentSetting.Genius]: 'Genius',
-  [ComputerOpponentSetting.Smart]: 'Smart',
+export const computerOpponentSettings: readonly (OpponentDifficulty | typeof noOpponent)[] = [
+  noOpponent,
+  ...opponentDifficulties,
+];
+
+export const humanOpponentSettings = opponentDifficulties;
+
+export const computerOpponentSettingLabel: Readonly<Record<OpponentDifficulty, string>> = {
+  [OpponentDifficulty.Average]: 'Average',
+  [OpponentDifficulty.Dumb]: 'Dumb',
+  [OpponentDifficulty.Genius]: 'Genius',
+  [OpponentDifficulty.Smart]: 'Smart',
 };
 
-const defaultComputerOpponentSetting: ComputerOpponentSetting = ComputerOpponentSetting.Average;
+export type OpponentSetting = OpponentDifficulty | typeof noOpponent;
 
-export type HumanOpponentSetting = GameDifficulty;
-
-const defaultHumanOpponentSetting: HumanOpponentSetting = defaultGameDifficulty;
-
-export type OpponentSetting = ComputerOpponentSetting | HumanOpponentSetting | typeof noOpponent;
-
-export function isComputerOpponentSetting(value: OpponentSetting): value is ComputerOpponentSetting {
-  return Object.values(ComputerOpponentSetting).includes(value as ComputerOpponentSetting);
-}
-
-export function isHumanOpponentSetting(value: OpponentSetting): value is HumanOpponentSetting {
-  return Object.values(GameDifficulty).includes(value as GameDifficulty);
-}
+export const defaultOpponentSetting: OpponentSetting = OpponentDifficulty.Average;
 
 export type OpponentSettings = readonly OpponentSetting[];
 
-export function getDefaultOpponentSettings(humanOpponentCount: number): OpponentSettings {
-  if (humanOpponentCount < 0 || humanOpponentCount >= MaxPlayerCount) {
-    throw new Error(`Human opponent count must be between 0 and ${MaxPlayerCount - 1}`);
-  }
+export const isHumanOpponent = (opponentIndex: number, humanOpponentsCount: number): boolean =>
+  opponentIndex < humanOpponentsCount;
 
-  return [
-    ...new Array<HumanOpponentSetting>(humanOpponentCount).fill(defaultHumanOpponentSetting),
-    ...new Array<ComputerOpponentSetting>(MaxPlayerCount - humanOpponentCount - 1).fill(defaultComputerOpponentSetting),
-  ];
+const opponentGameDifficulty: Readonly<Record<OpponentDifficulty, GameDifficulty>> = {
+  [OpponentDifficulty.Average]: GameDifficulty.Normal,
+  [OpponentDifficulty.Dumb]: GameDifficulty.Easy,
+  [OpponentDifficulty.Genius]: GameDifficulty.Expert,
+  [OpponentDifficulty.Smart]: GameDifficulty.Hard,
+};
+
+export const getOpponentGameDifficulty = (value: OpponentDifficulty): GameDifficulty => opponentGameDifficulty[value];
+
+export function getDefaultOpponentSettings(): OpponentSettings {
+  return new Array<OpponentSetting>(MaxPlayerCount - 1).fill(defaultOpponentSetting);
 }
 
 export enum SoundVolume {

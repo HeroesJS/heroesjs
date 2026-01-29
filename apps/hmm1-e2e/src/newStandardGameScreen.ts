@@ -103,7 +103,7 @@ export class NewStandardGameScreen {
     return this.getOpponentSetting(index).getByRole('radio', { name: setting });
   }
 
-  public getHumanOpponentCount() {
+  public getHumanOpponentsCount() {
     return this.page.getByRole('radio', { name: /human/i }).count();
   }
 

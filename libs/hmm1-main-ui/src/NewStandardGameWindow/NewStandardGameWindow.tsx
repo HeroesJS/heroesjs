@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import {
   GameDifficulty,
-  isHumanOpponentSetting,
   MaxPlayerCount,
   noOpponent,
   OpponentSetting,
@@ -20,6 +19,7 @@ import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 interface NewStandardGameWindowProps {
   readonly difficultyRating?: number;
   readonly gameDifficulty: GameDifficulty;
+  readonly humanOpponentsCount?: number;
   readonly kingOfTheHill?: boolean;
   readonly onCancelClick?: () => void;
   readonly onGameDifficultyChange?: (value: GameDifficulty) => void;
@@ -38,6 +38,7 @@ interface NewStandardGameWindowProps {
 export function NewStandardGameWindow({
   difficultyRating = 0,
   gameDifficulty,
+  humanOpponentsCount = 0,
   kingOfTheHill,
   onCancelClick,
   onGameDifficultyChange,
@@ -104,12 +105,10 @@ export function NewStandardGameWindow({
         Customize Opponents:
       </Text>
       <OpponentSettingsSelector
+        humanOpponentsCount={humanOpponentsCount}
         onChange={onOpponentSettingsChange}
-        onOptionMouseDown={(e, setting) =>
-          (isHumanOpponentSetting(setting)
-            ? humanOpponentSettingInfoModal
-            : computerOpponentSettingInfoModal
-          ).onMouseDown(e)
+        onOptionMouseDown={(e, _setting, isHumanOpponent) =>
+          (isHumanOpponent ? humanOpponentSettingInfoModal : computerOpponentSettingInfoModal).onMouseDown(e)
         }
         value={opponentSettings}
         x={55}
