@@ -11,11 +11,11 @@ const computer: Readonly<Record<ComputerOpponentSetting, string>> = {
   [ComputerOpponentSetting.Average]: average,
   [ComputerOpponentSetting.Dumb]: dumb,
   [ComputerOpponentSetting.Genius]: genius,
-  [ComputerOpponentSetting.None]: none,
   [ComputerOpponentSetting.Smart]: smart,
 };
 
 export const assets = {
   computer,
   human,
+  none,
 } as const;

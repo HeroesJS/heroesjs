@@ -62,16 +62,29 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
     >
       {(value) => (
         <>
-          <img alt="" src={isHumanOpponentSetting(value) ? opponentSetting.human : opponentSetting.computer[value]} />
+          <img
+            alt=""
+            src={
+              value
+                ? isHumanOpponentSetting(value)
+                  ? opponentSetting.human
+                  : opponentSetting.computer[value]
+                : opponentSetting.none
+            }
+          />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {isHumanOpponentSetting(value) ? (
-              <>
-                Human
-                <br />
-                {gameDifficultyLabel[value]}
-              </>
+            {value ? (
+              isHumanOpponentSetting(value) ? (
+                <>
+                  Human
+                  <br />
+                  {gameDifficultyLabel[value]}
+                </>
+              ) : (
+                computerOpponentSettingLabel[value]
+              )
             ) : (
-              computerOpponentSettingLabel[value]
+              'None'
             )}
           </Text>
         </>

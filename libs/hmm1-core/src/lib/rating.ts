@@ -33,7 +33,6 @@ const computerOpponentSettingRating: Readonly<Record<ComputerOpponentSetting, nu
   [ComputerOpponentSetting.Average]: 10,
   [ComputerOpponentSetting.Dumb]: 5,
   [ComputerOpponentSetting.Genius]: 20,
-  [ComputerOpponentSetting.None]: -10,
   [ComputerOpponentSetting.Smart]: 15,
 };
 
@@ -58,16 +57,15 @@ export function getDifficultyRating({
     gameDifficultyRating[gameDifficulty] +
     sum(
       opponentSettings.map((setting) =>
-        isHumanOpponentSetting(setting) ? gameDifficultyRating[setting] : computerOpponentSettingRating[setting]
+        setting
+          ? isHumanOpponentSetting(setting)
+            ? gameDifficultyRating[setting]
+            : computerOpponentSettingRating[setting]
+          : -10
       )
     ) +
     (kingOfTheHill
-      ? Math.max(
-          opponentSettings.filter(
-            (setting) => isComputerOpponentSetting(setting) && setting !== ComputerOpponentSetting.None
-          ).length - 1,
-          0
-        ) * 5
+      ? Math.max(opponentSettings.filter((setting) => setting && isComputerOpponentSetting(setting)).length - 1, 0) * 5
       : 0)
   );
 }

@@ -52,16 +52,17 @@ export const gameDifficultyLabel: Readonly<Record<GameDifficulty, string>> = {
 
 export const defaultGameDifficulty = GameDifficulty.Normal;
 
+export const noOpponent = undefined;
+
 export enum ComputerOpponentSetting {
   Average = 'average',
   Dumb = 'dumb',
   Genius = 'genius',
-  None = 'none',
   Smart = 'smart',
 }
 
-export const computerOpponentSettings: readonly ComputerOpponentSetting[] = [
-  ComputerOpponentSetting.None,
+export const computerOpponentSettings: readonly (ComputerOpponentSetting | typeof noOpponent)[] = [
+  noOpponent,
   ComputerOpponentSetting.Dumb,
   ComputerOpponentSetting.Average,
   ComputerOpponentSetting.Smart,
@@ -72,7 +73,6 @@ export const computerOpponentSettingLabel: Readonly<Record<ComputerOpponentSetti
   [ComputerOpponentSetting.Average]: 'Average',
   [ComputerOpponentSetting.Dumb]: 'Dumb',
   [ComputerOpponentSetting.Genius]: 'Genius',
-  [ComputerOpponentSetting.None]: 'None',
   [ComputerOpponentSetting.Smart]: 'Smart',
 };
 
@@ -82,7 +82,7 @@ export type HumanOpponentSetting = GameDifficulty;
 
 const defaultHumanOpponentSetting: HumanOpponentSetting = defaultGameDifficulty;
 
-export type OpponentSetting = ComputerOpponentSetting | HumanOpponentSetting;
+export type OpponentSetting = ComputerOpponentSetting | HumanOpponentSetting | typeof noOpponent;
 
 export function isComputerOpponentSetting(value: OpponentSetting): value is ComputerOpponentSetting {
   return Object.values(ComputerOpponentSetting).includes(value as ComputerOpponentSetting);
