@@ -1,10 +1,11 @@
-import { ComputerOpponentSetting, GameDifficulty, noOpponent } from './core.js';
+import { GameDifficulty, noOpponent, OpponentDifficulty } from './core.js';
 import { MapDifficulty, MapSize } from './map.js';
 import { type DifficultyRatingSettings, getDifficultyRating } from './rating.js';
 
 describe(getDifficultyRating, () => {
   const baseSettings: DifficultyRatingSettings = {
     gameDifficulty: GameDifficulty.Easy,
+    humanOpponentsCount: 0,
     kingOfTheHill: false,
     mapDifficulty: MapDifficulty.Easy,
     mapSize: MapSize.Small,
@@ -34,21 +35,27 @@ describe(getDifficultyRating, () => {
     [{ gameDifficulty: GameDifficulty.Expert }, 20],
     // opponent settings
     [{ opponentSettings: [noOpponent, noOpponent, noOpponent] }, -10],
-    [{ opponentSettings: [ComputerOpponentSetting.Dumb, noOpponent, noOpponent] }, 5],
+    [{ opponentSettings: [OpponentDifficulty.Dumb, noOpponent, noOpponent] }, 5],
     [
       {
-        opponentSettings: [ComputerOpponentSetting.Average, noOpponent, noOpponent],
+        opponentSettings: [OpponentDifficulty.Average, noOpponent, noOpponent],
       },
       10,
     ],
-    [{ opponentSettings: [ComputerOpponentSetting.Smart, noOpponent, noOpponent] }, 15],
+    [{ opponentSettings: [OpponentDifficulty.Smart, noOpponent, noOpponent] }, 15],
     [
       {
-        opponentSettings: [ComputerOpponentSetting.Genius, noOpponent, noOpponent],
+        opponentSettings: [OpponentDifficulty.Genius, noOpponent, noOpponent],
       },
       20,
     ],
-    [{ opponentSettings: [GameDifficulty.Easy, noOpponent, noOpponent] }, 0],
+    [
+      {
+        humanOpponentsCount: 1,
+        opponentSettings: [OpponentDifficulty.Dumb, noOpponent, noOpponent],
+      },
+      0,
+    ],
     // king of the hill
     [
       {
@@ -60,21 +67,21 @@ describe(getDifficultyRating, () => {
     [
       {
         kingOfTheHill: true,
-        opponentSettings: [ComputerOpponentSetting.Dumb, noOpponent, noOpponent],
+        opponentSettings: [OpponentDifficulty.Dumb, noOpponent, noOpponent],
       },
       5,
     ],
     [
       {
         kingOfTheHill: true,
-        opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb, noOpponent],
+        opponentSettings: [OpponentDifficulty.Dumb, OpponentDifficulty.Dumb, noOpponent],
       },
       25,
     ],
     [
       {
         kingOfTheHill: true,
-        opponentSettings: [ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb, ComputerOpponentSetting.Dumb],
+        opponentSettings: [OpponentDifficulty.Dumb, OpponentDifficulty.Dumb, OpponentDifficulty.Dumb],
       },
       45,
     ],

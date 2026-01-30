@@ -41,7 +41,7 @@ playerCounts.forEach((count) => {
 
       await expect(newStandardGameScreen.locator).toBeVisible();
 
-      expect(await newStandardGameScreen.getHumanOpponentCount()).toBe(count - 1);
+      expect(await newStandardGameScreen.getHumanOpponentsCount()).toBe(count - 1);
 
       await expect(page).toHaveScreenshot(`${count}-players-game.png`, { maxDiffPixelRatio: 0.01 });
     });

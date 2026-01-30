@@ -1,12 +1,6 @@
 import { screen, within } from '@testing-library/react';
 
-import {
-  ComputerOpponentSetting,
-  GameDifficulty,
-  noOpponent,
-  OpponentSettings,
-  PlayerColor,
-} from '@heroesjs/hmm1-core';
+import { GameDifficulty, noOpponent, OpponentDifficulty, OpponentSettings, PlayerColor } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { NewStandardGameWindow } from './NewStandardGameWindow';
@@ -95,7 +89,7 @@ describe(NewStandardGameWindow, () => {
         renderWithProviders(
           <NewStandardGameWindow
             gameDifficulty={GameDifficulty.Easy}
-            opponentSettings={[ComputerOpponentSetting.Dumb, noOpponent, noOpponent]}
+            opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
             playerColor={PlayerColor.Blue}
           />
         );
@@ -126,7 +120,7 @@ describe(NewStandardGameWindow, () => {
           <NewStandardGameWindow
             gameDifficulty={GameDifficulty.Easy}
             onOpponentSettingsChange={handler}
-            opponentSettings={[ComputerOpponentSetting.Dumb, noOpponent, noOpponent]}
+            opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
             playerColor={PlayerColor.Blue}
           />
         );
@@ -135,11 +129,7 @@ describe(NewStandardGameWindow, () => {
 
         await user.click(group);
 
-        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([
-          ComputerOpponentSetting.Average,
-          noOpponent,
-          noOpponent,
-        ]);
+        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([OpponentDifficulty.Average, noOpponent, noOpponent]);
       });
     });
 
@@ -148,7 +138,8 @@ describe(NewStandardGameWindow, () => {
         renderWithProviders(
           <NewStandardGameWindow
             gameDifficulty={GameDifficulty.Easy}
-            opponentSettings={[GameDifficulty.Easy, noOpponent, noOpponent]}
+            humanOpponentsCount={1}
+            opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
             playerColor={PlayerColor.Blue}
           />
         );
@@ -162,7 +153,8 @@ describe(NewStandardGameWindow, () => {
         const { user } = renderWithProviders(
           <NewStandardGameWindow
             gameDifficulty={GameDifficulty.Easy}
-            opponentSettings={[GameDifficulty.Easy, noOpponent, noOpponent]}
+            humanOpponentsCount={1}
+            opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
             playerColor={PlayerColor.Blue}
           />
         );
@@ -183,7 +175,7 @@ describe(NewStandardGameWindow, () => {
           <NewStandardGameWindow
             gameDifficulty={GameDifficulty.Easy}
             onOpponentSettingsChange={handler}
-            opponentSettings={[GameDifficulty.Easy, noOpponent, noOpponent]}
+            opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
             playerColor={PlayerColor.Blue}
           />
         );
@@ -192,7 +184,7 @@ describe(NewStandardGameWindow, () => {
 
         await user.click(group);
 
-        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([GameDifficulty.Normal, noOpponent, noOpponent]);
+        expect(handler).toHaveBeenCalledWith<[OpponentSettings]>([OpponentDifficulty.Average, noOpponent, noOpponent]);
       });
     });
   });
@@ -439,7 +431,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow
           gameDifficulty={GameDifficulty.Easy}
           onOkayClick={handler}
-          opponentSettings={[ComputerOpponentSetting.Dumb, noOpponent, noOpponent]}
+          opponentSettings={[OpponentDifficulty.Dumb, noOpponent, noOpponent]}
           playerColor={PlayerColor.Blue}
         />
       );

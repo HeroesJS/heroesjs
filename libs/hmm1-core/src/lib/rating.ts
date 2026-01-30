@@ -1,11 +1,11 @@
 import { sum } from 'lodash';
 
 import {
-  ComputerOpponentSetting,
   GameDifficulty,
+  OpponentDifficulty,
   OpponentSettings,
-  isComputerOpponentSetting,
-  isHumanOpponentSetting,
+  getOpponentGameDifficulty,
+  isHumanOpponent,
   noOpponent,
 } from './core.js';
 import { MapDifficulty, MapSize } from './map.js';
@@ -30,15 +30,16 @@ const mapDifficultyRating: Readonly<Record<MapDifficulty, number>> = {
   [MapDifficulty.Tough]: 40,
 };
 
-const computerOpponentSettingRating: Readonly<Record<ComputerOpponentSetting, number>> = {
-  [ComputerOpponentSetting.Average]: 10,
-  [ComputerOpponentSetting.Dumb]: 5,
-  [ComputerOpponentSetting.Genius]: 20,
-  [ComputerOpponentSetting.Smart]: 15,
+const computerOpponentSettingRating: Readonly<Record<OpponentDifficulty, number>> = {
+  [OpponentDifficulty.Average]: 10,
+  [OpponentDifficulty.Dumb]: 5,
+  [OpponentDifficulty.Genius]: 20,
+  [OpponentDifficulty.Smart]: 15,
 };
 
 export interface DifficultyRatingSettings {
   readonly gameDifficulty: GameDifficulty;
+  readonly humanOpponentsCount: number;
   readonly kingOfTheHill: boolean;
   readonly mapDifficulty: MapDifficulty;
   readonly mapSize: MapSize;
@@ -50,6 +51,7 @@ const kingOfTheHillOpponentRating = 5;
 
 export function getDifficultyRating({
   gameDifficulty,
+  humanOpponentsCount,
   kingOfTheHill,
   mapDifficulty,
   mapSize,
@@ -60,17 +62,20 @@ export function getDifficultyRating({
     mapDifficultyRating[mapDifficulty] +
     gameDifficultyRating[gameDifficulty] +
     sum(
-      opponentSettings.map((setting) =>
+      opponentSettings.map((setting, index) =>
         setting !== noOpponent
-          ? isHumanOpponentSetting(setting)
-            ? gameDifficultyRating[setting]
+          ? isHumanOpponent(index, humanOpponentsCount)
+            ? gameDifficultyRating[getOpponentGameDifficulty(setting)]
             : computerOpponentSettingRating[setting]
           : noOpponentRating
       )
     ) +
     (kingOfTheHill
-      ? Math.max(opponentSettings.filter((setting) => setting && isComputerOpponentSetting(setting)).length - 1, 0) *
-        kingOfTheHillOpponentRating
+      ? Math.max(
+          opponentSettings.filter((setting, index) => setting && !isHumanOpponent(index, humanOpponentsCount)).length -
+            1,
+          0
+        ) * kingOfTheHillOpponentRating
       : 0)
   );
 }

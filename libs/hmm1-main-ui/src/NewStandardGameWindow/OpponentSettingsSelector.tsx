@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import {
   computerOpponentSettingLabel,
   computerOpponentSettings,
-  gameDifficulties,
   gameDifficultyLabel,
-  isHumanOpponentSetting,
+  getOpponentGameDifficulty,
+  humanOpponentSettings,
+  isHumanOpponent,
   noOpponent,
   OpponentSetting,
   OpponentSettings,
@@ -16,22 +17,31 @@ import { CycleToggle, PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 import { opponentSetting } from './assets';
 
 interface OpponentSettingsSelectorProps {
+  readonly humanOpponentsCount?: number;
   readonly value: OpponentSettings;
   readonly onChange?: (value: OpponentSettings) => void;
-  readonly onOptionMouseDown?: (e: MouseEvent, setting: OpponentSetting) => void;
+  readonly onOptionMouseDown?: (e: MouseEvent, setting: OpponentSetting, isHumanOpponent: boolean) => void;
   readonly x?: number;
   readonly y?: number;
 }
 
-export function OpponentSettingsSelector({ onChange, onOptionMouseDown, value, x, y }: OpponentSettingsSelectorProps) {
+export function OpponentSettingsSelector({
+  humanOpponentsCount = 0,
+  onChange,
+  onOptionMouseDown,
+  value,
+  x,
+  y,
+}: OpponentSettingsSelectorProps) {
   return (
     <Root x={x} y={y}>
       {value.map((setting, index) => (
         <Item
+          humanOpponent={isHumanOpponent(index, humanOpponentsCount)}
           key={index}
           label={`Opponent ${index + 1} Setting`}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
-          onMouseDown={(e) => onOptionMouseDown?.(e, setting)}
+          onMouseDown={(e) => onOptionMouseDown?.(e, setting, isHumanOpponent(index, humanOpponentsCount))}
           value={setting}
         />
       ))}
@@ -46,19 +56,20 @@ const Root = styled(PositionedComponent)({
 });
 
 interface ItemProps {
+  readonly humanOpponent?: boolean;
   readonly label: string;
   readonly onChange?: (value: OpponentSetting) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: OpponentSetting;
 }
 
-function Item({ label, onChange, onMouseDown, value }: ItemProps) {
+function Item({ humanOpponent, label, onChange, onMouseDown, value }: ItemProps) {
   return (
     <ItemRoot
       label={label}
       onChange={onChange}
       onMouseDown={onMouseDown}
-      options={isHumanOpponentSetting(value) ? gameDifficulties : computerOpponentSettings}
+      options={humanOpponent ? humanOpponentSettings : computerOpponentSettings}
       value={value}
     >
       {(value) => (
@@ -67,7 +78,7 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
             alt=""
             src={
               value !== noOpponent
-                ? isHumanOpponentSetting(value)
+                ? humanOpponent
                   ? opponentSetting.human
                   : opponentSetting.computer[value]
                 : opponentSetting.none
@@ -75,11 +86,11 @@ function Item({ label, onChange, onMouseDown, value }: ItemProps) {
           />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
             {value !== noOpponent ? (
-              isHumanOpponentSetting(value) ? (
+              humanOpponent ? (
                 <>
                   Human
                   <br />
-                  {gameDifficultyLabel[value]}
+                  {gameDifficultyLabel[getOpponentGameDifficulty(value)]}
                 </>
               ) : (
                 computerOpponentSettingLabel[value]
