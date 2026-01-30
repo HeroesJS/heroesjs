@@ -105,14 +105,14 @@ test.describe('player color', () => {
 
   test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
     for (const color of [/green/i, /red/i, /yellow/i, /blue/i]) {
-      await newStandardGameScreen.playerColor.click();
+      await newStandardGameScreen.playerColorToggle.click();
 
       await expect(newStandardGameScreen.getPlayerColorOption(color)).toBeChecked();
     }
   });
 
   test('displays player color info when right-clicked', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.playerColor);
+    await mouseRightDown(newStandardGameScreen.playerColorToggle);
 
     await expect(newStandardGameScreen.playerColorInfoModal).toBeVisible();
 
@@ -144,7 +144,7 @@ test.describe('scenario', () => {
   test('displays option', async ({ newStandardGameScreen }) => {
     await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
 
-    await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
+    await expect(newStandardGameScreen.selectedScenarioLabel).toHaveText(/claw \( easy \)/i);
     await expect(newStandardGameScreen.selectScenarioButton).toBeVisible();
   });
 
@@ -179,7 +179,7 @@ test.describe('scenario', () => {
 
     await newStandardGameScreen.cancelButton.click();
 
-    await expect(newStandardGameScreen.scenarioLabel).toHaveText(/claw \( easy \)/i);
+    await expect(newStandardGameScreen.selectedScenarioLabel).toHaveText(/claw \( easy \)/i);
   });
 });
 
@@ -243,4 +243,92 @@ test('displays main screen when cancel button is clicked', async ({ mainScreen, 
   await newStandardGameScreen.cancelButton.click();
 
   await expect(mainScreen.locator).toBeVisible();
+});
+
+test.describe('preserving settings', () => {
+  test('restores last used settings', async ({ adventureScreen, newGameScreen, newStandardGameScreen }) => {
+    await newStandardGameScreen.selectGameSettings({
+      gameDifficulty: /^hard$/i,
+      kingOfTheHill: true,
+      opponents: [/^smart$/i, /^genius$/i, /^none$/i],
+      playerColor: /^green$/i,
+      scenario: /^around the bay$/i,
+    });
+
+    await newStandardGameScreen.okayButton.click();
+
+    await adventureScreen.startNewGame();
+
+    await newGameScreen.standardGameButton.click();
+
+    await newStandardGameScreen.verifyGameSettings({
+      gameDifficulty: /^hard$/i,
+      kingOfTheHill: true,
+      opponents: [/^smart$/i, /^genius$/i, /^none$/i],
+      playerColor: /^green$/i,
+      scenario: /^around the bay$/i,
+    });
+  });
+
+  test('puts set opponents first', async ({ adventureScreen, newGameScreen, newStandardGameScreen }) => {
+    await newStandardGameScreen.setOpponents(/^none$/i, /^none$/i, /^smart$/i);
+
+    await newStandardGameScreen.okayButton.click();
+
+    await adventureScreen.startNewGame();
+
+    await newGameScreen.standardGameButton.click();
+
+    await newStandardGameScreen.verifyOpponents(/^smart$/i, /^none$/i, /^none$/i);
+  });
+
+  test('converts computer opponents to human opponents', async ({
+    adventureScreen,
+    newGameScreen,
+    newStandardGameScreen,
+  }) => {
+    await newStandardGameScreen.setOpponents(/^average$/i, /^smart$/i, /^genius$/i);
+
+    await newStandardGameScreen.okayButton.click();
+
+    await adventureScreen.startNewGame();
+
+    await newGameScreen.startNewHotSeatGame(4);
+
+    await newStandardGameScreen.verifyOpponents(/^human normal$/i, /^human hard$/i, /^human expert$/i);
+  });
+
+  test('allows unset human opponents', async ({ adventureScreen, newGameScreen, newStandardGameScreen }) => {
+    await newStandardGameScreen.setOpponents(/^average$/i, /^smart$/i, /^none$/i);
+
+    await newStandardGameScreen.okayButton.click();
+
+    await adventureScreen.startNewGame();
+
+    await newGameScreen.startNewHotSeatGame(4);
+
+    await newStandardGameScreen.verifyOpponents(/^human normal$/i, /^human hard$/i, /^human$/i);
+  });
+
+  test.describe(() => {
+    test.use({
+      playerCount: 4,
+    });
+
+    test('converts human opponents to computer opponents', async ({
+      adventureScreen,
+      newGameScreen,
+      newStandardGameScreen,
+    }) => {
+      await newStandardGameScreen.setOpponents(/^human hard$/i, /^human expert$/i, /^human easy$/i);
+
+      await newStandardGameScreen.okayButton.click();
+
+      await adventureScreen.startNewGame();
+
+      await newGameScreen.standardGameButton.click();
+
+      await newStandardGameScreen.verifyOpponents(/^smart$/i, /^genius$/i, /^dumb$/i);
+    });
+  });
 });

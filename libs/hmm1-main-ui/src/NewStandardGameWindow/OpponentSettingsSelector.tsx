@@ -77,24 +77,26 @@ function Item({ humanOpponent, label, onChange, onMouseDown, value }: ItemProps)
           <img
             alt=""
             src={
-              value !== noOpponent
-                ? humanOpponent
-                  ? opponentSetting.human
-                  : opponentSetting.computer[value]
+              humanOpponent
+                ? opponentSetting.human
+                : value !== noOpponent
+                ? opponentSetting.computer[value]
                 : opponentSetting.none
             }
           />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {value !== noOpponent ? (
-              humanOpponent ? (
-                <>
-                  Human
-                  <br />
-                  {gameDifficultyLabel[getOpponentGameDifficulty(value)]}
-                </>
-              ) : (
-                computerOpponentSettingLabel[value]
-              )
+            {humanOpponent ? (
+              <>
+                Human
+                {value && (
+                  <>
+                    <br />
+                    {gameDifficultyLabel[getOpponentGameDifficulty(value)]}
+                  </>
+                )}
+              </>
+            ) : value !== noOpponent ? (
+              computerOpponentSettingLabel[value]
             ) : (
               'None'
             )}
