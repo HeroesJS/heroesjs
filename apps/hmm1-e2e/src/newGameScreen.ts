@@ -1,5 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
+import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
+import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
+
 export class NewGameScreen {
   public readonly locator: Locator;
 
@@ -41,5 +44,13 @@ export class NewGameScreen {
 
   public goto() {
     return this.page.goto('/new-game');
+  }
+
+  public async startNewHotSeatGame(playerCount: number) {
+    await this.multiPlayerGameButton.click();
+
+    await new NewMultiPlayerGameScreen(this.page).hotSeatButton.click();
+
+    await new NewHotSeatGameScreen(this.page).playerCountButtons[playerCount].click();
   }
 }

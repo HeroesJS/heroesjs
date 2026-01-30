@@ -4,12 +4,50 @@ import { useParams } from 'react-router';
 import {
   defaultGameDifficulty,
   defaultPlayerColor,
+  GameDifficulty,
   getDefaultOpponentSettings,
   getDifficultyRating,
   mapSupportsHumanPlayers,
+  MaxPlayerCount,
+  noOpponent,
+  OpponentSettings,
+  PlayerColor,
+  Scenario,
   scenarios,
 } from '@heroesjs/hmm1-core';
 import { FileSelectorWindow, MainScreen, NewStandardGameWindow } from '@heroesjs/hmm1-main-ui';
+
+interface GameSettings {
+  readonly gameDifficulty: GameDifficulty;
+  readonly opponents: OpponentSettings;
+  readonly playerColor: PlayerColor;
+  readonly kingOfTheHill: boolean;
+  readonly scenario: Pick<Scenario, 'fileName' | 'name'>;
+}
+
+const defaultSinglePlayerScenario: GameSettings['scenario'] = {
+  fileName: 'AES31000.MAP',
+  name: 'Claw ( Easy )',
+};
+
+const defaultMultiPlayerScenario: GameSettings['scenario'] = {
+  fileName: 'CNM51234.MAP',
+  name: 'Around the Bay',
+};
+
+let lastUsedGameSettings: GameSettings = {
+  gameDifficulty: defaultGameDifficulty,
+  kingOfTheHill: false,
+  opponents: getDefaultOpponentSettings(),
+  playerColor: defaultPlayerColor,
+  scenario: defaultSinglePlayerScenario,
+};
+
+function filterOpponents(opponents: OpponentSettings): OpponentSettings {
+  const opponentsOnly = opponents.filter((o) => o !== noOpponent);
+
+  return opponentsOnly.concat(new Array(MaxPlayerCount - 1 - opponentsOnly.length).fill(noOpponent));
+}
 
 interface NewStandardGameScreenProps {
   readonly onCancelClick?: () => void;
@@ -23,16 +61,18 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
 
   const humanOpponentsCount = playerCount - 1;
 
-  const [gameDifficulty, setGameDifficulty] = useState(defaultGameDifficulty);
-  const [opponentSettings, setOpponentSettings] = useState(getDefaultOpponentSettings());
-  const [playerColor, setPlayerColor] = useState(defaultPlayerColor);
-  const [kingOfTheHill, setKingOfTheHill] = useState(false);
+  const [gameDifficulty, setGameDifficulty] = useState(lastUsedGameSettings.gameDifficulty);
+  const [opponentSettings, setOpponentSettings] = useState(filterOpponents(lastUsedGameSettings.opponents));
+  const [playerColor, setPlayerColor] = useState(lastUsedGameSettings.playerColor);
+  const [kingOfTheHill, setKingOfTheHill] = useState(lastUsedGameSettings.kingOfTheHill);
 
   const validScenarios = scenarios.filter((scenario) => mapSupportsHumanPlayers(scenario.fileName, 1));
 
   const [isSelectingScenario, setIsSelectingScenario] = useState(false);
 
-  const [scenarioFileName, setScenarioFileName] = useState(playerCount !== 1 ? 'CNM51234.MAP' : 'AES31000.MAP');
+  const [scenarioFileName, setScenarioFileName] = useState(
+    playerCount !== 1 ? defaultMultiPlayerScenario.fileName : lastUsedGameSettings.scenario.fileName
+  );
   const [scenarioFileNameBackup, setScenarioFileNameBackup] = useState('');
 
   const selectedScenario = scenarios.find((s) => s.fileName === scenarioFileName);
@@ -45,6 +85,21 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
     mapSize: selectedScenario!.size,
     opponentSettings,
   });
+
+  const handleOkayClick = () => {
+    lastUsedGameSettings = {
+      gameDifficulty,
+      kingOfTheHill,
+      opponents: opponentSettings,
+      playerColor,
+      scenario: {
+        fileName: selectedScenario!.fileName,
+        name: selectedScenario!.name,
+      },
+    };
+
+    onOkayClick?.();
+  };
 
   return (
     <MainScreen label="New Standard Game">
@@ -76,7 +131,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
           onCancelClick={onCancelClick}
           onGameDifficultyChange={setGameDifficulty}
           onKingOfTheHillChange={setKingOfTheHill}
-          onOkayClick={onOkayClick}
+          onOkayClick={handleOkayClick}
           onOpponentSettingsChange={setOpponentSettings}
           onPlayerColorChange={setPlayerColor}
           onSelectScenarioClick={() => {
