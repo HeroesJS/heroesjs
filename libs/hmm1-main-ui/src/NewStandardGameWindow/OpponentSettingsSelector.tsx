@@ -37,7 +37,7 @@ export function OpponentSettingsSelector({
     <Root x={x} y={y}>
       {value.map((setting, index) => (
         <Item
-          humanOpponent={isHumanOpponent(index, humanOpponentsCount)}
+          human={isHumanOpponent(index, humanOpponentsCount)}
           key={index}
           label={`Opponent ${index + 1} Setting`}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
@@ -56,20 +56,20 @@ const Root = styled(PositionedComponent)({
 });
 
 interface ItemProps {
-  readonly humanOpponent?: boolean;
+  readonly human?: boolean;
   readonly label: string;
   readonly onChange?: (value: OpponentSetting) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: OpponentSetting;
 }
 
-function Item({ humanOpponent, label, onChange, onMouseDown, value }: ItemProps) {
+function Item({ human, label, onChange, onMouseDown, value }: ItemProps) {
   return (
     <ItemRoot
       label={label}
       onChange={onChange}
       onMouseDown={onMouseDown}
-      options={humanOpponent ? humanOpponentSettings : computerOpponentSettings}
+      options={human ? humanOpponentSettings : computerOpponentSettings}
       value={value}
     >
       {(value) => (
@@ -77,7 +77,7 @@ function Item({ humanOpponent, label, onChange, onMouseDown, value }: ItemProps)
           <img
             alt=""
             src={
-              humanOpponent
+              human
                 ? opponentSetting.human
                 : value !== noOpponent
                 ? opponentSetting.computer[value]
@@ -85,7 +85,7 @@ function Item({ humanOpponent, label, onChange, onMouseDown, value }: ItemProps)
             }
           />
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
-            {humanOpponent ? (
+            {human ? (
               <>
                 Human
                 {value && (

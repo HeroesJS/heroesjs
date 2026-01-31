@@ -167,7 +167,7 @@ test.describe('campaign game scores', () => {
 test('displays main screen when exit button is clicked', async ({ highScoresScreen, mainScreen }) => {
   await highScoresScreen.exitButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });
 
 test('remembers last viewed scores', async ({ highScoresScreen, mainScreen }) => {

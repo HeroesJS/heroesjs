@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class MainScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
+export class MainScreen extends Screen {
   public readonly menu: Locator;
 
   public readonly newGameButton: Locator;
@@ -20,8 +20,8 @@ export class MainScreen {
   public readonly quitButton: Locator;
   public readonly quitInfoModal: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /main screen/i });
+  constructor(page: Page) {
+    super(page, /main screen/i);
 
     this.menu = page.getByRole('menu', { name: /main menu/i });
 

@@ -2,10 +2,9 @@ import type { Locator, Page } from '@playwright/test';
 
 import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
 import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
+import { Screen } from './screen';
 
-export class NewGameScreen {
-  public readonly locator: Locator;
-
+export class NewGameScreen extends Screen {
   public readonly menu: Locator;
 
   public readonly standardGameButton: Locator;
@@ -20,8 +19,8 @@ export class NewGameScreen {
   public readonly cancelButton: Locator;
   public readonly cancelInfoModal: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new game screen/i });
+  constructor(page: Page) {
+    super(page, /new game screen/i);
 
     this.menu = page.getByRole('menu', { name: /game type menu/i });
 
@@ -46,8 +45,20 @@ export class NewGameScreen {
     return this.page.goto('/new-game');
   }
 
-  public async startNewHotSeatGame(playerCount: number) {
+  public async selectStandardGame() {
+    await this.standardGameButton.click();
+  }
+
+  public async selectCampaignGame() {
+    await this.campaignGameButton.click();
+  }
+
+  public async selectMultiPlayerGame() {
     await this.multiPlayerGameButton.click();
+  }
+
+  public async startNewHotSeatGame(playerCount: number) {
+    await this.selectMultiPlayerGame();
 
     await new NewMultiPlayerGameScreen(this.page).hotSeatButton.click();
 

@@ -9,7 +9,7 @@ export class FileSelectorWindow {
   readonly cancelButton: Locator;
 
   constructor(page: Page) {
-    this.locator = page.getByRole('dialog', { name: /file selector window/i });
+    this.locator = page.getByRole('region', { name: /file selector window/i });
 
     this.itemList = page.getByRole('listbox', { name: /items/i });
 

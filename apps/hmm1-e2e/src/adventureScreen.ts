@@ -1,10 +1,9 @@
 import type { Locator, Page } from '@playwright/test';
 
 import { GameOptionsWindow } from './gameOptionsWindow';
+import { Screen } from './screen';
 
-export class AdventureScreen {
-  public readonly locator: Locator;
-
+export class AdventureScreen extends Screen {
   public readonly nextHeroButton: Locator;
   public readonly nextHeroInfoModal: Locator;
 
@@ -25,8 +24,8 @@ export class AdventureScreen {
 
   public readonly gameOptionsWindow: GameOptionsWindow;
 
-  public constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /^adventure screen$/i });
+  public constructor(page: Page) {
+    super(page, /^adventure screen$/i);
 
     this.nextHeroButton = page.getByRole('button', { name: /^next hero$/i });
     this.nextHeroInfoModal = page.getByRole('dialog', { name: /^next hero select the next hero\.$/i });

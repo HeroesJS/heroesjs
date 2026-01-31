@@ -53,7 +53,7 @@ test.describe('new game', () => {
 
     await gameOptionsWindow.yesButton.click();
 
-    await expect(newGameScreen.locator).toBeVisible();
+    await newGameScreen.verifyIsCurrentScreen();
   });
 });
 
@@ -137,7 +137,7 @@ test.describe('quit', () => {
 
     await gameOptionsWindow.yesButton.click();
 
-    await expect(mainScreen.locator).toBeVisible();
+    await mainScreen.verifyIsCurrentScreen();
   });
 });
 

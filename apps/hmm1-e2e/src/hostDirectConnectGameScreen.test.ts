@@ -17,5 +17,5 @@ test('displays waiting for connection modal', async ({ hostDirectConnectGameScre
 test('displays main screen when cancel is clicked', async ({ hostDirectConnectGameScreen, mainScreen }) => {
   await hostDirectConnectGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

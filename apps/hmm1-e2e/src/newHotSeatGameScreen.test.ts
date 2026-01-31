@@ -39,7 +39,7 @@ playerCounts.forEach((count) => {
     }) => {
       await newHotSeatGameScreen.playerCountButtons[count].click();
 
-      await expect(newStandardGameScreen.locator).toBeVisible();
+      await newStandardGameScreen.verifyIsCurrentScreen();
 
       expect(await newStandardGameScreen.getHumanOpponentsCount()).toBe(count - 1);
 
@@ -59,5 +59,5 @@ test('displays cancel button info', async ({ mouseRightDown, newHotSeatGameScree
 test('displays main screen when cancel button is clicked', async ({ newHotSeatGameScreen, mainScreen }) => {
   await newHotSeatGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

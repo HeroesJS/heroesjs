@@ -92,5 +92,5 @@ test('displays entries', async ({ creditsScreen, page }) => {
 test('displays main screen when clicked', async ({ creditsScreen, mainScreen }) => {
   await creditsScreen.locator.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

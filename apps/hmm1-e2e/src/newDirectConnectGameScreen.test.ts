@@ -63,5 +63,5 @@ test('displays cancel info', async ({ mouseRightDown, newDirectConnectGameScreen
 test('displays main screen when cancel is clicked', async ({ mainScreen, newDirectConnectGameScreen }) => {
   await newDirectConnectGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

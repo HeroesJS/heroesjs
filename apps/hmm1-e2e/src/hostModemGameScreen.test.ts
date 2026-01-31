@@ -41,5 +41,5 @@ test('displays main screen when dialing and cancel is clicked', async ({ hostMod
 
   await hostModemGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

@@ -4,15 +4,8 @@ test.beforeEach(async ({ newStandardGameScreen, playerCount }) => {
   await newStandardGameScreen.goto(playerCount);
 });
 
-test('displays screen', async ({ newStandardGameScreen }) => {
-  await expect(newStandardGameScreen.locator).toBeVisible();
-});
-
-test('displays window', async ({ newStandardGameScreen, page }) => {
-  await expect(newStandardGameScreen.window).toBeVisible();
-
-  await expect(newStandardGameScreen.okayButton).toBeVisible();
-  await expect(newStandardGameScreen.cancelButton).toBeVisible();
+test('displays screen', async ({ newStandardGameScreen, page }) => {
+  await newStandardGameScreen.verifyIsCurrentScreen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
@@ -23,26 +16,26 @@ test.describe('game difficulty', () => {
 
     await expect(newStandardGameScreen.gameDifficultyRadioGroup).toBeVisible();
 
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/easy/i)).toBeVisible();
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/normal/i)).toBeVisible();
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/hard/i)).toBeVisible();
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/expert/i)).toBeVisible();
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/^easy$/i)).toBeVisible();
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/^normal$/i)).toBeVisible();
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/^hard$/i)).toBeVisible();
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/^expert$/i)).toBeVisible();
 
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/normal/i)).toBeChecked();
+    await expect(newStandardGameScreen.getGameDifficultyRadio(/^normal$/i)).toBeChecked();
   });
 
-  test('displays game difficulty info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.gameDifficultyRadioGroup);
+  test('displays game difficulty info', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openGameDifficultyInfo();
 
-    await expect(newStandardGameScreen.gameDifficultyInfoModal).toBeVisible();
+    await newStandardGameScreen.verifyGameDifficultyInfoOpen();
 
     await expect(page).toHaveScreenshot('game-difficulty-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('allows to change difficulty', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.getGameDifficultyRadio(/hard/i).click();
+    await newStandardGameScreen.selectGameDifficulty(/^hard$/i);
 
-    await expect(newStandardGameScreen.getGameDifficultyRadio(/hard/i)).toBeChecked();
+    await newStandardGameScreen.verifyGameDifficultySelected(/^hard$/i);
   });
 });
 
@@ -51,21 +44,21 @@ test.describe('opponents', () => {
     test('displays opponent', async ({ newStandardGameScreen }) => {
       await expect(newStandardGameScreen.opponentSettingsLabel).toBeVisible();
 
-      await expect(newStandardGameScreen.getOpponentSettingOption(1, /average/i)).toBeChecked();
+      await expect(newStandardGameScreen.getOpponentSettingOption(1, /^average$/i)).toBeChecked();
     });
 
     test('allows to cycle through settings', async ({ newStandardGameScreen }) => {
-      for (const setting of [/smart/i, /genius/i, /none/i, /dumb/i, /average/i]) {
-        await newStandardGameScreen.getOpponentSetting(1).click();
+      for (const setting of [/^smart$/i, /^genius$/i, /^none$/i, /^dumb$/i, /^average$/i]) {
+        await newStandardGameScreen.selectOpponent(1, setting);
 
-        await expect(newStandardGameScreen.getOpponentSettingOption(1, setting)).toBeChecked();
+        await newStandardGameScreen.verifyOpponentSelected(1, setting);
       }
     });
 
-    test('displays opponent info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
-      await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
+    test('displays opponent info', async ({ newStandardGameScreen, page }) => {
+      await newStandardGameScreen.openOpponentInfo(1);
 
-      await expect(newStandardGameScreen.computerOpponentSettingInfoModal).toBeVisible();
+      await newStandardGameScreen.verifyComputerOpponentInfoOpen();
 
       await expect(page).toHaveScreenshot('computer-opponent-info.png', { maxDiffPixelRatio: 0.01 });
     });
@@ -77,21 +70,21 @@ test.describe('opponents', () => {
     });
 
     test('displays opponent', async ({ newStandardGameScreen }) => {
-      await expect(newStandardGameScreen.getOpponentSettingOption(1, /human normal/i)).toBeVisible();
+      await newStandardGameScreen.verifyOpponentSelected(1, /^human normal$/i);
     });
 
     test('allows to cycle through settings', async ({ newStandardGameScreen }) => {
-      for (const setting of [/human hard/i, /human expert/i, /human easy/i, /human normal/i]) {
-        await newStandardGameScreen.getOpponentSetting(1).click();
+      for (const setting of [/^human hard$/i, /^human expert$/i, /^human easy$/i, /^human normal$/i]) {
+        await newStandardGameScreen.selectOpponent(1, setting);
 
-        await expect(newStandardGameScreen.getOpponentSettingOption(1, setting)).toBeVisible();
+        await newStandardGameScreen.verifyOpponentSelected(1, setting);
       }
     });
 
-    test('displays opponent info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-      await mouseRightDown(newStandardGameScreen.getOpponentSetting(1));
+    test('displays opponent info', async ({ newStandardGameScreen, page }) => {
+      await newStandardGameScreen.openOpponentInfo(1);
 
-      await expect(newStandardGameScreen.humanOpponentSettingInfoModal).toBeVisible();
+      await newStandardGameScreen.verifyHumanOpponentInfoOpen();
 
       await expect(page).toHaveScreenshot('human-opponent-info.png', { maxDiffPixelRatio: 0.01 });
     });
@@ -100,21 +93,21 @@ test.describe('opponents', () => {
 
 test.describe('player color', () => {
   test('displays color', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.getPlayerColorOption(/blue/i)).toBeChecked();
+    await newStandardGameScreen.verifyPlayerColorSelected(/^blue$/i);
   });
 
   test('allows to cycle through colors', async ({ newStandardGameScreen }) => {
-    for (const color of [/green/i, /red/i, /yellow/i, /blue/i]) {
-      await newStandardGameScreen.playerColorToggle.click();
+    for (const color of [/^green$/i, /^red$/i, /^yellow$/i, /^blue$/i]) {
+      await newStandardGameScreen.selectPlayerColor(color);
 
-      await expect(newStandardGameScreen.getPlayerColorOption(color)).toBeChecked();
+      await newStandardGameScreen.verifyPlayerColorSelected(color);
     }
   });
 
-  test('displays player color info when right-clicked', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.playerColorToggle);
+  test('displays player color info when right-clicked', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openPlayerColorInfo();
 
-    await expect(newStandardGameScreen.playerColorInfoModal).toBeVisible();
+    await newStandardGameScreen.verifyPlayerColorInfoOpen();
 
     await expect(page).toHaveScreenshot('player-color-info.png', { maxDiffPixelRatio: 0.01 });
   });
@@ -122,85 +115,94 @@ test.describe('player color', () => {
 
 test.describe('king of the hill', () => {
   test('displays option', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.kingOfTheHillCheckbox).not.toBeChecked();
+    await newStandardGameScreen.verifyKingOfTheHill(false);
   });
 
-  test('displays king of the hill info', async ({ newStandardGameScreen, mouseRightDown, page }) => {
-    await mouseRightDown(newStandardGameScreen.kingOfTheHillCheckbox);
+  test('displays king of the hill info', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openKingOfTheHillInfo();
 
-    await expect(newStandardGameScreen.kingOfTheHillInfoModal).toBeVisible();
+    await newStandardGameScreen.verifyKingOfTheHillInfoOpen();
 
     await expect(page).toHaveScreenshot('king-of-the-hill-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('allows to change option', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.kingOfTheHillCheckbox.click();
+    await newStandardGameScreen.selectKingOfTheHill(true);
 
-    await expect(newStandardGameScreen.kingOfTheHillCheckbox).toBeChecked();
+    await newStandardGameScreen.verifyKingOfTheHill(true);
   });
 });
 
 test.describe('scenario', () => {
-  test('displays option', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.scenarioSelectionLabel).toBeVisible();
-
-    await expect(newStandardGameScreen.selectedScenarioLabel).toHaveText(/claw \( easy \)/i);
-    await expect(newStandardGameScreen.selectScenarioButton).toBeVisible();
+  test('selects default scenario for single-player game', async ({ newStandardGameScreen }) => {
+    await newStandardGameScreen.verifyScenarioSelected(/^claw \( easy \)$/i);
   });
 
-  test('displays scenario selection info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.selectScenarioButton);
+  test.describe(() => {
+    test.use({
+      playerCount: 2,
+    });
 
-    await expect(newStandardGameScreen.selectScenarioInfoModal).toBeVisible();
+    test('selects default scenario for multi-player game', async ({ newStandardGameScreen }) => {
+      await newStandardGameScreen.verifyScenarioSelected(/^around the bay$/i);
+    });
+  });
+
+  test('displays scenario selection info', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openScenarioSelectionInfo();
+
+    await newStandardGameScreen.verifyScenarioSelectionInfoOpen();
 
     await expect(page).toHaveScreenshot('select-scenario-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
-  test('displays scenario selection window', async ({ newStandardGameScreen, page }) => {
-    await newStandardGameScreen.selectScenarioButton.click();
+  test('displays scenario selection', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openScenarioSelection();
+
+    await newStandardGameScreen.verifyScenarioSelectionOpen();
 
     await expect(page).toHaveScreenshot('scenario-selection.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('displays screen when cancel button is clicked', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.selectScenarioButton.click();
+    await newStandardGameScreen.openScenarioSelection();
 
-    await newStandardGameScreen.fileSelector.cancelButton.click();
+    await newStandardGameScreen.cancelScenarioSelection();
 
-    await expect(newStandardGameScreen.locator).toBeVisible();
+    await newStandardGameScreen.verifyIsCurrentScreen();
   });
 
   test('preserves selection when scenario is changed and cancel button is clicked', async ({
     newStandardGameScreen,
   }) => {
-    await newStandardGameScreen.selectScenarioButton.click();
+    await newStandardGameScreen.openScenarioSelection();
 
-    await newStandardGameScreen.fileSelector.getItem(/around the bay/i).click();
+    await newStandardGameScreen.pickScenario(/^around the bay$/i);
 
-    await newStandardGameScreen.cancelButton.click();
+    await newStandardGameScreen.cancelScenarioSelection();
 
-    await expect(newStandardGameScreen.selectedScenarioLabel).toHaveText(/claw \( easy \)/i);
+    await newStandardGameScreen.verifyScenarioSelected(/^claw \( easy \)$/i);
   });
 });
 
 test.describe('difficulty rating', () => {
   test('displays difficulty rating', async ({ newStandardGameScreen }) => {
-    await expect(newStandardGameScreen.difficultyRating).toHaveText(/60%/i);
+    await newStandardGameScreen.verifyDifficultyRatingDisplayed(/^60%$/i);
   });
 
-  test('displays difficulty rating info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-    await mouseRightDown(newStandardGameScreen.difficultyRating);
+  test('displays difficulty rating info', async ({ newStandardGameScreen, page }) => {
+    await newStandardGameScreen.openDifficultyRatingInfo();
 
-    await expect(newStandardGameScreen.difficultyRatingInfoModal).toBeVisible();
+    await newStandardGameScreen.verifyDifficultyRatingInfoOpen();
 
     await expect(page).toHaveScreenshot('difficulty-rating-info.png', { maxDiffPixelRatio: 0.01 });
   });
 });
 
-test('displays okay button info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-  await mouseRightDown(newStandardGameScreen.okayButton);
+test('displays okay button info', async ({ newStandardGameScreen, page }) => {
+  await newStandardGameScreen.openStartInfo();
 
-  await expect(newStandardGameScreen.okayInfoModal).toBeVisible();
+  await newStandardGameScreen.verifyStartInfoOpen();
 
   await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.01 });
 });
@@ -209,15 +211,11 @@ test('displays no opponents modal when no opponents are selected and okay button
   newStandardGameScreen,
   page,
 }) => {
-  for (const opponentNumber of [1, 2, 3]) {
-    while (await newStandardGameScreen.getOpponentSettingOption(opponentNumber, /none/i).isHidden()) {
-      await newStandardGameScreen.getOpponentSetting(opponentNumber).click();
-    }
-  }
+  await newStandardGameScreen.selectOpponents(/^none$/i, /^none$/i, /^none$/i);
 
-  await newStandardGameScreen.okayButton.click();
+  await newStandardGameScreen.start();
 
-  await expect(newStandardGameScreen.noOpponentsModal).toBeVisible();
+  await newStandardGameScreen.verifyNoOpponentsErrorDisplayed();
 
   await expect(page).toHaveScreenshot('no-opponents-modal.png', { maxDiffPixelRatio: 0.01 });
 });
@@ -226,23 +224,23 @@ test('displays adventure screen when some opponents are selected and okay button
   adventureScreen,
   newStandardGameScreen,
 }) => {
-  await newStandardGameScreen.okayButton.click();
+  await newStandardGameScreen.start();
 
-  await expect(adventureScreen.locator).toBeVisible();
+  await adventureScreen.verifyIsCurrentScreen();
 });
 
-test('displays cancel button info', async ({ mouseRightDown, newStandardGameScreen, page }) => {
-  await mouseRightDown(newStandardGameScreen.cancelButton);
+test('displays cancel button info', async ({ newStandardGameScreen, page }) => {
+  await newStandardGameScreen.openCancelInfo();
 
-  await expect(newStandardGameScreen.cancelInfoModal).toBeVisible();
+  await newStandardGameScreen.verifyCancelInfoOpen();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancel button is clicked', async ({ mainScreen, newStandardGameScreen }) => {
-  await newStandardGameScreen.cancelButton.click();
+  await newStandardGameScreen.cancel();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });
 
 test.describe('preserving settings', () => {
@@ -255,13 +253,13 @@ test.describe('preserving settings', () => {
       scenario: /^around the bay$/i,
     });
 
-    await newStandardGameScreen.okayButton.click();
+    await newStandardGameScreen.start();
 
     await adventureScreen.startNewGame();
 
-    await newGameScreen.standardGameButton.click();
+    await newGameScreen.selectStandardGame();
 
-    await newStandardGameScreen.verifyGameSettings({
+    await newStandardGameScreen.verifyGameSettingsSelected({
       gameDifficulty: /^hard$/i,
       kingOfTheHill: true,
       opponents: [/^smart$/i, /^genius$/i, /^none$/i],
@@ -271,15 +269,15 @@ test.describe('preserving settings', () => {
   });
 
   test('puts set opponents first', async ({ adventureScreen, newGameScreen, newStandardGameScreen }) => {
-    await newStandardGameScreen.setOpponents(/^none$/i, /^none$/i, /^smart$/i);
+    await newStandardGameScreen.selectOpponents(/^none$/i, /^none$/i, /^smart$/i);
 
-    await newStandardGameScreen.okayButton.click();
+    await newStandardGameScreen.start();
 
     await adventureScreen.startNewGame();
 
-    await newGameScreen.standardGameButton.click();
+    await newGameScreen.selectStandardGame();
 
-    await newStandardGameScreen.verifyOpponents(/^smart$/i, /^none$/i, /^none$/i);
+    await newStandardGameScreen.verifyOpponentsSelected(/^smart$/i, /^none$/i, /^none$/i);
   });
 
   test('converts computer opponents to human opponents', async ({
@@ -287,27 +285,27 @@ test.describe('preserving settings', () => {
     newGameScreen,
     newStandardGameScreen,
   }) => {
-    await newStandardGameScreen.setOpponents(/^average$/i, /^smart$/i, /^genius$/i);
+    await newStandardGameScreen.selectOpponents(/^average$/i, /^smart$/i, /^genius$/i);
 
-    await newStandardGameScreen.okayButton.click();
+    await newStandardGameScreen.start();
 
     await adventureScreen.startNewGame();
 
     await newGameScreen.startNewHotSeatGame(4);
 
-    await newStandardGameScreen.verifyOpponents(/^human normal$/i, /^human hard$/i, /^human expert$/i);
+    await newStandardGameScreen.verifyOpponentsSelected(/^human normal$/i, /^human hard$/i, /^human expert$/i);
   });
 
   test('allows unset human opponents', async ({ adventureScreen, newGameScreen, newStandardGameScreen }) => {
-    await newStandardGameScreen.setOpponents(/^average$/i, /^smart$/i, /^none$/i);
+    await newStandardGameScreen.selectOpponents(/^average$/i, /^smart$/i, /^none$/i);
 
-    await newStandardGameScreen.okayButton.click();
+    await newStandardGameScreen.start();
 
     await adventureScreen.startNewGame();
 
     await newGameScreen.startNewHotSeatGame(4);
 
-    await newStandardGameScreen.verifyOpponents(/^human normal$/i, /^human hard$/i, /^human$/i);
+    await newStandardGameScreen.verifyOpponentsSelected(/^human normal$/i, /^human hard$/i, /^human$/i);
   });
 
   test.describe(() => {
@@ -320,15 +318,15 @@ test.describe('preserving settings', () => {
       newGameScreen,
       newStandardGameScreen,
     }) => {
-      await newStandardGameScreen.setOpponents(/^human hard$/i, /^human expert$/i, /^human easy$/i);
+      await newStandardGameScreen.selectOpponents(/^human hard$/i, /^human expert$/i, /^human easy$/i);
 
-      await newStandardGameScreen.okayButton.click();
+      await newStandardGameScreen.start();
 
       await adventureScreen.startNewGame();
 
-      await newGameScreen.standardGameButton.click();
+      await newGameScreen.selectStandardGame();
 
-      await newStandardGameScreen.verifyOpponents(/^smart$/i, /^genius$/i, /^dumb$/i);
+      await newStandardGameScreen.verifyOpponentsSelected(/^smart$/i, /^genius$/i, /^dumb$/i);
     });
   });
 });
