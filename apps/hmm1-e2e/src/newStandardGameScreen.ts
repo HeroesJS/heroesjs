@@ -1,6 +1,14 @@
-import type { Locator, Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 import { FileSelectorWindow } from './fileSelectorWindow';
+
+interface GameSettings {
+  readonly gameDifficulty: RegExp;
+  readonly opponents: readonly [RegExp, RegExp, RegExp];
+  readonly playerColor: RegExp;
+  readonly kingOfTheHill: boolean;
+  readonly scenario: RegExp;
+}
 
 export class NewStandardGameScreen {
   public readonly locator: Locator;
@@ -15,14 +23,14 @@ export class NewStandardGameScreen {
   public readonly computerOpponentSettingInfoModal: Locator;
   public readonly humanOpponentSettingInfoModal: Locator;
 
-  public readonly playerColor: Locator;
+  public readonly playerColorToggle: Locator;
   public readonly playerColorInfoModal: Locator;
 
   public readonly kingOfTheHillCheckbox: Locator;
   public readonly kingOfTheHillInfoModal: Locator;
 
   public readonly scenarioSelectionLabel: Locator;
-  public readonly scenarioLabel: Locator;
+  public readonly selectedScenarioLabel: Locator;
   public readonly selectScenarioButton: Locator;
   public readonly selectScenarioInfoModal: Locator;
 
@@ -58,7 +66,7 @@ export class NewStandardGameScreen {
       name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
     });
 
-    this.playerColor = this.page.getByRole('radiogroup', { name: /choose color:/i });
+    this.playerColorToggle = this.page.getByRole('radiogroup', { name: /choose color:/i });
     this.playerColorInfoModal = this.page.getByRole('dialog', { name: /change your banner color\./i });
 
     this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill:/i });
@@ -67,7 +75,7 @@ export class NewStandardGameScreen {
     });
 
     this.scenarioSelectionLabel = page.getByText(/choose scenario:/i);
-    this.scenarioLabel = page.getByRole('textbox', { name: /scenario/i });
+    this.selectedScenarioLabel = page.getByRole('textbox', { name: /scenario/i });
     this.selectScenarioButton = page.getByRole('button', { name: /select scenario/i });
     this.selectScenarioInfoModal = page.getByRole('dialog', { name: /select which scenario to play\./i });
 
@@ -95,12 +103,42 @@ export class NewStandardGameScreen {
     return this.gameDifficultyRadioGroup.getByRole('radio', { name: option });
   }
 
-  public getOpponentSetting(index: number) {
-    return this.page.getByRole('radiogroup', { name: RegExp(`opponent ${index} setting`, 'i') });
+  public async selectGameDifficulty(value: RegExp) {
+    await this.getGameDifficultyRadio(value).click();
   }
 
-  public getOpponentSettingOption(index: number, setting: RegExp) {
-    return this.getOpponentSetting(index).getByRole('radio', { name: setting });
+  public async verifyGameDifficulty(value: RegExp) {
+    await expect(this.getGameDifficultyRadio(value)).toBeChecked();
+  }
+
+  public getOpponentSetting(opponentNumber: number) {
+    return this.page.getByRole('radiogroup', { name: RegExp(`opponent ${opponentNumber} setting`, 'i') });
+  }
+
+  public getOpponentSettingOption(opponentNumber: number, setting: RegExp) {
+    return this.getOpponentSetting(opponentNumber).getByRole('radio', { name: setting });
+  }
+
+  public async setOpponent(opponentNumber: number, value: RegExp) {
+    while (!(await this.getOpponentSettingOption(opponentNumber, value).isVisible())) {
+      await this.getOpponentSetting(opponentNumber).click();
+    }
+  }
+
+  public async setOpponents(...opponents: readonly [RegExp, RegExp, RegExp]) {
+    await Promise.all(
+      Array.from(opponents.entries()).map(([opponentNumber, value]) => this.setOpponent(opponentNumber + 1, value))
+    );
+  }
+
+  public async verifyOpponent(opponentNumber: number, value: RegExp) {
+    await expect(this.getOpponentSettingOption(opponentNumber, value)).toBeVisible();
+  }
+
+  public async verifyOpponents(...opponents: readonly [RegExp, RegExp, RegExp]) {
+    await Promise.all(
+      Array.from(opponents.entries()).map(([opponentNumber, value]) => this.verifyOpponent(opponentNumber + 1, value))
+    );
   }
 
   public getHumanOpponentsCount() {
@@ -108,6 +146,58 @@ export class NewStandardGameScreen {
   }
 
   public getPlayerColorOption(option: RegExp) {
-    return this.playerColor.getByRole('radio', { name: option });
+    return this.playerColorToggle.getByRole('radio', { name: option });
+  }
+
+  public async selectPlayerColor(value: RegExp) {
+    while (!(await this.getPlayerColorOption(value).isVisible())) {
+      await this.playerColorToggle.click();
+    }
+  }
+
+  public async verifyPlayerColor(value: RegExp) {
+    await expect(this.getPlayerColorOption(value)).toBeChecked();
+  }
+
+  public getKingOfTheHill() {
+    return this.kingOfTheHillCheckbox.isChecked();
+  }
+
+  public async setKingOfTheHill(value: boolean) {
+    if ((await this.kingOfTheHillCheckbox.isChecked()) !== value) {
+      await this.kingOfTheHillCheckbox.click();
+    }
+  }
+
+  public async verifyKingOfTheHill(value: boolean) {
+    await expect(this.kingOfTheHillCheckbox).toBeChecked({ checked: value });
+  }
+
+  public async selectScenario(name: RegExp) {
+    await this.selectScenarioButton.click();
+
+    await this.fileSelector.getItem(name).click();
+
+    await this.fileSelector.okayButton.click();
+  }
+
+  public async verifySelectedScenario(name: RegExp) {
+    await expect(this.selectedScenarioLabel).toHaveText(name);
+  }
+
+  public async selectGameSettings({ gameDifficulty, kingOfTheHill, opponents, playerColor, scenario }: GameSettings) {
+    await this.selectGameDifficulty(gameDifficulty);
+    await this.setOpponents(...opponents);
+    await this.selectPlayerColor(playerColor);
+    await this.setKingOfTheHill(kingOfTheHill);
+    await this.selectScenario(scenario);
+  }
+
+  public async verifyGameSettings({ gameDifficulty, kingOfTheHill, opponents, playerColor, scenario }: GameSettings) {
+    await this.verifyGameDifficulty(gameDifficulty);
+    await this.verifyOpponents(...opponents);
+    await this.verifyPlayerColor(playerColor);
+    await this.verifyKingOfTheHill(kingOfTheHill);
+    await this.verifySelectedScenario(scenario);
   }
 }

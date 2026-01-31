@@ -1,5 +1,7 @@
 import type { Locator, Page } from '@playwright/test';
 
+import { GameOptionsWindow } from './gameOptionsWindow';
+
 export class AdventureScreen {
   public readonly locator: Locator;
 
@@ -20,6 +22,8 @@ export class AdventureScreen {
 
   public readonly gameOptionsButton: Locator;
   public readonly gameOptionsInfoModal: Locator;
+
+  public readonly gameOptionsWindow: GameOptionsWindow;
 
   public constructor(private readonly page: Page) {
     this.locator = page.getByRole('main', { name: /^adventure screen$/i });
@@ -47,13 +51,23 @@ export class AdventureScreen {
       name: /^adventure options bring up the adventure options menu\.$/i,
     });
 
-    this.gameOptionsButton = page.getByRole('button', { name: /game options/i });
+    this.gameOptionsButton = page.getByRole('button', { name: /^game options$/i });
     this.gameOptionsInfoModal = page.getByRole('dialog', {
       name: /^game options bring up the game options menu\.$/i,
     });
+
+    this.gameOptionsWindow = new GameOptionsWindow(page);
   }
 
   public async goto() {
     return this.page.goto('/adventure');
+  }
+
+  public async startNewGame() {
+    await this.gameOptionsButton.click();
+
+    await this.gameOptionsWindow.newGameButton.click();
+
+    await this.gameOptionsWindow.yesButton.click();
   }
 }
