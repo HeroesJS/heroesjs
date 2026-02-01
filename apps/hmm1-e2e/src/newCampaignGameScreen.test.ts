@@ -63,5 +63,5 @@ test('displays cancel info', async ({ mouseRightDown, newCampaignGameScreen, pag
 test('returns to main screen when cancel is clicked', async ({ mainScreen, newCampaignGameScreen }) => {
   await newCampaignGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

@@ -13,5 +13,5 @@ test('displays waiting for ring modal', async ({ joinModemGameScreen, page }) =>
 test('displays main screen when cancel is clicked', async ({ joinModemGameScreen, mainScreen }) => {
   await joinModemGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

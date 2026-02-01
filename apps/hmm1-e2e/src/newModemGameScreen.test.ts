@@ -57,5 +57,5 @@ test('displays cancel info', async ({ mouseRightDown, newModemGameScreen, page }
 test('displays main screen when cancel is clicked', async ({ mainScreen, newModemGameScreen }) => {
   await newModemGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

@@ -5,7 +5,7 @@ test.beforeEach(async ({ newGameScreen }) => {
 });
 
 test('displays screen', async ({ newGameScreen }) => {
-  await expect(newGameScreen.locator).toBeVisible();
+  await newGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays menu', async ({ newGameScreen, page }) => {
@@ -30,7 +30,7 @@ test('displays standard game info', async ({ mouseRightDown, newGameScreen, page
 test('displays new standard game screen when standard is clicked', async ({ newGameScreen, newStandardGameScreen }) => {
   await newGameScreen.standardGameButton.click();
 
-  await expect(newStandardGameScreen.locator).toBeVisible();
+  await newStandardGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays campaign game info', async ({ mouseRightDown, newGameScreen, page }) => {
@@ -78,5 +78,5 @@ test('displays cancel info', async ({ mouseRightDown, newGameScreen, page }) => 
 test('returns to main screen when cancel is clicked', async ({ mainScreen, newGameScreen }) => {
   await newGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

@@ -1,8 +1,9 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class AdventureScreen {
-  public readonly locator: Locator;
+import { GameOptionsWindow } from './gameOptionsWindow';
+import { Screen } from './screen';
 
+export class AdventureScreen extends Screen {
   public readonly nextHeroButton: Locator;
   public readonly nextHeroInfoModal: Locator;
 
@@ -21,8 +22,10 @@ export class AdventureScreen {
   public readonly gameOptionsButton: Locator;
   public readonly gameOptionsInfoModal: Locator;
 
-  public constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /^adventure screen$/i });
+  public readonly gameOptionsWindow: GameOptionsWindow;
+
+  public constructor(page: Page) {
+    super(page, /^adventure screen$/i);
 
     this.nextHeroButton = page.getByRole('button', { name: /^next hero$/i });
     this.nextHeroInfoModal = page.getByRole('dialog', { name: /^next hero select the next hero\.$/i });
@@ -47,13 +50,23 @@ export class AdventureScreen {
       name: /^adventure options bring up the adventure options menu\.$/i,
     });
 
-    this.gameOptionsButton = page.getByRole('button', { name: /game options/i });
+    this.gameOptionsButton = page.getByRole('button', { name: /^game options$/i });
     this.gameOptionsInfoModal = page.getByRole('dialog', {
       name: /^game options bring up the game options menu\.$/i,
     });
+
+    this.gameOptionsWindow = new GameOptionsWindow(page);
   }
 
   public async goto() {
     return this.page.goto('/adventure');
+  }
+
+  public async startNewGame() {
+    await this.gameOptionsButton.click();
+
+    await this.gameOptionsWindow.newGameButton.click();
+
+    await this.gameOptionsWindow.yesButton.click();
   }
 }

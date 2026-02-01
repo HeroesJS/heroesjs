@@ -45,5 +45,5 @@ test('displays cancel info', async ({ mouseRightDown, newNetworkGameScreen, page
 test('displays main screen when cancel is clicked', async ({ mainScreen, newNetworkGameScreen }) => {
   await newNetworkGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });

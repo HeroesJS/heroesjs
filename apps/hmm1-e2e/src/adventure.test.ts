@@ -5,7 +5,7 @@ test.beforeEach(async ({ adventureScreen }) => {
 });
 
 test('displays screen', async ({ adventureScreen, page }) => {
-  await expect(adventureScreen.locator).toBeVisible();
+  await adventureScreen.verifyIsCurrentScreen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.49 });
 });

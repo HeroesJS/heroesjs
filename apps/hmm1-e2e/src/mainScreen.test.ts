@@ -5,7 +5,7 @@ test.beforeEach(async ({ mainScreen }) => {
 });
 
 test('displays screen', async ({ mainScreen }) => {
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });
 
 test('displays menu', async ({ mainScreen, page }) => {

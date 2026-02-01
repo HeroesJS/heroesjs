@@ -99,5 +99,5 @@ test('displays cancel info', async ({ mouseRightDown, newMultiPlayerGameScreen, 
 test('returns to main screen when cancel is clicked', async ({ mainScreen, newMultiPlayerGameScreen }) => {
   await newMultiPlayerGameScreen.cancelButton.click();
 
-  await expect(mainScreen.locator).toBeVisible();
+  await mainScreen.verifyIsCurrentScreen();
 });
