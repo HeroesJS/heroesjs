@@ -3,7 +3,7 @@ import type { Locator, Page } from '@playwright/test';
 import { expect, mouseRightDown } from './utils';
 
 export abstract class Screen {
-  private readonly locator: Locator;
+  protected readonly locator: Locator;
 
   constructor(protected readonly page: Page, name: RegExp) {
     this.locator = page.getByRole('main', { name });
