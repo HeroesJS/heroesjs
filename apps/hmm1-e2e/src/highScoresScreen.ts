@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class HighScoresScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
+export class HighScoresScreen extends Screen {
   public readonly standardGameScoresTable: Locator;
   public readonly campaignGameScoresTable: Locator;
 
@@ -18,8 +18,8 @@ export class HighScoresScreen {
 
   public readonly exitButton: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /high scores/i });
+  constructor(page: Page) {
+    super(page, /^high scores$/i);
 
     this.standardGameScoresTable = page.getByRole('table', { name: /standard game/i });
     this.campaignGameScoresTable = page.getByRole('table', { name: /campaign game/i });

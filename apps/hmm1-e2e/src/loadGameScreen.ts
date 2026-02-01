@@ -1,10 +1,10 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class LoadGameScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
-  public constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /^load game screen$/i });
+export class LoadGameScreen extends Screen {
+  public constructor(page: Page) {
+    super(page, /^load game screen$/i);
   }
 
   public goto() {

@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class CreditsScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
+export class CreditsScreen extends Screen {
   public readonly designedAndDirectedList: Locator;
   public readonly additionalDesignList: Locator;
   public readonly leadProgrammingList: Locator;
@@ -17,8 +17,8 @@ export class CreditsScreen {
   public readonly qaManagerList: Locator;
   public readonly testingList: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /credits/i });
+  constructor(page: Page) {
+    super(page, /^credits$/i);
 
     this.designedAndDirectedList = page.getByRole('list', { name: /designed and directed/i });
     this.additionalDesignList = page.getByRole('list', { name: /additional design/i });

@@ -100,7 +100,7 @@ test.describe('load game', () => {
 
     await gameOptionsWindow.yesButton.click();
 
-    await expect(loadGameScreen.locator).toBeVisible();
+    await loadGameScreen.verifyIsCurrentScreen();
   });
 });
 
