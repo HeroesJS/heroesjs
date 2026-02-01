@@ -29,7 +29,7 @@ test('displays host info', async ({ mouseRightDown, newModemGameScreen, page }) 
 test('displays host modem game screen when host is clicked', async ({ hostModemGameScreen, newModemGameScreen }) => {
   await newModemGameScreen.hostButton.click();
 
-  await expect(hostModemGameScreen.locator).toBeVisible();
+  await hostModemGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays guest info', async ({ mouseRightDown, newModemGameScreen, page }) => {

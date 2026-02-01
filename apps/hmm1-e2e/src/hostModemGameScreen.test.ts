@@ -5,41 +5,37 @@ test.beforeEach(async ({ hostModemGameScreen }) => {
 });
 
 test('displays screen', async ({ hostModemGameScreen }) => {
-  await expect(hostModemGameScreen.locator).toBeVisible();
+  await hostModemGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays enter telephone number modal', async ({ hostModemGameScreen, page }) => {
-  await expect(hostModemGameScreen.enterTelephoneNumberModal).toBeVisible();
-
-  await expect(hostModemGameScreen.telephoneNumberInput).toBeVisible();
+test('prompts to enter telephone number', async ({ hostModemGameScreen, page }) => {
+  await hostModemGameScreen.verifyTelephoneNumberPrompt();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('allows to dial a telephone number', async ({ hostModemGameScreen, page }) => {
-  await hostModemGameScreen.telephoneNumberInput.fill('12345');
+test('dials a telephone number', async ({ hostModemGameScreen, page }) => {
+  await hostModemGameScreen.enterTelephoneNumber('12345');
 
   await expect(page).toHaveScreenshot('numberEntered.png', { maxDiffPixelRatio: 0.01 });
 
-  await hostModemGameScreen.telephoneNumberInput.press('Enter');
+  await hostModemGameScreen.confirmTelephoneNumber();
 
-  await expect(hostModemGameScreen.dialingModal('12345')).toBeVisible();
+  await hostModemGameScreen.verifyDialing('12345');
 
   await expect(page).toHaveScreenshot('dialingNumber.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('allows to dial an empty telephone number', async ({ hostModemGameScreen, page }) => {
-  await hostModemGameScreen.telephoneNumberInput.press('Enter');
+test('allows to dial an empty telephone number', async ({ hostModemGameScreen }) => {
+  await hostModemGameScreen.dial('');
 
-  await expect(page).toHaveScreenshot('dialingEmpty.png', { maxDiffPixelRatio: 0.01 });
+  await hostModemGameScreen.verifyDialing('');
 });
 
-test('displays main screen when dialing and cancel is clicked', async ({ hostModemGameScreen, mainScreen }) => {
-  await hostModemGameScreen.telephoneNumberInput.fill('12345');
+test('displays main screen when dialing is cancelled', async ({ hostModemGameScreen, mainScreen }) => {
+  await hostModemGameScreen.dial('12345');
 
-  await hostModemGameScreen.telephoneNumberInput.press('Enter');
-
-  await hostModemGameScreen.cancelButton.click();
+  await hostModemGameScreen.cancelDialing();
 
   await mainScreen.verifyIsCurrentScreen();
 });
