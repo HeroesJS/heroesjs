@@ -1,14 +1,15 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class JoinDirectConnectGameScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
+import { expect } from './utils';
 
-  public readonly waitingForConnectionModal: Locator;
+export class JoinDirectConnectGameScreen extends Screen {
+  private readonly waitingForConnectionModal: Locator;
 
-  public readonly cancelButton: Locator;
+  private readonly cancelButton: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /join direct connect game screen/i });
+  constructor(page: Page) {
+    super(page, /^join direct connect game screen$/i);
 
     this.waitingForConnectionModal = page.getByRole('dialog', {
       name: /waiting for other computer to log in to direct connection\. Press 'cancel' to abort\./i,
@@ -19,5 +20,13 @@ export class JoinDirectConnectGameScreen {
 
   public goto() {
     return this.page.goto('/new-game/multi-player/direct-connect/join');
+  }
+
+  public async verifyWaitingForConnection() {
+    await expect(this.waitingForConnectionModal).toBeVisible();
+  }
+
+  public async cancel() {
+    await this.cancelButton.click();
   }
 }

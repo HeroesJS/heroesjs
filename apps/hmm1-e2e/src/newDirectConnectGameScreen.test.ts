@@ -49,7 +49,7 @@ test('displays join direct connect game screen when guest is clicked', async ({
 }) => {
   await newDirectConnectGameScreen.guestButton.click();
 
-  await expect(joinDirectConnectGameScreen.locator).toBeVisible();
+  await joinDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ mouseRightDown, newDirectConnectGameScreen, page }) => {
