@@ -5,17 +5,17 @@ test.beforeEach(async ({ hostDirectConnectGameScreen }) => {
 });
 
 test('displays screen', async ({ hostDirectConnectGameScreen }) => {
-  await expect(hostDirectConnectGameScreen.locator).toBeVisible();
+  await hostDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays waiting for connection modal', async ({ hostDirectConnectGameScreen, page }) => {
-  await expect(hostDirectConnectGameScreen.waitingForConnectionModal).toBeVisible();
+test('displays waiting for connection', async ({ hostDirectConnectGameScreen, page }) => {
+  await hostDirectConnectGameScreen.verifyWaitingForConnection();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays main screen when cancel is clicked', async ({ hostDirectConnectGameScreen, mainScreen }) => {
-  await hostDirectConnectGameScreen.cancelButton.click();
+test('displays main screen when cancelled', async ({ hostDirectConnectGameScreen, mainScreen }) => {
+  await hostDirectConnectGameScreen.cancel();
 
   await mainScreen.verifyIsCurrentScreen();
 });

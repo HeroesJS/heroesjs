@@ -32,7 +32,7 @@ test('displays host direct connect game screen when host is clicked', async ({
 }) => {
   await newDirectConnectGameScreen.hostButton.click();
 
-  await expect(hostDirectConnectGameScreen.locator).toBeVisible();
+  await hostDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays guest info', async ({ mouseRightDown, newDirectConnectGameScreen, page }) => {
