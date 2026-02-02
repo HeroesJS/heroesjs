@@ -1,23 +1,20 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class NewModemGameScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
+import { expect } from './utils';
 
-  public readonly menu: Locator;
+export class NewModemGameScreen extends Screen {
+  private readonly hostButton: Locator;
+  private readonly hostInfoModal: Locator;
 
-  public readonly hostButton: Locator;
-  public readonly hostInfoModal: Locator;
+  private readonly guestButton: Locator;
+  private readonly guestInfoModal: Locator;
 
-  public readonly guestButton: Locator;
-  public readonly guestInfoModal: Locator;
+  private readonly cancelButton: Locator;
+  private readonly cancelInfoModal: Locator;
 
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
-
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new modem game screen/i });
-
-    this.menu = page.getByRole('menu', { name: /modem game menu/i });
+  constructor(page: Page) {
+    super(page, /^new modem game screen$/i);
 
     this.hostButton = page.getByRole('button', { name: /host \(dials\)/i });
     this.hostInfoModal = page.getByRole('dialog', {
@@ -31,6 +28,42 @@ export class NewModemGameScreen {
 
     this.cancelButton = page.getByRole('button', { name: /cancel/i });
     this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+  }
+
+  public async showHostInfo() {
+    await this.mouseRightDown(this.hostButton);
+  }
+
+  public async verifyHostInfoShown() {
+    await expect(this.hostInfoModal).toBeVisible();
+  }
+
+  public async selectHost() {
+    await this.hostButton.click();
+  }
+
+  public async showGuestInfo() {
+    await this.mouseRightDown(this.guestButton);
+  }
+
+  public async verifyGuestInfoShown() {
+    await expect(this.guestInfoModal).toBeVisible();
+  }
+
+  public async selectGuest() {
+    await this.guestButton.click();
+  }
+
+  public async showCancelInfo() {
+    await this.mouseRightDown(this.cancelButton);
+  }
+
+  public async verifyCancelInfoShown() {
+    await expect(this.cancelInfoModal).toBeVisible();
+  }
+
+  public async cancel() {
+    await this.cancelButton.click();
   }
 
   public goto() {

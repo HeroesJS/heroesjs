@@ -68,7 +68,7 @@ test('displays new modem game screen when modem is clicked', async ({
 }) => {
   await newMultiPlayerGameScreen.modemButton.click();
 
-  await expect(newModemGameScreen.locator).toBeVisible();
+  await newModemGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays direct connect info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
