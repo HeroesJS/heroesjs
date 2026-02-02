@@ -1,49 +1,50 @@
 import type { Locator, Page } from '@playwright/test';
 
 import { Window } from './window';
+import { expect } from './utils';
 
 export class GameOptionsWindow extends Window {
-  public readonly newGameButton: Locator;
-  public readonly newGameInfoModal: Locator;
-  public readonly newGameConfirmationModal: Locator;
+  private readonly newGameButton: Locator;
+  private readonly newGameInfoModal: Locator;
+  private readonly newGameConfirmationModal: Locator;
 
-  public readonly loadGameButton: Locator;
-  public readonly loadGameInfoModal: Locator;
-  public readonly loadGameConfirmationModal: Locator;
+  private readonly loadGameButton: Locator;
+  private readonly loadGameInfoModal: Locator;
+  private readonly loadGameConfirmationModal: Locator;
 
-  public readonly saveGameButton: Locator;
-  public readonly saveGameInfoModal: Locator;
+  private readonly saveGameButton: Locator;
+  private readonly saveGameInfoModal: Locator;
 
-  public readonly quitButton: Locator;
-  public readonly quitInfoModal: Locator;
-  public readonly quitConfirmationModal: Locator;
+  private readonly quitButton: Locator;
+  private readonly quitInfoModal: Locator;
+  private readonly quitConfirmationModal: Locator;
 
-  public readonly musicVolumeToggle: Locator;
-  public readonly musicVolumeInfoModal: Locator;
+  private readonly musicVolumeToggle: Locator;
+  private readonly musicVolumeInfoModal: Locator;
 
-  public readonly effectsVolumeToggle: Locator;
-  public readonly effectsVolumeInfoModal: Locator;
+  private readonly effectsVolumeToggle: Locator;
+  private readonly effectsVolumeInfoModal: Locator;
 
-  public readonly movementSpeedToggle: Locator;
-  public readonly movementSpeedInfoModal: Locator;
+  private readonly movementSpeedToggle: Locator;
+  private readonly movementSpeedInfoModal: Locator;
 
-  public readonly autoSaveCheckbox: Locator;
-  public readonly autoSaveInfoModal: Locator;
+  private readonly autoSaveCheckbox: Locator;
+  private readonly autoSaveInfoModal: Locator;
 
-  public readonly showPathCheckbox: Locator;
-  public readonly showPathInfoModal: Locator;
+  private readonly showPathCheckbox: Locator;
+  private readonly showPathInfoModal: Locator;
 
-  public readonly viewEnemyMovementCheckbox: Locator;
-  public readonly viewEnemyMovementInfoModal: Locator;
+  private readonly viewEnemyMovementCheckbox: Locator;
+  private readonly viewEnemyMovementInfoModal: Locator;
 
-  public readonly okayButton: Locator;
-  public readonly okayInfoModal: Locator;
+  private readonly okayButton: Locator;
+  private readonly okayInfoModal: Locator;
 
-  public readonly infoButton: Locator;
-  public readonly infoInfoModal: Locator;
+  private readonly infoButton: Locator;
+  private readonly infoInfoModal: Locator;
 
-  public readonly yesButton: Locator;
-  public readonly noButton: Locator;
+  private readonly yesButton: Locator;
+  private readonly noButton: Locator;
 
   constructor(page: Page) {
     super(page, /^game options window$/i);
@@ -109,15 +110,223 @@ export class GameOptionsWindow extends Window {
     this.noButton = page.getByRole('button', { name: /^no$/i });
   }
 
-  public getMusicVolumeOption(name: RegExp) {
+  public async showNewGameInfo() {
+    await this.mouseRightDown(this.newGameButton);
+  }
+
+  public async verifyNewGameInfoShown() {
+    await expect(this.newGameInfoModal).toBeVisible();
+  }
+
+  public async selectNewGame() {
+    await this.newGameButton.click();
+  }
+
+  public async verifyNewGameConfirmationShown() {
+    await expect(this.newGameConfirmationModal).toBeVisible();
+  }
+
+  public async verifyNewGameConfirmationHidden() {
+    await expect(this.newGameConfirmationModal).toBeHidden();
+  }
+
+  public async showLoadGameInfo() {
+    await this.mouseRightDown(this.loadGameButton);
+  }
+
+  public async verifyLoadGameInfoShown() {
+    await expect(this.loadGameInfoModal).toBeVisible();
+  }
+
+  public async selectLoadGame() {
+    await this.loadGameButton.click();
+  }
+
+  public async verifyLoadGameConfirmationShown() {
+    await expect(this.loadGameConfirmationModal).toBeVisible();
+  }
+
+  public async verifyLoadGameConfirmationHidden() {
+    await expect(this.loadGameConfirmationModal).toBeHidden();
+  }
+
+  public async showSaveGameInfo() {
+    await this.mouseRightDown(this.saveGameButton);
+  }
+
+  public async verifySaveGameInfoShown() {
+    await expect(this.saveGameInfoModal).toBeVisible();
+  }
+
+  public async selectSaveGame() {
+    await this.saveGameButton.click();
+  }
+
+  public async showQuitInfo() {
+    await this.mouseRightDown(this.quitButton);
+  }
+
+  public async verifyQuitInfoShown() {
+    await expect(this.quitInfoModal).toBeVisible();
+  }
+
+  public async selectQuit() {
+    await this.quitButton.click();
+  }
+
+  public async verifyQuitConfirmationShown() {
+    await expect(this.quitConfirmationModal).toBeVisible();
+  }
+
+  public async verifyQuitConfirmationHidden() {
+    await expect(this.quitConfirmationModal).toBeHidden();
+  }
+
+  public async selectNo() {
+    await this.noButton.click();
+  }
+
+  public async selectYes() {
+    await this.yesButton.click();
+  }
+
+  public async showMusicVolumeInfo() {
+    await this.mouseRightDown(this.musicVolumeToggle);
+  }
+
+  public async selectMusicVolume(value: RegExp) {
+    while (!(await this.getMusicVolumeOption(value).isVisible())) {
+      await this.musicVolumeToggle.click();
+    }
+  }
+
+  public async verifyMusicVolumeInfoShown() {
+    await expect(this.musicVolumeInfoModal).toBeVisible();
+  }
+
+  public async verifyMusicVolumeSelected(value: RegExp) {
+    await expect(this.getMusicVolumeOption(value)).toBeChecked();
+  }
+
+  public async showEffectsVolumeInfo() {
+    await this.mouseRightDown(this.effectsVolumeToggle);
+  }
+
+  public async verifyEffectsVolumeInfoShown() {
+    await expect(this.effectsVolumeInfoModal).toBeVisible();
+  }
+
+  public async selectEffectsVolume(value: RegExp) {
+    while (!(await this.getEffectsVolumeOption(value).isVisible())) {
+      await this.effectsVolumeToggle.click();
+    }
+  }
+
+  public async verifyEffectsVolumeSelected(value: RegExp) {
+    await expect(this.getEffectsVolumeOption(value)).toBeChecked();
+  }
+
+  public async showMovementSpeedInfo() {
+    await this.mouseRightDown(this.movementSpeedToggle);
+  }
+
+  public async verifyMovementSpeedInfoShown() {
+    await expect(this.movementSpeedInfoModal).toBeVisible();
+  }
+
+  public async selectMovementSpeed(value: RegExp) {
+    while (!(await this.getMovementSpeedOption(value).isVisible())) {
+      await this.movementSpeedToggle.click();
+    }
+  }
+
+  public async verifyMovementSpeedSelected(value: RegExp) {
+    await expect(this.getMovementSpeedOption(value)).toBeChecked();
+  }
+
+  public async showAutoSaveInfo() {
+    await this.mouseRightDown(this.autoSaveCheckbox);
+  }
+
+  public async verifyAutoSaveInfoShown() {
+    await expect(this.autoSaveInfoModal).toBeVisible();
+  }
+
+  public async selectAutoSave(enabled: boolean) {
+    if ((await this.autoSaveCheckbox.isChecked()) !== enabled) {
+      await this.autoSaveCheckbox.click();
+    }
+  }
+
+  public async verifyAutoSave(enabled: boolean) {
+    await expect(this.autoSaveCheckbox).toBeChecked({ checked: enabled });
+  }
+
+  public async showShowPathInfo() {
+    await this.mouseRightDown(this.showPathCheckbox);
+  }
+
+  public async verifyShowPathInfoShown() {
+    await expect(this.showPathInfoModal).toBeVisible();
+  }
+
+  public async selectShowPath(enabled: boolean) {
+    if ((await this.showPathCheckbox.isChecked()) !== enabled) {
+      await this.showPathCheckbox.click();
+    }
+  }
+
+  public async verifyShowPath(enabled: boolean) {
+    await expect(this.showPathCheckbox).toBeChecked({ checked: enabled });
+  }
+
+  public async showViewEnemyMovementInfo() {
+    await this.mouseRightDown(this.viewEnemyMovementCheckbox);
+  }
+
+  public async verifyViewEnemyMovementInfoShown() {
+    await expect(this.viewEnemyMovementInfoModal).toBeVisible();
+  }
+
+  public async selectViewEnemyMovement(enabled: boolean) {
+    if ((await this.viewEnemyMovementCheckbox.isChecked()) !== enabled) {
+      await this.viewEnemyMovementCheckbox.click();
+    }
+  }
+
+  public async verifyViewEnemyMovement(enabled: boolean) {
+    await expect(this.viewEnemyMovementCheckbox).toBeChecked({ checked: enabled });
+  }
+
+  public async showOkayInfo() {
+    await this.mouseRightDown(this.okayButton);
+  }
+
+  public async verifyOkayInfoShown() {
+    await expect(this.okayInfoModal).toBeVisible();
+  }
+
+  public async selectOkay() {
+    await this.okayButton.click();
+  }
+
+  public async showInfoInfo() {
+    await this.mouseRightDown(this.infoButton);
+  }
+
+  public async verifyInfoInfoShown() {
+    await expect(this.infoInfoModal).toBeVisible();
+  }
+
+  private getMusicVolumeOption(name: RegExp) {
     return this.musicVolumeToggle.getByRole('radio', { name });
   }
 
-  public getEffectsVolumeOption(name: RegExp) {
+  private getEffectsVolumeOption(name: RegExp) {
     return this.effectsVolumeToggle.getByRole('radio', { name });
   }
 
-  public getMovementSpeedOption(name: RegExp) {
+  private getMovementSpeedOption(name: RegExp) {
     return this.movementSpeedToggle.getByRole('radio', { name });
   }
 }
