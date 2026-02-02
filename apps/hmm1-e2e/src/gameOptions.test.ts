@@ -7,7 +7,7 @@ test.beforeEach(async ({ adventureScreen }) => {
 });
 
 test('displays game options', async ({ gameOptionsWindow, page }) => {
-  await expect(gameOptionsWindow.locator).toBeVisible();
+  await gameOptionsWindow.verifyIsOpen();
 
   await expect(gameOptionsWindow.newGameButton).toBeVisible();
   await expect(gameOptionsWindow.loadGameButton).toBeVisible();
@@ -327,7 +327,7 @@ test.describe('okay button', () => {
   test('closes game options window when okay is clicked', async ({ gameOptionsWindow }) => {
     await gameOptionsWindow.okayButton.click();
 
-    await expect(gameOptionsWindow.locator).toBeHidden();
+    await gameOptionsWindow.verifyIsClosed();
   });
 });
 

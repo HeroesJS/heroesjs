@@ -64,7 +64,7 @@ test('displays adventure options when adventure options is selected', async ({
 }) => {
   await adventureScreen.selectAdventureOptions();
 
-  await expect(adventureOptionsWindow.locator).toBeVisible();
+  await adventureOptionsWindow.verifyIsOpen();
 });
 
 test('displays game options info', async ({ adventureScreen, page }) => {
@@ -78,5 +78,5 @@ test('displays game options info', async ({ adventureScreen, page }) => {
 test('displays game options when game options is selected', async ({ adventureScreen, gameOptionsWindow }) => {
   await adventureScreen.selectGameOptions();
 
-  await expect(gameOptionsWindow.locator).toBeVisible();
+  await gameOptionsWindow.verifyIsOpen();
 });

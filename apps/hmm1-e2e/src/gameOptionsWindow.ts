@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class GameOptionsWindow {
-  public readonly locator: Locator;
+import { Window } from './window';
 
+export class GameOptionsWindow extends Window {
   public readonly newGameButton: Locator;
   public readonly newGameInfoModal: Locator;
   public readonly newGameConfirmationModal: Locator;
@@ -46,7 +46,7 @@ export class GameOptionsWindow {
   public readonly noButton: Locator;
 
   constructor(page: Page) {
-    this.locator = page.getByRole('region', { name: /^game options window$/i });
+    super(page, /^game options window$/i);
 
     this.newGameButton = page.getByRole('button', { name: /^new game$/i });
     this.newGameInfoModal = page.getByRole('dialog', { name: /^start a single or multi‑player game\.$/iu });

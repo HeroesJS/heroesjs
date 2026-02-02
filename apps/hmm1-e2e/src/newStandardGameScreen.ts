@@ -216,7 +216,7 @@ export class NewStandardGameScreen extends Screen {
   }
 
   public async verifyScenarioSelectionOpen() {
-    await expect(this.fileSelector.locator).toBeVisible();
+    await this.fileSelector.verifyIsOpen();
   }
 
   public async pickScenario(name: RegExp) {
