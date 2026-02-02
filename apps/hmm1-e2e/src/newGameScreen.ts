@@ -3,26 +3,23 @@ import type { Locator, Page } from '@playwright/test';
 import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
 import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
 import { Screen } from './screen';
+import { expect } from './utils';
 
 export class NewGameScreen extends Screen {
-  public readonly menu: Locator;
+  private readonly standardGameButton: Locator;
+  private readonly standardGameInfoModal: Locator;
 
-  public readonly standardGameButton: Locator;
-  public readonly standardGameInfoModal: Locator;
+  private readonly campaignGameButton: Locator;
+  private readonly campaignGameInfoModal: Locator;
 
-  public readonly campaignGameButton: Locator;
-  public readonly campaignGameInfoModal: Locator;
+  private readonly multiPlayerGameButton: Locator;
+  private readonly multiPlayerGameInfoModal: Locator;
 
-  public readonly multiPlayerGameButton: Locator;
-  public readonly multiPlayerGameInfoModal: Locator;
-
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
+  private readonly cancelButton: Locator;
+  private readonly cancelInfoModal: Locator;
 
   constructor(page: Page) {
     super(page, /new game screen/i);
-
-    this.menu = page.getByRole('menu', { name: /game type menu/i });
 
     this.standardGameButton = page.getByRole('button', { name: /standard game/i });
     this.standardGameInfoModal = page.getByRole('dialog', { name: /a single player game playing out a single map\./i });
@@ -45,16 +42,52 @@ export class NewGameScreen extends Screen {
     return this.page.goto('/new-game');
   }
 
+  public async showStandardGameInfo() {
+    await this.mouseRightDown(this.standardGameButton);
+  }
+
+  public async verifyStandardGameInfoShown() {
+    await expect(this.standardGameInfoModal).toBeVisible();
+  }
+
   public async selectStandardGame() {
     await this.standardGameButton.click();
+  }
+
+  public async showCampaignGameInfo() {
+    await this.mouseRightDown(this.campaignGameButton);
+  }
+
+  public async verifyCampaiangGameInfoShown() {
+    await expect(this.campaignGameInfoModal).toBeVisible();
   }
 
   public async selectCampaignGame() {
     await this.campaignGameButton.click();
   }
 
+  public async showMultiPlayerGameInfo() {
+    await this.mouseRightDown(this.multiPlayerGameButton);
+  }
+
+  public async verifyMultiPlayerGameInfoShown() {
+    await expect(this.multiPlayerGameInfoModal).toBeVisible();
+  }
+
   public async selectMultiPlayerGame() {
     await this.multiPlayerGameButton.click();
+  }
+
+  public async showCancelInfo() {
+    await this.mouseRightDown(this.cancelButton);
+  }
+
+  public async verifyCancelInfoShown() {
+    await expect(this.cancelInfoModal).toBeVisible();
+  }
+
+  public async selectCancel() {
+    await this.cancelButton.click();
   }
 
   public async startNewHotSeatGame(playerCount: number) {
