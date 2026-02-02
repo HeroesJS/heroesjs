@@ -4,46 +4,38 @@ test.beforeEach(async ({ newNetworkGameScreen }) => {
   await newNetworkGameScreen.goto();
 });
 
-test('displays screen', async ({ newNetworkGameScreen }) => {
+test('displays screen', async ({ newNetworkGameScreen, page }) => {
   await newNetworkGameScreen.verifyIsCurrentScreen();
-});
-
-test('displays menu', async ({ newNetworkGameScreen, page }) => {
-  await expect(newNetworkGameScreen.menu).toBeVisible();
-
-  await expect(newNetworkGameScreen.hostButton).toBeVisible();
-  await expect(newNetworkGameScreen.guestButton).toBeVisible();
-  await expect(newNetworkGameScreen.cancelButton).toBeVisible();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays host info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
-  await mouseRightDown(newNetworkGameScreen.hostButton);
+test('displays host info', async ({ newNetworkGameScreen, page }) => {
+  await newNetworkGameScreen.showHostInfo();
 
-  await expect(newNetworkGameScreen.hostInfoModal).toBeVisible();
+  await newNetworkGameScreen.verifyHostInfoShown();
 
   await expect(page).toHaveScreenshot('host-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays guest info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
-  await mouseRightDown(newNetworkGameScreen.guestButton);
+test('displays guest info', async ({ newNetworkGameScreen, page }) => {
+  await newNetworkGameScreen.showGuestInfo();
 
-  await expect(newNetworkGameScreen.guestInfoModal).toBeVisible();
+  await newNetworkGameScreen.verifyGuestInfoShown();
 
   await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays cancel info', async ({ mouseRightDown, newNetworkGameScreen, page }) => {
-  await mouseRightDown(newNetworkGameScreen.cancelButton);
+test('displays cancel info', async ({ newNetworkGameScreen, page }) => {
+  await newNetworkGameScreen.showCancelInfo();
 
-  await expect(newNetworkGameScreen.cancelInfoModal).toBeVisible();
+  await newNetworkGameScreen.verifyCancelInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays main screen when cancel is clicked', async ({ mainScreen, newNetworkGameScreen }) => {
-  await newNetworkGameScreen.cancelButton.click();
+test('displays main screen when cancel is selected', async ({ mainScreen, newNetworkGameScreen }) => {
+  await newNetworkGameScreen.selectCancel();
 
   await mainScreen.verifyIsCurrentScreen();
 });
