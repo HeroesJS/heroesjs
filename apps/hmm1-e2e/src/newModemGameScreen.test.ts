@@ -43,7 +43,7 @@ test('displays guest info', async ({ mouseRightDown, newModemGameScreen, page })
 test('displays join modem game screen when guest is clicked', async ({ joinModemGameScreen, newModemGameScreen }) => {
   await newModemGameScreen.guestButton.click();
 
-  await expect(joinModemGameScreen.locator).toBeVisible();
+  await joinModemGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ mouseRightDown, newModemGameScreen, page }) => {
