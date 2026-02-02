@@ -163,8 +163,8 @@ export class NewStandardGameScreen extends Screen {
     await expect(this.humanOpponentSettingInfoModal).toBeVisible();
   }
 
-  public getHumanOpponentsCount() {
-    return this.page.getByRole('radio', { name: /human/i }).count();
+  public async verifyHumanOpponentsCount(count: number) {
+    expect(await this.page.getByRole('radio', { name: /^human/i }).count()).toBe(count);
   }
 
   public getPlayerColorOption(option: RegExp) {
