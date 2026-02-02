@@ -47,7 +47,7 @@ test('displays new campaign game screen when campaign game is clicked', async ({
 }) => {
   await newGameScreen.campaignGameButton.click();
 
-  await expect(newCampaignGameScreen.locator).toBeVisible();
+  await newCampaignGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays multi-player game info', async ({ mouseRightDown, newGameScreen, page }) => {
