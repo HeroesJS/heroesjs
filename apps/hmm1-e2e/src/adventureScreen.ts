@@ -2,27 +2,28 @@ import type { Locator, Page } from '@playwright/test';
 
 import { GameOptionsWindow } from './gameOptionsWindow';
 import { Screen } from './screen';
+import { expect } from './utils';
 
 export class AdventureScreen extends Screen {
-  public readonly nextHeroButton: Locator;
-  public readonly nextHeroInfoModal: Locator;
+  private readonly nextHeroButton: Locator;
+  private readonly nextHeroInfoModal: Locator;
 
-  public readonly moveButton: Locator;
-  public readonly moveInfoModal: Locator;
+  private readonly moveButton: Locator;
+  private readonly moveInfoModal: Locator;
 
-  public readonly kingdomOverviewButton: Locator;
-  public readonly kingdomOverviewInfoModal: Locator;
+  private readonly kingdomOverviewButton: Locator;
+  private readonly kingdomOverviewInfoModal: Locator;
 
-  public readonly endTurnButton: Locator;
-  public readonly endTurnInfoModal: Locator;
+  private readonly endTurnButton: Locator;
+  private readonly endTurnInfoModal: Locator;
 
-  public readonly adventureOptionsButton: Locator;
-  public readonly adventureOptionsInfoModal: Locator;
+  private readonly adventureOptionsButton: Locator;
+  private readonly adventureOptionsInfoModal: Locator;
 
-  public readonly gameOptionsButton: Locator;
-  public readonly gameOptionsInfoModal: Locator;
+  private readonly gameOptionsButton: Locator;
+  private readonly gameOptionsInfoModal: Locator;
 
-  public readonly gameOptionsWindow: GameOptionsWindow;
+  private readonly gameOptionsWindow: GameOptionsWindow;
 
   public constructor(page: Page) {
     super(page, /^adventure screen$/i);
@@ -60,6 +61,86 @@ export class AdventureScreen extends Screen {
 
   public async goto() {
     return this.page.goto('/adventure');
+  }
+
+  public async showNextHeroInfo() {
+    await this.mouseRightDown(this.nextHeroButton);
+  }
+
+  public async verifyNextHeroInfoShown() {
+    await expect(this.nextHeroInfoModal).toBeVisible();
+  }
+
+  public async verifyNextHeroDisabled() {
+    await expect(this.nextHeroButton).toBeDisabled();
+  }
+
+  public async selectNextHero() {
+    await this.nextHeroButton.click();
+  }
+
+  public async showMoveInfo() {
+    await this.mouseRightDown(this.moveButton);
+  }
+
+  public async verifyMoveInfoShown() {
+    await expect(this.moveInfoModal).toBeVisible();
+  }
+
+  public async verifyMoveDisabled() {
+    await expect(this.moveButton).toBeDisabled();
+  }
+
+  public async selectMove() {
+    await this.moveButton.click();
+  }
+
+  public async showKingdomOverviewInfo() {
+    await this.mouseRightDown(this.kingdomOverviewButton);
+  }
+
+  public async verifyKingdomOverviewInfoShown() {
+    await expect(this.kingdomOverviewInfoModal).toBeVisible();
+  }
+
+  public async selectKingdomOverview() {
+    await this.kingdomOverviewButton.click();
+  }
+
+  public async showEndTurnInfo() {
+    await this.mouseRightDown(this.endTurnButton);
+  }
+
+  public async verifyEndTurnInfoShown() {
+    await expect(this.endTurnInfoModal).toBeVisible();
+  }
+
+  public async selectEndTurn() {
+    await this.endTurnButton.click();
+  }
+
+  public async showAdventureOptionsInfo() {
+    await this.mouseRightDown(this.adventureOptionsButton);
+  }
+
+  public async verifyAdventureOptionsInfoShown() {
+    await expect(this.adventureOptionsInfoModal).toBeVisible();
+  }
+
+  public async selectAdventureOptions() {
+    await this.adventureOptionsButton.click();
+  }
+
+  public async showGameOptionsInfo() {
+    await this.mouseRightDown(this.gameOptionsButton);
+  }
+
+  public async verifyGameOptionsInfoShown() {
+    await expect(this.gameOptionsInfoModal).toBeVisible();
+  }
+
+  public async selectGameOptions() {
+    await this.gameOptionsButton.click();
   }
 
   public async startNewGame() {

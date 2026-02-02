@@ -10,85 +10,73 @@ test('displays screen', async ({ adventureScreen, page }) => {
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.49 });
 });
 
-test('displays adventure buttons', async ({ adventureScreen }) => {
-  await expect(adventureScreen.nextHeroButton).toBeVisible();
-  await expect(adventureScreen.moveButton).toBeVisible();
-  await expect(adventureScreen.kingdomOverviewButton).toBeVisible();
-  await expect(adventureScreen.endTurnButton).toBeVisible();
-  await expect(adventureScreen.adventureOptionsButton).toBeVisible();
-  await expect(adventureScreen.gameOptionsButton).toBeVisible();
+test.skip('next hero is disabled when no heroes are recruited', async ({ adventureScreen }) => {
+  await adventureScreen.verifyNextHeroDisabled();
 });
 
-test.skip('next hero button is disabled when no heroes available', async ({ adventureScreen }) => {
-  await expect(adventureScreen.nextHeroButton).toBeDisabled();
-});
+test('displays next hero info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showNextHeroInfo();
 
-test('displays next hero button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.nextHeroButton);
-
-  await expect(adventureScreen.nextHeroInfoModal).toBeVisible();
+  await adventureScreen.verifyNextHeroInfoShown();
 
   await expect(page).toHaveScreenshot('next-hero-info.png', { maxDiffPixelRatio: 0.41 });
 });
 
-test.skip('move button is disabled when no movement path is selected', async ({ adventureScreen }) => {
-  await expect(adventureScreen.moveButton).toBeDisabled();
+test.skip('move is disabled when no movement path is set', async ({ adventureScreen }) => {
+  await adventureScreen.verifyMoveDisabled();
 });
 
-test('displays move button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.moveButton);
+test('displays move info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showMoveInfo();
 
-  await expect(adventureScreen.moveInfoModal).toBeVisible();
+  await adventureScreen.verifyMoveInfoShown();
 
   await expect(page).toHaveScreenshot('move-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
-test('displays kingdom overview button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.kingdomOverviewButton);
+test('displays kingdom overview info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showKingdomOverviewInfo();
 
-  await expect(adventureScreen.kingdomOverviewInfoModal).toBeVisible();
+  await adventureScreen.verifyKingdomOverviewInfoShown();
 
   await expect(page).toHaveScreenshot('kingdom-overview-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
-test('displays end turn button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.endTurnButton);
+test('displays end turn info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showEndTurnInfo();
 
-  await expect(adventureScreen.endTurnInfoModal).toBeVisible();
+  await adventureScreen.verifyEndTurnInfoShown();
 
   await expect(page).toHaveScreenshot('end-turn-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
-test('displays adventure options button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.adventureOptionsButton);
+test('displays adventure options info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showAdventureOptionsInfo();
 
-  await expect(adventureScreen.adventureOptionsInfoModal).toBeVisible();
+  await adventureScreen.verifyAdventureOptionsInfoShown();
 
   await expect(page).toHaveScreenshot('adventure-options-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
-test('displays adventure options window when adventure options button is clicked', async ({
+test('displays adventure options when adventure options is selected', async ({
   adventureScreen,
   adventureOptionsWindow,
 }) => {
-  await adventureScreen.adventureOptionsButton.click();
+  await adventureScreen.selectAdventureOptions();
 
   await expect(adventureOptionsWindow.locator).toBeVisible();
 });
 
-test('displays game options button info', async ({ adventureScreen, mouseRightDown, page }) => {
-  await mouseRightDown(adventureScreen.gameOptionsButton);
+test('displays game options info', async ({ adventureScreen, page }) => {
+  await adventureScreen.showGameOptionsInfo();
 
-  await expect(adventureScreen.gameOptionsInfoModal).toBeVisible();
+  await adventureScreen.verifyGameOptionsInfoShown();
 
   await expect(page).toHaveScreenshot('game-options-info.png', { maxDiffPixelRatio: 0.37 });
 });
 
-test('displays game options window when game options button is clicked', async ({
-  adventureScreen,
-  gameOptionsWindow,
-}) => {
-  await adventureScreen.gameOptionsButton.click();
+test('displays game options when game options is selected', async ({ adventureScreen, gameOptionsWindow }) => {
+  await adventureScreen.selectGameOptions();
 
   await expect(gameOptionsWindow.locator).toBeVisible();
 });

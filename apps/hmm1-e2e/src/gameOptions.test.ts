@@ -3,7 +3,7 @@ import { expect, test } from './utils';
 test.beforeEach(async ({ adventureScreen }) => {
   await adventureScreen.goto();
 
-  await adventureScreen.gameOptionsButton.click();
+  await adventureScreen.selectGameOptions();
 });
 
 test('displays game options', async ({ gameOptionsWindow, page }) => {
