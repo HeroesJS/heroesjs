@@ -75,7 +75,7 @@ test('displays new direct connect game screen when direct connect is selected', 
 }) => {
   await newMultiPlayerGameScreen.selectDirectConnect();
 
-  await expect(newDirectConnectGameScreen.locator).toBeVisible();
+  await newDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ newMultiPlayerGameScreen, page }) => {

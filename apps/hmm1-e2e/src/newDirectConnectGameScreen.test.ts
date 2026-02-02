@@ -4,64 +4,56 @@ test.beforeEach(async ({ newDirectConnectGameScreen }) => {
   await newDirectConnectGameScreen.goto();
 });
 
-test('displays screen', async ({ newDirectConnectGameScreen }) => {
-  await expect(newDirectConnectGameScreen.locator).toBeVisible();
-});
-
-test('displays menu', async ({ newDirectConnectGameScreen, page }) => {
-  await expect(newDirectConnectGameScreen.menu).toBeVisible();
-
-  await expect(newDirectConnectGameScreen.hostButton).toBeVisible();
-  await expect(newDirectConnectGameScreen.guestButton).toBeVisible();
-  await expect(newDirectConnectGameScreen.cancelButton).toBeVisible();
+test('displays screen', async ({ newDirectConnectGameScreen, page }) => {
+  await newDirectConnectGameScreen.verifyIsCurrentScreen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays host info', async ({ mouseRightDown, newDirectConnectGameScreen, page }) => {
-  await mouseRightDown(newDirectConnectGameScreen.hostButton);
+test('displays host info', async ({ newDirectConnectGameScreen, page }) => {
+  await newDirectConnectGameScreen.showHostInfo();
 
-  await expect(newDirectConnectGameScreen.hostInfoModal).toBeVisible();
+  await newDirectConnectGameScreen.verifyHostInfoShown();
 
   await expect(page).toHaveScreenshot('host-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays host direct connect game screen when host is clicked', async ({
+test('displays host direct connect game screen when host is selected', async ({
   hostDirectConnectGameScreen,
   newDirectConnectGameScreen,
 }) => {
-  await newDirectConnectGameScreen.hostButton.click();
+  await newDirectConnectGameScreen.selectHost();
 
   await hostDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays guest info', async ({ mouseRightDown, newDirectConnectGameScreen, page }) => {
-  await mouseRightDown(newDirectConnectGameScreen.guestButton);
+test('displays guest info', async ({ newDirectConnectGameScreen, page }) => {
+  await newDirectConnectGameScreen.showGuestInfo();
 
-  await expect(newDirectConnectGameScreen.guestInfoModal).toBeVisible();
+  await newDirectConnectGameScreen.verifyGuestInfoShown();
 
   await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays join direct connect game screen when guest is clicked', async ({
+test('displays join direct connect game screen when guest is selected', async ({
   joinDirectConnectGameScreen,
   newDirectConnectGameScreen,
 }) => {
-  await newDirectConnectGameScreen.guestButton.click();
+  await newDirectConnectGameScreen.selectGuest();
 
   await joinDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays cancel info', async ({ mouseRightDown, newDirectConnectGameScreen, page }) => {
-  await mouseRightDown(newDirectConnectGameScreen.cancelButton);
+test('displays cancel info', async ({ newDirectConnectGameScreen, page }) => {
+  await newDirectConnectGameScreen.showCancelInfo();
 
-  await expect(newDirectConnectGameScreen.cancelInfoModal).toBeVisible();
+  await newDirectConnectGameScreen.verifyCancelInfo();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays main screen when cancel is clicked', async ({ mainScreen, newDirectConnectGameScreen }) => {
-  await newDirectConnectGameScreen.cancelButton.click();
+test('displays main screen when cancel is selected', async ({ mainScreen, newDirectConnectGameScreen }) => {
+  await newDirectConnectGameScreen.selectCancel();
 
   await mainScreen.verifyIsCurrentScreen();
 });
