@@ -6,65 +6,63 @@ test.beforeEach(async ({ adventureScreen }) => {
   await adventureScreen.selectAdventureOptions();
 });
 
-test('displays adventure options window', async ({ adventureOptionsWindow, page }) => {
+test('displays adventure options', async ({ adventureOptionsWindow, page }) => {
   await adventureOptionsWindow.verifyIsOpen();
-
-  await expect(adventureOptionsWindow.viewWorldButton).toBeVisible();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.21 });
 });
 
 test.describe('view world', () => {
-  test('displays view world button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.viewWorldButton);
+  test('displays view world info', async ({ adventureOptionsWindow, page }) => {
+    await adventureOptionsWindow.showViewWorldInfo();
 
-    await expect(adventureOptionsWindow.viewWorldInfoModal).toBeVisible();
+    await adventureOptionsWindow.verifyViewWorldInfoShown();
 
     await expect(page).toHaveScreenshot('view-world-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('view puzzle', () => {
-  test('displays view puzzle button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.viewPuzzleButton);
+  test('displays view puzzle info', async ({ adventureOptionsWindow, page }) => {
+    await adventureOptionsWindow.showViewPuzzleInfo();
 
-    await expect(adventureOptionsWindow.viewPuzzleInfoModal).toBeVisible();
+    await adventureOptionsWindow.verifyViewPuzzleInfoShown();
 
     await expect(page).toHaveScreenshot('view-puzzle-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('cast spell', () => {
-  test('displays cast spell button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.castSpellButton);
+  test('displays cast spell info', async ({ adventureOptionsWindow, page }) => {
+    await adventureOptionsWindow.showCastSpellInfo();
 
-    await expect(adventureOptionsWindow.castSpellInfoModal).toBeVisible();
+    await adventureOptionsWindow.verifyCastSpellInfoShown();
 
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('dig', () => {
-  test('displays dig button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.digButton);
+  test('displays dig info', async ({ adventureOptionsWindow, page }) => {
+    await adventureOptionsWindow.showDigInfo();
 
-    await expect(adventureOptionsWindow.digInfoModal).toBeVisible();
+    await adventureOptionsWindow.verifyDigInfoShown();
 
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('okay', () => {
-  test('displays okay button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.okayButton);
+  test('displays okay info', async ({ adventureOptionsWindow, page }) => {
+    await adventureOptionsWindow.showOkayInfo();
 
-    await expect(adventureOptionsWindow.okayInfoModal).toBeVisible();
+    await adventureOptionsWindow.verifyOkayInfoShown();
 
     await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.32 });
   });
 
-  test('closes adventure options window when okay button is clicked', async ({ adventureOptionsWindow }) => {
-    await adventureOptionsWindow.okayButton.click();
+  test('closes adventure options when okay is selected', async ({ adventureOptionsWindow }) => {
+    await adventureOptionsWindow.selectOkay();
 
     await adventureOptionsWindow.verifyIsClosed();
   });

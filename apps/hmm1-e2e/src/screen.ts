@@ -13,7 +13,7 @@ export abstract class Screen {
     await expect(this.locator).toBeVisible();
   }
 
-  public async mouseRightDown(locator: Locator) {
+  protected async mouseRightDown(locator: Locator) {
     await mouseRightDown(this.page, locator);
   }
 }

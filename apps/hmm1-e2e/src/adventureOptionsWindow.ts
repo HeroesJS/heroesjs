@@ -1,22 +1,23 @@
 import type { Locator, Page } from '@playwright/test';
 
 import { Window } from './window';
+import { expect } from './utils';
 
 export class AdventureOptionsWindow extends Window {
-  public readonly viewWorldButton: Locator;
-  public readonly viewWorldInfoModal: Locator;
+  private readonly viewWorldButton: Locator;
+  private readonly viewWorldInfoModal: Locator;
 
-  public readonly viewPuzzleButton: Locator;
-  public readonly viewPuzzleInfoModal: Locator;
+  private readonly viewPuzzleButton: Locator;
+  private readonly viewPuzzleInfoModal: Locator;
 
-  public readonly castSpellButton: Locator;
-  public readonly castSpellInfoModal: Locator;
+  private readonly castSpellButton: Locator;
+  private readonly castSpellInfoModal: Locator;
 
-  public readonly digButton: Locator;
-  public readonly digInfoModal: Locator;
+  private readonly digButton: Locator;
+  private readonly digInfoModal: Locator;
 
-  public readonly okayButton: Locator;
-  public readonly okayInfoModal: Locator;
+  private readonly okayButton: Locator;
+  private readonly okayInfoModal: Locator;
 
   public constructor(page: Page) {
     super(page, /^adventure options window$/i);
@@ -35,5 +36,65 @@ export class AdventureOptionsWindow extends Window {
 
     this.okayButton = page.getByRole('button', { name: /^okay$/i });
     this.okayInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
+  }
+
+  public async showViewWorldInfo() {
+    await this.mouseRightDown(this.viewWorldButton);
+  }
+
+  public async verifyViewWorldInfoShown() {
+    await expect(this.viewWorldInfoModal).toBeVisible();
+  }
+
+  public async selectViewWorld() {
+    await this.viewWorldButton.click();
+  }
+
+  public async showViewPuzzleInfo() {
+    await this.mouseRightDown(this.viewPuzzleButton);
+  }
+
+  public async verifyViewPuzzleInfoShown() {
+    await expect(this.viewPuzzleInfoModal).toBeVisible();
+  }
+
+  public async selectViewPuzzle() {
+    await this.viewPuzzleButton.click();
+  }
+
+  public async showCastSpellInfo() {
+    await this.mouseRightDown(this.castSpellButton);
+  }
+
+  public async verifyCastSpellInfoShown() {
+    await expect(this.castSpellInfoModal).toBeVisible();
+  }
+
+  public async selectCastSpell() {
+    await this.castSpellButton.click();
+  }
+
+  public async showDigInfo() {
+    await this.mouseRightDown(this.digButton);
+  }
+
+  public async verifyDigInfoShown() {
+    await expect(this.digInfoModal).toBeVisible();
+  }
+
+  public async selectDig() {
+    await this.digButton.click();
+  }
+
+  public async showOkayInfo() {
+    await this.mouseRightDown(this.okayButton);
+  }
+
+  public async verifyOkayInfoShown() {
+    await expect(this.okayInfoModal).toBeVisible();
+  }
+
+  public async selectOkay() {
+    await this.okayButton.click();
   }
 }
