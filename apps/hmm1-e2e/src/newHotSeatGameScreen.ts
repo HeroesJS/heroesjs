@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class NewHotSeatGameScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
+export class NewHotSeatGameScreen extends Screen {
   public readonly menu: Locator;
 
   public readonly twoPlayersButton: Locator;
@@ -20,8 +20,8 @@ export class NewHotSeatGameScreen {
   public readonly playerCountButtons: Readonly<Record<number, Locator>>;
   public readonly playerCountInfoModals: Readonly<Record<number, Locator>>;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new hot seat game screen/i });
+  constructor(page: Page) {
+    super(page, /^new hot seat game screen$/i);
 
     this.menu = page.getByRole('menu', { name: /player count menu/i });
 

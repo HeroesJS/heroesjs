@@ -5,7 +5,7 @@ test.beforeEach(async ({ newNetworkGameScreen }) => {
 });
 
 test('displays screen', async ({ newNetworkGameScreen }) => {
-  await expect(newNetworkGameScreen.locator).toBeVisible();
+  await newNetworkGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays menu', async ({ newNetworkGameScreen, page }) => {

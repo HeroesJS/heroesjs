@@ -60,7 +60,7 @@ export class NewGameScreen extends Screen {
   public async startNewHotSeatGame(playerCount: number) {
     await this.selectMultiPlayerGame();
 
-    await new NewMultiPlayerGameScreen(this.page).hotSeatButton.click();
+    await new NewMultiPlayerGameScreen(this.page).selectHotSeat();
 
     await new NewHotSeatGameScreen(this.page).playerCountButtons[playerCount].click();
   }

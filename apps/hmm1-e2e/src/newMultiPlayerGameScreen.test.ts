@@ -4,100 +4,90 @@ test.beforeEach(async ({ newMultiPlayerGameScreen }) => {
   await newMultiPlayerGameScreen.goto();
 });
 
-test('displays screen', async ({ newMultiPlayerGameScreen }) => {
-  await expect(newMultiPlayerGameScreen.locator).toBeVisible();
-});
-
-test('displays menu', async ({ newMultiPlayerGameScreen, page }) => {
-  await expect(newMultiPlayerGameScreen.menu).toBeVisible();
-
-  await expect(newMultiPlayerGameScreen.hotSeatButton).toBeVisible();
-  await expect(newMultiPlayerGameScreen.networkButton).toBeVisible();
-  await expect(newMultiPlayerGameScreen.modemButton).toBeVisible();
-  await expect(newMultiPlayerGameScreen.directConnectButton).toBeVisible();
-  await expect(newMultiPlayerGameScreen.cancelButton).toBeVisible();
+test('displays screen', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.verifyIsCurrentScreen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays hot seat info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
-  await mouseRightDown(newMultiPlayerGameScreen.hotSeatButton);
+test('displays hot seat info', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.showHotSeatInfo();
 
-  await expect(newMultiPlayerGameScreen.hotSeatInfoModal).toBeVisible();
+  await newMultiPlayerGameScreen.verifyHotSeatInfoShown();
 
   await expect(page).toHaveScreenshot('hot-seat-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays new hot seat game screen when hot seat is clicked', async ({
+test('displays new hot seat game screen when hot seat is selected', async ({
   newHotSeatGameScreen,
   newMultiPlayerGameScreen,
 }) => {
-  await newMultiPlayerGameScreen.hotSeatButton.click();
+  await newMultiPlayerGameScreen.selectHotSeat();
 
-  await expect(newHotSeatGameScreen.locator).toBeVisible();
+  await newHotSeatGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays network info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
-  await mouseRightDown(newMultiPlayerGameScreen.networkButton);
+test('displays network info', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.showNetworkInfo();
 
-  await expect(newMultiPlayerGameScreen.networkInfoModal).toBeVisible();
+  await newMultiPlayerGameScreen.verifyNetworkInfoShown();
 
   await expect(page).toHaveScreenshot('network-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays new network game screen when network is clicked', async ({
+test('displays new network game screen when network is selected', async ({
   newMultiPlayerGameScreen,
   newNetworkGameScreen,
 }) => {
-  await newMultiPlayerGameScreen.networkButton.click();
+  await newMultiPlayerGameScreen.selectNetwork();
 
-  await expect(newNetworkGameScreen.locator).toBeVisible();
+  await newNetworkGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays modem info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
-  await mouseRightDown(newMultiPlayerGameScreen.modemButton);
+test('displays modem info', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.showModemInfo();
 
-  await expect(newMultiPlayerGameScreen.modemInfoModal).toBeVisible();
+  await newMultiPlayerGameScreen.verifyModemInfoShown();
 
   await expect(page).toHaveScreenshot('modem-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays new modem game screen when modem is clicked', async ({
+test('displays new modem game screen when modem is selected', async ({
   newModemGameScreen,
   newMultiPlayerGameScreen,
 }) => {
-  await newMultiPlayerGameScreen.modemButton.click();
+  await newMultiPlayerGameScreen.selectModem();
 
   await newModemGameScreen.verifyIsCurrentScreen();
 });
 
-test('displays direct connect info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
-  await mouseRightDown(newMultiPlayerGameScreen.directConnectButton);
+test('displays direct connect info', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.showDirectConnectInfo();
 
-  await expect(newMultiPlayerGameScreen.directConnectInfoModal).toBeVisible();
+  await newMultiPlayerGameScreen.verifyDirectConnectInfoShown();
 
   await expect(page).toHaveScreenshot('direct-connect-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays new direct connect game screen when direct connect is clicked', async ({
+test('displays new direct connect game screen when direct connect is selected', async ({
   newDirectConnectGameScreen,
   newMultiPlayerGameScreen,
 }) => {
-  await newMultiPlayerGameScreen.directConnectButton.click();
+  await newMultiPlayerGameScreen.selectDirectConnect();
 
   await expect(newDirectConnectGameScreen.locator).toBeVisible();
 });
 
-test('displays cancel info', async ({ mouseRightDown, newMultiPlayerGameScreen, page }) => {
-  await mouseRightDown(newMultiPlayerGameScreen.cancelButton);
+test('displays cancel info', async ({ newMultiPlayerGameScreen, page }) => {
+  await newMultiPlayerGameScreen.showCancelInfo();
 
-  await expect(newMultiPlayerGameScreen.cancelInfoModal).toBeVisible();
+  await newMultiPlayerGameScreen.verifyCancelInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('returns to main screen when cancel is clicked', async ({ mainScreen, newMultiPlayerGameScreen }) => {
-  await newMultiPlayerGameScreen.cancelButton.click();
+test('returns to main screen when cancel is selected', async ({ mainScreen, newMultiPlayerGameScreen }) => {
+  await newMultiPlayerGameScreen.selectCancel();
 
   await mainScreen.verifyIsCurrentScreen();
 });

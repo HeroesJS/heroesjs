@@ -64,7 +64,7 @@ test('displays new multi-player game screen when multi-player game is clicked', 
 }) => {
   await newGameScreen.multiPlayerGameButton.click();
 
-  await expect(newMultiPlayerGameScreen.locator).toBeVisible();
+  await newMultiPlayerGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ mouseRightDown, newGameScreen, page }) => {

@@ -1,8 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class NewNetworkGameScreen {
-  public readonly locator: Locator;
+import { Screen } from './screen';
 
+export class NewNetworkGameScreen extends Screen {
   public readonly menu: Locator;
 
   public readonly hostButton: Locator;
@@ -14,8 +14,8 @@ export class NewNetworkGameScreen {
   public readonly cancelButton: Locator;
   public readonly cancelInfoModal: Locator;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new network game screen/i });
+  constructor(page: Page) {
+    super(page, /^new network game screen$/i);
 
     this.menu = page.getByRole('menu', { name: /network game menu/i });
 

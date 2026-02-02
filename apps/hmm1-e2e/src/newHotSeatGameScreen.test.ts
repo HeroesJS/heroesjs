@@ -7,7 +7,7 @@ test.beforeEach(async ({ newHotSeatGameScreen }) => {
 });
 
 test('displays screen', async ({ newHotSeatGameScreen, page }) => {
-  await expect(newHotSeatGameScreen.locator).toBeVisible();
+  await newHotSeatGameScreen.verifyIsCurrentScreen();
 
   await expect(newHotSeatGameScreen.menu).toBeVisible();
 
