@@ -9,17 +9,19 @@ test('displays screen', async ({ hostModemGameScreen }) => {
 });
 
 test('prompts to enter telephone number', async ({ hostModemGameScreen, page }) => {
-  await hostModemGameScreen.verifyTelephoneNumberPrompt();
+  await hostModemGameScreen.enterTelephoneNumberPrompt.verifyShown();
+
+  await hostModemGameScreen.enterTelephoneNumberPrompt.verifyInputFocused();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('dials a telephone number', async ({ hostModemGameScreen, page }) => {
-  await hostModemGameScreen.enterTelephoneNumber('12345');
+  await hostModemGameScreen.enterTelephoneNumberPrompt.enterText('12345');
 
   await expect(page).toHaveScreenshot('numberEntered.png', { maxDiffPixelRatio: 0.01 });
 
-  await hostModemGameScreen.confirmTelephoneNumber();
+  await hostModemGameScreen.enterTelephoneNumberPrompt.confirmText();
 
   await hostModemGameScreen.verifyDialing('12345');
 
@@ -27,15 +29,19 @@ test('dials a telephone number', async ({ hostModemGameScreen, page }) => {
 });
 
 test('allows to dial an empty telephone number', async ({ hostModemGameScreen }) => {
-  await hostModemGameScreen.dial('');
+  await hostModemGameScreen.enterTelephoneNumberPrompt.enterText('');
+
+  await hostModemGameScreen.enterTelephoneNumberPrompt.confirmText();
 
   await hostModemGameScreen.verifyDialing('');
 });
 
 test('displays main screen when dialing is cancelled', async ({ hostModemGameScreen, mainScreen }) => {
-  await hostModemGameScreen.dial('12345');
+  await hostModemGameScreen.enterTelephoneNumberPrompt.enterText('12345');
 
-  await hostModemGameScreen.cancelDialing();
+  await hostModemGameScreen.enterTelephoneNumberPrompt.confirmText();
+
+  await hostModemGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

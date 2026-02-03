@@ -11,43 +11,43 @@ test('displays screen', async ({ newModemGameScreen, page }) => {
 });
 
 test('displays host info', async ({ newModemGameScreen, page }) => {
-  await newModemGameScreen.showHostInfo();
+  await newModemGameScreen.host.showInfo();
 
-  await newModemGameScreen.verifyHostInfoShown();
+  await newModemGameScreen.host.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('host-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays host modem game screen when host selected', async ({ hostModemGameScreen, newModemGameScreen }) => {
-  await newModemGameScreen.selectHost();
+  await newModemGameScreen.host.select();
 
   await hostModemGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays guest info', async ({ newModemGameScreen, page }) => {
-  await newModemGameScreen.showGuestInfo();
+  await newModemGameScreen.guest.showInfo();
 
-  await newModemGameScreen.verifyGuestInfoShown();
+  await newModemGameScreen.guest.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays join modem game screen when guest selected', async ({ joinModemGameScreen, newModemGameScreen }) => {
-  await newModemGameScreen.selectGuest();
+  await newModemGameScreen.guest.select();
 
   await joinModemGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ newModemGameScreen, page }) => {
-  await newModemGameScreen.showCancelInfo();
+  await newModemGameScreen.cancel.showInfo();
 
-  await newModemGameScreen.verifyCancelInfoShown();
+  await newModemGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancelled', async ({ mainScreen, newModemGameScreen }) => {
-  await newModemGameScreen.cancel();
+  await newModemGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

@@ -15,9 +15,9 @@ test('displays screen', async ({ newHotSeatGameScreen, page }) => {
 playerCounts.forEach((count) => {
   test.describe(`${count} players`, () => {
     test(`displays ${count} players info`, async ({ newHotSeatGameScreen, page }) => {
-      await newHotSeatGameScreen.showPlayerCountInfo(count);
+      await newHotSeatGameScreen.forPlayers(count).showInfo();
 
-      await newHotSeatGameScreen.verifyPlayerCountInfoShown(count);
+      await newHotSeatGameScreen.forPlayers(count).verifyInfoShown;
 
       await expect(page).toHaveScreenshot(`${count}-players-info.png`, { maxDiffPixelRatio: 0.01 });
     });
@@ -28,7 +28,7 @@ playerCounts.forEach((count) => {
       newHotSeatGameScreen,
       newStandardGameScreen,
     }) => {
-      await newHotSeatGameScreen.selectPlayerCount(count);
+      await newHotSeatGameScreen.forPlayers(count).select();
 
       await newStandardGameScreen.verifyIsCurrentScreen();
 
@@ -38,15 +38,15 @@ playerCounts.forEach((count) => {
 });
 
 test('displays cancel info', async ({ newHotSeatGameScreen, page }) => {
-  await newHotSeatGameScreen.showCancelInfo();
+  await newHotSeatGameScreen.cancel.showInfo();
 
-  await newHotSeatGameScreen.verifyCancelInfoShown();
+  await newHotSeatGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancel is selected', async ({ newHotSeatGameScreen, mainScreen }) => {
-  await newHotSeatGameScreen.selectCancel();
+  await newHotSeatGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

@@ -11,47 +11,47 @@ test('displays screen', async ({ newCampaignGameScreen, page }) => {
 });
 
 test('displays play lord ironfist info', async ({ newCampaignGameScreen, page }) => {
-  await newCampaignGameScreen.showPlayLordIronfistInfo();
+  await newCampaignGameScreen.playLordIronfist.showInfo();
 
-  await newCampaignGameScreen.verifyPlayLordIronfistInfoShown();
+  await newCampaignGameScreen.playLordIronfist.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-ironfist-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('displays play lord slayer info', async ({ newCampaignGameScreen, page }) => {
-  await newCampaignGameScreen.showPlayLordSlayerInfo();
+  await newCampaignGameScreen.playLordSlayer.showInfo();
 
-  await newCampaignGameScreen.verifyPlayLordSlayerInfoShown();
+  await newCampaignGameScreen.playLordSlayer.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-slayer-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('displays play queen lamanda info', async ({ newCampaignGameScreen, page }) => {
-  await newCampaignGameScreen.showPlayQueenLamandaInfo();
+  await newCampaignGameScreen.playQueenLamanda.showInfo();
 
-  await newCampaignGameScreen.verifyPlayQueenLamandaInfoShown();
+  await newCampaignGameScreen.playQueenLamanda.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-queen-lamanda-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('displays play lord alamar info', async ({ newCampaignGameScreen, page }) => {
-  await newCampaignGameScreen.showPlayLordAlamarInfo();
+  await newCampaignGameScreen.playLordAlamar.showInfo();
 
-  await newCampaignGameScreen.verifyPlayLordAlamarInfoShown();
+  await newCampaignGameScreen.playLordAlamar.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-alamar-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('displays cancel info', async ({ newCampaignGameScreen, page }) => {
-  await newCampaignGameScreen.showCancelInfo();
+  await newCampaignGameScreen.cancel.showInfo();
 
-  await newCampaignGameScreen.verifyCancelInfoShown();
+  await newCampaignGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('returns to main screen when cancel is selected', async ({ mainScreen, newCampaignGameScreen }) => {
-  await newCampaignGameScreen.selectCancel();
+  await newCampaignGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

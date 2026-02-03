@@ -1,30 +1,23 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
+import { Button } from './button';
+import { Modal } from './modal';
 import { Screen } from './screen';
-import { expect } from './utils';
 
 export class JoinModemGameScreen extends Screen {
-  private readonly waitingForRingModal: Locator;
+  public readonly waitingForRing: Modal;
 
-  private readonly cancelButton: Locator;
+  public readonly cancel: Button;
 
   constructor(page: Page) {
     super(page, /^join modem game screen$/i);
 
-    this.waitingForRingModal = page.getByRole('dialog', { name: /^waiting for ring\.\.\.$/i });
+    this.waitingForRing = new Modal(page, /^waiting for ring\.\.\.$/i);
 
-    this.cancelButton = page.getByRole('button', { name: /^cancel$/i });
+    this.cancel = new Button(page, /^cancel$/i);
   }
 
   public goto() {
     return this.page.goto('/new-game/multi-player/modem/join');
-  }
-
-  public async verifyWaitingForRing() {
-    await expect(this.waitingForRingModal).toBeVisible();
-  }
-
-  public async cancel() {
-    await this.cancelButton.click();
   }
 }

@@ -53,7 +53,7 @@ test('displays last selected scores', async ({ highScoresScreen, mainScreen }) =
 
   await highScoresScreen.exit();
 
-  await mainScreen.selectViewHighScores();
+  await mainScreen.viewHighScores.select();
 
   await highScoresScreen.verifyCampaignGameScoresShown();
 });

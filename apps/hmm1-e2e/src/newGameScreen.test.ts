@@ -11,9 +11,9 @@ test('displays screen', async ({ newGameScreen, page }) => {
 });
 
 test('displays standard game info', async ({ newGameScreen, page }) => {
-  await newGameScreen.showStandardGameInfo();
+  await newGameScreen.standardGame.showInfo();
 
-  await newGameScreen.verifyStandardGameInfoShown();
+  await newGameScreen.standardGame.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('standard-game-info.png', { maxDiffPixelRatio: 0.05 });
 });
@@ -22,15 +22,15 @@ test('displays new standard game screen when standard is selected', async ({
   newGameScreen,
   newStandardGameScreen,
 }) => {
-  await newGameScreen.selectStandardGame();
+  await newGameScreen.standardGame.select();
 
   await newStandardGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays campaign game info', async ({ newGameScreen, page }) => {
-  await newGameScreen.showCampaignGameInfo();
+  await newGameScreen.campaignGame.showInfo();
 
-  await newGameScreen.verifyCampaiangGameInfoShown();
+  await newGameScreen.campaignGame.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('campaign-game-info.png', { maxDiffPixelRatio: 0.05 });
 });
@@ -39,15 +39,15 @@ test('displays new campaign game screen when campaign game is selected', async (
   newCampaignGameScreen,
   newGameScreen,
 }) => {
-  await newGameScreen.selectCampaignGame();
+  await newGameScreen.campaignGame.select();
 
   await newCampaignGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays multi-player game info', async ({ newGameScreen, page }) => {
-  await newGameScreen.showMultiPlayerGameInfo();
+  await newGameScreen.multiPlayerGame.showInfo();
 
-  await newGameScreen.verifyMultiPlayerGameInfoShown();
+  await newGameScreen.multiPlayerGame.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('multi-player-game-info.png', { maxDiffPixelRatio: 0.05 });
 });
@@ -56,21 +56,21 @@ test('displays new multi-player game screen when multi-player game is selected',
   newGameScreen,
   newMultiPlayerGameScreen,
 }) => {
-  await newGameScreen.selectMultiPlayerGame();
+  await newGameScreen.multiPlayerGame.select();
 
   await newMultiPlayerGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ newGameScreen, page }) => {
-  await newGameScreen.showCancelInfo();
+  await newGameScreen.cancel.showInfo();
 
-  await newGameScreen.verifyCancelInfoShown();
+  await newGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
 test('returns to main screen when cancel is selected', async ({ mainScreen, newGameScreen }) => {
-  await newGameScreen.selectCancel();
+  await newGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

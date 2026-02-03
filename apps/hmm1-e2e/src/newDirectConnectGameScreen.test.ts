@@ -11,9 +11,9 @@ test('displays screen', async ({ newDirectConnectGameScreen, page }) => {
 });
 
 test('displays host info', async ({ newDirectConnectGameScreen, page }) => {
-  await newDirectConnectGameScreen.showHostInfo();
+  await newDirectConnectGameScreen.host.showInfo();
 
-  await newDirectConnectGameScreen.verifyHostInfoShown();
+  await newDirectConnectGameScreen.host.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('host-info.png', { maxDiffPixelRatio: 0.01 });
 });
@@ -22,15 +22,15 @@ test('displays host direct connect game screen when host is selected', async ({
   hostDirectConnectGameScreen,
   newDirectConnectGameScreen,
 }) => {
-  await newDirectConnectGameScreen.selectHost();
+  await newDirectConnectGameScreen.host.select();
 
   await hostDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays guest info', async ({ newDirectConnectGameScreen, page }) => {
-  await newDirectConnectGameScreen.showGuestInfo();
+  await newDirectConnectGameScreen.guest.showInfo();
 
-  await newDirectConnectGameScreen.verifyGuestInfoShown();
+  await newDirectConnectGameScreen.guest.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('guest-info.png', { maxDiffPixelRatio: 0.01 });
 });
@@ -39,21 +39,21 @@ test('displays join direct connect game screen when guest is selected', async ({
   joinDirectConnectGameScreen,
   newDirectConnectGameScreen,
 }) => {
-  await newDirectConnectGameScreen.selectGuest();
+  await newDirectConnectGameScreen.guest.select();
 
   await joinDirectConnectGameScreen.verifyIsCurrentScreen();
 });
 
 test('displays cancel info', async ({ newDirectConnectGameScreen, page }) => {
-  await newDirectConnectGameScreen.showCancelInfo();
+  await newDirectConnectGameScreen.cancel.showInfo();
 
-  await newDirectConnectGameScreen.verifyCancelInfo();
+  await newDirectConnectGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancel is selected', async ({ mainScreen, newDirectConnectGameScreen }) => {
-  await newDirectConnectGameScreen.selectCancel();
+  await newDirectConnectGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

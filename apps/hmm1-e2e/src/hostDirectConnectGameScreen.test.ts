@@ -9,13 +9,13 @@ test('displays screen', async ({ hostDirectConnectGameScreen }) => {
 });
 
 test('displays waiting for connection', async ({ hostDirectConnectGameScreen, page }) => {
-  await hostDirectConnectGameScreen.verifyWaitingForConnection();
+  await hostDirectConnectGameScreen.waitingForConnection.verifyShown();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
 test('displays main screen when cancelled', async ({ hostDirectConnectGameScreen, mainScreen }) => {
-  await hostDirectConnectGameScreen.cancel();
+  await hostDirectConnectGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });
