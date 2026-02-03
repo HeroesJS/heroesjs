@@ -72,6 +72,9 @@ export class GameOptionsWindow extends Window {
       name: /^are you sure you want to quit\? \(your current game will be lost\)$/i,
     });
 
+    this.yesButton = page.getByRole('button', { name: /^yes$/i });
+    this.noButton = page.getByRole('button', { name: /^no$/i });
+
     this.musicVolumeToggle = page.getByRole('radiogroup', { name: /^music$/i });
     this.musicVolumeInfoModal = page.getByRole('dialog', { name: /^toggle ambient music on\/off$/i });
 
@@ -83,7 +86,7 @@ export class GameOptionsWindow extends Window {
       name: /^change the speed at which heroes move on the main screen\.$/i,
     });
 
-    this.autoSaveCheckbox = page.getByRole('checkbox', { name: /auto save/i });
+    this.autoSaveCheckbox = page.getByRole('checkbox', { name: /^auto save$/i });
     this.autoSaveInfoModal = page.getByRole('dialog', {
       name: /^toggle 'autosave' on\/off\. 'autosave' saves your game automatically at the end of each turn to a special file, called 'autosave'\.$/i,
     });
@@ -105,9 +108,6 @@ export class GameOptionsWindow extends Window {
     this.infoInfoModal = page.getByRole('dialog', {
       name: /^view information on the scenario you are currently playing\.$/i,
     });
-
-    this.yesButton = page.getByRole('button', { name: /^yes$/i });
-    this.noButton = page.getByRole('button', { name: /^no$/i });
   }
 
   public async showNewGameInfo() {

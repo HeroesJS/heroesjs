@@ -16,18 +16,18 @@ export class NewModemGameScreen extends Screen {
   constructor(page: Page) {
     super(page, /^new modem game screen$/i);
 
-    this.hostButton = page.getByRole('button', { name: /host \(dials\)/i });
+    this.hostButton = page.getByRole('button', { name: /^host \(dials\)$/i });
     this.hostInfoModal = page.getByRole('dialog', {
-      name: /the host sets up the game options, chooses the number to dial, and places the call\./i,
+      name: /^the host sets up the game options, chooses the number to dial, and places the call\.$/i,
     });
 
-    this.guestButton = page.getByRole('button', { name: /guest \(answers\)/i });
+    this.guestButton = page.getByRole('button', { name: /^guest \(answers\)$/i });
     this.guestInfoModal = page.getByRole('dialog', {
-      name: /the guest waits for the host to call and set up the game\./i,
+      name: /^the guest waits for the host to call and set up the game\.$/i,
     });
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancelButton = page.getByRole('button', { name: /^cancel$/i });
+    this.cancelInfoModal = page.getByRole('dialog', { name: /^cancel back to the main menu\.$/i });
   }
 
   public async showHostInfo() {

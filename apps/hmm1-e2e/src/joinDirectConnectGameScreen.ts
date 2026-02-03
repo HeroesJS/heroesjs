@@ -12,10 +12,10 @@ export class JoinDirectConnectGameScreen extends Screen {
     super(page, /^join direct connect game screen$/i);
 
     this.waitingForConnectionModal = page.getByRole('dialog', {
-      name: /waiting for other computer to log in to direct connection\. Press 'cancel' to abort\./i,
+      name: /^waiting for other computer to log in to direct connection\. Press 'cancel' to abort\.$/i,
     });
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
+    this.cancelButton = page.getByRole('button', { name: /^cancel$/i });
   }
 
   public goto() {

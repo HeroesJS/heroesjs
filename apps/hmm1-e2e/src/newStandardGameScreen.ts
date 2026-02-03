@@ -48,51 +48,51 @@ export class NewStandardGameScreen extends Screen {
   public readonly noOpponentsModal: Locator;
 
   constructor(page: Page) {
-    super(page, /new standard game/i);
+    super(page, /^new standard game$/i);
 
-    this.window = page.getByRole('region', { name: /new standard game/i });
+    this.window = page.getByRole('region', { name: /^new standard game$/i });
 
-    this.gameDifficultyLabel = page.getByText(/choose game difficulty:/i);
-    this.gameDifficultyRadioGroup = page.getByRole('radiogroup', { name: /game difficulty/i });
+    this.gameDifficultyLabel = page.getByText(/^choose game difficulty:$/i);
+    this.gameDifficultyRadioGroup = page.getByRole('radiogroup', { name: /^game difficulty$/i });
     this.gameDifficultyInfoModal = page.getByRole('dialog', {
-      name: /change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\./i,
+      name: /^change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\.$/i,
     });
 
-    this.opponentSettingsLabel = page.getByText(/customize opponents:/i);
+    this.opponentSettingsLabel = page.getByText(/^customize opponents:$/i);
     this.computerOpponentSettingInfoModal = page.getByRole('dialog', {
-      name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
+      name: /^change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\.$/i,
     });
     this.humanOpponentSettingInfoModal = page.getByRole('dialog', {
-      name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
+      name: /^change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\.$/i,
     });
 
-    this.playerColorToggle = this.page.getByRole('radiogroup', { name: /choose color:/i });
-    this.playerColorInfoModal = this.page.getByRole('dialog', { name: /change your banner color\./i });
+    this.playerColorToggle = this.page.getByRole('radiogroup', { name: /^choose color:$/i });
+    this.playerColorInfoModal = this.page.getByRole('dialog', { name: /^change your banner color\.$/i });
 
-    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /king of the hill:/i });
+    this.kingOfTheHillCheckbox = page.getByRole('checkbox', { name: /^king of the hill:$/i });
     this.kingOfTheHillInfoModal = page.getByRole('dialog', {
-      name: /challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\./i,
+      name: /^challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\.$/i,
     });
 
-    this.scenarioSelectionLabel = page.getByText(/choose scenario:/i);
-    this.selectedScenarioLabel = page.getByRole('textbox', { name: /scenario/i });
-    this.selectScenarioButton = page.getByRole('button', { name: /select scenario/i });
-    this.selectScenarioInfoModal = page.getByRole('dialog', { name: /select which scenario to play\./i });
+    this.scenarioSelectionLabel = page.getByText(/^choose scenario:$/i);
+    this.selectedScenarioLabel = page.getByRole('textbox', { name: /^scenario$/i });
+    this.selectScenarioButton = page.getByRole('button', { name: /^select scenario$/i });
+    this.selectScenarioInfoModal = page.getByRole('dialog', { name: /^select which scenario to play\.$/i });
 
-    this.difficultyRating = page.getByLabel(/difficulty rating:/i);
+    this.difficultyRating = page.getByLabel(/^difficulty rating:$/i);
     this.difficultyRatingInfoModal = page.getByRole('dialog', {
-      name: /the difficulty rating reflects a combination of various settings for your game. this number will be applied to your final score\./i,
+      name: /^the difficulty rating reflects a combination of various settings for your game. this number will be applied to your final score\.$/i,
     });
 
-    this.okayButton = page.getByRole('button', { name: /okay/i });
-    this.okayInfoModal = page.getByRole('dialog', { name: /accept these settings and start a new game\./i });
+    this.okayButton = page.getByRole('button', { name: /^okay$/i });
+    this.okayInfoModal = page.getByRole('dialog', { name: /^accept these settings and start a new game\.$/i });
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /return to the main menu\./i });
+    this.cancelButton = page.getByRole('button', { name: /^cancel$/i });
+    this.cancelInfoModal = page.getByRole('dialog', { name: /^return to the main menu\.$/i });
 
     this.fileSelector = new FileSelectorWindow(page);
 
-    this.noOpponentsModal = page.getByRole('dialog', { name: /a game requires at least one opponent\./i });
+    this.noOpponentsModal = page.getByRole('dialog', { name: /^a game requires at least one opponent\.$/i });
   }
 
   public goto(playerCount = 1) {
