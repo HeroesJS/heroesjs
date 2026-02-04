@@ -1,22 +1,11 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-import { expect, mouseRightDown } from './utils';
+import { ElementBase } from './elementBase';
+import { expect } from './utils';
 
-export class Checkbox {
-  private readonly locator: Locator;
-  private readonly infoLocator: Locator;
-
-  public constructor(private readonly page: Page, name: RegExp, info: RegExp) {
-    this.locator = page.getByRole('checkbox', { name });
-    this.infoLocator = page.getByRole('dialog', { name: info });
-  }
-
-  public async showInfo() {
-    await mouseRightDown(this.page, this.locator);
-  }
-
-  public async verifyInfoShown() {
-    await expect(this.infoLocator).toBeVisible();
+export class Checkbox extends ElementBase {
+  public constructor(page: Page, name: RegExp, info: RegExp) {
+    super(page, page.getByRole('checkbox', { name }), info);
   }
 
   public async selectEnabled(value: boolean) {
