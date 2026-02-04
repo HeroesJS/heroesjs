@@ -1,10 +1,8 @@
 import type { Locator, Page } from '@playwright/test';
 import { expect, test as testBase } from '@playwright/test';
 
-import { AdventureOptionsWindow } from './adventureOptionsWindow';
 import { AdventureScreen } from './adventureScreen';
 import { CreditsScreen } from './creditsScreen';
-import { GameOptionsWindow } from './gameOptionsWindow';
 import { HighScoresScreen } from './highScoresScreen';
 import { HostDirectConnectGameScreen } from './hostDirectConnectGameScreen';
 import { HostModemGameScreen } from './hostModemGameScreen';
@@ -31,10 +29,8 @@ export async function mouseRightDown(page: Page, locator: Locator) {
 }
 
 interface Fixtures {
-  readonly adventureOptionsWindow: AdventureOptionsWindow;
   readonly adventureScreen: AdventureScreen;
   readonly creditsScreen: CreditsScreen;
-  readonly gameOptionsWindow: GameOptionsWindow;
   readonly highScoresScreen: HighScoresScreen;
   readonly hostDirectConnectGameScreen: HostDirectConnectGameScreen;
   readonly hostModemGameScreen: HostModemGameScreen;
@@ -42,7 +38,6 @@ interface Fixtures {
   readonly joinModemGameScreen: JoinModemGameScreen;
   readonly loadGameScreen: LoadGameScreen;
   readonly mainScreen: MainScreen;
-  readonly mouseRightDown: (locator: Locator) => Promise<void>;
   readonly newCampaignGameScreen: NewCampaignGameScreen;
   readonly newDirectConnectGameScreen: NewDirectConnectGameScreen;
   readonly newGameScreen: NewGameScreen;
@@ -60,10 +55,8 @@ interface NewStandardGameScreenOptions {
 type FixturesOptions = NewStandardGameScreenOptions;
 
 export const test = testBase.extend<Fixtures, FixturesOptions>({
-  adventureOptionsWindow: async ({ page }, use) => await use(new AdventureOptionsWindow(page)),
   adventureScreen: async ({ page }, use) => await use(new AdventureScreen(page)),
   creditsScreen: async ({ page }, use) => await use(new CreditsScreen(page)),
-  gameOptionsWindow: async ({ page }, use) => await use(new GameOptionsWindow(page)),
   highScoresScreen: async ({ page }, use) => await use(new HighScoresScreen(page)),
   hostDirectConnectGameScreen: async ({ page }, use) => await use(new HostDirectConnectGameScreen(page)),
   hostModemGameScreen: async ({ page }, use) => await use(new HostModemGameScreen(page)),
@@ -71,7 +64,6 @@ export const test = testBase.extend<Fixtures, FixturesOptions>({
   joinModemGameScreen: async ({ page }, use) => await use(new JoinModemGameScreen(page)),
   loadGameScreen: async ({ page }, use) => await use(new LoadGameScreen(page)),
   mainScreen: async ({ page }, use) => await use(new MainScreen(page)),
-  mouseRightDown: async ({ page }, use) => await use((locator) => mouseRightDown(page, locator)),
   newCampaignGameScreen: async ({ page }, use) => await use(new NewCampaignGameScreen(page)),
   newDirectConnectGameScreen: async ({ page }, use) => await use(new NewDirectConnectGameScreen(page)),
   newGameScreen: async ({ page }, use) => await use(new NewGameScreen(page)),

@@ -1,60 +1,46 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class NewHotSeatGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Screen } from './screen';
 
-  public readonly menu: Locator;
+export class NewHotSeatGameScreen extends Screen {
+  public readonly twoPlayers: Button;
+  public readonly threePlayers: Button;
+  public readonly fourPlayers: Button;
 
-  public readonly twoPlayersButton: Locator;
-  public readonly twoPlayersInfoModal: Locator;
+  public readonly cancel: Button;
 
-  public readonly threePlayersButton: Locator;
-  public readonly threePlayersInfoModal: Locator;
+  private readonly players: Readonly<Record<number, Button>>;
 
-  public readonly fourPlayersButton: Locator;
-  public readonly fourPlayersInfoModal: Locator;
+  constructor(page: Page) {
+    super(page, /^new hot seat game screen$/i);
 
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
+    this.twoPlayers = new Button(
+      page,
+      /^2 players$/i,
+      /^play with 2 human players, and optionally, up to 2 additional computer players\.$/i
+    );
+    this.threePlayers = new Button(
+      page,
+      /^3 players$/i,
+      /^play with 3 human players, and optionally 1 computer player\.$/i
+    );
+    this.fourPlayers = new Button(page, /^4 players$/i, /^play with 4 human players\.$/i);
 
-  public readonly playerCountButtons: Readonly<Record<number, Locator>>;
-  public readonly playerCountInfoModals: Readonly<Record<number, Locator>>;
-
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new hot seat game screen/i });
-
-    this.menu = page.getByRole('menu', { name: /player count menu/i });
-
-    this.twoPlayersButton = page.getByRole('button', { name: /2 players/i });
-    this.twoPlayersInfoModal = page.getByRole('dialog', {
-      name: /play with 2 human players, and optionally, up to 2 additional computer players\./i,
-    });
-
-    this.threePlayersButton = page.getByRole('button', { name: /3 players/i });
-    this.threePlayersInfoModal = page.getByRole('dialog', {
-      name: /play with 3 human players, and optionally 1 computer player\./i,
-    });
-
-    this.fourPlayersButton = page.getByRole('button', { name: /4 players/i });
-    this.fourPlayersInfoModal = page.getByRole('dialog', { name: /play with 4 human players\./i });
-
-    this.playerCountButtons = {
-      2: this.twoPlayersButton,
-      3: this.threePlayersButton,
-      4: this.fourPlayersButton,
+    this.players = {
+      2: this.twoPlayers,
+      3: this.threePlayers,
+      4: this.fourPlayers,
     };
 
-    this.playerCountInfoModals = {
-      2: this.twoPlayersInfoModal,
-      3: this.threePlayersInfoModal,
-      4: this.fourPlayersInfoModal,
-    };
-
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancel = new Button(page, /^cancel$/i, /^cancel back to the main menu\.$/i);
   }
 
   public goto() {
     return this.page.goto('/new-game/multi-player/hot-seat');
+  }
+
+  public forPlayers(count: number) {
+    return this.players[count];
   }
 }

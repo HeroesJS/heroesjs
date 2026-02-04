@@ -1,36 +1,29 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class NewDirectConnectGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Screen } from './screen';
 
-  public readonly menu: Locator;
+export class NewDirectConnectGameScreen extends Screen {
+  public readonly host: Button;
+  public readonly guest: Button;
 
-  public readonly hostButton: Locator;
-  public readonly hostInfoModal: Locator;
+  public readonly cancel: Button;
 
-  public readonly guestButton: Locator;
-  public readonly guestInfoModal: Locator;
+  constructor(page: Page) {
+    super(page, /^new direct connect game screen$/i);
 
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
+    this.host = new Button(
+      page,
+      /^host \(dials\)$/i,
+      /^the host sets up the game options, chooses the number to dial, and places the call\.$/i
+    );
+    this.guest = new Button(
+      page,
+      /^guest \(answers\)$/i,
+      /^the guest waits for the host to call and set up the game\.$/i
+    );
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new direct connect game screen/i });
-
-    this.menu = page.getByRole('menu', { name: /modem game menu/i });
-
-    this.hostButton = page.getByRole('button', { name: /host \(dials\)/i });
-    this.hostInfoModal = page.getByRole('dialog', {
-      name: /the host sets up the game options, chooses the number to dial, and places the call\./i,
-    });
-
-    this.guestButton = page.getByRole('button', { name: /guest \(answers\)/i });
-    this.guestInfoModal = page.getByRole('dialog', {
-      name: /the guest waits for the host to call and set up the game\./i,
-    });
-
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancel = new Button(page, /^cancel$/i, /^cancel back to the main menu\.$/i);
   }
 
   public goto() {

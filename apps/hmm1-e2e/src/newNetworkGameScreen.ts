@@ -1,34 +1,29 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class NewNetworkGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Screen } from './screen';
 
-  public readonly menu: Locator;
+export class NewNetworkGameScreen extends Screen {
+  public readonly host: Button;
+  public readonly guest: Button;
 
-  public readonly hostButton: Locator;
-  public readonly hostInfoModal: Locator;
+  public readonly cancel: Button;
 
-  public readonly guestButton: Locator;
-  public readonly guestInfoModal: Locator;
+  constructor(page: Page) {
+    super(page, /^new network game screen$/i);
 
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
+    this.host = new Button(
+      page,
+      /^host$/i,
+      /^the host sets up the game options. There can only be one host per network game\.$/i
+    );
+    this.guest = new Button(
+      page,
+      /^guest$/i,
+      /^the guest waits for the host to set up the game, then is automatically added in\. there can only be one guest per network game\.$/i
+    );
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new network game screen/i });
-
-    this.menu = page.getByRole('menu', { name: /network game menu/i });
-
-    this.hostButton = page.getByRole('button', { name: /host/i });
-    this.hostInfoModal = page.getByRole('dialog', {
-      name: /the host sets up the game options. There can only be one host per network game\./i,
-    });
-
-    this.guestButton = page.getByRole('button', { name: /guest/i });
-    this.guestInfoModal = page.getByRole('dialog');
-
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancel = new Button(page, /^cancel$/i, /^cancel back to the main menu\.$/i);
   }
 
   public goto() {

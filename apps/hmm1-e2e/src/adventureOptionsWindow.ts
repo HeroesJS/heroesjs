@@ -1,39 +1,24 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class AdventureOptionsWindow {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Window } from './window';
 
-  public readonly viewWorldButton: Locator;
-  public readonly viewWorldInfoModal: Locator;
+export class AdventureOptionsWindow extends Window {
+  public readonly viewWorld: Button;
+  public readonly viewPuzzle: Button;
+  public readonly castSpell: Button;
+  public readonly dig: Button;
 
-  public readonly viewPuzzleButton: Locator;
-  public readonly viewPuzzleInfoModal: Locator;
-
-  public readonly castSpellButton: Locator;
-  public readonly castSpellInfoModal: Locator;
-
-  public readonly digButton: Locator;
-  public readonly digInfoModal: Locator;
-
-  public readonly okayButton: Locator;
-  public readonly okayInfoModal: Locator;
+  public readonly okay: Button;
 
   public constructor(page: Page) {
-    this.locator = page.getByRole('region', { name: /^adventure options window$/i });
+    super(page, /^adventure options window$/i);
 
-    this.viewWorldButton = page.getByRole('button', { name: /^view world$/i });
-    this.viewWorldInfoModal = page.getByRole('dialog', { name: /^view the entire world\.$/i });
+    this.viewWorld = new Button(page, /^view world$/i, /^view the entire world\.$/i);
+    this.viewPuzzle = new Button(page, /^view puzzle$/i, /^view the obelisk puzzle\.$/i);
+    this.castSpell = new Button(page, /^cast spell$/i, /^cast an adventure spell\.$/i);
+    this.dig = new Button(page, /^dig$/i, /^dig for the ultimate artifact\.$/i);
 
-    this.viewPuzzleButton = page.getByRole('button', { name: /^view puzzle$/i });
-    this.viewPuzzleInfoModal = page.getByRole('dialog', { name: /^view the obelisk puzzle\.$/i });
-
-    this.castSpellButton = page.getByRole('button', { name: /^cast spell$/i });
-    this.castSpellInfoModal = page.getByRole('dialog', { name: /^cast an adventure spell\.$/i });
-
-    this.digButton = page.getByRole('button', { name: /^dig$/i });
-    this.digInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
-
-    this.okayButton = page.getByRole('button', { name: /^okay$/i });
-    this.okayInfoModal = page.getByRole('dialog', { name: /^dig for the ultimate artifact\.$/i });
+    this.okay = new Button(page, /^okay$/i, /^dig for the ultimate artifact\.$/i);
   }
 }

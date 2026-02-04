@@ -1,67 +1,44 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
+import { Button } from './button';
 import { NewHotSeatGameScreen } from './newHotSeatGameScreen';
 import { NewMultiPlayerGameScreen } from './newMultiPlayerGameScreen';
 import { Screen } from './screen';
 
 export class NewGameScreen extends Screen {
-  public readonly menu: Locator;
+  public readonly standardGame: Button;
+  public readonly campaignGame: Button;
+  public readonly multiPlayerGame: Button;
 
-  public readonly standardGameButton: Locator;
-  public readonly standardGameInfoModal: Locator;
-
-  public readonly campaignGameButton: Locator;
-  public readonly campaignGameInfoModal: Locator;
-
-  public readonly multiPlayerGameButton: Locator;
-  public readonly multiPlayerGameInfoModal: Locator;
-
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
+  public readonly cancel: Button;
 
   constructor(page: Page) {
-    super(page, /new game screen/i);
+    super(page, /^new game screen$/i);
 
-    this.menu = page.getByRole('menu', { name: /game type menu/i });
+    this.standardGame = new Button(page, /^standard game$/i, /^a single player game playing out a single map\.$/i);
+    this.campaignGame = new Button(
+      page,
+      /^campaign game$/i,
+      /^a single player game playing through a series of maps\.$/i
+    );
+    this.multiPlayerGame = new Button(
+      page,
+      /^multi-player game$/i,
+      /^a multi-player game, with several human players competing against each other on a single map\.$/i
+    );
 
-    this.standardGameButton = page.getByRole('button', { name: /standard game/i });
-    this.standardGameInfoModal = page.getByRole('dialog', { name: /a single player game playing out a single map\./i });
-
-    this.campaignGameButton = page.getByRole('button', { name: /campaign game/i });
-    this.campaignGameInfoModal = page.getByRole('dialog', {
-      name: /a single player game playing through a series of maps\./i,
-    });
-
-    this.multiPlayerGameButton = page.getByRole('button', { name: /multi-player game/i });
-    this.multiPlayerGameInfoModal = page.getByRole('dialog', {
-      name: /a multi-player game, with several human players competing against each other on a single map\./i,
-    });
-
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancel = new Button(page, /^cancel$/i, /^cancel back to the main menu\.$/i);
   }
 
   public goto() {
     return this.page.goto('/new-game');
   }
 
-  public async selectStandardGame() {
-    await this.standardGameButton.click();
-  }
-
-  public async selectCampaignGame() {
-    await this.campaignGameButton.click();
-  }
-
-  public async selectMultiPlayerGame() {
-    await this.multiPlayerGameButton.click();
-  }
-
   public async startNewHotSeatGame(playerCount: number) {
-    await this.selectMultiPlayerGame();
+    await this.multiPlayerGame.select();
 
-    await new NewMultiPlayerGameScreen(this.page).hotSeatButton.click();
+    await new NewMultiPlayerGameScreen(this.page).hotSeat.select();
 
-    await new NewHotSeatGameScreen(this.page).playerCountButtons[playerCount].click();
+    await new NewHotSeatGameScreen(this.page).forPlayers(playerCount).select();
   }
 }

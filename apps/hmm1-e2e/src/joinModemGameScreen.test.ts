@@ -4,14 +4,14 @@ test.beforeEach(async ({ joinModemGameScreen }) => {
   await joinModemGameScreen.goto();
 });
 
-test('displays waiting for ring modal', async ({ joinModemGameScreen, page }) => {
-  await expect(joinModemGameScreen.waitingForRingModal).toBeVisible();
+test('waits for ring', async ({ joinModemGameScreen, page }) => {
+  await joinModemGameScreen.waitingForRing.verifyShown();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.01 });
 });
 
-test('displays main screen when cancel is clicked', async ({ joinModemGameScreen, mainScreen }) => {
-  await joinModemGameScreen.cancelButton.click();
+test('displays main screen when cancelled', async ({ joinModemGameScreen, mainScreen }) => {
+  await joinModemGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

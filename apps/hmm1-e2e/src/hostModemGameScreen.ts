@@ -1,29 +1,27 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class HostModemGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Modal } from './modal';
+import { Screen } from './screen';
 
-  public readonly enterTelephoneNumberModal: Locator;
-  public readonly telephoneNumberInput: Locator;
-  public readonly okayButton: Locator;
+export class HostModemGameScreen extends Screen {
+  public readonly enterTelephoneNumberPrompt: Modal;
 
-  public readonly cancelButton: Locator;
+  public readonly cancel: Button;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /host modem game screen/i });
+  constructor(page: Page) {
+    super(page, /^host modem game screen$/i);
 
-    this.enterTelephoneNumberModal = page.getByRole('dialog', { name: /please enter the telephone number\./i });
-    this.telephoneNumberInput = page.getByRole('textbox', { name: /telephone number/i });
-    this.okayButton = page.getByRole('button', { name: /okay/i });
+    this.enterTelephoneNumberPrompt = new Modal(page, /^please enter the telephone number\.$/i, /^telephone number$/i);
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
+    this.cancel = new Button(page, /^cancel$/i);
   }
 
   public goto() {
     return this.page.goto('/new-game/multi-player/modem/host');
   }
 
-  public dialingModal(telephoneNumber: string) {
-    return this.page.getByRole('dialog', { name: new RegExp(`dialing... ${telephoneNumber}`, 'i') });
+  public async verifyDialing(telephoneNumber: string) {
+    await new Modal(this.page, new RegExp(`dialing... ${telephoneNumber}`.trimEnd(), 'i')).verifyShown();
   }
 }

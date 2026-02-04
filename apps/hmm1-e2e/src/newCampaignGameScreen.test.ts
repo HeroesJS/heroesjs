@@ -4,64 +4,54 @@ test.beforeEach(async ({ newCampaignGameScreen }) => {
   await newCampaignGameScreen.goto();
 });
 
-test('displays screen', async ({ newCampaignGameScreen }) => {
-  await expect(newCampaignGameScreen.locator).toBeVisible();
-});
-
-test('displays menu', async ({ newCampaignGameScreen, page }) => {
-  await expect(newCampaignGameScreen.menu).toBeVisible();
-
-  await expect(newCampaignGameScreen.playLordIronfistButton).toBeVisible();
-  await expect(newCampaignGameScreen.playLordSlayerButton).toBeVisible();
-  await expect(newCampaignGameScreen.playQueenLamandaButton).toBeVisible();
-  await expect(newCampaignGameScreen.playLordAlamarButton).toBeVisible();
-  await expect(newCampaignGameScreen.cancelButton).toBeVisible();
+test('displays screen', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.verifyIsCurrentScreen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays play lord ironfist info', async ({ mouseRightDown, newCampaignGameScreen, page }) => {
-  await mouseRightDown(newCampaignGameScreen.playLordIronfistButton);
+test('displays play lord ironfist info', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.playLordIronfist.showInfo();
 
-  await expect(newCampaignGameScreen.playLordIronfistInfoModal).toBeVisible();
+  await newCampaignGameScreen.playLordIronfist.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-ironfist-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays play lord slayer info', async ({ mouseRightDown, newCampaignGameScreen, page }) => {
-  await mouseRightDown(newCampaignGameScreen.playLordSlayerButton);
+test('displays play lord slayer info', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.playLordSlayer.showInfo();
 
-  await expect(newCampaignGameScreen.playLordSlayerInfoModal).toBeVisible();
+  await newCampaignGameScreen.playLordSlayer.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-slayer-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays play queen lamanda info', async ({ mouseRightDown, newCampaignGameScreen, page }) => {
-  await mouseRightDown(newCampaignGameScreen.playQueenLamandaButton);
+test('displays play queen lamanda info', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.playQueenLamanda.showInfo();
 
-  await expect(newCampaignGameScreen.playQueenLamandaInfoModal).toBeVisible();
+  await newCampaignGameScreen.playQueenLamanda.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-queen-lamanda-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays play lord alamar info', async ({ mouseRightDown, newCampaignGameScreen, page }) => {
-  await mouseRightDown(newCampaignGameScreen.playLordAlamarButton);
+test('displays play lord alamar info', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.playLordAlamar.showInfo();
 
-  await expect(newCampaignGameScreen.playLordAlamarInfoModal).toBeVisible();
+  await newCampaignGameScreen.playLordAlamar.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('play-lord-alamar-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('displays cancel info', async ({ mouseRightDown, newCampaignGameScreen, page }) => {
-  await mouseRightDown(newCampaignGameScreen.cancelButton);
+test('displays cancel info', async ({ newCampaignGameScreen, page }) => {
+  await newCampaignGameScreen.cancel.showInfo();
 
-  await expect(newCampaignGameScreen.cancelInfoModal).toBeVisible();
+  await newCampaignGameScreen.cancel.verifyInfoShown();
 
   await expect(page).toHaveScreenshot('cancel-info.png', { maxDiffPixelRatio: 0.05 });
 });
 
-test('returns to main screen when cancel is clicked', async ({ mainScreen, newCampaignGameScreen }) => {
-  await newCampaignGameScreen.cancelButton.click();
+test('returns to main screen when cancel is selected', async ({ mainScreen, newCampaignGameScreen }) => {
+  await newCampaignGameScreen.cancel.select();
 
   await mainScreen.verifyIsCurrentScreen();
 });

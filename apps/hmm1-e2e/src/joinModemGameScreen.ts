@@ -1,18 +1,20 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class JoinModemGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Modal } from './modal';
+import { Screen } from './screen';
 
-  public readonly waitingForRingModal: Locator;
+export class JoinModemGameScreen extends Screen {
+  public readonly waitingForRing: Modal;
 
-  public readonly cancelButton: Locator;
+  public readonly cancel: Button;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /join modem game screen/i });
+  constructor(page: Page) {
+    super(page, /^join modem game screen$/i);
 
-    this.waitingForRingModal = page.getByRole('dialog', { name: /waiting for ring\.\.\./i });
+    this.waitingForRing = new Modal(page, /^waiting for ring\.\.\.$/i);
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
+    this.cancel = new Button(page, /^cancel$/i);
   }
 
   public goto() {

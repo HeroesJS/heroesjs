@@ -1,154 +1,151 @@
-import { expect, test } from './utils';
+import { AdventureScreen } from './adventureScreen';
+import { expect, test as testBase } from './utils';
+
+const test = testBase.extend<{
+  readonly gameOptions: AdventureScreen['gameOptions'];
+}>({
+  gameOptions: async ({ adventureScreen: { gameOptions } }, use) => await use(gameOptions),
+});
 
 test.beforeEach(async ({ adventureScreen }) => {
   await adventureScreen.goto();
 
-  await adventureScreen.gameOptionsButton.click();
+  await adventureScreen.actions.gameOptions.select();
 });
 
-test('displays game options', async ({ gameOptionsWindow, page }) => {
-  await expect(gameOptionsWindow.locator).toBeVisible();
-
-  await expect(gameOptionsWindow.newGameButton).toBeVisible();
-  await expect(gameOptionsWindow.loadGameButton).toBeVisible();
-  await expect(gameOptionsWindow.saveGameButton).toBeVisible();
-  await expect(gameOptionsWindow.quitButton).toBeVisible();
-
-  await expect(gameOptionsWindow.okayButton).toBeVisible();
-  await expect(gameOptionsWindow.infoButton).toBeVisible();
+test('displays game options', async ({ gameOptions, page }) => {
+  await gameOptions.verifyIsOpen();
 
   await expect(page).toHaveScreenshot('game-options-window.png', { maxDiffPixelRatio: 0.12 });
 });
 
 test.describe('new game', () => {
-  test('displays new game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.newGameButton);
+  test('displays new game info', async ({ gameOptions, page }) => {
+    await gameOptions.newGame.showInfo();
 
-    await expect(gameOptionsWindow.newGameInfoModal).toBeVisible();
+    await gameOptions.newGame.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('new-game-info.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('displays confirmation modal when new game button is clicked', async ({ gameOptionsWindow, page }) => {
-    await gameOptionsWindow.newGameButton.click();
+  test('displays confirmation modal when new game is selected', async ({ gameOptions, page }) => {
+    await gameOptions.newGame.select();
 
-    await expect(gameOptionsWindow.newGameConfirmationModal).toBeVisible();
+    await gameOptions.newGameConfirmation.verifyShown();
 
     await expect(page).toHaveScreenshot('new-game-confirmation.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('closes new game confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.newGameButton.click();
+  test('closes new game confirmation modal when no is selected', async ({ gameOptions }) => {
+    await gameOptions.newGame.select();
 
-    await gameOptionsWindow.noButton.click();
+    await gameOptions.newGameConfirmation.selectDeny();
 
-    await expect(gameOptionsWindow.newGameConfirmationModal).toBeHidden();
+    await gameOptions.newGameConfirmation.verifyHidden();
   });
 
-  test('displays new game screen when new game confirmation modal is open and yes button is clicked', async ({
-    gameOptionsWindow,
+  test('displays new game screen when new game confirmation modal is open and yes is selected', async ({
+    gameOptions,
     newGameScreen,
   }) => {
-    await gameOptionsWindow.newGameButton.click();
+    await gameOptions.newGame.select();
 
-    await gameOptionsWindow.yesButton.click();
+    await gameOptions.newGameConfirmation.selectConfirm();
 
     await newGameScreen.verifyIsCurrentScreen();
   });
 });
 
 test.describe('save game', () => {
-  test('displays save game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.saveGameButton);
+  test('displays save game info', async ({ gameOptions, page }) => {
+    await gameOptions.saveGame.showInfo();
 
-    await expect(gameOptionsWindow.saveGameInfoModal).toBeVisible();
+    await gameOptions.saveGame.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('save-game-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
 test.describe('load game', () => {
-  test('displays load game info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.loadGameButton);
+  test('displays load game info', async ({ gameOptions, page }) => {
+    await gameOptions.loadGame.showInfo();
 
-    await expect(gameOptionsWindow.loadGameInfoModal).toBeVisible();
+    await gameOptions.loadGame.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('load-game-info.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('displays confirmation modal when load game button is clicked', async ({ gameOptionsWindow, page }) => {
-    await gameOptionsWindow.loadGameButton.click();
+  test('displays confirmation modal when load game is selected', async ({ gameOptions, page }) => {
+    await gameOptions.loadGame.select();
 
-    await expect(gameOptionsWindow.loadGameConfirmationModal).toBeVisible();
+    await gameOptions.loadGameConfirmation.verifyShown();
 
     await expect(page).toHaveScreenshot('load-game-confirmation.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('closes load game confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.loadGameButton.click();
+  test('closes load game confirmation modal when no is selected', async ({ gameOptions }) => {
+    await gameOptions.loadGame.select();
 
-    await gameOptionsWindow.noButton.click();
+    await gameOptions.loadGameConfirmation.selectDeny();
 
-    await expect(gameOptionsWindow.loadGameConfirmationModal).toBeHidden();
+    await gameOptions.loadGameConfirmation.verifyHidden();
   });
 
-  test('displays load game screen when load game confirmation modal is open and yes button is clicked', async ({
-    gameOptionsWindow,
+  test('displays load game screen when load game confirmation modal is open and yes is selected', async ({
+    gameOptions,
     loadGameScreen,
   }) => {
-    await gameOptionsWindow.loadGameButton.click();
+    await gameOptions.loadGame.select();
 
-    await gameOptionsWindow.yesButton.click();
+    await gameOptions.loadGameConfirmation.selectConfirm();
 
-    await expect(loadGameScreen.locator).toBeVisible();
+    await loadGameScreen.verifyIsCurrentScreen();
   });
 });
 
 test.describe('quit', () => {
-  test('displays quit info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.quitButton);
+  test('displays quit info', async ({ gameOptions, page }) => {
+    await gameOptions.quit.showInfo();
 
-    await expect(gameOptionsWindow.quitInfoModal).toBeVisible();
+    await gameOptions.quit.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('quit-info.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('displays quit confirmation modal when quit button is clicked', async ({ gameOptionsWindow, page }) => {
-    await gameOptionsWindow.quitButton.click();
+  test('displays quit confirmation modal when quit is selected', async ({ gameOptions, page }) => {
+    await gameOptions.quit.select();
 
-    await expect(gameOptionsWindow.quitConfirmationModal).toBeVisible();
+    await gameOptions.quitConfirmation.verifyShown();
 
     await expect(page).toHaveScreenshot('quit-confirmation.png', { maxDiffPixelRatio: 0.09 });
   });
 
-  test('closes quit confirmation modal when no button is clicked', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.quitButton.click();
+  test('closes quit confirmation modal when no is selected', async ({ gameOptions }) => {
+    await gameOptions.quit.select();
 
-    await gameOptionsWindow.noButton.click();
+    await gameOptions.quitConfirmation.selectDeny();
 
-    await expect(gameOptionsWindow.quitConfirmationModal).toBeHidden();
+    await gameOptions.quitConfirmation.verifyHidden();
   });
 
-  test('displays main screen when quit confirmation modal is open and yes button is clicked', async ({
-    gameOptionsWindow,
+  test('displays main screen when quit confirmation modal is open and yes is selected', async ({
+    gameOptions,
     mainScreen,
   }) => {
-    await gameOptionsWindow.quitButton.click();
+    await gameOptions.quit.select();
 
-    await gameOptionsWindow.yesButton.click();
+    await gameOptions.quitConfirmation.selectConfirm();
 
     await mainScreen.verifyIsCurrentScreen();
   });
 });
 
 test.describe('music volume', () => {
-  test('displays music volume setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.musicVolumeToggle).toBeVisible();
-
-    await expect(gameOptionsWindow.getMusicVolumeOption(/^on$/i)).toBeChecked();
+  test('maximum music volume is selected by default', async ({ gameOptions }) => {
+    await gameOptions.musicVolume.verifySelected(/^on$/i);
   });
 
-  test('allows to cycle through music volumes', async ({ gameOptionsWindow }) => {
+  test('allows to cycle through music volumes', async ({ gameOptions }) => {
     for (const volume of [
       /^on - volume 9$/i,
       /^on - volume 8$/i,
@@ -162,29 +159,27 @@ test.describe('music volume', () => {
       /^off$/i,
       /^on$/i,
     ]) {
-      await gameOptionsWindow.musicVolumeToggle.click();
+      await gameOptions.musicVolume.select(volume);
 
-      await expect(gameOptionsWindow.getMusicVolumeOption(volume)).toBeChecked();
+      await gameOptions.musicVolume.verifySelected(volume);
     }
   });
 
-  test('displays music volume info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.musicVolumeToggle);
+  test('displays music volume info', async ({ gameOptions, page }) => {
+    await gameOptions.musicVolume.showInfo();
 
-    await expect(gameOptionsWindow.musicVolumeInfoModal).toBeVisible();
+    await gameOptions.musicVolume.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('music-volume-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
 test.describe('effects volume', () => {
-  test('displays effects volume setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.effectsVolumeToggle).toBeVisible();
-
-    await expect(gameOptionsWindow.getEffectsVolumeOption(/^on$/i)).toBeChecked();
+  test('maximum effects volume is selected by default', async ({ gameOptions }) => {
+    await gameOptions.effectsVolume.verifySelected(/^on$/i);
   });
 
-  test('allows to cycle through effects volumes', async ({ gameOptionsWindow }) => {
+  test('allows to cycle through effects volumes', async ({ gameOptions }) => {
     for (const volume of [
       /^on - volume 9$/i,
       /^on - volume 8$/i,
@@ -198,144 +193,136 @@ test.describe('effects volume', () => {
       /^off$/i,
       /^on$/i,
     ]) {
-      await gameOptionsWindow.effectsVolumeToggle.click();
+      await gameOptions.effectsVolume.select(volume);
 
-      await expect(gameOptionsWindow.getEffectsVolumeOption(volume)).toBeChecked();
+      await gameOptions.effectsVolume.verifySelected(volume);
     }
   });
 
-  test('displays effects volume info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.effectsVolumeToggle);
+  test('displays effects volume info', async ({ gameOptions, page }) => {
+    await gameOptions.effectsVolume.showInfo();
 
-    await expect(gameOptionsWindow.effectsVolumeInfoModal).toBeVisible();
+    await gameOptions.effectsVolume.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('effects-volume-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
 test.describe('movement speed', () => {
-  test('displays movement speed setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.movementSpeedToggle).toBeVisible();
-
-    await expect(gameOptionsWindow.getMovementSpeedOption(/^gallop$/i)).toBeVisible();
+  test('gallop movement speed is selected by default', async ({ gameOptions }) => {
+    await gameOptions.movementSpeed.verifySelected(/^gallop$/i);
   });
 
-  test('allows to cycle through movement speed options', async ({ gameOptionsWindow }) => {
+  test('allows to cycle through movement speed options', async ({ gameOptions }) => {
     for (const option of [/^jump$/i, /^walk$/i, /^trot$/i, /^canter$/i, /^gallop$/i]) {
-      await gameOptionsWindow.movementSpeedToggle.click();
+      await gameOptions.movementSpeed.select(option);
 
-      await expect(gameOptionsWindow.getMovementSpeedOption(option)).toBeVisible();
+      await gameOptions.movementSpeed.verifySelected(option);
     }
   });
 
-  test('displays movement speed info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.movementSpeedToggle);
+  test('displays movement speed info', async ({ gameOptions, page }) => {
+    await gameOptions.movementSpeed.showInfo();
 
-    await expect(gameOptionsWindow.movementSpeedInfoModal).toBeVisible();
+    await gameOptions.movementSpeed.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('movement-speed-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
 test.describe('auto save', () => {
-  test('displays auto save setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.autoSaveCheckbox).toBeVisible();
-
-    await expect(gameOptionsWindow.autoSaveCheckbox).toBeChecked();
+  test('displays auto save setting', async ({ gameOptions }) => {
+    await gameOptions.autoSave.verifyEnabled(true);
   });
 
-  test('allows to toggle auto save', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.autoSaveCheckbox.click();
+  test('allows to toggle auto save', async ({ gameOptions }) => {
+    await gameOptions.autoSave.selectEnabled(false);
 
-    await expect(gameOptionsWindow.autoSaveCheckbox).not.toBeChecked();
+    await gameOptions.autoSave.verifyEnabled(false);
 
-    await gameOptionsWindow.autoSaveCheckbox.click();
+    await gameOptions.autoSave.selectEnabled(true);
 
-    await expect(gameOptionsWindow.autoSaveCheckbox).toBeChecked();
+    await gameOptions.autoSave.verifyEnabled(true);
   });
 
-  test('displays auto save info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.autoSaveCheckbox);
+  test('displays auto save info', async ({ gameOptions, page }) => {
+    await gameOptions.autoSave.showInfo();
 
-    await expect(gameOptionsWindow.autoSaveInfoModal).toBeVisible();
+    await gameOptions.autoSave.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('auto-save-info.png', { maxDiffPixelRatio: 0.13 });
   });
 });
 
 test.describe('show path', () => {
-  test('displays show path setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.showPathCheckbox).toBeVisible();
-
-    await expect(gameOptionsWindow.showPathCheckbox).toBeChecked();
+  test('show path is enabled by default', async ({ gameOptions }) => {
+    await gameOptions.showPath.verifyEnabled(true);
   });
 
-  test('allows to toggle show path', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.showPathCheckbox.click();
+  test('allows to toggle show path', async ({ gameOptions }) => {
+    await gameOptions.showPath.selectEnabled(false);
 
-    await expect(gameOptionsWindow.showPathCheckbox).not.toBeChecked();
+    await gameOptions.showPath.verifyEnabled(false);
 
-    await gameOptionsWindow.showPathCheckbox.click();
+    await gameOptions.showPath.selectEnabled(true);
 
-    await expect(gameOptionsWindow.showPathCheckbox).toBeChecked();
+    await gameOptions.showPath.verifyEnabled(true);
   });
 
-  test('displays show path info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.showPathCheckbox);
+  test('displays show path info', async ({ gameOptions, page }) => {
+    await gameOptions.showPath.showInfo();
 
-    await expect(gameOptionsWindow.showPathInfoModal).toBeVisible();
+    await gameOptions.showPath.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('show-path-info.png', { maxDiffPixelRatio: 0.12 });
   });
 });
 
 test.describe('view enemy movement', () => {
-  test('displays view enemy movement setting', async ({ gameOptionsWindow }) => {
-    await expect(gameOptionsWindow.viewEnemyMovementCheckbox).toBeVisible();
-
-    await expect(gameOptionsWindow.viewEnemyMovementCheckbox).toBeChecked();
+  test('view enemy movement is enabled by default', async ({ gameOptions }) => {
+    await gameOptions.viewEnemyMovement.verifyEnabled(true);
   });
 
-  test('allows to toggle view enemy movement', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.viewEnemyMovementCheckbox.click();
+  test('allows to toggle view enemy movement', async ({ gameOptions }) => {
+    await gameOptions.viewEnemyMovement.selectEnabled(false);
 
-    await expect(gameOptionsWindow.viewEnemyMovementCheckbox).not.toBeChecked();
+    await gameOptions.viewEnemyMovement.verifyEnabled(false);
 
-    await gameOptionsWindow.viewEnemyMovementCheckbox.click();
+    await gameOptions.viewEnemyMovement.selectEnabled(true);
 
-    await expect(gameOptionsWindow.viewEnemyMovementCheckbox).toBeChecked();
+    await gameOptions.viewEnemyMovement.verifyEnabled(true);
   });
 
-  test('displays view enemy movement info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.viewEnemyMovementCheckbox);
+  test('displays view enemy movement info', async ({ gameOptions, page }) => {
+    await gameOptions.viewEnemyMovement.showInfo();
 
-    await expect(gameOptionsWindow.viewEnemyMovementInfoModal).toBeVisible();
+    await gameOptions.viewEnemyMovement.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('view-enemy-movement-info.png', { maxDiffPixelRatio: 0.13 });
   });
 });
 
-test.describe('okay button', () => {
-  test('displays okay button info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.okayButton);
+test.describe('okay', () => {
+  test('displays okay info', async ({ gameOptions, page }) => {
+    await gameOptions.okay.showInfo();
 
-    await expect(gameOptionsWindow.okayInfoModal).toBeVisible();
+    await gameOptions.okay.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.12 });
   });
 
-  test('closes game options window when okay is clicked', async ({ gameOptionsWindow }) => {
-    await gameOptionsWindow.okayButton.click();
+  test('closes game options window when okay is selected', async ({ gameOptions }) => {
+    await gameOptions.okay.select();
 
-    await expect(gameOptionsWindow.locator).toBeHidden();
+    await gameOptions.verifyIsClosed();
   });
 });
 
-test.describe('info button', () => {
-  test('displays info button info', async ({ gameOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(gameOptionsWindow.infoButton);
+test.describe('info', () => {
+  test('displays info info', async ({ gameOptions, page }) => {
+    await gameOptions.info.showInfo();
 
-    await expect(gameOptionsWindow.infoInfoModal).toBeVisible();
+    await gameOptions.info.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('info-info.png', { maxDiffPixelRatio: 0.12 });
   });

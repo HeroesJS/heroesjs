@@ -1,52 +1,41 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class NewMultiPlayerGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Screen } from './screen';
 
-  public readonly menu: Locator;
+export class NewMultiPlayerGameScreen extends Screen {
+  public readonly hotSeat: Button;
+  public readonly network: Button;
+  public readonly modem: Button;
+  public readonly directConnect: Button;
 
-  public readonly hotSeatButton: Locator;
-  public readonly hotSeatInfoModal: Locator;
+  public readonly cancel: Button;
 
-  public readonly networkButton: Locator;
-  public readonly networkInfoModal: Locator;
+  constructor(page: Page) {
+    super(page, /^new multi-player game screen$/i);
 
-  public readonly modemButton: Locator;
-  public readonly modemInfoModal: Locator;
+    this.hotSeat = new Button(
+      page,
+      /^hot seat$/i,
+      /^play a hot seat game, where 2 to 4 players play around the same computer, switching into the 'hot seat' when it is their turn\.$/i
+    );
+    this.network = new Button(
+      page,
+      /^network$/i,
+      /^play a network game, where 2 players use their own computers connected through a lan \(local area network\)\.$/i
+    );
+    this.modem = new Button(
+      page,
+      /^modem$/i,
+      /^play a modem game, where 2 players use ther own computers connected over the phone lines using modems\.$/i
+    );
+    this.directConnect = new Button(
+      page,
+      /^direct connect$/i,
+      /^play a direct connect game, where 2 players use ther own computers directly connected through their serial port by a null modem\.$/i
+    );
 
-  public readonly directConnectButton: Locator;
-  public readonly directConnectInfoModal: Locator;
-
-  public readonly cancelButton: Locator;
-  public readonly cancelInfoModal: Locator;
-
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /new multi-player game screen/i });
-
-    this.menu = page.getByRole('menu', { name: /multi-player game type menu/i });
-
-    this.hotSeatButton = page.getByRole('button', { name: /hot seat/i });
-    this.hotSeatInfoModal = page.getByRole('dialog', {
-      name: /play a hot seat game, where 2 to 4 players play around the same computer, switching into the 'hot seat' when it is their turn\./i,
-    });
-
-    this.networkButton = page.getByRole('button', { name: /network/i });
-    this.networkInfoModal = page.getByRole('dialog', {
-      name: /play a network game, where 2 players use their own computers connected through a lan \(local area network\)\./i,
-    });
-
-    this.modemButton = page.getByRole('button', { name: /modem/i });
-    this.modemInfoModal = page.getByRole('dialog', {
-      name: /play a modem game, where 2 players use ther own computers connected over the phone lines using modems\./i,
-    });
-
-    this.directConnectButton = page.getByRole('button', { name: /direct connect/i });
-    this.directConnectInfoModal = page.getByRole('dialog', {
-      name: /play a direct connect game, where 2 players use ther own computers directly connected through their serial port by a null modem\./i,
-    });
-
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
-    this.cancelInfoModal = page.getByRole('dialog', { name: /cancel back to the main menu\./i });
+    this.cancel = new Button(page, /^cancel$/i, /^cancel back to the main menu\.$/i);
   }
 
   public goto() {

@@ -1,71 +1,76 @@
-import { expect, test } from './utils';
+import { AdventureScreen } from './adventureScreen';
+import { expect, test as testBase } from './utils';
+
+const test = testBase.extend<{
+  readonly adventureOptions: AdventureScreen['adventureOptions'];
+}>({
+  adventureOptions: async ({ adventureScreen: { adventureOptions } }, use) => await use(adventureOptions),
+});
 
 test.beforeEach(async ({ adventureScreen }) => {
   await adventureScreen.goto();
 
-  await adventureScreen.adventureOptionsButton.click();
+  await adventureScreen.actions.adventureOptions.select();
 });
 
-test('displays adventure options window', async ({ adventureOptionsWindow, page }) => {
-  await expect(adventureOptionsWindow.locator).toBeVisible();
-
-  await expect(adventureOptionsWindow.viewWorldButton).toBeVisible();
+test('displays adventure options', async ({ adventureOptions, page }) => {
+  await adventureOptions.verifyIsOpen();
 
   await expect(page).toHaveScreenshot('screenshot.png', { maxDiffPixelRatio: 0.21 });
 });
 
 test.describe('view world', () => {
-  test('displays view world button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.viewWorldButton);
+  test('displays view world info', async ({ adventureOptions, page }) => {
+    await adventureOptions.viewWorld.showInfo();
 
-    await expect(adventureOptionsWindow.viewWorldInfoModal).toBeVisible();
+    await adventureOptions.viewWorld.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('view-world-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('view puzzle', () => {
-  test('displays view puzzle button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.viewPuzzleButton);
+  test('displays view puzzle info', async ({ adventureOptions, page }) => {
+    await adventureOptions.viewPuzzle.showInfo();
 
-    await expect(adventureOptionsWindow.viewPuzzleInfoModal).toBeVisible();
+    await adventureOptions.viewPuzzle.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('view-puzzle-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('cast spell', () => {
-  test('displays cast spell button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.castSpellButton);
+  test('displays cast spell info', async ({ adventureOptions, page }) => {
+    await adventureOptions.castSpell.showInfo();
 
-    await expect(adventureOptionsWindow.castSpellInfoModal).toBeVisible();
+    await adventureOptions.castSpell.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('dig', () => {
-  test('displays dig button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.digButton);
+  test('displays dig info', async ({ adventureOptions, page }) => {
+    await adventureOptions.dig.showInfo();
 
-    await expect(adventureOptionsWindow.digInfoModal).toBeVisible();
+    await adventureOptions.dig.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('cast-spell-info.png', { maxDiffPixelRatio: 0.32 });
   });
 });
 
 test.describe('okay', () => {
-  test('displays okay button info', async ({ adventureOptionsWindow, mouseRightDown, page }) => {
-    await mouseRightDown(adventureOptionsWindow.okayButton);
+  test('displays okay info', async ({ adventureOptions, page }) => {
+    await adventureOptions.okay.showInfo();
 
-    await expect(adventureOptionsWindow.okayInfoModal).toBeVisible();
+    await adventureOptions.okay.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('okay-info.png', { maxDiffPixelRatio: 0.32 });
   });
 
-  test('closes adventure options window when okay button is clicked', async ({ adventureOptionsWindow }) => {
-    await adventureOptionsWindow.okayButton.click();
+  test('closes adventure options when okay is selected', async ({ adventureOptions }) => {
+    await adventureOptions.okay.select();
 
-    await expect(adventureOptionsWindow.locator).toBeHidden();
+    await adventureOptions.verifyIsClosed();
   });
 });

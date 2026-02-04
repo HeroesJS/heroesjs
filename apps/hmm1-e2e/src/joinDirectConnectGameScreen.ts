@@ -1,20 +1,23 @@
-import type { Locator, Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-export class JoinDirectConnectGameScreen {
-  public readonly locator: Locator;
+import { Button } from './button';
+import { Modal } from './modal';
+import { Screen } from './screen';
 
-  public readonly waitingForConnectionModal: Locator;
+export class JoinDirectConnectGameScreen extends Screen {
+  public readonly waitingForConnection: Modal;
 
-  public readonly cancelButton: Locator;
+  public readonly cancel: Button;
 
-  constructor(private readonly page: Page) {
-    this.locator = page.getByRole('main', { name: /join direct connect game screen/i });
+  constructor(page: Page) {
+    super(page, /^join direct connect game screen$/i);
 
-    this.waitingForConnectionModal = page.getByRole('dialog', {
-      name: /waiting for other computer to log in to direct connection\. Press 'cancel' to abort\./i,
-    });
+    this.waitingForConnection = new Modal(
+      page,
+      /^waiting for other computer to log in to direct connection\. Press 'cancel' to abort\.$/i
+    );
 
-    this.cancelButton = page.getByRole('button', { name: /cancel/i });
+    this.cancel = new Button(page, /^cancel$/i);
   }
 
   public goto() {
