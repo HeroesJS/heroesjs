@@ -30,9 +30,7 @@ export class NewStandardGameScreen extends Screen {
   public readonly playerColor: Toggle;
   public readonly kingOfTheHill: Checkbox;
 
-  public readonly selectedScenario: Input;
-  public readonly selectScenario: Button;
-  public readonly scenarioSelector: FileSelectorWindow;
+  public readonly scenarioSelector: ScenarioSelector;
 
   public readonly difficultyRating: LabelledText;
 
@@ -66,9 +64,7 @@ export class NewStandardGameScreen extends Screen {
       /^challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\.$/i
     );
 
-    this.selectedScenario = new Input(page, /^scenario$/i);
-    this.selectScenario = new Button(page, /^select scenario$/i, /^select which scenario to play\.$/i);
-    this.scenarioSelector = new FileSelectorWindow(page);
+    this.scenarioSelector = new ScenarioSelector(page);
 
     this.difficultyRating = new LabelledText(
       page,
@@ -95,12 +91,7 @@ export class NewStandardGameScreen extends Screen {
     await this.opponents.selectOptions(...opponents);
     await this.playerColor.select(playerColor);
     await this.kingOfTheHill.selectEnabled(kingOfTheHill);
-
-    await this.selectScenario.select();
-
-    await this.scenarioSelector.getItem(scenario).click();
-
-    await this.scenarioSelector.okay.select();
+    await this.scenarioSelector.select(scenario);
   }
 
   public async verifyGameSettingsSelected({
@@ -114,6 +105,59 @@ export class NewStandardGameScreen extends Screen {
     await this.opponents.verifyOptionsSelected(...opponents);
     await this.playerColor.verifySelected(playerColor);
     await this.kingOfTheHill.verifyEnabled(kingOfTheHill);
-    await this.selectedScenario.verifyContent(scenario);
+    await this.scenarioSelector.verifySelected(scenario);
+  }
+}
+
+class ScenarioSelector {
+  private readonly selectedScenario: Input;
+  private readonly openSelector: Button;
+
+  private readonly fileSelector: FileSelectorWindow;
+
+  constructor(page: Page) {
+    this.selectedScenario = new Input(page, /^scenario$/i);
+    this.openSelector = new Button(page, /^select scenario$/i, /^select which scenario to play\.$/i);
+    this.fileSelector = new FileSelectorWindow(page);
+  }
+
+  public async showInfo() {
+    await this.openSelector.showInfo();
+  }
+
+  public async verifyInfoShown() {
+    await this.openSelector.verifyInfoShown();
+  }
+
+  public async open() {
+    await this.openSelector.select();
+  }
+
+  public async verifyIsOpen() {
+    await this.fileSelector.verifyIsOpen();
+  }
+
+  public async pick(name: RegExp) {
+    await this.fileSelector.getItem(name).click();
+  }
+
+  public async confirm() {
+    await this.fileSelector.okay.select();
+  }
+
+  public async cancel() {
+    await this.fileSelector.cancel.select();
+  }
+
+  public async select(name: RegExp) {
+    await this.openSelector.select();
+
+    await this.fileSelector.getItem(name).click();
+
+    await this.fileSelector.okay.select();
+  }
+
+  public async verifySelected(name: RegExp) {
+    await this.selectedScenario.verifyContent(name);
   }
 }

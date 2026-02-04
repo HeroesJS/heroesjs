@@ -1,6 +1,6 @@
 import type { Locator, Page } from '@playwright/test';
 
-import { expect, mouseRightDown } from './utils';
+import { expect } from './utils';
 
 export abstract class Screen {
   protected readonly locator: Locator;
@@ -11,9 +11,5 @@ export abstract class Screen {
 
   public async verifyIsCurrentScreen() {
     await expect(this.locator).toBeVisible();
-  }
-
-  protected async mouseRightDown(locator: Locator) {
-    await mouseRightDown(this.page, locator);
   }
 }

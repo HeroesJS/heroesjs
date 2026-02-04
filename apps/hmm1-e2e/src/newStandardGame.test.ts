@@ -126,7 +126,7 @@ test.describe('king of the hill', () => {
 
 test.describe('scenario', () => {
   test('selects default scenario for single-player game', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.selectedScenario.verifyContent(/^claw \( easy \)$/i);
+    await newStandardGameScreen.scenarioSelector.verifySelected(/^claw \( easy \)$/i);
   });
 
   test.describe(() => {
@@ -135,20 +135,20 @@ test.describe('scenario', () => {
     });
 
     test('selects default scenario for multi-player game', async ({ newStandardGameScreen }) => {
-      await newStandardGameScreen.selectedScenario.verifyContent(/^around the bay$/i);
+      await newStandardGameScreen.scenarioSelector.verifySelected(/^around the bay$/i);
     });
   });
 
   test('displays scenario selection info', async ({ newStandardGameScreen, page }) => {
-    await newStandardGameScreen.selectScenario.showInfo();
+    await newStandardGameScreen.scenarioSelector.showInfo();
 
-    await newStandardGameScreen.selectScenario.verifyInfoShown();
+    await newStandardGameScreen.scenarioSelector.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('select-scenario-info.png', { maxDiffPixelRatio: 0.01 });
   });
 
   test('displays scenario selector', async ({ newStandardGameScreen, page }) => {
-    await newStandardGameScreen.selectScenario.select();
+    await newStandardGameScreen.scenarioSelector.open();
 
     await newStandardGameScreen.scenarioSelector.verifyIsOpen();
 
@@ -156,21 +156,31 @@ test.describe('scenario', () => {
   });
 
   test('displays screen when cancel is selected', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.selectScenario.select();
+    await newStandardGameScreen.scenarioSelector.open();
 
-    await newStandardGameScreen.scenarioSelector.cancel.select();
+    await newStandardGameScreen.scenarioSelector.cancel();
 
     await newStandardGameScreen.verifyIsCurrentScreen();
   });
 
+  test('selects scenario', async ({ newStandardGameScreen }) => {
+    await newStandardGameScreen.scenarioSelector.open();
+
+    await newStandardGameScreen.scenarioSelector.pick(/^around the bay$/i);
+
+    await newStandardGameScreen.scenarioSelector.confirm();
+
+    await newStandardGameScreen.scenarioSelector.verifySelected(/^around the bay$/i);
+  });
+
   test('preserves selection when scenario is changed and cancel is selected', async ({ newStandardGameScreen }) => {
-    await newStandardGameScreen.selectScenario.select();
+    await newStandardGameScreen.scenarioSelector.open();
 
-    await newStandardGameScreen.scenarioSelector.getItem(/^around the bay$/i).click();
+    await newStandardGameScreen.scenarioSelector.pick(/^around the bay$/i);
 
-    await newStandardGameScreen.scenarioSelector.cancel.select();
+    await newStandardGameScreen.scenarioSelector.cancel();
 
-    await newStandardGameScreen.selectedScenario.verifyContent(/^claw \( easy \)$/i);
+    await newStandardGameScreen.scenarioSelector.verifySelected(/^claw \( easy \)$/i);
   });
 });
 
