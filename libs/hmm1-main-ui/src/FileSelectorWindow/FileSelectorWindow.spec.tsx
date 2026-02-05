@@ -60,6 +60,16 @@ describe(FileSelectorWindow, () => {
     await expect(handler).toHaveBeenCalledWith<[string | undefined]>(undefined);
   });
 
+  it('should confirm selection when selected item is clicked', async () => {
+    const handler = vitest.fn();
+
+    const { user } = renderWithProviders(<FileSelectorWindow items={items} onOkayClick={handler} value="item" />);
+
+    await user.click(screen.getByRole('option', { name: /^item$/i, selected: true }));
+
+    expect(handler).toHaveBeenCalled();
+  });
+
   describe('scenario detail', () => {
     it('should not render by default', () => {
       renderWithProviders(<FileSelectorWindow />);

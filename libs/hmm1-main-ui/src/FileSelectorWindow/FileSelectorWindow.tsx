@@ -52,6 +52,14 @@ export function FileSelectorWindow({
 
   const handleListClick = () => onItemSelect?.(undefined);
 
+  const handleItemClick = (itemValue: string) => {
+    if (itemValue === value) {
+      onOkayClick?.();
+    } else {
+      onItemSelect?.(itemValue);
+    }
+  };
+
   return (
     <Window
       background={background}
@@ -72,7 +80,7 @@ export function FileSelectorWindow({
             aria-selected={item.value === value}
             item={item}
             key={item.value}
-            onClick={onItemSelect}
+            onClick={handleItemClick}
             selected={item.value === value}
           />
         ))}
