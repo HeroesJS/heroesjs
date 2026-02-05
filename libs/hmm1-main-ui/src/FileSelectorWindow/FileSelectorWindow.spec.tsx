@@ -41,13 +41,23 @@ describe(FileSelectorWindow, () => {
   it('should render selected item as selected', () => {
     renderWithProviders(<FileSelectorWindow items={items} value="item" />);
 
-    expect(screen.getByRole('option', { name: /item/i, selected: true })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /^item$/i, selected: true })).toBeInTheDocument();
   });
 
   it('should render selected item', () => {
     renderWithProviders(<FileSelectorWindow items={items} value="item" />);
 
     expect(screen.getByRole('textbox', { name: /selected item/i })).toHaveTextContent(/item/i);
+  });
+
+  it('should clear selection when list is clicked', async () => {
+    const handler = vitest.fn();
+
+    const { user } = renderWithProviders(<FileSelectorWindow items={items} onItemSelect={handler} value="item" />);
+
+    await user.click(screen.getByRole('listbox', { name: /^items$/i }));
+
+    await expect(handler).toHaveBeenCalledWith<[string | undefined]>(undefined);
   });
 
   describe('scenario detail', () => {

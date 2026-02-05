@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { useId, useState } from 'react';
 import styled from 'styled-components';
 
@@ -20,7 +21,7 @@ export interface ScenarioDetail {
 interface FileSelectorWindowProps {
   readonly items?: readonly FileSelectorItem[];
   readonly onCancelClick?: () => void;
-  readonly onItemSelect?: (value: string) => void;
+  readonly onItemSelect?: (value: string | undefined) => void;
   readonly onOkayClick?: () => void;
   readonly scenarioDetail?: ScenarioDetail;
   readonly showScenarioDetail?: boolean;
@@ -49,6 +50,8 @@ export function FileSelectorWindow({
 
   const listHeight = 10;
 
+  const handleListClick = () => onItemSelect?.(undefined);
+
   return (
     <Window
       background={background}
@@ -62,19 +65,16 @@ export function FileSelectorWindow({
       <Text align="center" fullWidth size="large" x={0} y={19}>
         File to Load:
       </Text>
-      <List aria-label="Items" role="listbox" x={55} y={42}>
+      <List aria-label="Items" onClick={handleListClick} role="listbox" x={55} y={42}>
         {items.slice(listPosition, listPosition + listHeight).map((item) => (
           <ListItem
             aria-label={item.label}
             aria-selected={item.value === value}
+            item={item}
             key={item.value}
-            onClick={() => onItemSelect?.(item.value)}
-            role="option"
-          >
-            <Text highlighted={item.value === value} size="large">
-              {item.label}
-            </Text>
-          </ListItem>
+            onClick={onItemSelect}
+            selected={item.value === value}
+          />
         ))}
       </List>
       <Scrollbar
@@ -110,7 +110,29 @@ const List = styled(PositionedComponent)({
   width: 208,
 });
 
-const ListItem = styled('div')({});
+interface ListItemProps {
+  readonly item: FileSelectorItem;
+  readonly onClick?: (value: string) => void;
+  readonly selected?: boolean;
+}
+
+function ListItem({ item, onClick, selected }: ListItemProps) {
+  const handleClick = (e: MouseEvent) => {
+    onClick?.(item.value);
+
+    e.stopPropagation();
+  };
+
+  return (
+    <ListItemRoot aria-label={item.label} aria-selected={selected} key={item.value} onClick={handleClick} role="option">
+      <Text highlighted={selected} size="large">
+        {item.label}
+      </Text>
+    </ListItemRoot>
+  );
+}
+
+const ListItemRoot = styled('div')({});
 
 const Input = styled(PositionedComponent)({
   backgroundImage: `url(${inputBackground})`,
