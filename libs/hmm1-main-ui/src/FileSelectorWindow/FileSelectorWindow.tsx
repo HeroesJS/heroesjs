@@ -19,46 +19,48 @@ export interface ScenarioDetail {
 }
 
 interface FileSelectorWindowProps {
+  readonly initialValue?: string | undefined;
   readonly items?: readonly FileSelectorItem[];
   readonly onCancelClick?: () => void;
-  readonly onItemSelect?: (value: string | undefined) => void;
-  readonly onOkayClick?: () => void;
+  readonly onOkayClick?: (value: string) => void;
   readonly scenarioDetail?: ScenarioDetail;
   readonly showScenarioDetail?: boolean;
-  readonly value?: string;
   readonly x?: number;
   readonly y?: number;
 }
 
 export function FileSelectorWindow({
+  initialValue,
   items = [],
   onCancelClick,
-  onItemSelect,
   onOkayClick,
   scenarioDetail,
   showScenarioDetail,
-  value,
   x,
   y,
 }: FileSelectorWindowProps) {
   const scenarioInfoShift = -13;
   const scenarioInfoHeight = ScenarioInfo.height + scenarioInfoShift;
 
-  const selectedItem = items.find((item) => item.value === value);
+  const [selectedValue, setSelectedValue] = useState(initialValue);
+
+  const selectedItem = items.find((item) => item.value === selectedValue);
 
   const [listPosition, setListPosition] = useState(0);
 
   const listHeight = 10;
 
-  const handleListClick = () => onItemSelect?.(undefined);
+  const handleListClick = () => setSelectedValue(undefined);
 
   const handleItemClick = (itemValue: string) => {
-    if (itemValue === value) {
-      onOkayClick?.();
+    if (itemValue === selectedValue) {
+      onOkayClick?.(selectedValue);
     } else {
-      onItemSelect?.(itemValue);
+      setSelectedValue(itemValue);
     }
   };
+
+  const handleOkayClick = () => onOkayClick?.(selectedValue!);
 
   return (
     <Window
@@ -75,14 +77,7 @@ export function FileSelectorWindow({
       </Text>
       <List aria-label="Items" onClick={handleListClick} role="listbox" x={55} y={42}>
         {items.slice(listPosition, listPosition + listHeight).map((item) => (
-          <ListItem
-            aria-label={item.label}
-            aria-selected={item.value === value}
-            item={item}
-            key={item.value}
-            onClick={handleItemClick}
-            selected={item.value === value}
-          />
+          <ListItem item={item} key={item.value} onClick={handleItemClick} selected={item.value === selectedValue} />
         ))}
       </List>
       <Scrollbar
@@ -100,7 +95,7 @@ export function FileSelectorWindow({
       {showScenarioDetail && (
         <ScenarioInfo detail={scenarioDetail} x={0} y={FileSelectorWindow.height + scenarioInfoShift} />
       )}
-      <Button assets={okay} disabled={!selectedItem} label="Okay" onClick={onOkayClick} x={36} y={280} />
+      <Button assets={okay} disabled={!selectedItem} label="Okay" onClick={handleOkayClick} x={36} y={280} />
       <Button assets={cancel} label="Cancel" onClick={onCancelClick} x={189} y={280} />
     </Window>
   );
