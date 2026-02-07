@@ -34,7 +34,7 @@ export const Items: Story = {
 export const SelectedItem: Story = {
   args: {
     ...Items.args,
-    value: 'item',
+    initialValue: 'item',
   },
 };
 
@@ -47,6 +47,7 @@ export const EmptyScenarioDetail: Story = {
 export const ScenarioDetail: Story = {
   args: {
     ...EmptyScenarioDetail.args,
+    initialValue: 'scenario',
     items: [
       {
         label: 'Scenario Name',
@@ -58,6 +59,5 @@ export const ScenarioDetail: Story = {
       difficulty: MapDifficulty.Easy,
       size: MapSize.Small,
     },
-    value: 'scenario',
   },
 };

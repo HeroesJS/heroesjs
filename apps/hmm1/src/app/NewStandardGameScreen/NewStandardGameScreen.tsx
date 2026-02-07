@@ -73,7 +73,6 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
   const [scenarioFileName, setScenarioFileName] = useState(
     playerCount !== 1 ? defaultMultiPlayerScenario.fileName : lastUsedGameSettings.scenario.fileName
   );
-  const [scenarioFileNameBackup, setScenarioFileNameBackup] = useState('');
 
   const selectedScenario = scenarios.find((s) => s.fileName === scenarioFileName);
 
@@ -85,6 +84,16 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
     mapSize: selectedScenario!.size,
     opponentSettings,
   });
+
+  const handleSelectScenarioClick = () => setIsSelectingScenario(true);
+
+  const handleCancelScenarioSelectionClick = () => setIsSelectingScenario(false);
+
+  const handleConfirmScenarioSelectionClick = (value: string) => {
+    setScenarioFileName(value);
+
+    setIsSelectingScenario(false);
+  };
 
   const handleOkayClick = () => {
     lastUsedGameSettings = {
@@ -105,20 +114,15 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
     <MainScreen label="New Standard Game">
       {isSelectingScenario ? (
         <FileSelectorWindow
+          initialValue={scenarioFileName}
           items={validScenarios.map((scenario) => ({
             label: scenario.name,
             value: scenario.fileName,
           }))}
-          onCancelClick={() => {
-            setScenarioFileName(scenarioFileNameBackup);
-
-            setIsSelectingScenario(false);
-          }}
-          onItemSelect={setScenarioFileName}
-          onOkayClick={() => setIsSelectingScenario(false)}
+          onCancelClick={handleCancelScenarioSelectionClick}
+          onOkayClick={handleConfirmScenarioSelectionClick}
           scenarioDetail={selectedScenario}
           showScenarioDetail
-          value={scenarioFileName}
           x={310}
           y={14}
         />
@@ -134,11 +138,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
           onOkayClick={handleOkayClick}
           onOpponentSettingsChange={setOpponentSettings}
           onPlayerColorChange={setPlayerColor}
-          onSelectScenarioClick={() => {
-            setScenarioFileNameBackup(scenarioFileName);
-
-            setIsSelectingScenario(true);
-          }}
+          onSelectScenarioClick={handleSelectScenarioClick}
           opponentSettings={opponentSettings}
           playerColor={playerColor}
           scenarioName={selectedScenario?.name}
