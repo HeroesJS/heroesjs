@@ -3,6 +3,7 @@ import type { Page } from '@playwright/test';
 import { AdventureOptionsWindow } from './adventureOptionsWindow';
 import { Button } from './button';
 import { GameOptionsWindow } from './gameOptionsWindow';
+import { ScenarioInfoWindow } from './scenarioInfoWindow';
 import { Screen } from './screen';
 
 export class AdventureScreen extends Screen {
@@ -10,6 +11,7 @@ export class AdventureScreen extends Screen {
 
   public readonly adventureOptions: AdventureOptionsWindow;
   public readonly gameOptions: GameOptionsWindow;
+  public readonly scenarioInfo: ScenarioInfoWindow;
 
   public constructor(page: Page) {
     super(page, /^adventure screen$/i);
@@ -18,6 +20,7 @@ export class AdventureScreen extends Screen {
 
     this.adventureOptions = new AdventureOptionsWindow(page);
     this.gameOptions = new GameOptionsWindow(page);
+    this.scenarioInfo = new ScenarioInfoWindow(page);
   }
 
   public async goto() {

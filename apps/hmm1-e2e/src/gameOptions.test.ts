@@ -3,8 +3,10 @@ import { expect, test as testBase } from './utils';
 
 const test = testBase.extend<{
   readonly gameOptions: AdventureScreen['gameOptions'];
+  readonly scenarioInfo: AdventureScreen['scenarioInfo'];
 }>({
   gameOptions: async ({ adventureScreen: { gameOptions } }, use) => await use(gameOptions),
+  scenarioInfo: async ({ adventureScreen: { scenarioInfo } }, use) => await use(scenarioInfo),
 });
 
 test.beforeEach(async ({ adventureScreen }) => {
@@ -325,5 +327,13 @@ test.describe('info', () => {
     await gameOptions.info.verifyInfoShown();
 
     await expect(page).toHaveScreenshot('info-info.png', { maxDiffPixelRatio: 0.12 });
+  });
+
+  test('displays scenario info when info is clicked', async ({ gameOptions, page, scenarioInfo }) => {
+    await gameOptions.info.select();
+
+    await scenarioInfo.verifyIsOpen();
+
+    await expect(page).toHaveScreenshot('scenario-info.png', { maxDiffPixelRatio: 0.02 });
   });
 });

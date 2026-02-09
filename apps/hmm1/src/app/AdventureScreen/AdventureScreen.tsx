@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 
 import {
@@ -5,9 +6,9 @@ import {
   AdventureOptionsWindow,
   AdventureScreen as AdventureScreenBase,
   GameOptionsWindow,
+  ScenarioInfoWindow,
 } from '@heroesjs/hmm1-adventure-ui';
 import { MovementSpeed, SoundVolume } from '@heroesjs/hmm1-core';
-import { useState } from 'react';
 
 export function AdventureScreen() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export function AdventureScreen() {
               musicVolume={musicVolume}
               onAutoSaveChange={setAutoSave}
               onEffectsVolumeChange={setEffectsVolume}
+              onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
               onLoadGameClick={() => navigate('/load-game')}
               onMovementSpeedChange={setMovementSpeed}
               onMusicVolumeChange={setMusicVolume}
@@ -60,6 +62,7 @@ export function AdventureScreen() {
           }
           path="game-options"
         />
+        <Route element={<ScenarioInfoWindow open x={159} y={14} />} path="scenario-info" />
       </Routes>
     </AdventureScreenBase>
   );
