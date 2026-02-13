@@ -67,19 +67,35 @@ export function ScenarioInfoWindow({
       <Label hidden id={scenarioNameLabelId} invisible size="large" x={25} y={37}>
         Scenario:
       </Label>
-      <Text align="right" labelId={scenarioNameLabelId} size="large" width={200} x={95} y={38}>
+      <Text
+        align="right"
+        horizontalAnchor="right"
+        labelId={scenarioNameLabelId}
+        size="large"
+        width={155}
+        x={295}
+        y={38}
+      >
         {scenario?.name}
       </Text>
       <Label hidden id={gameDifficultyLabelId} invisible size="large" x={25} y={71}>
         Game Setting:
       </Label>
-      <Text align="right" labelId={gameDifficultyLabelId} size="large" width={200} x={96} y={72}>
+      <Text
+        align="right"
+        horizontalAnchor="right"
+        labelId={gameDifficultyLabelId}
+        size="large"
+        width={100}
+        x={296}
+        y={72}
+      >
         {gameDifficulty && gameDifficultyLabel[gameDifficulty]}
       </Text>
       <Label hidden id={opponentsLabelId} invisible size="large" x={25} y={105}>
         Opponents:
       </Label>
-      <Text align="right" labelId={opponentsLabelId} size="large" width={200} x={95} y={106}>
+      <Text align="right" horizontalAnchor="right" labelId={opponentsLabelId} size="large" width={135} x={295} y={106}>
         {opponents.map((opponent, opponentIndex) => (
           <Fragment key={opponentIndex}>
             {!!opponentIndex && <br />}
@@ -100,13 +116,29 @@ export function ScenarioInfoWindow({
       <Label hidden id={kingOfTheHillLabelId} invisible size="large" x={25} y={207}>
         King of the Hill:
       </Label>
-      <Text align="right" labelId={kingOfTheHillLabelId} size="large" width={200} x={95} y={208}>
+      <Text
+        align="right"
+        horizontalAnchor="right"
+        labelId={kingOfTheHillLabelId}
+        size="large"
+        width={100}
+        x={295}
+        y={208}
+      >
         {kingOfTheHill && kingOfTheHill ? 'Yes' : 'No'}
       </Text>
       <Label hidden id={dificultyRatingLabelId} invisible size="large" x={25} y={241}>
         Rating:
       </Label>
-      <Text align="right" labelId={dificultyRatingLabelId} size="large" width={200} x={95} y={240}>
+      <Text
+        align="right"
+        horizontalAnchor="right"
+        labelId={dificultyRatingLabelId}
+        size="large"
+        width={180}
+        x={295}
+        y={240}
+      >
         {difficultyRating && `${difficultyRating}%`}
       </Text>
       <Label hidden id={scenarioSizeLabelId} invisible size="large" x={44} y={296}>
