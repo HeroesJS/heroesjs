@@ -7,12 +7,20 @@ import {
   OpponentSetting,
   OpponentSettings,
   PlayerColor,
-  playerColorLabel,
   playerColors,
 } from '@heroesjs/hmm1-core';
-import { Button, Checkbox, CycleToggle, PositionedComponent, Text, useModal, Window } from '@heroesjs/hmm1-core-ui';
+import {
+  Button,
+  Checkbox,
+  CycleToggle,
+  PlayerColorJewel,
+  PositionedComponent,
+  Text,
+  useModal,
+  Window,
+} from '@heroesjs/hmm1-core-ui';
 
-import { background, cancel, kingOfTheHillAssets, okay, playerColorAssets, scenario } from './assets';
+import { background, cancel, kingOfTheHillAssets, okay, scenario } from './assets';
 import { GameDifficultySelector } from './GameDifficultySelector';
 import { OpponentSettingsSelector } from './OpponentSettingsSelector';
 
@@ -134,7 +142,7 @@ export function NewStandardGameWindow({
         x={51}
         y={270}
       >
-        {(value) => <img alt={playerColorLabel[value]} src={playerColorAssets[value]} />}
+        {(value) => <PlayerColorJewel value={value} />}
       </CycleToggle>
       <PlayerColorInfoModal>Change your banner color.</PlayerColorInfoModal>
       <Text hidden id="kingOfTheHillLabel" size="large" x={169} y={254}>

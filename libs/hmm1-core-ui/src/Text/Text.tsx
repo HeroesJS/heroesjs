@@ -8,12 +8,15 @@ type TextSize = 'large' | 'medium' | 'small';
 
 type TextAlign = 'left' | 'center' | 'right';
 
+type HorizontalAnchor = 'left' | 'right';
+
 interface TextProps {
   readonly align?: TextAlign;
   readonly className?: string;
   readonly fullWidth?: boolean;
   readonly hidden?: boolean;
   readonly highlighted?: boolean;
+  readonly horizontalAnchor?: HorizontalAnchor;
   readonly id?: string;
   readonly invisible?: boolean;
   readonly label?: string;
@@ -32,6 +35,7 @@ export function Text({
   fullWidth,
   hidden,
   highlighted,
+  horizontalAnchor,
   id,
   invisible,
   label,
@@ -52,6 +56,7 @@ export function Text({
       className={className}
       fullWidth={fullWidth}
       highlighted={highlighted}
+      horizontalAnchor={horizontalAnchor}
       id={id}
       invisible={invisible}
       onMouseDown={onMouseDown}
@@ -90,13 +95,14 @@ const lineHeights: Record<TextSize, number> = {
 };
 
 const Root = styled(PositionedComponent)<
-  Pick<TextProps, 'align' | 'fullWidth' | 'highlighted' | 'invisible' | 'size' | 'width'>
->(({ align = 'left', fullWidth, highlighted, invisible, size = 'medium', width }) => ({
+  Pick<TextProps, 'align' | 'fullWidth' | 'highlighted' | 'horizontalAnchor' | 'invisible' | 'size' | 'width'>
+>(({ align = 'left', fullWidth, highlighted, horizontalAnchor = 'left', invisible, size = 'medium', width }) => ({
   color: invisible ? 'transparent' : highlighted ? '#beeb00' : '#fff',
   fontFamily: size === 'small' ? "'Heroes 1 Small'" : "'Heroes 1'",
   fontSize: fontSizes[size],
   fontWeight: 'normal',
   lineHeight: `${lineHeights[size]}px`,
+  transform: horizontalAnchor !== 'left' ? 'translateX(-100%)' : undefined,
   textAlign: align,
   whiteSpace: 'pre-wrap',
   width: fullWidth ? '100%' : width,

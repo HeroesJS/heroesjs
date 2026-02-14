@@ -5,7 +5,7 @@ import green from './green.png';
 import red from './red.png';
 import yellow from './yellow.png';
 
-export const assets: Readonly<Record<PlayerColor, string>> = {
+export const jewels: Readonly<Record<PlayerColor, string>> = {
   [PlayerColor.Blue]: blue,
   [PlayerColor.Green]: green,
   [PlayerColor.Red]: red,

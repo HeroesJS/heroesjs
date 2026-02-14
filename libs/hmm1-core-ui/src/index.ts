@@ -6,6 +6,7 @@ export type { CheckboxAssets } from './Checkbox';
 export { CycleToggle } from './CycleToggle';
 export { Menu, MenuItem } from './Menu';
 export { Modal } from './Modal';
+export { PlayerColorJewel } from './PlayerColorJewel';
 export { PositionedComponent } from './PositionedComponent';
 export { Screen, ScreenHeight, ScreenWidth } from './Screen';
 export { Scrollbar } from './Scrollbar';
