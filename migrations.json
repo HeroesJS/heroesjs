@@ -1,0 +1,11 @@
+{
+  "migrations": [],
+  "nx-console": {
+    "initialGitRef": {
+      "ref": "c509e4b187527f772741796c531d88feecc7151b",
+      "subject": "update lock file"
+    },
+    "targetVersion": "latest",
+    "confirmedPackageUpdates": true
+  }
+}
