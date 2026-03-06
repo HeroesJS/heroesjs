@@ -1,5 +1,14 @@
 {
   "component": {
+    "baudMenu": {
+      "cancel": {
+        "label": "Cancel"
+      },
+      "label": "Baud Menu",
+      "value": {
+        "label": "{{value}} Baud"
+      }
+    },
     "mainMenu": {
       "label": "Main Menu",
       "loadGame": {
