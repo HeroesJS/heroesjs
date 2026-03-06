@@ -1,5 +1,5 @@
 {
-  "name": "@heroesjs/hmm1-main-ui",
+  "name": "@heroesjs/hmm1-i18n",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -19,14 +19,10 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "name": "hmm1-main-ui"
+    "name": "hmm1-i18n"
   },
   "dependencies": {
-    "@heroesjs/hmm1-core": "*",
-    "@heroesjs/hmm1-core-ui": "*",
-    "lodash": "4.17.21",
-    "react": "^19.0.0",
-    "react-i18next": "^16.5.5",
-    "styled-components": "5.3.6"
+    "i18next": "^25.8.14",
+    "react-i18next": "^16.5.5"
   }
 }

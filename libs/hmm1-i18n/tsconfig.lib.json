@@ -39,19 +39,5 @@
     "**/*.stories.jsx",
     "**/*.stories.tsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    {
-      "path": "../hmm1-test-utils/tsconfig.lib.json"
-    },
-    {
-      "path": "../hmm1-core/tsconfig.lib.json"
-    },
-    {
-      "path": "../hmm1-i18n/tsconfig.lib.json"
-    },
-    {
-      "path": "../hmm1-core-ui/tsconfig.lib.json"
-    }
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.json"]
 }

@@ -6,9 +6,11 @@
     "@heroesjs/hmm1-adventure-ui": "*",
     "@heroesjs/hmm1-core": "*",
     "@heroesjs/hmm1-core-ui": "*",
+    "@heroesjs/hmm1-i18n": "*",
     "@heroesjs/hmm1-main-ui": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-i18next": "^16.5.5",
     "react-router": "7.12.0",
     "styled-components": "5.3.6"
   },

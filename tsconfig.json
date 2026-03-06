@@ -23,6 +23,9 @@
     },
     {
       "path": "./libs/hmm1-main-ui"
+    },
+    {
+      "path": "./libs/hmm1-i18n"
     }
   ],
   "ts-node": {

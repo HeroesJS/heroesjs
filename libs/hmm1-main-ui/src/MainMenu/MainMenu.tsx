@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { loadGame, newGame, quit, viewCredits, viewHighScores } from './assets';
@@ -21,6 +23,8 @@ export function MainMenu({
   x,
   y,
 }: MainMenuProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.mainMenu' });
+
   const [NewGameInfoModal, newGameInfoModal] = useModal();
   const [LoadGameInfoModal, loadGameInfoModal] = useModal();
   const [ViewHighScoresInfoModal, viewHighScoresInfoModal] = useModal();
@@ -28,41 +32,46 @@ export function MainMenu({
   const [QuitInfoModal, quitInfoModal] = useModal();
 
   return (
-    <Menu label="Main Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
       <MenuItem>
-        <Button assets={newGame} label="New Game" onClick={onNewGameClick} onMouseDown={newGameInfoModal.onMouseDown} />
-        <NewGameInfoModal>Start a single or multi‑player game.</NewGameInfoModal>
+        <Button
+          assets={newGame}
+          label={t('newGame.label')}
+          onClick={onNewGameClick}
+          onMouseDown={newGameInfoModal.onMouseDown}
+        />
+        <NewGameInfoModal>{t('newGame.info')}</NewGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={loadGame}
-          label="Load Game"
+          label={t('loadGame.label')}
           onClick={onLoadGameClick}
           onMouseDown={loadGameInfoModal.onMouseDown}
         />
-        <LoadGameInfoModal>Load a previously saved game.</LoadGameInfoModal>
+        <LoadGameInfoModal>{t('loadGame.info')}</LoadGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={viewHighScores}
-          label="View High Scores"
+          label={t('viewHighScores.label')}
           onClick={onViewHighScoresClick}
           onMouseDown={viewHighScoresInfoModal.onMouseDown}
         />
-        <ViewHighScoresInfoModal>View the high score screen.</ViewHighScoresInfoModal>
+        <ViewHighScoresInfoModal>{t('viewHighScores.info')}</ViewHighScoresInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={viewCredits}
-          label="View Credits"
+          label={t('viewCredits.label')}
           onClick={onViewCreditsClick}
           onMouseDown={viewCreditsInfoModal.onMouseDown}
         />
-        <ViewCreditsInfoModal>View the credits screen.</ViewCreditsInfoModal>
+        <ViewCreditsInfoModal>{t('viewCredits.info')}</ViewCreditsInfoModal>
       </MenuItem>
       <MenuItem>
-        <Button assets={quit} label="Quit" onClick={onQuitClick} onMouseDown={quitInfoModal.onMouseDown} />
-        <QuitInfoModal>Quit Heroes of Might and Magic and return to the DOS prompt.</QuitInfoModal>
+        <Button assets={quit} label={t('quit.label')} onClick={onQuitClick} onMouseDown={quitInfoModal.onMouseDown} />
+        <QuitInfoModal>{t('quit.info')}</QuitInfoModal>
       </MenuItem>
     </Menu>
   );

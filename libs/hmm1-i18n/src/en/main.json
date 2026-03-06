@@ -1,0 +1,27 @@
+{
+  "component": {
+    "mainMenu": {
+      "label": "Main Menu",
+      "loadGame": {
+        "info": "Load a previously saved game.",
+        "label": "Load Game"
+      },
+      "newGame": {
+        "info": "Start a single or multi‑player game.",
+        "label": "New Game"
+      },
+      "quit": {
+        "info": "Quit Heroes of Might and Magic and return to the DOS prompt.",
+        "label": "Quit"
+      },
+      "viewCredits": {
+        "info": "View the credits screen.",
+        "label": "View Credits"
+      },
+      "viewHighScores": {
+        "info": "View the high score screen.",
+        "label": "View High Scores"
+      }
+    }
+  }
+}
