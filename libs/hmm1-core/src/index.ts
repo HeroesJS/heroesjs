@@ -12,6 +12,8 @@ export {
   getOpponentGameDifficulty,
   humanOpponentSettings,
   isHumanOpponent,
+  Leader,
+  leaders,
   MaxPlayerCount,
   MovementSpeed,
   movementSpeedLabel,

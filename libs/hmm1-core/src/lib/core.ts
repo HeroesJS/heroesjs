@@ -155,3 +155,17 @@ export const movementSpeedLabel: Readonly<Record<MovementSpeed, string>> = {
   [MovementSpeed.Trot]: 'Trot',
   [MovementSpeed.Walk]: 'Walk',
 };
+
+export enum Leader {
+  LordIronfist = 1,
+  LordSlayer = 2,
+  QueenLamanda = 3,
+  LordAlamar = 4,
+}
+
+export const leaders: readonly Leader[] = [
+  Leader.LordIronfist,
+  Leader.LordSlayer,
+  Leader.QueenLamanda,
+  Leader.LordAlamar,
+];
