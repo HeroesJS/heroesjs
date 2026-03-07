@@ -22,13 +22,6 @@ export const playerColors: readonly PlayerColor[] = [
 
 export const defaultPlayerColor = PlayerColor.Blue;
 
-export const playerColorLabel: Readonly<Record<PlayerColor, string>> = {
-  [PlayerColor.Blue]: 'Blue',
-  [PlayerColor.Green]: 'Green',
-  [PlayerColor.Red]: 'Red',
-  [PlayerColor.Yellow]: 'Yellow',
-};
-
 export enum GameDifficulty {
   Easy = 'easy',
   Expert = 'expert',
@@ -42,13 +35,6 @@ export const gameDifficulties: readonly GameDifficulty[] = [
   GameDifficulty.Hard,
   GameDifficulty.Expert,
 ];
-
-export const gameDifficultyLabel: Readonly<Record<GameDifficulty, string>> = {
-  [GameDifficulty.Easy]: 'Easy',
-  [GameDifficulty.Expert]: 'Expert',
-  [GameDifficulty.Hard]: 'Hard',
-  [GameDifficulty.Normal]: 'Normal',
-};
 
 export const defaultGameDifficulty = GameDifficulty.Normal;
 
@@ -74,13 +60,6 @@ export const computerOpponentSettings: readonly (OpponentDifficulty | typeof noO
 ];
 
 export const humanOpponentSettings = opponentDifficulties;
-
-export const computerOpponentSettingLabel: Readonly<Record<OpponentDifficulty, string>> = {
-  [OpponentDifficulty.Average]: 'Average',
-  [OpponentDifficulty.Dumb]: 'Dumb',
-  [OpponentDifficulty.Genius]: 'Genius',
-  [OpponentDifficulty.Smart]: 'Smart',
-};
 
 export type OpponentSetting = OpponentDifficulty | typeof noOpponent;
 

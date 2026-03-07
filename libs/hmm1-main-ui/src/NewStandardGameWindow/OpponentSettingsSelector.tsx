@@ -1,10 +1,9 @@
 import type { MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import {
-  computerOpponentSettingLabel,
   computerOpponentSettings,
-  gameDifficultyLabel,
   getOpponentGameDifficulty,
   humanOpponentSettings,
   isHumanOpponent,
@@ -33,13 +32,15 @@ export function OpponentSettingsSelector({
   x,
   y,
 }: OpponentSettingsSelectorProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.newStandardGameWindow' });
+
   return (
     <Root x={x} y={y}>
       {value.map((setting, index) => (
         <Item
           human={isHumanOpponent(index, humanOpponentsCount)}
           key={index}
-          label={`Opponent ${index + 1} Setting`}
+          label={t('opponents.opponentLabel', { number: index + 1 })}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
           onMouseDown={(e) => onOptionMouseDown?.(e, setting, isHumanOpponent(index, humanOpponentsCount))}
           value={setting}
@@ -64,6 +65,8 @@ interface ItemProps {
 }
 
 function Item({ human, label, onChange, onMouseDown, value }: ItemProps) {
+  const { t } = useTranslation('core');
+
   return (
     <ItemRoot
       label={label}
@@ -87,18 +90,18 @@ function Item({ human, label, onChange, onMouseDown, value }: ItemProps) {
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
             {human ? (
               <>
-                Human
+                {t('opponentDifficulty.human')}
                 {value && (
                   <>
                     <br />
-                    {gameDifficultyLabel[getOpponentGameDifficulty(value)]}
+                    {t(`gameDifficulty.${getOpponentGameDifficulty(value)}`)}
                   </>
                 )}
               </>
             ) : value !== noOpponent ? (
-              computerOpponentSettingLabel[value]
+              t(`opponentDifficulty.computer.${value}`)
             ) : (
-              'None'
+              t('opponentDifficulty.none')
             )}
           </Text>
         </>

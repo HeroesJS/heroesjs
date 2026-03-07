@@ -1,8 +1,24 @@
 {
+  "gameDifficulty": {
+    "easy": "Easy",
+    "expert": "Expert",
+    "hard": "Hard",
+    "normal": "Normal"
+  },
   "leader": {
     "1": "Lord Ironfist",
     "2": "Lord Slayer",
     "3": "Queen Lamanda",
     "4": "Lord Alamar"
+  },
+  "opponentDifficulty": {
+    "computer": {
+      "average": "Average",
+      "dumb": "Dumb",
+      "genius": "Genius",
+      "smart": "Smart"
+    },
+    "human": "Human",
+    "none": "None"
   }
 }

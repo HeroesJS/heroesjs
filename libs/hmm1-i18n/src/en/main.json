@@ -201,6 +201,47 @@
       },
       "label": "Network Game Menu"
     },
+    "newStandardGameWindow": {
+      "cancel": {
+        "info": "Return to the main menu.",
+        "label": "Cancel"
+      },
+      "confirm": {
+        "info": "Accept these settings and start a new game.",
+        "label": "Okay"
+      },
+      "difficultyRating": {
+        "info": "The difficulty rating reflects a combination of various settings for your game.  This number will be applied to your final score.",
+        "label": "Difficulty Rating:",
+        "value": "{{value}}%"
+      },
+      "gameDifficulty": {
+        "info": "Change the starting difficulty at which you will play.  Higher difficulty levels start you off with fewer resources.",
+        "label": "Choose Game Difficulty:"
+      },
+      "kingOfTheHill": {
+        "info": "Challenge all computer players as 'King of the Hill'.  Computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp.",
+        "label": "King of the Hill:"
+      },
+      "opponents": {
+        "computerOpponentInfo": "Change the difficulty of this opponent.  Smarter computer players are more aggressive and think longer for each turn.",
+        "humanOpponentInfo": "Change the starting difficulty of another human player.  Higher difficulty levels start you off with fewer resources.",
+        "label": "Customize Opponents:",
+        "noOpponentsError": "A game requires at least one opponent.",
+        "opponentLabel": "Opponent {{number}} Setting"
+      },
+      "playerColor": {
+        "info": "Change your banner color.",
+        "label": "Choose Color:"
+      },
+      "scenario": {
+        "info": "Select which scenario to play.",
+        "label": "Choose Scenario:",
+        "nameLabel": "Scenario",
+        "select": "Select Scenario"
+      },
+      "title": "New Standard Game"
+    },
     "playerCountMenu": {
       "cancel": {
         "info": "$t(component.menu.cancel.info)",

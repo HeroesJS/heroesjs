@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import {
@@ -61,6 +62,8 @@ export function NewStandardGameWindow({
   x,
   y,
 }: NewStandardGameWindowProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.newStandardGameWindow' });
+
   const [GameDifficultyInfoModal, gameDifficultyInfoModal] = useModal();
   const [ComputerOpponentSettingInfoModal, computerOpponentSettingInfoModal] = useModal();
   const [HumanOpponentSettingInfoModal, humanOpponentSettingInfoModal] = useModal();
@@ -88,29 +91,26 @@ export function NewStandardGameWindow({
     <Window
       background={background}
       height={NewStandardGameWindow.height}
-      label="New Standard Game"
+      label={t('title')}
       open
       width={NewStandardGameWindow.width}
       x={x}
       y={y}
     >
-      <Text size="large" x={60} y={22}>
-        Choose Game Difficulty:
+      <Text hidden id="gameDifficultyLabel" size="large" x={60} y={22}>
+        {t('gameDifficulty.label')}
       </Text>
       <GameDifficultySelector
-        label="Game Difficulty"
+        labelId="gameDifficultyLabel"
         onChange={onGameDifficultyChange}
         onMouseDown={gameDifficultyInfoModal.onMouseDown}
         value={gameDifficulty}
         x={19}
         y={36}
       />
-      <GameDifficultyInfoModal size={1}>
-        Change the starting difficulty at which you will play.&nbsp;&nbsp;Higher difficulty levels start you off with
-        fewer resources.
-      </GameDifficultyInfoModal>
+      <GameDifficultyInfoModal size={1}>{t('gameDifficulty.info')}</GameDifficultyInfoModal>
       <Text size="large" x={70} y={132}>
-        Customize Opponents:
+        {t('opponents.label')}
       </Text>
       <OpponentSettingsSelector
         humanOpponentsCount={humanOpponentsCount}
@@ -123,15 +123,11 @@ export function NewStandardGameWindow({
         y={149}
       />
       <ComputerOpponentSettingInfoModal size={1}>
-        Change the difficulty of this opponent.&nbsp;&nbsp;Smarter computer players are more aggressive and think longer
-        for each turn.
+        {t('opponents.computerOpponentInfo')}
       </ComputerOpponentSettingInfoModal>
-      <HumanOpponentSettingInfoModal size={1}>
-        Change the starting difficulty of another human player.&nbsp;&nbsp;Higher difficulty levels start you off with
-        fewer resources.
-      </HumanOpponentSettingInfoModal>
+      <HumanOpponentSettingInfoModal size={1}>{t('opponents.humanOpponentInfo')}</HumanOpponentSettingInfoModal>
       <Text hidden id="playerColorLabel" size="large" x={26} y={254}>
-        Choose Color:
+        {t('playerColor.label')}
       </Text>
       <CycleToggle
         labelId="playerColorLabel"
@@ -144,9 +140,9 @@ export function NewStandardGameWindow({
       >
         {(value) => <PlayerColorJewel value={value} />}
       </CycleToggle>
-      <PlayerColorInfoModal>Change your banner color.</PlayerColorInfoModal>
+      <PlayerColorInfoModal>{t('playerColor.info')}</PlayerColorInfoModal>
       <Text hidden id="kingOfTheHillLabel" size="large" x={169} y={254}>
-        King of the Hill:
+        {t('kingOfTheHill.label')}
       </Text>
       <Checkbox
         assets={kingOfTheHillAssets}
@@ -157,15 +153,12 @@ export function NewStandardGameWindow({
         x={210}
         y={272}
       />
-      <KingOfTheHillInfoModal size={2}>
-        Challenge all computer players as 'King of the Hill'.&nbsp; Computer players will be offended by your
-        boastfulness, and lay off each other in an attempt to beat you to a pulp.
-      </KingOfTheHillInfoModal>
+      <KingOfTheHillInfoModal size={2}>{t('kingOfTheHill.info')}</KingOfTheHillInfoModal>
       <Text size="large" x={91} y={338}>
-        Choose Scenario:
+        {t('scenario.label')}
       </Text>
       <Input
-        aria-label="Scenario"
+        aria-label={t('scenario.nameLabel')}
         aria-readonly
         aria-required
         onClick={onSelectScenarioClick}
@@ -180,43 +173,40 @@ export function NewStandardGameWindow({
       </Input>
       <Button
         assets={scenario.select}
-        label="Select Scenario"
+        label={t('scenario.select')}
         onClick={onSelectScenarioClick}
         onMouseDown={selectScenarioInfoModal.onMouseDown}
         x={273}
         y={354}
       />
-      <SelectScenarioInfoModal>Select which scenario to play.</SelectScenarioInfoModal>
+      <SelectScenarioInfoModal>{t('scenario.info')}</SelectScenarioInfoModal>
       <Text onMouseDown={difficultyRatingInfoModal.onMouseDown} size="large" x={78} y={388}>
         <span aria-hidden id="difficultyRatingLabel">
-          Difficulty Rating:
+          {t('difficultyRating.label')}
         </span>{' '}
-        <span aria-labelledby="difficultyRatingLabel">{difficultyRating}%</span>
+        <span aria-labelledby="difficultyRatingLabel">{t('difficultyRating.value', { value: difficultyRating })}</span>
       </Text>
-      <DifficultyRatingInfoModal size={1}>
-        The difficulty rating reflects a combination of various settings for your game.&nbsp;&nbsp;This number will be
-        applied to your final score.
-      </DifficultyRatingInfoModal>
+      <DifficultyRatingInfoModal size={1}>{t('difficultyRating.info')}</DifficultyRatingInfoModal>
       <Button
         assets={okay}
-        label="Okay"
+        label={t('confirm.label')}
         onClick={handleOkayClick}
         onMouseDown={okayInfoModal.onMouseDown}
         x={24}
         y={412}
       />
-      <OkayInfoModal>Accept these settings and start a new game.</OkayInfoModal>
+      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
       <Button
         assets={cancel}
-        label="Cancel"
+        label={t('cancel.label')}
         onClick={onCancelClick}
         onMouseDown={cancelInfoModal.onMouseDown}
         x={201}
         y={412}
       />
-      <CancelInfoModal>Return to the main menu.</CancelInfoModal>
+      <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
       <NoOpponentsErrorModal autoClose size={1} type="okay" y={61}>
-        A game requires at least one opponent.
+        {t('opponents.noOpponentsError')}
       </NoOpponentsErrorModal>
     </Window>
   );
