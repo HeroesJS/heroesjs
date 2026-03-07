@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import type { CampaignGameScore, HighScores, HighScoresGameType, StandardGameScore } from '@heroesjs/hmm1-core';
 import { GameType } from '@heroesjs/hmm1-core';
 import { Button, PositionedComponent, Screen, Text } from '@heroesjs/hmm1-core-ui';
@@ -17,40 +19,42 @@ export function HighScoresScreen({
   onExitClick,
   onGameTypeChange,
 }: HighScoresScreenProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.highScoresScreen' });
+
   const showCampaignGameScores = gameType === GameType.Campaign;
 
   const scores = entries[gameType] ?? [];
 
   return (
-    <Screen background={background} label="High Scores">
+    <Screen background={background} label={t('title')}>
       <PositionedComponent as="table" x={82} y={31}>
-        <caption>{showCampaignGameScores ? 'Campaign Game' : 'Standard Game'}</caption>
+        <caption>{showCampaignGameScores ? t('campaignGame') : t('standardGame')}</caption>
         <thead>
           <tr style={{ height: 35 }}>
             <th scope="col" style={{ width: 166 }}>
-              <PositionedComponent alt="Player" as="img" src={player} x={17} y={0} />
+              <PositionedComponent alt={t('player')} as="img" src={player} x={17} y={0} />
             </th>
             {showCampaignGameScores ? (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent alt="Leader" as="img" src={leader} x={187} y={0} />
+                  <PositionedComponent alt={t('leader')} as="img" src={leader} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent alt="Days" as="img" src={days} x={291} y={0} />
+                  <PositionedComponent alt={t('days')} as="img" src={days} x={291} y={0} />
                 </th>
               </>
             ) : (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent alt="Land" as="img" src={land} x={187} y={0} />
+                  <PositionedComponent alt={t('scenario')} as="img" src={land} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent alt="Score" as="img" src={score} x={291} y={0} />
+                  <PositionedComponent alt={t('score')} as="img" src={score} x={291} y={0} />
                 </th>
               </>
             )}
             <th scope="col" style={{ width: 140 }}>
-              <PositionedComponent alt="Title" as="img" src={title} x={379} y={0} />
+              <PositionedComponent alt={t('scoreTitle')} as="img" src={title} x={379} y={0} />
             </th>
           </tr>
         </thead>
@@ -93,7 +97,7 @@ export function HighScoresScreen({
       {showCampaignGameScores ? (
         <Button
           assets={campaign}
-          label="Campaign"
+          label={t('campaign.label')}
           onClick={() => onGameTypeChange?.(GameType.Standard)}
           x={8}
           y={315}
@@ -101,13 +105,13 @@ export function HighScoresScreen({
       ) : (
         <Button
           assets={standard}
-          label="Standard"
+          label={t('standard.label')}
           onClick={() => onGameTypeChange?.(GameType.Campaign)}
           x={8}
           y={315}
         />
       )}
-      <Button assets={exit} label="Exit" onClick={onExitClick} x={604} y={315} />
+      <Button assets={exit} label={t('exit')} onClick={onExitClick} x={604} y={315} />
     </Screen>
   );
 }

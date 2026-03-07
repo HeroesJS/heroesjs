@@ -93,6 +93,26 @@
         "label": "Standard Game"
       }
     },
+    "highScoresScreen": {
+      "campaign": {
+        "label": "Campaign"
+      },
+      "campaignGame": "Campaign Game",
+      "days": "Days",
+      "exit": {
+        "label": "Exit"
+      },
+      "leader": "Leader",
+      "player": "Player",
+      "scenario": "Land",
+      "score": "Score",
+      "scoreTitle": "Title",
+      "standard": {
+        "label": "Standard"
+      },
+      "standardGame": "Standard Game",
+      "title": "High Scores"
+    },
     "menu": {
       "cancel": {
         "info": "Cancel back to the main menu.",
