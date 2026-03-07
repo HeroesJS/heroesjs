@@ -162,6 +162,29 @@
         "label": "Host (Dials)"
       },
       "label": "Modem Game Menu"
+    },
+    "multiPlayerGameTypeMenu": {
+      "cancel": {
+        "info": "$t(component.menu.cancel.info)",
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "directConnect": {
+        "info": "Play a direct connect game, where 2 players use ther own computers directly connected through their serial port by a null modem.",
+        "label": "Direct Connect"
+      },
+      "hotSeat": {
+        "info": "Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when it is their turn.",
+        "label": "Hot Seat"
+      },
+      "label": "Multi-Player Game Type Menu",
+      "modem": {
+        "info": "Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.",
+        "label": "Modem"
+      },
+      "network": {
+        "info": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).",
+        "label": "Network"
+      }
     }
   }
 }
