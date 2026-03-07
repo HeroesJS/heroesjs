@@ -113,12 +113,6 @@
       "standardGame": "Standard Game",
       "title": "High Scores"
     },
-    "menu": {
-      "cancel": {
-        "info": "Cancel back to the main menu.",
-        "label": "Cancel"
-      }
-    },
     "mainMenu": {
       "label": "Main Menu",
       "loadGame": {
@@ -140,6 +134,15 @@
       "viewHighScores": {
         "info": "View the high score screen.",
         "label": "View High Scores"
+      }
+    },
+    "mainScreen": {
+      "title": "Main Screen"
+    },
+    "menu": {
+      "cancel": {
+        "info": "Cancel back to the main menu.",
+        "label": "Cancel"
       }
     }
   }
