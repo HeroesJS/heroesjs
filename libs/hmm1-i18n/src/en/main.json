@@ -144,6 +144,24 @@
         "info": "Cancel back to the main menu.",
         "label": "Cancel"
       }
+    },
+    "modemGameMenu": {
+      "cancel": {
+        "info": "$t(component.menu.cancel.info)",
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "config": {
+        "label": "Config Modem"
+      },
+      "guest": {
+        "info": "The guest waits for the host to call and set up the game.",
+        "label": "Guest (Answers)"
+      },
+      "host": {
+        "info": "The host sets up the game options, chooses the number to dial, and places the call.",
+        "label": "Host (Dials)"
+      },
+      "label": "Modem Game Menu"
     }
   }
 }
