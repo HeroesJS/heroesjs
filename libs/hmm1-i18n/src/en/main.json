@@ -185,6 +185,21 @@
         "info": "Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).",
         "label": "Network"
       }
+    },
+    "networkGameMenu": {
+      "cancel": {
+        "info": "$t(component.menu.cancel.info)",
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "guest": {
+        "info": "The guest waits for the host to set up the game, then is automatically added in.  There can only be one guest per network game.",
+        "label": "Guest"
+      },
+      "host": {
+        "info": "The host sets up the game options.  There can only be one host per network game.",
+        "label": "Host"
+      },
+      "label": "Network Game Menu"
     }
   }
 }
