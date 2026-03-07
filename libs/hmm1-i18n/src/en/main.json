@@ -60,6 +60,20 @@
       },
       "label": "Direct Connect Game Menu"
     },
+    "fileSelectorWindow": {
+      "cancel": "Cancel",
+      "confirm": "Okay",
+      "items": "Items",
+      "load": "File to Load:",
+      "scenarioDetail": {
+        "description": "Description:",
+        "difficulty": "Difficulty:",
+        "size": "Size:",
+        "title": "Scenario Detail"
+      },
+      "selectedItem": "Selected Item",
+      "title": "File Selector Window"
+    },
     "menu": {
       "cancel": {
         "info": "Cancel back to the main menu.",
