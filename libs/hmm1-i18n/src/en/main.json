@@ -29,6 +29,21 @@
         "label": "COM {{port}}"
       }
     },
+    "creditsScreen": {
+      "additionalDesign": "Additional Design",
+      "artDirector": "Art Director",
+      "artists": "Artists",
+      "designedAndDirected": "Designed and Directed",
+      "leadProgramming": "Lead Programming",
+      "musicAndSoundDesign": "Music and Sound Design",
+      "orchestralArranegments": "Orchestral Arrangements",
+      "programming": "Programming",
+      "qaManager": "QA Manager",
+      "scenarios": "Scenarios",
+      "testing": "Testing",
+      "title": "Credits",
+      "writingAndManual": "Writing and Manual"
+    },
     "menu": {
       "cancel": {
         "info": "Cancel back to the main menu.",
