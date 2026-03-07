@@ -44,6 +44,22 @@
       "title": "Credits",
       "writingAndManual": "Writing and Manual"
     },
+    "directConnectGameMenu": {
+      "cancel": {
+        "info": "$t(component.menu.cancel.info)",
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "config": {
+        "label": "Config"
+      },
+      "guest": {
+        "label": "Guest"
+      },
+      "host": {
+        "label": "Host"
+      },
+      "label": "Direct Connect Game Menu"
+    },
     "menu": {
       "cancel": {
         "info": "Cancel back to the main menu.",
