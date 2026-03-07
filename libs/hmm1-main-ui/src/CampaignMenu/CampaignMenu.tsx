@@ -1,21 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { Leader, leaders } from '@heroesjs/hmm1-core';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { cancel, playAssets } from './assets';
-
-const labels: Readonly<Record<Leader, string>> = {
-  [Leader.LordAlamar]: 'Play Lord Alamar',
-  [Leader.LordIronfist]: 'Play Lord Ironfist',
-  [Leader.LordSlayer]: 'Play Lord Slayer',
-  [Leader.QueenLamanda]: 'Play Queen Lamanda',
-};
-
-const infos: Readonly<Record<Leader, string>> = {
-  [Leader.LordAlamar]: 'Play the role of Lord Alamar.',
-  [Leader.LordIronfist]: 'Play the role of Lord Ironfist.',
-  [Leader.LordSlayer]: 'Play the role of Lord Slayer.',
-  [Leader.QueenLamanda]: 'Play the role of Queen Lamanda.',
-};
 
 interface CampaignMenuProps {
   readonly onCancelClick?: () => void;
@@ -25,6 +13,8 @@ interface CampaignMenuProps {
 }
 
 export function CampaignMenu({ onCancelClick, onPlayClick, x, y }: CampaignMenuProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
+
   const modals = {
     [Leader.LordAlamar]: useModal(),
     [Leader.LordIronfist]: useModal(),
@@ -35,7 +25,7 @@ export function CampaignMenu({ onCancelClick, onPlayClick, x, y }: CampaignMenuP
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label="Campaign Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
       {leaders.map((leader) => {
         const [Modal, modal] = modals[leader];
 
@@ -43,17 +33,22 @@ export function CampaignMenu({ onCancelClick, onPlayClick, x, y }: CampaignMenuP
           <MenuItem key={leader}>
             <Button
               assets={playAssets[leader]}
-              label={labels[leader]}
+              label={t('play.label', { leader })}
               onClick={() => onPlayClick?.(leader)}
               onMouseDown={modal.onMouseDown}
             />
-            <Modal>{infos[leader]}</Modal>
+            <Modal>{t('play.info', { leader })}</Modal>
           </MenuItem>
         );
       })}
       <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
+        <Button
+          assets={cancel}
+          label={t('cancel.label')}
+          onClick={onCancelClick}
+          onMouseDown={cancelInfoModal.onMouseDown}
+        />
+        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

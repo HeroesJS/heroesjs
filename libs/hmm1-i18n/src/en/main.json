@@ -9,6 +9,23 @@
         "label": "{{value}} Baud"
       }
     },
+    "campaignMenu": {
+      "cancel": {
+        "info": "$t(component.menu.cancel.info)",
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "label": "Campaign Menu",
+      "play": {
+        "info": "Play the role of $t(core:leader.{{leader}}).",
+        "label": "Play $t(core:leader.{{leader}})"
+      }
+    },
+    "menu": {
+      "cancel": {
+        "info": "Cancel back to the main menu.",
+        "label": "Cancel"
+      }
+    },
     "mainMenu": {
       "label": "Main Menu",
       "loadGame": {
