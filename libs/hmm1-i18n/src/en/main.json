@@ -20,6 +20,15 @@
         "label": "Play $t(core:leader.{{leader}})"
       }
     },
+    "comPortMenu": {
+      "cancel": {
+        "label": "$t(component.menu.cancel.label)"
+      },
+      "label": "COM Port Menu",
+      "port": {
+        "label": "COM {{port}}"
+      }
+    },
     "menu": {
       "cancel": {
         "info": "Cancel back to the main menu.",
