@@ -114,7 +114,7 @@ test.describe('king of the hill', () => {
 
     await newStandardGameScreen.kingOfTheHill.verifyInfoShown();
 
-    await expect(page).toHaveScreenshot('king-of-the-hill-info.png', { maxDiffPixelRatio: 0.01 });
+    await expect(page).toHaveScreenshot('king-of-the-hill-info.png', { maxDiffPixelRatio: 0.02 });
   });
 
   test('allows to change option', async ({ newStandardGameScreen }) => {

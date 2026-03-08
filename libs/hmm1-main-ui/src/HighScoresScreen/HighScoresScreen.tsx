@@ -111,7 +111,7 @@ export function HighScoresScreen({
           y={315}
         />
       )}
-      <Button assets={exit} label={t('exit')} onClick={onExitClick} x={604} y={315} />
+      <Button assets={exit} label={t('exit.label')} onClick={onExitClick} x={604} y={315} />
     </Screen>
   );
 }
