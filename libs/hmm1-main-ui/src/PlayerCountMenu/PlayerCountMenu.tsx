@@ -24,7 +24,7 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
 
   return (
     <Menu label={t('label')} x={x} y={y}>
-      {[2, 3, 4].map((count) => {
+      {([2, 3, 4] as const).map((count) => {
         const [InfoModal, infoModal] = infoModals[count];
 
         return (

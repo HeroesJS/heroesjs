@@ -3,6 +3,13 @@ import { initReactI18next } from 'react-i18next';
 
 import { en } from './en';
 
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    defaultNS: 'translation';
+    resources: typeof en;
+  }
+}
+
 i18n.use(initReactI18next).init({
   debug: true,
   defaultNS: 'translation',
