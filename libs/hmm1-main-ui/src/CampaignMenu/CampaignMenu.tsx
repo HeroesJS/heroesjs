@@ -1,73 +1,54 @@
+import { useTranslation } from 'react-i18next';
+
+import { Leader, leaders } from '@heroesjs/hmm1-core';
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
-import { cancel, playLordAlamar, playLordIronfist, playLordSlayer, playQueenLamanda } from './assets';
+import { cancel, playAssets } from './assets';
 
 interface CampaignMenuProps {
   readonly onCancelClick?: () => void;
-  readonly onPlayLordAlamarClick?: () => void;
-  readonly onPlayLordIronfistClick?: () => void;
-  readonly onPlayLordSlayerClick?: () => void;
-  readonly onPlayQueenLamandaClick?: () => void;
+  readonly onPlayClick?: (leader: Leader) => void;
   readonly x?: number;
   readonly y?: number;
 }
 
-export function CampaignMenu({
-  onCancelClick,
-  onPlayLordAlamarClick,
-  onPlayLordIronfistClick,
-  onPlayLordSlayerClick,
-  onPlayQueenLamandaClick,
-  x,
-  y,
-}: CampaignMenuProps) {
-  const [PlayLordIronfistInfoModal, playLordIronfistInfoModal] = useModal();
-  const [PlayLordSlayerInfoModal, playLordSlayerInfoModal] = useModal();
-  const [PlayQueenLamandaInfoModal, playQueenLamandaInfoModal] = useModal();
-  const [PlayLordAlamarInfoModal, playLordAlamarInfoModal] = useModal();
+export function CampaignMenu({ onCancelClick, onPlayClick, x, y }: CampaignMenuProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.campaignMenu' });
+
+  const modals = {
+    [Leader.LordAlamar]: useModal(),
+    [Leader.LordIronfist]: useModal(),
+    [Leader.LordSlayer]: useModal(),
+    [Leader.QueenLamanda]: useModal(),
+  };
+
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label="Campaign Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
+      {leaders.map((leader) => {
+        const [Modal, modal] = modals[leader];
+
+        return (
+          <MenuItem key={leader}>
+            <Button
+              assets={playAssets[leader]}
+              label={t('play.label', { leader })}
+              onClick={() => onPlayClick?.(leader)}
+              onMouseDown={modal.onMouseDown}
+            />
+            <Modal>{t('play.info', { leader })}</Modal>
+          </MenuItem>
+        );
+      })}
       <MenuItem>
         <Button
-          assets={playLordIronfist}
-          label="Play Lord Ironfist"
-          onClick={onPlayLordIronfistClick}
-          onMouseDown={playLordIronfistInfoModal.onMouseDown}
+          assets={cancel}
+          label={t('cancel.label')}
+          onClick={onCancelClick}
+          onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <PlayLordIronfistInfoModal>Play the role of Lord Ironfist.</PlayLordIronfistInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={playLordSlayer}
-          label="Play Lord Slayer"
-          onClick={onPlayLordSlayerClick}
-          onMouseDown={playLordSlayerInfoModal.onMouseDown}
-        />
-        <PlayLordSlayerInfoModal>Play the role of Lord Slayer.</PlayLordSlayerInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={playQueenLamanda}
-          label="Play Queen Lamanda"
-          onClick={onPlayQueenLamandaClick}
-          onMouseDown={playQueenLamandaInfoModal.onMouseDown}
-        />
-        <PlayQueenLamandaInfoModal>Play the role of Queen Lamanda.</PlayQueenLamandaInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={playLordAlamar}
-          label="Play Lord Alamar"
-          onClick={onPlayLordAlamarClick}
-          onMouseDown={playLordAlamarInfoModal.onMouseDown}
-        />
-        <PlayLordAlamarInfoModal>Play the role of Lord Alamar.</PlayLordAlamarInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
+        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

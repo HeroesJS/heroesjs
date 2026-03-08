@@ -9,19 +9,19 @@ describe(HighScoresScreen, () => {
   it('should render', () => {
     renderWithProviders(<HighScoresScreen />);
 
-    expect(screen.getByRole('main', { name: /high scores/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^high scores$/i })).toBeInTheDocument();
   });
 
   describe('standard game', () => {
     it('should render headers', () => {
       renderWithProviders(<HighScoresScreen />);
 
-      expect(screen.getByRole('table', { name: /standard game/i })).toBeInTheDocument();
+      expect(screen.getByRole('table', { name: /^standard game$/i })).toBeInTheDocument();
 
-      expect(screen.getByRole('columnheader', { name: /player/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /land/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /score/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /title/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^player$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^land$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^score$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^title$/i })).toBeInTheDocument();
     });
 
     it('should render entries', () => {
@@ -36,17 +36,17 @@ describe(HighScoresScreen, () => {
 
       const row = screen.getAllByRole('row')[1];
 
-      expect(within(row).getByRole('cell', { name: /player name/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /scenario name/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /123/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /the title/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^player name$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^scenario name$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^123$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^the title$/i })).toBeInTheDocument();
     });
 
     describe('standard button', () => {
       it('should render', () => {
         renderWithProviders(<HighScoresScreen />);
 
-        expect(screen.getByRole('button', { name: /standard/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /^standard$/i })).toBeInTheDocument();
       });
 
       it('should call game type change handler when clicked', async () => {
@@ -54,7 +54,7 @@ describe(HighScoresScreen, () => {
 
         const { user } = renderWithProviders(<HighScoresScreen onGameTypeChange={handler} />);
 
-        await user.click(screen.getByRole('button', { name: /standard/i }));
+        await user.click(screen.getByRole('button', { name: /^standard$/i }));
 
         expect(handler).toHaveBeenCalledWith<[HighScoresGameType]>(GameType.Campaign);
       });
@@ -65,12 +65,12 @@ describe(HighScoresScreen, () => {
     it('should render headers', () => {
       renderWithProviders(<HighScoresScreen gameType={GameType.Campaign} />);
 
-      expect(screen.getByRole('table', { name: /campaign game/i })).toBeInTheDocument();
+      expect(screen.getByRole('table', { name: /^campaign game$/i })).toBeInTheDocument();
 
-      expect(screen.getByRole('columnheader', { name: /player/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /leader/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /days/i })).toBeInTheDocument();
-      expect(screen.getByRole('columnheader', { name: /title/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^player$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^leader$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^days$/i })).toBeInTheDocument();
+      expect(screen.getByRole('columnheader', { name: /^title$/i })).toBeInTheDocument();
     });
 
     it('should render entries', () => {
@@ -85,17 +85,17 @@ describe(HighScoresScreen, () => {
 
       const row = screen.getAllByRole('row')[1];
 
-      expect(within(row).getByRole('cell', { name: /player name/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /leader name/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /321/i })).toBeInTheDocument();
-      expect(within(row).getByRole('cell', { name: /the title/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^player name$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^leader name$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^321$/i })).toBeInTheDocument();
+      expect(within(row).getByRole('cell', { name: /^the title$/i })).toBeInTheDocument();
     });
 
     describe('campaign button', () => {
       it('should render', () => {
         renderWithProviders(<HighScoresScreen gameType={GameType.Campaign} />);
 
-        expect(screen.getByRole('button', { name: /campaign/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /^campaign$/i })).toBeInTheDocument();
       });
 
       it('should call game type change handler when clicked', async () => {
@@ -105,7 +105,7 @@ describe(HighScoresScreen, () => {
           <HighScoresScreen gameType={GameType.Campaign} onGameTypeChange={handler} />
         );
 
-        await user.click(screen.getByRole('button', { name: /campaign/i }));
+        await user.click(screen.getByRole('button', { name: /^campaign$/i }));
 
         expect(handler).toHaveBeenCalledWith<[HighScoresGameType]>(GameType.Standard);
       });
@@ -116,7 +116,7 @@ describe(HighScoresScreen, () => {
     it('should render', () => {
       renderWithProviders(<HighScoresScreen />);
 
-      expect(screen.getByRole('button', { name: /exit/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^exit$/i })).toBeInTheDocument();
     });
 
     it('should call exit click handler when clicked', async () => {
@@ -124,7 +124,7 @@ describe(HighScoresScreen, () => {
 
       const { user } = renderWithProviders(<HighScoresScreen onExitClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /exit/i }));
+      await user.click(screen.getByRole('button', { name: /^exit$/i }));
 
       expect(handler).toHaveBeenCalled();
     });

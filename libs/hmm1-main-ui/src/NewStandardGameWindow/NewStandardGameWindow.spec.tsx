@@ -26,7 +26,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('radiogroup', { name: /game difficulty/i })).toBeInTheDocument();
+      expect(screen.getByRole('radiogroup', { name: /choose game difficulty:/i })).toBeInTheDocument();
 
       expect(screen.getByRole('radio', { name: /easy/i })).toBeInTheDocument();
       expect(screen.getByRole('radio', { name: /normal/i })).toBeInTheDocument();

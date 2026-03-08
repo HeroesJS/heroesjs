@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
-import { cancel, fourPlayers, threePlayers, twoPlayers } from './assets';
+import { cancel, countAssets } from './assets';
 
 interface PlayerCountMenuProps {
   readonly onCancelClick?: () => void;
@@ -10,46 +12,42 @@ interface PlayerCountMenuProps {
 }
 
 export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCountMenuProps) {
-  const [TwoPlayersInfoModal, twoPlayersInfoModal] = useModal();
-  const [ThreePlayersInfoModal, threePlayersInfoModal] = useModal();
-  const [FourPlayersInfoModal, fourPlayersInfoModal] = useModal();
+  const { t } = useTranslation('main', { keyPrefix: 'component.playerCountMenu' });
+
+  const infoModals: Readonly<Record<number, ReturnType<typeof useModal>>> = {
+    2: useModal(),
+    3: useModal(),
+    4: useModal(),
+  };
+
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label="Player Count Menu" x={x} y={y}>
-      <MenuItem>
-        <Button
-          assets={twoPlayers}
-          label="2 Players"
-          onClick={() => onValueClick?.(2)}
-          onMouseDown={twoPlayersInfoModal.onMouseDown}
-        />
-        <TwoPlayersInfoModal>
-          Play with 2 human players, and optionally, up to 2 additional computer players.
-        </TwoPlayersInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={threePlayers}
-          label="3 Players"
-          onClick={() => onValueClick?.(3)}
-          onMouseDown={threePlayersInfoModal.onMouseDown}
-        />
-        <ThreePlayersInfoModal>Play with 3 human players, and optionally 1 computer player.</ThreePlayersInfoModal>
-      </MenuItem>
-      <MenuItem>
-        <Button
-          assets={fourPlayers}
-          label="4 Players"
-          onClick={() => onValueClick?.(4)}
-          onMouseDown={fourPlayersInfoModal.onMouseDown}
-        />
-        <FourPlayersInfoModal>Play with 4 human players.</FourPlayersInfoModal>
-      </MenuItem>
+    <Menu label={t('label')} x={x} y={y}>
+      {[2, 3, 4].map((count) => {
+        const [InfoModal, infoModal] = infoModals[count];
+
+        return (
+          <MenuItem key={count}>
+            <Button
+              assets={countAssets[count]}
+              label={t('count.label', { count })}
+              onClick={() => onValueClick?.(count)}
+              onMouseDown={infoModal.onMouseDown}
+            />
+            <InfoModal>{t(`count.info_${count}`)}</InfoModal>
+          </MenuItem>
+        );
+      })}
       <MenuItem />
       <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
+        <Button
+          assets={cancel}
+          label={t('cancel.label')}
+          onClick={onCancelClick}
+          onMouseDown={cancelInfoModal.onMouseDown}
+        />
+        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

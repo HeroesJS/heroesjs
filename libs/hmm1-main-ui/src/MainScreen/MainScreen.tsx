@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Screen } from '@heroesjs/hmm1-core-ui';
 
@@ -8,9 +9,11 @@ interface MainScreenProps {
   readonly label?: string;
 }
 
-export function MainScreen({ children, label = 'Main Screen' }: PropsWithChildren<MainScreenProps>) {
+export function MainScreen({ children, label }: PropsWithChildren<MainScreenProps>) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.mainScreen' });
+
   return (
-    <Screen background={background} label={label}>
+    <Screen background={background} label={label || t('title')}>
       {children}
     </Screen>
   );

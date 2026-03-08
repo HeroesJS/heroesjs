@@ -1,13 +1,15 @@
 import type { MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { gameDifficulties, GameDifficulty, gameDifficultyLabel } from '@heroesjs/hmm1-core';
+import { gameDifficulties, GameDifficulty } from '@heroesjs/hmm1-core';
 import { PositionedComponent, Text } from '@heroesjs/hmm1-core-ui';
 
 import { gameDifficulty } from './assets';
 
 interface GameDifficultySelectorProps {
-  readonly label: string;
+  readonly label?: string;
+  readonly labelId?: string;
   readonly onChange?: (value: GameDifficulty) => void;
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly value: GameDifficulty;
@@ -15,9 +17,17 @@ interface GameDifficultySelectorProps {
   readonly y?: number;
 }
 
-export function GameDifficultySelector({ label, onChange, onMouseDown, value, x, y }: GameDifficultySelectorProps) {
+export function GameDifficultySelector({
+  label,
+  labelId,
+  onChange,
+  onMouseDown,
+  value,
+  x,
+  y,
+}: GameDifficultySelectorProps) {
   return (
-    <Root aria-label={label} role="radiogroup" x={x} y={y}>
+    <Root aria-label={label} aria-labelledby={labelId} role="radiogroup" x={x} y={y}>
       {gameDifficulties.map((difficulty) => (
         <Item
           key={difficulty}
@@ -44,6 +54,8 @@ interface ItemProps {
 }
 
 function Item({ onClick, onMouseDown, selected, value }: ItemProps) {
+  const { t } = useTranslation('core');
+
   const labelShift = [GameDifficulty.Hard, GameDifficulty.Expert].includes(value) ? -1 : 0;
 
   return (
@@ -51,7 +63,7 @@ function Item({ onClick, onMouseDown, selected, value }: ItemProps) {
       {selected && <img alt="" src={gameDifficulty.selection} />}
       <PositionedComponent alt="" as="img" src={gameDifficulty.icon[value]} x={3} y={3} />
       <Text align="center" size="small" width={Item.width + labelShift} x={0} y={69}>
-        {gameDifficultyLabel[value]}
+        {t(`gameDifficulty.${value}`)}
       </Text>
     </ItemRoot>
   );

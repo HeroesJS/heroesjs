@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 
+import { Leader } from '@heroesjs/hmm1-core';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { CampaignMenu } from './CampaignMenu';
@@ -21,11 +22,11 @@ describe(CampaignMenu, () => {
     it('should call click handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<CampaignMenu onPlayLordIronfistClick={handler} />);
+      const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /play lord ironfist/i }));
 
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith<[Leader]>(Leader.LordIronfist);
     });
 
     it('should render info when right-clicked', async () => {
@@ -47,11 +48,11 @@ describe(CampaignMenu, () => {
     it('should call click handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<CampaignMenu onPlayLordSlayerClick={handler} />);
+      const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /play lord slayer/i }));
 
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith<[Leader]>(Leader.LordSlayer);
     });
 
     it('should render info when right-clicked', async () => {
@@ -73,11 +74,11 @@ describe(CampaignMenu, () => {
     it('should call click handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<CampaignMenu onPlayQueenLamandaClick={handler} />);
+      const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /play queen lamanda/i }));
 
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith<[Leader.QueenLamanda]>(Leader.QueenLamanda);
     });
 
     it('should render info when right-clicked', async () => {
@@ -99,11 +100,11 @@ describe(CampaignMenu, () => {
     it('should call click handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<CampaignMenu onPlayLordAlamarClick={handler} />);
+      const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
       await user.click(screen.getByRole('button', { name: /play lord alamar/i }));
 
-      expect(handler).toHaveBeenCalled();
+      expect(handler).toHaveBeenCalledWith<[Leader.LordAlamar]>(Leader.LordAlamar);
     });
 
     it('should render info when right-clicked', async () => {

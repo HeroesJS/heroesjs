@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, Menu, MenuItem, useModal } from '@heroesjs/hmm1-core-ui';
 
 import { noConfig, withConfig } from './assets';
@@ -21,10 +23,12 @@ export function ModemGameMenu({
   x,
   y,
 }: ModemGameMenuProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.modemGameMenu' });
+
   const { cancel, guest, host } = allowConfiguration ? withConfig : noConfig;
 
   const configButton = allowConfiguration && (
-    <Button assets={withConfig.config} label="Config Modem" onClick={onConfigClick} />
+    <Button assets={withConfig.config} label={t('config.label')} onClick={onConfigClick} />
   );
 
   const [HostInfoModal, hostInfoModal] = useModal();
@@ -32,27 +36,30 @@ export function ModemGameMenu({
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label="Modem Game Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
       <MenuItem>
-        <Button assets={host} label="Host (Dials)" onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
-        <HostInfoModal>
-          The host sets up the game options, chooses the number to dial, and places the call.
-        </HostInfoModal>
+        <Button assets={host} label={t('host.label')} onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
+        <HostInfoModal>{t('host.info')}</HostInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={guest}
-          label="Guest (Answers)"
+          label={t('guest.label')}
           onClick={onGuestClick}
           onMouseDown={guestInfoModal.onMouseDown}
         />
-        <GuestInfoModal>The guest waits for the host to call and set up the game.</GuestInfoModal>
+        <GuestInfoModal>{t('guest.info')}</GuestInfoModal>
       </MenuItem>
       <MenuItem>{configButton}</MenuItem>
       <MenuItem />
       <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} onMouseDown={cancelInfoModal.onMouseDown} />
-        <CancelInfoModal>Cancel back to the main menu.</CancelInfoModal>
+        <Button
+          assets={cancel}
+          label={t('cancel.label')}
+          onClick={onCancelClick}
+          onMouseDown={cancelInfoModal.onMouseDown}
+        />
+        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

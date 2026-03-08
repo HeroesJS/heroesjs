@@ -1,4 +1,5 @@
 import { useId, type PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { PositionedComponent, Screen, Text } from '@heroesjs/hmm1-core-ui';
@@ -10,54 +11,56 @@ interface CreditsScreenProps {
 }
 
 export function CreditsScreen({ onClick }: CreditsScreenProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.creditsScreen' });
+
   return (
-    <Screen background={background} label="Credits" onClick={onClick}>
-      <List label="Designed and Directed" width={210} x={55} y={47}>
+    <Screen background={background} label={t('title')} onClick={onClick}>
+      <List label={t('designedAndDirected')} width={210} x={55} y={47}>
         <ListItem>Jon Van Caneghem</ListItem>
       </List>
-      <List label="Additional Design" width={210} x={54} y={96}>
+      <List label={t('additionalDesign')} width={210} x={54} y={96}>
         <ListItem>Phil Steinmeyer</ListItem>
         <ListItem shift={2}>Debbie Van Caneghem</ListItem>
       </List>
-      <List label="Lead Programming" width={210} x={55} y={159}>
+      <List label={t('leadProgramming')} width={210} x={55} y={159}>
         <ListItem shift={-2}>Phil Steinmeyer</ListItem>
       </List>
-      <List label="Programming" width={210} x={53} y={208}>
+      <List label={t('programming')} width={210} x={53} y={208}>
         <ListItem shift={2}>Mark Caldwell</ListItem>
         <ListItem shift={3}>George Ruof</ListItem>
         <ListItem shift={3}>Todd Hendrix</ListItem>
         <ListItem shift={3}>Bob Rakosky</ListItem>
         <ListItem shift={5}>Michael Sean Clement</ListItem>
       </List>
-      <List label="Art Director" width={210} x={54} y={313}>
+      <List label={t('artDirector')} width={210} x={54} y={313}>
         <ListItem shift={1}>Julia Ulano</ListItem>
       </List>
-      <List label="Artists" width={210} x={54} y={362}>
+      <List label={t('artists')} width={210} x={54} y={362}>
         <ListItem shift={3}>Bonita Long-Hemsath</ListItem>
         <ListItem shift={1}>Joel Payne</ListItem>
         <ListItem shift={3}>Mike Winterbauer</ListItem>
       </List>
-      <List label="Music and Sound Design" width={300} x={274} y={39}>
+      <List label={t('musicAndSoundDesign')} width={300} x={274} y={39}>
         <ListItem>Rob King</ListItem>
       </List>
-      <List label="Orchestral Arrangements" width={300} x={273} y={83}>
+      <List label={t('orchestralArranegments')} width={300} x={273} y={83}>
         <ListItem>Paul Romero</ListItem>
       </List>
-      <List label="Writing and Manual" width={300} x={273} y={127}>
+      <List label={t('writingAndManual')} width={300} x={273} y={127}>
         <ListItem>Rozita Tolouey</ListItem>
         <ListItem>Deane Rettig</ListItem>
         <ListItem shift={1}>Bruce Schlickbernd</ListItem>
       </List>
-      <List label="Scenarios" width={300} x={273} y={199}>
+      <List label={t('scenarios')} width={300} x={273} y={199}>
         <ListItem>Jon Van Caneghem</ListItem>
         <ListItem>Christian Vanover</ListItem>
         <ListItem shift={-1}>Clayton Retzer</ListItem>
         <ListItem>Mark Palczynski</ListItem>
       </List>
-      <List label="QA Manager" width={300} x={272} y={285}>
+      <List label={t('qaManager')} width={300} x={272} y={285}>
         <ListItem shift={1}>Peter Ryu</ListItem>
       </List>
-      <List height={100} label="Testing" width={300} x={272} y={329}>
+      <List height={100} label={t('testing')} width={300} x={272} y={329}>
         <ListItem>Bryan Farina</ListItem>
         <ListItem>Douglas Rothman</ListItem>
         <ListItem>Pavel Vesely</ListItem>

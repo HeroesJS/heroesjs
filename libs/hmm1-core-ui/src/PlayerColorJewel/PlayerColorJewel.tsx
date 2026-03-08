@@ -1,4 +1,6 @@
-import { PlayerColor, playerColorLabel } from '@heroesjs/hmm1-core';
+import { useTranslation } from 'react-i18next';
+
+import { PlayerColor } from '@heroesjs/hmm1-core';
 
 import { Text } from '../Text';
 import { PositionedComponent } from '../PositionedComponent';
@@ -13,12 +15,14 @@ interface PlayerColorJewelProps {
 }
 
 export function PlayerColorJewel({ label, labelId, value = PlayerColor.Blue, x, y }: PlayerColorJewelProps) {
+  const { t } = useTranslation('core');
+
   return (
     <PositionedComponent aria-label={label} aria-labelledby={labelId} x={x} y={y}>
       <Text invisible x={0} y={0}>
-        {playerColorLabel[value]}
+        {t(`playerColor.${value}`)}
       </Text>
-      <img alt={playerColorLabel[value]} role="presentation" src={jewels[value]} />
+      <img alt={t(`playerColor.${value}`)} role="presentation" src={jewels[value]} />
     </PositionedComponent>
   );
 }

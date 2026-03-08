@@ -25,6 +25,7 @@
     "@heroesjs/hmm1-core-ui": "*",
     "@heroesjs/hmm1-core": "*",
     "react": "^19.0.0",
+    "react-i18next": "^16.5.5",
     "styled-components": "5.3.6"
   }
 }

@@ -1,10 +1,9 @@
 import { Fragment, useId } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import {
-  computerOpponentSettingLabel,
   GameDifficulty,
-  gameDifficultyLabel,
   getOpponentGameDifficulty,
   isHumanOpponent,
   MapDifficulty,
@@ -53,6 +52,8 @@ export function ScenarioInfoWindow({
   x,
   y,
 }: ScenarioInfoWindowProps) {
+  const { t } = useTranslation('core');
+
   const scenarioNameLabelId = useId();
   const gameDifficultyLabelId = useId();
   const opponentsLabelId = useId();
@@ -90,7 +91,7 @@ export function ScenarioInfoWindow({
         x={296}
         y={72}
       >
-        {gameDifficulty && gameDifficultyLabel[gameDifficulty]}
+        {gameDifficulty && t(`gameDifficulty.${gameDifficulty}`)}
       </Text>
       <Label hidden id={opponentsLabelId} invisible size="large" x={25} y={105}>
         Opponents:
@@ -102,9 +103,9 @@ export function ScenarioInfoWindow({
             <span aria-label={`Opponent ${opponentIndex + 1}:`}>
               {opponent !== noOpponent
                 ? isHumanOpponent(opponentIndex, humanOpponentsCount)
-                  ? `Human-${gameDifficultyLabel[getOpponentGameDifficulty(opponent)]}`
-                  : computerOpponentSettingLabel[opponent]
-                : 'None'}
+                  ? `${t('opponentDifficulty.human')}-${t(`gameDifficulty.${getOpponentGameDifficulty(opponent)}`)}`
+                  : t(`opponentDifficulty.computer.${opponent}`)
+                : t('opponentDifficulty.none')}
             </span>
           </Fragment>
         ))}

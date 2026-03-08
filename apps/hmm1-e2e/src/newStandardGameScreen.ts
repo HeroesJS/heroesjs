@@ -44,7 +44,7 @@ export class NewStandardGameScreen extends Screen {
 
     this.gameDifficulty = new RadioGroup(
       page,
-      /^game difficulty$/i,
+      /^choose game difficulty:$/i,
       /^change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\.$/i
     );
     this.opponents = new ToggleGroup(page, /^opponent 1 setting$/i, /^opponent 2 setting$/i, /^opponent 3 setting$/i);

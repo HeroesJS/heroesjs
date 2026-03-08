@@ -1,9 +1,9 @@
 import { range } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
-import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
 
-import { cancel, com1, com2, com3, com4 } from './assets';
+import { cancel, portAssets } from './assets';
 
 interface ComPortMenuProps {
   readonly onCancelClick?: () => void;
@@ -13,22 +13,17 @@ interface ComPortMenuProps {
 }
 
 export function ComPortMenu({ onCancelClick, onValueClick, x, y }: ComPortMenuProps) {
-  const assets: Record<number, ButtonAssets> = {
-    1: com1,
-    2: com2,
-    3: com3,
-    4: com4,
-  };
+  const { t } = useTranslation('main', { keyPrefix: 'component.comPortMenu' });
 
   return (
-    <Menu label="COM Port Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
       {range(1, 5).map((port) => (
         <MenuItem key={port}>
-          <Button assets={assets[port]} label={`COM ${port}`} onClick={() => onValueClick?.(port)} />
+          <Button assets={portAssets[port]} label={t('port.label', { port })} onClick={() => onValueClick?.(port)} />
         </MenuItem>
       ))}
       <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} />
+        <Button assets={cancel} label={t('cancel.label')} onClick={onCancelClick} />
       </MenuItem>
     </Menu>
   );

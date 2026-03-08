@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import type { ButtonAssets } from '@heroesjs/hmm1-core-ui';
 import { Button, Menu, MenuItem } from '@heroesjs/hmm1-core-ui';
 
@@ -11,6 +13,8 @@ interface BaudMenuProps {
 }
 
 export function BaudMenu({ onCancelClick, onValueClick, x, y }: BaudMenuProps) {
+  const { t } = useTranslation('main', { keyPrefix: 'component.baudMenu' });
+
   const assets: Record<number, ButtonAssets> = {
     19200: baud19200,
     2400: baud2400,
@@ -19,14 +23,14 @@ export function BaudMenu({ onCancelClick, onValueClick, x, y }: BaudMenuProps) {
   };
 
   return (
-    <Menu label="Baud Menu" x={x} y={y}>
+    <Menu label={t('label')} x={x} y={y}>
       {[2400, 9600, 19200, 38400].map((value) => (
         <MenuItem key={value}>
-          <Button assets={assets[value]} label={`${value} Baud`} onClick={() => onValueClick?.(value)} />
+          <Button assets={assets[value]} label={t('value.label', { value })} onClick={() => onValueClick?.(value)} />
         </MenuItem>
       ))}
       <MenuItem>
-        <Button assets={cancel} label="Cancel" onClick={onCancelClick} />
+        <Button assets={cancel} label={t('cancel.label')} onClick={onCancelClick} />
       </MenuItem>
     </Menu>
   );
