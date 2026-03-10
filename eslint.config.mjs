@@ -1,10 +1,12 @@
 import nx from '@nx/eslint-plugin';
+import i18nextPlugin from 'eslint-plugin-i18next';
 import jsoncParser from 'jsonc-eslint-parser';
 
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  i18nextPlugin.configs['flat/recommended'],
   {
     ignores: [
       '**/dist',
