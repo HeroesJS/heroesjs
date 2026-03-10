@@ -11,6 +11,17 @@
     "3": "Queen Lamanda",
     "4": "Lord Alamar"
   },
+  "mapDifficulty": {
+    "easy": "Easy",
+    "impossible": "Impossible",
+    "normal": "Normal",
+    "tough": "Tough"
+  },
+  "mapSize": {
+    "large": "Large",
+    "medium": "Medium",
+    "small": "Small"
+  },
   "movementSpeed": {
     "canter": "Canter",
     "gallop": "Gallop",

@@ -3,7 +3,7 @@ import { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '@heroesjs/hmm1-core';
+import { MapDifficulty, MapSize } from '@heroesjs/hmm1-core';
 import { Button, PositionedComponent, Scrollbar, Text, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, inputBackground, okay, scenarioInfoBackground } from './assets';
@@ -154,6 +154,7 @@ interface ScenarioInfoProps {
 
 function ScenarioInfo({ detail, x, y }: ScenarioInfoProps) {
   const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow.scenarioDetail' });
+  const { t: tCore } = useTranslation('core');
 
   const sizeLabelId = useId();
   const difficultyLabelId = useId();
@@ -164,13 +165,13 @@ function ScenarioInfo({ detail, x, y }: ScenarioInfoProps) {
         {t('size')}
       </ScenarioLabel>
       <Text align="center" labelId={sizeLabelId} size="large" width={109} x={15} y={35}>
-        {detail && mapSizeLabel[detail.size]}
+        {detail && tCore(`mapSize.${detail.size}`)}
       </Text>
       <ScenarioLabel hidden id={difficultyLabelId} invisible size="large" x={164} y={17}>
         {t('difficulty')}
       </ScenarioLabel>
       <Text align="center" labelId={difficultyLabelId} size="large" width={134} x={160} y={35}>
-        {detail && mapDifficultyLabel[detail.difficulty]}
+        {detail && tCore(`mapDifficulty.${detail.difficulty}`)}
       </Text>
       <ScenarioDescription align="center" label={t('description')} size="large" width={245} x={36} y={65}>
         {detail?.description}

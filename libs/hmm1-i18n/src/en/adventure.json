@@ -114,6 +114,29 @@
         "info": "Toggle 'Show Enemy Moves' on/off.  If on, all enemies moving within your visible area will be shown.  If off, no computer movement will be shown.  Note that this option is automatically set to off during network and modem play.",
         "label": "View Enemy Movement"
       }
+    },
+    "scenarioInfoWindow": {
+      "confirm": {
+        "label": "Okay"
+      },
+      "difficultyRating": {
+        "label": "Rating:",
+        "value": "{{value}}%"
+      },
+      "gameDifficulty": "Game Setting:",
+      "kingOfTheHill": {
+        "disabled": "No",
+        "enabled": "Yes",
+        "label": "King of the Hill:"
+      },
+      "opponent": "Opponent {{opponentNumber}}:",
+      "opponents": "Opponents:",
+      "playerColor": "Color:",
+      "scenario": "Scenario:",
+      "scenarioDescription": "Description:",
+      "scenarioDifficulty": "Difficulty:",
+      "scenarioSize": "Size:",
+      "title": "Scenario Info"
     }
   }
 }
