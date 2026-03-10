@@ -11,6 +11,13 @@
     "3": "Queen Lamanda",
     "4": "Lord Alamar"
   },
+  "movementSpeed": {
+    "canter": "Canter",
+    "gallop": "Gallop",
+    "jump": "Jump",
+    "trot": "Trot",
+    "walk": "Walk"
+  },
   "opponentDifficulty": {
     "computer": {
       "average": "Average",

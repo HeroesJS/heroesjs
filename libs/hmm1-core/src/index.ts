@@ -14,7 +14,6 @@ export {
   leaders,
   MaxPlayerCount,
   MovementSpeed,
-  movementSpeedLabel,
   movementSpeeds,
   noOpponent,
   opponentDifficulties,

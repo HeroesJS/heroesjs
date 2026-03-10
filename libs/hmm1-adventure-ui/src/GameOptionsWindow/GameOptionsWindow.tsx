@@ -1,8 +1,9 @@
 import type { MouseEvent, ReactNode } from 'react';
 import { useId } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { MovementSpeed, movementSpeedLabel, movementSpeeds, SoundVolume, soundVolumes } from '@heroesjs/hmm1-core';
+import { MovementSpeed, movementSpeeds, SoundVolume, soundVolumes } from '@heroesjs/hmm1-core';
 import {
   Button,
   Checkbox,
@@ -77,6 +78,9 @@ export function GameOptionsWindow({
   x,
   y,
 }: GameOptionsWindowProps) {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.gameOptionsWindow' });
+  const { t: tCore } = useTranslation('core');
+
   const [NewGameInfoModal, newGameInfoModal] = useModal();
   const [NewGameConfirmationModal, newGameConfirmationModal] = useModal();
 
@@ -99,16 +103,16 @@ export function GameOptionsWindow({
   const [InfoInfoModal, infoInfoModal] = useModal();
 
   return (
-    <Window background={background} height={459} label="Game Options Window" open={open} width={322} x={x} y={y}>
+    <Window background={background} height={459} label={t('title')} open={open} width={322} x={x} y={y}>
       <Button
         assets={newGame}
-        label="New Game"
+        label={t('newGame.label')}
         onClick={newGameConfirmationModal.open}
         onMouseDown={newGameInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <NewGameInfoModal>Start a single or multi‑player game.</NewGameInfoModal>
+      <NewGameInfoModal>{t('newGame.info')}</NewGameInfoModal>
       <NewGameConfirmationModal
         onCancelClick={newGameConfirmationModal.close}
         onConfirmClick={onNewGameClick}
@@ -116,17 +120,17 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        Are you sure you want to restart?&nbsp;&nbsp;(Your current game will be lost)
+        {t('newGame.confirmation')}
       </NewGameConfirmationModal>
       <Button
         assets={loadGame}
-        label="Load Game"
+        label={t('loadGame.label')}
         onClick={loadGameConfirmationModal.open}
         onMouseDown={loadGameInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <LoadGameInfoModal>Load a previously saved game.</LoadGameInfoModal>
+      <LoadGameInfoModal>{t('loadGame.info')}</LoadGameInfoModal>
       <LoadGameConfirmationModal
         onCancelClick={loadGameConfirmationModal.close}
         onConfirmClick={onLoadGameClick}
@@ -134,26 +138,26 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        Are you sure you want to load a new game?&nbsp;&nbsp;(Your current game will be lost)
+        {t('loadGame.confirmation')}
       </LoadGameConfirmationModal>
       <Button
         assets={saveGame}
-        label="Save Game"
+        label={t('saveGame.label')}
         onClick={onSaveGameClick}
         onMouseDown={saveGameInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <SaveGameInfoModal>Save the current game.</SaveGameInfoModal>
+      <SaveGameInfoModal>{t('saveGame.info')}</SaveGameInfoModal>
       <Button
         assets={quit}
-        label="Quit"
+        label={t('quit.label')}
         onClick={quitConfirmationModal.open}
         onMouseDown={quitInfoModal.onMouseDown}
         x={179}
         y={107}
       />
-      <QuitInfoModal>Quit Heroes of Might and Magic and return to the DOS prompt.</QuitInfoModal>
+      <QuitInfoModal>{t('quit.info')}</QuitInfoModal>
       <QuitConfirmationModal
         onCancelClick={quitConfirmationModal.close}
         onConfirmClick={onQuitClick}
@@ -161,91 +165,88 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        Are you sure you want to quit?&nbsp;&nbsp;(Your current game will be lost)
+        {t('quit.confirmation')}
       </QuitConfirmationModal>
       <VolumeSetting
         assets={music}
-        label="Music"
+        label={t('musicVolume.label')}
         onChange={onMusicVolumeChange}
         onMouseDown={musicVolumeInfoModal.onMouseDown}
         value={musicVolume}
         x={25}
         y={181}
       />
-      <MusicVolumeInfoModal>Toggle ambient music on/off</MusicVolumeInfoModal>
+      <MusicVolumeInfoModal>{t('musicVolume.info')}</MusicVolumeInfoModal>
       <VolumeSetting
         assets={effects}
-        label="Effects"
+        label={t('effectsVolume.label')}
         onChange={onEffectsVolumeChange}
         onMouseDown={effectsVolumeInfoModal.onMouseDown}
         value={effectsVolume}
         x={117}
         y={181}
       />
-      <EffectsVolumeInfoModal>Toggle foreground sounds on/off</EffectsVolumeInfoModal>
+      <EffectsVolumeInfoModal>{t('effectsVolume.info')}</EffectsVolumeInfoModal>
       <CycleToggleSetting
         assets={movementSpeedAssets}
-        label="Speed"
+        label={t('movementSpeed.label')}
         onChange={onMovementSpeedChange}
         onMouseDown={movementSpeedInfoModal.onMouseDown}
         options={movementSpeeds}
         value={movementSpeed}
-        valueLabels={movementSpeedLabel}
+        valueLabel={tCore(`movementSpeed.${movementSpeed}`)}
         x={209}
         y={181}
       />
-      <MovementSpeedInfoModal>Change the speed at which Heroes move on the main screen.</MovementSpeedInfoModal>
+      <MovementSpeedInfoModal>{t('movementSpeed.info')}</MovementSpeedInfoModal>
       <CheckboxSetting
         assets={autoSaveAssets}
-        label="Auto Save"
+        label={t('autoSave.label')}
         onChange={onAutoSaveChange}
         onMouseDown={autoSaveInfoModal.onMouseDown}
         value={autoSave}
         x={25}
         y={301}
       />
-      <AutoSaveInfoModal size={1}>
-        Toggle 'Autosave' on/off.&nbsp; 'Autosave' saves your game automatically at the end of each turn to a special
-        file, called 'AUTOSAVE'.
-      </AutoSaveInfoModal>
+      <AutoSaveInfoModal size={1}>{t('autoSave.info')}</AutoSaveInfoModal>
       <CheckboxSetting
         assets={showPathAssets}
-        label="Show Path"
+        label={t('showPath.label')}
         onChange={onShowPathChange}
         onMouseDown={showPathInfoModal.onMouseDown}
         value={showPath}
         x={117}
         y={301}
       />
-      <ShowPathInfoModal size={2}>
-        Toggle 'Show Path' on/off.&nbsp; If 'Show Path' is on, your first click on a map location will show the path to
-        get there, your second will start you moving. If this option is off, one click starts you moving immediately.
-      </ShowPathInfoModal>
+      <ShowPathInfoModal size={2}>{t('showPath.info')}</ShowPathInfoModal>
       <CheckboxSetting
         assets={viewEnemyMovementAssets}
-        label="View Enemy Movement"
+        label={t('viewEnemyMovement.label')}
         onChange={onViewEnemyMovementChange}
         onMouseDown={viewEnemyMovementInfoModal.onMouseDown}
         value={viewEnemyMovement}
         x={209}
         y={289}
       />
-      <ViewEnemyMovementInfoModal size={2}>
-        Toggle 'Show Enemy Moves' on/off.&nbsp; If on, all enemies moving within your visible area will be shown.&nbsp;
-        If off, no computer movement will be shown.&nbsp; Note that this option is automatically set to off during
-        network and modem play.
-      </ViewEnemyMovementInfoModal>
-      <Button assets={okay} label="Okay" onClick={onOkayClick} onMouseDown={okayInfoModal.onMouseDown} x={24} y={407} />
-      <OkayInfoModal>Exit this menu without doing anything.</OkayInfoModal>
+      <ViewEnemyMovementInfoModal size={2}>{t('viewEnemyMovement.info')}</ViewEnemyMovementInfoModal>
+      <Button
+        assets={okay}
+        label={t('confirm.label')}
+        onClick={onOkayClick}
+        onMouseDown={okayInfoModal.onMouseDown}
+        x={24}
+        y={407}
+      />
+      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
       <Button
         assets={info}
-        label="Info"
+        label={t('info.label')}
         onClick={onInfoClick}
         onMouseDown={infoInfoModal.onMouseDown}
         x={201}
         y={407}
       />
-      <InfoInfoModal>View information on the scenario you are currently playing.</InfoInfoModal>
+      <InfoInfoModal>{t('info.info')}</InfoInfoModal>
     </Window>
   );
 }
@@ -261,8 +262,10 @@ interface CheckboxSettingProps {
 }
 
 function CheckboxSetting({ assets, label, onChange, onMouseDown, value, x, y }: CheckboxSettingProps) {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.gameOptionsWindow.toggle' });
+
   return (
-    <Setting label={label} valueLabel={value ? 'On' : 'Off'} x={x} y={y}>
+    <Setting label={label} valueLabel={value ? t('on') : t('off')} x={x} y={y}>
       {(labelId) => (
         <Checkbox assets={assets} checked={value} labelId={labelId} onChange={onChange} onMouseDown={onMouseDown} />
       )}
@@ -281,8 +284,10 @@ interface VolumeSettingProps {
 }
 
 function VolumeSetting({ assets, label, onChange, onMouseDown, value, x, y }: VolumeSettingProps) {
-  const enabledLabel = value !== SoundVolume.Off ? 'On' : 'Off';
-  const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? `Volume ${value}` : '';
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.gameOptionsWindow.soundVolume' });
+
+  const enabledLabel = value !== SoundVolume.Off ? t('max') : t('min');
+  const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? t('volume', { value }) : '';
 
   return (
     <Setting
@@ -329,7 +334,7 @@ interface CycleToggleSettingProps<T extends string> {
   readonly onMouseDown?: (e: MouseEvent) => void;
   readonly options: readonly T[];
   readonly value: T;
-  readonly valueLabels: Readonly<Record<T, string>>;
+  readonly valueLabel: string;
   readonly x?: number;
   readonly y?: number;
 }
@@ -341,15 +346,15 @@ function CycleToggleSetting<T extends string>({
   onMouseDown,
   options,
   value,
-  valueLabels,
+  valueLabel,
   x,
   y,
 }: CycleToggleSettingProps<T>) {
   return (
-    <Setting label={label} valueLabel={valueLabels[value]} x={x} y={y}>
+    <Setting label={label} valueLabel={valueLabel} x={x} y={y}>
       {(labelId) => (
         <CycleToggle labelId={labelId} onChange={onChange} onMouseDown={onMouseDown} options={options} value={value}>
-          {(value) => <img alt={valueLabels[value]} src={assets[value]} />}
+          {(value) => <img alt={valueLabel} src={assets[value]} />}
         </CycleToggle>
       )}
     </Setting>
