@@ -1,0 +1,30 @@
+{
+  "component": {
+    "adventureButtons": {
+      "adventureOptions": {
+        "info": "Adventure Options\n\nBring up the adventure options menu.",
+        "label": "Adventure Options"
+      },
+      "endTurn": {
+        "info": "End Turn\n\nEnd your turn and let the computer take its turn.",
+        "label": "End Turn"
+      },
+      "gameOptions": {
+        "info": "Game Options\n\nBring up the game options menu.",
+        "label": "Game Options"
+      },
+      "kingdomOverview": {
+        "info": "Kingdom Summary\n\nView a summary of your kingdom.",
+        "label": "Kingdom Overview"
+      },
+      "move": {
+        "info": "Continue Movement\n\nContinue the Hero's movement along his current path.",
+        "label": "Move"
+      },
+      "nextHero": {
+        "info": "Next Hero\n\nSelect the next hero.",
+        "label": "Next Hero"
+      }
+    }
+  }
+}

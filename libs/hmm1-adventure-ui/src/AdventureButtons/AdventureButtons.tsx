@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Button, PositionedComponent, useModal } from '@heroesjs/hmm1-core-ui';
@@ -29,6 +30,8 @@ export function AdventureButtons({
   x,
   y,
 }: AdventureButtonsProps) {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureButtons' });
+
   const [NextHeroInfoModal, nextHeroInfoModal] = useModal();
   const [MoveInfoModal, moveInfoModal] = useModal();
   const [KingdomOverviewInfoModal, kingdomOverviewInfoModal] = useModal();
@@ -41,71 +44,56 @@ export function AdventureButtons({
       <Button
         assets={nextHero}
         disabled={nextHeroDisabled}
-        label="Next Hero"
+        label={t('nextHero.label')}
         onClick={onNextHeroClick}
         onMouseDown={nextHeroInfoModal.onMouseDown}
       />
-      <NextHeroInfoModal x={97}>
-        Next Hero
-        <br />
-        <br />
-        Select the next Hero.
-      </NextHeroInfoModal>
+      <NextHeroInfoModal x={97}>{t('nextHero.info')}</NextHeroInfoModal>
       <Button
         assets={move}
         disabled={moveDisabled}
-        label="Move"
+        label={t('move.label')}
         onClick={onMoveClick}
         onMouseDown={moveInfoModal.onMouseDown}
       />
       <MoveInfoModal size={1} x={97}>
-        Continue Movement
-        <br />
-        <br />
-        Continue the Hero's movement along his current path.
+        {t('move.info')}
       </MoveInfoModal>
       <Button
         assets={kingdomOverview}
-        label="Kingdom Overview"
+        label={t('kingdomOverview.label')}
         onClick={onKingdomOverview}
         onMouseDown={kingdomOverviewInfoModal.onMouseDown}
       />
       <KingdomOverviewInfoModal size={1} x={97}>
-        Kingdom Summary
-        <br />
-        <br />
-        View a summary of your kingdom.
+        {t('kingdomOverview.info')}
       </KingdomOverviewInfoModal>
-      <Button assets={endTurn} label="End Turn" onClick={onEndTurnClick} onMouseDown={endTurnInfoModal.onMouseDown} />
+      <Button
+        assets={endTurn}
+        label={t('endTurn.label')}
+        onClick={onEndTurnClick}
+        onMouseDown={endTurnInfoModal.onMouseDown}
+      />
       <EndTurnInfoModal size={1} x={97}>
-        End Turn
-        <br />
-        <br />
-        End your turn and let the computer take its turn.
+        {t('endTurn.info')}
       </EndTurnInfoModal>
       <Button
         assets={adventureOptions}
-        label="Adventure Options"
+        label={t('adventureOptions.label')}
         onClick={onAdventureOptionsClick}
         onMouseDown={adventureOptionsInfoModal.onMouseDown}
       />
       <AdventureOptionsInfoModal size={1} x={97}>
-        Adventure Options
-        <br />
-        <br />
-        Bring up the adventure options menu.
+        {t('adventureOptions.info')}
       </AdventureOptionsInfoModal>
       <Button
         assets={gameOptions}
-        label="Game Options"
+        label={t('gameOptions.label')}
         onClick={onGameOptionsClick}
         onMouseDown={gameOptionsInfoModal.onMouseDown}
       />
       <GameOptionsInfoModal size={1} x={97}>
-        Game Options
-        <br />
-        <br />
-        Bring up the game options menu.
+        {t('gameOptions.info')}
       </GameOptionsInfoModal>
     </Root>
   );
