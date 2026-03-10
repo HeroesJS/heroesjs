@@ -48,6 +48,9 @@
         "info": "View the entire world.",
         "label": "View World"
       }
+    },
+    "adventureScreen": {
+      "title": "Adventure Screen"
     }
   }
 }
