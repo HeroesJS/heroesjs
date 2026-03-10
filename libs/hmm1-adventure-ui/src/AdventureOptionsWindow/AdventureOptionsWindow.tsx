@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, useModal, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, castSpellAssets, digAssets, okayAssets, viewPuzzleAssets, viewWorldAssets } from './assets';
@@ -23,6 +25,8 @@ export function AdventureOptionsWindow({
   x,
   y,
 }: AdventureOptionsWindowProps) {
+  const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureOptions' });
+
   const [ViewWorldInfoModal, viewWorldInfoModal] = useModal();
   const [ViewPuzzleInfoModal, viewPuzzleInfoModal] = useModal();
   const [CastSpellInfoModal, castSpellInfoModal] = useModal();
@@ -31,52 +35,52 @@ export function AdventureOptionsWindow({
   const [OkayInfoModal, okayInfoModal] = useModal();
 
   return (
-    <Window background={background} height={236} label="Adventure Options Window" open={open} width={322} x={x} y={y}>
+    <Window background={background} height={236} label={t('title')} open={open} width={322} x={x} y={y}>
       <Button
         assets={viewWorldAssets}
-        label="View World"
+        label={t('viewWorld.label')}
         onClick={onViewWorldClick}
         onMouseDown={viewWorldInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <ViewWorldInfoModal>View the entire world.</ViewWorldInfoModal>
+      <ViewWorldInfoModal>{t('viewWorld.info')}</ViewWorldInfoModal>
       <Button
         assets={viewPuzzleAssets}
-        label="View Puzzle"
+        label={t('viewPuzzle.label')}
         onClick={onViewPuzzleClick}
         onMouseDown={viewPuzzleInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <ViewPuzzleInfoModal>View the obelisk puzzle.</ViewPuzzleInfoModal>
+      <ViewPuzzleInfoModal>{t('viewPuzzle.info')}</ViewPuzzleInfoModal>
       <Button
         assets={castSpellAssets}
-        label="Cast Spell"
+        label={t('castSpell.label')}
         onClick={onCastSpellClick}
         onMouseDown={castSpellInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <CastSpellInfoModal>Cast an adventure spell.</CastSpellInfoModal>
+      <CastSpellInfoModal>{t('castSpell.info')}</CastSpellInfoModal>
       <Button
         assets={digAssets}
-        label="Dig"
+        label={t('dig.label')}
         onClick={onDigClick}
         onMouseDown={digInfoModal.onMouseDown}
         x={179}
         y={107}
       />
-      <DigInfoModal>Dig for the Ultimate Artifact.</DigInfoModal>
+      <DigInfoModal>{t('dig.info')}</DigInfoModal>
       <Button
         assets={okayAssets}
-        label="Okay"
+        label={t('confirm.label')}
         onClick={onOkayClick}
         onMouseDown={okayInfoModal.onMouseDown}
         x={112}
         y={184}
       />
-      <OkayInfoModal>Dig for the Ultimate Artifact.{/* TODO: ? */}</OkayInfoModal>
+      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
     </Window>
   );
 }

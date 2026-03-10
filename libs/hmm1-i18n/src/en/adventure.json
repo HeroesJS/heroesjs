@@ -25,6 +25,29 @@
         "info": "Next Hero\n\nSelect the next hero.",
         "label": "Next Hero"
       }
+    },
+    "adventureOptions": {
+      "castSpell": {
+        "info": "Cast an adventure spell.",
+        "label": "Cast Spell"
+      },
+      "confirm": {
+        "info": "Dig for the Ultimate Artifact.",
+        "label": "Okay"
+      },
+      "dig": {
+        "info": "Dig for the Ultimate Artifact.",
+        "label": "Dig"
+      },
+      "title": "Adventure Options Window",
+      "viewPuzzle": {
+        "info": "View the obelisk puzzle.",
+        "label": "View Puzzle"
+      },
+      "viewWorld": {
+        "info": "View the entire world.",
+        "label": "View World"
+      }
     }
   }
 }
