@@ -1,0 +1,8 @@
+{
+  "component": {
+    "scrollbar": {
+      "scrollDown": "Scroll Down",
+      "scrollUp": "Scroll Up"
+    }
+  }
+}

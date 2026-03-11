@@ -1,9 +1,10 @@
+import { useLayoutEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Button } from '../Button';
 import { PositionedComponent } from '../PositionedComponent';
 import { down, thumb, up } from './assets';
-import { useLayoutEffect, useRef } from 'react';
 
 interface ScrollbarProps {
   readonly height: number;
@@ -14,6 +15,8 @@ interface ScrollbarProps {
 }
 
 export function Scrollbar({ height, onDownClick, onUpClick, x, y }: ScrollbarProps) {
+  const { t } = useTranslation('ui', { keyPrefix: 'component.scrollbar' });
+
   const ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -29,13 +32,13 @@ export function Scrollbar({ height, onDownClick, onUpClick, x, y }: ScrollbarPro
 
   return (
     <Root height={height} x={x} y={y}>
-      <Button assets={up} label="Scroll Up" onClick={onUpClick} />
+      <Button assets={up} label={t('scrollUp')} onClick={onUpClick} />
       <Track aria-valuenow={0} height={height - 2 * 14 + 1}>
         <InnerTrack height={height - 2 * (14 + 3) - 3} ref={ref} role="scrollbar">
           <Content />
         </InnerTrack>
       </Track>
-      <Button assets={down} label="Scroll Down" onClick={onDownClick} />
+      <Button assets={down} label={t('scrollDown')} onClick={onDownClick} />
     </Root>
   );
 }
