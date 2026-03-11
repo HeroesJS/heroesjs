@@ -7,6 +7,8 @@ import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
 import {
   CampaignMenu,
   CreditsScreen,
+  DialingTelephoneNumberModal,
+  EnterTelephoneNumberModal,
   GameTypeMenu,
   MainMenu,
   MainScreen,
@@ -14,6 +16,7 @@ import {
   MultiPlayerGameTypeMenu,
   NetworkGameMenu,
   PlayerCountMenu,
+  WaitingForDirectConnectionModal,
 } from '@heroesjs/hmm1-main-ui';
 
 import { AdventureScreen } from './AdventureScreen';
@@ -45,20 +48,6 @@ export function App() {
   const navigateToMainScreen = () => navigate('/');
 
   const [WaitingForRingModal] = useModal();
-
-  const [WaitingForConnectionModal] = useModal({
-    children: (
-      <>
-        Waiting for other computer to log in to direct connection.
-        <br />
-        <br />
-        Press 'CANCEL' to abort.
-      </>
-    ),
-    onCancelClick: navigateToMainScreen,
-    size: 2,
-    type: 'cancel',
-  });
 
   return (
     <>
@@ -198,7 +187,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Host Direct Connect Game Screen">
-                    <WaitingForConnectionModal open />
+                    <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="host"
@@ -206,7 +195,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label="Join Direct Connect Game Screen">
-                    <WaitingForConnectionModal open />
+                    <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="join"
@@ -238,33 +227,23 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
-  const [EnterTelephoneNumberModal] = useModal();
-  const [DialingModal] = useModal();
-
   return (
     <MainScreen label="Host Modem Game Screen">
       {dialing ? (
-        <DialingModal onCancelClick={onCancelClick} open size={1} type="cancel">
-          Dialing... {telephoneNumber}
-        </DialingModal>
+        <DialingTelephoneNumberModal onCancelClick={onCancelClick} open value={telephoneNumber} x={177} y={29} />
       ) : (
         <EnterTelephoneNumberModal
-          inputLabel="Telephone Number"
-          inputValue={telephoneNumber}
-          onConfirmClick={() => setDialing(true)}
-          onInputValueChange={(value) => {
+          onChange={(value) => {
             setTelephoneNumber(value);
 
             setDialing(true);
           }}
+          onConfirmClick={() => setDialing(true)}
           open
-          showInput
-          size={2}
-          type="okay"
+          value={telephoneNumber}
+          x={177}
           y={21}
-        >
-          Please enter the telephone number.
-        </EnterTelephoneNumberModal>
+        />
       )}
     </MainScreen>
   );

@@ -44,6 +44,9 @@
       "title": "Credits",
       "writingAndManual": "Writing and Manual"
     },
+    "dialingTelephoneNumberModal": {
+      "message": "Dialing... {{telephoneNumber}}"
+    },
     "directConnectGameMenu": {
       "cancel": {
         "info": "$t(component.menu.cancel.info)",
@@ -59,6 +62,10 @@
         "label": "Host"
       },
       "label": "Direct Connect Game Menu"
+    },
+    "enterTelephoneNumberModal": {
+      "inputLabel": "Telephone Number",
+      "message": "Please enter the telephone number."
     },
     "fileSelectorWindow": {
       "cancel": "Cancel",
@@ -254,6 +261,9 @@
         "label": "{{count}} Players"
       },
       "label": "Player Count Menu"
+    },
+    "waitingForDirectConnectionModal": {
+      "message": "Waiting for other computer to log in to direct connection.\n\nPress 'CANCEL' to abort."
     }
   }
 }
