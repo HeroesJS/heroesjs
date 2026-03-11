@@ -30,19 +30,70 @@
       }
     },
     "creditsScreen": {
-      "additionalDesign": "Additional Design",
-      "artDirector": "Art Director",
-      "artists": "Artists",
-      "designedAndDirected": "Designed and Directed",
-      "leadProgramming": "Lead Programming",
-      "musicAndSoundDesign": "Music and Sound Design",
-      "orchestralArranegments": "Orchestral Arrangements",
-      "programming": "Programming",
-      "qaManager": "QA Manager",
-      "scenarios": "Scenarios",
-      "testing": "Testing",
+      "additionalDesign": {
+        "entries": ["Phil Steinmeyer", "Debbie Van Caneghem"],
+        "title": "Additional Design"
+      },
+      "artDirector": {
+        "entries": ["Julia Ulano"],
+        "title": "Art Director"
+      },
+      "artists": {
+        "entries": ["Bonita Long-Hemsath", "Joel Payne", "Mike Winterbauer"],
+        "title": "Artists"
+      },
+      "designedAndDirected": {
+        "entries": ["Jon Van Caneghem"],
+        "title": "Designed and Directed"
+      },
+      "leadProgramming": {
+        "entries": ["Phil Steinmeyer"],
+        "title": "Lead Programming"
+      },
+      "musicAndSoundDesign": {
+        "entries": ["Rob King"],
+        "title": "Music and Sound Design"
+      },
+      "orchestralArranegments": {
+        "entries": ["Paul Romero"],
+        "title": "Orchestral Arrangements"
+      },
+      "programming": {
+        "entries": ["Mark Caldwell", "George Ruof", "Todd Hendrix", "Bob Rakosky", "Michael Sean Clement"],
+        "title": "Programming"
+      },
+      "qaManager": {
+        "entries": ["Peter Ryu"],
+        "title": "QA Manager"
+      },
+      "scenarios": {
+        "entries": ["Jon Van Caneghem", "Christian Vanover", "Clayton Retzer", "Mark Palczynski"],
+        "title": "Scenarios"
+      },
+      "testing": {
+        "entries": [
+          "Bryan Farina",
+          "Douglas Rothman",
+          "Pavel Vesely",
+          "Walter Johnson",
+          "Scott White",
+          "Mark Caldwell",
+          "George Ruof",
+          "Scott McDaniel",
+          "Benjamin Bent",
+          "Deane Rettig",
+          "Clayton Retzer",
+          "Craig Konas",
+          "Mark Palczynski",
+          "Christian Vanover"
+        ],
+        "title": "Testing"
+      },
       "title": "Credits",
-      "writingAndManual": "Writing and Manual"
+      "writingAndManual": {
+        "entries": ["Rozita Tolouey", "Deane Rettig", "Bruce Schlickbernd"],
+        "title": "Writing and Manual"
+      }
     },
     "dialingTelephoneNumberModal": {
       "message": "Dialing... {{telephoneNumber}}"
