@@ -1,0 +1,44 @@
+{
+  "title": "HeroesJS",
+  "component": {
+    "hostDirectConnectGameScreen": {
+      "title": "Host Direct Connect Game Screen"
+    },
+    "hostModemGameScreen": {
+      "title": "Host Modem Game Screen"
+    },
+    "joinDirectConnectGameScreen": {
+      "title": "Join Direct Connect Game Screen"
+    },
+    "joinModemGameScreen": {
+      "title": "Join Modem Game Screen"
+    },
+    "loadGameScreen": {
+      "title": "Load Game Screen"
+    },
+    "newCampaignGameScreen": {
+      "title": "New Campaign Game Screen"
+    },
+    "newDirectConnectGameScreen": {
+      "title": "New Direct Connect Game Screen"
+    },
+    "newGameScreen": {
+      "title": "New Game Screen"
+    },
+    "newHotSeatGameScreen": {
+      "title": "New Hot Seat Game Screen"
+    },
+    "newModemGameScreen": {
+      "title": "New Modem Game Screen"
+    },
+    "newMultiPlayerGameScreen": {
+      "title": "New Multi-Player Game Screen"
+    },
+    "newNetworkGameScreen": {
+      "title": "New Network Game Screen"
+    },
+    "newStandardGameScreen": {
+      "title": "New Standard Game"
+    }
+  }
+}

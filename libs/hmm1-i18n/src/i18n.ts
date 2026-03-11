@@ -5,21 +5,20 @@ import { en } from './en';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'translation';
+    defaultNS: 'app';
     resources: typeof en;
   }
 }
 
 i18n.use(initReactI18next).init({
   debug: true,
-  defaultNS: 'translation',
+  defaultNS: 'app',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
   lng: 'en',
   load: 'languageOnly',
-  ns: ['main'],
   resources: {
     en,
   },

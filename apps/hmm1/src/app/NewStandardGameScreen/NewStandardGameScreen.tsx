@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 
 import {
@@ -55,6 +56,7 @@ interface NewStandardGameScreenProps {
 }
 
 export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandardGameScreenProps) {
+  const { t } = useTranslation('app', { keyPrefix: 'component.newStandardGameScreen' });
   const params = useParams<'playerCount'>();
 
   const playerCount = Number(params.playerCount ?? 1);
@@ -111,7 +113,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
   };
 
   return (
-    <MainScreen label="New Standard Game">
+    <MainScreen label={t('title')}>
       {isSelectingScenario ? (
         <FileSelectorWindow
           initialValue={scenarioFileName}
