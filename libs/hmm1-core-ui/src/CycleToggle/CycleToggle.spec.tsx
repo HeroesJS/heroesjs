@@ -14,13 +14,13 @@ describe(CycleToggle, () => {
   it('should render label', () => {
     renderWithProviders(<CycleToggle children={(v) => v} label="Label" options={['A', 'B']} value="A" />);
 
-    expect(screen.getByRole('radiogroup', { name: /label/i })).toBeInTheDocument();
+    expect(screen.getByRole('radiogroup', { name: /^label$/i })).toBeInTheDocument();
   });
 
   it('should render value', () => {
     renderWithProviders(<CycleToggle children={(v) => v} options={['A', 'B']} value="A" />);
 
-    expect(screen.getByRole('radio', { name: /a/i })).toBeChecked();
+    expect(screen.getByRole('radio', { name: /^a$/i })).toBeChecked();
   });
 
   it('should call change handler with next option when clicked', async () => {

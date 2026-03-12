@@ -14,7 +14,7 @@ describe(TextInput, () => {
   it('should render with custom label', () => {
     renderWithProviders(<TextInput label="Label" />);
 
-    expect(screen.getByRole('textbox', { name: /label/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /^label$/i })).toBeInTheDocument();
   });
 
   it('should render empty by default', () => {

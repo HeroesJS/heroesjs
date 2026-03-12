@@ -20,14 +20,14 @@ describe(Modal, () => {
   it('should render content as label', () => {
     renderWithProviders(<Modal open>CONTENT</Modal>);
 
-    expect(screen.getByRole('dialog', { name: /content/i })).toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: /^content$/i })).toBeInTheDocument();
   });
 
   describe('okay type', () => {
     it('should render okay button', () => {
       renderWithProviders(<Modal open type="okay" />);
 
-      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^okay$/i })).toBeInTheDocument();
     });
 
     it('should call confirm handler when okay button is clicked', async () => {
@@ -35,7 +35,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onConfirmClick={handler} open type="okay" />);
 
-      await user.click(screen.getByRole('button', { name: /okay/i }));
+      await user.click(screen.getByRole('button', { name: /^okay$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -45,7 +45,7 @@ describe(Modal, () => {
     it('should render cancel button', () => {
       renderWithProviders(<Modal open type="cancel" />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call cancel handler when cancel button is clicked', async () => {
@@ -53,7 +53,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onCancelClick={handler} open type="cancel" />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -63,7 +63,7 @@ describe(Modal, () => {
     it('should render yes button', () => {
       renderWithProviders(<Modal open type="yesNo" />);
 
-      expect(screen.getByRole('button', { name: /yes/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^yes$/i })).toBeInTheDocument();
     });
 
     it('should call confirm handler when yes button is clicked', async () => {
@@ -71,7 +71,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onConfirmClick={handler} open type="yesNo" />);
 
-      await user.click(screen.getByRole('button', { name: /yes/i }));
+      await user.click(screen.getByRole('button', { name: /^yes$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -79,7 +79,7 @@ describe(Modal, () => {
     it('should render no button', () => {
       renderWithProviders(<Modal open type="yesNo" />);
 
-      expect(screen.getByRole('button', { name: /no/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^no$/i })).toBeInTheDocument();
     });
 
     it('should call cancel handler when no button is clicked', async () => {
@@ -87,7 +87,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onCancelClick={handler} open type="yesNo" />);
 
-      await user.click(screen.getByRole('button', { name: /no/i }));
+      await user.click(screen.getByRole('button', { name: /^no$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -97,7 +97,7 @@ describe(Modal, () => {
     it('should render okay button', () => {
       renderWithProviders(<Modal open type="okayCancel" />);
 
-      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^okay$/i })).toBeInTheDocument();
     });
 
     it('should call confirm handler when okay button is clicked', async () => {
@@ -105,7 +105,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onConfirmClick={handler} open type="okayCancel" />);
 
-      await user.click(screen.getByRole('button', { name: /okay/i }));
+      await user.click(screen.getByRole('button', { name: /^okay$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -113,7 +113,7 @@ describe(Modal, () => {
     it('should render cancel button', () => {
       renderWithProviders(<Modal open type="okayCancel" />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call cancel handler when cancel button is clicked', async () => {
@@ -121,7 +121,7 @@ describe(Modal, () => {
 
       const { user } = renderWithProviders(<Modal onCancelClick={handler} open type="okayCancel" />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -137,7 +137,7 @@ describe(Modal, () => {
     it('should render input with label', () => {
       renderWithProviders(<Modal inputLabel="Custom Label" open showInput />);
 
-      expect(screen.getByRole('textbox', { name: /custom label/i })).toBeInTheDocument();
+      expect(screen.getByRole('textbox', { name: /^custom label$/i })).toBeInTheDocument();
     });
 
     it('should render default value', () => {

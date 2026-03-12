@@ -8,12 +8,12 @@ describe(Menu, () => {
   it('should render', () => {
     renderWithProviders(<Menu label="Menu" />);
 
-    expect(screen.getByRole('menu', { name: /menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', { name: /^menu$/i })).toBeInTheDocument();
   });
 
   it('should render children', () => {
     renderWithProviders(<Menu label="Menu">CHILDREN</Menu>);
 
-    expect(screen.getByText(/children/i)).toBeInTheDocument();
+    expect(screen.getByText(/^children$/i)).toBeInTheDocument();
   });
 });

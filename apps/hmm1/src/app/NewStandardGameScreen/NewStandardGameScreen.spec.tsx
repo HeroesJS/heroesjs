@@ -8,32 +8,38 @@ describe(NewStandardGameScreen, () => {
   it('should render screen', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
-    expect(screen.getByRole('main', { name: /new standard game/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^new standard game$/i })).toBeInTheDocument();
   });
 
   it('should render window', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
-    expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /^new standard game$/i })).toBeInTheDocument();
   });
 
   it('should select normal game difficulty by default', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
-    expect(screen.getByRole('radio', { name: /normal/i })).toBeChecked();
+    expect(screen.getByRole('radio', { name: /^normal$/i })).toBeChecked();
   });
 
   it('should set average computer opponents by default', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
     expect(
-      within(screen.getByRole('radiogroup', { name: /opponent 1 setting/i })).getByRole('radio', { name: /average/i })
+      within(screen.getByRole('radiogroup', { name: /^opponent 1 setting$/i })).getByRole('radio', {
+        name: /^average$/i,
+      })
     ).toBeChecked();
     expect(
-      within(screen.getByRole('radiogroup', { name: /opponent 2 setting/i })).getByRole('radio', { name: /average/i })
+      within(screen.getByRole('radiogroup', { name: /^opponent 2 setting$/i })).getByRole('radio', {
+        name: /^average$/i,
+      })
     ).toBeChecked();
     expect(
-      within(screen.getByRole('radiogroup', { name: /opponent 3 setting/i })).getByRole('radio', { name: /average/i })
+      within(screen.getByRole('radiogroup', { name: /^opponent 3 setting$/i })).getByRole('radio', {
+        name: /^average$/i,
+      })
     ).toBeChecked();
   });
 
@@ -41,32 +47,32 @@ describe(NewStandardGameScreen, () => {
     renderWithProviders(<NewStandardGameScreen />);
 
     expect(
-      within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
+      within(screen.getByRole('radiogroup', { name: /^choose color:$/i })).getByRole('radio', { name: /^blue$/i })
     ).toBeChecked();
   });
 
   it('should not select king of the hill by default', () => {
     renderWithProviders(<NewStandardGameScreen />);
 
-    expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).not.toBeChecked();
+    expect(screen.getByRole('checkbox', { name: /^king of the hill:$/i })).not.toBeChecked();
   });
 
   it('should open file selector when select scenario is clicked', async () => {
     const { user } = renderWithProviders(<NewStandardGameScreen />);
 
-    await user.click(screen.getByRole('button', { name: /select scenario/i }));
+    await user.click(screen.getByRole('button', { name: /^select scenario$/i }));
 
-    expect(screen.getByRole('region', { name: /file selector window/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /^file selector window$/i })).toBeInTheDocument();
   });
 
   it('should return to settings when cancel is clicked', async () => {
     const { user } = renderWithProviders(<NewStandardGameScreen />);
 
-    await user.click(screen.getByRole('button', { name: /select scenario/i }));
+    await user.click(screen.getByRole('button', { name: /^select scenario$/i }));
 
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
+    await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
-    expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /^new standard game$/i })).toBeInTheDocument();
   });
 
   it('should call cancel handler when cancel button is clicked', async () => {
@@ -74,7 +80,7 @@ describe(NewStandardGameScreen, () => {
 
     const { user } = renderWithProviders(<NewStandardGameScreen onCancelClick={handler} />);
 
-    await user.click(screen.getByRole('button', { name: /cancel/i }));
+    await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
     expect(handler).toHaveBeenCalled();
   });

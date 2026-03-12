@@ -1,7 +1,9 @@
 import nx from '@nx/eslint-plugin';
+import i18nextPlugin from 'eslint-plugin-i18next';
+import { defineConfig } from 'eslint/config';
 import jsoncParser from 'jsonc-eslint-parser';
 
-export default [
+export default defineConfig([
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -55,7 +57,12 @@ export default [
     // Override or add rules here
     rules: {},
   },
-];
+  {
+    ...i18nextPlugin.configs['flat/recommended'],
+    files: ['**/*.tsx'],
+    ignores: ['**/*.spec.tsx', '**/*.stories.tsx'],
+  },
+]);
 
 export const reactRules = {
   'react/jsx-sort-props': 'error',

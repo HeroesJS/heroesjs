@@ -8,6 +8,6 @@ describe(Text, () => {
   it('should render children', () => {
     renderWithProviders(<Text>CHILDREN</Text>);
 
-    expect(screen.getByText(/children/i)).toBeInTheDocument();
+    expect(screen.getByText(/^children$/i)).toBeInTheDocument();
   });
 });

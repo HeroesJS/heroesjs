@@ -91,14 +91,14 @@ export function NewStandardGameWindow({
     <Window
       background={background}
       height={NewStandardGameWindow.height}
-      label={t('title')}
+      label={t(($) => $.title)}
       open
       width={NewStandardGameWindow.width}
       x={x}
       y={y}
     >
       <Text hidden id="gameDifficultyLabel" size="large" x={60} y={22}>
-        {t('gameDifficulty.label')}
+        {t(($) => $.gameDifficulty.label)}
       </Text>
       <GameDifficultySelector
         labelId="gameDifficultyLabel"
@@ -108,9 +108,9 @@ export function NewStandardGameWindow({
         x={19}
         y={36}
       />
-      <GameDifficultyInfoModal size={1}>{t('gameDifficulty.info')}</GameDifficultyInfoModal>
+      <GameDifficultyInfoModal size={1}>{t(($) => $.gameDifficulty.info)}</GameDifficultyInfoModal>
       <Text size="large" x={70} y={132}>
-        {t('opponents.label')}
+        {t(($) => $.opponents.label)}
       </Text>
       <OpponentSettingsSelector
         humanOpponentsCount={humanOpponentsCount}
@@ -123,11 +123,11 @@ export function NewStandardGameWindow({
         y={149}
       />
       <ComputerOpponentSettingInfoModal size={1}>
-        {t('opponents.computerOpponentInfo')}
+        {t(($) => $.opponents.computerOpponentInfo)}
       </ComputerOpponentSettingInfoModal>
-      <HumanOpponentSettingInfoModal size={1}>{t('opponents.humanOpponentInfo')}</HumanOpponentSettingInfoModal>
+      <HumanOpponentSettingInfoModal size={1}>{t(($) => $.opponents.humanOpponentInfo)}</HumanOpponentSettingInfoModal>
       <Text hidden id="playerColorLabel" size="large" x={26} y={254}>
-        {t('playerColor.label')}
+        {t(($) => $.playerColor.label)}
       </Text>
       <CycleToggle
         labelId="playerColorLabel"
@@ -140,9 +140,9 @@ export function NewStandardGameWindow({
       >
         {(value) => <PlayerColorJewel value={value} />}
       </CycleToggle>
-      <PlayerColorInfoModal>{t('playerColor.info')}</PlayerColorInfoModal>
+      <PlayerColorInfoModal>{t(($) => $.playerColor.info)}</PlayerColorInfoModal>
       <Text hidden id="kingOfTheHillLabel" size="large" x={169} y={254}>
-        {t('kingOfTheHill.label')}
+        {t(($) => $.kingOfTheHill.label)}
       </Text>
       <Checkbox
         assets={kingOfTheHillAssets}
@@ -153,12 +153,12 @@ export function NewStandardGameWindow({
         x={210}
         y={272}
       />
-      <KingOfTheHillInfoModal size={2}>{t('kingOfTheHill.info')}</KingOfTheHillInfoModal>
+      <KingOfTheHillInfoModal size={2}>{t(($) => $.kingOfTheHill.info)}</KingOfTheHillInfoModal>
       <Text size="large" x={91} y={338}>
-        {t('scenario.label')}
+        {t(($) => $.scenario.label)}
       </Text>
       <Input
-        aria-label={t('scenario.nameLabel')}
+        aria-label={t(($) => $.scenario.nameLabel)}
         aria-readonly
         aria-required
         onClick={onSelectScenarioClick}
@@ -173,40 +173,42 @@ export function NewStandardGameWindow({
       </Input>
       <Button
         assets={scenario.select}
-        label={t('scenario.select')}
+        label={t(($) => $.scenario.select)}
         onClick={onSelectScenarioClick}
         onMouseDown={selectScenarioInfoModal.onMouseDown}
         x={273}
         y={354}
       />
-      <SelectScenarioInfoModal>{t('scenario.info')}</SelectScenarioInfoModal>
+      <SelectScenarioInfoModal>{t(($) => $.scenario.info)}</SelectScenarioInfoModal>
       <Text onMouseDown={difficultyRatingInfoModal.onMouseDown} size="large" x={78} y={388}>
         <span aria-hidden id="difficultyRatingLabel">
-          {t('difficultyRating.label')}
+          {t(($) => $.difficultyRating.label)}
         </span>{' '}
-        <span aria-labelledby="difficultyRatingLabel">{t('difficultyRating.value', { value: difficultyRating })}</span>
+        <span aria-labelledby="difficultyRatingLabel">
+          {t(($) => $.difficultyRating.value, { value: difficultyRating })}
+        </span>
       </Text>
-      <DifficultyRatingInfoModal size={1}>{t('difficultyRating.info')}</DifficultyRatingInfoModal>
+      <DifficultyRatingInfoModal size={1}>{t(($) => $.difficultyRating.info)}</DifficultyRatingInfoModal>
       <Button
         assets={okay}
-        label={t('confirm.label')}
+        label={t(($) => $.confirm.label)}
         onClick={handleOkayClick}
         onMouseDown={okayInfoModal.onMouseDown}
         x={24}
         y={412}
       />
-      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
+      <OkayInfoModal>{t(($) => $.confirm.info)}</OkayInfoModal>
       <Button
         assets={cancel}
-        label={t('cancel.label')}
+        label={t(($) => $.cancel.label)}
         onClick={onCancelClick}
         onMouseDown={cancelInfoModal.onMouseDown}
         x={201}
         y={412}
       />
-      <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+      <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       <NoOpponentsErrorModal autoClose size={1} type="okay" y={61}>
-        {t('opponents.noOpponentsError')}
+        {t(($) => $.opponents.noOpponentsError)}
       </NoOpponentsErrorModal>
     </Window>
   );

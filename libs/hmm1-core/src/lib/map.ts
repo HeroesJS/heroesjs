@@ -6,25 +6,12 @@ export enum MapSize {
   Small = 'small',
 }
 
-export const mapSizeLabel: Readonly<Record<MapSize, string>> = {
-  [MapSize.Large]: 'Large',
-  [MapSize.Medium]: 'Medium',
-  [MapSize.Small]: 'Small',
-};
-
 export enum MapDifficulty {
   Easy = 'easy',
   Impossible = 'impossible',
   Normal = 'normal',
   Tough = 'tough',
 }
-
-export const mapDifficultyLabel: Readonly<Record<MapDifficulty, string>> = {
-  [MapDifficulty.Easy]: 'Easy',
-  [MapDifficulty.Impossible]: 'Impossible',
-  [MapDifficulty.Normal]: 'Normal',
-  [MapDifficulty.Tough]: 'Tough',
-};
 
 export function mapSupportsHumanPlayers(fileName: string, count: number): boolean {
   if (count <= 0 || count > MaxPlayerCount) {

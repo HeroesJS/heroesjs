@@ -1,6 +1,7 @@
 import { range } from 'lodash';
 import type { PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { Backdrop } from '../Backdrop';
@@ -132,6 +133,8 @@ const Input = styled(TextInput)({
 type ActionsProps = Pick<ModalProps, 'onCancelClick' | 'onConfirmClick' | 'type' | 'y'>;
 
 function Actions({ onCancelClick, onConfirmClick, type, y }: ActionsProps) {
+  const { t } = useTranslation('ui', { keyPrefix: 'component.modal' });
+
   if (!type) {
     return null;
   }
@@ -141,14 +144,14 @@ function Actions({ onCancelClick, onConfirmClick, type, y }: ActionsProps) {
       <>
         <Button
           assets={type === 'yesNo' ? yesNo.yes : okayCancel.okay}
-          label={type === 'yesNo' ? 'Yes' : 'Okay'}
+          label={type === 'yesNo' ? t('yes') : t('confirm')}
           onClick={onConfirmClick}
           x={23}
           y={y}
         />
         <Button
           assets={type === 'yesNo' ? yesNo.no : okayCancel.cancel}
-          label={type === 'yesNo' ? 'No' : 'Cancel'}
+          label={type === 'yesNo' ? t('no') : t('cancel')}
           onClick={onCancelClick}
           x={165}
           y={y}
@@ -160,7 +163,7 @@ function Actions({ onCancelClick, onConfirmClick, type, y }: ActionsProps) {
   return (
     <Button
       assets={type === 'okay' ? okay : cancel}
-      label={type === 'okay' ? 'Okay' : 'Cancel'}
+      label={type === 'okay' ? t('confirm') : t('cancel')}
       onClick={type === 'okay' ? onConfirmClick : onCancelClick}
       x={94}
       y={y}

@@ -8,6 +8,6 @@ describe(MainScreen, () => {
   it('should render', () => {
     renderWithProviders(<MainScreen />);
 
-    expect(screen.getByRole('main', { name: /main screen/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^main screen$/i })).toBeInTheDocument();
   });
 });

@@ -9,7 +9,7 @@ describe(ComPortMenu, () => {
   it('should render', () => {
     renderWithProviders(<ComPortMenu />);
 
-    expect(screen.getByRole('menu', { name: /com port menu/i }));
+    expect(screen.getByRole('menu', { name: /^com port menu$/i }));
   });
 
   describe.each(range(1, 5).map((v) => [v]))('com %i button', (port) => {
@@ -34,7 +34,7 @@ describe(ComPortMenu, () => {
     it('should render', () => {
       renderWithProviders(<ComPortMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -42,7 +42,7 @@ describe(ComPortMenu, () => {
 
       const { user } = renderWithProviders(<ComPortMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });

@@ -26,35 +26,35 @@ export function HighScoresScreen({
   const scores = entries[gameType] ?? [];
 
   return (
-    <Screen background={background} label={t('title')}>
+    <Screen background={background} label={t(($) => $.title)}>
       <PositionedComponent as="table" x={82} y={31}>
-        <caption>{showCampaignGameScores ? t('campaignGame') : t('standardGame')}</caption>
+        <caption>{showCampaignGameScores ? t(($) => $.campaignGame) : t(($) => $.standardGame)}</caption>
         <thead>
           <tr style={{ height: 35 }}>
             <th scope="col" style={{ width: 166 }}>
-              <PositionedComponent alt={t('player')} as="img" src={player} x={17} y={0} />
+              <PositionedComponent alt={t(($) => $.player)} as="img" src={player} x={17} y={0} />
             </th>
             {showCampaignGameScores ? (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent alt={t('leader')} as="img" src={leader} x={187} y={0} />
+                  <PositionedComponent alt={t(($) => $.leader)} as="img" src={leader} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent alt={t('days')} as="img" src={days} x={291} y={0} />
+                  <PositionedComponent alt={t(($) => $.days)} as="img" src={days} x={291} y={0} />
                 </th>
               </>
             ) : (
               <>
                 <th scope="col" style={{ width: 146 }}>
-                  <PositionedComponent alt={t('scenario')} as="img" src={land} x={187} y={0} />
+                  <PositionedComponent alt={t(($) => $.scenario)} as="img" src={land} x={187} y={0} />
                 </th>
                 <th scope="col" style={{ width: 36 }}>
-                  <PositionedComponent alt={t('score')} as="img" src={score} x={291} y={0} />
+                  <PositionedComponent alt={t(($) => $.score)} as="img" src={score} x={291} y={0} />
                 </th>
               </>
             )}
             <th scope="col" style={{ width: 140 }}>
-              <PositionedComponent alt={t('scoreTitle')} as="img" src={title} x={379} y={0} />
+              <PositionedComponent alt={t(($) => $.scoreTitle)} as="img" src={title} x={379} y={0} />
             </th>
           </tr>
         </thead>
@@ -97,7 +97,7 @@ export function HighScoresScreen({
       {showCampaignGameScores ? (
         <Button
           assets={campaign}
-          label={t('campaign.label')}
+          label={t(($) => $.campaign.label)}
           onClick={() => onGameTypeChange?.(GameType.Standard)}
           x={8}
           y={315}
@@ -105,13 +105,13 @@ export function HighScoresScreen({
       ) : (
         <Button
           assets={standard}
-          label={t('standard.label')}
+          label={t(($) => $.standard.label)}
           onClick={() => onGameTypeChange?.(GameType.Campaign)}
           x={8}
           y={315}
         />
       )}
-      <Button assets={exit} label={t('exit.label')} onClick={onExitClick} x={604} y={315} />
+      <Button assets={exit} label={t(($) => $.exit.label)} onClick={onExitClick} x={604} y={315} />
     </Screen>
   );
 }

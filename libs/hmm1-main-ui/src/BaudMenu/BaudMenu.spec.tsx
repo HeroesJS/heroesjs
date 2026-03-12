@@ -8,7 +8,7 @@ describe(BaudMenu, () => {
   it('should render', () => {
     renderWithProviders(<BaudMenu />);
 
-    expect(screen.getByRole('menu', { name: /baud menu/i }));
+    expect(screen.getByRole('menu', { name: /^baud menu$/i }));
   });
 
   describe.each([2400, 9600, 19200, 38400].map((v) => [v]))('%i baud button', (value) => {
@@ -33,7 +33,7 @@ describe(BaudMenu, () => {
     it('should render', () => {
       renderWithProviders(<BaudMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -41,7 +41,7 @@ describe(BaudMenu, () => {
 
       const { user } = renderWithProviders(<BaudMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });

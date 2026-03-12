@@ -8,7 +8,7 @@ describe(CreditsScreen, () => {
   it('should render', () => {
     renderWithProviders(<CreditsScreen />);
 
-    expect(screen.getByRole('main', { name: /credits/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^credits$/i })).toBeInTheDocument();
   });
 
   it.each([
@@ -57,7 +57,7 @@ describe(CreditsScreen, () => {
 
     const { user } = renderWithProviders(<CreditsScreen onClick={handler} />);
 
-    await user.click(screen.getByRole('main', { name: /credits/i }));
+    await user.click(screen.getByRole('main', { name: /^credits$/i }));
 
     expect(handler).toHaveBeenCalled();
   });

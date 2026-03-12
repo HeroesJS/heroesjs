@@ -114,7 +114,7 @@ describe(FileSelectorWindow, () => {
 
       const detail = screen.getByRole('note', { name: /^scenario detail$/i });
 
-      expect(within(detail).getByLabelText(/^size:$/i)).toHaveTextContent(/medium/i);
+      expect(within(detail).getByLabelText(/^size:$/i)).toHaveTextContent(/^medium$/i);
       expect(within(detail).getByLabelText(/^difficulty:$/i)).toHaveTextContent(/^normal$/i);
       expect(within(detail).getByLabelText(/^description:$/i)).toHaveTextContent(/^description$/i);
     });

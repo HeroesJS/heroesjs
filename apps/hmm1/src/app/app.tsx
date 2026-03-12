@@ -1,12 +1,15 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-router';
 import { createGlobalStyle } from 'styled-components';
 
 import { MaxPlayerCount } from '@heroesjs/hmm1-core';
-import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
+import { GlobalFontStyles } from '@heroesjs/hmm1-core-ui';
 import {
   CampaignMenu,
   CreditsScreen,
+  DialingTelephoneNumberModal,
+  EnterTelephoneNumberModal,
   GameTypeMenu,
   MainMenu,
   MainScreen,
@@ -14,6 +17,8 @@ import {
   MultiPlayerGameTypeMenu,
   NetworkGameMenu,
   PlayerCountMenu,
+  WaitingForDirectConnectionModal,
+  WaitingForRingModal,
 } from '@heroesjs/hmm1-main-ui';
 
 import { AdventureScreen } from './AdventureScreen';
@@ -29,6 +34,7 @@ const GlobalStyle = createGlobalStyle({
 
 export function App() {
   const navigate = useNavigate();
+  const { t } = useTranslation('app', { keyPrefix: 'component' });
 
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
@@ -43,22 +49,6 @@ export function App() {
   }, []);
 
   const navigateToMainScreen = () => navigate('/');
-
-  const [WaitingForRingModal] = useModal();
-
-  const [WaitingForConnectionModal] = useModal({
-    children: (
-      <>
-        Waiting for other computer to log in to direct connection.
-        <br />
-        <br />
-        Press 'CANCEL' to abort.
-      </>
-    ),
-    onCancelClick: navigateToMainScreen,
-    size: 2,
-    type: 'cancel',
-  });
 
   return (
     <>
@@ -83,7 +73,7 @@ export function App() {
         <Route path="new-game">
           <Route
             element={
-              <MainScreen label="New Game Screen">
+              <MainScreen label={t(($) => $.newGameScreen.title)}>
                 <GameTypeMenu
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={navigateToMainScreen}
@@ -109,7 +99,7 @@ export function App() {
           />
           <Route
             element={
-              <MainScreen label="New Campaign Game Screen">
+              <MainScreen label={t(($) => $.newCampaignGameScreen.title)}>
                 <CampaignMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
               </MainScreen>
             }
@@ -118,7 +108,7 @@ export function App() {
           <Route path="multi-player">
             <Route
               element={
-                <MainScreen label="New Multi-Player Game Screen">
+                <MainScreen label={t(($) => $.newMultiPlayerGameScreen.title)}>
                   <MultiPlayerGameTypeMenu
                     onCancelClick={navigateToMainScreen}
                     onDirectConnectClick={() => navigate('/new-game/multi-player/direct-connect')}
@@ -134,7 +124,7 @@ export function App() {
             />
             <Route
               element={
-                <MainScreen label="New Hot Seat Game Screen">
+                <MainScreen label={t(($) => $.newHotSeatGameScreen.title)}>
                   <PlayerCountMenu
                     onCancelClick={navigateToMainScreen}
                     onValueClick={(count) => navigate(`/new-game/standard/${count}`)}
@@ -147,7 +137,7 @@ export function App() {
             />
             <Route
               element={
-                <MainScreen label="New Network Game Screen">
+                <MainScreen label={t(($) => $.newNetworkGameScreen.title)}>
                   <NetworkGameMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
                 </MainScreen>
               }
@@ -156,7 +146,7 @@ export function App() {
             <Route path="modem">
               <Route
                 element={
-                  <MainScreen label="New Modem Game Screen">
+                  <MainScreen label={t(($) => $.newModemGameScreen.title)}>
                     <ModemGameMenu
                       onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
@@ -171,10 +161,8 @@ export function App() {
               <Route element={<HostModemGameScreen onCancelClick={navigateToMainScreen} />} path="host" />
               <Route
                 element={
-                  <MainScreen label="Join Modem Game Screen">
-                    <WaitingForRingModal onCancelClick={navigateToMainScreen} open size={1} type="cancel">
-                      Waiting for ring...
-                    </WaitingForRingModal>
+                  <MainScreen label={t(($) => $.joinModemGameScreen.title)}>
+                    <WaitingForRingModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="join"
@@ -183,7 +171,7 @@ export function App() {
             <Route path="direct-connect">
               <Route
                 element={
-                  <MainScreen label="New Direct Connect Game Screen">
+                  <MainScreen label={t(($) => $.newDirectConnectGameScreen.title)}>
                     <ModemGameMenu
                       onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/direct-connect/join')}
@@ -197,16 +185,16 @@ export function App() {
               />
               <Route
                 element={
-                  <MainScreen label="Host Direct Connect Game Screen">
-                    <WaitingForConnectionModal open />
+                  <MainScreen label={t(($) => $.hostDirectConnectGameScreen.title)}>
+                    <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="host"
               />
               <Route
                 element={
-                  <MainScreen label="Join Direct Connect Game Screen">
-                    <WaitingForConnectionModal open />
+                  <MainScreen label={t(($) => $.joinDirectConnectGameScreen.title)}>
+                    <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="join"
@@ -216,7 +204,7 @@ export function App() {
         </Route>
         <Route
           element={
-            <MainScreen label="Load Game Screen">
+            <MainScreen label={t(($) => $.loadGameScreen.title)}>
               <GameTypeMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
             </MainScreen>
           }
@@ -235,36 +223,28 @@ interface HostModemGameScreenProps {
 }
 
 function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
+  const { t } = useTranslation('app', { keyPrefix: 'component.hostModemGameScreen' });
+
   const [telephoneNumber, setTelephoneNumber] = useState('');
   const [dialing, setDialing] = useState(false);
 
-  const [EnterTelephoneNumberModal] = useModal();
-  const [DialingModal] = useModal();
-
   return (
-    <MainScreen label="Host Modem Game Screen">
+    <MainScreen label={t(($) => $.title)}>
       {dialing ? (
-        <DialingModal onCancelClick={onCancelClick} open size={1} type="cancel">
-          Dialing... {telephoneNumber}
-        </DialingModal>
+        <DialingTelephoneNumberModal onCancelClick={onCancelClick} open value={telephoneNumber} x={177} y={29} />
       ) : (
         <EnterTelephoneNumberModal
-          inputLabel="Telephone Number"
-          inputValue={telephoneNumber}
-          onConfirmClick={() => setDialing(true)}
-          onInputValueChange={(value) => {
+          onChange={(value) => {
             setTelephoneNumber(value);
 
             setDialing(true);
           }}
+          onConfirmClick={() => setDialing(true)}
           open
-          showInput
-          size={2}
-          type="okay"
+          value={telephoneNumber}
+          x={177}
           y={21}
-        >
-          Please enter the telephone number.
-        </EnterTelephoneNumberModal>
+        />
       )}
     </MainScreen>
   );

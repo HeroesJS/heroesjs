@@ -19,7 +19,7 @@ describe(Button, () => {
   it('should render label', () => {
     renderWithProviders(<Button assets={assets} label="Label" />);
 
-    expect(screen.getByRole('button', { name: /label/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^label$/i })).toBeInTheDocument();
   });
 
   it('should render as active', () => {

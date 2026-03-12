@@ -1,3 +1,4 @@
+import { zip } from 'lodash';
 import { useId, type PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -14,67 +15,126 @@ export function CreditsScreen({ onClick }: CreditsScreenProps) {
   const { t } = useTranslation('main', { keyPrefix: 'component.creditsScreen' });
 
   return (
-    <Screen background={background} label={t('title')} onClick={onClick}>
-      <List label={t('designedAndDirected')} width={210} x={55} y={47}>
-        <ListItem>Jon Van Caneghem</ListItem>
+    <Screen background={background} label={t(($) => $.title)} onClick={onClick}>
+      <List label={t(($) => $.designedAndDirected.title)} width={210} x={55} y={47}>
+        {zip(
+          t(($) => $.designedAndDirected.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('additionalDesign')} width={210} x={54} y={96}>
-        <ListItem>Phil Steinmeyer</ListItem>
-        <ListItem shift={2}>Debbie Van Caneghem</ListItem>
+      <List label={t(($) => $.additionalDesign.title)} width={210} x={54} y={96}>
+        {zip(
+          t(($) => $.additionalDesign.entries, { returnObjects: true }),
+          [0, 2]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('leadProgramming')} width={210} x={55} y={159}>
-        <ListItem shift={-2}>Phil Steinmeyer</ListItem>
+      <List label={t(($) => $.leadProgramming.title)} width={210} x={55} y={159}>
+        {zip(
+          t(($) => $.leadProgramming.entries, { returnObjects: true }),
+          [-2]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('programming')} width={210} x={53} y={208}>
-        <ListItem shift={2}>Mark Caldwell</ListItem>
-        <ListItem shift={3}>George Ruof</ListItem>
-        <ListItem shift={3}>Todd Hendrix</ListItem>
-        <ListItem shift={3}>Bob Rakosky</ListItem>
-        <ListItem shift={5}>Michael Sean Clement</ListItem>
+      <List label={t(($) => $.programming.title)} width={210} x={53} y={208}>
+        {zip(
+          t(($) => $.programming.entries, { returnObjects: true }),
+          [2, 3, 3, 3, 5]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('artDirector')} width={210} x={54} y={313}>
-        <ListItem shift={1}>Julia Ulano</ListItem>
+      <List label={t(($) => $.artDirector.title)} width={210} x={54} y={313}>
+        {zip(
+          t(($) => $.artDirector.entries, { returnObjects: true }),
+          [1]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('artists')} width={210} x={54} y={362}>
-        <ListItem shift={3}>Bonita Long-Hemsath</ListItem>
-        <ListItem shift={1}>Joel Payne</ListItem>
-        <ListItem shift={3}>Mike Winterbauer</ListItem>
+      <List label={t(($) => $.artists.title)} width={210} x={54} y={362}>
+        {zip(
+          t(($) => $.artists.entries, { returnObjects: true }),
+          [3, 1, 3]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('musicAndSoundDesign')} width={300} x={274} y={39}>
-        <ListItem>Rob King</ListItem>
+      <List label={t(($) => $.musicAndSoundDesign.title)} width={300} x={274} y={39}>
+        {zip(
+          t(($) => $.musicAndSoundDesign.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('orchestralArranegments')} width={300} x={273} y={83}>
-        <ListItem>Paul Romero</ListItem>
+      <List label={t(($) => $.orchestralArranegments.title)} width={300} x={273} y={83}>
+        {zip(
+          t(($) => $.orchestralArranegments.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('writingAndManual')} width={300} x={273} y={127}>
-        <ListItem>Rozita Tolouey</ListItem>
-        <ListItem>Deane Rettig</ListItem>
-        <ListItem shift={1}>Bruce Schlickbernd</ListItem>
+      <List label={t(($) => $.writingAndManual.title)} width={300} x={273} y={127}>
+        {zip(
+          t(($) => $.writingAndManual.entries, { returnObjects: true }),
+          [0, 0, 1]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('scenarios')} width={300} x={273} y={199}>
-        <ListItem>Jon Van Caneghem</ListItem>
-        <ListItem>Christian Vanover</ListItem>
-        <ListItem shift={-1}>Clayton Retzer</ListItem>
-        <ListItem>Mark Palczynski</ListItem>
+      <List label={t(($) => $.scenarios.title)} width={300} x={273} y={199}>
+        {zip(
+          t(($) => $.scenarios.entries, { returnObjects: true }),
+          [0, 0, -1]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List label={t('qaManager')} width={300} x={272} y={285}>
-        <ListItem shift={1}>Peter Ryu</ListItem>
+      <List label={t(($) => $.qaManager.title)} width={300} x={272} y={285}>
+        {zip(
+          t(($) => $.qaManager.entries, { returnObjects: true }),
+          [1]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
-      <List height={100} label={t('testing')} width={300} x={272} y={329}>
-        <ListItem>Bryan Farina</ListItem>
-        <ListItem>Douglas Rothman</ListItem>
-        <ListItem>Pavel Vesely</ListItem>
-        <ListItem shift={1}>Walter Johnson</ListItem>
-        <ListItem>Scott White</ListItem>
-        <ListItem shift={1}>Mark Caldwell</ListItem>
-        <ListItem>George Ruof</ListItem>
-        <ListItem>Scott McDaniel</ListItem>
-        <ListItem>Benjamin Bent</ListItem>
-        <ListItem>Deane Rettig</ListItem>
-        <ListItem>Clayton Retzer</ListItem>
-        <ListItem>Craig Konas</ListItem>
-        <ListItem>Mark Palczynski</ListItem>
-        <ListItem>Christian Vanover</ListItem>
+      <List height={100} label={t(($) => $.testing.title)} width={300} x={272} y={329}>
+        {zip(
+          t(($) => $.testing.entries, { returnObjects: true }),
+          [0, 0, 0, 1, 0, 1]
+        ).map(([entry, shift]) => (
+          <ListItem key={entry} shift={shift}>
+            {entry!}
+          </ListItem>
+        ))}
       </List>
     </Screen>
   );

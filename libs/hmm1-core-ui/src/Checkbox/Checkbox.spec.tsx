@@ -19,7 +19,7 @@ describe(Checkbox, () => {
   it('should render label', () => {
     renderWithProviders(<Checkbox assets={assets} label="Label" />);
 
-    expect(screen.getByRole('checkbox', { name: /label/i })).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: /^label$/i })).toBeInTheDocument();
   });
 
   it('should be unchecked by default', () => {

@@ -287,7 +287,7 @@ describe(GameOptionsWindow, () => {
       renderWithProviders(<GameOptionsWindow open />);
 
       expect(
-        within(screen.getByRole('radiogroup', { name: /^speed$/i })).getByRole('radio', { name: /walk/i })
+        within(screen.getByRole('radiogroup', { name: /^speed$/i })).getByRole('radio', { name: /^walk$/i })
       ).toBeInTheDocument();
     });
 

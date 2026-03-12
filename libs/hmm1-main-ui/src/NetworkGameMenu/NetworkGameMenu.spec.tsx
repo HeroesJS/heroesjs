@@ -8,14 +8,14 @@ describe(NetworkGameMenu, () => {
   it('should render', () => {
     renderWithProviders(<NetworkGameMenu />);
 
-    expect(screen.getByRole('menu', { name: /network game menu/i }));
+    expect(screen.getByRole('menu', { name: /^network game menu$/i }));
   });
 
   describe('host button', () => {
     it('should render', () => {
       renderWithProviders(<NetworkGameMenu />);
 
-      expect(screen.getByRole('button', { name: /host/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^host$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -23,7 +23,7 @@ describe(NetworkGameMenu, () => {
 
       const { user } = renderWithProviders(<NetworkGameMenu onHostClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /host/i }));
+      await user.click(screen.getByRole('button', { name: /^host$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -31,11 +31,11 @@ describe(NetworkGameMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<NetworkGameMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /host/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^host$/i }));
 
       expect(
         screen.getByRole('dialog', {
-          name: /the host sets up the game options\. there can only be one host per network game\./i,
+          name: /^the host sets up the game options\. there can only be one host per network game\.$/i,
         })
       ).toBeInTheDocument();
     });
@@ -45,7 +45,7 @@ describe(NetworkGameMenu, () => {
     it('should render', () => {
       renderWithProviders(<NetworkGameMenu />);
 
-      expect(screen.getByRole('button', { name: /guest/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^guest$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -53,7 +53,7 @@ describe(NetworkGameMenu, () => {
 
       const { user } = renderWithProviders(<NetworkGameMenu onGuestClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /guest/i }));
+      await user.click(screen.getByRole('button', { name: /^guest$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -61,11 +61,11 @@ describe(NetworkGameMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<NetworkGameMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /guest/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^guest$/i }));
 
       expect(
         screen.getByRole('dialog', {
-          name: /the guest waits for the host to set up the game, then is automatically added in\. there can only be one guest per network game\./i,
+          name: /^the guest waits for the host to set up the game, then is automatically added in\. there can only be one guest per network game\.$/i,
         })
       ).toBeInTheDocument();
     });
@@ -75,7 +75,7 @@ describe(NetworkGameMenu, () => {
     it('should render', () => {
       renderWithProviders(<NetworkGameMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -83,7 +83,7 @@ describe(NetworkGameMenu, () => {
 
       const { user } = renderWithProviders(<NetworkGameMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -91,9 +91,9 @@ describe(NetworkGameMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<NetworkGameMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^cancel$/i }));
 
-      expect(screen.getByRole('dialog', { name: /cancel back to the main menu\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^cancel back to the main menu\.$/i })).toBeInTheDocument();
     });
   });
 });

@@ -28,7 +28,7 @@ export function ModemGameMenu({
   const { cancel, guest, host } = allowConfiguration ? withConfig : noConfig;
 
   const configButton = allowConfiguration && (
-    <Button assets={withConfig.config} label={t('config.label')} onClick={onConfigClick} />
+    <Button assets={withConfig.config} label={t(($) => $.config.label)} onClick={onConfigClick} />
   );
 
   const [HostInfoModal, hostInfoModal] = useModal();
@@ -36,30 +36,35 @@ export function ModemGameMenu({
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
-        <Button assets={host} label={t('host.label')} onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
-        <HostInfoModal>{t('host.info')}</HostInfoModal>
+        <Button
+          assets={host}
+          label={t(($) => $.host.label)}
+          onClick={onHostClick}
+          onMouseDown={hostInfoModal.onMouseDown}
+        />
+        <HostInfoModal>{t(($) => $.host.info)}</HostInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={guest}
-          label={t('guest.label')}
+          label={t(($) => $.guest.label)}
           onClick={onGuestClick}
           onMouseDown={guestInfoModal.onMouseDown}
         />
-        <GuestInfoModal>{t('guest.info')}</GuestInfoModal>
+        <GuestInfoModal>{t(($) => $.guest.info)}</GuestInfoModal>
       </MenuItem>
       <MenuItem>{configButton}</MenuItem>
       <MenuItem />
       <MenuItem>
         <Button
           assets={cancel}
-          label={t('cancel.label')}
+          label={t(($) => $.cancel.label)}
           onClick={onCancelClick}
           onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+        <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

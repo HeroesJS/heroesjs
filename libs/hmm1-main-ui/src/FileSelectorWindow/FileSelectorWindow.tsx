@@ -3,7 +3,7 @@ import { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { MapDifficulty, mapDifficultyLabel, MapSize, mapSizeLabel } from '@heroesjs/hmm1-core';
+import { MapDifficulty, MapSize } from '@heroesjs/hmm1-core';
 import { Button, PositionedComponent, Scrollbar, Text, Window } from '@heroesjs/hmm1-core-ui';
 
 import { background, cancel, inputBackground, okay, scenarioInfoBackground } from './assets';
@@ -69,16 +69,16 @@ export function FileSelectorWindow({
     <Window
       background={background}
       height={FileSelectorWindow.height + (showScenarioDetail ? scenarioInfoHeight : 0)}
-      label={t('title')}
+      label={t(($) => $.title)}
       open
       width={320}
       x={x}
       y={y}
     >
       <Text align="center" fullWidth size="large" x={0} y={19}>
-        {t('load')}
+        {t(($) => $.load)}
       </Text>
-      <List aria-label={t('items')} onClick={handleListClick} role="listbox" x={55} y={42}>
+      <List aria-label={t(($) => $.items)} onClick={handleListClick} role="listbox" x={55} y={42}>
         {items.slice(listPosition, listPosition + listHeight).map((item) => (
           <ListItem item={item} key={item.value} onClick={handleItemClick} selected={item.value === selectedValue} />
         ))}
@@ -90,7 +90,7 @@ export function FileSelectorWindow({
         x={280}
         y={36}
       />
-      <Input aria-label={t('selectedItem')} role="textbox" x={48} y={253}>
+      <Input aria-label={t(($) => $.selectedItem)} role="textbox" x={48} y={253}>
         <Text align="center" fullWidth size="large" x={0} y={1}>
           {selectedItem?.label}
         </Text>
@@ -98,8 +98,15 @@ export function FileSelectorWindow({
       {showScenarioDetail && (
         <ScenarioInfo detail={scenarioDetail} x={0} y={FileSelectorWindow.height + scenarioInfoShift} />
       )}
-      <Button assets={okay} disabled={!selectedItem} label={t('confirm')} onClick={handleOkayClick} x={36} y={280} />
-      <Button assets={cancel} label={t('cancel')} onClick={onCancelClick} x={189} y={280} />
+      <Button
+        assets={okay}
+        disabled={!selectedItem}
+        label={t(($) => $.confirm)}
+        onClick={handleOkayClick}
+        x={36}
+        y={280}
+      />
+      <Button assets={cancel} label={t(($) => $.cancel)} onClick={onCancelClick} x={189} y={280} />
     </Window>
   );
 }
@@ -154,25 +161,26 @@ interface ScenarioInfoProps {
 
 function ScenarioInfo({ detail, x, y }: ScenarioInfoProps) {
   const { t } = useTranslation('main', { keyPrefix: 'component.fileSelectorWindow.scenarioDetail' });
+  const { t: tCore } = useTranslation('core');
 
   const sizeLabelId = useId();
   const difficultyLabelId = useId();
 
   return (
-    <ScenarioInfoRoot aria-label={t('title')} role="note" x={x} y={y}>
+    <ScenarioInfoRoot aria-label={t(($) => $.title)} role="note" x={x} y={y}>
       <ScenarioLabel hidden id={sizeLabelId} invisible size="large" x={44} y={17}>
-        {t('size')}
+        {t(($) => $.size)}
       </ScenarioLabel>
       <Text align="center" labelId={sizeLabelId} size="large" width={109} x={15} y={35}>
-        {detail && mapSizeLabel[detail.size]}
+        {detail && tCore(($) => $.mapSize[detail.size])}
       </Text>
       <ScenarioLabel hidden id={difficultyLabelId} invisible size="large" x={164} y={17}>
-        {t('difficulty')}
+        {t(($) => $.difficulty)}
       </ScenarioLabel>
       <Text align="center" labelId={difficultyLabelId} size="large" width={134} x={160} y={35}>
-        {detail && mapDifficultyLabel[detail.difficulty]}
+        {detail && tCore(($) => $.mapDifficulty[detail.difficulty])}
       </Text>
-      <ScenarioDescription align="center" label={t('description')} size="large" width={245} x={36} y={65}>
+      <ScenarioDescription align="center" label={t(($) => $.description)} size="large" width={245} x={36} y={65}>
         {detail?.description}
       </ScenarioDescription>
     </ScenarioInfoRoot>
