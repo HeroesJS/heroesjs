@@ -8,7 +8,7 @@ describe(Screen, () => {
   it('should render', () => {
     renderWithProviders(<Screen background="" label="Label" />);
 
-    expect(screen.getByRole('main', { name: /label/i })).toBeInTheDocument();
+    expect(screen.getByRole('main', { name: /^label$/i })).toBeInTheDocument();
   });
 
   it('should render children', () => {
@@ -18,7 +18,7 @@ describe(Screen, () => {
       </Screen>
     );
 
-    expect(screen.getByText(/children/i)).toBeInTheDocument();
+    expect(screen.getByText(/^children$/i)).toBeInTheDocument();
   });
 
   it('should call click handler when clicked', async () => {
@@ -26,7 +26,7 @@ describe(Screen, () => {
 
     const { user } = renderWithProviders(<Screen background="" label="Label" onClick={handler} />);
 
-    await user.click(screen.getByRole('main', { name: /label/i }));
+    await user.click(screen.getByRole('main', { name: /^label$/i }));
 
     expect(handler).toHaveBeenCalled();
   });

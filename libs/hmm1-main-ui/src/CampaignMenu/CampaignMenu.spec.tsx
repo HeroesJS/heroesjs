@@ -9,14 +9,14 @@ describe(CampaignMenu, () => {
   it('should render', () => {
     renderWithProviders(<CampaignMenu />);
 
-    expect(screen.getByRole('menu', { name: /campaign menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', { name: /^campaign menu$/i })).toBeInTheDocument();
   });
 
   describe('play lord ironfist button', () => {
     it('should render', () => {
       renderWithProviders(<CampaignMenu />);
 
-      expect(screen.getByRole('button', { name: /play lord ironfist/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^play lord ironfist$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -24,7 +24,7 @@ describe(CampaignMenu, () => {
 
       const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /play lord ironfist/i }));
+      await user.click(screen.getByRole('button', { name: /^play lord ironfist$/i }));
 
       expect(handler).toHaveBeenCalledWith<[Leader]>(Leader.LordIronfist);
     });
@@ -32,9 +32,9 @@ describe(CampaignMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<CampaignMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /play lord ironfist/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^play lord ironfist$/i }));
 
-      expect(screen.getByRole('dialog', { name: /play the role of lord ironfist\./i }));
+      expect(screen.getByRole('dialog', { name: /^play the role of lord ironfist\.$/i }));
     });
   });
 
@@ -42,7 +42,7 @@ describe(CampaignMenu, () => {
     it('should render', () => {
       renderWithProviders(<CampaignMenu />);
 
-      expect(screen.getByRole('button', { name: /play lord slayer/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^play lord slayer$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -50,7 +50,7 @@ describe(CampaignMenu, () => {
 
       const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /play lord slayer/i }));
+      await user.click(screen.getByRole('button', { name: /^play lord slayer$/i }));
 
       expect(handler).toHaveBeenCalledWith<[Leader]>(Leader.LordSlayer);
     });
@@ -58,9 +58,9 @@ describe(CampaignMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<CampaignMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /play lord slayer/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^play lord slayer$/i }));
 
-      expect(screen.getByRole('dialog', { name: /play the role of lord slayer\./i }));
+      expect(screen.getByRole('dialog', { name: /^play the role of lord slayer\.$/i }));
     });
   });
 
@@ -68,7 +68,7 @@ describe(CampaignMenu, () => {
     it('should render', () => {
       renderWithProviders(<CampaignMenu />);
 
-      expect(screen.getByRole('button', { name: /play queen lamanda/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^play queen lamanda$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -76,7 +76,7 @@ describe(CampaignMenu, () => {
 
       const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /play queen lamanda/i }));
+      await user.click(screen.getByRole('button', { name: /^play queen lamanda$/i }));
 
       expect(handler).toHaveBeenCalledWith<[Leader.QueenLamanda]>(Leader.QueenLamanda);
     });
@@ -84,9 +84,9 @@ describe(CampaignMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<CampaignMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /play queen lamanda/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^play queen lamanda$/i }));
 
-      expect(screen.getByRole('dialog', { name: /play the role of queen lamanda\./i }));
+      expect(screen.getByRole('dialog', { name: /^play the role of queen lamanda\.$/i }));
     });
   });
 
@@ -94,7 +94,7 @@ describe(CampaignMenu, () => {
     it('should render', () => {
       renderWithProviders(<CampaignMenu />);
 
-      expect(screen.getByRole('button', { name: /play lord alamar/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^play lord alamar$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -102,7 +102,7 @@ describe(CampaignMenu, () => {
 
       const { user } = renderWithProviders(<CampaignMenu onPlayClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /play lord alamar/i }));
+      await user.click(screen.getByRole('button', { name: /^play lord alamar$/i }));
 
       expect(handler).toHaveBeenCalledWith<[Leader.LordAlamar]>(Leader.LordAlamar);
     });
@@ -110,9 +110,9 @@ describe(CampaignMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<CampaignMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /play lord alamar/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^play lord alamar$/i }));
 
-      expect(screen.getByRole('dialog', { name: /play the role of lord alamar\./i }));
+      expect(screen.getByRole('dialog', { name: /^play the role of lord alamar\.$/i }));
     });
   });
 
@@ -120,7 +120,7 @@ describe(CampaignMenu, () => {
     it('should render', () => {
       renderWithProviders(<CampaignMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -128,7 +128,7 @@ describe(CampaignMenu, () => {
 
       const { user } = renderWithProviders(<CampaignMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -136,9 +136,9 @@ describe(CampaignMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<CampaignMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^cancel$/i }));
 
-      expect(screen.getByRole('dialog', { name: /cancel back to the main menu\./i }));
+      expect(screen.getByRole('dialog', { name: /^cancel back to the main menu\.$/i }));
     });
   });
 });

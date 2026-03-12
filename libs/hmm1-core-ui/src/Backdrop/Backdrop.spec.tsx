@@ -8,6 +8,6 @@ describe(Backdrop, () => {
   it('should render children', () => {
     renderWithProviders(<Backdrop>CHILDREN</Backdrop>);
 
-    expect(screen.getByText(/children/i)).toBeInTheDocument();
+    expect(screen.getByText(/^children$/i)).toBeInTheDocument();
   });
 });

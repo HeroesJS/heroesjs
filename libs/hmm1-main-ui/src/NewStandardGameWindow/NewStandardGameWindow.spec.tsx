@@ -9,7 +9,7 @@ describe(NewStandardGameWindow, () => {
   it('should render', () => {
     renderWithProviders(<NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />);
 
-    expect(screen.getByRole('region', { name: /new standard game/i })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /^new standard game$/i })).toBeInTheDocument();
   });
 
   describe('game difficulty', () => {
@@ -18,7 +18,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByText(/choose game difficulty:/i)).toBeInTheDocument();
+      expect(screen.getByText(/^choose game difficulty:$/i)).toBeInTheDocument();
     });
 
     it('should render options', () => {
@@ -26,14 +26,14 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('radiogroup', { name: /choose game difficulty:/i })).toBeInTheDocument();
+      expect(screen.getByRole('radiogroup', { name: /^choose game difficulty:$/i })).toBeInTheDocument();
 
-      expect(screen.getByRole('radio', { name: /easy/i })).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /normal/i })).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /hard/i })).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /expert/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /^easy$/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /^normal$/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /^hard$/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /^expert$/i })).toBeInTheDocument();
 
-      expect(screen.getByRole('radio', { name: /easy/i })).toBeChecked();
+      expect(screen.getByRole('radio', { name: /^easy$/i })).toBeChecked();
     });
 
     it('should render info when option is right-clicked', async () => {
@@ -41,11 +41,11 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('radio', { name: /easy/i }));
+      await user.mouseRightDown(screen.getByRole('radio', { name: /^easy$/i }));
 
       expect(
         screen.getByRole('dialog', {
-          name: /change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\./i,
+          name: /^change the starting difficulty at which you will play\. higher difficulty levels start you off with fewer resources\.$/i,
         })
       ).toBeInTheDocument();
     });
@@ -61,7 +61,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('radio', { name: /normal/i }));
+      await user.click(screen.getByRole('radio', { name: /^normal$/i }));
 
       expect(handler).toHaveBeenCalledWith<[GameDifficulty]>(GameDifficulty.Normal);
     });
@@ -73,7 +73,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByText(/customize opponents:/i)).toBeInTheDocument();
+      expect(screen.getByText(/^customize opponents:$/i)).toBeInTheDocument();
     });
 
     it('should render no opponents by default', () => {
@@ -81,7 +81,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getAllByRole('radio', { name: /none/i }).length).toBe(3);
+      expect(screen.getAllByRole('radio', { name: /^none$/i }).length).toBe(3);
     });
 
     describe('computer opponent', () => {
@@ -96,7 +96,7 @@ describe(NewStandardGameWindow, () => {
 
         const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent 1 setting`, 'i') });
 
-        expect(within(group).getByRole('radio', { name: /dumb/i })).toBeChecked();
+        expect(within(group).getByRole('radio', { name: /^dumb$/i })).toBeChecked();
       });
 
       it('should render info', async () => {
@@ -104,11 +104,11 @@ describe(NewStandardGameWindow, () => {
           <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
         );
 
-        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
+        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /^opponent 1 setting$/i }));
 
         expect(
           screen.getByRole('dialog', {
-            name: /change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\./i,
+            name: /^change the difficulty of this opponent\. smarter computer players are more aggressive and think longer for each turn\.$/i,
           })
         );
       });
@@ -125,7 +125,7 @@ describe(NewStandardGameWindow, () => {
           />
         );
 
-        const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+        const group = screen.getByRole('radiogroup', { name: /^opponent 1 setting$/i });
 
         await user.click(group);
 
@@ -146,7 +146,7 @@ describe(NewStandardGameWindow, () => {
 
         const group = screen.getByRole('radiogroup', { name: new RegExp(`opponent 1 setting`, 'i') });
 
-        expect(within(group).getByRole('radio', { name: /human easy/i })).toBeChecked();
+        expect(within(group).getByRole('radio', { name: /^human easy$/i })).toBeChecked();
       });
 
       it('should render info', async () => {
@@ -159,11 +159,11 @@ describe(NewStandardGameWindow, () => {
           />
         );
 
-        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /opponent 1 setting/i }));
+        await user.mouseRightDown(screen.getByRole('radiogroup', { name: /^opponent 1 setting$/i }));
 
         expect(
           screen.getByRole('dialog', {
-            name: /change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\./i,
+            name: /^change the starting difficulty of another human player\. higher difficulty levels start you off with fewer resources\.$/i,
           })
         );
       });
@@ -180,7 +180,7 @@ describe(NewStandardGameWindow, () => {
           />
         );
 
-        const group = screen.getByRole('radiogroup', { name: /opponent 1 setting/i });
+        const group = screen.getByRole('radiogroup', { name: /^opponent 1 setting$/i });
 
         await user.click(group);
 
@@ -196,7 +196,7 @@ describe(NewStandardGameWindow, () => {
       );
 
       expect(
-        within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
+        within(screen.getByRole('radiogroup', { name: /^choose color:$/i })).getByRole('radio', { name: /^blue$/i })
       ).toBeChecked();
     });
 
@@ -205,9 +205,9 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /choose color:/i }));
+      await user.mouseRightDown(screen.getByRole('radiogroup', { name: /^choose color:$/i }));
 
-      expect(screen.getByRole('dialog', { name: /change your banner color\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^change your banner color\.$/i })).toBeInTheDocument();
     });
 
     it('should call handler when option is clicked', async () => {
@@ -222,7 +222,7 @@ describe(NewStandardGameWindow, () => {
       );
 
       await user.click(
-        within(screen.getByRole('radiogroup', { name: /choose color:/i })).getByRole('radio', { name: /blue/i })
+        within(screen.getByRole('radiogroup', { name: /^choose color:$/i })).getByRole('radio', { name: /^blue$/i })
       );
 
       expect(handler).toHaveBeenCalledWith<[PlayerColor]>(PlayerColor.Green);
@@ -235,7 +235,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByText(/king of the hill:/i)).toBeInTheDocument();
+      expect(screen.getByText(/^king of the hill:$/i)).toBeInTheDocument();
     });
 
     it('should render option', () => {
@@ -243,8 +243,8 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).toBeInTheDocument();
-      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).not.toBeChecked();
+      expect(screen.getByRole('checkbox', { name: /^king of the hill:$/i })).toBeInTheDocument();
+      expect(screen.getByRole('checkbox', { name: /^king of the hill:$/i })).not.toBeChecked();
     });
 
     it('should render info when right-clicked', async () => {
@@ -252,11 +252,11 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('checkbox', { name: /king of the hill:/i }));
+      await user.mouseRightDown(screen.getByRole('checkbox', { name: /^king of the hill:$/i }));
 
       expect(
         screen.getByRole('dialog', {
-          name: /challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\./i,
+          name: /^challenge all computer players as 'king of the hill'\. computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp\.$/i,
         })
       );
     });
@@ -272,7 +272,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('checkbox', { name: /king of the hill:/i }));
+      await user.click(screen.getByRole('checkbox', { name: /^king of the hill:$/i }));
 
       expect(handler).toHaveBeenCalledWith<[boolean]>(true);
     });
@@ -282,7 +282,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} kingOfTheHill playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('checkbox', { name: /king of the hill:/i })).toBeChecked();
+      expect(screen.getByRole('checkbox', { name: /^king of the hill:$/i })).toBeChecked();
     });
   });
 
@@ -292,7 +292,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByText(/choose scenario:/i)).toBeInTheDocument();
+      expect(screen.getByText(/^choose scenario:$/i)).toBeInTheDocument();
     });
 
     it('should render scenario name', () => {
@@ -304,8 +304,8 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      expect(screen.getByRole('textbox', { name: /scenario/i })).toBeInTheDocument();
-      expect(screen.getByRole('textbox', { name: /scenario/i })).toHaveTextContent(/scenario/i);
+      expect(screen.getByRole('textbox', { name: /^scenario$/i })).toBeInTheDocument();
+      expect(screen.getByRole('textbox', { name: /^scenario$/i })).toHaveTextContent(/^scenario$/i);
     });
 
     it('should call select scenario handler when scenario name is clicked', async () => {
@@ -319,7 +319,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('textbox', { name: /scenario/i }));
+      await user.click(screen.getByRole('textbox', { name: /^scenario$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -329,7 +329,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('button', { name: /select scenario/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^select scenario$/i })).toBeInTheDocument();
     });
 
     it('should call select scenario handler when select scenario is clicked', async () => {
@@ -343,7 +343,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: /select scenario/i }));
+      await user.click(screen.getByRole('button', { name: /^select scenario$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -353,9 +353,9 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /select scenario/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^select scenario$/i }));
 
-      expect(screen.getByRole('dialog', { name: /select which scenario to play\./i }));
+      expect(screen.getByRole('dialog', { name: /^select which scenario to play\.$/i }));
     });
   });
 
@@ -365,7 +365,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByLabelText(/difficulty rating:/i)).toHaveTextContent(/0%/i);
+      expect(screen.getByLabelText(/^difficulty rating:$/i)).toHaveTextContent(/^0%$/i);
     });
 
     it('should render rating', () => {
@@ -377,7 +377,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      expect(screen.getByLabelText(/difficulty rating:/i)).toHaveTextContent(/60%/i);
+      expect(screen.getByLabelText(/^difficulty rating:$/i)).toHaveTextContent(/^60%$/i);
     });
 
     it('should render difficulty rating info when right-clicked', async () => {
@@ -385,11 +385,11 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByLabelText(/difficulty rating:/i));
+      await user.mouseRightDown(screen.getByLabelText(/^difficulty rating:$/i));
 
       await expect(
         screen.getByRole('dialog', {
-          name: /the difficulty rating reflects a combination of various settings for your game\. this number will be applied to your final score\./i,
+          name: /^the difficulty rating reflects a combination of various settings for your game\. this number will be applied to your final score\.$/i,
         })
       );
     });
@@ -401,7 +401,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('button', { name: /okay/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^okay$/i })).toBeInTheDocument();
     });
 
     it('should render info when right-clicked', async () => {
@@ -409,9 +409,9 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /okay/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^okay$/i }));
 
-      expect(screen.getByRole('dialog', { name: /accept these settings and start a new game\./i }));
+      expect(screen.getByRole('dialog', { name: /^accept these settings and start a new game\.$/i }));
     });
 
     it('should render no opponents modal when clicked', async () => {
@@ -419,9 +419,9 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.click(screen.getByRole('button', { name: /okay/i }));
+      await user.click(screen.getByRole('button', { name: /^okay$/i }));
 
-      expect(screen.getByRole('dialog', { name: /a game requires at least one opponent\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^a game requires at least one opponent\.$/i })).toBeInTheDocument();
     });
 
     it('should call okay handler when clicked and at least one opponent is set', async () => {
@@ -436,7 +436,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: /okay/i }));
+      await user.click(screen.getByRole('button', { name: /^okay$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -448,7 +448,7 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should render info when right-clicked', async () => {
@@ -456,9 +456,9 @@ describe(NewStandardGameWindow, () => {
         <NewStandardGameWindow gameDifficulty={GameDifficulty.Easy} playerColor={PlayerColor.Blue} />
       );
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /cancel/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^cancel$/i }));
 
-      expect(screen.getByRole('dialog', { name: /return to the main menu\./i }));
+      expect(screen.getByRole('dialog', { name: /^return to the main menu\.$/i }));
     });
 
     it('should call cancel handler when clicked', async () => {
@@ -472,7 +472,7 @@ describe(NewStandardGameWindow, () => {
         />
       );
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });

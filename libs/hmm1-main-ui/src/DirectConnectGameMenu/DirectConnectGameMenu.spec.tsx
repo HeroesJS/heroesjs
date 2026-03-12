@@ -8,14 +8,14 @@ describe(DirectConnectGameMenu, () => {
   it('should render', () => {
     renderWithProviders(<DirectConnectGameMenu />);
 
-    expect(screen.getByRole('menu', { name: /direct connect game menu/i }));
+    expect(screen.getByRole('menu', { name: /^direct connect game menu$/i }));
   });
 
   describe('host button', () => {
     it('should render', () => {
       renderWithProviders(<DirectConnectGameMenu />);
 
-      expect(screen.getByRole('button', { name: /host/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^host$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -23,7 +23,7 @@ describe(DirectConnectGameMenu, () => {
 
       const { user } = renderWithProviders(<DirectConnectGameMenu onHostClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /host/i }));
+      await user.click(screen.getByRole('button', { name: /^host$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -33,7 +33,7 @@ describe(DirectConnectGameMenu, () => {
     it('should render', () => {
       renderWithProviders(<DirectConnectGameMenu />);
 
-      expect(screen.getByRole('button', { name: /guest/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^guest$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -41,7 +41,7 @@ describe(DirectConnectGameMenu, () => {
 
       const { user } = renderWithProviders(<DirectConnectGameMenu onGuestClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /guest/i }));
+      await user.click(screen.getByRole('button', { name: /^guest$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -51,13 +51,13 @@ describe(DirectConnectGameMenu, () => {
     it('should not render by default', () => {
       renderWithProviders(<DirectConnectGameMenu />);
 
-      expect(screen.queryByRole('button', { name: /config/i })).toBeNull();
+      expect(screen.queryByRole('button', { name: /^config$/i })).toBeNull();
     });
 
     it('should render when configuration allowed', () => {
       renderWithProviders(<DirectConnectGameMenu allowConfiguration />);
 
-      expect(screen.getByRole('button', { name: /config/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^config$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -65,7 +65,7 @@ describe(DirectConnectGameMenu, () => {
 
       const { user } = renderWithProviders(<DirectConnectGameMenu allowConfiguration onConfigClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /config/i }));
+      await user.click(screen.getByRole('button', { name: /^config$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -75,7 +75,7 @@ describe(DirectConnectGameMenu, () => {
     it('should render', () => {
       renderWithProviders(<DirectConnectGameMenu />);
 
-      expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -83,7 +83,7 @@ describe(DirectConnectGameMenu, () => {
 
       const { user } = renderWithProviders(<DirectConnectGameMenu onCancelClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /cancel/i }));
+      await user.click(screen.getByRole('button', { name: /^cancel$/i }));
 
       expect(handler).toHaveBeenCalled();
     });

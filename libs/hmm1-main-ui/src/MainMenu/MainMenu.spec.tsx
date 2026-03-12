@@ -8,14 +8,14 @@ describe(MainMenu, () => {
   it('should render', () => {
     renderWithProviders(<MainMenu />);
 
-    expect(screen.getByRole('menu', { name: /main menu/i })).toBeInTheDocument();
+    expect(screen.getByRole('menu', { name: /^main menu$/i })).toBeInTheDocument();
   });
 
   describe('new game button', () => {
     it('should render', () => {
       renderWithProviders(<MainMenu />);
 
-      expect(screen.getByRole('button', { name: /new game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^new game$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -23,7 +23,7 @@ describe(MainMenu, () => {
 
       const { user } = renderWithProviders(<MainMenu onNewGameClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /new game/i }));
+      await user.click(screen.getByRole('button', { name: /^new game$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -31,9 +31,9 @@ describe(MainMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<MainMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /new game/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^new game$/i }));
 
-      expect(screen.getByRole('dialog', { name: /start a single or multi‑player game\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^start a single or multi‑player game\.$/i })).toBeInTheDocument();
     });
   });
 
@@ -41,7 +41,7 @@ describe(MainMenu, () => {
     it('should render', () => {
       renderWithProviders(<MainMenu />);
 
-      expect(screen.getByRole('button', { name: /load game/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^load game$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -49,7 +49,7 @@ describe(MainMenu, () => {
 
       const { user } = renderWithProviders(<MainMenu onLoadGameClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /load game/i }));
+      await user.click(screen.getByRole('button', { name: /^load game$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -57,9 +57,9 @@ describe(MainMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<MainMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /load game/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^load game$/i }));
 
-      expect(screen.getByRole('dialog', { name: /load a previously saved game\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^load a previously saved game\.$/i })).toBeInTheDocument();
     });
   });
 
@@ -67,7 +67,7 @@ describe(MainMenu, () => {
     it('should render', () => {
       renderWithProviders(<MainMenu />);
 
-      expect(screen.getByRole('button', { name: /view high scores/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^view high scores$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -75,7 +75,7 @@ describe(MainMenu, () => {
 
       const { user } = renderWithProviders(<MainMenu onViewHighScoresClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /view high scores/i }));
+      await user.click(screen.getByRole('button', { name: /^view high scores$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -83,9 +83,9 @@ describe(MainMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<MainMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /view high scores/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^view high scores$/i }));
 
-      expect(screen.getByRole('dialog', { name: /view the high score screen\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^view the high score screen\.$/i })).toBeInTheDocument();
     });
   });
 
@@ -93,7 +93,7 @@ describe(MainMenu, () => {
     it('should render', () => {
       renderWithProviders(<MainMenu />);
 
-      expect(screen.getByRole('button', { name: /view credits/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^view credits$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -101,7 +101,7 @@ describe(MainMenu, () => {
 
       const { user } = renderWithProviders(<MainMenu onViewCreditsClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /view credits/i }));
+      await user.click(screen.getByRole('button', { name: /^view credits$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -109,9 +109,9 @@ describe(MainMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<MainMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /view credits/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^view credits$/i }));
 
-      expect(screen.getByRole('dialog', { name: /view the credits screen\./i })).toBeInTheDocument();
+      expect(screen.getByRole('dialog', { name: /^view the credits screen\.$/i })).toBeInTheDocument();
     });
   });
 
@@ -119,7 +119,7 @@ describe(MainMenu, () => {
     it('should render', () => {
       renderWithProviders(<MainMenu />);
 
-      expect(screen.getByRole('button', { name: /quit/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^quit$/i })).toBeInTheDocument();
     });
 
     it('should call click handler when clicked', async () => {
@@ -127,7 +127,7 @@ describe(MainMenu, () => {
 
       const { user } = renderWithProviders(<MainMenu onQuitClick={handler} />);
 
-      await user.click(screen.getByRole('button', { name: /quit/i }));
+      await user.click(screen.getByRole('button', { name: /^quit$/i }));
 
       expect(handler).toHaveBeenCalled();
     });
@@ -135,10 +135,10 @@ describe(MainMenu, () => {
     it('should render info when right-clicked', async () => {
       const { user } = renderWithProviders(<MainMenu />);
 
-      await user.mouseRightDown(screen.getByRole('button', { name: /quit/i }));
+      await user.mouseRightDown(screen.getByRole('button', { name: /^quit$/i }));
 
       expect(
-        screen.getByRole('dialog', { name: /quit heroes of might and magic and return to the dos prompt\./i })
+        screen.getByRole('dialog', { name: /^quit heroes of might and magic and return to the dos prompt\.$/i })
       ).toBeInTheDocument();
     });
   });
