@@ -1,0 +1,325 @@
+export default {
+  component: {
+    baudMenu: {
+      cancel: {
+        label: 'Cancel',
+      },
+      label: 'Baud Menu',
+      value: {
+        label: '{{value}} Baud',
+      },
+    },
+    campaignMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      label: 'Campaign Menu',
+      play: {
+        info: 'Play the role of $t(core:leader.{{leader}}).',
+        label: 'Play $t(core:leader.{{leader}})',
+      },
+    },
+    comPortMenu: {
+      cancel: {
+        label: '$t(component.menu.cancel.label)',
+      },
+      label: 'COM Port Menu',
+      port: {
+        label: 'COM {{port}}',
+      },
+    },
+    creditsScreen: {
+      additionalDesign: {
+        entries: ['Phil Steinmeyer', 'Debbie Van Caneghem'],
+        title: 'Additional Design',
+      },
+      artDirector: {
+        entries: ['Julia Ulano'],
+        title: 'Art Director',
+      },
+      artists: {
+        entries: ['Bonita Long-Hemsath', 'Joel Payne', 'Mike Winterbauer'],
+        title: 'Artists',
+      },
+      designedAndDirected: {
+        entries: ['Jon Van Caneghem'],
+        title: 'Designed and Directed',
+      },
+      leadProgramming: {
+        entries: ['Phil Steinmeyer'],
+        title: 'Lead Programming',
+      },
+      musicAndSoundDesign: {
+        entries: ['Rob King'],
+        title: 'Music and Sound Design',
+      },
+      orchestralArranegments: {
+        entries: ['Paul Romero'],
+        title: 'Orchestral Arrangements',
+      },
+      programming: {
+        entries: ['Mark Caldwell', 'George Ruof', 'Todd Hendrix', 'Bob Rakosky', 'Michael Sean Clement'],
+        title: 'Programming',
+      },
+      qaManager: {
+        entries: ['Peter Ryu'],
+        title: 'QA Manager',
+      },
+      scenarios: {
+        entries: ['Jon Van Caneghem', 'Christian Vanover', 'Clayton Retzer', 'Mark Palczynski'],
+        title: 'Scenarios',
+      },
+      testing: {
+        entries: [
+          'Bryan Farina',
+          'Douglas Rothman',
+          'Pavel Vesely',
+          'Walter Johnson',
+          'Scott White',
+          'Mark Caldwell',
+          'George Ruof',
+          'Scott McDaniel',
+          'Benjamin Bent',
+          'Deane Rettig',
+          'Clayton Retzer',
+          'Craig Konas',
+          'Mark Palczynski',
+          'Christian Vanover',
+        ],
+        title: 'Testing',
+      },
+      title: 'Credits',
+      writingAndManual: {
+        entries: ['Rozita Tolouey', 'Deane Rettig', 'Bruce Schlickbernd'],
+        title: 'Writing and Manual',
+      },
+    },
+    dialingTelephoneNumberModal: {
+      message: 'Dialing... {{telephoneNumber}}',
+    },
+    directConnectGameMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      config: {
+        label: 'Config',
+      },
+      guest: {
+        label: 'Guest',
+      },
+      host: {
+        label: 'Host',
+      },
+      label: 'Direct Connect Game Menu',
+    },
+    enterTelephoneNumberModal: {
+      inputLabel: 'Telephone Number',
+      message: 'Please enter the telephone number.',
+    },
+    fileSelectorWindow: {
+      cancel: 'Cancel',
+      confirm: 'Okay',
+      items: 'Items',
+      load: 'File to Load:',
+      scenarioDetail: {
+        description: 'Description:',
+        difficulty: 'Difficulty:',
+        size: 'Size:',
+        title: 'Scenario Detail',
+      },
+      selectedItem: 'Selected Item',
+      title: 'File Selector Window',
+    },
+    gameTypeMenu: {
+      campaignGame: {
+        info: 'A single player game playing through a series of maps.',
+        label: 'Campaign Game',
+      },
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      label: 'Game Type Menu',
+      multiPlayerGame: {
+        info: 'A multi-player game, with several human players competing against each other on a single map.',
+        label: 'Multi-Player Game',
+      },
+      standardGame: {
+        info: 'A single player game playing out a single map.',
+        label: 'Standard Game',
+      },
+    },
+    highScoresScreen: {
+      campaign: {
+        label: 'Campaign',
+      },
+      campaignGame: 'Campaign Game',
+      days: 'Days',
+      exit: {
+        label: 'Exit',
+      },
+      leader: 'Leader',
+      player: 'Player',
+      scenario: 'Land',
+      score: 'Score',
+      scoreTitle: 'Title',
+      standard: {
+        label: 'Standard',
+      },
+      standardGame: 'Standard Game',
+      title: 'High Scores',
+    },
+    mainMenu: {
+      label: 'Main Menu',
+      loadGame: {
+        info: 'Load a previously saved game.',
+        label: 'Load Game',
+      },
+      newGame: {
+        info: 'Start a single or multi‑player game.',
+        label: 'New Game',
+      },
+      quit: {
+        info: 'Quit Heroes of Might and Magic and return to the DOS prompt.',
+        label: 'Quit',
+      },
+      viewCredits: {
+        info: 'View the credits screen.',
+        label: 'View Credits',
+      },
+      viewHighScores: {
+        info: 'View the high score screen.',
+        label: 'View High Scores',
+      },
+    },
+    mainScreen: {
+      title: 'Main Screen',
+    },
+    menu: {
+      cancel: {
+        info: 'Cancel back to the main menu.',
+        label: 'Cancel',
+      },
+    },
+    modemGameMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      config: {
+        label: 'Config Modem',
+      },
+      guest: {
+        info: 'The guest waits for the host to call and set up the game.',
+        label: 'Guest (Answers)',
+      },
+      host: {
+        info: 'The host sets up the game options, chooses the number to dial, and places the call.',
+        label: 'Host (Dials)',
+      },
+      label: 'Modem Game Menu',
+    },
+    multiPlayerGameTypeMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      directConnect: {
+        info: 'Play a direct connect game, where 2 players use ther own computers directly connected through their serial port by a null modem.',
+        label: 'Direct Connect',
+      },
+      hotSeat: {
+        info: "Play a Hot Seat game, where 2 to 4 players play around the same computer, switching into the 'Hot Seat' when it is their turn.",
+        label: 'Hot Seat',
+      },
+      label: 'Multi-Player Game Type Menu',
+      modem: {
+        info: 'Play a modem game, where 2 players use ther own computers connected over the phone lines using modems.',
+        label: 'Modem',
+      },
+      network: {
+        info: 'Play a network game, where 2 players use their own computers connected through a LAN (Local Area Network).',
+        label: 'Network',
+      },
+    },
+    networkGameMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      guest: {
+        info: 'The guest waits for the host to set up the game, then is automatically added in.  There can only be one guest per network game.',
+        label: 'Guest',
+      },
+      host: {
+        info: 'The host sets up the game options.  There can only be one host per network game.',
+        label: 'Host',
+      },
+      label: 'Network Game Menu',
+    },
+    newStandardGameWindow: {
+      cancel: {
+        info: 'Return to the main menu.',
+        label: 'Cancel',
+      },
+      confirm: {
+        info: 'Accept these settings and start a new game.',
+        label: 'Okay',
+      },
+      difficultyRating: {
+        info: 'The difficulty rating reflects a combination of various settings for your game.  This number will be applied to your final score.',
+        label: 'Difficulty Rating:',
+        value: '{{value}}%',
+      },
+      gameDifficulty: {
+        info: 'Change the starting difficulty at which you will play.  Higher difficulty levels start you off with fewer resources.',
+        label: 'Choose Game Difficulty:',
+      },
+      kingOfTheHill: {
+        info: "Challenge all computer players as 'King of the Hill'.  Computer players will be offended by your boastfulness, and lay off each other in an attempt to beat you to a pulp.",
+        label: 'King of the Hill:',
+      },
+      opponents: {
+        computerOpponentInfo:
+          'Change the difficulty of this opponent.  Smarter computer players are more aggressive and think longer for each turn.',
+        humanOpponentInfo:
+          'Change the starting difficulty of another human player.  Higher difficulty levels start you off with fewer resources.',
+        label: 'Customize Opponents:',
+        noOpponentsError: 'A game requires at least one opponent.',
+        opponentLabel: 'Opponent {{number}} Setting',
+      },
+      playerColor: {
+        info: 'Change your banner color.',
+        label: 'Choose Color:',
+      },
+      scenario: {
+        info: 'Select which scenario to play.',
+        label: 'Choose Scenario:',
+        nameLabel: 'Scenario',
+        select: 'Select Scenario',
+      },
+      title: 'New Standard Game',
+    },
+    playerCountMenu: {
+      cancel: {
+        info: '$t(component.menu.cancel.info)',
+        label: '$t(component.menu.cancel.label)',
+      },
+      count: {
+        info_2: 'Play with 2 human players, and optionally, up to 2 additional computer players.',
+        info_3: 'Play with 3 human players, and optionally 1 computer player.',
+        info_4: 'Play with 4 human players.',
+        label: '{{count}} Players',
+      },
+      label: 'Player Count Menu',
+    },
+    waitingForDirectConnectionModal: {
+      message: "Waiting for other computer to log in to direct connection.\n\nPress 'CANCEL' to abort.",
+    },
+    waitingForRingModal: {
+      message: 'Waiting for ring...',
+    },
+  },
+} as const;

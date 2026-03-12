@@ -1,8 +1,8 @@
-import adventure from './adventure.json';
-import app from './app.json';
-import core from './core.json';
-import main from './main.json';
-import ui from './ui.json';
+import adventure from './adventure';
+import app from './app';
+import core from './core';
+import main from './main';
+import ui from './ui';
 
 export const en = {
   adventure,
