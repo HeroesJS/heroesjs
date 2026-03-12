@@ -315,6 +315,9 @@
     },
     "waitingForDirectConnectionModal": {
       "message": "Waiting for other computer to log in to direct connection.\n\nPress 'CANCEL' to abort."
+    },
+    "waitingForRingModal": {
+      "message": "Waiting for ring..."
     }
   }
 }

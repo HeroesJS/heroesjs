@@ -4,7 +4,7 @@ import { Navigate, Outlet, Route, Routes, useNavigate, useParams } from 'react-r
 import { createGlobalStyle } from 'styled-components';
 
 import { MaxPlayerCount } from '@heroesjs/hmm1-core';
-import { GlobalFontStyles, useModal } from '@heroesjs/hmm1-core-ui';
+import { GlobalFontStyles } from '@heroesjs/hmm1-core-ui';
 import {
   CampaignMenu,
   CreditsScreen,
@@ -18,6 +18,7 @@ import {
   NetworkGameMenu,
   PlayerCountMenu,
   WaitingForDirectConnectionModal,
+  WaitingForRingModal,
 } from '@heroesjs/hmm1-main-ui';
 
 import { AdventureScreen } from './AdventureScreen';
@@ -48,8 +49,6 @@ export function App() {
   }, []);
 
   const navigateToMainScreen = () => navigate('/');
-
-  const [WaitingForRingModal] = useModal();
 
   return (
     <>
@@ -163,9 +162,7 @@ export function App() {
               <Route
                 element={
                   <MainScreen label={t(($) => $.joinModemGameScreen.title)}>
-                    <WaitingForRingModal onCancelClick={navigateToMainScreen} open size={1} type="cancel">
-                      Waiting for ring...
-                    </WaitingForRingModal>
+                    <WaitingForRingModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
                 path="join"

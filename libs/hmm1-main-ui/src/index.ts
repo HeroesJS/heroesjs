@@ -16,3 +16,4 @@ export { NetworkGameMenu } from './NetworkGameMenu';
 export { NewStandardGameWindow } from './NewStandardGameWindow';
 export { PlayerCountMenu } from './PlayerCountMenu';
 export { WaitingForDirectConnectionModal } from './WaitingForDirectConnectionModal';
+export { WaitingForRingModal } from './WaitingForRingModal';
