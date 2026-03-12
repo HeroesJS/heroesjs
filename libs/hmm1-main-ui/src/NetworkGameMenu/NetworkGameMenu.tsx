@@ -20,30 +20,35 @@ export function NetworkGameMenu({ onCancelClick, onGuestClick, onHostClick, x, y
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
-        <Button assets={host} label={t('host.label')} onClick={onHostClick} onMouseDown={hostInfoModal.onMouseDown} />
-        <HostInfoModal>{t('host.info')}</HostInfoModal>
+        <Button
+          assets={host}
+          label={t(($) => $.host.label)}
+          onClick={onHostClick}
+          onMouseDown={hostInfoModal.onMouseDown}
+        />
+        <HostInfoModal>{t(($) => $.host.info)}</HostInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={guest}
-          label={t('guest.label')}
+          label={t(($) => $.guest.label)}
           onClick={onGuestClick}
           onMouseDown={guestInfoModal.onMouseDown}
         />
-        <GuestInfoModal size={1}>{t('guest.info')}</GuestInfoModal>
+        <GuestInfoModal size={1}>{t(($) => $.guest.info)}</GuestInfoModal>
       </MenuItem>
       <MenuItem />
       <MenuItem />
       <MenuItem>
         <Button
           assets={cancel}
-          label={t('cancel.label')}
+          label={t(($) => $.cancel.label)}
           onClick={onCancelClick}
           onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+        <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

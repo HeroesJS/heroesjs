@@ -15,86 +15,122 @@ export function CreditsScreen({ onClick }: CreditsScreenProps) {
   const { t } = useTranslation('main', { keyPrefix: 'component.creditsScreen' });
 
   return (
-    <Screen background={background} label={t('title')} onClick={onClick}>
-      <List label={t('designedAndDirected.title')} width={210} x={55} y={47}>
-        {zip(t('designedAndDirected.entries', { returnObjects: true }), []).map(([entry, shift]) => (
+    <Screen background={background} label={t(($) => $.title)} onClick={onClick}>
+      <List label={t(($) => $.designedAndDirected.title)} width={210} x={55} y={47}>
+        {zip(
+          t(($) => $.designedAndDirected.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('additionalDesign.title')} width={210} x={54} y={96}>
-        {zip(t('additionalDesign.entries', { returnObjects: true }), [0, 2]).map(([entry, shift]) => (
+      <List label={t(($) => $.additionalDesign.title)} width={210} x={54} y={96}>
+        {zip(
+          t(($) => $.additionalDesign.entries, { returnObjects: true }),
+          [0, 2]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('leadProgramming.title')} width={210} x={55} y={159}>
-        {zip(t('leadProgramming.entries', { returnObjects: true }), [-2]).map(([entry, shift]) => (
+      <List label={t(($) => $.leadProgramming.title)} width={210} x={55} y={159}>
+        {zip(
+          t(($) => $.leadProgramming.entries, { returnObjects: true }),
+          [-2]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('programming.title')} width={210} x={53} y={208}>
-        {zip(t('programming.entries', { returnObjects: true }), [2, 3, 3, 3, 5]).map(([entry, shift]) => (
+      <List label={t(($) => $.programming.title)} width={210} x={53} y={208}>
+        {zip(
+          t(($) => $.programming.entries, { returnObjects: true }),
+          [2, 3, 3, 3, 5]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('artDirector.title')} width={210} x={54} y={313}>
-        {zip(t('artDirector.entries', { returnObjects: true }), [1]).map(([entry, shift]) => (
+      <List label={t(($) => $.artDirector.title)} width={210} x={54} y={313}>
+        {zip(
+          t(($) => $.artDirector.entries, { returnObjects: true }),
+          [1]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('artists.title')} width={210} x={54} y={362}>
-        {zip(t('artists.entries', { returnObjects: true }), [3, 1, 3]).map(([entry, shift]) => (
+      <List label={t(($) => $.artists.title)} width={210} x={54} y={362}>
+        {zip(
+          t(($) => $.artists.entries, { returnObjects: true }),
+          [3, 1, 3]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('musicAndSoundDesign.title')} width={300} x={274} y={39}>
-        {zip(t('musicAndSoundDesign.entries', { returnObjects: true }), []).map(([entry, shift]) => (
+      <List label={t(($) => $.musicAndSoundDesign.title)} width={300} x={274} y={39}>
+        {zip(
+          t(($) => $.musicAndSoundDesign.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('orchestralArranegments.title')} width={300} x={273} y={83}>
-        {zip(t('orchestralArranegments.entries', { returnObjects: true }), []).map(([entry, shift]) => (
+      <List label={t(($) => $.orchestralArranegments.title)} width={300} x={273} y={83}>
+        {zip(
+          t(($) => $.orchestralArranegments.entries, { returnObjects: true }),
+          []
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('writingAndManual.title')} width={300} x={273} y={127}>
-        {zip(t('writingAndManual.entries', { returnObjects: true }), [0, 0, 1]).map(([entry, shift]) => (
+      <List label={t(($) => $.writingAndManual.title)} width={300} x={273} y={127}>
+        {zip(
+          t(($) => $.writingAndManual.entries, { returnObjects: true }),
+          [0, 0, 1]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('scenarios.title')} width={300} x={273} y={199}>
-        {zip(t('scenarios.entries', { returnObjects: true }), [0, 0, -1]).map(([entry, shift]) => (
+      <List label={t(($) => $.scenarios.title)} width={300} x={273} y={199}>
+        {zip(
+          t(($) => $.scenarios.entries, { returnObjects: true }),
+          [0, 0, -1]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List label={t('qaManager.title')} width={300} x={272} y={285}>
-        {zip(t('qaManager.entries', { returnObjects: true }), [1]).map(([entry, shift]) => (
+      <List label={t(($) => $.qaManager.title)} width={300} x={272} y={285}>
+        {zip(
+          t(($) => $.qaManager.entries, { returnObjects: true }),
+          [1]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>
         ))}
       </List>
-      <List height={100} label={t('testing.title')} width={300} x={272} y={329}>
-        {zip(t('testing.entries', { returnObjects: true }), [0, 0, 0, 1, 0, 1]).map(([entry, shift]) => (
+      <List height={100} label={t(($) => $.testing.title)} width={300} x={272} y={329}>
+        {zip(
+          t(($) => $.testing.entries, { returnObjects: true }),
+          [0, 0, 0, 1, 0, 1]
+        ).map(([entry, shift]) => (
           <ListItem key={entry} shift={shift}>
             {entry!}
           </ListItem>

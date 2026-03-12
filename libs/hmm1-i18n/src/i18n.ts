@@ -6,6 +6,7 @@ import { en } from './en';
 declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'app';
+    enableSelector: 'optimize';
     resources: typeof en;
   }
 }

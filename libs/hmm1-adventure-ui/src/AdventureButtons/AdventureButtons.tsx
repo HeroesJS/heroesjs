@@ -44,56 +44,56 @@ export function AdventureButtons({
       <Button
         assets={nextHero}
         disabled={nextHeroDisabled}
-        label={t('nextHero.label')}
+        label={t(($) => $.nextHero.label)}
         onClick={onNextHeroClick}
         onMouseDown={nextHeroInfoModal.onMouseDown}
       />
-      <NextHeroInfoModal x={97}>{t('nextHero.info')}</NextHeroInfoModal>
+      <NextHeroInfoModal x={97}>{t(($) => $.nextHero.info)}</NextHeroInfoModal>
       <Button
         assets={move}
         disabled={moveDisabled}
-        label={t('move.label')}
+        label={t(($) => $.move.label)}
         onClick={onMoveClick}
         onMouseDown={moveInfoModal.onMouseDown}
       />
       <MoveInfoModal size={1} x={97}>
-        {t('move.info')}
+        {t(($) => $.move.info)}
       </MoveInfoModal>
       <Button
         assets={kingdomOverview}
-        label={t('kingdomOverview.label')}
+        label={t(($) => $.kingdomOverview.label)}
         onClick={onKingdomOverview}
         onMouseDown={kingdomOverviewInfoModal.onMouseDown}
       />
       <KingdomOverviewInfoModal size={1} x={97}>
-        {t('kingdomOverview.info')}
+        {t(($) => $.kingdomOverview.info)}
       </KingdomOverviewInfoModal>
       <Button
         assets={endTurn}
-        label={t('endTurn.label')}
+        label={t(($) => $.endTurn.label)}
         onClick={onEndTurnClick}
         onMouseDown={endTurnInfoModal.onMouseDown}
       />
       <EndTurnInfoModal size={1} x={97}>
-        {t('endTurn.info')}
+        {t(($) => $.endTurn.info)}
       </EndTurnInfoModal>
       <Button
         assets={adventureOptions}
-        label={t('adventureOptions.label')}
+        label={t(($) => $.adventureOptions.label)}
         onClick={onAdventureOptionsClick}
         onMouseDown={adventureOptionsInfoModal.onMouseDown}
       />
       <AdventureOptionsInfoModal size={1} x={97}>
-        {t('adventureOptions.info')}
+        {t(($) => $.adventureOptions.info)}
       </AdventureOptionsInfoModal>
       <Button
         assets={gameOptions}
-        label={t('gameOptions.label')}
+        label={t(($) => $.gameOptions.label)}
         onClick={onGameOptionsClick}
         onMouseDown={gameOptionsInfoModal.onMouseDown}
       />
       <GameOptionsInfoModal size={1} x={97}>
-        {t('gameOptions.info')}
+        {t(($) => $.gameOptions.info)}
       </GameOptionsInfoModal>
     </Root>
   );

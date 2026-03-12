@@ -14,7 +14,7 @@ export function WaitingForDirectConnectionModal({ onCancelClick, open, x, y }: W
 
   return (
     <Modal onCancelClick={onCancelClick} open={open} size={2} type="cancel" x={x} y={y}>
-      {t('message')}
+      {t(($) => $.message)}
     </Modal>
   );
 }

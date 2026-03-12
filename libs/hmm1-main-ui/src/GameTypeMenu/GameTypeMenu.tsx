@@ -29,43 +29,43 @@ export function GameTypeMenu({
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
         <Button
           assets={standardGame}
-          label={t('standardGame.label')}
+          label={t(($) => $.standardGame.label)}
           onClick={onStandardGameClick}
           onMouseDown={standardGameInfoModal.onMouseDown}
         />
-        <StandardGameInfoModal>{t('standardGame.info')}</StandardGameInfoModal>
+        <StandardGameInfoModal>{t(($) => $.standardGame.info)}</StandardGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={campaignGame}
-          label={t('campaignGame.label')}
+          label={t(($) => $.campaignGame.label)}
           onClick={onCampaignGameClick}
           onMouseDown={campaignGameInfoModal.onMouseDown}
         />
-        <CampaignGameInfoModal>{t('campaignGame.info')}</CampaignGameInfoModal>
+        <CampaignGameInfoModal>{t(($) => $.campaignGame.info)}</CampaignGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={multiPlayerGame}
-          label={t('multiPlayerGame.label')}
+          label={t(($) => $.multiPlayerGame.label)}
           onClick={onMultiPlayerGameClick}
           onMouseDown={multiPlayerGameInfoModal.onMouseDown}
         />
-        <MultiPlayerGameInfoModal size={1}>{t('multiPlayerGame.info')}</MultiPlayerGameInfoModal>
+        <MultiPlayerGameInfoModal size={1}>{t(($) => $.multiPlayerGame.info)}</MultiPlayerGameInfoModal>
       </MenuItem>
       <MenuItem />
       <MenuItem>
         <Button
           assets={cancel}
-          label={t('cancel.label')}
+          label={t(($) => $.cancel.label)}
           onClick={onCancelClick}
           onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+        <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

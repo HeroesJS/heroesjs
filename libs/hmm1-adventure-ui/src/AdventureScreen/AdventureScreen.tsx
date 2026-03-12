@@ -9,7 +9,7 @@ export function AdventureScreen({ children }: PropsWithChildren) {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.adventureScreen' });
 
   return (
-    <Screen background={background} label={t('title')}>
+    <Screen background={background} label={t(($) => $.title)}>
       {children}
     </Screen>
   );

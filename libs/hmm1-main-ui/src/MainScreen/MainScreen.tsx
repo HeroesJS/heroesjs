@@ -13,7 +13,7 @@ export function MainScreen({ children, label }: PropsWithChildren<MainScreenProp
   const { t } = useTranslation('main', { keyPrefix: 'component.mainScreen' });
 
   return (
-    <Screen background={background} label={label || t('title')}>
+    <Screen background={background} label={label || t(($) => $.title)}>
       {children}
     </Screen>
   );

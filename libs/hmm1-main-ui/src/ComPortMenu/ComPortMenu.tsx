@@ -16,14 +16,18 @@ export function ComPortMenu({ onCancelClick, onValueClick, x, y }: ComPortMenuPr
   const { t } = useTranslation('main', { keyPrefix: 'component.comPortMenu' });
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       {range(1, 5).map((port) => (
         <MenuItem key={port}>
-          <Button assets={portAssets[port]} label={t('port.label', { port })} onClick={() => onValueClick?.(port)} />
+          <Button
+            assets={portAssets[port]}
+            label={t(($) => $.port.label, { port })}
+            onClick={() => onValueClick?.(port)}
+          />
         </MenuItem>
       ))}
       <MenuItem>
-        <Button assets={cancel} label={t('cancel.label')} onClick={onCancelClick} />
+        <Button assets={cancel} label={t(($) => $.cancel.label)} onClick={onCancelClick} />
       </MenuItem>
     </Menu>
   );

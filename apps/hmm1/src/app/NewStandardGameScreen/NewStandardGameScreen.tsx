@@ -113,7 +113,7 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
   };
 
   return (
-    <MainScreen label={t('title')}>
+    <MainScreen label={t(($) => $.title)}>
       {isSelectingScenario ? (
         <FileSelectorWindow
           initialValue={scenarioFileName}

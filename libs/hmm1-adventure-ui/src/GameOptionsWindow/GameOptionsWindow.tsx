@@ -103,16 +103,16 @@ export function GameOptionsWindow({
   const [InfoInfoModal, infoInfoModal] = useModal();
 
   return (
-    <Window background={background} height={459} label={t('title')} open={open} width={322} x={x} y={y}>
+    <Window background={background} height={459} label={t(($) => $.title)} open={open} width={322} x={x} y={y}>
       <Button
         assets={newGame}
-        label={t('newGame.label')}
+        label={t(($) => $.newGame.label)}
         onClick={newGameConfirmationModal.open}
         onMouseDown={newGameInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <NewGameInfoModal>{t('newGame.info')}</NewGameInfoModal>
+      <NewGameInfoModal>{t(($) => $.newGame.info)}</NewGameInfoModal>
       <NewGameConfirmationModal
         onCancelClick={newGameConfirmationModal.close}
         onConfirmClick={onNewGameClick}
@@ -120,17 +120,17 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        {t('newGame.confirmation')}
+        {t(($) => $.newGame.confirmation)}
       </NewGameConfirmationModal>
       <Button
         assets={loadGame}
-        label={t('loadGame.label')}
+        label={t(($) => $.loadGame.label)}
         onClick={loadGameConfirmationModal.open}
         onMouseDown={loadGameInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <LoadGameInfoModal>{t('loadGame.info')}</LoadGameInfoModal>
+      <LoadGameInfoModal>{t(($) => $.loadGame.info)}</LoadGameInfoModal>
       <LoadGameConfirmationModal
         onCancelClick={loadGameConfirmationModal.close}
         onConfirmClick={onLoadGameClick}
@@ -138,26 +138,26 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        {t('loadGame.confirmation')}
+        {t(($) => $.loadGame.confirmation)}
       </LoadGameConfirmationModal>
       <Button
         assets={saveGame}
-        label={t('saveGame.label')}
+        label={t(($) => $.saveGame.label)}
         onClick={onSaveGameClick}
         onMouseDown={saveGameInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <SaveGameInfoModal>{t('saveGame.info')}</SaveGameInfoModal>
+      <SaveGameInfoModal>{t(($) => $.saveGame.info)}</SaveGameInfoModal>
       <Button
         assets={quit}
-        label={t('quit.label')}
+        label={t(($) => $.quit.label)}
         onClick={quitConfirmationModal.open}
         onMouseDown={quitInfoModal.onMouseDown}
         x={179}
         y={107}
       />
-      <QuitInfoModal>{t('quit.info')}</QuitInfoModal>
+      <QuitInfoModal>{t(($) => $.quit.info)}</QuitInfoModal>
       <QuitConfirmationModal
         onCancelClick={quitConfirmationModal.close}
         onConfirmClick={onQuitClick}
@@ -165,88 +165,88 @@ export function GameOptionsWindow({
         type="yesNo"
         y={81}
       >
-        {t('quit.confirmation')}
+        {t(($) => $.quit.confirmation)}
       </QuitConfirmationModal>
       <VolumeSetting
         assets={music}
-        label={t('musicVolume.label')}
+        label={t(($) => $.musicVolume.label)}
         onChange={onMusicVolumeChange}
         onMouseDown={musicVolumeInfoModal.onMouseDown}
         value={musicVolume}
         x={25}
         y={181}
       />
-      <MusicVolumeInfoModal>{t('musicVolume.info')}</MusicVolumeInfoModal>
+      <MusicVolumeInfoModal>{t(($) => $.musicVolume.info)}</MusicVolumeInfoModal>
       <VolumeSetting
         assets={effects}
-        label={t('effectsVolume.label')}
+        label={t(($) => $.effectsVolume.label)}
         onChange={onEffectsVolumeChange}
         onMouseDown={effectsVolumeInfoModal.onMouseDown}
         value={effectsVolume}
         x={117}
         y={181}
       />
-      <EffectsVolumeInfoModal>{t('effectsVolume.info')}</EffectsVolumeInfoModal>
+      <EffectsVolumeInfoModal>{t(($) => $.effectsVolume.info)}</EffectsVolumeInfoModal>
       <CycleToggleSetting
         assets={movementSpeedAssets}
-        label={t('movementSpeed.label')}
+        label={t(($) => $.movementSpeed.label)}
         onChange={onMovementSpeedChange}
         onMouseDown={movementSpeedInfoModal.onMouseDown}
         options={movementSpeeds}
         value={movementSpeed}
-        valueLabel={tCore(`movementSpeed.${movementSpeed}`)}
+        valueLabel={tCore(($) => $.movementSpeed[movementSpeed])}
         x={209}
         y={181}
       />
-      <MovementSpeedInfoModal>{t('movementSpeed.info')}</MovementSpeedInfoModal>
+      <MovementSpeedInfoModal>{t(($) => $.movementSpeed.info)}</MovementSpeedInfoModal>
       <CheckboxSetting
         assets={autoSaveAssets}
-        label={t('autoSave.label')}
+        label={t(($) => $.autoSave.label)}
         onChange={onAutoSaveChange}
         onMouseDown={autoSaveInfoModal.onMouseDown}
         value={autoSave}
         x={25}
         y={301}
       />
-      <AutoSaveInfoModal size={1}>{t('autoSave.info')}</AutoSaveInfoModal>
+      <AutoSaveInfoModal size={1}>{t(($) => $.autoSave.info)}</AutoSaveInfoModal>
       <CheckboxSetting
         assets={showPathAssets}
-        label={t('showPath.label')}
+        label={t(($) => $.showPath.label)}
         onChange={onShowPathChange}
         onMouseDown={showPathInfoModal.onMouseDown}
         value={showPath}
         x={117}
         y={301}
       />
-      <ShowPathInfoModal size={2}>{t('showPath.info')}</ShowPathInfoModal>
+      <ShowPathInfoModal size={2}>{t(($) => $.showPath.info)}</ShowPathInfoModal>
       <CheckboxSetting
         assets={viewEnemyMovementAssets}
-        label={t('viewEnemyMovement.label')}
+        label={t(($) => $.viewEnemyMovement.label)}
         onChange={onViewEnemyMovementChange}
         onMouseDown={viewEnemyMovementInfoModal.onMouseDown}
         value={viewEnemyMovement}
         x={209}
         y={289}
       />
-      <ViewEnemyMovementInfoModal size={2}>{t('viewEnemyMovement.info')}</ViewEnemyMovementInfoModal>
+      <ViewEnemyMovementInfoModal size={2}>{t(($) => $.viewEnemyMovement.info)}</ViewEnemyMovementInfoModal>
       <Button
         assets={okay}
-        label={t('confirm.label')}
+        label={t(($) => $.confirm.label)}
         onClick={onOkayClick}
         onMouseDown={okayInfoModal.onMouseDown}
         x={24}
         y={407}
       />
-      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
+      <OkayInfoModal>{t(($) => $.confirm.info)}</OkayInfoModal>
       <Button
         assets={info}
-        label={t('info.label')}
+        label={t(($) => $.info.label)}
         onClick={onInfoClick}
         onMouseDown={infoInfoModal.onMouseDown}
         x={201}
         y={407}
       />
-      <InfoInfoModal>{t('info.info')}</InfoInfoModal>
+      <InfoInfoModal>{t(($) => $.info.info)}</InfoInfoModal>
     </Window>
   );
 }
@@ -265,7 +265,7 @@ function CheckboxSetting({ assets, label, onChange, onMouseDown, value, x, y }: 
   const { t } = useTranslation('adventure', { keyPrefix: 'component.gameOptionsWindow.toggle' });
 
   return (
-    <Setting label={label} valueLabel={value ? t('on') : t('off')} x={x} y={y}>
+    <Setting label={label} valueLabel={value ? t(($) => $.on) : t(($) => $.off)} x={x} y={y}>
       {(labelId) => (
         <Checkbox assets={assets} checked={value} labelId={labelId} onChange={onChange} onMouseDown={onMouseDown} />
       )}
@@ -286,8 +286,8 @@ interface VolumeSettingProps {
 function VolumeSetting({ assets, label, onChange, onMouseDown, value, x, y }: VolumeSettingProps) {
   const { t } = useTranslation('adventure', { keyPrefix: 'component.gameOptionsWindow.soundVolume' });
 
-  const enabledLabel = value !== SoundVolume.Off ? t('max') : t('min');
-  const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? t('volume', { value }) : '';
+  const enabledLabel = value !== SoundVolume.Off ? t(($) => $.max) : t(($) => $.min);
+  const volumeLabel = ![SoundVolume.Off, SoundVolume.On].includes(value) ? t(($) => $.volume, { value }) : '';
 
   return (
     <Setting

@@ -15,7 +15,7 @@ export function DialingTelephoneNumberModal({ onCancelClick, open, value, x, y }
 
   return (
     <Modal onCancelClick={onCancelClick} open={open} size={1} type="cancel" x={x} y={y}>
-      {t('message', { telephoneNumber: value })}
+      {t(($) => $.message, { telephoneNumber: value })}
     </Modal>
   );
 }

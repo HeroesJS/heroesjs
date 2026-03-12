@@ -29,21 +29,21 @@ export function DirectConnectGameMenu({
   const { cancel, guest, host } = allowConfiguration ? withConfig : noConfig;
 
   const configButton = allowConfiguration && (
-    <Button assets={withConfig.config as ButtonAssets} label={t('config.label')} onClick={onConfigClick} />
+    <Button assets={withConfig.config as ButtonAssets} label={t(($) => $.config.label)} onClick={onConfigClick} />
   );
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
-        <Button assets={host} label={t('host.label')} onClick={onHostClick} />
+        <Button assets={host} label={t(($) => $.host.label)} onClick={onHostClick} />
       </MenuItem>
       <MenuItem>
-        <Button assets={guest} label={t('guest.label')} onClick={onGuestClick} />
+        <Button assets={guest} label={t(($) => $.guest.label)} onClick={onGuestClick} />
       </MenuItem>
       <MenuItem>{configButton}</MenuItem>
       <MenuItem />
       <MenuItem>
-        <Button assets={cancel} label={t('cancel.label')} onClick={onCancelClick} />
+        <Button assets={cancel} label={t(($) => $.cancel.label)} onClick={onCancelClick} />
       </MenuItem>
     </Menu>
   );

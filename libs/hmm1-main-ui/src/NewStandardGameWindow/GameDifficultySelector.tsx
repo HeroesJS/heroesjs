@@ -63,7 +63,7 @@ function Item({ onClick, onMouseDown, selected, value }: ItemProps) {
       {selected && <img alt="" src={gameDifficulty.selection} />}
       <PositionedComponent alt="" as="img" src={gameDifficulty.icon[value]} x={3} y={3} />
       <Text align="center" size="small" width={Item.width + labelShift} x={0} y={69}>
-        {t(`gameDifficulty.${value}`)}
+        {t(($) => $.gameDifficulty[value])}
       </Text>
     </ItemRoot>
   );

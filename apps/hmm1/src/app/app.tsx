@@ -74,7 +74,7 @@ export function App() {
         <Route path="new-game">
           <Route
             element={
-              <MainScreen label={t('newGameScreen.title')}>
+              <MainScreen label={t(($) => $.newGameScreen.title)}>
                 <GameTypeMenu
                   onCampaignGameClick={() => navigate('new-game/campaign')}
                   onCancelClick={navigateToMainScreen}
@@ -100,7 +100,7 @@ export function App() {
           />
           <Route
             element={
-              <MainScreen label={t('newCampaignGameScreen.title')}>
+              <MainScreen label={t(($) => $.newCampaignGameScreen.title)}>
                 <CampaignMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
               </MainScreen>
             }
@@ -109,7 +109,7 @@ export function App() {
           <Route path="multi-player">
             <Route
               element={
-                <MainScreen label={t('newMultiPlayerGameScreen.title')}>
+                <MainScreen label={t(($) => $.newMultiPlayerGameScreen.title)}>
                   <MultiPlayerGameTypeMenu
                     onCancelClick={navigateToMainScreen}
                     onDirectConnectClick={() => navigate('/new-game/multi-player/direct-connect')}
@@ -125,7 +125,7 @@ export function App() {
             />
             <Route
               element={
-                <MainScreen label={t('newHotSeatGameScreen.title')}>
+                <MainScreen label={t(($) => $.newHotSeatGameScreen.title)}>
                   <PlayerCountMenu
                     onCancelClick={navigateToMainScreen}
                     onValueClick={(count) => navigate(`/new-game/standard/${count}`)}
@@ -138,7 +138,7 @@ export function App() {
             />
             <Route
               element={
-                <MainScreen label={t('newNetworkGameScreen.title')}>
+                <MainScreen label={t(($) => $.newNetworkGameScreen.title)}>
                   <NetworkGameMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
                 </MainScreen>
               }
@@ -147,7 +147,7 @@ export function App() {
             <Route path="modem">
               <Route
                 element={
-                  <MainScreen label={t('newModemGameScreen.title')}>
+                  <MainScreen label={t(($) => $.newModemGameScreen.title)}>
                     <ModemGameMenu
                       onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/modem/join')}
@@ -162,7 +162,7 @@ export function App() {
               <Route element={<HostModemGameScreen onCancelClick={navigateToMainScreen} />} path="host" />
               <Route
                 element={
-                  <MainScreen label={t('newModemGameScreen.title')}>
+                  <MainScreen label={t(($) => $.joinModemGameScreen.title)}>
                     <WaitingForRingModal onCancelClick={navigateToMainScreen} open size={1} type="cancel">
                       Waiting for ring...
                     </WaitingForRingModal>
@@ -174,7 +174,7 @@ export function App() {
             <Route path="direct-connect">
               <Route
                 element={
-                  <MainScreen label={t('newDirectConnectGameScreen.title')}>
+                  <MainScreen label={t(($) => $.newDirectConnectGameScreen.title)}>
                     <ModemGameMenu
                       onCancelClick={navigateToMainScreen}
                       onGuestClick={() => navigate('/new-game/multi-player/direct-connect/join')}
@@ -188,7 +188,7 @@ export function App() {
               />
               <Route
                 element={
-                  <MainScreen label={t('hostDirectConnectGameScreen.title')}>
+                  <MainScreen label={t(($) => $.hostDirectConnectGameScreen.title)}>
                     <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
@@ -196,7 +196,7 @@ export function App() {
               />
               <Route
                 element={
-                  <MainScreen label={t('joinDirectConnectGameScreen.title')}>
+                  <MainScreen label={t(($) => $.joinDirectConnectGameScreen.title)}>
                     <WaitingForDirectConnectionModal onCancelClick={navigateToMainScreen} open x={177} y={29} />
                   </MainScreen>
                 }
@@ -207,7 +207,7 @@ export function App() {
         </Route>
         <Route
           element={
-            <MainScreen label={t('loadGameScreen.title')}>
+            <MainScreen label={t(($) => $.loadGameScreen.title)}>
               <GameTypeMenu onCancelClick={navigateToMainScreen} x={400} y={35} />
             </MainScreen>
           }
@@ -232,7 +232,7 @@ function HostModemGameScreen({ onCancelClick }: HostModemGameScreenProps) {
   const [dialing, setDialing] = useState(false);
 
   return (
-    <MainScreen label={t('title')}>
+    <MainScreen label={t(($) => $.title)}>
       {dialing ? (
         <DialingTelephoneNumberModal onCancelClick={onCancelClick} open value={telephoneNumber} x={177} y={29} />
       ) : (

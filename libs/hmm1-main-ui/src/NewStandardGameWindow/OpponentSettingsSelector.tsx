@@ -40,7 +40,7 @@ export function OpponentSettingsSelector({
         <Item
           human={isHumanOpponent(index, humanOpponentsCount)}
           key={index}
-          label={t('opponents.opponentLabel', { number: index + 1 })}
+          label={t(($) => $.opponents.opponentLabel, { number: index + 1 })}
           onChange={(newValue) => onChange?.(value.map((v, i) => (i === index ? newValue : v)))}
           onMouseDown={(e) => onOptionMouseDown?.(e, setting, isHumanOpponent(index, humanOpponentsCount))}
           value={setting}
@@ -90,18 +90,18 @@ function Item({ human, label, onChange, onMouseDown, value }: ItemProps) {
           <Text align="center" size="small" width={Item.width - 1} x={1} y={66}>
             {human ? (
               <>
-                {t('opponentDifficulty.human')}
+                {t(($) => $.opponentDifficulty.human)}
                 {value && (
                   <>
                     <br />
-                    {t(`gameDifficulty.${getOpponentGameDifficulty(value)}`)}
+                    {t(($) => $.gameDifficulty[getOpponentGameDifficulty(value)])}
                   </>
                 )}
               </>
             ) : value !== noOpponent ? (
-              t(`opponentDifficulty.computer.${value}`)
+              t(($) => $.opponentDifficulty.computer[value])
             ) : (
-              t('opponentDifficulty.none')
+              t(($) => $.opponentDifficulty.none)
             )}
           </Text>
         </>

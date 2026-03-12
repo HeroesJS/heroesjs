@@ -35,52 +35,52 @@ export function AdventureOptionsWindow({
   const [OkayInfoModal, okayInfoModal] = useModal();
 
   return (
-    <Window background={background} height={236} label={t('title')} open={open} width={322} x={x} y={y}>
+    <Window background={background} height={236} label={t(($) => $.title)} open={open} width={322} x={x} y={y}>
       <Button
         assets={viewWorldAssets}
-        label={t('viewWorld.label')}
+        label={t(($) => $.viewWorld.label)}
         onClick={onViewWorldClick}
         onMouseDown={viewWorldInfoModal.onMouseDown}
         x={46}
         y={31}
       />
-      <ViewWorldInfoModal>{t('viewWorld.info')}</ViewWorldInfoModal>
+      <ViewWorldInfoModal>{t(($) => $.viewWorld.info)}</ViewWorldInfoModal>
       <Button
         assets={viewPuzzleAssets}
-        label={t('viewPuzzle.label')}
+        label={t(($) => $.viewPuzzle.label)}
         onClick={onViewPuzzleClick}
         onMouseDown={viewPuzzleInfoModal.onMouseDown}
         x={179}
         y={31}
       />
-      <ViewPuzzleInfoModal>{t('viewPuzzle.info')}</ViewPuzzleInfoModal>
+      <ViewPuzzleInfoModal>{t(($) => $.viewPuzzle.info)}</ViewPuzzleInfoModal>
       <Button
         assets={castSpellAssets}
-        label={t('castSpell.label')}
+        label={t(($) => $.castSpell.label)}
         onClick={onCastSpellClick}
         onMouseDown={castSpellInfoModal.onMouseDown}
         x={46}
         y={107}
       />
-      <CastSpellInfoModal>{t('castSpell.info')}</CastSpellInfoModal>
+      <CastSpellInfoModal>{t(($) => $.castSpell.info)}</CastSpellInfoModal>
       <Button
         assets={digAssets}
-        label={t('dig.label')}
+        label={t(($) => $.dig.label)}
         onClick={onDigClick}
         onMouseDown={digInfoModal.onMouseDown}
         x={179}
         y={107}
       />
-      <DigInfoModal>{t('dig.info')}</DigInfoModal>
+      <DigInfoModal>{t(($) => $.dig.info)}</DigInfoModal>
       <Button
         assets={okayAssets}
-        label={t('confirm.label')}
+        label={t(($) => $.confirm.label)}
         onClick={onOkayClick}
         onMouseDown={okayInfoModal.onMouseDown}
         x={112}
         y={184}
       />
-      <OkayInfoModal>{t('confirm.info')}</OkayInfoModal>
+      <OkayInfoModal>{t(($) => $.confirm.info)}</OkayInfoModal>
     </Window>
   );
 }

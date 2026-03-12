@@ -17,14 +17,14 @@ export function EnterTelephoneNumberModal({ onChange, value, ...props }: EnterTe
   return (
     <Modal
       {...props}
-      inputLabel={t('inputLabel')}
+      inputLabel={t(($) => $.inputLabel)}
       inputValue={value}
       onInputValueChange={onChange}
       showInput
       size={2}
       type="okay"
     >
-      {t('message')}
+      {t(($) => $.message)}
     </Modal>
   );
 }

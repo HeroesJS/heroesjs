@@ -23,7 +23,7 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       {([2, 3, 4] as const).map((count) => {
         const [InfoModal, infoModal] = infoModals[count];
 
@@ -31,11 +31,11 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
           <MenuItem key={count}>
             <Button
               assets={countAssets[count]}
-              label={t('count.label', { count })}
+              label={t(($) => $.count.label, { count })}
               onClick={() => onValueClick?.(count)}
               onMouseDown={infoModal.onMouseDown}
             />
-            <InfoModal>{t(`count.info_${count}`)}</InfoModal>
+            <InfoModal>{t(($) => $.count[`info_${count}`])}</InfoModal>
           </MenuItem>
         );
       })}
@@ -43,11 +43,11 @@ export function PlayerCountMenu({ onCancelClick, onValueClick, x, y }: PlayerCou
       <MenuItem>
         <Button
           assets={cancel}
-          label={t('cancel.label')}
+          label={t(($) => $.cancel.label)}
           onClick={onCancelClick}
           onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+        <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

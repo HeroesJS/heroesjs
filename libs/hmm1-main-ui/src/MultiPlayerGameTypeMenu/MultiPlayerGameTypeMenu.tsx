@@ -32,51 +32,51 @@ export function MultiPlayerGameTypeMenu({
   const [CancelInfoModal, cancelInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
         <Button
           assets={hotSeat}
-          label={t('hotSeat.label')}
+          label={t(($) => $.hotSeat.label)}
           onClick={onHotSeatClick}
           onMouseDown={hotSeatInfoModal.onMouseDown}
         />
-        <HotSeatInfoModal size={1}>{t('hotSeat.info')}</HotSeatInfoModal>
+        <HotSeatInfoModal size={1}>{t(($) => $.hotSeat.info)}</HotSeatInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={network}
-          label={t('network.label')}
+          label={t(($) => $.network.label)}
           onClick={onNetworkClick}
           onMouseDown={networkInfoModal.onMouseDown}
         />
-        <NetworkInfoModal size={1}>{t('network.info')}</NetworkInfoModal>
+        <NetworkInfoModal size={1}>{t(($) => $.network.info)}</NetworkInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={modem}
-          label={t('modem.label')}
+          label={t(($) => $.modem.label)}
           onClick={onModemClick}
           onMouseDown={modemInfoModal.onMouseDown}
         />
-        <ModemInfoModal size={1}>{t('modem.info')}</ModemInfoModal>
+        <ModemInfoModal size={1}>{t(($) => $.modem.info)}</ModemInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={directConnect}
-          label={t('directConnect.label')}
+          label={t(($) => $.directConnect.label)}
           onClick={onDirectConnectClick}
           onMouseDown={directConnectInfoModal.onMouseDown}
         />
-        <DirectConnectInfoModal size={1}>{t('directConnect.info')}</DirectConnectInfoModal>
+        <DirectConnectInfoModal size={1}>{t(($) => $.directConnect.info)}</DirectConnectInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={cancel}
-          label={t('cancel.label')}
+          label={t(($) => $.cancel.label)}
           onClick={onCancelClick}
           onMouseDown={cancelInfoModal.onMouseDown}
         />
-        <CancelInfoModal>{t('cancel.info')}</CancelInfoModal>
+        <CancelInfoModal>{t(($) => $.cancel.info)}</CancelInfoModal>
       </MenuItem>
     </Menu>
   );

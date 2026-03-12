@@ -32,46 +32,51 @@ export function MainMenu({
   const [QuitInfoModal, quitInfoModal] = useModal();
 
   return (
-    <Menu label={t('label')} x={x} y={y}>
+    <Menu label={t(($) => $.label)} x={x} y={y}>
       <MenuItem>
         <Button
           assets={newGame}
-          label={t('newGame.label')}
+          label={t(($) => $.newGame.label)}
           onClick={onNewGameClick}
           onMouseDown={newGameInfoModal.onMouseDown}
         />
-        <NewGameInfoModal>{t('newGame.info')}</NewGameInfoModal>
+        <NewGameInfoModal>{t(($) => $.newGame.info)}</NewGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={loadGame}
-          label={t('loadGame.label')}
+          label={t(($) => $.loadGame.label)}
           onClick={onLoadGameClick}
           onMouseDown={loadGameInfoModal.onMouseDown}
         />
-        <LoadGameInfoModal>{t('loadGame.info')}</LoadGameInfoModal>
+        <LoadGameInfoModal>{t(($) => $.loadGame.info)}</LoadGameInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={viewHighScores}
-          label={t('viewHighScores.label')}
+          label={t(($) => $.viewHighScores.label)}
           onClick={onViewHighScoresClick}
           onMouseDown={viewHighScoresInfoModal.onMouseDown}
         />
-        <ViewHighScoresInfoModal>{t('viewHighScores.info')}</ViewHighScoresInfoModal>
+        <ViewHighScoresInfoModal>{t(($) => $.viewHighScores.info)}</ViewHighScoresInfoModal>
       </MenuItem>
       <MenuItem>
         <Button
           assets={viewCredits}
-          label={t('viewCredits.label')}
+          label={t(($) => $.viewCredits.label)}
           onClick={onViewCreditsClick}
           onMouseDown={viewCreditsInfoModal.onMouseDown}
         />
-        <ViewCreditsInfoModal>{t('viewCredits.info')}</ViewCreditsInfoModal>
+        <ViewCreditsInfoModal>{t(($) => $.viewCredits.info)}</ViewCreditsInfoModal>
       </MenuItem>
       <MenuItem>
-        <Button assets={quit} label={t('quit.label')} onClick={onQuitClick} onMouseDown={quitInfoModal.onMouseDown} />
-        <QuitInfoModal>{t('quit.info')}</QuitInfoModal>
+        <Button
+          assets={quit}
+          label={t(($) => $.quit.label)}
+          onClick={onQuitClick}
+          onMouseDown={quitInfoModal.onMouseDown}
+        />
+        <QuitInfoModal>{t(($) => $.quit.info)}</QuitInfoModal>
       </MenuItem>
     </Menu>
   );
