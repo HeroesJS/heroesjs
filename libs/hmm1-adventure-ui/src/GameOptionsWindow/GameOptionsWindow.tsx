@@ -3,6 +3,7 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
+import type { GameSettings } from '@heroesjs/hmm1-core';
 import { MovementSpeed, movementSpeeds, SoundVolume, soundVolumes } from '@heroesjs/hmm1-core';
 import {
   Button,
@@ -31,50 +32,39 @@ import {
   viewEnemyMovementAssets,
 } from './assets';
 
+const defaultSettings: GameSettings = {
+  autoSave: false,
+  effectsVolume: SoundVolume.Off,
+  movementSpeed: MovementSpeed.Walk,
+  musicVolume: SoundVolume.Off,
+  showPath: false,
+  viewEnemyMovement: false,
+};
+
 interface GameOptionsWindowProps {
-  readonly autoSave?: boolean;
-  readonly effectsVolume?: SoundVolume;
-  readonly movementSpeed?: MovementSpeed;
-  readonly musicVolume?: SoundVolume;
-  readonly onAutoSaveChange?: (value: boolean) => void;
-  readonly onEffectsVolumeChange?: (value: SoundVolume) => void;
   readonly onInfoClick?: () => void;
   readonly onLoadGameClick?: () => void;
-  readonly onMovementSpeedChange?: (value: MovementSpeed) => void;
-  readonly onMusicVolumeChange?: (value: SoundVolume) => void;
   readonly onNewGameClick?: () => void;
   readonly onOkayClick?: () => void;
   readonly onQuitClick?: () => void;
   readonly onSaveGameClick?: () => void;
-  readonly onShowPathChange?: (value: boolean) => void;
-  readonly onViewEnemyMovementChange?: (value: boolean) => void;
+  readonly onSettingsChange?: (value: GameSettings) => void;
   readonly open: boolean;
-  readonly showPath?: boolean;
-  readonly viewEnemyMovement?: boolean;
+  readonly settings?: Partial<GameSettings>;
   readonly x?: number;
   readonly y?: number;
 }
 
 export function GameOptionsWindow({
-  autoSave,
-  effectsVolume = SoundVolume.Off,
-  movementSpeed = MovementSpeed.Walk,
-  musicVolume = SoundVolume.Off,
-  onAutoSaveChange,
-  onEffectsVolumeChange,
   onInfoClick,
   onLoadGameClick,
-  onMovementSpeedChange,
-  onMusicVolumeChange,
   onNewGameClick,
   onOkayClick,
   onQuitClick,
   onSaveGameClick,
-  onShowPathChange,
-  onViewEnemyMovementChange,
+  onSettingsChange,
   open,
-  showPath,
-  viewEnemyMovement,
+  settings: settingsOverride = defaultSettings,
   x,
   y,
 }: GameOptionsWindowProps) {
@@ -91,6 +81,17 @@ export function GameOptionsWindow({
 
   const [QuitInfoModal, quitInfoModal] = useModal();
   const [QuitConfirmationModal, quitConfirmationModal] = useModal();
+
+  const settings = {
+    ...defaultSettings,
+    ...settingsOverride,
+  };
+
+  const handleSettingsChange = (value: Partial<GameSettings>) =>
+    onSettingsChange?.({
+      ...settings,
+      ...value,
+    });
 
   const [MusicVolumeInfoModal, musicVolumeInfoModal] = useModal();
   const [EffectsVolumeInfoModal, effectsVolumeInfoModal] = useModal();
@@ -170,9 +171,9 @@ export function GameOptionsWindow({
       <VolumeSetting
         assets={music}
         label={t(($) => $.musicVolume.label)}
-        onChange={onMusicVolumeChange}
+        onChange={(value) => handleSettingsChange({ musicVolume: value })}
         onMouseDown={musicVolumeInfoModal.onMouseDown}
-        value={musicVolume}
+        value={settings.musicVolume}
         x={25}
         y={181}
       />
@@ -180,9 +181,9 @@ export function GameOptionsWindow({
       <VolumeSetting
         assets={effects}
         label={t(($) => $.effectsVolume.label)}
-        onChange={onEffectsVolumeChange}
+        onChange={(value) => handleSettingsChange({ effectsVolume: value })}
         onMouseDown={effectsVolumeInfoModal.onMouseDown}
-        value={effectsVolume}
+        value={settings.effectsVolume}
         x={117}
         y={181}
       />
@@ -190,11 +191,11 @@ export function GameOptionsWindow({
       <CycleToggleSetting
         assets={movementSpeedAssets}
         label={t(($) => $.movementSpeed.label)}
-        onChange={onMovementSpeedChange}
+        onChange={(value) => handleSettingsChange({ movementSpeed: value })}
         onMouseDown={movementSpeedInfoModal.onMouseDown}
         options={movementSpeeds}
-        value={movementSpeed}
-        valueLabel={tCore(($) => $.movementSpeed[movementSpeed])}
+        value={settings.movementSpeed}
+        valueLabel={tCore(($) => $.movementSpeed[settings.movementSpeed])}
         x={209}
         y={181}
       />
@@ -202,9 +203,9 @@ export function GameOptionsWindow({
       <CheckboxSetting
         assets={autoSaveAssets}
         label={t(($) => $.autoSave.label)}
-        onChange={onAutoSaveChange}
+        onChange={(value) => handleSettingsChange({ autoSave: value })}
         onMouseDown={autoSaveInfoModal.onMouseDown}
-        value={autoSave}
+        value={settings.autoSave}
         x={25}
         y={301}
       />
@@ -212,9 +213,9 @@ export function GameOptionsWindow({
       <CheckboxSetting
         assets={showPathAssets}
         label={t(($) => $.showPath.label)}
-        onChange={onShowPathChange}
+        onChange={(value) => handleSettingsChange({ showPath: value })}
         onMouseDown={showPathInfoModal.onMouseDown}
-        value={showPath}
+        value={settings.showPath}
         x={117}
         y={301}
       />
@@ -222,9 +223,9 @@ export function GameOptionsWindow({
       <CheckboxSetting
         assets={viewEnemyMovementAssets}
         label={t(($) => $.viewEnemyMovement.label)}
-        onChange={onViewEnemyMovementChange}
+        onChange={(value) => handleSettingsChange({ viewEnemyMovement: value })}
         onMouseDown={viewEnemyMovementInfoModal.onMouseDown}
-        value={viewEnemyMovement}
+        value={settings.viewEnemyMovement}
         x={209}
         y={289}
       />

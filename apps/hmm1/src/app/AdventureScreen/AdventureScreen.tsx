@@ -8,7 +8,7 @@ import {
   ScenarioInfoWindow,
 } from '@heroesjs/hmm1-adventure-ui';
 
-import { selectGameSettings, updateGameSettings } from '../gameSettingsSlice';
+import { changeGameSettings, selectGameSettings } from '../gameSettingsSlice';
 import { selectScenarioInfo } from '../gameSlice';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
@@ -38,60 +38,14 @@ export function AdventureScreen() {
         <Route
           element={
             <GameOptionsWindow
-              autoSave={gameSettings.autoSave}
-              effectsVolume={gameSettings.effectsVolume}
-              movementSpeed={gameSettings.movementSpeed}
-              musicVolume={gameSettings.musicVolume}
-              onAutoSaveChange={(autoSave) =>
-                dispatch(
-                  updateGameSettings({
-                    autoSave,
-                  })
-                )
-              }
-              onEffectsVolumeChange={(effectsVolume) =>
-                dispatch(
-                  updateGameSettings({
-                    effectsVolume,
-                  })
-                )
-              }
               onInfoClick={() => navigate('../scenario-info', { relative: 'path' })}
               onLoadGameClick={() => navigate('/load-game')}
-              onMovementSpeedChange={(movementSpeed) =>
-                dispatch(
-                  updateGameSettings({
-                    movementSpeed,
-                  })
-                )
-              }
-              onMusicVolumeChange={(musicVolume) =>
-                dispatch(
-                  updateGameSettings({
-                    musicVolume,
-                  })
-                )
-              }
               onNewGameClick={() => navigate('/new-game')}
               onOkayClick={() => navigate('..', { relative: 'path' })}
               onQuitClick={() => navigate('/')}
-              onShowPathChange={(showPath) =>
-                dispatch(
-                  updateGameSettings({
-                    showPath,
-                  })
-                )
-              }
-              onViewEnemyMovementChange={(viewEnemyMovement) =>
-                dispatch(
-                  updateGameSettings({
-                    viewEnemyMovement,
-                  })
-                )
-              }
+              onSettingsChange={(value) => dispatch(changeGameSettings(value))}
               open
-              showPath={gameSettings.showPath}
-              viewEnemyMovement={gameSettings.viewEnemyMovement}
+              settings={gameSettings}
               x={160}
               y={10}
             />
