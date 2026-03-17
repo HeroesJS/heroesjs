@@ -18,6 +18,9 @@ import {
 } from '@heroesjs/hmm1-core';
 import { FileSelectorWindow, MainScreen, NewStandardGameWindow } from '@heroesjs/hmm1-main-ui';
 
+import { startGame } from '../gameSlice';
+import { useAppDispatch } from '../hooks';
+
 interface GameSettings {
   readonly gameDifficulty: GameDifficulty;
   readonly opponents: OpponentSettings;
@@ -58,6 +61,8 @@ interface NewStandardGameScreenProps {
 export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandardGameScreenProps) {
   const { t } = useTranslation('app', { keyPrefix: 'component.newStandardGameScreen' });
   const params = useParams<'playerCount'>();
+
+  const dispatch = useAppDispatch();
 
   const playerCount = Number(params.playerCount ?? 1);
 
@@ -108,6 +113,18 @@ export function NewStandardGameScreen({ onCancelClick, onOkayClick }: NewStandar
         name: selectedScenario!.name,
       },
     };
+
+    dispatch(
+      startGame({
+        difficultyRating: rating,
+        gameDifficulty,
+        humanOpponentsCount,
+        kingOfTheHill,
+        opponents: opponentSettings,
+        playerColor,
+        scenario: selectedScenario!,
+      })
+    );
 
     onOkayClick?.();
   };

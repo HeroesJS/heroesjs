@@ -3,7 +3,7 @@ import { screen, within } from '@testing-library/react';
 import { renderWithProviders } from '@heroesjs/hmm1-test-utils';
 
 import { GameOptionsWindow } from './GameOptionsWindow';
-import { MovementSpeed, SoundVolume } from '@heroesjs/hmm1-core';
+import { GameSettings, MovementSpeed, SoundVolume } from '@heroesjs/hmm1-core';
 
 describe(GameOptionsWindow, () => {
   it('should render', () => {
@@ -196,13 +196,13 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should render on when enabled', () => {
-      renderWithProviders(<GameOptionsWindow musicVolume={SoundVolume.On} open />);
+      renderWithProviders(<GameOptionsWindow open settings={{ musicVolume: SoundVolume.On }} />);
 
       expect(within(screen.getByRole('radiogroup', { name: /^music$/i })).getByRole('radio', { name: /^on$/i }));
     });
 
     it('should render volume when neither on nor off', () => {
-      renderWithProviders(<GameOptionsWindow musicVolume={SoundVolume.Volume5} open />);
+      renderWithProviders(<GameOptionsWindow open settings={{ musicVolume: SoundVolume.Volume5 }} />);
 
       expect(
         within(screen.getByRole('radiogroup', { name: /^music$/i })).getByRole('radio', { name: /^on - volume 5$/i })
@@ -220,11 +220,15 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onMusicVolumeChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
       await user.click(screen.getByRole('radiogroup', { name: /^music$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[SoundVolume]>(SoundVolume.On);
+      expect(handler).toHaveBeenCalledWith(
+        expect.objectContaining<Partial<GameSettings>>({
+          musicVolume: SoundVolume.On,
+        })
+      );
     });
   });
 
@@ -244,13 +248,13 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should render on when enabled', () => {
-      renderWithProviders(<GameOptionsWindow effectsVolume={SoundVolume.On} open />);
+      renderWithProviders(<GameOptionsWindow open settings={{effectsVolume: SoundVolume.On }} />);
 
       expect(within(screen.getByRole('radiogroup', { name: /^effects$/i })).getByRole('radio', { name: /^on$/i }));
     });
 
     it('should render volume when neither on nor off', () => {
-      renderWithProviders(<GameOptionsWindow effectsVolume={SoundVolume.Volume5} open />);
+      renderWithProviders(<GameOptionsWindow open settings={{effectsVolume: SoundVolume.Volume5 }} />);
 
       expect(
         within(screen.getByRole('radiogroup', { name: /^effects$/i })).getByRole('radio', { name: /^on - volume 5$/i })
@@ -268,11 +272,13 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onMusicVolumeChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
-      await user.click(screen.getByRole('radiogroup', { name: /^music$/i }));
+      await user.click(screen.getByRole('radiogroup', { name: /^effects$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[SoundVolume]>(SoundVolume.On);
+      expect(handler).toHaveBeenCalledWith(
+        expect.objectContaining<Partial<GameSettings>>({ effectsVolume: SoundVolume.On })
+      );
     });
   });
 
@@ -304,11 +310,13 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onMovementSpeedChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
       await user.click(screen.getByRole('radiogroup', { name: /^speed$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[MovementSpeed]>(MovementSpeed.Trot);
+      expect(handler).toHaveBeenCalledWith(
+        expect.objectContaining<Partial<GameSettings>>({ movementSpeed: MovementSpeed.Trot })
+      );
     });
   });
 
@@ -326,7 +334,7 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should be checked when set', () => {
-      renderWithProviders(<GameOptionsWindow autoSave open />);
+      renderWithProviders(<GameOptionsWindow open settings={{ autoSave: true }} />);
 
       expect(screen.getByRole('checkbox', { name: /^auto save$/i })).toBeChecked();
     });
@@ -346,11 +354,11 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onAutoSaveChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
       await user.click(screen.getByRole('checkbox', { name: /^auto save$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+      expect(handler).toHaveBeenCalledWith(expect.objectContaining<Partial<GameSettings>>({ autoSave: true }));
     });
   });
 
@@ -368,7 +376,7 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should be checked when set', () => {
-      renderWithProviders(<GameOptionsWindow open showPath />);
+      renderWithProviders(<GameOptionsWindow open settings={{showPath: true }} />);
 
       expect(screen.getByRole('checkbox', { name: /^show path$/i })).toBeChecked();
     });
@@ -388,11 +396,11 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onShowPathChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
       await user.click(screen.getByRole('checkbox', { name: /^show path$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+      expect(handler).toHaveBeenCalledWith(expect.objectContaining<Partial<GameSettings>>({ showPath: true }));
     });
   });
 
@@ -410,7 +418,7 @@ describe(GameOptionsWindow, () => {
     });
 
     it('should be checked when set', () => {
-      renderWithProviders(<GameOptionsWindow open viewEnemyMovement />);
+      renderWithProviders(<GameOptionsWindow open settings={{viewEnemyMovement: true }} />);
 
       expect(screen.getByRole('checkbox', { name: /^view enemy movement$/i })).toBeChecked();
     });
@@ -430,11 +438,11 @@ describe(GameOptionsWindow, () => {
     it('should call handler when clicked', async () => {
       const handler = vitest.fn();
 
-      const { user } = renderWithProviders(<GameOptionsWindow onViewEnemyMovementChange={handler} open />);
+      const { user } = renderWithProviders(<GameOptionsWindow onSettingsChange={handler} open />);
 
       await user.click(screen.getByRole('checkbox', { name: /^view enemy movement$/i }));
 
-      expect(handler).toHaveBeenCalledWith<[boolean]>(true);
+      expect(handler).toHaveBeenCalledWith(expect.objectContaining<Partial<GameSettings>>({ viewEnemyMovement: true }));
     });
   });
 

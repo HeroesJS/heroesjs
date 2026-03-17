@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react';
-
-import { defaultHighScores, defaultHighScoresGameType } from '@heroesjs/hmm1-core';
+import { HighScoresGameType } from '@heroesjs/hmm1-core';
 import { HighScoresScreen as ScreenBase } from '@heroesjs/hmm1-main-ui';
 
-let lastViewedHighScores = defaultHighScoresGameType;
+import { selectHighScores, setGameType } from '../highScoresSlice';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 interface HighScoresScreenProps {
   readonly onExitClick?: () => void;
 }
 
 export function HighScoresScreen({ onExitClick }: HighScoresScreenProps) {
-  const [gameType, setGameType] = useState(lastViewedHighScores);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    lastViewedHighScores = gameType;
-  }, [gameType]);
+  const highScores = useAppSelector(selectHighScores);
+
+  const handleGameTypeChange = (value: HighScoresGameType) => dispatch(setGameType(value));
 
   return (
     <ScreenBase
-      entries={defaultHighScores}
-      gameType={gameType}
+      entries={highScores.scores}
+      gameType={highScores.gameType}
       onExitClick={onExitClick}
-      onGameTypeChange={setGameType}
+      onGameTypeChange={handleGameTypeChange}
     />
   );
 }

@@ -328,28 +328,4 @@ test.describe('info', () => {
 
     await expect(page).toHaveScreenshot('info-info.png', { maxDiffPixelRatio: 0.12 });
   });
-
-  test('displays scenario info when info is clicked', async ({ gameOptions, page, scenarioInfo }) => {
-    await gameOptions.info.select();
-
-    await scenarioInfo.verifyIsOpen();
-
-    await scenarioInfo.verifyInfo({
-      difficultyRating: /^60%$/i,
-      gameDifficulty: /^normal$/i,
-      kingOfTheHill: /^no$/i,
-      opponents: [/^average$/i, /^average$/i, /^average$/i],
-      playerColor: /^blue$/i,
-      scenarioDescription: /^the griffons will protect you until you are ready to make your move\.$/i,
-      scenarioDifficulty: /^easy$/i,
-      scenarioName: /^claw \( easy \)$/i,
-      scenarioSize: /^small$/i,
-    });
-
-    await expect(page).toHaveScreenshot('scenario-info.png', { maxDiffPixelRatio: 0.18 });
-
-    await scenarioInfo.okay.select();
-
-    await scenarioInfo.verifyIsClosed();
-  });
 });

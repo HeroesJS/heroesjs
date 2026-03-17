@@ -1,6 +1,7 @@
 export {
   computerOpponentSettings,
   defaultGameDifficulty,
+  defaultGameSettings,
   defaultOpponentSetting,
   defaultPlayerColor,
   gameDifficulties,
@@ -23,7 +24,7 @@ export {
   SoundVolume,
   soundVolumes,
 } from './lib/core.js';
-export type { OpponentSetting, OpponentSettings } from './lib/core.js';
+export type { GameSettings, OpponentSetting, OpponentSettings } from './lib/core.js';
 export {
   defaultCampaignGameHighScores,
   defaultHighScores,

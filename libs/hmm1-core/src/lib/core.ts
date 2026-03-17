@@ -127,6 +127,24 @@ export const movementSpeeds: readonly MovementSpeed[] = [
   MovementSpeed.Jump,
 ];
 
+export interface GameSettings {
+  readonly autoSave: boolean;
+  readonly effectsVolume: SoundVolume;
+  readonly movementSpeed: MovementSpeed;
+  readonly musicVolume: SoundVolume;
+  readonly showPath: boolean;
+  readonly viewEnemyMovement: boolean;
+}
+
+export const defaultGameSettings: GameSettings = {
+  autoSave: true,
+  effectsVolume: SoundVolume.On,
+  movementSpeed: MovementSpeed.Gallop,
+  musicVolume: SoundVolume.On,
+  showPath: true,
+  viewEnemyMovement: true,
+};
+
 export enum Leader {
   LordIronfist = 1,
   LordSlayer = 2,
